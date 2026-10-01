@@ -147,11 +147,21 @@ body {
 }
 
 .in-game-container {
+  position: relative;
   display: flex;
   height: 100%;
-  height: 100dvh;
+  height: var(--app-height, 100dvh);
+  box-sizing: border-box;
   flex-direction: column;
   overflow: hidden;
+  /* Keep content away from the notch / home indicator */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+html.in-game-scroll-lock,
+html.in-game-scroll-lock body {
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 .in-game-top-var {
@@ -191,7 +201,8 @@ body {
 
 .in-game-solution {
   position: absolute;
-  top: calc(50% + 5vh);
+  /* Just above the Next button / typed answer, so it doesn't cover the kana */
+  bottom: calc(min(14vh, 12vw) + 7rem);
   font-size: min(15vh, 12vw);
   max-width: 95vw;
   text-align: center;
@@ -239,8 +250,9 @@ body {
 #in-game-text-input {
   /* Kept 1px instead of 0 so mobile browsers (iOS) still allow focusing it.
      16px font prevents iOS from zooming in on focus */
-  position: absolute;
-  bottom: 0;
+  /* Fixed at the top so iOS doesn't scroll the page when the input gets focus */
+  position: fixed;
+  top: 0;
   left: 0;
   width: 1px;
   height: 1px;
@@ -378,8 +390,11 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
-.inGameUserGameScoreWindow_buttons button:hover{
-  background-color: #ff9a3c54;
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .inGameUserGameScoreWindow_buttons button:hover{
+    background-color: #ff9a3c54;
+  }
 }
 
 .hidden-text-for-font-loading {
@@ -521,5 +536,42 @@ body {
   }
   .in-game-touch-answer>p {
     margin: 0.3em 0;
+  }
+}
+
+.in-game-next-button {
+  position: absolute;
+  bottom: calc(min(14vh, 12vw) + 2.5em);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff9a3c;
+  color: #155263;
+  border: none;
+  border-radius: 30px;
+  padding: 0.6em 1.6em;
+  font-size: 1.3em;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0.3rem 0.3rem 15px #00000060;
+}
+
+/* Keyboard hints vs touch buttons in the help bar */
+.label-touch {
+  display: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .label-keyboard {
+    display: none;
+  }
+  .label-touch {
+    display: inline;
+  }
+  .in-game-help-button {
+    border: 2px solid #ff9a3c;
+    border-radius: 20px;
+    padding: 0.15em 0.7em;
+    cursor: pointer;
   }
 }

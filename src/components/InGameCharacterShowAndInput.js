@@ -843,14 +843,18 @@ export default function InGameCharacterShowAndInput() {
 
           if (!autoNext) {
             const solutionElement = document.querySelector('#in-game-solution');
+            const nextButton = document.querySelector('#in-game-next-button');
+            nextButton.classList.remove("hidden-element");
             const goToNextWord = () => {
               clearAnswerInput();
               solutionElement.classList.add("hidden-element");
+              nextButton.classList.add("hidden-element");
               showNewCharacter();
 
               // Remove the listeners to prevent multiple listeners from being added
               document.removeEventListener('keydown', handleKeyDown);
               solutionElement.removeEventListener('click', goToNextWord);
+              nextButton.removeEventListener('click', goToNextWord);
             };
             // Define the function for keydown event
             const handleKeyDown = (event) => {
@@ -859,9 +863,10 @@ export default function InGameCharacterShowAndInput() {
               }
             };
 
-            // Listen for 'Enter' key press, or a tap on the translation (mobile)
+            // Listen for 'Enter' key press, or a tap on the translation / Next button (mobile)
             document.addEventListener('keydown', handleKeyDown);
             solutionElement.addEventListener('click', goToNextWord);
+            nextButton.addEventListener('click', goToNextWord);
           } else {
             timeoutInProgress = true;
             setTimeout(function () {
@@ -891,6 +896,29 @@ export default function InGameCharacterShowAndInput() {
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Keep the game screen the size of the visible area, so the on-screen keyboard
+  // never covers the answer (needed for iOS, which ignores interactive-widget)
+  React.useEffect(() => {
+    const root = document.documentElement;
+    root.classList.add('in-game-scroll-lock');
+    const viewport = window.visualViewport;
+    function updateAppHeight() {
+      root.style.setProperty('--app-height', viewport.height + 'px');
+      window.scrollTo(0, 0);
+    }
+    if (viewport) {
+      updateAppHeight();
+      viewport.addEventListener('resize', updateAppHeight);
+    }
+    return () => {
+      root.classList.remove('in-game-scroll-lock');
+      root.style.removeProperty('--app-height');
+      if (viewport) {
+        viewport.removeEventListener('resize', updateAppHeight);
+      }
+    };
   }, []);
 
   const cursorBlinkInterval = useRef(null);
@@ -973,6 +1001,10 @@ export default function InGameCharacterShowAndInput() {
       showNewCharacter();
     } else {
       updateCurrentGameStats("wrong");
+      // Short haptic feedback on phones that support it (Android)
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
       // Animate the element in ID in-game-kana-character using the class animation-wrong
       document.querySelector('#in-game-kana-character').classList.add("animation-wrong1");
       setTimeout(function () {
@@ -1082,8 +1114,14 @@ export default function InGameCharacterShowAndInput() {
           </div>
         ) : (
           <div className='in-game-help-bar'>
-            <div onClick={handleUserAskForHelp}><strong>?</strong>: help</div>
-            {(localStorage.getItem("game-mode-random-fonts") === "true") ? <div onClick={onClickChangeFontToDefault}><strong>shift</strong>: normal font</div> : <div></div>}
+            <div className='in-game-help-button' onClick={handleUserAskForHelp}>
+              <span className='label-keyboard'><strong>?</strong>: help</span>
+              <span className='label-touch'>💡 Hint</span>
+            </div>
+            {(localStorage.getItem("game-mode-random-fonts") === "true") ? <div className='in-game-help-button' onClick={onClickChangeFontToDefault}>
+              <span className='label-keyboard'><strong>shift</strong>: normal font</span>
+              <span className='label-touch'>🔤 Font</span>
+            </div> : <div></div>}
           </div>
         )}
         <div onClick={onClickExitButton} className='in-game-exit-button'>✖</div>
@@ -1098,6 +1136,9 @@ export default function InGameCharacterShowAndInput() {
         <div id='in-game-solution' className='in-game-solution hidden-element'>
           {onScreenWordMeaning}
         </div>
+        <button id='in-game-next-button' className='in-game-next-button hidden-element'>
+          Next →<span className='label-keyboard'> (Enter)</span>
+        </button>
         <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
           {onScreenSolution}
         </div>

@@ -33,7 +33,8 @@ export default function CheckMark(props) {
             id={props.id} 
             className={"character-checkbox-input " + props.class}
             onChange={handleCheckMarked} />
-        <div className="character-checkbox-content">
+        <div className="character-checkbox-content toggle-content">
+            <span className="toggle-switch" aria-hidden="true"></span>
             <p>{props.characterText}</p>
         </div>
     </label>

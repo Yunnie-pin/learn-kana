@@ -66,7 +66,7 @@ export default function KanaGroup(props) {
   };
 
   return (
-    <div className='kana-group-elements' ref={groupRef}>
+    <div className={'kana-group-elements kana-group-' + props.groupToShow} ref={groupRef}>
       <h2>{uppercaseFirstLetter(props.groupToShow)}</h2>
       <div className="character-title-group">
         <div className={`character-title-group-button ${mainKanaSelected ? 'selected' : ''}`} 

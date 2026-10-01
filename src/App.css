@@ -53,8 +53,8 @@ Title Page
 
 .github-icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: calc(10px + env(safe-area-inset-top));
+  right: calc(10px + env(safe-area-inset-right));
   width: 50px;
   height: 50px;
 }
@@ -66,8 +66,11 @@ Title Page
   transition: filter 0.3s;
 }
 
-.github-icon:hover svg {
-  filter: opacity(1);
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .github-icon:hover svg {
+    filter: opacity(1);
+  }
 }
 
 /* Stolen and adapted from https://codepen.io/Hornebom/pen/obaLYK */
@@ -97,8 +100,11 @@ Title Page
   box-shadow: 0 0 0 0 #ff9a3c, 0.5rem 0.5rem 30px #503114;
 }
 
-.glowButton:hover {
-  box-shadow: 0 0 60px 2px #ff9a3c, 0.5rem 0.5rem 30px #503114;
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .glowButton:hover {
+    box-shadow: 0 0 60px 2px #ff9a3c, 0.5rem 0.5rem 30px #503114;
+  }
 }
 
 .glowButton:after {
@@ -127,10 +133,13 @@ Title Page
   -6px -6px 12px #165769;
 }
 
-.neoButton:hover {
-  background: linear-gradient(145deg, #134a59, #16586a);
-  box-shadow:  6px 6px 12px #144d5d,
-               -6px -6px 12px #165769;
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .neoButton:hover {
+    background: linear-gradient(145deg, #134a59, #16586a);
+    box-shadow:  6px 6px 12px #144d5d,
+                 -6px -6px 12px #165769;
+  }
 }
 
 .neoButton svg {
@@ -157,13 +166,16 @@ Game Menu Page
   padding: 0.8em;
   z-index: 100;
   transition: all 0.3s;
-  align-self: flex-start;
-  margin: -3.5em 0.5em 0.5em 0.5em;
+  position: absolute;
+  left: calc(0.5em + env(safe-area-inset-left));
 }
 
-.stats-button-floating:hover {
-  transform: scale(1.1);
-  box-shadow: 6px 6px 12px #144d5d, -6px -6px 12px #165769;
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .stats-button-floating:hover {
+    transform: scale(1.1);
+    box-shadow: 6px 6px 12px #144d5d, -6px -6px 12px #165769;
+  }
 }
 
 .stats-button-floating svg {
@@ -177,6 +189,47 @@ Game Menu Page
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Start button + stats button. Sticks to the bottom of the screen on phones */
+.game-menu-start-bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.game-menu-start-bar .glowButton {
+  width: 250px;
+  margin: 15px;
+}
+
+/* Hiragana / Katakana tabs, only used on phones */
+.kana-group-tabs {
+  display: none;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.kana-group-tab {
+  padding: 0.6em 1.4em;
+  border: none;
+  border-radius: 50em;
+  background: #155263;
+  box-shadow: 5px 5px 12px #144d5d, -5px -5px 12px #165769;
+  color: #ff9a3c;
+  font-size: 1.1em;
+  font-family: "Belanosima";
+  cursor: pointer;
+}
+
+.kana-group-tab.active {
+  background: linear-gradient(24deg, #ff9a3c, #155263);
+  color: white;
 }
 
 .kana-group-selector {
@@ -245,10 +298,13 @@ Game Menu Page
   background-color: #00000048;
 }
 
-.character-title-group-button:hover {
-  background: #155263;
-  box-shadow: inset 5px 5px 12px #144d5d,
-              inset -5px -5px 12px #165769;
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .character-title-group-button:hover {
+    background: #155263;
+    box-shadow: inset 5px 5px 12px #144d5d,
+                inset -5px -5px 12px #165769;
+  }
 }
 
 .main_kana-characters,
@@ -319,8 +375,11 @@ Game Menu Page
   border-color: #00000000;
 }
 
-.character-checkbox-input:hover:not(:checked)~.character-checkbox-content {
-  background-color: #00000027;
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .character-checkbox-input:hover:not(:checked)~.character-checkbox-content {
+    background-color: #00000027;
+  }
 }
 
 .character-checkbox-input:checked~.character-checkbox-content h3 {
@@ -328,8 +387,11 @@ Game Menu Page
   /* -webkit-text-stroke: 1px black; */
 }
 
-.character-checkbox-input:hover:checked~.character-checkbox-content {
-  background-color: #0000006d;
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .character-checkbox-input:hover:checked~.character-checkbox-content {
+    background-color: #0000006d;
+  }
 }
 
 @keyframes checkbox-check {
@@ -394,10 +456,13 @@ Game Menu Page
   animation: checkbox-check 0.3s;
 }
 
-.button-with-arrows>button:hover {
-  background-color: #00000027;
-  border-radius: 10px;
-  cursor: pointer;
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .button-with-arrows>button:hover {
+    background-color: #00000027;
+    border-radius: 10px;
+    cursor: pointer;
+  }
 }
 
 .button-with-arrows .character-checkbox-content {
@@ -409,10 +474,6 @@ Game Menu Page
   text-align: center;
 }
 
-.game-mode-selector>a>.glowButton {
-  width: 250px;
-  margin: 15px;
-}
 
 .game-mode-selector-button-group > label > div {
   height: 3em;
@@ -513,10 +574,13 @@ Progress Stats Modal
   line-height: 1;
 }
 
-.progress-stats-modal-close:hover {
-  background-color: #ff9a3c;
-  color: #155263;
-  transform: rotate(90deg);
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .progress-stats-modal-close:hover {
+    background-color: #ff9a3c;
+    color: #155263;
+    transform: rotate(90deg);
+  }
 }
 
 .progress-stats-modal-tabs {
@@ -539,8 +603,11 @@ Progress Stats Modal
   user-select: none;
 }
 
-.progress-stats-tab:hover {
-  background: linear-gradient(145deg, #134a59, #16586a);
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .progress-stats-tab:hover {
+    background: linear-gradient(145deg, #134a59, #16586a);
+  }
 }
 
 .progress-stats-tab.active {
@@ -629,10 +696,13 @@ Progress Stats Modal
   position: relative;
 }
 
-.progress-stats-grid-item:hover {
-  transform: scale(1.05);
-  z-index: 10;
-  box-shadow: 0 0 10px 2px var(--mastery-color), 3px 3px 8px #00000080;
+/* Only on devices that can hover, so the effect does not stick after a tap */
+@media (hover: hover) {
+  .progress-stats-grid-item:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 0 0 10px 2px var(--mastery-color), 3px 3px 8px #00000080;
+  }
 }
 
 .progress-stats-grid-item-character {
@@ -783,5 +853,117 @@ Progress Stats Modal
     box-sizing: border-box;
     bottom: 1em;
     padding: 1em;
+  }
+}
+/*
+#############
+Toggle switch (game options)
+#############
+*/
+.game-mode-selector-button-group > label > .toggle-content {
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.6em;
+  width: 11em;
+}
+
+.game-mode-selector-button-group > label > .toggle-content > p {
+  margin: 0;
+}
+
+.toggle-switch {
+  position: relative;
+  flex: none;
+  width: 2.2em;
+  height: 1.2em;
+  border: 2px solid #ff9a3c;
+  border-radius: 1em;
+  box-sizing: border-box;
+  transition: background-color 0.2s;
+}
+
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(1.2em - 8px);
+  height: calc(1.2em - 8px);
+  border-radius: 50%;
+  background: #ff9a3c;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.character-checkbox-input:checked ~ .toggle-content .toggle-switch {
+  background-color: #ff9a3c;
+}
+
+.character-checkbox-input:checked ~ .toggle-content .toggle-switch::after {
+  background: #155263;
+  transform: translateX(1em);
+}
+
+/*
+######
+Phones
+######
+*/
+@media (max-width: 655px) {
+  .title-page {
+    height: auto;
+    min-height: 55vh;
+    min-height: 55svh;
+  }
+
+  .title-page>div>h1 {
+    margin-top: 18vh;
+  }
+
+  .kana-group-tabs {
+    display: flex;
+  }
+
+  .kana-group-selector::before,
+  .kana-group-elements>h2 {
+    display: none;
+  }
+
+  .kana-group-selector.show-hiragana .kana-group-katakana,
+  .kana-group-selector.show-katakana .kana-group-hiragana {
+    display: none;
+  }
+
+  .character-title-group {
+    padding: 0 0.5em;
+  }
+
+  /* Three kana per row instead of two */
+  .main_kana-characters .character-checkbox-content,
+  .dakuten_kana-characters .character-checkbox-content {
+    width: calc((100vw - 3em) / 3);
+    height: 80px;
+  }
+
+  .main_kana-characters .character-checkbox-content>h3,
+  .dakuten_kana-characters .character-checkbox-content>h3 {
+    font-size: 3.2em;
+    margin-bottom: -8px;
+  }
+
+  .main_kana-characters .character-checkbox-content>p,
+  .dakuten_kana-characters .character-checkbox-content>p {
+    font-size: 0.75em;
+  }
+
+  .game-menu-start-bar {
+    position: sticky;
+    bottom: 0;
+    z-index: 50;
+    background: linear-gradient(to top, #155263 70%, #15526300);
+  }
+
+  .game-menu-start-bar .glowButton {
+    width: auto;
+    margin: 10px 0 10px 3.5em;
   }
 }
