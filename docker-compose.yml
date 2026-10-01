@@ -1,0 +1,7 @@
+services:
+  learn-kana:
+    build: .
+    container_name: learn-kana
+    ports:
+      - "${APP_PORT:-8080}:80"
+    restart: unless-stopped

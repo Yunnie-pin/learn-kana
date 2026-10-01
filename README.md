@@ -30,3 +30,11 @@ A website where you will be shoved Kana characters up to your brain, until you g
 ## Privacy & Analytics
 
 This website uses [Umami](https://umami.is/), a privacy-focused, open-source analytics solution. It collects anonymous data to help me understand how the site is used and improve it. No personal data is collected, and cookies are not used for tracking.
+## Running with Docker
+
+```bash
+cp .env.example .env      # then set APP_PORT to the port you want
+docker compose up -d --build
+```
+
+The app is served at `http://localhost:<APP_PORT>` (default `8080`). To change the port, edit `APP_PORT` in `.env` and run `docker compose up -d` again. You can also set it for a single run: `APP_PORT=3000 docker compose up -d`.
