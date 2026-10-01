@@ -211,6 +211,11 @@ function ProgressStatsModal(props) {
                 }}
                 onMouseEnter={() => setHoveredItem(item)}
                 onMouseLeave={() => setHoveredItem(null)}
+                // Touch screens have no mouseleave: a tap shows the tooltip and a tap elsewhere hides it
+                onClick={(e) => {
+                    e.stopPropagation();
+                    setHoveredItem(item);
+                }}
             >
                 <div className="progress-stats-grid-item-character">
                     {item.character}
@@ -273,7 +278,7 @@ function ProgressStatsModal(props) {
 
     return (
         <div className='progress-stats-modal-background' onClick={props.onClose}>
-            <div className='progress-stats-modal' onClick={(e) => e.stopPropagation()}>
+            <div className='progress-stats-modal' onClick={(e) => { e.stopPropagation(); setHoveredItem(null); }}>
                 <div className='progress-stats-modal-header'>
                     <h2>Learning Progress</h2>
                     <button className='progress-stats-modal-close' onClick={props.onClose}>×</button>

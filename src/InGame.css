@@ -90,6 +90,7 @@ body {
   font-size: 2.5em;
   user-select: none;
   width: auto;
+  white-space: nowrap;
 }
 
 .in-game-timer {
@@ -148,14 +149,19 @@ body {
 .in-game-container {
   display: flex;
   height: 100%;
+  height: 100dvh;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .in-game-top-var {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 5px;
   margin: 5px;
-  height: 7%;
+  min-height: 7%;
+  flex: none;
 }
 
 .in-game-game-screen {
@@ -163,23 +169,20 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 93%;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .in-game-kana-character {
-  font-size: 35vh;
+  font-size: min(35vh, 75vw);
   user-select: none;
-  margin-top: 5vh;
+  margin-top: 2vh;
   /* overflow: hidden; */
-  height: 65%;
-}
-
-.in-game-kana-character {
-  font-size: 35vh;
-  user-select: none;
-  margin-top: 5vh;
-  /* overflow: hidden; */
-  height: 65%;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .in-game-kana-character>p{
@@ -189,7 +192,9 @@ body {
 .in-game-solution {
   position: absolute;
   top: calc(50% + 5vh);
-  font-size: 15vh;
+  font-size: min(15vh, 12vw);
+  max-width: 95vw;
+  text-align: center;
   user-select: none;
 }
 
@@ -201,13 +206,14 @@ body {
   display: flex;
   justify-content: center;
   font-family: courier;
-  font-size: 13vh;
+  font-size: min(13vh, 11vw);
   background: transparent;
   width: 90vw;
   color: #ff9a3c;
   padding: 5px;
   overflow: hidden;
-  height: 14vh;
+  height: min(14vh, 12vw);
+  flex: none;
 }
 
 #in-game-text-input-cursor-group span {
@@ -223,7 +229,7 @@ body {
 #in-game-text-input-cursor {
   float: left;
   width: 3px;
-  height: 11.5vh;
+  height: min(11.5vh, 10vw);
   background: #ff9a3c;
   margin-right: -4px;
   margin-left: -2px;
@@ -252,10 +258,12 @@ body {
   width: 95%;
   gap: 10px;
   margin: 10px;
+  flex: none;
 }
 
 .in-game-touch-answer {
   width: 30%;
+  min-height: min(12vh, 80px);
   font-size: 2em;
   text-align: center;
   border-radius: 30px;
@@ -288,6 +296,9 @@ body {
 }
 
 .inGameUserGameScoreWindow{
+  max-height: calc(100% - 2em);
+  overflow-y: auto;
+  box-sizing: border-box;
   border-style: solid;
   border-radius: 30px;
   padding: 3em;
@@ -472,5 +483,43 @@ body {
   .in-game-touch-answer-group {
     width:60%;
     height: 35%;
+  }
+}
+
+@media (max-width: 600px) {
+  .in-game-score {
+    font-size: 1.6em;
+  }
+  .in-game-help-bar {
+    font-size: 1.1em;
+  }
+  .in-game-exit-button {
+    font-size: 2em;
+    margin-right: 5px;
+  }
+  .in-game-timer {
+    font-size: 2em;
+  }
+  .in-game-touch-answer {
+    font-size: 1.6em;
+  }
+  .inGameUserGameScoreWindow {
+    margin: 1em;
+    padding: 1.5em;
+  }
+}
+
+/* Phones in landscape: little vertical space, so all touch answers go in one row */
+@media (orientation: landscape) and (max-height: 500px) {
+  .in-game-touch-answer-group {
+    flex-wrap: nowrap;
+    margin: 5px;
+  }
+  .in-game-touch-answer {
+    width: 18%;
+    min-height: 15vh;
+  }
+  .in-game-touch-answer>p {
+    margin: 0.3em 0;
   }
 }
