@@ -47,5 +47,43 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </React.StrictMode>
 );
 
-serviceWorkerRegistration.register();
+// Deploy updates without users having to clear their cache.
+// By default a new service worker waits until every tab of the app is closed, so a
+// rebuilt site kept showing the old version. Instead, activate it as soon as it's ready.
+if ('serviceWorker' in navigator) {
+  // On the very first visit the service worker also takes control, that must not reload the page
+  const hadController = Boolean(navigator.serviceWorker.controller);
+  let reloading = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadController || reloading) return;
+    // Don't interrupt a running game: the next page load (menu / play again) picks up the new version
+    if (window.location.pathname.includes('game')) return;
+    reloading = true;
+    window.location.reload();
+  });
+}
+
+serviceWorkerRegistration.register({
+  onUpdate: (registration) => {
+    if (registration.waiting) {
+      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+    }
+  },
+});
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.ready.then((registration) => {
+    // An update downloaded during an earlier visit can still be waiting: activate it too
+    if (registration.waiting) {
+      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+    }
+    // Tabs left open for a long time check for a new version when the user comes back to them
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        registration.update();
+      }
+    });
+  });
+}
+
 loadAnalytics();
