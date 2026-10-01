@@ -257,7 +257,15 @@ export default function InGameCharacterShowAndInput() {
   const [onScreenScore, setScore] = useState(0);
   const [userGameScoreWindowVisible, setUserGameScoreWindowVisible] = useState(false);
   const [remainingTime, setRemainingTime] = useState(null);
+  // Correct answers in a row, resets on a wrong answer or when asking for help
+  const [streak, setStreak] = useState(0);
   let inGameAnswerList = [];
+
+  // "Give me N Kanas" mode: N is the goal shown next to the score
+  const gameModeSetting = JSON.parse(localStorage.getItem("gameMode"));
+  const kanaGoal = (gameModeSetting && gameModeSetting.type === "kana-selector" && gameModeSetting.value !== -1)
+    ? gameModeSetting.value
+    : null;
 
   const characterGroupsToShow = JSON.parse(localStorage.getItem("checkedKanas"))
 
@@ -433,6 +441,11 @@ export default function InGameCharacterShowAndInput() {
   }
 
   function updateCurrentGameStats(guessType) {
+    if (guessType === "correct") {
+      setStreak(prevStreak => prevStreak + 1);
+    } else if (guessType === "wrong" || guessType === "askForHelp") {
+      setStreak(0);
+    }
     const currentTime = Date.now();
     let currentUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
     const character = inGameKanaOnScreen;
@@ -559,6 +572,11 @@ export default function InGameCharacterShowAndInput() {
         parseInt(gameScoreElement.textContent.replace(/^\D+/g, ''), 10) >= gameMode.value) {
       setUserGameScoreWindowVisible(true);
       return; // Exit early if score window is shown
+    }
+
+    const kanaElement = document.querySelector('#in-game-kana-character');
+    if (kanaElement) {
+      kanaElement.classList.remove("answer-correct");
     }
 
     // Reset visibility of help
@@ -716,6 +734,7 @@ export default function InGameCharacterShowAndInput() {
     function clearAnswerInput() {
       document.querySelector('#in-game-text-input-before-cursor').textContent = '';
       document.querySelector('#in-game-text-input-after-cursor').textContent = '';
+      document.querySelector('#in-game-text-input-cursor-group').classList.remove("answer-correct", "answer-wrong");
       syncHiddenInput();
     }
 
@@ -805,6 +824,15 @@ export default function InGameCharacterShowAndInput() {
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const InGameUserCurrentAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
 
+      // Turn the answer red as soon as no valid answer starts with what was typed
+      const answerGroup = document.querySelector('#in-game-text-input-cursor-group');
+      const typedAnswer = InGameUserCurrentAnswer.trim().toLowerCase();
+      const isOnTrack = inGameAnswerList.some(answer => answer.startsWith(typedAnswer));
+      if (!isOnTrack && !answerGroup.classList.contains("answer-wrong")) {
+        setStreak(0);
+      }
+      answerGroup.classList.toggle("answer-wrong", !isOnTrack);
+
       // Track wrong submissions: if user has typed at least the minimum answer length
       // and the answer is wrong, count it once
       if (InGameUserCurrentAnswer.length > 0 && key.match(/^[^?]$/)) {
@@ -831,6 +859,8 @@ export default function InGameCharacterShowAndInput() {
       //  Make that known and pass to the next character
       if (inGameAnswerList.includes(InGameUserCurrentAnswer.trim().toLowerCase())) {
         updateCurrentGameStats("correct");
+        answerGroup.classList.add("answer-correct");
+        document.querySelector('#in-game-kana-character').classList.add("answer-correct");
         lastWrongAttempt = ''; // Reset for next character
         setScore(prevScore => prevScore + 1)
 
@@ -921,6 +951,14 @@ export default function InGameCharacterShowAndInput() {
     };
   }, []);
 
+  // The background gets slightly lighter the longer the streak (max at 10 in a row)
+  React.useEffect(() => {
+    const container = document.querySelector('.in-game-container');
+    if (container) {
+      container.style.setProperty('--streak-level', Math.min(streak, 10) * 5 + '%');
+    }
+  }, [streak]);
+
   const cursorBlinkInterval = useRef(null);
   React.useEffect(() => {
     function getFontSizeInVH(element) {
@@ -997,6 +1035,11 @@ export default function InGameCharacterShowAndInput() {
   function onClickAnswerButtonHandler(event) {
     if (onScreenSolution.includes(event.target.firstChild.textContent)) {
       updateCurrentGameStats("correct");
+      const answerButton = event.currentTarget;
+      answerButton.classList.add("touch-answer-correct");
+      setTimeout(function () {
+        answerButton.classList.remove("touch-answer-correct");
+      }, 300);
       setScore(onScreenScore + 1)
       showNewCharacter();
     } else {
@@ -1086,6 +1129,7 @@ export default function InGameCharacterShowAndInput() {
         <span id='in-game-text-input-before-cursor'></span>
         <div id='in-game-text-input-cursor'></div>
         <span id='in-game-text-input-after-cursor'></span>
+        <span id='in-game-text-input-placeholder'>type the romaji…</span>
       </div>
       <input 
         type="text" 
@@ -1102,8 +1146,12 @@ export default function InGameCharacterShowAndInput() {
   return (
     <>
       <div className="in-game-top-var">
-        <div className='in-game-score' id='in-game-score'>
-          {isProblematicsMode ? '🎯 Problematics: ' : 'Kanas '}{onScreenScore}
+        <div className='in-game-score-group'>
+          <div className='in-game-score' id='in-game-score'>
+            {isProblematicsMode ? '🎯 Problematics: ' : 'Kanas '}{onScreenScore}
+            {kanaGoal !== null && <span className='in-game-score-goal'> / {kanaGoal}</span>}
+          </div>
+          {streak >= 3 && <div className='in-game-streak' title='Correct answers in a row'>🔥 {streak}</div>}
         </div>
         {remainingTime !== null ? (
           <div
@@ -1124,23 +1172,32 @@ export default function InGameCharacterShowAndInput() {
             </div> : <div></div>}
           </div>
         )}
-        <div onClick={onClickExitButton} className='in-game-exit-button'>✖</div>
+        <div onClick={onClickExitButton} className='in-game-exit-button' title='End game'>✖</div>
       </div>
+      {kanaGoal !== null && (
+        <div className='in-game-progress'>
+          <div className='in-game-progress-fill' style={{ width: Math.min(onScreenScore / kanaGoal, 1) * 100 + '%' }}></div>
+        </div>
+      )}
       <div className='in-game-game-screen' onClick={focusTextInput}>
 
-        <div id='in-game-kana-character' onClick={onClickChangeFontToDefault} className='in-game-kana-character'>
-          <p>
-            {onScreenKana}
-          </p>
-        </div>
-        <div id='in-game-solution' className='in-game-solution hidden-element'>
-          {onScreenWordMeaning}
-        </div>
-        <button id='in-game-next-button' className='in-game-next-button hidden-element'>
-          Next →<span className='label-keyboard'> (Enter)</span>
-        </button>
-        <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
-          {onScreenSolution}
+        <div className='in-game-kana-area'>
+          <div id='in-game-kana-character' onClick={onClickChangeFontToDefault} className='in-game-kana-character'>
+            <p>
+              {onScreenKana}
+            </p>
+          </div>
+          <div id='in-game-solution' className='in-game-solution hidden-element'>
+            <span className='in-game-solution-romanji'>{onScreenSolution[0]}</span>
+            <span className='in-game-solution-separator'> · </span>
+            {onScreenWordMeaning}
+          </div>
+          <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
+            {Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution}
+          </div>
+          <button id='in-game-next-button' className='in-game-next-button hidden-element'>
+            Next →<span className='label-keyboard'> (Enter)</span>
+          </button>
         </div>
         {inGameInputElement}
         <div className='hidden-text-for-font-loading'>

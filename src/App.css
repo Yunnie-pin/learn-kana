@@ -8,9 +8,26 @@ body,
   height: 100%;
 }
 
+:root {
+  --ui-font: "Belanosima", "Trebuchet MS", sans-serif;
+}
+
 body {
   background-color: #155263;
   color: #ff9a3c;
+}
+
+/* Interface text uses the app font instead of the browser default (Times) */
+#game-menu-title,
+.character-title-group-button>h3,
+.game-mode-selector-group>h2,
+.in-game-top-var,
+.in-game-solution,
+.in-game-next-button,
+.in-game-touch-answer,
+.inGameUserGameScoreWindow,
+.inGameUserGameScoreWindow button {
+  font-family: var(--ui-font);
 }
 
 @font-face {
