@@ -8,6 +8,7 @@ import InGame from './pages/InGame'
 import NotFound from './NotFound';
 import './fonts/Belanosima/Belanosima-SemiBold.ttf'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import { loadAnalytics } from './analytics';
 
 
 
@@ -44,3 +45,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 
 serviceWorkerRegistration.register();
+loadAnalytics();

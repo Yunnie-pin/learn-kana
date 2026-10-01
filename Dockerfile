@@ -6,6 +6,9 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+# .env is not copied into the image, so build-time settings come in as build args
+ARG REACT_APP_UMAMI_SCRIPT_URL
+ARG REACT_APP_UMAMI_WEBSITE_ID
 RUN npm run build
 
 # Serve stage

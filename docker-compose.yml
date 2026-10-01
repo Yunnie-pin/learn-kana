@@ -1,6 +1,10 @@
 services:
   learn-kana:
-    build: .
+    build:
+      context: .
+      args:
+        REACT_APP_UMAMI_SCRIPT_URL: ${REACT_APP_UMAMI_SCRIPT_URL:-}
+        REACT_APP_UMAMI_WEBSITE_ID: ${REACT_APP_UMAMI_WEBSITE_ID:-}
     container_name: learn-kana
     ports:
       - "${APP_PORT:-8080}:80"
