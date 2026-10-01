@@ -83,7 +83,7 @@ export default function ButtonWithArrows(props) {
           className="character-checkbox-input game-mode-select-checkbox" 
         />
         <div className="character-checkbox-content">
-          <p id={props.id + '-name'}>{props.description} {value} {props.unit}</p>
+          <p id={props.id + '-name'}>{props.label(value)}</p>
         </div>
       </label>
 

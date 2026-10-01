@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { kanaCharacters } from '../kanaCharacters.js'
+import { useLanguage } from '../i18n'
 
 
 /*
@@ -46,6 +47,7 @@ function updateCheckedKana(title, isChecked) {
 
 
 export default function KanaGroup(props) {
+  const { t } = useLanguage();
   const [mainKanaSelected, setMainKanaSelected] = useState(false);
   const [dakutenKanaSelected, setDakutenKanaSelected] = useState(false);
   const groupRef = useRef(null);
@@ -78,13 +80,13 @@ export default function KanaGroup(props) {
       <div className="character-title-group">
         <div className={`character-title-group-button ${mainKanaSelected ? 'selected' : ''}`} 
              onClick={() => toggleSelectAll("main_kana")}>
-          <h3>Main Kana</h3>
+          <h3>{t('mainKana')}</h3>
         </div>
         {character_button_group_builder(props, "main_kana")}
 
         <div className={`character-title-group-button ${dakutenKanaSelected ? 'selected' : ''}`} 
              onClick={() => toggleSelectAll("dakuten_kana")}>
-          <h3>Dakuten Kana</h3>
+          <h3>{t('dakutenKana')}</h3>
         </div>
         {character_button_group_builder(props, "dakuten_kana")}
       </div>

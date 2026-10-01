@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './NotFound.css';
+import { useLanguage } from './i18n';
 
 const NotFound = () => {
+  const { t } = useLanguage();
   const [countdown, setCountdown] = useState(5);
   const navigate = useNavigate();
   const location = useLocation();
-  const customTitle = location.state?.title || "Oops!";
-  const customMessage = location.state?.message || "Page not found";
+  const customTitle = location.state?.title || t('notFoundTitle');
+  const customMessage = location.state?.message || t('notFoundMessage');
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,8 +34,8 @@ const NotFound = () => {
     <div className="container">
       <h1 className="heading">{customTitle}</h1>
       <p className="paragraph">{customMessage}</p>
-      <p className="paragraphBelow">Redirecting back in {countdown} seconds...</p>
-      <button className="button" onClick={handleRedirectNow}>Redirect Now</button>
+      <p className="paragraphBelow">{t('notFoundRedirecting', { seconds: countdown })}</p>
+      <button className="button" onClick={handleRedirectNow}>{t('notFoundRedirectNow')}</button>
     </div>
   );
 };

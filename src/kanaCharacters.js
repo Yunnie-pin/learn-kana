@@ -51,13 +51,15 @@ Structure:
         "jp_character": "かわいい",
         "romanji": [ "kawaii" ],
         "sound": "かわいい",
-        "meaning": "cute"
+        "meaning": "cute",
+        "meaning_id": "imut" // Indonesian meaning
       },
       "jouzu": {
         "jp_character": "じょうず",
         "romanji": [ "jouzu" ],
         "sound": "じょうず",
-        "meaning": "skillful"
+        "meaning": "skillful",
+        "meaning_id": "pandai" // Indonesian meaning
       }
     }
   }
@@ -1309,6 +1311,7 @@ export const kanaCharacters = {
       ],
       "sound": "かわいい",
       "meaning": "cute",
+      "meaning_id": "imut",
       "tags": ["adjectives", "expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1324,6 +1327,7 @@ export const kanaCharacters = {
       ],
       "sound": "じょうず",
       "meaning": "skillful",
+      "meaning_id": "pandai",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1339,6 +1343,7 @@ export const kanaCharacters = {
       ],
       "sound": "たべる",
       "meaning": "to eat",
+      "meaning_id": "makan",
       "tags": ["verbs", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1354,6 +1359,7 @@ export const kanaCharacters = {
       ],
       "sound": "のむ",
       "meaning": "to drink",
+      "meaning_id": "minum",
       "tags": ["verbs", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1368,6 +1374,7 @@ export const kanaCharacters = {
       ],
       "sound": "くらす",
       "meaning": "to live",
+      "meaning_id": "hidup / tinggal",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1383,6 +1390,7 @@ export const kanaCharacters = {
       ],
       "sound": "べんきょう",
       "meaning": "study",
+      "meaning_id": "belajar",
       "tags": ["basic"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1400,6 +1408,7 @@ export const kanaCharacters = {
       ],
       "sound": "ここ",
       "meaning": "here",
+      "meaning_id": "di sini",
       "tags": ["demonstratives", "locations"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1413,6 +1422,7 @@ export const kanaCharacters = {
       ],
       "sound": "そこ",
       "meaning": "there",
+      "meaning_id": "di situ",
       "tags": ["demonstratives", "locations"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1427,6 +1437,7 @@ export const kanaCharacters = {
       ],
       "sound": "あそこ",
       "meaning": "over there",
+      "meaning_id": "di sana",
       "tags": ["demonstratives", "locations"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1442,6 +1453,7 @@ export const kanaCharacters = {
       ],
       "sound": "なに",
       "meaning": "what",
+      "meaning_id": "apa",
       "tags": ["question_words"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1455,6 +1467,7 @@ export const kanaCharacters = {
       ],
       "sound": "どこ",
       "meaning": "where",
+      "meaning_id": "di mana",
       "tags": ["question_words"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1469,6 +1482,7 @@ export const kanaCharacters = {
       ],
       "sound": "いつ",
       "meaning": "when",
+      "meaning_id": "kapan",
       "tags": ["question_words"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1483,6 +1497,7 @@ export const kanaCharacters = {
       ],
       "sound": "だれ",
       "meaning": "who",
+      "meaning_id": "siapa",
       "tags": ["question_words"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1497,6 +1512,7 @@ export const kanaCharacters = {
       ],
       "sound": "われわれ",
       "meaning": "we",
+      "meaning_id": "kami",
       "tags": ["pronouns", "people"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1511,6 +1527,7 @@ export const kanaCharacters = {
       ],
       "sound": "あなた",
       "meaning": "you",
+      "meaning_id": "kamu",
       "tags": ["pronouns", "people"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1526,6 +1543,7 @@ export const kanaCharacters = {
       ],
       "sound": "かれ",
       "meaning": "he",
+      "meaning_id": "dia (laki-laki)",
       "tags": ["pronouns", "people"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1540,6 +1558,7 @@ export const kanaCharacters = {
       ],
       "sound": "かのじょ",
       "meaning": "she",
+      "meaning_id": "dia (perempuan)",
       "tags": ["pronouns", "people"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1556,6 +1575,7 @@ export const kanaCharacters = {
       ],
       "sound": "それ",
       "meaning": "that",
+      "meaning_id": "itu",
       "tags": ["demonstratives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1570,6 +1590,7 @@ export const kanaCharacters = {
       ],
       "sound": "これ",
       "meaning": "this",
+      "meaning_id": "ini",
       "tags": ["demonstratives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1584,6 +1605,7 @@ export const kanaCharacters = {
       ],
       "sound": "この",
       "meaning": "this",
+      "meaning_id": "ini (yang ini)",
       "tags": ["demonstratives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1598,6 +1620,7 @@ export const kanaCharacters = {
       ],
       "sound": "その",
       "meaning": "that",
+      "meaning_id": "itu (yang itu)",
       "tags": ["demonstratives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1612,6 +1635,7 @@ export const kanaCharacters = {
       ],
       "sound": "あの",
       "meaning": "that over there",
+      "meaning_id": "itu (yang di sana)",
       "tags": ["demonstratives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1626,6 +1650,7 @@ export const kanaCharacters = {
       ],
       "sound": "おおきい",
       "meaning": "big",
+      "meaning_id": "besar",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1640,6 +1665,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちいさい",
       "meaning": "small",
+      "meaning_id": "kecil",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1655,6 +1681,7 @@ export const kanaCharacters = {
       ],
       "sound": "さむい",
       "meaning": "cold",
+      "meaning_id": "dingin",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1670,6 +1697,7 @@ export const kanaCharacters = {
       ],
       "sound": "たかい",
       "meaning": "expensive",
+      "meaning_id": "mahal",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1685,6 +1713,7 @@ export const kanaCharacters = {
       ],
       "sound": "やすい",
       "meaning": "cheap",
+      "meaning_id": "murah",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1700,6 +1729,7 @@ export const kanaCharacters = {
       ],
       "sound": "おもしろい",
       "meaning": "interesting",
+      "meaning_id": "menarik",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1716,6 +1746,7 @@ export const kanaCharacters = {
       ],
       "sound": "つまらない",
       "meaning": "boring",
+      "meaning_id": "membosankan",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1733,6 +1764,7 @@ export const kanaCharacters = {
       ],
       "sound": "かんたん",
       "meaning": "easy",
+      "meaning_id": "mudah",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1748,6 +1780,7 @@ export const kanaCharacters = {
       ],
       "sound": "むずかしい",
       "meaning": "difficult",
+      "meaning_id": "sulit",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1765,6 +1798,7 @@ export const kanaCharacters = {
       ],
       "sound": "きけん",
       "meaning": "dangerous",
+      "meaning_id": "berbahaya",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1779,6 +1813,7 @@ export const kanaCharacters = {
       ],
       "sound": "やさしい",
       "meaning": "kind",
+      "meaning_id": "baik hati",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1794,6 +1829,7 @@ export const kanaCharacters = {
       ],
       "sound": "きらい",
       "meaning": "hate",
+      "meaning_id": "benci",
       "tags": ["feelings", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1809,6 +1845,7 @@ export const kanaCharacters = {
       ],
       "sound": "すき",
       "meaning": "love",
+      "meaning_id": "suka",
       "tags": ["feelings", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1823,6 +1860,7 @@ export const kanaCharacters = {
       ],
       "sound": "たのしい",
       "meaning": "pleasant",
+      "meaning_id": "menyenangkan",
       "tags": ["feelings", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1839,6 +1877,7 @@ export const kanaCharacters = {
       ],
       "sound": "かなしい",
       "meaning": "sad",
+      "meaning_id": "sedih",
       "tags": ["feelings", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1855,6 +1894,7 @@ export const kanaCharacters = {
       ],
       "sound": "うれしい",
       "meaning": "happy",
+      "meaning_id": "senang",
       "tags": ["feelings", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1870,6 +1910,7 @@ export const kanaCharacters = {
       ],
       "sound": "かんぱい",
       "meaning": "cheers",
+      "meaning_id": "bersulang",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1886,6 +1927,7 @@ export const kanaCharacters = {
       ],
       "sound": "カラオケ",
       "meaning": "karaoke",
+      "meaning_id": "karaoke",
       "tags": ["entertainment", "social"],
       "katakana_groups": [
         "ラ",
@@ -1901,6 +1943,7 @@ export const kanaCharacters = {
       ],
       "sound": "コンビニ",
       "meaning": "convenience store",
+      "meaning_id": "minimarket",
       "tags": ["places", "shopping"],
       "katakana_groups": [
         "バ",
@@ -1917,6 +1960,7 @@ export const kanaCharacters = {
       ],
       "sound": "パソコン",
       "meaning": "computer",
+      "meaning_id": "komputer",
       "tags": ["items", "technology"],
       "katakana_groups": [
         "サ",
@@ -1933,6 +1977,7 @@ export const kanaCharacters = {
       ],
       "sound": "スポーツ",
       "meaning": "sports",
+      "meaning_id": "olahraga",
       "tags": ["activities", "hobbies"],
       "katakana_groups": [
         "サ",
@@ -1948,6 +1993,7 @@ export const kanaCharacters = {
       ],
       "sound": "ラジオ",
       "meaning": "radio",
+      "meaning_id": "radio",
       "tags": ["items", "technology"],
       "katakana_groups": [
         "ザ",
@@ -1963,6 +2009,7 @@ export const kanaCharacters = {
       ],
       "sound": "てがみ",
       "meaning": "letter",
+      "meaning_id": "surat",
       "tags": ["items", "communication"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -1979,6 +2026,7 @@ export const kanaCharacters = {
       ],
       "sound": "パスポート",
       "meaning": "passport",
+      "meaning_id": "paspor",
       "tags": ["items", "travel"],
       "katakana_groups": [
         "サ",
@@ -1994,6 +2042,7 @@ export const kanaCharacters = {
       ],
       "sound": "ビール",
       "meaning": "beer",
+      "meaning_id": "bir",
       "tags": ["food", "drinks"],
       "katakana_groups": [
         "バ",
@@ -2009,6 +2058,7 @@ export const kanaCharacters = {
       ],
       "sound": "コーヒー",
       "meaning": "coffee",
+      "meaning_id": "kopi",
       "tags": ["food", "drinks"],
       "katakana_groups": [
         "ハ",
@@ -2023,6 +2073,7 @@ export const kanaCharacters = {
       ],
       "sound": "みず",
       "meaning": "water",
+      "meaning_id": "air",
       "tags": ["food", "drinks"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2038,6 +2089,7 @@ export const kanaCharacters = {
       ],
       "sound": "ビード",
       "meaning": "beard",
+      "meaning_id": "jenggot",
       "tags": ["basic"],
       "katakana_groups": [
         "バ",
@@ -2052,6 +2104,7 @@ export const kanaCharacters = {
       ],
       "sound": "ミルク",
       "meaning": "milk",
+      "meaning_id": "susu",
       "tags": ["food", "drinks"],
       "katakana_groups": [
         "マ",
@@ -2067,6 +2120,7 @@ export const kanaCharacters = {
       ],
       "sound": "パン",
       "meaning": "bread",
+      "meaning_id": "roti",
       "tags": ["food"],
       "katakana_groups": [
         "ワ",
@@ -2081,6 +2135,7 @@ export const kanaCharacters = {
       ],
       "sound": "にほんご",
       "meaning": "Japanese language",
+      "meaning_id": "bahasa Jepang",
       "tags": ["languages", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2097,6 +2152,7 @@ export const kanaCharacters = {
       ],
       "sound": "すいか",
       "meaning": "watermelon",
+      "meaning_id": "semangka",
       "tags": ["food", "drinks"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2112,6 +2168,7 @@ export const kanaCharacters = {
       ],
       "sound": "りんご",
       "meaning": "apple",
+      "meaning_id": "apel",
       "tags": ["food", "fruits"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2127,6 +2184,7 @@ export const kanaCharacters = {
       ],
       "sound": "みかん",
       "meaning": "mandarin",
+      "meaning_id": "jeruk mandarin",
       "tags": ["food", "fruits"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2142,6 +2200,7 @@ export const kanaCharacters = {
       ],
       "sound": "トマト",
       "meaning": "tomato",
+      "meaning_id": "tomat",
       "tags": ["food", "vegetables"],
       "katakana_groups": [
         "マ",
@@ -2156,6 +2215,7 @@ export const kanaCharacters = {
       ],
       "sound": "すし",
       "meaning": "sushi",
+      "meaning_id": "sushi",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2170,6 +2230,7 @@ export const kanaCharacters = {
       ],
       "sound": "ラーメン",
       "meaning": "ramen",
+      "meaning_id": "ramen",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [
         "マ",
@@ -2185,6 +2246,7 @@ export const kanaCharacters = {
       ],
       "sound": "うどん",
       "meaning": "udon noodles",
+      "meaning_id": "mi udon",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2200,6 +2262,7 @@ export const kanaCharacters = {
       ],
       "sound": "そば",
       "meaning": "soba noodles",
+      "meaning_id": "mi soba",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2215,6 +2278,7 @@ export const kanaCharacters = {
       ],
       "sound": "カレーライス",
       "meaning": "curry rice",
+      "meaning_id": "nasi kari",
       "tags": ["basic"],
       "katakana_groups": [
         "サ",
@@ -2231,6 +2295,7 @@ export const kanaCharacters = {
       ],
       "sound": "やさい",
       "meaning": "vegetable",
+      "meaning_id": "sayuran",
       "tags": ["food", "vegetables"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2246,6 +2311,7 @@ export const kanaCharacters = {
       ],
       "sound": "たまご",
       "meaning": "egg",
+      "meaning_id": "telur",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2261,6 +2327,7 @@ export const kanaCharacters = {
       ],
       "sound": "くだもの",
       "meaning": "fruit",
+      "meaning_id": "buah",
       "tags": ["food", "fruits"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2277,6 +2344,7 @@ export const kanaCharacters = {
       ],
       "sound": "おかし",
       "meaning": "candy",
+      "meaning_id": "camilan / permen",
       "tags": ["food", "sweets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2292,6 +2360,7 @@ export const kanaCharacters = {
       ],
       "sound": "ケーキ",
       "meaning": "cake",
+      "meaning_id": "kue",
       "tags": ["food", "sweets"],
       "katakana_groups": [
         "カ"
@@ -2306,6 +2375,7 @@ export const kanaCharacters = {
       ],
       "sound": "アイスクリーム",
       "meaning": "ice cream",
+      "meaning_id": "es krim",
       "tags": ["food", "sweets"],
       "katakana_groups": [
         "ラ",
@@ -2323,6 +2393,7 @@ export const kanaCharacters = {
       ],
       "sound": "みそしる",
       "meaning": "miso soup",
+      "meaning_id": "sup miso",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2338,6 +2409,7 @@ export const kanaCharacters = {
       ],
       "sound": "とんじる",
       "meaning": "pork miso soup",
+      "meaning_id": "sup miso babi",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2354,6 +2426,7 @@ export const kanaCharacters = {
       ],
       "sound": "スープ",
       "meaning": "soup",
+      "meaning_id": "sup",
       "tags": ["food"],
       "katakana_groups": [
         "サ",
@@ -2369,6 +2442,7 @@ export const kanaCharacters = {
       ],
       "sound": "パスタ",
       "meaning": "pasta",
+      "meaning_id": "pasta",
       "tags": ["food"],
       "katakana_groups": [
         "サ",
@@ -2384,6 +2458,7 @@ export const kanaCharacters = {
       ],
       "sound": "オムレツ",
       "meaning": "omelette",
+      "meaning_id": "omelet",
       "tags": ["food"],
       "katakana_groups": [
         "マ",
@@ -2401,6 +2476,7 @@ export const kanaCharacters = {
       ],
       "sound": "ヌードル",
       "meaning": "noodles",
+      "meaning_id": "mi",
       "tags": ["food"],
       "katakana_groups": [
         "ナ",
@@ -2417,6 +2493,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぎゅうどん",
       "meaning": "beef bowl",
+      "meaning_id": "nasi daging sapi",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2434,6 +2511,7 @@ export const kanaCharacters = {
       ],
       "sound": "かつどん",
       "meaning": "pork cutlet bowl",
+      "meaning_id": "nasi katsu babi",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2451,6 +2529,7 @@ export const kanaCharacters = {
       ],
       "sound": "てんぷら",
       "meaning": "tempura",
+      "meaning_id": "tempura",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2467,6 +2546,7 @@ export const kanaCharacters = {
       ],
       "sound": "てんどん",
       "meaning": "tempura bowl",
+      "meaning_id": "nasi tempura",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2482,6 +2562,7 @@ export const kanaCharacters = {
       ],
       "sound": "えびふらい",
       "meaning": "fried shrimp",
+      "meaning_id": "udang goreng",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2498,6 +2579,7 @@ export const kanaCharacters = {
       ],
       "sound": "ささかま",
       "meaning": "fish cake",
+      "meaning_id": "kue ikan",
       "tags": ["food", "sweets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2513,6 +2595,7 @@ export const kanaCharacters = {
       ],
       "sound": "やきそば",
       "meaning": "fried noodles",
+      "meaning_id": "mi goreng",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2529,6 +2612,7 @@ export const kanaCharacters = {
       ],
       "sound": "やきとり",
       "meaning": "grilled chicken",
+      "meaning_id": "sate ayam",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2545,6 +2629,7 @@ export const kanaCharacters = {
       ],
       "sound": "おこのみやき",
       "meaning": "savory pancake",
+      "meaning_id": "okonomiyaki (pancake gurih)",
       "tags": ["food", "sweets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2562,6 +2647,7 @@ export const kanaCharacters = {
       ],
       "sound": "みつ",
       "meaning": "honey",
+      "meaning_id": "madu",
       "tags": ["food", "sweets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2576,6 +2662,7 @@ export const kanaCharacters = {
       ],
       "sound": "アンコール",
       "meaning": "encore",
+      "meaning_id": "encore",
       "tags": ["entertainment", "music"],
       "katakana_groups": [
         "ワ",
@@ -2592,6 +2679,7 @@ export const kanaCharacters = {
       ],
       "sound": "ラムネ",
       "meaning": "Ramune (soda)",
+      "meaning_id": "Ramune (soda)",
       "tags": ["food", "drinks"],
       "katakana_groups": [
         "ナ",
@@ -2607,6 +2695,7 @@ export const kanaCharacters = {
       ],
       "sound": "ビル",
       "meaning": "building",
+      "meaning_id": "gedung",
       "tags": ["places", "buildings"],
       "katakana_groups": [
         "バ",
@@ -2621,6 +2710,7 @@ export const kanaCharacters = {
       ],
       "sound": "とうがらし",
       "meaning": "chili pepper",
+      "meaning_id": "cabai",
       "tags": ["food", "vegetables"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2638,6 +2728,7 @@ export const kanaCharacters = {
       ],
       "sound": "しお",
       "meaning": "salt",
+      "meaning_id": "garam",
       "tags": ["food", "condiments"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2652,6 +2743,7 @@ export const kanaCharacters = {
       ],
       "sound": "こしょう",
       "meaning": "black pepper",
+      "meaning_id": "lada hitam",
       "tags": ["food", "vegetables"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2668,6 +2760,7 @@ export const kanaCharacters = {
       ],
       "sound": "しょうゆ",
       "meaning": "soy sauce",
+      "meaning_id": "kecap asin",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2684,6 +2777,7 @@ export const kanaCharacters = {
       ],
       "sound": "とんかつソース",
       "meaning": "tonkatsu sauce",
+      "meaning_id": "saus tonkatsu",
       "tags": ["food", "condiments"],
       "katakana_groups": [
         "サ"
@@ -2702,6 +2796,7 @@ export const kanaCharacters = {
       ],
       "sound": "マヨネーズ",
       "meaning": "mayonnaise",
+      "meaning_id": "mayones",
       "tags": ["food", "condiments"],
       "katakana_groups": [
         "ナ",
@@ -2718,6 +2813,7 @@ export const kanaCharacters = {
       ],
       "sound": "からし",
       "meaning": "mustard",
+      "meaning_id": "mustar",
       "tags": ["food", "condiments"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2733,6 +2829,7 @@ export const kanaCharacters = {
       ],
       "sound": "わさび",
       "meaning": "wasabi",
+      "meaning_id": "wasabi",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2748,6 +2845,7 @@ export const kanaCharacters = {
       ],
       "sound": "かぼちゃ",
       "meaning": "pumpkin",
+      "meaning_id": "labu",
       "tags": ["food", "vegetables"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2764,6 +2862,7 @@ export const kanaCharacters = {
       ],
       "sound": "なす",
       "meaning": "eggplant",
+      "meaning_id": "terong",
       "tags": ["food", "vegetables"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2779,6 +2878,7 @@ export const kanaCharacters = {
       ],
       "sound": "ピーマン",
       "meaning": "green pepper",
+      "meaning_id": "paprika hijau",
       "tags": ["food", "vegetables"],
       "katakana_groups": [
         "マ",
@@ -2794,6 +2894,7 @@ export const kanaCharacters = {
       ],
       "sound": "パプリカ",
       "meaning": "bell pepper",
+      "meaning_id": "paprika",
       "tags": ["food", "vegetables"],
       "katakana_groups": [
         "カ",
@@ -2809,6 +2910,7 @@ export const kanaCharacters = {
       ],
       "sound": "レナ",
       "meaning": "lettuce",
+      "meaning_id": "selada",
       "tags": ["food", "vegetables"],
       "katakana_groups": [
         "ナ",
@@ -2824,6 +2926,7 @@ export const kanaCharacters = {
       ],
       "sound": "ベーコン",
       "meaning": "bacon",
+      "meaning_id": "bacon",
       "tags": ["food", "meat"],
       "katakana_groups": [
         "バ",
@@ -2839,6 +2942,7 @@ export const kanaCharacters = {
       ],
       "sound": "ハム",
       "meaning": "ham",
+      "meaning_id": "ham",
       "tags": ["food", "meat"],
       "katakana_groups": [
         "マ",
@@ -2854,6 +2958,7 @@ export const kanaCharacters = {
       ],
       "sound": "チキン",
       "meaning": "chicken",
+      "meaning_id": "ayam",
       "tags": ["food"],
       "katakana_groups": [
         "ワ",
@@ -2870,6 +2975,7 @@ export const kanaCharacters = {
       ],
       "sound": "パン",
       "meaning": "bread",
+      "meaning_id": "roti",
       "tags": ["food"],
       "katakana_groups": [
         "ワ",
@@ -2884,6 +2990,7 @@ export const kanaCharacters = {
       ],
       "sound": "ピザ",
       "meaning": "pizza",
+      "meaning_id": "pizza",
       "tags": ["food"],
       "katakana_groups": [
         "ザ",
@@ -2898,6 +3005,7 @@ export const kanaCharacters = {
       ],
       "sound": "パスタ",
       "meaning": "pasta",
+      "meaning_id": "pasta",
       "tags": ["food"],
       "katakana_groups": [
         "サ",
@@ -2913,6 +3021,7 @@ export const kanaCharacters = {
       ],
       "sound": "あかちゃん",
       "meaning": "baby",
+      "meaning_id": "bayi",
       "tags": ["people", "family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2930,6 +3039,7 @@ export const kanaCharacters = {
       ],
       "sound": "あかい",
       "meaning": "red",
+      "meaning_id": "merah",
       "tags": ["colors", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2944,6 +3054,7 @@ export const kanaCharacters = {
       ],
       "sound": "あかるい",
       "meaning": "bright",
+      "meaning_id": "terang",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2959,6 +3070,7 @@ export const kanaCharacters = {
       ],
       "sound": "ありがとう",
       "meaning": "thank you",
+      "meaning_id": "terima kasih",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -2975,6 +3087,7 @@ export const kanaCharacters = {
       ],
       "sound": "バナナ",
       "meaning": "banana",
+      "meaning_id": "pisang",
       "tags": ["food", "fruits"],
       "katakana_groups": [
         "バ",
@@ -2989,6 +3102,7 @@ export const kanaCharacters = {
       ],
       "sound": "びっくり",
       "meaning": "surprise",
+      "meaning_id": "kaget",
       "tags": ["feelings", "expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3005,6 +3119,7 @@ export const kanaCharacters = {
       ],
       "sound": "ボス",
       "meaning": "boss",
+      "meaning_id": "bos",
       "tags": ["people", "work"],
       "katakana_groups": [
         "バ",
@@ -3019,6 +3134,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぶろっこり",
       "meaning": "plump",
+      "meaning_id": "brokoli",
       "tags": ["basic"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3035,6 +3151,7 @@ export const kanaCharacters = {
       ],
       "sound": "ブス",
       "meaning": "ugly",
+      "meaning_id": "jelek",
       "tags": ["adjectives", "appearance"],
       "katakana_groups": [
         "バ",
@@ -3049,6 +3166,7 @@ export const kanaCharacters = {
       ],
       "sound": "びょういん",
       "meaning": "hospital",
+      "meaning_id": "rumah sakit",
       "tags": ["places", "health"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3065,6 +3183,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちゃ",
       "meaning": "tea",
+      "meaning_id": "teh",
       "tags": ["food", "drinks"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3079,6 +3198,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちょっと",
       "meaning": "a little",
+      "meaning_id": "sedikit",
       "tags": ["adverbs", "expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3093,6 +3213,7 @@ export const kanaCharacters = {
       ],
       "sound": "でんしゃ",
       "meaning": "train",
+      "meaning_id": "kereta",
       "tags": ["transportation"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3109,6 +3230,7 @@ export const kanaCharacters = {
       ],
       "sound": "ドア",
       "meaning": "door",
+      "meaning_id": "pintu",
       "tags": ["home", "items"],
       "katakana_groups": [
         "ダ",
@@ -3123,6 +3245,7 @@ export const kanaCharacters = {
       ],
       "sound": "どこでも",
       "meaning": "anywhere",
+      "meaning_id": "di mana saja",
       "tags": ["question_words"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3138,6 +3261,7 @@ export const kanaCharacters = {
       ],
       "sound": "どれ",
       "meaning": "which one",
+      "meaning_id": "yang mana",
       "tags": ["question_words"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3152,6 +3276,7 @@ export const kanaCharacters = {
       ],
       "sound": "え",
       "meaning": "picture",
+      "meaning_id": "gambar",
       "tags": ["basic"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3165,6 +3290,7 @@ export const kanaCharacters = {
       ],
       "sound": "ふゆ",
       "meaning": "winter",
+      "meaning_id": "musim dingin",
       "tags": ["seasons", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3179,6 +3305,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぎんこう",
       "meaning": "bank",
+      "meaning_id": "bank",
       "tags": ["places", "money"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3195,6 +3322,7 @@ export const kanaCharacters = {
       ],
       "sound": "ごめん",
       "meaning": "sorry",
+      "meaning_id": "maaf",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3210,6 +3338,7 @@ export const kanaCharacters = {
       ],
       "sound": "は",
       "meaning": "tooth",
+      "meaning_id": "gigi",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3223,6 +3352,7 @@ export const kanaCharacters = {
       ],
       "sound": "はい",
       "meaning": "yes",
+      "meaning_id": "ya",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3237,6 +3367,7 @@ export const kanaCharacters = {
       ],
       "sound": "はる",
       "meaning": "spring",
+      "meaning_id": "musim semi",
       "tags": ["seasons", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3251,6 +3382,7 @@ export const kanaCharacters = {
       ],
       "sound": "はし",
       "meaning": "chopsticks",
+      "meaning_id": "sumpit",
       "tags": ["items", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3265,6 +3397,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひこうき",
       "meaning": "airplane",
+      "meaning_id": "pesawat",
       "tags": ["transportation"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3280,6 +3413,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひまわり",
       "meaning": "sunflower",
+      "meaning_id": "bunga matahari",
       "tags": ["nature", "flowers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3296,6 +3430,7 @@ export const kanaCharacters = {
       ],
       "sound": "いい",
       "meaning": "good",
+      "meaning_id": "bagus",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3309,6 +3444,7 @@ export const kanaCharacters = {
       ],
       "sound": "いいえ",
       "meaning": "no",
+      "meaning_id": "tidak",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3322,6 +3458,7 @@ export const kanaCharacters = {
       ],
       "sound": "おおみず",
       "meaning": "water",
+      "meaning_id": "banjir",
       "tags": ["food", "drinks"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3337,6 +3474,7 @@ export const kanaCharacters = {
       ],
       "sound": "さけ",
       "meaning": "alcohol",
+      "meaning_id": "sake / minuman keras",
       "tags": ["basic"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3351,6 +3489,7 @@ export const kanaCharacters = {
       ],
       "sound": "わん",
       "meaning": "dog",
+      "meaning_id": "anjing (guk)",
       "tags": ["animals", "pets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3364,6 +3503,7 @@ export const kanaCharacters = {
       ],
       "sound": "ねこ",
       "meaning": "cat",
+      "meaning_id": "kucing",
       "tags": ["animals", "pets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3378,6 +3518,7 @@ export const kanaCharacters = {
       ],
       "sound": "とり",
       "meaning": "bird",
+      "meaning_id": "burung",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3392,6 +3533,7 @@ export const kanaCharacters = {
       ],
       "sound": "うま",
       "meaning": "horse",
+      "meaning_id": "kuda",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3406,6 +3548,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひつじ",
       "meaning": "sheep",
+      "meaning_id": "domba",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3421,6 +3564,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぶた",
       "meaning": "pig",
+      "meaning_id": "babi",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3435,6 +3579,7 @@ export const kanaCharacters = {
       ],
       "sound": "いのしし",
       "meaning": "boar",
+      "meaning_id": "babi hutan",
       "tags": ["basic"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3450,6 +3595,7 @@ export const kanaCharacters = {
       ],
       "sound": "ざりがに",
       "meaning": "crab",
+      "meaning_id": "udang karang",
       "tags": ["basic"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3466,6 +3612,7 @@ export const kanaCharacters = {
       ],
       "sound": "いか",
       "meaning": "squid",
+      "meaning_id": "cumi-cumi",
       "tags": ["animals", "seafood"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3480,6 +3627,7 @@ export const kanaCharacters = {
       ],
       "sound": "えび",
       "meaning": "shrimp",
+      "meaning_id": "udang",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3494,6 +3642,7 @@ export const kanaCharacters = {
       ],
       "sound": "もも",
       "meaning": "peach",
+      "meaning_id": "persik",
       "tags": ["food", "fruits"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3507,6 +3656,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぶどう",
       "meaning": "grape",
+      "meaning_id": "anggur",
       "tags": ["food", "fruits"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3522,6 +3672,7 @@ export const kanaCharacters = {
       ],
       "sound": "いちご",
       "meaning": "strawberry",
+      "meaning_id": "stroberi",
       "tags": ["food", "fruits"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3537,6 +3688,7 @@ export const kanaCharacters = {
       ],
       "sound": "クリスマス",
       "meaning": "Christmas",
+      "meaning_id": "Natal",
       "tags": ["events", "holidays"],
       "katakana_groups": [
         "サ",
@@ -3553,6 +3705,7 @@ export const kanaCharacters = {
       ],
       "sound": "はなび",
       "meaning": "fireworks",
+      "meaning_id": "kembang api",
       "tags": ["events", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3568,6 +3721,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひな",
       "meaning": "doll",
+      "meaning_id": "boneka hina",
       "tags": ["items", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3582,6 +3736,7 @@ export const kanaCharacters = {
       ],
       "sound": "たんじょうび",
       "meaning": "birthday",
+      "meaning_id": "ulang tahun",
       "tags": ["events", "celebrations"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3600,6 +3755,7 @@ export const kanaCharacters = {
       ],
       "sound": "きょう",
       "meaning": "today",
+      "meaning_id": "hari ini",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3615,6 +3771,7 @@ export const kanaCharacters = {
       ],
       "sound": "あした",
       "meaning": "tomorrow",
+      "meaning_id": "besok",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3630,6 +3787,7 @@ export const kanaCharacters = {
       ],
       "sound": "きのう",
       "meaning": "yesterday",
+      "meaning_id": "kemarin",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3645,6 +3803,7 @@ export const kanaCharacters = {
       ],
       "sound": "げつようび",
       "meaning": "Monday",
+      "meaning_id": "Senin",
       "tags": ["time", "days_of_week"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3662,6 +3821,7 @@ export const kanaCharacters = {
       ],
       "sound": "かようび",
       "meaning": "Tuesday",
+      "meaning_id": "Selasa",
       "tags": ["time", "days_of_week"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3678,6 +3838,7 @@ export const kanaCharacters = {
       ],
       "sound": "すいようび",
       "meaning": "Wednesday",
+      "meaning_id": "Rabu",
       "tags": ["time", "days_of_week"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3694,6 +3855,7 @@ export const kanaCharacters = {
       ],
       "sound": "もくようび",
       "meaning": "Thursday",
+      "meaning_id": "Kamis",
       "tags": ["time", "days_of_week"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3712,6 +3874,7 @@ export const kanaCharacters = {
       ],
       "sound": "きんようび",
       "meaning": "Friday",
+      "meaning_id": "Jumat",
       "tags": ["time", "days_of_week"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3729,6 +3892,7 @@ export const kanaCharacters = {
       ],
       "sound": "どようび",
       "meaning": "Saturday",
+      "meaning_id": "Sabtu",
       "tags": ["time", "days_of_week"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3745,6 +3909,7 @@ export const kanaCharacters = {
       ],
       "sound": "にちようび",
       "meaning": "Sunday",
+      "meaning_id": "Minggu",
       "tags": ["time", "days_of_week"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3762,6 +3927,7 @@ export const kanaCharacters = {
       ],
       "sound": "なつ",
       "meaning": "summer",
+      "meaning_id": "musim panas",
       "tags": ["seasons", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3776,6 +3942,7 @@ export const kanaCharacters = {
       ],
       "sound": "あき",
       "meaning": "autumn",
+      "meaning_id": "musim gugur",
       "tags": ["seasons", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3790,6 +3957,7 @@ export const kanaCharacters = {
       ],
       "sound": "こうえん",
       "meaning": "park",
+      "meaning_id": "taman",
       "tags": ["places", "nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3805,6 +3973,7 @@ export const kanaCharacters = {
       ],
       "sound": "がっこう",
       "meaning": "school",
+      "meaning_id": "sekolah",
       "tags": ["places", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3821,6 +3990,7 @@ export const kanaCharacters = {
       ],
       "sound": "だいがく",
       "meaning": "university",
+      "meaning_id": "universitas",
       "tags": ["places", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3837,6 +4007,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちゅうがっこう",
       "meaning": "middle school",
+      "meaning_id": "SMP",
       "tags": ["places", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3854,6 +4025,7 @@ export const kanaCharacters = {
       ],
       "sound": "しょうがっこう",
       "meaning": "elementary school",
+      "meaning_id": "SD",
       "tags": ["places", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3872,6 +4044,7 @@ export const kanaCharacters = {
       ],
       "sound": "ホテル",
       "meaning": "hotel",
+      "meaning_id": "hotel",
       "tags": ["adjectives"],
       "katakana_groups": [
         "タ",
@@ -3888,6 +4061,7 @@ export const kanaCharacters = {
       ],
       "sound": "みそしる",
       "meaning": "miso soup",
+      "meaning_id": "sup miso",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3903,6 +4077,7 @@ export const kanaCharacters = {
       ],
       "sound": "トイレ",
       "meaning": "toilet",
+      "meaning_id": "toilet",
       "tags": ["places", "home"],
       "katakana_groups": [
         "タ",
@@ -3918,6 +4093,7 @@ export const kanaCharacters = {
       ],
       "sound": "でんわ",
       "meaning": "phone",
+      "meaning_id": "telepon",
       "tags": ["items", "communication"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3932,6 +4108,7 @@ export const kanaCharacters = {
       ],
       "sound": "テレビ",
       "meaning": "television",
+      "meaning_id": "televisi",
       "tags": ["items", "entertainment"],
       "katakana_groups": [
         "バ",
@@ -3947,6 +4124,7 @@ export const kanaCharacters = {
       ],
       "sound": "くるま",
       "meaning": "car",
+      "meaning_id": "mobil",
       "tags": ["transportation"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3962,6 +4140,7 @@ export const kanaCharacters = {
       ],
       "sound": "ふね",
       "meaning": "ship",
+      "meaning_id": "kapal",
       "tags": ["transportation"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3976,6 +4155,7 @@ export const kanaCharacters = {
       ],
       "sound": "じてんしゃ",
       "meaning": "bicycle",
+      "meaning_id": "sepeda",
       "tags": ["transportation"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -3993,6 +4173,7 @@ export const kanaCharacters = {
       ],
       "sound": "あるき",
       "meaning": "walking",
+      "meaning_id": "berjalan kaki",
       "tags": ["movement", "verbs"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4008,6 +4189,7 @@ export const kanaCharacters = {
       ],
       "sound": "さら",
       "meaning": "plate",
+      "meaning_id": "piring",
       "tags": ["items", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4022,6 +4204,7 @@ export const kanaCharacters = {
       ],
       "sound": "りょかん",
       "meaning": "Japanese inn",
+      "meaning_id": "penginapan tradisional Jepang",
       "tags": ["places", "travel", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4038,6 +4221,7 @@ export const kanaCharacters = {
       ],
       "sound": "せんとう",
       "meaning": "public bath",
+      "meaning_id": "pemandian umum",
       "tags": ["places", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4054,6 +4238,7 @@ export const kanaCharacters = {
       ],
       "sound": "おんせん",
       "meaning": "hot spring",
+      "meaning_id": "pemandian air panas",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4069,6 +4254,7 @@ export const kanaCharacters = {
       ],
       "sound": "オタク",
       "meaning": "geek",
+      "meaning_id": "otaku",
       "tags": ["basic"],
       "katakana_groups": [
         "カ",
@@ -4084,6 +4270,7 @@ export const kanaCharacters = {
       ],
       "sound": "まんが",
       "meaning": "manga",
+      "meaning_id": "manga / komik",
       "tags": ["entertainment", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4099,6 +4286,7 @@ export const kanaCharacters = {
       ],
       "sound": "アニメ",
       "meaning": "anime",
+      "meaning_id": "anime",
       "tags": ["entertainment", "japanese_culture"],
       "katakana_groups": [
         "ナ",
@@ -4115,6 +4303,7 @@ export const kanaCharacters = {
       ],
       "sound": "すもう",
       "meaning": "sumo",
+      "meaning_id": "sumo",
       "tags": ["sports", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4130,6 +4319,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちゃのゆ",
       "meaning": "tea ceremony",
+      "meaning_id": "upacara minum teh",
       "tags": ["food", "drinks"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4145,6 +4335,7 @@ export const kanaCharacters = {
       ],
       "sound": "いけばな",
       "meaning": "flower arrangement",
+      "meaning_id": "seni merangkai bunga",
       "tags": ["activities", "japanese_culture", "art"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4161,6 +4352,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぼんさい",
       "meaning": "bonsai",
+      "meaning_id": "bonsai",
       "tags": ["hobbies", "nature", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4177,6 +4369,7 @@ export const kanaCharacters = {
       ],
       "sound": "かぶき",
       "meaning": "Japanese theatre form",
+      "meaning_id": "kabuki (teater Jepang)",
       "tags": ["basic"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4191,6 +4384,7 @@ export const kanaCharacters = {
       ],
       "sound": "おりがみ",
       "meaning": "origami",
+      "meaning_id": "origami",
       "tags": ["activities", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4207,6 +4401,7 @@ export const kanaCharacters = {
       ],
       "sound": "しゃみせん",
       "meaning": "Japanese string instrument",
+      "meaning_id": "shamisen (alat musik petik Jepang)",
       "tags": ["basic"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4223,6 +4418,7 @@ export const kanaCharacters = {
       ],
       "sound": "ふろしき",
       "meaning": "traditional wrapping cloths",
+      "meaning_id": "kain pembungkus tradisional",
       "tags": ["items", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4239,6 +4435,7 @@ export const kanaCharacters = {
       ],
       "sound": "うきよえ",
       "meaning": "ukiyoe (art genre)",
+      "meaning_id": "ukiyo-e (seni cetak kayu)",
       "tags": ["basic"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4254,6 +4451,7 @@ export const kanaCharacters = {
       ],
       "sound": "かたな",
       "meaning": "sword",
+      "meaning_id": "pedang",
       "tags": ["items", "weapons", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4270,6 +4468,7 @@ export const kanaCharacters = {
       ],
       "sound": "じゅどう",
       "meaning": "judo (martial art)",
+      "meaning_id": "judo",
       "tags": ["sports", "martial_arts", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4286,6 +4485,7 @@ export const kanaCharacters = {
       ],
       "sound": "からて",
       "meaning": "karate",
+      "meaning_id": "karate",
       "tags": ["sports", "martial_arts", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4302,6 +4502,7 @@ export const kanaCharacters = {
       ],
       "sound": "あいきどう",
       "meaning": "Japanese martial art",
+      "meaning_id": "aikido",
       "tags": ["sports", "martial_arts", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4318,6 +4519,7 @@ export const kanaCharacters = {
       ],
       "sound": "きゅうどう",
       "meaning": "Japanese archery",
+      "meaning_id": "panahan Jepang",
       "tags": ["sports", "martial_arts", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4334,6 +4536,7 @@ export const kanaCharacters = {
       ],
       "sound": "ふぐ",
       "meaning": "blowfish",
+      "meaning_id": "ikan buntal",
       "tags": ["animals", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4348,6 +4551,7 @@ export const kanaCharacters = {
       ],
       "sound": "いく",
       "meaning": "to go",
+      "meaning_id": "pergi",
       "tags": ["verbs", "movement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4362,6 +4566,7 @@ export const kanaCharacters = {
       ],
       "sound": "くる",
       "meaning": "to come",
+      "meaning_id": "datang",
       "tags": ["verbs", "movement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4376,6 +4581,7 @@ export const kanaCharacters = {
       ],
       "sound": "みる",
       "meaning": "to see",
+      "meaning_id": "melihat",
       "tags": ["verbs", "senses"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4390,6 +4596,7 @@ export const kanaCharacters = {
       ],
       "sound": "きく",
       "meaning": "to listen/ask",
+      "meaning_id": "mendengar / bertanya",
       "tags": ["verbs", "senses"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4403,6 +4610,7 @@ export const kanaCharacters = {
       ],
       "sound": "はなす",
       "meaning": "to speak",
+      "meaning_id": "berbicara",
       "tags": ["verbs", "communication"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4418,6 +4626,7 @@ export const kanaCharacters = {
       ],
       "sound": "よむ",
       "meaning": "to read",
+      "meaning_id": "membaca",
       "tags": ["verbs", "activities"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4432,6 +4641,7 @@ export const kanaCharacters = {
       ],
       "sound": "かく",
       "meaning": "to write",
+      "meaning_id": "menulis",
       "tags": ["verbs", "activities"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4445,6 +4655,7 @@ export const kanaCharacters = {
       ],
       "sound": "ねる",
       "meaning": "to sleep",
+      "meaning_id": "tidur",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4459,6 +4670,7 @@ export const kanaCharacters = {
       ],
       "sound": "おきる",
       "meaning": "to wake up",
+      "meaning_id": "bangun",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4474,6 +4686,7 @@ export const kanaCharacters = {
       ],
       "sound": "あう",
       "meaning": "to meet",
+      "meaning_id": "bertemu",
       "tags": ["verbs", "social"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4487,6 +4700,7 @@ export const kanaCharacters = {
       ],
       "sound": "かう",
       "meaning": "to buy",
+      "meaning_id": "membeli",
       "tags": ["verbs", "shopping"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4501,6 +4715,7 @@ export const kanaCharacters = {
       ],
       "sound": "うる",
       "meaning": "to sell",
+      "meaning_id": "menjual",
       "tags": ["verbs", "shopping"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4515,6 +4730,7 @@ export const kanaCharacters = {
       ],
       "sound": "つくる",
       "meaning": "to make",
+      "meaning_id": "membuat",
       "tags": ["verbs", "activities"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4530,6 +4746,7 @@ export const kanaCharacters = {
       ],
       "sound": "あらう",
       "meaning": "to wash",
+      "meaning_id": "mencuci",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4544,6 +4761,7 @@ export const kanaCharacters = {
       ],
       "sound": "あたま",
       "meaning": "head",
+      "meaning_id": "kepala",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4559,6 +4777,7 @@ export const kanaCharacters = {
       ],
       "sound": "め",
       "meaning": "eye",
+      "meaning_id": "mata",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4572,6 +4791,7 @@ export const kanaCharacters = {
       ],
       "sound": "みみ",
       "meaning": "ear",
+      "meaning_id": "telinga",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4585,6 +4805,7 @@ export const kanaCharacters = {
       ],
       "sound": "はな",
       "meaning": "nose",
+      "meaning_id": "hidung",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4599,6 +4820,7 @@ export const kanaCharacters = {
       ],
       "sound": "くち",
       "meaning": "mouth",
+      "meaning_id": "mulut",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4613,6 +4835,7 @@ export const kanaCharacters = {
       ],
       "sound": "て",
       "meaning": "hand",
+      "meaning_id": "tangan",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4626,6 +4849,7 @@ export const kanaCharacters = {
       ],
       "sound": "あし",
       "meaning": "foot/leg",
+      "meaning_id": "kaki",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4640,6 +4864,7 @@ export const kanaCharacters = {
       ],
       "sound": "おなか",
       "meaning": "stomach",
+      "meaning_id": "perut",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4655,6 +4880,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちち",
       "meaning": "father",
+      "meaning_id": "ayah",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4668,6 +4894,7 @@ export const kanaCharacters = {
       ],
       "sound": "はは",
       "meaning": "mother",
+      "meaning_id": "ibu",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4681,6 +4908,7 @@ export const kanaCharacters = {
       ],
       "sound": "おとうと",
       "meaning": "younger brother",
+      "meaning_id": "adik laki-laki",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4695,6 +4923,7 @@ export const kanaCharacters = {
       ],
       "sound": "あに",
       "meaning": "older brother",
+      "meaning_id": "kakak laki-laki",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4709,6 +4938,7 @@ export const kanaCharacters = {
       ],
       "sound": "いもうと",
       "meaning": "younger sister",
+      "meaning_id": "adik perempuan",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4724,6 +4954,7 @@ export const kanaCharacters = {
       ],
       "sound": "あね",
       "meaning": "older sister",
+      "meaning_id": "kakak perempuan",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4738,6 +4969,7 @@ export const kanaCharacters = {
       ],
       "sound": "こども",
       "meaning": "child",
+      "meaning_id": "anak",
       "tags": ["family", "people"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4753,6 +4985,7 @@ export const kanaCharacters = {
       ],
       "sound": "いち",
       "meaning": "one",
+      "meaning_id": "satu",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4767,6 +5000,7 @@ export const kanaCharacters = {
       ],
       "sound": "に",
       "meaning": "two",
+      "meaning_id": "dua",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4780,6 +5014,7 @@ export const kanaCharacters = {
       ],
       "sound": "さん",
       "meaning": "three",
+      "meaning_id": "tiga",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4794,6 +5029,7 @@ export const kanaCharacters = {
       ],
       "sound": "し",
       "meaning": "four",
+      "meaning_id": "empat",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4807,6 +5043,7 @@ export const kanaCharacters = {
       ],
       "sound": "ご",
       "meaning": "five",
+      "meaning_id": "lima",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4820,6 +5057,7 @@ export const kanaCharacters = {
       ],
       "sound": "ろく",
       "meaning": "six",
+      "meaning_id": "enam",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4834,6 +5072,7 @@ export const kanaCharacters = {
       ],
       "sound": "しち",
       "meaning": "seven",
+      "meaning_id": "tujuh",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4848,6 +5087,7 @@ export const kanaCharacters = {
       ],
       "sound": "はち",
       "meaning": "eight",
+      "meaning_id": "delapan",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4862,6 +5102,7 @@ export const kanaCharacters = {
       ],
       "sound": "きゅう",
       "meaning": "nine",
+      "meaning_id": "sembilan",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4877,6 +5118,7 @@ export const kanaCharacters = {
       ],
       "sound": "じゅう",
       "meaning": "ten",
+      "meaning_id": "sepuluh",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4892,6 +5134,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひゃく",
       "meaning": "hundred",
+      "meaning_id": "seratus",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4907,6 +5150,7 @@ export const kanaCharacters = {
       ],
       "sound": "せん",
       "meaning": "thousand",
+      "meaning_id": "seribu",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4921,6 +5165,7 @@ export const kanaCharacters = {
       ],
       "sound": "まん",
       "meaning": "ten thousand",
+      "meaning_id": "sepuluh ribu",
       "tags": ["numbers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4935,6 +5180,7 @@ export const kanaCharacters = {
       ],
       "sound": "しろ",
       "meaning": "white",
+      "meaning_id": "putih",
       "tags": ["colors"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4949,6 +5195,7 @@ export const kanaCharacters = {
       ],
       "sound": "くろ",
       "meaning": "black",
+      "meaning_id": "hitam",
       "tags": ["colors"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4963,6 +5210,7 @@ export const kanaCharacters = {
       ],
       "sound": "あお",
       "meaning": "blue",
+      "meaning_id": "biru",
       "tags": ["colors"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4976,6 +5224,7 @@ export const kanaCharacters = {
       ],
       "sound": "きいろ",
       "meaning": "yellow",
+      "meaning_id": "kuning",
       "tags": ["colors"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -4991,6 +5240,7 @@ export const kanaCharacters = {
       ],
       "sound": "みどり",
       "meaning": "green",
+      "meaning_id": "hijau",
       "tags": ["colors"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5006,6 +5256,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちゃいろ",
       "meaning": "brown",
+      "meaning_id": "cokelat",
       "tags": ["colors"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5022,6 +5273,7 @@ export const kanaCharacters = {
       ],
       "sound": "いえ",
       "meaning": "house",
+      "meaning_id": "rumah",
       "tags": ["places", "home"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5035,6 +5287,7 @@ export const kanaCharacters = {
       ],
       "sound": "へや",
       "meaning": "room",
+      "meaning_id": "kamar",
       "tags": ["places", "home"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5049,6 +5302,7 @@ export const kanaCharacters = {
       ],
       "sound": "まど",
       "meaning": "window",
+      "meaning_id": "jendela",
       "tags": ["home"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5063,6 +5317,7 @@ export const kanaCharacters = {
       ],
       "sound": "つくえ",
       "meaning": "desk",
+      "meaning_id": "meja",
       "tags": ["home", "furniture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5078,6 +5333,7 @@ export const kanaCharacters = {
       ],
       "sound": "いす",
       "meaning": "chair",
+      "meaning_id": "kursi",
       "tags": ["home", "furniture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5092,6 +5348,7 @@ export const kanaCharacters = {
       ],
       "sound": "ベッド",
       "meaning": "bed",
+      "meaning_id": "kasur",
       "tags": ["home", "furniture"],
       "katakana_groups": [
         "バ",
@@ -5107,6 +5364,7 @@ export const kanaCharacters = {
       ],
       "sound": "ほん",
       "meaning": "book",
+      "meaning_id": "buku",
       "tags": ["items", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5121,6 +5379,7 @@ export const kanaCharacters = {
       ],
       "sound": "えんぴつ",
       "meaning": "pencil",
+      "meaning_id": "pensil",
       "tags": ["items", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5137,6 +5396,7 @@ export const kanaCharacters = {
       ],
       "sound": "かみ",
       "meaning": "paper",
+      "meaning_id": "kertas",
       "tags": ["items"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5151,6 +5411,7 @@ export const kanaCharacters = {
       ],
       "sound": "かばん",
       "meaning": "bag",
+      "meaning_id": "tas",
       "tags": ["items", "accessories"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5166,6 +5427,7 @@ export const kanaCharacters = {
       ],
       "sound": "とけい",
       "meaning": "clock/watch",
+      "meaning_id": "jam",
       "tags": ["items", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5181,6 +5443,7 @@ export const kanaCharacters = {
       ],
       "sound": "くつ",
       "meaning": "shoes",
+      "meaning_id": "sepatu",
       "tags": ["clothing", "accessories"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5195,6 +5458,7 @@ export const kanaCharacters = {
       ],
       "sound": "ふく",
       "meaning": "clothes",
+      "meaning_id": "baju",
       "tags": ["clothing"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5209,6 +5473,7 @@ export const kanaCharacters = {
       ],
       "sound": "ズボン",
       "meaning": "pants",
+      "meaning_id": "celana",
       "tags": ["clothing"],
       "katakana_groups": [
         "ザ",
@@ -5224,6 +5489,7 @@ export const kanaCharacters = {
       ],
       "sound": "シャツ",
       "meaning": "shirt",
+      "meaning_id": "kemeja",
       "tags": ["clothing"],
       "katakana_groups": [
         "サ",
@@ -5239,6 +5505,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぼうし",
       "meaning": "hat",
+      "meaning_id": "topi",
       "tags": ["clothing", "accessories"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5254,6 +5521,7 @@ export const kanaCharacters = {
       ],
       "sound": "めがね",
       "meaning": "glasses",
+      "meaning_id": "kacamata",
       "tags": ["accessories"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5269,6 +5537,7 @@ export const kanaCharacters = {
       ],
       "sound": "あめ",
       "meaning": "rain",
+      "meaning_id": "hujan",
       "tags": ["weather", "nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5283,6 +5552,7 @@ export const kanaCharacters = {
       ],
       "sound": "ゆき",
       "meaning": "snow",
+      "meaning_id": "salju",
       "tags": ["weather", "nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5297,6 +5567,7 @@ export const kanaCharacters = {
       ],
       "sound": "かぜ",
       "meaning": "wind",
+      "meaning_id": "angin",
       "tags": ["weather", "nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5311,6 +5582,7 @@ export const kanaCharacters = {
       ],
       "sound": "てんき",
       "meaning": "weather",
+      "meaning_id": "cuaca",
       "tags": ["weather"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5326,6 +5598,7 @@ export const kanaCharacters = {
       ],
       "sound": "あつい",
       "meaning": "hot",
+      "meaning_id": "panas",
       "tags": ["weather", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5340,6 +5613,7 @@ export const kanaCharacters = {
       ],
       "sound": "すずしい",
       "meaning": "cool",
+      "meaning_id": "sejuk",
       "tags": ["weather", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5355,6 +5629,7 @@ export const kanaCharacters = {
       ],
       "sound": "あたらしい",
       "meaning": "new",
+      "meaning_id": "baru",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5371,6 +5646,7 @@ export const kanaCharacters = {
       ],
       "sound": "ふるい",
       "meaning": "old",
+      "meaning_id": "lama (barang)",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5386,6 +5662,7 @@ export const kanaCharacters = {
       ],
       "sound": "はやい",
       "meaning": "fast/early",
+      "meaning_id": "cepat / pagi",
       "tags": ["adjectives", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5401,6 +5678,7 @@ export const kanaCharacters = {
       ],
       "sound": "おそい",
       "meaning": "slow/late",
+      "meaning_id": "lambat / terlambat",
       "tags": ["adjectives", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5415,6 +5693,7 @@ export const kanaCharacters = {
       ],
       "sound": "とおい",
       "meaning": "far",
+      "meaning_id": "jauh",
       "tags": ["adjectives", "distance"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5429,6 +5708,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちかい",
       "meaning": "near",
+      "meaning_id": "dekat",
       "tags": ["adjectives", "distance"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5444,6 +5724,7 @@ export const kanaCharacters = {
       ],
       "sound": "ながい",
       "meaning": "long",
+      "meaning_id": "panjang",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5459,6 +5740,7 @@ export const kanaCharacters = {
       ],
       "sound": "みじかい",
       "meaning": "short",
+      "meaning_id": "pendek",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5475,6 +5757,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひろい",
       "meaning": "wide/spacious",
+      "meaning_id": "luas",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5490,6 +5773,7 @@ export const kanaCharacters = {
       ],
       "sound": "せまい",
       "meaning": "narrow",
+      "meaning_id": "sempit",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5505,6 +5789,7 @@ export const kanaCharacters = {
       ],
       "sound": "おいしい",
       "meaning": "delicious",
+      "meaning_id": "enak",
       "tags": ["adjectives", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5519,6 +5804,7 @@ export const kanaCharacters = {
       ],
       "sound": "まずい",
       "meaning": "bad tasting",
+      "meaning_id": "tidak enak",
       "tags": ["adjectives", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5534,6 +5820,7 @@ export const kanaCharacters = {
       ],
       "sound": "うまい",
       "meaning": "delicious/skillful",
+      "meaning_id": "enak / pandai",
       "tags": ["adjectives", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5548,6 +5835,7 @@ export const kanaCharacters = {
       ],
       "sound": "げんき",
       "meaning": "energetic/healthy",
+      "meaning_id": "sehat / bersemangat",
       "tags": ["adjectives", "feelings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5563,6 +5851,7 @@ export const kanaCharacters = {
       ],
       "sound": "きれい",
       "meaning": "pretty/clean",
+      "meaning_id": "cantik / bersih",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5578,6 +5867,7 @@ export const kanaCharacters = {
       ],
       "sound": "きたない",
       "meaning": "dirty",
+      "meaning_id": "kotor",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5594,6 +5884,7 @@ export const kanaCharacters = {
       ],
       "sound": "しずか",
       "meaning": "quiet",
+      "meaning_id": "tenang",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5609,6 +5900,7 @@ export const kanaCharacters = {
       ],
       "sound": "うるさい",
       "meaning": "noisy",
+      "meaning_id": "berisik",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5624,6 +5916,7 @@ export const kanaCharacters = {
       ],
       "sound": "べんり",
       "meaning": "convenient",
+      "meaning_id": "praktis",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5639,6 +5932,7 @@ export const kanaCharacters = {
       ],
       "sound": "みち",
       "meaning": "road/path",
+      "meaning_id": "jalan",
       "tags": ["places", "directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5653,6 +5947,7 @@ export const kanaCharacters = {
       ],
       "sound": "えき",
       "meaning": "station",
+      "meaning_id": "stasiun",
       "tags": ["places", "transportation"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5667,6 +5962,7 @@ export const kanaCharacters = {
       ],
       "sound": "まち",
       "meaning": "town/city",
+      "meaning_id": "kota",
       "tags": ["places"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5681,6 +5977,7 @@ export const kanaCharacters = {
       ],
       "sound": "やま",
       "meaning": "mountain",
+      "meaning_id": "gunung",
       "tags": ["nature", "places"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5695,6 +5992,7 @@ export const kanaCharacters = {
       ],
       "sound": "うみ",
       "meaning": "sea/ocean",
+      "meaning_id": "laut",
       "tags": ["nature", "places"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5709,6 +6007,7 @@ export const kanaCharacters = {
       ],
       "sound": "かわ",
       "meaning": "river",
+      "meaning_id": "sungai",
       "tags": ["nature", "places"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5723,6 +6022,7 @@ export const kanaCharacters = {
       ],
       "sound": "そら",
       "meaning": "sky",
+      "meaning_id": "langit",
       "tags": ["nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5737,6 +6037,7 @@ export const kanaCharacters = {
       ],
       "sound": "つき",
       "meaning": "moon",
+      "meaning_id": "bulan",
       "tags": ["nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5751,6 +6052,7 @@ export const kanaCharacters = {
       ],
       "sound": "ほし",
       "meaning": "star",
+      "meaning_id": "bintang",
       "tags": ["nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5765,6 +6067,7 @@ export const kanaCharacters = {
       ],
       "sound": "たいよう",
       "meaning": "sun",
+      "meaning_id": "matahari",
       "tags": ["nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5780,6 +6083,7 @@ export const kanaCharacters = {
       ],
       "sound": "いぬ",
       "meaning": "dog",
+      "meaning_id": "anjing",
       "tags": ["animals", "pets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5794,6 +6098,7 @@ export const kanaCharacters = {
       ],
       "sound": "さかな",
       "meaning": "fish",
+      "meaning_id": "ikan",
       "tags": ["animals", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5809,6 +6114,7 @@ export const kanaCharacters = {
       ],
       "sound": "せんせい",
       "meaning": "teacher",
+      "meaning_id": "guru",
       "tags": ["people", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5824,6 +6130,7 @@ export const kanaCharacters = {
       ],
       "sound": "がくせい",
       "meaning": "student",
+      "meaning_id": "pelajar",
       "tags": ["people", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5840,6 +6147,7 @@ export const kanaCharacters = {
       ],
       "sound": "ともだち",
       "meaning": "friend",
+      "meaning_id": "teman",
       "tags": ["people", "social"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5855,6 +6163,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひと",
       "meaning": "person",
+      "meaning_id": "orang",
       "tags": ["people"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5869,6 +6178,7 @@ export const kanaCharacters = {
       ],
       "sound": "おとこ",
       "meaning": "man",
+      "meaning_id": "laki-laki",
       "tags": ["people"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5884,6 +6194,7 @@ export const kanaCharacters = {
       ],
       "sound": "おんな",
       "meaning": "woman",
+      "meaning_id": "perempuan",
       "tags": ["people"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5899,6 +6210,7 @@ export const kanaCharacters = {
       ],
       "sound": "あさ",
       "meaning": "morning",
+      "meaning_id": "pagi",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5913,6 +6225,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひる",
       "meaning": "afternoon/noon",
+      "meaning_id": "siang",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5927,6 +6240,7 @@ export const kanaCharacters = {
       ],
       "sound": "ばん",
       "meaning": "evening",
+      "meaning_id": "malam",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5941,6 +6255,7 @@ export const kanaCharacters = {
       ],
       "sound": "よる",
       "meaning": "night",
+      "meaning_id": "malam hari",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5955,6 +6270,7 @@ export const kanaCharacters = {
       ],
       "sound": "いま",
       "meaning": "now",
+      "meaning_id": "sekarang",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5969,6 +6285,7 @@ export const kanaCharacters = {
       ],
       "sound": "まいにち",
       "meaning": "every day",
+      "meaning_id": "setiap hari",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5985,6 +6302,7 @@ export const kanaCharacters = {
       ],
       "sound": "とても",
       "meaning": "very",
+      "meaning_id": "sangat",
       "tags": ["adverbs"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -5999,6 +6317,7 @@ export const kanaCharacters = {
       ],
       "sound": "すこし",
       "meaning": "a little",
+      "meaning_id": "sedikit",
       "tags": ["adverbs"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6013,6 +6332,7 @@ export const kanaCharacters = {
       ],
       "sound": "たくさん",
       "meaning": "many/a lot",
+      "meaning_id": "banyak",
       "tags": ["adverbs"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6029,6 +6349,7 @@ export const kanaCharacters = {
       ],
       "sound": "あまり",
       "meaning": "not very",
+      "meaning_id": "tidak terlalu",
       "tags": ["adverbs"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6044,6 +6365,7 @@ export const kanaCharacters = {
       ],
       "sound": "みぎ",
       "meaning": "right",
+      "meaning_id": "kanan",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6058,6 +6380,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひだり",
       "meaning": "left",
+      "meaning_id": "kiri",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6073,6 +6396,7 @@ export const kanaCharacters = {
       ],
       "sound": "うえ",
       "meaning": "above/up",
+      "meaning_id": "atas",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6086,6 +6410,7 @@ export const kanaCharacters = {
       ],
       "sound": "した",
       "meaning": "below/down",
+      "meaning_id": "bawah",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6100,6 +6425,7 @@ export const kanaCharacters = {
       ],
       "sound": "なか",
       "meaning": "inside",
+      "meaning_id": "dalam",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6114,6 +6440,7 @@ export const kanaCharacters = {
       ],
       "sound": "そと",
       "meaning": "outside",
+      "meaning_id": "luar",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6128,6 +6455,7 @@ export const kanaCharacters = {
       ],
       "sound": "まえ",
       "meaning": "front/before",
+      "meaning_id": "depan / sebelum",
       "tags": ["directions", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6142,6 +6470,7 @@ export const kanaCharacters = {
       ],
       "sound": "うしろ",
       "meaning": "back/behind",
+      "meaning_id": "belakang",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6157,6 +6486,7 @@ export const kanaCharacters = {
       ],
       "sound": "となり",
       "meaning": "next to",
+      "meaning_id": "sebelah",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6172,6 +6502,7 @@ export const kanaCharacters = {
       ],
       "sound": "あいだ",
       "meaning": "between",
+      "meaning_id": "di antara",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6186,6 +6517,7 @@ export const kanaCharacters = {
       ],
       "sound": "ごはん",
       "meaning": "rice/meal",
+      "meaning_id": "nasi / makanan",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6201,6 +6533,7 @@ export const kanaCharacters = {
       ],
       "sound": "にく",
       "meaning": "meat",
+      "meaning_id": "daging",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6215,6 +6548,7 @@ export const kanaCharacters = {
       ],
       "sound": "おちゃ",
       "meaning": "tea",
+      "meaning_id": "teh hijau",
       "tags": ["food", "drinks"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6230,6 +6564,7 @@ export const kanaCharacters = {
       ],
       "sound": "きっさてん",
       "meaning": "cafe",
+      "meaning_id": "kafe",
       "tags": ["places", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6246,6 +6581,7 @@ export const kanaCharacters = {
       ],
       "sound": "レストラン",
       "meaning": "restaurant",
+      "meaning_id": "restoran",
       "tags": ["places", "food"],
       "katakana_groups": [
         "ラ",
@@ -6262,6 +6598,7 @@ export const kanaCharacters = {
       ],
       "sound": "デパート",
       "meaning": "department store",
+      "meaning_id": "toserba",
       "tags": ["places", "shopping"],
       "katakana_groups": [
         "ダ",
@@ -6277,6 +6614,7 @@ export const kanaCharacters = {
       ],
       "sound": "ゆうびんきょく",
       "meaning": "post office",
+      "meaning_id": "kantor pos",
       "tags": ["places"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6294,6 +6632,7 @@ export const kanaCharacters = {
       ],
       "sound": "としょかん",
       "meaning": "library",
+      "meaning_id": "perpustakaan",
       "tags": ["places", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6311,6 +6650,7 @@ export const kanaCharacters = {
       ],
       "sound": "くに",
       "meaning": "country",
+      "meaning_id": "negara",
       "tags": ["places"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6325,6 +6665,7 @@ export const kanaCharacters = {
       ],
       "sound": "えいご",
       "meaning": "English language",
+      "meaning_id": "bahasa Inggris",
       "tags": ["languages", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6339,6 +6680,7 @@ export const kanaCharacters = {
       ],
       "sound": "なまえ",
       "meaning": "name",
+      "meaning_id": "nama",
       "tags": ["basic"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6354,6 +6696,7 @@ export const kanaCharacters = {
       ],
       "sound": "しごと",
       "meaning": "work/job",
+      "meaning_id": "pekerjaan",
       "tags": ["work"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6369,6 +6712,7 @@ export const kanaCharacters = {
       ],
       "sound": "かいしゃ",
       "meaning": "company",
+      "meaning_id": "perusahaan",
       "tags": ["work"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6385,6 +6729,7 @@ export const kanaCharacters = {
       ],
       "sound": "おかね",
       "meaning": "money",
+      "meaning_id": "uang",
       "tags": ["shopping", "money"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6400,6 +6745,7 @@ export const kanaCharacters = {
       ],
       "sound": "おもい",
       "meaning": "heavy",
+      "meaning_id": "berat",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6414,6 +6760,7 @@ export const kanaCharacters = {
       ],
       "sound": "かるい",
       "meaning": "light",
+      "meaning_id": "ringan",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6429,6 +6776,7 @@ export const kanaCharacters = {
       ],
       "sound": "つよい",
       "meaning": "strong",
+      "meaning_id": "kuat",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6444,6 +6792,7 @@ export const kanaCharacters = {
       ],
       "sound": "よわい",
       "meaning": "weak",
+      "meaning_id": "lemah",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6459,6 +6808,7 @@ export const kanaCharacters = {
       ],
       "sound": "おもしろ",
       "meaning": "interesting",
+      "meaning_id": "menarik",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6475,6 +6825,7 @@ export const kanaCharacters = {
       ],
       "sound": "わかります",
       "meaning": "to understand",
+      "meaning_id": "mengerti",
       "tags": ["verbs", "understanding"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6492,6 +6843,7 @@ export const kanaCharacters = {
       ],
       "sound": "できます",
       "meaning": "can do/be able to",
+      "meaning_id": "bisa / mampu",
       "tags": ["verbs", "ability"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6508,6 +6860,7 @@ export const kanaCharacters = {
       ],
       "sound": "しょうせつ",
       "meaning": "novel",
+      "meaning_id": "novel",
       "tags": ["items", "entertainment"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6524,6 +6877,7 @@ export const kanaCharacters = {
       ],
       "sound": "えいが",
       "meaning": "movie",
+      "meaning_id": "film",
       "tags": ["entertainment"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6538,6 +6892,7 @@ export const kanaCharacters = {
       ],
       "sound": "おんがく",
       "meaning": "music",
+      "meaning_id": "musik",
       "tags": ["entertainment"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6554,6 +6909,7 @@ export const kanaCharacters = {
       ],
       "sound": "ゲーム",
       "meaning": "game",
+      "meaning_id": "game",
       "tags": ["entertainment", "otaku"],
       "katakana_groups": [
         "ガ",
@@ -6569,6 +6925,7 @@ export const kanaCharacters = {
       ],
       "sound": "コスプレ",
       "meaning": "cosplay",
+      "meaning_id": "cosplay",
       "tags": ["otaku", "anime"],
       "katakana_groups": [
         "カ",
@@ -6585,6 +6942,7 @@ export const kanaCharacters = {
       ],
       "sound": "ワイフ",
       "meaning": "waifu",
+      "meaning_id": "waifu",
       "tags": ["otaku", "anime"],
       "katakana_groups": [
         "ワ",
@@ -6600,6 +6958,7 @@ export const kanaCharacters = {
       ],
       "sound": "せんぱい",
       "meaning": "senior/upperclassman",
+      "meaning_id": "senior",
       "tags": ["school", "social"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6616,6 +6975,7 @@ export const kanaCharacters = {
       ],
       "sound": "こうはい",
       "meaning": "junior/underclassman",
+      "meaning_id": "junior",
       "tags": ["school", "social"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6631,6 +6991,7 @@ export const kanaCharacters = {
       ],
       "sound": "ヤンデレ",
       "meaning": "yandere character type",
+      "meaning_id": "yandere (tipe karakter)",
       "tags": ["otaku", "anime"],
       "katakana_groups": [
         "ヤ",
@@ -6647,6 +7008,7 @@ export const kanaCharacters = {
       ],
       "sound": "ツンデレ",
       "meaning": "tsundere character type",
+      "meaning_id": "tsundere (tipe karakter)",
       "tags": ["otaku", "anime"],
       "katakana_groups": [
         "タ",
@@ -6663,6 +7025,7 @@ export const kanaCharacters = {
       ],
       "sound": "メカ",
       "meaning": "mecha/robot",
+      "meaning_id": "mecha / robot",
       "tags": ["otaku", "anime"],
       "katakana_groups": [
         "マ",
@@ -6677,6 +7040,7 @@ export const kanaCharacters = {
       ],
       "sound": "しょうねん",
       "meaning": "boy/shounen genre",
+      "meaning_id": "anak laki-laki / genre shounen",
       "tags": ["otaku", "anime", "manga"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6694,6 +7058,7 @@ export const kanaCharacters = {
       ],
       "sound": "しょうじょ",
       "meaning": "girl/shoujo genre",
+      "meaning_id": "anak perempuan / genre shoujo",
       "tags": ["otaku", "anime", "manga"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6710,6 +7075,7 @@ export const kanaCharacters = {
       ],
       "sound": "かわいそう",
       "meaning": "pitiful/poor thing",
+      "meaning_id": "kasihan",
       "tags": ["feelings", "expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6726,6 +7092,7 @@ export const kanaCharacters = {
       ],
       "sound": "すごい",
       "meaning": "amazing/awesome",
+      "meaning_id": "luar biasa",
       "tags": ["adjectives", "expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6741,6 +7108,7 @@ export const kanaCharacters = {
       ],
       "sound": "やばい",
       "meaning": "dangerous/crazy/awesome",
+      "meaning_id": "gawat / keren",
       "tags": ["slang", "expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6756,6 +7124,7 @@ export const kanaCharacters = {
       ],
       "sound": "きもち",
       "meaning": "feeling",
+      "meaning_id": "perasaan",
       "tags": ["feelings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6771,6 +7140,7 @@ export const kanaCharacters = {
       ],
       "sound": "いたい",
       "meaning": "painful/ouch",
+      "meaning_id": "sakit / aduh",
       "tags": ["feelings", "expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6785,6 +7155,7 @@ export const kanaCharacters = {
       ],
       "sound": "だいじょうぶ",
       "meaning": "okay/alright",
+      "meaning_id": "tidak apa-apa",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6802,6 +7173,7 @@ export const kanaCharacters = {
       ],
       "sound": "よかった",
       "meaning": "I'm glad/that's good",
+      "meaning_id": "syukurlah",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6817,6 +7189,7 @@ export const kanaCharacters = {
       ],
       "sound": "がんばって",
       "meaning": "do your best/good luck",
+      "meaning_id": "semangat!",
       "tags": ["expressions", "encouragement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6833,6 +7206,7 @@ export const kanaCharacters = {
       ],
       "sound": "おめでとう",
       "meaning": "congratulations",
+      "meaning_id": "selamat",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6849,6 +7223,7 @@ export const kanaCharacters = {
       ],
       "sound": "すみません",
       "meaning": "excuse me/sorry",
+      "meaning_id": "permisi / maaf",
       "tags": ["expressions", "politeness"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6864,6 +7239,7 @@ export const kanaCharacters = {
       ],
       "sound": "いただきます",
       "meaning": "let's eat (before meal)",
+      "meaning_id": "selamat makan (sebelum makan)",
       "tags": ["expressions", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6882,6 +7258,7 @@ export const kanaCharacters = {
       ],
       "sound": "ごちそうさま",
       "meaning": "thank you for the meal (after eating)",
+      "meaning_id": "terima kasih atas makanannya",
       "tags": ["expressions", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6899,6 +7276,7 @@ export const kanaCharacters = {
       ],
       "sound": "おはよう",
       "meaning": "good morning",
+      "meaning_id": "selamat pagi",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6914,6 +7292,7 @@ export const kanaCharacters = {
       ],
       "sound": "こんにちは",
       "meaning": "hello/good afternoon",
+      "meaning_id": "halo / selamat siang",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6931,6 +7310,7 @@ export const kanaCharacters = {
       ],
       "sound": "こんばんは",
       "meaning": "good evening",
+      "meaning_id": "selamat malam",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6947,6 +7327,7 @@ export const kanaCharacters = {
       ],
       "sound": "おやすみ",
       "meaning": "good night",
+      "meaning_id": "selamat tidur",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6963,6 +7344,7 @@ export const kanaCharacters = {
       ],
       "sound": "さようなら",
       "meaning": "goodbye",
+      "meaning_id": "selamat tinggal",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6981,6 +7363,7 @@ export const kanaCharacters = {
       ],
       "sound": "じゃまた",
       "meaning": "see you later",
+      "meaning_id": "sampai jumpa",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -6997,6 +7380,7 @@ export const kanaCharacters = {
       ],
       "sound": "かえる",
       "meaning": "to return home / frog",
+      "meaning_id": "pulang / katak",
       "tags": ["verbs", "movement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7012,6 +7396,7 @@ export const kanaCharacters = {
       ],
       "sound": "はらう",
       "meaning": "to pay",
+      "meaning_id": "membayar",
       "tags": ["verbs", "shopping"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7027,6 +7412,7 @@ export const kanaCharacters = {
       ],
       "sound": "あるく",
       "meaning": "to walk",
+      "meaning_id": "berjalan",
       "tags": ["verbs", "movement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7042,6 +7428,7 @@ export const kanaCharacters = {
       ],
       "sound": "はしる",
       "meaning": "to run",
+      "meaning_id": "berlari",
       "tags": ["verbs", "movement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7057,6 +7444,7 @@ export const kanaCharacters = {
       ],
       "sound": "およぐ",
       "meaning": "to swim",
+      "meaning_id": "berenang",
       "tags": ["verbs", "activities"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7072,6 +7460,7 @@ export const kanaCharacters = {
       ],
       "sound": "あそぶ",
       "meaning": "to play",
+      "meaning_id": "bermain",
       "tags": ["verbs", "activities"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7087,6 +7476,7 @@ export const kanaCharacters = {
       ],
       "sound": "うたう",
       "meaning": "to sing",
+      "meaning_id": "bernyanyi",
       "tags": ["verbs", "activities"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7101,6 +7491,7 @@ export const kanaCharacters = {
       ],
       "sound": "おどる",
       "meaning": "to dance",
+      "meaning_id": "menari",
       "tags": ["verbs", "activities"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7116,6 +7507,7 @@ export const kanaCharacters = {
       ],
       "sound": "まつ",
       "meaning": "to wait",
+      "meaning_id": "menunggu",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7130,6 +7522,7 @@ export const kanaCharacters = {
       ],
       "sound": "つかう",
       "meaning": "to use",
+      "meaning_id": "memakai",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7145,6 +7538,7 @@ export const kanaCharacters = {
       ],
       "sound": "わすれる",
       "meaning": "to forget",
+      "meaning_id": "lupa",
       "tags": ["verbs", "understanding"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7160,6 +7554,7 @@ export const kanaCharacters = {
       ],
       "sound": "おぼえる",
       "meaning": "to remember / to memorize",
+      "meaning_id": "mengingat / menghafal",
       "tags": ["verbs", "understanding"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7175,6 +7570,7 @@ export const kanaCharacters = {
       ],
       "sound": "しる",
       "meaning": "to know",
+      "meaning_id": "tahu",
       "tags": ["verbs", "understanding"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7189,6 +7585,7 @@ export const kanaCharacters = {
       ],
       "sound": "おもう",
       "meaning": "to think",
+      "meaning_id": "berpikir",
       "tags": ["verbs", "understanding"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7203,6 +7600,7 @@ export const kanaCharacters = {
       ],
       "sound": "ならう",
       "meaning": "to learn",
+      "meaning_id": "belajar",
       "tags": ["verbs", "understanding"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7218,6 +7616,7 @@ export const kanaCharacters = {
       ],
       "sound": "おしえる",
       "meaning": "to teach",
+      "meaning_id": "mengajar",
       "tags": ["verbs", "communication"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7233,6 +7632,7 @@ export const kanaCharacters = {
       ],
       "sound": "よぶ",
       "meaning": "to call",
+      "meaning_id": "memanggil",
       "tags": ["verbs", "communication"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7247,6 +7647,7 @@ export const kanaCharacters = {
       ],
       "sound": "すわる",
       "meaning": "to sit",
+      "meaning_id": "duduk",
       "tags": ["verbs", "movement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7262,6 +7663,7 @@ export const kanaCharacters = {
       ],
       "sound": "たつ",
       "meaning": "to stand",
+      "meaning_id": "berdiri",
       "tags": ["verbs", "movement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7275,6 +7677,7 @@ export const kanaCharacters = {
       ],
       "sound": "はいる",
       "meaning": "to enter",
+      "meaning_id": "masuk",
       "tags": ["verbs", "movement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7290,6 +7693,7 @@ export const kanaCharacters = {
       ],
       "sound": "でる",
       "meaning": "to leave / to go out",
+      "meaning_id": "keluar",
       "tags": ["verbs", "movement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7304,6 +7708,7 @@ export const kanaCharacters = {
       ],
       "sound": "いそぐ",
       "meaning": "to hurry",
+      "meaning_id": "bergegas",
       "tags": ["verbs", "movement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7319,6 +7724,7 @@ export const kanaCharacters = {
       ],
       "sound": "あける",
       "meaning": "to open",
+      "meaning_id": "membuka",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7334,6 +7740,7 @@ export const kanaCharacters = {
       ],
       "sound": "しめる",
       "meaning": "to close",
+      "meaning_id": "menutup",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7349,6 +7756,7 @@ export const kanaCharacters = {
       ],
       "sound": "もつ",
       "meaning": "to hold / to carry",
+      "meaning_id": "memegang / membawa",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7363,6 +7771,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぬぐ",
       "meaning": "to take off (clothes)",
+      "meaning_id": "melepas (pakaian)",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7377,6 +7786,7 @@ export const kanaCharacters = {
       ],
       "sound": "えらぶ",
       "meaning": "to choose",
+      "meaning_id": "memilih",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7392,6 +7802,7 @@ export const kanaCharacters = {
       ],
       "sound": "やすむ",
       "meaning": "to rest",
+      "meaning_id": "beristirahat",
       "tags": ["verbs", "daily_life"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7407,6 +7818,7 @@ export const kanaCharacters = {
       ],
       "sound": "はたらく",
       "meaning": "to work",
+      "meaning_id": "bekerja",
       "tags": ["verbs", "work"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7423,6 +7835,7 @@ export const kanaCharacters = {
       ],
       "sound": "わらう",
       "meaning": "to laugh",
+      "meaning_id": "tertawa",
       "tags": ["verbs", "social"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7438,6 +7851,7 @@ export const kanaCharacters = {
       ],
       "sound": "なく",
       "meaning": "to cry",
+      "meaning_id": "menangis",
       "tags": ["verbs", "feelings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7452,6 +7866,7 @@ export const kanaCharacters = {
       ],
       "sound": "てつだう",
       "meaning": "to help",
+      "meaning_id": "membantu",
       "tags": ["verbs", "social"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7467,6 +7882,7 @@ export const kanaCharacters = {
       ],
       "sound": "がんばる",
       "meaning": "to do one's best",
+      "meaning_id": "berusaha keras",
       "tags": ["verbs", "encouragement"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7483,6 +7899,7 @@ export const kanaCharacters = {
       ],
       "sound": "くらい",
       "meaning": "dark",
+      "meaning_id": "gelap",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7498,6 +7915,7 @@ export const kanaCharacters = {
       ],
       "sound": "いそがしい",
       "meaning": "busy",
+      "meaning_id": "sibuk",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7513,6 +7931,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひま",
       "meaning": "free (not busy)",
+      "meaning_id": "senggang",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7527,6 +7946,7 @@ export const kanaCharacters = {
       ],
       "sound": "にぎやか",
       "meaning": "lively",
+      "meaning_id": "ramai",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7544,6 +7964,7 @@ export const kanaCharacters = {
       ],
       "sound": "ゆうめい",
       "meaning": "famous",
+      "meaning_id": "terkenal",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7559,6 +7980,7 @@ export const kanaCharacters = {
       ],
       "sound": "たいへん",
       "meaning": "tough / terrible",
+      "meaning_id": "berat / gawat",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7575,6 +7997,7 @@ export const kanaCharacters = {
       ],
       "sound": "へん",
       "meaning": "strange",
+      "meaning_id": "aneh",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7589,6 +8012,7 @@ export const kanaCharacters = {
       ],
       "sound": "こわい",
       "meaning": "scary",
+      "meaning_id": "menakutkan",
       "tags": ["adjectives", "feelings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7604,6 +8028,7 @@ export const kanaCharacters = {
       ],
       "sound": "ねむい",
       "meaning": "sleepy",
+      "meaning_id": "mengantuk",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7619,6 +8044,7 @@ export const kanaCharacters = {
       ],
       "sound": "あぶない",
       "meaning": "dangerous",
+      "meaning_id": "berbahaya",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7634,6 +8060,7 @@ export const kanaCharacters = {
       ],
       "sound": "わかい",
       "meaning": "young",
+      "meaning_id": "muda",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7649,6 +8076,7 @@ export const kanaCharacters = {
       ],
       "sound": "つめたい",
       "meaning": "cold (to the touch)",
+      "meaning_id": "dingin (saat disentuh)",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7664,6 +8092,7 @@ export const kanaCharacters = {
       ],
       "sound": "あたたかい",
       "meaning": "warm",
+      "meaning_id": "hangat",
       "tags": ["weather", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7679,6 +8108,7 @@ export const kanaCharacters = {
       ],
       "sound": "あまい",
       "meaning": "sweet",
+      "meaning_id": "manis",
       "tags": ["adjectives", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7693,6 +8123,7 @@ export const kanaCharacters = {
       ],
       "sound": "からい",
       "meaning": "spicy",
+      "meaning_id": "pedas",
       "tags": ["adjectives", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7708,6 +8139,7 @@ export const kanaCharacters = {
       ],
       "sound": "しょっぱい",
       "meaning": "salty",
+      "meaning_id": "asin",
       "tags": ["adjectives", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7725,6 +8157,7 @@ export const kanaCharacters = {
       ],
       "sound": "にがい",
       "meaning": "bitter",
+      "meaning_id": "pahit",
       "tags": ["adjectives", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7740,6 +8173,7 @@ export const kanaCharacters = {
       ],
       "sound": "すっぱい",
       "meaning": "sour",
+      "meaning_id": "asam",
       "tags": ["adjectives", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7756,6 +8190,7 @@ export const kanaCharacters = {
       ],
       "sound": "まるい",
       "meaning": "round",
+      "meaning_id": "bulat",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7771,6 +8206,7 @@ export const kanaCharacters = {
       ],
       "sound": "ほそい",
       "meaning": "thin / slender",
+      "meaning_id": "ramping / tipis",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7786,6 +8222,7 @@ export const kanaCharacters = {
       ],
       "sound": "ふとい",
       "meaning": "thick / fat",
+      "meaning_id": "tebal / gemuk",
       "tags": ["adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7801,6 +8238,7 @@ export const kanaCharacters = {
       ],
       "sound": "さびしい",
       "meaning": "lonely",
+      "meaning_id": "kesepian",
       "tags": ["feelings", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7816,6 +8254,7 @@ export const kanaCharacters = {
       ],
       "sound": "はずかしい",
       "meaning": "embarrassed",
+      "meaning_id": "malu",
       "tags": ["feelings", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7833,6 +8272,7 @@ export const kanaCharacters = {
       ],
       "sound": "なつかしい",
       "meaning": "nostalgic",
+      "meaning_id": "rindu (nostalgia)",
       "tags": ["feelings", "adjectives"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7850,6 +8290,7 @@ export const kanaCharacters = {
       ],
       "sound": "うし",
       "meaning": "cow",
+      "meaning_id": "sapi",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7864,6 +8305,7 @@ export const kanaCharacters = {
       ],
       "sound": "さる",
       "meaning": "monkey",
+      "meaning_id": "monyet",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7878,6 +8320,7 @@ export const kanaCharacters = {
       ],
       "sound": "くま",
       "meaning": "bear",
+      "meaning_id": "beruang",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7892,6 +8335,7 @@ export const kanaCharacters = {
       ],
       "sound": "うさぎ",
       "meaning": "rabbit",
+      "meaning_id": "kelinci",
       "tags": ["animals", "pets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7907,6 +8351,7 @@ export const kanaCharacters = {
       ],
       "sound": "きつね",
       "meaning": "fox",
+      "meaning_id": "rubah",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7922,6 +8367,7 @@ export const kanaCharacters = {
       ],
       "sound": "たぬき",
       "meaning": "raccoon dog",
+      "meaning_id": "tanuki (anjing rakun)",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7937,6 +8383,7 @@ export const kanaCharacters = {
       ],
       "sound": "ねずみ",
       "meaning": "mouse / rat",
+      "meaning_id": "tikus",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7952,6 +8399,7 @@ export const kanaCharacters = {
       ],
       "sound": "かめ",
       "meaning": "turtle",
+      "meaning_id": "kura-kura",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7966,6 +8414,7 @@ export const kanaCharacters = {
       ],
       "sound": "へび",
       "meaning": "snake",
+      "meaning_id": "ular",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7981,6 +8430,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぞう",
       "meaning": "elephant",
+      "meaning_id": "gajah",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -7995,6 +8445,7 @@ export const kanaCharacters = {
       ],
       "sound": "きりん",
       "meaning": "giraffe",
+      "meaning_id": "jerapah",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8010,6 +8461,7 @@ export const kanaCharacters = {
       ],
       "sound": "とら",
       "meaning": "tiger",
+      "meaning_id": "harimau",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8024,6 +8476,7 @@ export const kanaCharacters = {
       ],
       "sound": "あり",
       "meaning": "ant",
+      "meaning_id": "semut",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8039,6 +8492,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちょう",
       "meaning": "butterfly",
+      "meaning_id": "kupu-kupu",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8054,6 +8508,7 @@ export const kanaCharacters = {
       ],
       "sound": "たこ",
       "meaning": "octopus",
+      "meaning_id": "gurita",
       "tags": ["animals", "seafood"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8068,6 +8523,7 @@ export const kanaCharacters = {
       ],
       "sound": "くじら",
       "meaning": "whale",
+      "meaning_id": "paus",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8083,6 +8539,7 @@ export const kanaCharacters = {
       ],
       "sound": "いるか",
       "meaning": "dolphin",
+      "meaning_id": "lumba-lumba",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8098,6 +8555,7 @@ export const kanaCharacters = {
       ],
       "sound": "あひる",
       "meaning": "duck",
+      "meaning_id": "bebek",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8113,6 +8571,7 @@ export const kanaCharacters = {
       ],
       "sound": "からす",
       "meaning": "crow",
+      "meaning_id": "gagak",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8128,6 +8587,7 @@ export const kanaCharacters = {
       ],
       "sound": "にわとり",
       "meaning": "chicken",
+      "meaning_id": "ayam",
       "tags": ["animals"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8144,6 +8604,7 @@ export const kanaCharacters = {
       ],
       "sound": "ライオン",
       "meaning": "lion",
+      "meaning_id": "singa",
       "tags": ["animals"],
       "katakana_groups": [
         "ラ",
@@ -8159,6 +8620,7 @@ export const kanaCharacters = {
       ],
       "sound": "パンダ",
       "meaning": "panda",
+      "meaning_id": "panda",
       "tags": ["animals"],
       "katakana_groups": [
         "パ",
@@ -8174,6 +8636,7 @@ export const kanaCharacters = {
       ],
       "sound": "ペンギン",
       "meaning": "penguin",
+      "meaning_id": "penguin",
       "tags": ["animals"],
       "katakana_groups": [
         "パ",
@@ -8189,6 +8652,7 @@ export const kanaCharacters = {
       ],
       "sound": "かお",
       "meaning": "face",
+      "meaning_id": "wajah",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8203,6 +8667,7 @@ export const kanaCharacters = {
       ],
       "sound": "くび",
       "meaning": "neck",
+      "meaning_id": "leher",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8217,6 +8682,7 @@ export const kanaCharacters = {
       ],
       "sound": "かた",
       "meaning": "shoulder",
+      "meaning_id": "bahu",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8231,6 +8697,7 @@ export const kanaCharacters = {
       ],
       "sound": "せなか",
       "meaning": "back",
+      "meaning_id": "punggung",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8246,6 +8713,7 @@ export const kanaCharacters = {
       ],
       "sound": "ゆび",
       "meaning": "finger",
+      "meaning_id": "jari",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8260,6 +8728,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひざ",
       "meaning": "knee",
+      "meaning_id": "lutut",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8274,6 +8743,7 @@ export const kanaCharacters = {
       ],
       "sound": "むね",
       "meaning": "chest",
+      "meaning_id": "dada",
       "tags": ["body_parts"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8288,6 +8758,7 @@ export const kanaCharacters = {
       ],
       "sound": "くも",
       "meaning": "cloud / spider",
+      "meaning_id": "awan / laba-laba",
       "tags": ["nature", "weather"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8302,6 +8773,7 @@ export const kanaCharacters = {
       ],
       "sound": "もり",
       "meaning": "forest",
+      "meaning_id": "hutan",
       "tags": ["nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8316,6 +8788,7 @@ export const kanaCharacters = {
       ],
       "sound": "き",
       "meaning": "tree",
+      "meaning_id": "pohon",
       "tags": ["nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8329,6 +8802,7 @@ export const kanaCharacters = {
       ],
       "sound": "いし",
       "meaning": "stone",
+      "meaning_id": "batu",
       "tags": ["nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8343,6 +8817,7 @@ export const kanaCharacters = {
       ],
       "sound": "しま",
       "meaning": "island",
+      "meaning_id": "pulau",
       "tags": ["nature", "places"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8357,6 +8832,7 @@ export const kanaCharacters = {
       ],
       "sound": "みずうみ",
       "meaning": "lake",
+      "meaning_id": "danau",
       "tags": ["nature", "places"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8372,6 +8848,7 @@ export const kanaCharacters = {
       ],
       "sound": "かみなり",
       "meaning": "thunder",
+      "meaning_id": "petir",
       "tags": ["weather", "nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8388,6 +8865,7 @@ export const kanaCharacters = {
       ],
       "sound": "にじ",
       "meaning": "rainbow",
+      "meaning_id": "pelangi",
       "tags": ["weather", "nature"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8402,6 +8880,7 @@ export const kanaCharacters = {
       ],
       "sound": "さくら",
       "meaning": "cherry blossom",
+      "meaning_id": "bunga sakura",
       "tags": ["nature", "flowers"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8417,6 +8896,7 @@ export const kanaCharacters = {
       ],
       "sound": "はれ",
       "meaning": "sunny weather",
+      "meaning_id": "cuaca cerah",
       "tags": ["weather"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8431,6 +8911,7 @@ export const kanaCharacters = {
       ],
       "sound": "くもり",
       "meaning": "cloudy weather",
+      "meaning_id": "cuaca berawan",
       "tags": ["weather"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8447,6 +8928,7 @@ export const kanaCharacters = {
       ],
       "sound": "たいふう",
       "meaning": "typhoon",
+      "meaning_id": "topan",
       "tags": ["weather"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8463,6 +8945,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぎゅうにゅう",
       "meaning": "milk",
+      "meaning_id": "susu sapi",
       "tags": ["food", "drinks"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8479,6 +8962,7 @@ export const kanaCharacters = {
       ],
       "sound": "おにぎり",
       "meaning": "rice ball",
+      "meaning_id": "nasi kepal",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8495,6 +8979,7 @@ export const kanaCharacters = {
       ],
       "sound": "みそ",
       "meaning": "miso",
+      "meaning_id": "miso",
       "tags": ["food", "condiments"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8510,6 +8995,7 @@ export const kanaCharacters = {
       ],
       "sound": "なっとう",
       "meaning": "fermented soybeans",
+      "meaning_id": "natto (kedelai fermentasi)",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8525,6 +9011,7 @@ export const kanaCharacters = {
       ],
       "sound": "もち",
       "meaning": "rice cake",
+      "meaning_id": "mochi (kue beras)",
       "tags": ["food", "sweets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8539,6 +9026,7 @@ export const kanaCharacters = {
       ],
       "sound": "だんご",
       "meaning": "sweet rice dumpling",
+      "meaning_id": "dango (kue beras manis)",
       "tags": ["food", "sweets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8555,6 +9043,7 @@ export const kanaCharacters = {
       ],
       "sound": "せんべい",
       "meaning": "rice cracker",
+      "meaning_id": "kerupuk beras",
       "tags": ["food", "sweets"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8571,6 +9060,7 @@ export const kanaCharacters = {
       ],
       "sound": "たこやき",
       "meaning": "octopus balls",
+      "meaning_id": "takoyaki (bola gurita)",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8586,6 +9076,7 @@ export const kanaCharacters = {
       ],
       "sound": "からあげ",
       "meaning": "fried chicken",
+      "meaning_id": "ayam goreng",
       "tags": ["food", "meat"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8602,6 +9093,7 @@ export const kanaCharacters = {
       ],
       "sound": "さしみ",
       "meaning": "sliced raw fish",
+      "meaning_id": "sashimi (irisan ikan mentah)",
       "tags": ["food", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8616,6 +9108,7 @@ export const kanaCharacters = {
       ],
       "sound": "のり",
       "meaning": "seaweed",
+      "meaning_id": "rumput laut",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8631,6 +9124,7 @@ export const kanaCharacters = {
       ],
       "sound": "とうふ",
       "meaning": "tofu",
+      "meaning_id": "tahu",
       "tags": ["food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8646,6 +9140,7 @@ export const kanaCharacters = {
       ],
       "sound": "レモン",
       "meaning": "lemon",
+      "meaning_id": "lemon",
       "tags": ["food", "fruits"],
       "katakana_groups": [
         "ラ",
@@ -8661,6 +9156,7 @@ export const kanaCharacters = {
       ],
       "sound": "メロン",
       "meaning": "melon",
+      "meaning_id": "melon",
       "tags": ["food", "fruits"],
       "katakana_groups": [
         "マ",
@@ -8676,6 +9172,7 @@ export const kanaCharacters = {
       ],
       "sound": "にんじん",
       "meaning": "carrot",
+      "meaning_id": "wortel",
       "tags": ["food", "vegetables"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8691,6 +9188,7 @@ export const kanaCharacters = {
       ],
       "sound": "たまねぎ",
       "meaning": "onion",
+      "meaning_id": "bawang bombai",
       "tags": ["food", "vegetables"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8707,6 +9205,7 @@ export const kanaCharacters = {
       ],
       "sound": "じゃがいも",
       "meaning": "potato",
+      "meaning_id": "kentang",
       "tags": ["food", "vegetables"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8724,6 +9223,7 @@ export const kanaCharacters = {
       ],
       "sound": "キャベツ",
       "meaning": "cabbage",
+      "meaning_id": "kubis",
       "tags": ["food", "vegetables"],
       "katakana_groups": [
         "カ",
@@ -8740,6 +9240,7 @@ export const kanaCharacters = {
       ],
       "sound": "アイス",
       "meaning": "ice cream",
+      "meaning_id": "es krim",
       "tags": ["food", "sweets"],
       "katakana_groups": [
         "ア",
@@ -8755,6 +9256,7 @@ export const kanaCharacters = {
       ],
       "sound": "チョコレート",
       "meaning": "chocolate",
+      "meaning_id": "cokelat",
       "tags": ["food", "sweets"],
       "katakana_groups": [
         "タ",
@@ -8773,6 +9275,7 @@ export const kanaCharacters = {
       ],
       "sound": "ジュース",
       "meaning": "juice",
+      "meaning_id": "jus",
       "tags": ["food", "drinks"],
       "katakana_groups": [
         "ザ",
@@ -8788,6 +9291,7 @@ export const kanaCharacters = {
       ],
       "sound": "ワイン",
       "meaning": "wine",
+      "meaning_id": "wine",
       "tags": ["food", "drinks"],
       "katakana_groups": [
         "ワ",
@@ -8802,6 +9306,7 @@ export const kanaCharacters = {
       ],
       "sound": "サラダ",
       "meaning": "salad",
+      "meaning_id": "salad",
       "tags": ["food"],
       "katakana_groups": [
         "サ",
@@ -8818,6 +9323,7 @@ export const kanaCharacters = {
       ],
       "sound": "ハンバーガー",
       "meaning": "hamburger",
+      "meaning_id": "hamburger",
       "tags": ["food"],
       "katakana_groups": [
         "ハ",
@@ -8835,6 +9341,7 @@ export const kanaCharacters = {
       ],
       "sound": "れいぞうこ",
       "meaning": "refrigerator",
+      "meaning_id": "kulkas",
       "tags": ["home", "items"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8851,6 +9358,7 @@ export const kanaCharacters = {
       ],
       "sound": "スマホ",
       "meaning": "smartphone",
+      "meaning_id": "ponsel pintar",
       "tags": ["items", "technology"],
       "katakana_groups": [
         "サ",
@@ -8866,6 +9374,7 @@ export const kanaCharacters = {
       ],
       "sound": "カメラ",
       "meaning": "camera",
+      "meaning_id": "kamera",
       "tags": ["items", "technology"],
       "katakana_groups": [
         "カ",
@@ -8881,6 +9390,7 @@ export const kanaCharacters = {
       ],
       "sound": "かぎ",
       "meaning": "key",
+      "meaning_id": "kunci",
       "tags": ["items"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8895,6 +9405,7 @@ export const kanaCharacters = {
       ],
       "sound": "かさ",
       "meaning": "umbrella",
+      "meaning_id": "payung",
       "tags": ["items"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8910,6 +9421,7 @@ export const kanaCharacters = {
       ],
       "sound": "ノート",
       "meaning": "notebook",
+      "meaning_id": "buku catatan",
       "tags": ["items", "education"],
       "katakana_groups": [
         "ナ",
@@ -8924,6 +9436,7 @@ export const kanaCharacters = {
       ],
       "sound": "ペン",
       "meaning": "pen",
+      "meaning_id": "pulpen",
       "tags": ["items", "education"],
       "katakana_groups": [
         "パ",
@@ -8938,6 +9451,7 @@ export const kanaCharacters = {
       ],
       "sound": "けしごむ",
       "meaning": "eraser",
+      "meaning_id": "penghapus",
       "tags": ["items", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8954,6 +9468,7 @@ export const kanaCharacters = {
       ],
       "sound": "はさみ",
       "meaning": "scissors",
+      "meaning_id": "gunting",
       "tags": ["items"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8969,6 +9484,7 @@ export const kanaCharacters = {
       ],
       "sound": "さいふ",
       "meaning": "wallet",
+      "meaning_id": "dompet",
       "tags": ["items", "money"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -8984,6 +9500,7 @@ export const kanaCharacters = {
       ],
       "sound": "コップ",
       "meaning": "cup / glass",
+      "meaning_id": "gelas",
       "tags": ["items", "food"],
       "katakana_groups": [
         "カ",
@@ -8999,6 +9516,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちゃわん",
       "meaning": "rice bowl",
+      "meaning_id": "mangkuk nasi",
       "tags": ["items", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9014,6 +9532,7 @@ export const kanaCharacters = {
       ],
       "sound": "くつした",
       "meaning": "socks",
+      "meaning_id": "kaus kaki",
       "tags": ["clothing"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9029,6 +9548,7 @@ export const kanaCharacters = {
       ],
       "sound": "てぶくろ",
       "meaning": "gloves",
+      "meaning_id": "sarung tangan",
       "tags": ["clothing", "accessories"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9046,6 +9566,7 @@ export const kanaCharacters = {
       ],
       "sound": "スカート",
       "meaning": "skirt",
+      "meaning_id": "rok",
       "tags": ["clothing"],
       "katakana_groups": [
         "サ",
@@ -9061,6 +9582,7 @@ export const kanaCharacters = {
       ],
       "sound": "きもの",
       "meaning": "kimono",
+      "meaning_id": "kimono",
       "tags": ["clothing", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9076,6 +9598,7 @@ export const kanaCharacters = {
       ],
       "sound": "ゆかた",
       "meaning": "summer kimono",
+      "meaning_id": "yukata (kimono musim panas)",
       "tags": ["clothing", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9091,6 +9614,7 @@ export const kanaCharacters = {
       ],
       "sound": "バス",
       "meaning": "bus",
+      "meaning_id": "bus",
       "tags": ["transportation"],
       "katakana_groups": [
         "バ",
@@ -9107,6 +9631,7 @@ export const kanaCharacters = {
       ],
       "sound": "タクシー",
       "meaning": "taxi",
+      "meaning_id": "taksi",
       "tags": ["transportation"],
       "katakana_groups": [
         "タ",
@@ -9122,6 +9647,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちかてつ",
       "meaning": "subway",
+      "meaning_id": "kereta bawah tanah",
       "tags": ["transportation"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9136,6 +9662,7 @@ export const kanaCharacters = {
       ],
       "sound": "みせ",
       "meaning": "shop",
+      "meaning_id": "toko",
       "tags": ["places", "shopping"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9151,6 +9678,7 @@ export const kanaCharacters = {
       ],
       "sound": "くうこう",
       "meaning": "airport",
+      "meaning_id": "bandara",
       "tags": ["places", "transportation"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9165,6 +9693,7 @@ export const kanaCharacters = {
       ],
       "sound": "じんじゃ",
       "meaning": "shrine",
+      "meaning_id": "kuil Shinto",
       "tags": ["places", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9180,6 +9709,7 @@ export const kanaCharacters = {
       ],
       "sound": "おてら",
       "meaning": "temple",
+      "meaning_id": "kuil Buddha",
       "tags": ["places", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9195,6 +9725,7 @@ export const kanaCharacters = {
       ],
       "sound": "むら",
       "meaning": "village",
+      "meaning_id": "desa",
       "tags": ["places"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9210,6 +9741,7 @@ export const kanaCharacters = {
       ],
       "sound": "スーパー",
       "meaning": "supermarket",
+      "meaning_id": "supermarket",
       "tags": ["places", "shopping"],
       "katakana_groups": [
         "サ",
@@ -9224,6 +9756,7 @@ export const kanaCharacters = {
       ],
       "sound": "だいどころ",
       "meaning": "kitchen",
+      "meaning_id": "dapur",
       "tags": ["places", "home"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9240,6 +9773,7 @@ export const kanaCharacters = {
       ],
       "sound": "にわ",
       "meaning": "garden",
+      "meaning_id": "halaman / kebun",
       "tags": ["places", "home"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9254,6 +9788,7 @@ export const kanaCharacters = {
       ],
       "sound": "いしゃ",
       "meaning": "doctor",
+      "meaning_id": "dokter",
       "tags": ["people", "work"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9269,6 +9804,7 @@ export const kanaCharacters = {
       ],
       "sound": "けいさつ",
       "meaning": "police",
+      "meaning_id": "polisi",
       "tags": ["people", "work"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9285,6 +9821,7 @@ export const kanaCharacters = {
       ],
       "sound": "おとな",
       "meaning": "adult",
+      "meaning_id": "orang dewasa",
       "tags": ["people"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9300,6 +9837,7 @@ export const kanaCharacters = {
       ],
       "sound": "かぞく",
       "meaning": "family",
+      "meaning_id": "keluarga",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9315,6 +9853,7 @@ export const kanaCharacters = {
       ],
       "sound": "おかあさん",
       "meaning": "mother",
+      "meaning_id": "ibu",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9332,6 +9871,7 @@ export const kanaCharacters = {
       ],
       "sound": "おとうさん",
       "meaning": "father",
+      "meaning_id": "ayah",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9349,6 +9889,7 @@ export const kanaCharacters = {
       ],
       "sound": "おにいさん",
       "meaning": "older brother",
+      "meaning_id": "kakak laki-laki",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9366,6 +9907,7 @@ export const kanaCharacters = {
       ],
       "sound": "おねえさん",
       "meaning": "older sister",
+      "meaning_id": "kakak perempuan",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9382,6 +9924,7 @@ export const kanaCharacters = {
       ],
       "sound": "おじいさん",
       "meaning": "grandfather",
+      "meaning_id": "kakek",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9398,6 +9941,7 @@ export const kanaCharacters = {
       ],
       "sound": "おばあさん",
       "meaning": "grandmother",
+      "meaning_id": "nenek",
       "tags": ["family"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9414,6 +9958,7 @@ export const kanaCharacters = {
       ],
       "sound": "じかん",
       "meaning": "time / hour",
+      "meaning_id": "waktu / jam",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9430,6 +9975,7 @@ export const kanaCharacters = {
       ],
       "sound": "しゅうまつ",
       "meaning": "weekend",
+      "meaning_id": "akhir pekan",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9448,6 +9994,7 @@ export const kanaCharacters = {
       ],
       "sound": "らいしゅう",
       "meaning": "next week",
+      "meaning_id": "minggu depan",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9464,6 +10011,7 @@ export const kanaCharacters = {
       ],
       "sound": "ことし",
       "meaning": "this year",
+      "meaning_id": "tahun ini",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9479,6 +10027,7 @@ export const kanaCharacters = {
       ],
       "sound": "らいねん",
       "meaning": "next year",
+      "meaning_id": "tahun depan",
       "tags": ["time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9495,6 +10044,7 @@ export const kanaCharacters = {
       ],
       "sound": "あか",
       "meaning": "red",
+      "meaning_id": "merah",
       "tags": ["colors"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9509,6 +10059,7 @@ export const kanaCharacters = {
       ],
       "sound": "むらさき",
       "meaning": "purple",
+      "meaning_id": "ungu",
       "tags": ["colors"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9525,6 +10076,7 @@ export const kanaCharacters = {
       ],
       "sound": "はいいろ",
       "meaning": "gray",
+      "meaning_id": "abu-abu",
       "tags": ["colors"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9540,6 +10092,7 @@ export const kanaCharacters = {
       ],
       "sound": "ピンク",
       "meaning": "pink",
+      "meaning_id": "merah muda",
       "tags": ["colors"],
       "katakana_groups": [
         "パ",
@@ -9555,6 +10108,7 @@ export const kanaCharacters = {
       ],
       "sound": "オレンジ",
       "meaning": "orange",
+      "meaning_id": "oranye",
       "tags": ["colors", "fruits"],
       "katakana_groups": [
         "ア",
@@ -9571,6 +10125,7 @@ export const kanaCharacters = {
       ],
       "sound": "よこ",
       "meaning": "side / next to",
+      "meaning_id": "samping",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9585,6 +10140,7 @@ export const kanaCharacters = {
       ],
       "sound": "ちかく",
       "meaning": "nearby",
+      "meaning_id": "dekat sini",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9599,6 +10155,7 @@ export const kanaCharacters = {
       ],
       "sound": "きた",
       "meaning": "north",
+      "meaning_id": "utara",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9613,6 +10170,7 @@ export const kanaCharacters = {
       ],
       "sound": "みなみ",
       "meaning": "south",
+      "meaning_id": "selatan",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9627,6 +10185,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひがし",
       "meaning": "east",
+      "meaning_id": "timur",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9642,6 +10201,7 @@ export const kanaCharacters = {
       ],
       "sound": "にし",
       "meaning": "west",
+      "meaning_id": "barat",
       "tags": ["directions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9656,6 +10216,7 @@ export const kanaCharacters = {
       ],
       "sound": "ごめんなさい",
       "meaning": "I'm sorry",
+      "meaning_id": "maafkan aku",
       "tags": ["expressions", "politeness"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9674,6 +10235,7 @@ export const kanaCharacters = {
       ],
       "sound": "はじめまして",
       "meaning": "nice to meet you",
+      "meaning_id": "senang berkenalan",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9691,6 +10253,7 @@ export const kanaCharacters = {
       ],
       "sound": "よろしく",
       "meaning": "please treat me well",
+      "meaning_id": "mohon bantuannya",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9708,6 +10271,7 @@ export const kanaCharacters = {
       ],
       "sound": "どうぞ",
       "meaning": "please / go ahead",
+      "meaning_id": "silakan",
       "tags": ["expressions", "politeness"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9724,6 +10288,7 @@ export const kanaCharacters = {
       ],
       "sound": "おねがいします",
       "meaning": "please (request)",
+      "meaning_id": "tolong (permintaan)",
       "tags": ["expressions", "politeness"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9741,6 +10306,7 @@ export const kanaCharacters = {
       ],
       "sound": "いらっしゃいませ",
       "meaning": "welcome (to a shop)",
+      "meaning_id": "selamat datang (di toko)",
       "tags": ["expressions", "shopping"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9759,6 +10325,7 @@ export const kanaCharacters = {
       ],
       "sound": "いってきます",
       "meaning": "I'm off (leaving home)",
+      "meaning_id": "aku berangkat",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9776,6 +10343,7 @@ export const kanaCharacters = {
       ],
       "sound": "ただいま",
       "meaning": "I'm home",
+      "meaning_id": "aku pulang",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9792,6 +10360,7 @@ export const kanaCharacters = {
       ],
       "sound": "おかえり",
       "meaning": "welcome home",
+      "meaning_id": "selamat datang di rumah",
       "tags": ["expressions", "greetings"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9807,6 +10376,7 @@ export const kanaCharacters = {
       ],
       "sound": "なるほど",
       "meaning": "I see",
+      "meaning_id": "oh begitu",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9823,6 +10393,7 @@ export const kanaCharacters = {
       ],
       "sound": "もちろん",
       "meaning": "of course",
+      "meaning_id": "tentu saja",
       "tags": ["expressions"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9839,6 +10410,7 @@ export const kanaCharacters = {
       ],
       "sound": "たぶん",
       "meaning": "maybe / probably",
+      "meaning_id": "mungkin",
       "tags": ["adverbs"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9854,6 +10426,7 @@ export const kanaCharacters = {
       ],
       "sound": "ぜんぜん",
       "meaning": "not at all",
+      "meaning_id": "sama sekali tidak",
       "tags": ["adverbs"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9868,6 +10441,7 @@ export const kanaCharacters = {
       ],
       "sound": "まだ",
       "meaning": "still / not yet",
+      "meaning_id": "masih / belum",
       "tags": ["adverbs", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9882,6 +10456,7 @@ export const kanaCharacters = {
       ],
       "sound": "いつも",
       "meaning": "always",
+      "meaning_id": "selalu",
       "tags": ["adverbs", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9897,6 +10472,7 @@ export const kanaCharacters = {
       ],
       "sound": "ときどき",
       "meaning": "sometimes",
+      "meaning_id": "kadang-kadang",
       "tags": ["adverbs", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9912,6 +10488,7 @@ export const kanaCharacters = {
       ],
       "sound": "ゆっくり",
       "meaning": "slowly",
+      "meaning_id": "pelan-pelan",
       "tags": ["adverbs"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9928,6 +10505,7 @@ export const kanaCharacters = {
       ],
       "sound": "すぐ",
       "meaning": "immediately",
+      "meaning_id": "segera",
       "tags": ["adverbs", "time"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9942,6 +10520,7 @@ export const kanaCharacters = {
       ],
       "sound": "いっしょ",
       "meaning": "together",
+      "meaning_id": "bersama",
       "tags": ["adverbs"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9958,6 +10537,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひとり",
       "meaning": "alone / one person",
+      "meaning_id": "sendirian / satu orang",
       "tags": ["people"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9973,6 +10553,7 @@ export const kanaCharacters = {
       ],
       "sound": "おたく",
       "meaning": "otaku / geek",
+      "meaning_id": "otaku",
       "tags": ["otaku"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -9988,6 +10569,7 @@ export const kanaCharacters = {
       ],
       "sound": "まつり",
       "meaning": "festival",
+      "meaning_id": "festival",
       "tags": ["events", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10003,6 +10585,7 @@ export const kanaCharacters = {
       ],
       "sound": "にんじゃ",
       "meaning": "ninja",
+      "meaning_id": "ninja",
       "tags": ["japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10019,6 +10602,7 @@ export const kanaCharacters = {
       ],
       "sound": "さむらい",
       "meaning": "samurai",
+      "meaning_id": "samurai",
       "tags": ["japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10035,6 +10619,7 @@ export const kanaCharacters = {
       ],
       "sound": "たたみ",
       "meaning": "straw floor mat",
+      "meaning_id": "tikar jerami",
       "tags": ["home", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10050,6 +10635,7 @@ export const kanaCharacters = {
       ],
       "sound": "けんどう",
       "meaning": "kendo",
+      "meaning_id": "kendo",
       "tags": ["sports", "martial_arts", "japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10066,6 +10652,7 @@ export const kanaCharacters = {
       ],
       "sound": "おに",
       "meaning": "demon / ogre",
+      "meaning_id": "iblis / raksasa",
       "tags": ["japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10081,6 +10668,7 @@ export const kanaCharacters = {
       ],
       "sound": "ようかい",
       "meaning": "supernatural monster",
+      "meaning_id": "makhluk gaib",
       "tags": ["japanese_culture"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10097,6 +10685,7 @@ export const kanaCharacters = {
       ],
       "sound": "サッカー",
       "meaning": "soccer",
+      "meaning_id": "sepak bola",
       "tags": ["sports"],
       "katakana_groups": [
         "サ",
@@ -10113,6 +10702,7 @@ export const kanaCharacters = {
       ],
       "sound": "やきゅう",
       "meaning": "baseball",
+      "meaning_id": "bisbol",
       "tags": ["sports"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10128,6 +10718,7 @@ export const kanaCharacters = {
       ],
       "sound": "テニス",
       "meaning": "tennis",
+      "meaning_id": "tenis",
       "tags": ["sports"],
       "katakana_groups": [
         "タ",
@@ -10143,6 +10734,7 @@ export const kanaCharacters = {
       ],
       "sound": "すいえい",
       "meaning": "swimming",
+      "meaning_id": "renang",
       "tags": ["sports"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10157,6 +10749,7 @@ export const kanaCharacters = {
       ],
       "sound": "しゃしん",
       "meaning": "photograph",
+      "meaning_id": "foto",
       "tags": ["hobbies"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10173,6 +10766,7 @@ export const kanaCharacters = {
       ],
       "sound": "りょこう",
       "meaning": "travel / trip",
+      "meaning_id": "perjalanan / wisata",
       "tags": ["hobbies", "travel"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10190,6 +10784,7 @@ export const kanaCharacters = {
       ],
       "sound": "りょうり",
       "meaning": "cooking",
+      "meaning_id": "masakan / memasak",
       "tags": ["hobbies", "food"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10205,6 +10800,7 @@ export const kanaCharacters = {
       ],
       "sound": "しゅくだい",
       "meaning": "homework",
+      "meaning_id": "PR",
       "tags": ["school", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10222,6 +10818,7 @@ export const kanaCharacters = {
       ],
       "sound": "しけん",
       "meaning": "exam",
+      "meaning_id": "ujian",
       "tags": ["school", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10238,6 +10835,7 @@ export const kanaCharacters = {
       ],
       "sound": "きょうかしょ",
       "meaning": "textbook",
+      "meaning_id": "buku pelajaran",
       "tags": ["school", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10255,6 +10853,7 @@ export const kanaCharacters = {
       ],
       "sound": "じゅぎょう",
       "meaning": "class / lesson",
+      "meaning_id": "pelajaran (di kelas)",
       "tags": ["school", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10271,6 +10870,7 @@ export const kanaCharacters = {
       ],
       "sound": "ことば",
       "meaning": "word / language",
+      "meaning_id": "kata / bahasa",
       "tags": ["languages", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10286,6 +10886,7 @@ export const kanaCharacters = {
       ],
       "sound": "かんじ",
       "meaning": "Chinese characters",
+      "meaning_id": "kanji (huruf Tionghoa)",
       "tags": ["languages", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10301,6 +10902,7 @@ export const kanaCharacters = {
       ],
       "sound": "ひらがな",
       "meaning": "hiragana",
+      "meaning_id": "hiragana",
       "tags": ["languages", "education"],
       "katakana_groups": [],
       "hiragana_groups": [
@@ -10317,6 +10919,7 @@ export const kanaCharacters = {
       ],
       "sound": "カタカナ",
       "meaning": "katakana",
+      "meaning_id": "katakana",
       "tags": ["languages", "education"],
       "katakana_groups": [
         "カ",

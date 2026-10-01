@@ -4,6 +4,7 @@ import GameModeSelector from './GameModeSelector'
 import ProgressStatsModal from './ProgressStatsModal'
 import { Link } from "react-router-dom";
 import { kanaCharacters } from '../kanaCharacters.js'
+import { useLanguage } from '../i18n'
 
 // How many groups / characters are selected and how many words can be practiced with them
 function getSelectionSummary() {
@@ -30,6 +31,7 @@ function getSelectionSummary() {
 }
 
 export default function GameMenu() {
+  const { t } = useLanguage();
   const [showStatsModal, setShowStatsModal] = useState(false);
   // On phones only one kana group is shown at a time (see .kana-group-tabs in App.css)
   const [activeKanaTab, setActiveKanaTab] = useState('hiragana');
@@ -46,15 +48,15 @@ export default function GameMenu() {
   let summaryText;
   let canStart = true;
   if (groupCount === 0) {
-    summaryText = 'Select at least one group to start';
+    summaryText = t('menuSummaryNone');
     canStart = false;
   } else if (isWordPractice && wordCount === 0) {
-    summaryText = 'No words with these groups yet, select more';
+    summaryText = t('menuSummaryNoWords');
     canStart = false;
   } else if (isWordPractice) {
-    summaryText = `${wordCount} word${wordCount === 1 ? '' : 's'} from ${groupCount} group${groupCount === 1 ? '' : 's'}`;
+    summaryText = t('menuSummaryWords', { words: wordCount, groups: groupCount });
   } else {
-    summaryText = `${groupCount} group${groupCount === 1 ? '' : 's'} · ${characterCount} characters`;
+    summaryText = t('menuSummaryCharacters', { groups: groupCount, characters: characterCount });
   }
 
   const handleButtonClick = () => {
@@ -74,7 +76,7 @@ export default function GameMenu() {
 
   return (
     <div className='game-menu-page'>
-      <h2 id='game-menu-title'>Select a group to learn</h2>
+      <h2 id='game-menu-title'>{t('menuTitle')}</h2>
       <div className='kana-group-tabs'>
         {['hiragana', 'katakana'].map((group) => (
           <button
@@ -94,7 +96,7 @@ export default function GameMenu() {
         <GameModeSelector onChange={refreshSummary} />
       </div>
       <div className='game-menu-start-bar'>
-        <button className='neoButton stats-button-floating' onClick={() => setShowStatsModal(true)} title='View Progress Stats'>
+        <button className='neoButton stats-button-floating' onClick={() => setShowStatsModal(true)} title={t('menuStats')}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M3 13h2v8H3v-8zm4-6h2v14H7V7zm4-4h2v18h-2V3zm4 8h2v10h-2V11zm4-6h2v16h-2V5z"/>
           </svg>
@@ -103,10 +105,10 @@ export default function GameMenu() {
           <p className={'game-menu-summary' + (canStart ? '' : ' game-menu-summary-warning')}>{summaryText}</p>
           {canStart ? (
             <Link to='/learn-kana∕game'>
-              <button className='glowButton' onClick={handleButtonClick}>Let's start!</button>
+              <button className='glowButton' onClick={handleButtonClick}>{t('menuStart')}</button>
             </Link>
           ) : (
-            <button className='glowButton' disabled>Let's start!</button>
+            <button className='glowButton' disabled>{t('menuStart')}</button>
           )}
         </div>
       </div>

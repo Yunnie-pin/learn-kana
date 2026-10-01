@@ -1192,3 +1192,28 @@ Kana group preview on hover
   font-size: 0.8em;
   opacity: 0.75;
 }
+
+/* EN / ID switch in the navbar */
+.navbar-language {
+  font-size: 0.8em;
+}
+
+.navbar-language .segmented-option {
+  padding: 0.35em 0.8em;
+}
+
+.navbar-title,
+.navbar-author {
+  white-space: nowrap;
+}
+
+/* Very narrow phones: the language switch needs the room, so the credit goes under the title */
+@media (max-width: 420px) {
+  .navbar-brand {
+    flex-direction: column;
+    gap: 0;
+  }
+  .navbar-author {
+    font-size: 0.75em;
+  }
+}

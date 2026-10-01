@@ -9,6 +9,7 @@ import NotFound from './NotFound';
 import './fonts/Belanosima/Belanosima-SemiBold.ttf'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { loadAnalytics } from './analytics';
+import { LanguageProvider } from './i18n';
 
 
 
@@ -40,7 +41,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <LanguageProvider>
+      <RouterProvider router={router} />
+    </LanguageProvider>
   </React.StrictMode>
 );
 

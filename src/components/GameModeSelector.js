@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ButtonWithArrows from './ButtonWithArrows'
 import CheckMark from './CheckMark';
+import { useLanguage } from '../i18n';
 
 // A row of mutually exclusive buttons, e.g. Practice: [Characters | Words]
 function SegmentedControl(props) {
@@ -28,6 +29,7 @@ function SegmentedControl(props) {
 }
 
 export default function GameModeSelector(props) {
+  const { t } = useLanguage();
   // Checks if the current device has a touchscreen
   const touchDefault = ('ontouchstart' in window | navigator.msMaxTouchPoints) === 1;
 
@@ -93,9 +95,9 @@ export default function GameModeSelector(props) {
 
   return (
     <div className='game-mode-selector-group'>
-      <h2>Select a mode:</h2>
+      <h2>{t('modeTitle')}</h2>
       <div className='game-mode-selector-button-group'>
-        <ButtonWithArrows description="Give me" unit="Kanas" id="kana-selector"/>
+        <ButtonWithArrows label={(count) => t('modeKanaCount', { count })} id="kana-selector"/>
         <div className='button-with-arrows'>
           <label data-gamemode="kana-selector">
             <input type="radio" 
@@ -105,36 +107,36 @@ export default function GameModeSelector(props) {
               className="character-checkbox-input game-mode-select-checkbox">
             </input>
             <div className="character-checkbox-content">
-              <p>Unlimited</p>
+              <p>{t('modeUnlimited')}</p>
             </div>
           </label>
         </div>
-        <ButtonWithArrows description="Give me" unit="minutes" id="time-selector"/>
+        <ButtonWithArrows label={(count) => t('modeMinutes', { count })} id="time-selector"/>
       </div>
       <div className='game-mode-selector-segments'>
         <SegmentedControl
-          label="Practice"
+          label={t('practiceLabel')}
           value={practice}
           onChange={handlePracticeChange}
           options={[
-            { value: "characters", label: "Characters" },
-            { value: "words", label: "Words" },
+            { value: "characters", label: t('practiceCharacters') },
+            { value: "words", label: t('practiceWords') },
           ]}
         />
         <SegmentedControl
-          label="Answer by"
+          label={t('answerByLabel')}
           value={answerBy}
           onChange={setAnswerBy}
           options={[
-            { value: "typing", label: "Typing" },
-            { value: "touch", label: "Multiple choice", disabled: practice === "words", disabledReason: "Only available when practicing characters" },
+            { value: "typing", label: t('answerTyping') },
+            { value: "touch", label: t('answerMultipleChoice'), disabled: practice === "words", disabledReason: t('answerMultipleChoiceDisabled') },
           ]}
         />
       </div>
       <div className='game-mode-selector-button-group'>
-        <CheckMark characterText="Hints" class="game-mode-selector-button-group-row-2" id="game-mode-hints" default="true"/>
-        <CheckMark characterText="Handwritten Fonts" class="game-mode-selector-button-group-row-2" id="game-mode-random-fonts"/>
-        <CheckMark characterText="Auto Next" class="game-mode-selector-button-group-row-2" id="game-mode-auto-next" default="true"/>
+        <CheckMark characterText={t('optionHints')} class="game-mode-selector-button-group-row-2" id="game-mode-hints" default="true"/>
+        <CheckMark characterText={t('optionHandwrittenFonts')} class="game-mode-selector-button-group-row-2" id="game-mode-random-fonts"/>
+        <CheckMark characterText={t('optionAutoNext')} class="game-mode-selector-button-group-row-2" id="game-mode-auto-next" default="true"/>
       </div>
     </div>
   )

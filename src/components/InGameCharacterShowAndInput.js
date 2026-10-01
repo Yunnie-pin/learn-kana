@@ -3,6 +3,7 @@ import {  useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { kanaCharacters } from '../kanaCharacters.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
+import { useLanguage } from '../i18n'
 
 let fontClassList = [
   // "Belanosima",
@@ -245,6 +246,7 @@ async function selectNextCharacter(charactersToShow) {
 }
 
 export default function InGameCharacterShowAndInput() {
+  const { t, meaningOf } = useLanguage();
 
   /* 
     ##########################################
@@ -314,9 +316,9 @@ export default function InGameCharacterShowAndInput() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (charactersToShow.length === 0) {
-      navigate('/bruh', { state: { message: 'You didn\'t select any Kana!' } });
+      navigate('/bruh', { state: { message: t('gameErrorNoKana') } });
     }
-  }, [charactersToShow, navigate]);
+  }, [charactersToShow, navigate, t]);
 
   // game-mode-auto-next
   let autoNext = false;
@@ -599,7 +601,7 @@ export default function InGameCharacterShowAndInput() {
       if (charactersToShow.length > 0) {
         pickedElement = charactersToShow[Math.floor(Math.random() * charactersToShow.length)];
       } else {
-        navigate('/bruh', { state: { message: 'No characters available to show!' } });
+        navigate('/bruh', { state: { message: t('gameErrorNoCharacters') } });
         return;
       }
     }
@@ -648,7 +650,7 @@ export default function InGameCharacterShowAndInput() {
     // @ts-ignore
     if (pickedElement.type === "word") {
       // @ts-ignore
-      setWordMeaning(pickedElement.meaning);
+      setWordMeaning(meaningOf(pickedElement.jp_character, pickedElement.meaning));
     }
 
     if (localStorage.getItem("game-mode-random-fonts") === "true") {
@@ -1139,7 +1141,7 @@ export default function InGameCharacterShowAndInput() {
         <span id='in-game-text-input-before-cursor'></span>
         <div id='in-game-text-input-cursor'></div>
         <span id='in-game-text-input-after-cursor'></span>
-        <span id='in-game-text-input-placeholder'>type the romaji…</span>
+        <span id='in-game-text-input-placeholder'>{t('gamePlaceholder')}</span>
       </div>
       <input 
         type="text" 
@@ -1158,10 +1160,10 @@ export default function InGameCharacterShowAndInput() {
       <div className="in-game-top-var">
         <div className='in-game-score-group'>
           <div className='in-game-score' id='in-game-score'>
-            {isProblematicsMode ? '🎯 Problematics: ' : 'Kanas '}{onScreenScore}
+            {isProblematicsMode ? t('gameScoreProblematics') : t('gameScoreKanas')}{onScreenScore}
             {kanaGoal !== null && <span className='in-game-score-goal'> / {kanaGoal}</span>}
           </div>
-          {streak >= 3 && <div className='in-game-streak' title='Correct answers in a row'>🔥 {streak}</div>}
+          {streak >= 3 && <div className='in-game-streak' title={t('gameStreakTitle')}>🔥 {streak}</div>}
         </div>
         {remainingTime !== null ? (
           <div
@@ -1173,16 +1175,16 @@ export default function InGameCharacterShowAndInput() {
         ) : (
           <div className='in-game-help-bar'>
             {hintsEnabled ? <div className='in-game-help-button' onClick={handleUserAskForHelp}>
-              <span className='label-keyboard'><strong>?</strong>: help</span>
-              <span className='label-touch'>💡 Hint</span>
+              <span className='label-keyboard'><strong>?</strong>: {t('gameHelpKey')}</span>
+              <span className='label-touch'>{t('gameHintButton')}</span>
             </div> : null}
             {(localStorage.getItem("game-mode-random-fonts") === "true") ? <div className='in-game-help-button' onClick={onClickChangeFontToDefault}>
-              <span className='label-keyboard'><strong>shift</strong>: normal font</span>
-              <span className='label-touch'>🔤 Font</span>
+              <span className='label-keyboard'><strong>shift</strong>: {t('gameFontKey')}</span>
+              <span className='label-touch'>{t('gameFontButton')}</span>
             </div> : <div></div>}
           </div>
         )}
-        <div onClick={onClickExitButton} className='in-game-exit-button' title='End game'>✖</div>
+        <div onClick={onClickExitButton} className='in-game-exit-button' title={t('gameEnd')}>✖</div>
       </div>
       {kanaGoal !== null && (
         <div className='in-game-progress'>
@@ -1206,7 +1208,7 @@ export default function InGameCharacterShowAndInput() {
             {Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution}
           </div>
           <button id='in-game-next-button' className='in-game-next-button hidden-element'>
-            Next →<span className='label-keyboard'> (Enter)</span>
+            {t('gameNext')}<span className='label-keyboard'> (Enter)</span>
           </button>
         </div>
         {inGameInputElement}

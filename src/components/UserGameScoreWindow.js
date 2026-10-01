@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { kanaCharacters } from '../kanaCharacters.js'
+import { useLanguage } from '../i18n'
 
 /* userStats object structure:
 {
@@ -66,6 +67,7 @@ function playAgain() {
 }
 
 export default function UserGameScoreWindow(props) {
+    const { t } = useLanguage();
     const userStats = JSON.parse(localStorage.getItem('userStats')) || {};
     const [isNewStreakRecord, setIsNewStreakRecord] = useState(false);
 
@@ -171,7 +173,7 @@ export default function UserGameScoreWindow(props) {
         const problematicChars = getProblematicCharactersForFilter();
 
         if (problematicChars.length === 0) {
-            alert("No problematic characters found! You're doing great! 🎉");
+            alert(t('summaryNoProblematics'));
             return;
         }
 
@@ -219,11 +221,11 @@ export default function UserGameScoreWindow(props) {
     if (previousAverageTime !== null) {
         const difference = averageTime - previousAverageTime;
         if (Math.abs(difference) < 0.05) {
-            comparisonText = 'Same pace as your average';
+            comparisonText = t('summarySamePace');
         } else if (difference < 0) {
-            comparisonText = `⬆ ${Math.abs(difference).toFixed(1)}s faster than usual`;
+            comparisonText = t('summaryFaster', { seconds: Math.abs(difference).toFixed(1) });
         } else {
-            comparisonText = `⬇ ${difference.toFixed(1)}s slower than usual`;
+            comparisonText = t('summarySlower', { seconds: difference.toFixed(1) });
         }
     }
 
@@ -235,26 +237,26 @@ export default function UserGameScoreWindow(props) {
             <div className='score-cards'>
                 <div className='score-card'>
                     <div className='score-card-value'>{accuracy}%</div>
-                    <div className='score-card-label'>Accuracy</div>
+                    <div className='score-card-label'>{t('summaryAccuracy')}</div>
                 </div>
                 <div className='score-card'>
                     <div className='score-card-value'>{averageTime.toFixed(1)}s</div>
-                    <div className='score-card-label'>Avg time</div>
+                    <div className='score-card-label'>{t('summaryAvgTime')}</div>
                     {comparisonText && <div className='score-card-note'>{comparisonText}</div>}
                 </div>
                 <div className='score-card'>
                     <div className='score-card-value'>🔥 {props.bestStreak}</div>
-                    <div className='score-card-label'>Best streak</div>
-                    {isNewStreakRecord && <div className='score-card-note score-card-note-highlight'>New record!</div>}
+                    <div className='score-card-label'>{t('summaryBestStreak')}</div>
+                    {isNewStreakRecord && <div className='score-card-note score-card-note-highlight'>{t('summaryNewRecord')}</div>}
                 </div>
                 <div className='score-card'>
                     <div className='score-card-value'>{totalHints}</div>
-                    <div className='score-card-label'>Hints used</div>
+                    <div className='score-card-label'>{t('summaryHintsUsed')}</div>
                 </div>
             </div>
             {needsPractice.length > 0 && (
                 <div className='score-section'>
-                    <h3>Needs practice</h3>
+                    <h3>{t('summaryNeedsPractice')}</h3>
                     <div className='score-chips'>
                         {needsPractice.map(entry => (
                             <span className='score-chip' key={'practice-' + entry.kana}>
@@ -266,7 +268,7 @@ export default function UserGameScoreWindow(props) {
                 </div>
             )}
             <div className='score-section'>
-                <h3>Slowest</h3>
+                <h3>{t('summarySlowest')}</h3>
                 <div className='score-chips'>
                     {slowest.map(entry => (
                         <span className='score-chip' key={'slow-' + entry.kana}>
@@ -280,7 +282,7 @@ export default function UserGameScoreWindow(props) {
     } else {
         userStatsElement = <div className='inGameUserGameScoreWindow_stats'>
             <div className='inGameUserGameScoreWindow_stats_speed'>
-                <p>Yeah.. ehh... Try again?</p>
+                <p>{t('summaryTryAgain')}</p>
             </div>
         </div>
     }
@@ -290,15 +292,15 @@ export default function UserGameScoreWindow(props) {
             <div className='inGameUserGameScoreWindow'>
                 <div className='inGameUserGameScoreWindow_header'>
                     <h1>{totalRight}</h1>
-                    <h2>{isWordMode ? "Words" : "Kanas"} Completed!</h2>
+                    <h2>{isWordMode ? t('summaryCompletedWords') : t('summaryCompletedKanas')}</h2>
                 </div>
                 {userStatsElement}
                 <div className='inGameUserGameScoreWindow_buttons'>
-                    <button onClick={goToMainMenu}>Back to Main Menu</button>
-                    <button onClick={handleTryProblematicsClick}>Try Problematics</button>
-                    <button className='score-button-primary' onClick={playAgain}>Play Again</button>
+                    <button onClick={goToMainMenu}>{t('summaryBackToMenu')}</button>
+                    <button onClick={handleTryProblematicsClick}>{t('summaryTryProblematics')}</button>
+                    <button className='score-button-primary' onClick={playAgain}>{t('summaryPlayAgain')}</button>
                 </div>
-                <div className='score-shortcuts label-keyboard'>Enter: play again · Esc: main menu</div>
+                <div className='score-shortcuts label-keyboard'>{t('summaryShortcuts')}</div>
             </div>
         </div>
     )

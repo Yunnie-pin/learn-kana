@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { kanaCharacters } from '../kanaCharacters.js';
+import { useLanguage } from '../i18n';
 
 function ProgressStatsModal(props) {
+    const { t, meaningOf } = useLanguage();
     const [activeTab, setActiveTab] = useState('characters');
     const [userStats, setUserStats] = useState({});
     const [hoveredItem, setHoveredItem] = useState(null);
@@ -141,7 +143,7 @@ function ProgressStatsModal(props) {
             words.push({
                 character: word.jp_character,
                 romanji: word.romanji[0],
-                meaning: word.meaning
+                meaning: meaningOf(word.jp_character, word.meaning)
             });
         });
 
@@ -162,7 +164,7 @@ function ProgressStatsModal(props) {
     const getStatsText = (character) => {
         const stats = userStats[character];
         if (!stats) {
-            return 'No practice data yet';
+            return t('statsNoPracticeData');
         }
 
         const totalAttempts = stats.totalRightGuesses + stats.totalWrongGuesses;
@@ -175,22 +177,22 @@ function ProgressStatsModal(props) {
             : 0;
 
         let statsLines = [
-            `Times Shown: ${stats.totalTimesShown || 'N/A'}`,
-            `Correct: ${stats.totalRightGuesses} | Wrong: ${stats.totalWrongGuesses}`,
-            `Accuracy: ${accuracy}%`,
-            `Avg Time: ${avgResponseTime}s`,
+            t('statsTimesShown', { count: stats.totalTimesShown || 'N/A' }),
+            t('statsCorrectWrong', { correct: stats.totalRightGuesses, wrong: stats.totalWrongGuesses }),
+            t('statsAccuracy', { percent: accuracy }),
+            t('statsAvgTime', { seconds: avgResponseTime }),
         ];
 
         if (stats.totalEditCount > 0) {
-            statsLines.push(`Edits: ${stats.totalEditCount} (avg ${avgEditsPerCorrect}/correct)`);
+            statsLines.push(t('statsEdits', { count: stats.totalEditCount, average: avgEditsPerCorrect }));
         }
 
         if (stats.totalWrongSubmissions > 0) {
-            statsLines.push(`Wrong Submissions: ${stats.totalWrongSubmissions}`);
+            statsLines.push(t('statsWrongSubmissions', { count: stats.totalWrongSubmissions }));
         }
 
         if (stats.totalAskForHelpCounter > 0) {
-            statsLines.push(`Help Requested: ${stats.totalAskForHelpCounter} times`);
+            statsLines.push(t('statsHelpRequested', { count: stats.totalAskForHelpCounter }));
         }
 
         return statsLines.join('\n');
@@ -280,7 +282,7 @@ function ProgressStatsModal(props) {
         <div className='progress-stats-modal-background' onClick={props.onClose}>
             <div className='progress-stats-modal' onClick={(e) => { e.stopPropagation(); setHoveredItem(null); }}>
                 <div className='progress-stats-modal-header'>
-                    <h2>Learning Progress</h2>
+                    <h2>{t('statsTitle')}</h2>
                     <button className='progress-stats-modal-close' onClick={props.onClose}>×</button>
                 </div>
 
@@ -289,55 +291,55 @@ function ProgressStatsModal(props) {
                         className={`progress-stats-tab ${activeTab === 'characters' ? 'active' : ''}`}
                         onClick={() => setActiveTab('characters')}
                     >
-                        Characters
+                        {t('practiceCharacters')}
                     </button>
                     <button
                         className={`progress-stats-tab ${activeTab === 'words' ? 'active' : ''}`}
                         onClick={() => setActiveTab('words')}
                     >
-                        Words
+                        {t('practiceWords')}
                     </button>
                 </div>
 
                 <div className='progress-stats-summary'>
                     <div className='progress-stats-summary-item'>
                         <div className='progress-stats-summary-value'>{summary.practiced}/{summary.total}</div>
-                        <div className='progress-stats-summary-label'>Practiced</div>
+                        <div className='progress-stats-summary-label'>{t('statsPracticed')}</div>
                     </div>
                     <div className='progress-stats-summary-item'>
                         <div className='progress-stats-summary-value'>{summary.avgMastery}%</div>
-                        <div className='progress-stats-summary-label'>Avg Mastery</div>
+                        <div className='progress-stats-summary-label'>{t('statsAvgMastery')}</div>
                     </div>
                     <div className='progress-stats-summary-item'>
                         <div className='progress-stats-summary-value'>{summary.notPracticed}</div>
-                        <div className='progress-stats-summary-label'>Not Practiced</div>
+                        <div className='progress-stats-summary-label'>{t('statsNotPracticed')}</div>
                     </div>
                 </div>
 
                 <div className='progress-stats-legend'>
                     <div className='progress-stats-legend-item'>
                         <div className='progress-stats-legend-color' style={{backgroundColor: '#4ade80'}}></div>
-                        <span>80-100% Excellent</span>
+                        <span>{t('statsExcellent')}</span>
                     </div>
                     <div className='progress-stats-legend-item'>
                         <div className='progress-stats-legend-color' style={{backgroundColor: '#22d3ee'}}></div>
-                        <span>60-79% Good</span>
+                        <span>{t('statsGood')}</span>
                     </div>
                     <div className='progress-stats-legend-item'>
                         <div className='progress-stats-legend-color' style={{backgroundColor: '#fbbf24'}}></div>
-                        <span>40-59% OK</span>
+                        <span>{t('statsOk')}</span>
                     </div>
                     <div className='progress-stats-legend-item'>
                         <div className='progress-stats-legend-color' style={{backgroundColor: '#fb923c'}}></div>
-                        <span>20-39% Needs Work</span>
+                        <span>{t('statsNeedsWork')}</span>
                     </div>
                     <div className='progress-stats-legend-item'>
                         <div className='progress-stats-legend-color' style={{backgroundColor: '#f87171'}}></div>
-                        <span>0-19% Struggling</span>
+                        <span>{t('statsStruggling')}</span>
                     </div>
                     <div className='progress-stats-legend-item'>
                         <div className='progress-stats-legend-color' style={{backgroundColor: '#ffffff10'}}></div>
-                        <span>No Data</span>
+                        <span>{t('statsNoData')}</span>
                     </div>
                 </div>
 

@@ -7,6 +7,12 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 > This is a fork of [Eldoprano/learn-kana](https://github.com/Eldoprano/learn-kana), created by **Eldoprano**.
 > The original version is live on [GitHub Pages](https://eldoprano.github.io/learn-kana/) and [Cloudflare Pages](https://learn-kana.pages.dev/).
 
+<p align="center">
+  <img src="docs/screenshots/home-desktop.png" alt="Learn Kana home page on desktop: hiragana and katakana group selection with game mode options" width="68%">
+  &nbsp;
+  <img src="docs/screenshots/home-mobile.png" alt="Learn Kana home page on mobile, with hiragana / katakana tabs and a sticky start button" width="24%">
+</p>
+
 ## Features
 
 **Choosing what to practice**
@@ -36,6 +42,9 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 **Mobile**
 - Works with on-screen keyboards (Android and iOS) and keeps the answer above the keyboard.
 - Touch friendly layout, safe-area support for notched phones, installable as an app (PWA).
+
+**Languages**
+- Interface and word meanings in English and Indonesian (Bahasa Indonesia), switchable from the navbar. The first visit follows the browser language.
 
 Progress and settings are saved locally in your browser, nothing needs an account.
 
