@@ -414,9 +414,10 @@ html.in-game-scroll-lock body {
   box-sizing: border-box;
   border-style: solid;
   border-radius: 30px;
-  padding: 3em;
-  margin: 3em;
-  gap: 35px;
+  width: min(100% - 2em, 600px);
+  padding: 2.5em;
+  margin: 1em;
+  gap: 24px;
   display: flex;
   flex-direction: column;
   box-shadow: 10px 10px 10px 0px #000000a8;
@@ -703,4 +704,113 @@ html.in-game-scroll-lock body {
 .in-game-container {
   background-color: color-mix(in srgb, #2a8f9e var(--streak-level, 0%), #155263);
   transition: background-color 0.8s ease;
+}
+
+/*
+#############
+Game summary
+#############
+*/
+.score-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.score-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8em 0.4em;
+  border-radius: 16px;
+  background-color: #00000030;
+  text-align: center;
+  user-select: none;
+}
+
+.score-card-value {
+  font-size: 1.8rem;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.score-card-label {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.score-card-note {
+  margin-top: 0.3em;
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+.score-card-note-highlight {
+  color: #4ade80;
+}
+
+.score-section>h3 {
+  margin: 0 0 0.5em;
+  font-size: 1rem;
+  font-weight: normal;
+  opacity: 0.75;
+  text-align: center;
+}
+
+.score-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.score-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+  padding: 0.3em 0.8em;
+  border: 1px solid #ff9a3c66;
+  border-radius: 50em;
+  user-select: none;
+}
+
+.score-chip-kana {
+  font-size: 1.4rem;
+}
+
+.score-chip-detail {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.inGameUserGameScoreWindow_buttons button.score-button-primary {
+  background-color: #ff9a3c;
+  color: #155263;
+}
+
+@media (hover: hover) {
+  .inGameUserGameScoreWindow_buttons button.score-button-primary:hover {
+    background-color: #ffb066;
+  }
+}
+
+.score-shortcuts {
+  margin-top: -10px;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.5;
+  user-select: none;
+}
+
+@media (max-width: 600px) {
+  .inGameUserGameScoreWindow {
+    padding: 1.5em 1em;
+  }
+  .score-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .score-card-value {
+    font-size: 1.5rem;
+  }
 }

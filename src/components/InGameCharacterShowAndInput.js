@@ -259,6 +259,9 @@ export default function InGameCharacterShowAndInput() {
   const [remainingTime, setRemainingTime] = useState(null);
   // Correct answers in a row, resets on a wrong answer or when asking for help
   const [streak, setStreak] = useState(0);
+  const [bestStreak, setBestStreak] = useState(0);
+  // Read by the keyboard handlers (registered once on mount) to ignore input behind the summary window
+  const scoreWindowVisibleRef = useRef(false);
   let inGameAnswerList = [];
 
   // Hints ("?" key / Hint button) can be turned off in the menu
@@ -676,10 +679,6 @@ export default function InGameCharacterShowAndInput() {
 
     kanaTimeToAnswerTimer = Date.now();
 
-    // Get angry if the user keeps submitting correct answers while on the stats window
-    if (document.querySelector('.inGameUserGameScoreBackground')) {
-      alert("Hey! ( ｡ •̀ ᴖ •́ ｡) Stop responding you silly");
-    }
   }
 
   /* 
@@ -723,7 +722,7 @@ export default function InGameCharacterShowAndInput() {
 
   React.useEffect(() => {
     let timeoutInProgress = false;
-    let lastWrongAttempt = ''; // Track last wrong attempt to avoid duplicate counting
+    let wrongSubmissionCounted = false; // A mistake counts at most once per kana shown
 
     // Keep the hidden <input> in sync with the displayed answer, so mobile
     // keyboards (which edit the input's value directly) see the same text
@@ -744,6 +743,7 @@ export default function InGameCharacterShowAndInput() {
     // Mobile virtual keyboards (e.g. Android Gboard) send keydown events with
     // key "Unidentified", so typed text is read from the input event instead
     function handleInput(e) {
+      if (scoreWindowVisibleRef.current) return;
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const previousAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
@@ -770,6 +770,7 @@ export default function InGameCharacterShowAndInput() {
     }
 
     function handleKeyDown(e) {
+      if (scoreWindowVisibleRef.current) return;
       // Let the input event handle keys coming from mobile IMEs
       if (e.key === 'Unidentified' || e.isComposing || e.keyCode === 229) return;
       if (e.ctrlKey || e.metaKey || e.altKey) return;
@@ -827,30 +828,21 @@ export default function InGameCharacterShowAndInput() {
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const InGameUserCurrentAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
 
-      // Turn the answer red as soon as no valid answer starts with what was typed
+      // As soon as no valid answer starts with what was typed: reset the streak, and
+      // turn the answer red (only with hints on, the red text gives the mistake away)
       const answerGroup = document.querySelector('#in-game-text-input-cursor-group');
       const typedAnswer = InGameUserCurrentAnswer.trim().toLowerCase();
       const isOnTrack = inGameAnswerList.some(answer => answer.startsWith(typedAnswer));
-      if (!isOnTrack && !answerGroup.classList.contains("answer-wrong")) {
+      if (!isOnTrack) {
         setStreak(0);
       }
-      answerGroup.classList.toggle("answer-wrong", !isOnTrack);
+      answerGroup.classList.toggle("answer-wrong", !isOnTrack && hintsEnabled);
 
-      // Track wrong submissions: if user has typed at least the minimum answer length
-      // and the answer is wrong, count it once
-      if (InGameUserCurrentAnswer.length > 0 && key.match(/^[^?]$/)) {
-        const minAnswerLength = Math.min(...inGameAnswerList.map(a => a.length));
-        if (InGameUserCurrentAnswer.length >= minAnswerLength &&
-            !inGameAnswerList.includes(InGameUserCurrentAnswer.trim().toLowerCase()) &&
-            lastWrongAttempt !== InGameUserCurrentAnswer.trim().toLowerCase()) {
-          updateCurrentGameStats("wrongSubmission");
-          lastWrongAttempt = InGameUserCurrentAnswer.trim().toLowerCase();
-        }
-      }
-
-      // Reset wrong attempt tracking when user edits back to shorter length
-      if ((key === 'Backspace' || key === 'Delete') && InGameUserCurrentAnswer.length < lastWrongAttempt.length) {
-        lastWrongAttempt = '';
+      // Track wrong submissions: as soon as the typed text can't become a valid answer
+      // anymore, count one mistake for this kana (fixing and failing again doesn't add more)
+      if (!isOnTrack && !wrongSubmissionCounted) {
+        updateCurrentGameStats("wrongSubmission");
+        wrongSubmissionCounted = true;
       }
 
 
@@ -864,7 +856,7 @@ export default function InGameCharacterShowAndInput() {
         updateCurrentGameStats("correct");
         answerGroup.classList.add("answer-correct");
         document.querySelector('#in-game-kana-character').classList.add("answer-correct");
-        lastWrongAttempt = ''; // Reset for next character
+        wrongSubmissionCounted = false; // Reset for next character
         setScore(prevScore => prevScore + 1)
 
         // If the user is in word mode, show the translation of the word
@@ -891,7 +883,7 @@ export default function InGameCharacterShowAndInput() {
             };
             // Define the function for keydown event
             const handleKeyDown = (event) => {
-              if (event.key === 'Enter') {
+              if (event.key === 'Enter' && !scoreWindowVisibleRef.current) {
                 goToNextWord();
               }
             };
@@ -960,7 +952,19 @@ export default function InGameCharacterShowAndInput() {
     if (container) {
       container.style.setProperty('--streak-level', Math.min(streak, 10) * 5 + '%');
     }
+    setBestStreak(prevBest => Math.max(prevBest, streak));
   }, [streak]);
+
+  // Once the summary is open the game stops taking answers, and the mobile keyboard is closed
+  React.useEffect(() => {
+    scoreWindowVisibleRef.current = userGameScoreWindowVisible;
+    if (userGameScoreWindowVisible) {
+      const hiddenInput = document.querySelector('#in-game-text-input');
+      if (hiddenInput) {
+        hiddenInput.blur();
+      }
+    }
+  }, [userGameScoreWindowVisible]);
 
   const cursorBlinkInterval = useRef(null);
   React.useEffect(() => {
@@ -1219,6 +1223,7 @@ export default function InGameCharacterShowAndInput() {
       </div>
       <UserGameScoreWindow
         visible={userGameScoreWindowVisible}
+        bestStreak={bestStreak}
       />
     </>
   )
