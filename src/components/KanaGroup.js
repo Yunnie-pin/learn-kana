@@ -26,6 +26,24 @@ function uppercaseFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// Adds or removes a group title from the checkedKanas list in localStorage
+function updateCheckedKana(title, isChecked) {
+  let checkedKanas = [];
+  try {
+    checkedKanas = JSON.parse(localStorage.getItem('checkedKanas')) || [];
+  } catch (e) {
+    localStorage.setItem('checkedKanas', JSON.stringify([]));
+  }
+  if (isChecked) {
+    if (!checkedKanas.includes(title)) {
+      checkedKanas.push(title);
+    }
+  } else {
+    checkedKanas = checkedKanas.filter(item => item !== title);
+  }
+  localStorage.setItem('checkedKanas', JSON.stringify(checkedKanas));
+}
+
 
 export default function KanaGroup(props) {
   const [mainKanaSelected, setMainKanaSelected] = useState(false);
@@ -47,22 +65,11 @@ export default function KanaGroup(props) {
     checkboxes.forEach(checkbox => {
       checkbox.checked = isChecked;
       // Update localStorage accordingly
-      const title = checkbox.id;
-      let checkedKanas = [];
-      try {
-        checkedKanas = JSON.parse(localStorage.getItem('checkedKanas')) || [];
-      } catch (e) {
-        localStorage.setItem('checkedKanas', JSON.stringify([]));
-      }
-      if (isChecked) {
-        if (!checkedKanas.includes(title)) {
-          checkedKanas.push(title);
-        }
-      } else {
-        checkedKanas = checkedKanas.filter(item => item !== title);
-      }
-      localStorage.setItem('checkedKanas', JSON.stringify(checkedKanas));
+      updateCheckedKana(checkbox.id, isChecked);
     });
+    if (props.onSelectionChange) {
+      props.onSelectionChange();
+    }
   };
 
   return (
@@ -104,7 +111,13 @@ function character_button_group_builder(props, tag) {
               <input type="checkbox"
                 defaultChecked={localStorage.checkedKanas.includes(title)}
                 id={title}
-                className="character-checkbox-input kana-checkbox" />
+                className="character-checkbox-input kana-checkbox"
+                onChange={(e) => {
+                  updateCheckedKana(title, e.target.checked);
+                  if (props.onSelectionChange) {
+                    props.onSelectionChange();
+                  }
+                }} />
               <div className="character-checkbox-content">
                 <h3>{title}</h3>
                 <p>{characterText}</p>

@@ -19,6 +19,7 @@ body {
 
 /* Interface text uses the app font instead of the browser default (Times) */
 #game-menu-title,
+.kana-group-elements>h2,
 .character-title-group-button>h3,
 .game-mode-selector-group>h2,
 .in-game-top-var,
@@ -326,12 +327,39 @@ Game Menu Page
 
 .main_kana-characters,
 .dakuten_kana-characters {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  flex-basis: 100%;
+  gap: 6px;
   margin-bottom: 0.7em;
+}
+
+.main_kana-characters .character-checkbox-element,
+.dakuten_kana-characters .character-checkbox-element {
+  display: block;
+}
+
+.main_kana-characters .character-checkbox-content,
+.dakuten_kana-characters .character-checkbox-content {
+  width: auto;
+  height: auto;
+  min-height: 100px;
+  padding: 0.3em 0.2em 0.5em;
+  box-sizing: border-box;
+}
+
+.main_kana-characters .character-checkbox-content>h3,
+.dakuten_kana-characters .character-checkbox-content>h3 {
+  font-size: clamp(2.4em, 4vw, 4.5em);
+  margin: 0;
+  line-height: 1.15;
+}
+
+.main_kana-characters .character-checkbox-content>p,
+.dakuten_kana-characters .character-checkbox-content>p {
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .character-title-element {
@@ -954,22 +982,26 @@ Phones
     padding: 0 0.5em;
   }
 
-  /* Three kana per row instead of two */
+  .main_kana-characters,
+  .dakuten_kana-characters {
+    gap: 4px;
+  }
+
   .main_kana-characters .character-checkbox-content,
   .dakuten_kana-characters .character-checkbox-content {
-    width: calc((100vw - 3em) / 3);
-    height: 80px;
+    min-height: 72px;
+    padding: 0.2em 0.1em 0.4em;
   }
 
   .main_kana-characters .character-checkbox-content>h3,
   .dakuten_kana-characters .character-checkbox-content>h3 {
-    font-size: 3.2em;
-    margin-bottom: -8px;
+    font-size: 2.3em;
   }
 
   .main_kana-characters .character-checkbox-content>p,
   .dakuten_kana-characters .character-checkbox-content>p {
-    font-size: 0.75em;
+    font-size: 0.62em;
+    letter-spacing: -0.3px;
   }
 
   .game-menu-start-bar {
@@ -979,8 +1011,101 @@ Phones
     background: linear-gradient(to top, #155263 70%, #15526300);
   }
 
+  .game-menu-start {
+    margin-left: 3.5em;
+  }
+
   .game-menu-start-bar .glowButton {
     width: auto;
-    margin: 10px 0 10px 3.5em;
+    margin: 4px 0 10px;
   }
+}
+
+/*
+#############################
+Practice / answer type segments
+#############################
+*/
+.game-mode-selector-segments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8em 2em;
+  margin: 0.8em auto;
+}
+
+.segmented-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.segmented-label {
+  font-family: var(--ui-font);
+  user-select: none;
+}
+
+.segmented-control {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 50em;
+  background-color: #00000030;
+}
+
+.segmented-option {
+  border: none;
+  border-radius: 50em;
+  padding: 0.5em 1.1em;
+  background: transparent;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.segmented-option.active {
+  background-color: #ff9a3c;
+  color: #155263;
+}
+
+.segmented-option:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  .segmented-option:not(.active):not(:disabled):hover {
+    background-color: #ff9a3c26;
+  }
+}
+
+/*
+##########################
+Selection summary + start
+##########################
+*/
+.game-menu-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-menu-summary {
+  margin: 0.4em 0 0;
+  font-family: var(--ui-font);
+  font-size: 0.95em;
+  opacity: 0.8;
+  user-select: none;
+}
+
+.game-menu-summary-warning {
+  color: #ffcc3c;
+  opacity: 1;
+}
+
+.glowButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
 }
