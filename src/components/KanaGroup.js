@@ -122,6 +122,15 @@ function character_button_group_builder(props, tag) {
                 <h3>{title}</h3>
                 <p>{characterText}</p>
               </div>
+              {/* Shown on hover: every character of the group, not only the first one */}
+              <div className="kana-group-preview" aria-hidden="true">
+                {Object.values(characters).map((groupCharacter) => (
+                  <div className="kana-group-preview-item" key={groupCharacter.jp_character}>
+                    <span className="kana-group-preview-kana">{groupCharacter.jp_character}</span>
+                    <span className="kana-group-preview-romanji">{groupCharacter.romanji[0]}</span>
+                  </div>
+                ))}
+              </div>
             </label>
           );
         }
