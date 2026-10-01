@@ -231,8 +231,16 @@ body {
 }
 
 #in-game-text-input {
-  width: 0;
-  height: 0;
+  /* Kept 1px instead of 0 so mobile browsers (iOS) still allow focusing it.
+     16px font prevents iOS from zooming in on focus */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  font-size: 16px;
   opacity: 0;
 }
 

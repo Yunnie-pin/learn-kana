@@ -704,10 +704,62 @@ export default function InGameCharacterShowAndInput() {
     let timeoutInProgress = false;
     let lastWrongAttempt = ''; // Track last wrong attempt to avoid duplicate counting
 
+    // Keep the hidden <input> in sync with the displayed answer, so mobile
+    // keyboards (which edit the input's value directly) see the same text
+    function syncHiddenInput() {
+      const hiddenInput = document.querySelector('#in-game-text-input');
+      if (!hiddenInput) return;
+      hiddenInput.value = document.querySelector('#in-game-text-input-before-cursor').textContent +
+        document.querySelector('#in-game-text-input-after-cursor').textContent;
+    }
+
+    function clearAnswerInput() {
+      document.querySelector('#in-game-text-input-before-cursor').textContent = '';
+      document.querySelector('#in-game-text-input-after-cursor').textContent = '';
+      syncHiddenInput();
+    }
+
+    // Mobile virtual keyboards (e.g. Android Gboard) send keydown events with
+    // key "Unidentified", so typed text is read from the input event instead
+    function handleInput(e) {
+      const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
+      const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
+      const previousAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
+      let newAnswer = e.target.value;
+
+      if (newAnswer.includes('?')) {
+        newAnswer = newAnswer.replace(/\?/g, '');
+        e.target.value = newAnswer;
+        handleUserAskForHelp();
+      }
+
+      InGameTextInput.textContent = newAnswer;
+      InGameTextInputAfterCursor.textContent = '';
+      InGameTextInputAfterCursor.style.visibility = "hidden";
+
+      let key = newAnswer.slice(-1);
+      if (newAnswer.length < previousAnswer.length) {
+        key = 'Backspace';
+        updateCurrentGameStats("edit");
+      } else if (newAnswer === previousAnswer) {
+        return;
+      }
+      checkAnswer(key);
+    }
+
     function handleKeyDown(e) {
+      // Let the input event handle keys coming from mobile IMEs
+      if (e.key === 'Unidentified' || e.isComposing || e.keyCode === 229) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+
       // Check if key is a printable character and append it to the input field
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
+
+      if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete') {
+        // The displayed answer is managed manually, don't let the hidden input change on its own
+        e.preventDefault();
+      }
 
       if (e.key.match(/^[^?]$/)) {
         InGameTextInput.textContent += e.key;
@@ -744,11 +796,18 @@ export default function InGameCharacterShowAndInput() {
         }
       }
 
+      syncHiddenInput();
+      checkAnswer(e.key);
+    }
+
+    function checkAnswer(key) {
+      const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
+      const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const InGameUserCurrentAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
 
       // Track wrong submissions: if user has typed at least the minimum answer length
       // and the answer is wrong, count it once
-      if (InGameUserCurrentAnswer.length > 0 && e.key.match(/^[^?]$/)) {
+      if (InGameUserCurrentAnswer.length > 0 && key.match(/^[^?]$/)) {
         const minAnswerLength = Math.min(...inGameAnswerList.map(a => a.length));
         if (InGameUserCurrentAnswer.length >= minAnswerLength &&
             !inGameAnswerList.includes(InGameUserCurrentAnswer.trim().toLowerCase()) &&
@@ -759,7 +818,7 @@ export default function InGameCharacterShowAndInput() {
       }
 
       // Reset wrong attempt tracking when user edits back to shorter length
-      if ((e.key === 'Backspace' || e.key === 'Delete') && InGameUserCurrentAnswer.length < lastWrongAttempt.length) {
+      if ((key === 'Backspace' || key === 'Delete') && InGameUserCurrentAnswer.length < lastWrongAttempt.length) {
         lastWrongAttempt = '';
       }
 
@@ -783,26 +842,30 @@ export default function InGameCharacterShowAndInput() {
           document.querySelector('#in-game-solution').classList.remove("hidden-element");
 
           if (!autoNext) {
+            const solutionElement = document.querySelector('#in-game-solution');
+            const goToNextWord = () => {
+              clearAnswerInput();
+              solutionElement.classList.add("hidden-element");
+              showNewCharacter();
+
+              // Remove the listeners to prevent multiple listeners from being added
+              document.removeEventListener('keydown', handleKeyDown);
+              solutionElement.removeEventListener('click', goToNextWord);
+            };
             // Define the function for keydown event
             const handleKeyDown = (event) => {
               if (event.key === 'Enter') {
-                InGameTextInput.textContent = '';
-                InGameTextInputAfterCursor.textContent = '';
-                document.querySelector('#in-game-solution').classList.add("hidden-element");
-                showNewCharacter();
-
-                // Remove the event listener to prevent multiple listeners from being added
-                document.removeEventListener('keydown', handleKeyDown);
+                goToNextWord();
               }
             };
 
-            // Listen for 'Enter' key press
+            // Listen for 'Enter' key press, or a tap on the translation (mobile)
             document.addEventListener('keydown', handleKeyDown);
+            solutionElement.addEventListener('click', goToNextWord);
           } else {
             timeoutInProgress = true;
             setTimeout(function () {
-              InGameTextInput.textContent = '';
-              InGameTextInputAfterCursor.textContent = '';
+              clearAnswerInput();
               document.querySelector('#in-game-solution').classList.add("hidden-element");
               showNewCharacter();
               timeoutInProgress = false;
@@ -812,17 +875,19 @@ export default function InGameCharacterShowAndInput() {
         else {
           // Wait 200 milisecond and then clear the input field and show a new character
           setTimeout(function () {
-            InGameTextInput.textContent = '';
-            InGameTextInputAfterCursor.textContent = '';
+            clearAnswerInput();
             showNewCharacter();
           }, 200)
         }
       }
     }
     if (localStorage.getItem("game-mode-touch") !== "true") {
+      const hiddenInput = document.querySelector('#in-game-text-input');
       window.addEventListener('keydown', handleKeyDown);
+      hiddenInput.addEventListener('input', handleInput);
       return () => {
         window.removeEventListener("keydown", handleKeyDown);
+        hiddenInput.removeEventListener('input', handleInput);
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -923,6 +988,12 @@ export default function InGameCharacterShowAndInput() {
     }, (1500))
   }
 
+  // Mobile browsers only open the virtual keyboard when the input is focused by a user tap
+  function focusTextInput() {
+    const hiddenInput = document.querySelector('#in-game-text-input');
+    if (hiddenInput) hiddenInput.focus();
+  }
+
   function onClickExitButton(event) {
     setUserGameScoreWindowVisible(true);
   }
@@ -991,6 +1062,7 @@ export default function InGameCharacterShowAndInput() {
         autoCorrect="off"
         autoCapitalize="off"
         spellCheck="false"
+        enterKeyHint="next"
       />
     </>
   }
@@ -1016,7 +1088,7 @@ export default function InGameCharacterShowAndInput() {
         )}
         <div onClick={onClickExitButton} className='in-game-exit-button'>✖</div>
       </div>
-      <div className='in-game-game-screen'>
+      <div className='in-game-game-screen' onClick={focusTextInput}>
 
         <div id='in-game-kana-character' onClick={onClickChangeFontToDefault} className='in-game-kana-character'>
           <p>
