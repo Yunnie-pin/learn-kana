@@ -1,12 +1,12 @@
 import React from 'react';
-import TitlePage from './components/TitlePage';
+import Navbar from './components/Navbar';
 import GameMenu from './components/GameMenu';
 
 function App() {
 // Type rfc to create a react component
   return (
     <>
-      <TitlePage />
+      <Navbar />
       <GameMenu />
     </>
   );

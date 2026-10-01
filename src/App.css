@@ -39,55 +39,75 @@ body {
   font-display: swap;
 }
 
-/* 
-##########
-Title Page
-########## 
+/*
+######
+Navbar
+######
 */
-.title-page {
-  height: calc(100% - 16px);
+.navbar {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
-
-.title-page>div>h1 {
-  font-size: 15.5vw;
-  margin-bottom: 1vh;
-  margin-top: 30vh;
-  font-family: "Belanosima";
+  gap: 1em;
+  padding: calc(0.6em + env(safe-area-inset-top)) calc(1em + env(safe-area-inset-right)) 0.6em calc(1em + env(safe-area-inset-left));
+  border-bottom: 1px solid #ff9a3c33;
+  font-family: var(--ui-font);
   user-select: none;
 }
 
-.title-page>div>h3 {
-  text-align: center;
-  width: fit-content;
-  margin: auto;
-  font-size: clamp(1rem, 2.5vw, 3rem);
-  font-family: "Belanosima";
-  user-select: none;
+.navbar-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+}
+
+.navbar-title {
+  font-size: 1.7em;
+}
+
+.navbar-author {
+  font-size: 0.9em;
+  opacity: 0.6;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+}
+
+.navbar-install {
+  border: 2px solid #ff9a3c;
+  border-radius: 50em;
+  padding: 0.3em 0.9em;
+  background: transparent;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  font-size: 0.9em;
+  cursor: pointer;
 }
 
 .github-icon {
-  position: absolute;
-  top: calc(10px + env(safe-area-inset-top));
-  right: calc(10px + env(safe-area-inset-right));
-  width: 50px;
-  height: 50px;
+  display: flex;
+  width: 28px;
+  height: 28px;
 }
 
 .github-icon svg {
   width: 100%;
   height: 100%;
-  filter: opacity(0.05);
-  transition: filter 0.3s;
+  fill: #ff9a3c;
+  opacity: 0.6;
+  transition: opacity 0.3s;
 }
 
 /* Only on devices that can hover, so the effect does not stick after a tap */
 @media (hover: hover) {
   .github-icon:hover svg {
-    filter: opacity(1);
+    opacity: 1;
+  }
+  .navbar-install:hover {
+    background-color: #ff9a3c26;
   }
 }
 
@@ -954,14 +974,8 @@ Phones
 ######
 */
 @media (max-width: 655px) {
-  .title-page {
-    height: auto;
-    min-height: 55vh;
-    min-height: 55svh;
-  }
-
-  .title-page>div>h1 {
-    margin-top: 18vh;
+  .navbar-title {
+    font-size: 1.4em;
   }
 
   .kana-group-tabs {

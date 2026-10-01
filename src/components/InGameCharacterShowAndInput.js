@@ -261,6 +261,9 @@ export default function InGameCharacterShowAndInput() {
   const [streak, setStreak] = useState(0);
   let inGameAnswerList = [];
 
+  // Hints ("?" key / Hint button) can be turned off in the menu
+  const hintsEnabled = localStorage.getItem("game-mode-hints") !== "false";
+
   // "Give me N Kanas" mode: N is the goal shown next to the score
   const gameModeSetting = JSON.parse(localStorage.getItem("gameMode"));
   const kanaGoal = (gameModeSetting && gameModeSetting.type === "kana-selector" && gameModeSetting.value !== -1)
@@ -1021,6 +1024,9 @@ export default function InGameCharacterShowAndInput() {
   }, []);
 
   function handleUserAskForHelp() {
+    if (!hintsEnabled) {
+      return;
+    }
     if (document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
       updateCurrentGameStats('askForHelp')
       document.querySelector('#in-game-kana-solution').classList.remove("hidden-element")
@@ -1162,10 +1168,10 @@ export default function InGameCharacterShowAndInput() {
           </div>
         ) : (
           <div className='in-game-help-bar'>
-            <div className='in-game-help-button' onClick={handleUserAskForHelp}>
+            {hintsEnabled ? <div className='in-game-help-button' onClick={handleUserAskForHelp}>
               <span className='label-keyboard'><strong>?</strong>: help</span>
               <span className='label-touch'>💡 Hint</span>
-            </div>
+            </div> : null}
             {(localStorage.getItem("game-mode-random-fonts") === "true") ? <div className='in-game-help-button' onClick={onClickChangeFontToDefault}>
               <span className='label-keyboard'><strong>shift</strong>: normal font</span>
               <span className='label-touch'>🔤 Font</span>
