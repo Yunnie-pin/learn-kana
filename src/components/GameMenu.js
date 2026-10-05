@@ -6,6 +6,63 @@ import { Link } from "react-router-dom";
 import { kanaCharacters } from '../kanaCharacters.js'
 import { useLanguage } from '../i18n'
 
+const legacyKanjiGroupSelections = {
+  'N5 Basics': ['N5 Time & Days', 'N5 Nature & Environment', 'N5 People & Relationships'],
+  'N5 Size': ['N5 Directions & Position', 'N5 People & Relationships'],
+  'N5 School': ['N5 Activities & Basic Verbs'],
+  'N5 Nature': ['N5 Nature & Environment'],
+  'N5 Body': ['N5 People & Relationships'],
+  'N5 Actions': ['N5 Activities & Basic Verbs'],
+  'N5 Numbers': ['N5 Numbers'],
+  'N5 Time': ['N5 Time & Days'],
+  'N5 People': ['N5 People & Relationships'],
+  'N5 Directions': ['N5 Directions & Position'],
+  'N5 Descriptions': ['N5 Numbers', 'N5 Directions & Position', 'N5 Nature & Environment'],
+  'N5 Places': ['N5 Nature & Environment', 'N5 Activities & Basic Verbs'],
+  'N5 Study': ['N5 Activities & Basic Verbs'],
+  'N5 More Actions': ['N5 Activities & Basic Verbs'],
+  'N5 Time & Days': ['N5 Time & Days'],
+  'N5 Directions & Position': ['N5 Directions & Position'],
+  'N5 Nature & Environment': ['N5 Nature & Environment'],
+  'N5 People & Relationships': ['N5 People & Relationships'],
+  'N5 Activities & Basic Verbs': ['N5 Activities & Basic Verbs'],
+  'N4 People & Family': ['N4 Relationships & Society'],
+  'N4 Activities & Verbs': ['N4 Daily Verbs'],
+  'N4 Study & Communication': ['N4 Daily Verbs'],
+  'N4 Places & Travel': ['N4 Buildings & Places'],
+  'N4 Daily Life & Nature': ['N4 Buildings & Places', 'N4 Weather, Time & Nature'],
+  'N4 Descriptions': ['N4 Qualities & Conditions'],
+  'N4 Relationships & Society': ['N4 Relationships & Society'],
+  'N4 Daily Verbs': ['N4 Daily Verbs'],
+  'N4 Buildings & Places': ['N4 Buildings & Places'],
+  'N4 Weather, Time & Nature': ['N4 Weather, Time & Nature'],
+  'N4 Qualities & Conditions': ['N4 Qualities & Conditions'],
+};
+
+function migrateKanjiGroupSelections() {
+  let selectedGroups;
+  try {
+    selectedGroups = JSON.parse(localStorage.getItem('checkedKanas')) || [];
+  } catch (error) {
+    return;
+  }
+
+  const legacyGroups = Object.keys(legacyKanjiGroupSelections)
+    .filter(group => selectedGroups.includes(group));
+  if (legacyGroups.length === 0) return;
+
+  const migratedGroups = selectedGroups.filter(group => !legacyKanjiGroupSelections[group]);
+  legacyGroups.forEach(group => {
+    const themes = legacyKanjiGroupSelections[group];
+    Object.values(kanaCharacters.kanji)
+      .filter(kanjiGroup => themes.includes(kanjiGroup.themeTitle))
+      .forEach(kanjiGroup => {
+        if (!migratedGroups.includes(kanjiGroup.title)) migratedGroups.push(kanjiGroup.title);
+      });
+  });
+  localStorage.setItem('checkedKanas', JSON.stringify(migratedGroups));
+}
+
 // How many groups / characters are selected and how many words can be practiced with them
 function getSelectionSummary() {
   let checkedKanas = [];
@@ -15,8 +72,8 @@ function getSelectionSummary() {
 
   let groupCount = 0;
   let characterCount = 0;
-  for (const script of ['hiragana', 'katakana']) {
-    for (const group of Object.values(kanaCharacters[script])) {
+  for (const script of ['hiragana', 'katakana', 'kanji']) {
+    for (const group of Object.values(kanaCharacters[script] || {})) {
       if (checkedKanas.includes(group.title)) {
         groupCount++;
         characterCount += Object.keys(group.characters).length;
@@ -42,6 +99,7 @@ export default function GameMenu() {
   if(localStorage.getItem('checkedKanas') === null) {
     localStorage.setItem('checkedKanas', JSON.stringify(["あ"]))
   }
+  migrateKanjiGroupSelections();
 
   const { groupCount, characterCount, wordCount } = getSelectionSummary();
   const isWordPractice = localStorage.getItem('game-mode-word') === 'true';
@@ -75,22 +133,26 @@ export default function GameMenu() {
   };
 
   return (
-    <div className='game-menu-page'>
+    <div className={`game-menu-page mobile-tab-${activeKanaTab}`}>
       <h2 id='game-menu-title'>{t('menuTitle')}</h2>
       <div className='kana-group-tabs'>
-        {['hiragana', 'katakana'].map((group) => (
+        {['hiragana', 'katakana', 'kanji'].map((group) => (
           <button
             key={group}
+            type='button'
             className={`kana-group-tab ${activeKanaTab === group ? 'active' : ''}`}
             onClick={() => setActiveKanaTab(group)}
           >
-            {group === 'hiragana' ? 'Hiragana' : 'Katakana'}
+            {group === 'hiragana' ? 'Hiragana' : group === 'katakana' ? 'Katakana' : 'Kanji'}
           </button>
         ))}
       </div>
       <div className={`kana-group-selector show-${activeKanaTab}`}>
         <KanaGroup groupToShow="hiragana" onSelectionChange={refreshSummary} />
         <KanaGroup groupToShow="katakana" onSelectionChange={refreshSummary} />
+      </div>
+      <div className="kana-group-kanji-block">
+        <KanaGroup groupToShow="kanji" onSelectionChange={refreshSummary} />
       </div>
       <div className='game-mode-selector'>
         <GameModeSelector onChange={refreshSummary} />

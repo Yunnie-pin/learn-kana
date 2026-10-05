@@ -1,6 +1,7 @@
 import React from 'react'
 import {  useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toHiragana } from 'wanakana';
 import { kanaCharacters } from '../kanaCharacters.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
@@ -69,6 +70,14 @@ if (localStorage.getItem('userStats') === null) {
 // We use it to calculate how long it takes the user to respond.
 let kanaTimeToAnswerTimer = 0;
 let inGameKanaOnScreen = "";
+
+function normalizeAnswer(answer) {
+  return String(answer ?? '')
+    .normalize('NFKC')
+    .toLowerCase()
+    .replace(/[\u200B-\u200D\uFEFF]/g, '')
+    .replace(/[\s-]/g, '');
+}
 
 async function selectNextCharacter(charactersToShow) {
   let userStats = JSON.parse(localStorage.getItem('userStats')) || {};
@@ -264,7 +273,10 @@ export default function InGameCharacterShowAndInput() {
   const [bestStreak, setBestStreak] = useState(0);
   // Read by the keyboard handlers (registered once on mount) to ignore input behind the summary window
   const scoreWindowVisibleRef = useRef(false);
-  let inGameAnswerList = [];
+  const currentCharacterTypeRef = useRef(null);
+  const waitingForKanjiNextRef = useRef(false);
+  const kanjiAutoAdvanceTimeoutRef = useRef(null);
+  const inGameAnswerListRef = useRef([]);
 
   // Hints ("?" key / Hint button) can be turned off in the menu
   const hintsEnabled = localStorage.getItem("game-mode-hints") !== "false";
@@ -329,15 +341,21 @@ export default function InGameCharacterShowAndInput() {
 
   function getListOfKanas(charGroups) {
     let output = []
-    Object.entries(kanaCharacters).forEach(([key, category]) => {
-      Object.entries(category).forEach(([key, charGroup]) => {
-        if (charGroups.includes(charGroup.title)) {
-          Object.entries(charGroup.characters).forEach(([charVocal, char]) => {
-            char.vocal = charVocal;
-            char.type = "kana";
-            output.push(char);
-          });
-        }
+    Object.entries(kanaCharacters).forEach(([categoryKey, category]) => {
+      if (categoryKey === 'words') return;
+      Object.entries(category).forEach(([groupKey, charGroup]) => {
+        if (!charGroup || !charGroup.title || !charGroups.includes(charGroup.title)) return;
+        Object.entries(charGroup.characters).forEach(([charKey, char]) => {
+          if (!char || typeof char !== 'object') return;
+          const normalizedChar = { ...char };
+          if (categoryKey === 'kanji') {
+            normalizedChar.type = 'kanji';
+          } else {
+            normalizedChar.vocal = normalizedChar.vocal || charKey;
+            normalizedChar.type = 'kana';
+          }
+          output.push(normalizedChar);
+        });
       });
     });
     return output;
@@ -384,6 +402,11 @@ export default function InGameCharacterShowAndInput() {
       onePerVocal = false;
     }
 
+    const hasVocalHints = copyArray.some(item => item && item.vocal && vocals.includes(item.vocal));
+    if (onePerVocal && !hasVocalHints) {
+      onePerVocal = false;
+    }
+
     // If n is greater than the size of a, set possible unique outputs to the size of array
     const numberOfUniqueOutputs = Math.min(numberOfOutputs, copyArray.length);
 
@@ -391,9 +414,16 @@ export default function InGameCharacterShowAndInput() {
       while (true) {
         const randomIndex = Math.floor(Math.random() * copyArray.length);
         if (onePerVocal) {
-          if (copyArray[randomIndex].vocal === vocals[current_vocal]) {
-            current_vocal++;
-          } else { continue }
+          const candidate = copyArray[randomIndex];
+          if (candidate?.vocal && vocals.includes(candidate.vocal)) {
+            if (candidate.vocal === vocals[current_vocal]) {
+              current_vocal++;
+            } else {
+              continue;
+            }
+          } else {
+            onePerVocal = false;
+          }
         }
         sampledElements.push(copyArray[randomIndex]);
         // Remove the selected element from the copyArray to avoid duplicates
@@ -418,17 +448,25 @@ export default function InGameCharacterShowAndInput() {
   ##########################################
   */
   function fillTouchAnswers(picked_kana) {
-    const possibleAnswers = sample(charactersToShow, 5, true);
+    const useVocalSampling = Boolean(picked_kana && picked_kana.vocal);
+    const possibleAnswers = sample(charactersToShow, 5, useVocalSampling);
     const elements = document.querySelectorAll('.in-game-touch-answer>p');
-    for (let i = 0; i < possibleAnswers.length; i++) {
-      if (possibleAnswers[i].vocal === picked_kana.vocal) {
-        Object.assign(possibleAnswers[i], picked_kana)
+
+    if (useVocalSampling) {
+      for (let i = 0; i < possibleAnswers.length; i++) {
+        if (possibleAnswers[i].vocal === picked_kana.vocal) {
+          Object.assign(possibleAnswers[i], picked_kana);
+        }
       }
+    } else {
+      const targetIndex = Math.floor(Math.random() * possibleAnswers.length);
+      Object.assign(possibleAnswers[targetIndex], picked_kana);
     }
 
     // Go over the elements
     for (let i = 0; i < elements.length; i++) {
-      elements[i].textContent = possibleAnswers[i].romanji;
+      const answer = Array.isArray(possibleAnswers[i]?.romanji) ? possibleAnswers[i].romanji : [possibleAnswers[i]?.romanji || ''];
+      elements[i].textContent = answer[0];
     }
   }
 
@@ -587,11 +625,9 @@ export default function InGameCharacterShowAndInput() {
       kanaElement.classList.remove("answer-correct");
     }
 
-    // Reset visibility of help
-    const helpSolutionElement = document.querySelector('#in-game-kana-solution');
-    if (helpSolutionElement) {
-      helpSolutionElement.classList.add("hidden-element");
-    }
+    // Never carry the previous character's answer or meaning into the next question.
+    document.querySelector('#in-game-kana-solution')?.classList.add('hidden-element');
+    document.querySelector('#in-game-solution')?.classList.add('hidden-element');
 
     // Get and show the current Kana using the weighted selection logic
     let pickedElement = await selectNextCharacter(charactersToShow);
@@ -607,6 +643,7 @@ export default function InGameCharacterShowAndInput() {
     }
     
     inGameKanaOnScreen = pickedElement.jp_character;
+    currentCharacterTypeRef.current = pickedElement.type;
 
     // Update totalTimesShown
     let currentUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
@@ -644,13 +681,21 @@ export default function InGameCharacterShowAndInput() {
 
     setKana(pickedElement.jp_character);
     // @ts-ignore
-    inGameAnswerList = pickedElement.romanji;
+    const readings = Array.isArray(pickedElement.romanji) ? pickedElement.romanji : [pickedElement.romanji];
+    const acceptedAnswers = pickedElement.type === 'kanji'
+      ? readings.flatMap(reading => [reading, toHiragana(reading)])
+      : readings;
+    inGameAnswerListRef.current = acceptedAnswers
+      .map(normalizeAnswer)
+      .filter(Boolean);
     // @ts-ignore
     setSolution(pickedElement.romanji);
     // @ts-ignore
-    if (pickedElement.type === "word") {
+    if (pickedElement.type === "word" || pickedElement.type === "kanji") {
       // @ts-ignore
       setWordMeaning(meaningOf(pickedElement.jp_character, pickedElement.meaning));
+    } else {
+      setWordMeaning('');
     }
 
     if (localStorage.getItem("game-mode-random-fonts") === "true") {
@@ -681,6 +726,32 @@ export default function InGameCharacterShowAndInput() {
 
     kanaTimeToAnswerTimer = Date.now();
 
+  }
+
+  function advanceToNextKanji() {
+    if (!waitingForKanjiNextRef.current) return;
+    window.clearTimeout(kanjiAutoAdvanceTimeoutRef.current);
+    kanjiAutoAdvanceTimeoutRef.current = null;
+
+    const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+    const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
+    const cursorGroup = document.querySelector('#in-game-text-input-cursor-group');
+    const hiddenInput = document.querySelector('#in-game-text-input');
+    if (beforeCursor) beforeCursor.textContent = '';
+    if (afterCursor) afterCursor.textContent = '';
+    if (cursorGroup) cursorGroup.classList.remove('answer-correct', 'answer-wrong');
+    if (hiddenInput) hiddenInput.value = '';
+
+    waitingForKanjiNextRef.current = false;
+    document.querySelector('#in-game-kana-solution')?.classList.add('hidden-element');
+    document.querySelector('#in-game-next-button')?.classList.add('hidden-element');
+    showNewCharacter();
+  }
+
+  function showKanjiAnswer(showNextButton = true) {
+    document.querySelector('#in-game-kana-solution')?.classList.add('hidden-element');
+    document.querySelector('#in-game-solution')?.classList.remove('hidden-element');
+    document.querySelector('#in-game-next-button')?.classList.toggle('hidden-element', !showNextButton);
   }
 
   /* 
@@ -745,7 +816,7 @@ export default function InGameCharacterShowAndInput() {
     // Mobile virtual keyboards (e.g. Android Gboard) send keydown events with
     // key "Unidentified", so typed text is read from the input event instead
     function handleInput(e) {
-      if (scoreWindowVisibleRef.current) return;
+      if (scoreWindowVisibleRef.current || waitingForKanjiNextRef.current) return;
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const previousAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
@@ -760,22 +831,36 @@ export default function InGameCharacterShowAndInput() {
       InGameTextInput.textContent = newAnswer;
       InGameTextInputAfterCursor.textContent = '';
       InGameTextInputAfterCursor.style.visibility = "hidden";
+      document.querySelector('#in-game-text-input-cursor-group').classList.remove('answer-wrong');
 
-      let key = newAnswer.slice(-1);
       if (newAnswer.length < previousAnswer.length) {
-        key = 'Backspace';
         updateCurrentGameStats("edit");
       } else if (newAnswer === previousAnswer) {
         return;
       }
-      checkAnswer(key);
     }
 
     function handleKeyDown(e) {
       if (scoreWindowVisibleRef.current) return;
+      if (waitingForKanjiNextRef.current) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          advanceToNextKanji();
+        }
+        return;
+      }
       // Let the input event handle keys coming from mobile IMEs
       if (e.key === 'Unidentified' || e.isComposing || e.keyCode === 229) return;
       if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        checkAnswer();
+        return;
+      }
+
+      const hiddenInput = document.querySelector('#in-game-text-input');
+      const isTextEdit = e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete';
+      if (e.target === hiddenInput && isTextEdit) return;
 
       // Check if key is a printable character and append it to the input field
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
@@ -822,27 +907,24 @@ export default function InGameCharacterShowAndInput() {
       }
 
       syncHiddenInput();
-      checkAnswer(e.key);
+      document.querySelector('#in-game-text-input-cursor-group').classList.remove('answer-wrong');
     }
 
-    function checkAnswer(key) {
+    function checkAnswer() {
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const InGameUserCurrentAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
+      const typedAnswer = normalizeAnswer(InGameUserCurrentAnswer);
+      if (!typedAnswer) return;
 
-      // As soon as no valid answer starts with what was typed: reset the streak, and
-      // turn the answer red (only with hints on, the red text gives the mistake away)
       const answerGroup = document.querySelector('#in-game-text-input-cursor-group');
-      const typedAnswer = InGameUserCurrentAnswer.trim().toLowerCase();
-      const isOnTrack = inGameAnswerList.some(answer => answer.startsWith(typedAnswer));
-      if (!isOnTrack) {
+      const isCorrect = inGameAnswerListRef.current.includes(typedAnswer);
+      if (!isCorrect) {
         setStreak(0);
       }
-      answerGroup.classList.toggle("answer-wrong", !isOnTrack && hintsEnabled);
+      answerGroup.classList.toggle("answer-wrong", !isCorrect && hintsEnabled);
 
-      // Track wrong submissions: as soon as the typed text can't become a valid answer
-      // anymore, count one mistake for this kana (fixing and failing again doesn't add more)
-      if (!isOnTrack && !wrongSubmissionCounted) {
+      if (!isCorrect && !wrongSubmissionCounted) {
         updateCurrentGameStats("wrongSubmission");
         wrongSubmissionCounted = true;
       }
@@ -854,7 +936,7 @@ export default function InGameCharacterShowAndInput() {
 
       if (timeoutInProgress) return;
       //  Make that known and pass to the next character
-      if (inGameAnswerList.includes(InGameUserCurrentAnswer.trim().toLowerCase())) {
+      if (isCorrect) {
         updateCurrentGameStats("correct");
         answerGroup.classList.add("answer-correct");
         document.querySelector('#in-game-kana-character').classList.add("answer-correct");
@@ -905,11 +987,29 @@ export default function InGameCharacterShowAndInput() {
           }
         }
         else {
-          // Wait 200 milisecond and then clear the input field and show a new character
-          setTimeout(function () {
-            clearAnswerInput();
-            showNewCharacter();
-          }, 200)
+          if (currentCharacterTypeRef.current === 'kanji') {
+            waitingForKanjiNextRef.current = true;
+            showKanjiAnswer(!autoNext);
+            if (autoNext) {
+              timeoutInProgress = true;
+              kanjiAutoAdvanceTimeoutRef.current = window.setTimeout(() => {
+                clearAnswerInput();
+                waitingForKanjiNextRef.current = false;
+                document.querySelector('#in-game-solution').classList.add('hidden-element');
+                document.querySelector('#in-game-kana-solution').classList.add('hidden-element');
+                document.querySelector('#in-game-next-button').classList.add('hidden-element');
+                showNewCharacter();
+                kanjiAutoAdvanceTimeoutRef.current = null;
+                timeoutInProgress = false;
+              }, 700);
+            }
+          } else {
+            // Kana continues to advance automatically.
+            setTimeout(function () {
+              clearAnswerInput();
+              showNewCharacter();
+            }, 200)
+          }
         }
       }
     }
@@ -1025,6 +1125,7 @@ export default function InGameCharacterShowAndInput() {
     showNewCharacter();
     return () => {
       clearInterval(cursorBlinkInterval.current);
+      window.clearTimeout(kanjiAutoAdvanceTimeoutRef.current);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -1045,6 +1146,8 @@ export default function InGameCharacterShowAndInput() {
   ########################
   */
   function onClickAnswerButtonHandler(event) {
+    if (waitingForKanjiNextRef.current || scoreWindowVisibleRef.current) return;
+
     if (onScreenSolution.includes(event.target.firstChild.textContent)) {
       updateCurrentGameStats("correct");
       const answerButton = event.currentTarget;
@@ -1053,7 +1156,22 @@ export default function InGameCharacterShowAndInput() {
         answerButton.classList.remove("touch-answer-correct");
       }, 300);
       setScore(onScreenScore + 1)
-      showNewCharacter();
+      if (currentCharacterTypeRef.current === 'kanji') {
+        waitingForKanjiNextRef.current = true;
+        showKanjiAnswer(!autoNext);
+        if (autoNext) {
+          kanjiAutoAdvanceTimeoutRef.current = window.setTimeout(() => {
+            waitingForKanjiNextRef.current = false;
+            document.querySelector('#in-game-solution').classList.add('hidden-element');
+            document.querySelector('#in-game-kana-solution').classList.add('hidden-element');
+            document.querySelector('#in-game-next-button').classList.add('hidden-element');
+            showNewCharacter();
+            kanjiAutoAdvanceTimeoutRef.current = null;
+          }, 700);
+        }
+      } else {
+        showNewCharacter();
+      }
     } else {
       updateCurrentGameStats("wrong");
       // Short haptic feedback on phones that support it (Android)
@@ -1207,7 +1325,7 @@ export default function InGameCharacterShowAndInput() {
           <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
             {Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution}
           </div>
-          <button id='in-game-next-button' className='in-game-next-button hidden-element'>
+          <button id='in-game-next-button' className='in-game-next-button hidden-element' onClick={advanceToNextKanji}>
             {t('gameNext')}<span className='label-keyboard'> (Enter)</span>
           </button>
         </div>

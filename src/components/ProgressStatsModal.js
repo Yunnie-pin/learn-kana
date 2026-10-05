@@ -134,6 +134,29 @@ function ProgressStatsModal(props) {
         });
     };
 
+    const getAllKanji = () => {
+        const kanji = [];
+        let index = 0;
+
+        Object.values(kanaCharacters.kanji).forEach(group => {
+            Object.values(group.characters).forEach(character => {
+                kanji.push({
+                    character: character.jp_character,
+                    romanji: character.romanji[0],
+                    meaning: meaningOf(character.jp_character, character.meaning),
+                    originalIndex: index++
+                });
+            });
+        });
+
+        return kanji.sort((a, b) => {
+            const masteryA = calculateMastery(a.character);
+            const masteryB = calculateMastery(b.character);
+            const bracketDifference = getMasteryBracket(masteryB) - getMasteryBracket(masteryA);
+            return bracketDifference || a.originalIndex - b.originalIndex;
+        });
+    };
+
     // Get all words from kanaCharacters
     const getAllWords = () => {
         const words = [];
@@ -219,7 +242,7 @@ function ProgressStatsModal(props) {
                     setHoveredItem(item);
                 }}
             >
-                <div className="progress-stats-grid-item-character">
+                <div className={`progress-stats-grid-item-character${activeTab === 'kanji' ? ' progress-stats-kanji-character' : ''}`}>
                     {item.character}
                 </div>
                 <div className="progress-stats-grid-item-romanji">
@@ -255,7 +278,9 @@ function ProgressStatsModal(props) {
 
     // Get summary stats
     const getSummaryStats = () => {
-        const items = activeTab === 'characters' ? getAllCharacters() : getAllWords();
+        const items = activeTab === 'characters'
+            ? getAllCharacters()
+            : activeTab === 'kanji' ? getAllKanji() : getAllWords();
         const withData = items.filter(item => calculateMastery(item.character) !== null);
         const withoutData = items.filter(item => calculateMastery(item.character) === null);
 
@@ -275,7 +300,9 @@ function ProgressStatsModal(props) {
         return null;
     }
 
-    const items = activeTab === 'characters' ? getAllCharacters() : getAllWords();
+    const items = activeTab === 'characters'
+        ? getAllCharacters()
+        : activeTab === 'kanji' ? getAllKanji() : getAllWords();
     const summary = getSummaryStats();
 
     return (
@@ -298,6 +325,12 @@ function ProgressStatsModal(props) {
                         onClick={() => setActiveTab('words')}
                     >
                         {t('practiceWords')}
+                    </button>
+                    <button
+                        className={`progress-stats-tab ${activeTab === 'kanji' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('kanji')}
+                    >
+                        {t('practiceKanji')}
                     </button>
                 </div>
 

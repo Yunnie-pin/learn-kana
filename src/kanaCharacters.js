@@ -10928,5 +10928,820 @@ export const kanaCharacters = {
       ],
       "hiragana_groups": []
     }
+  },
+  "kanjiSource": {
+    "n5-basics": {
+      "title": "N5 Basics",
+      "tags": [
+        "main_kana"
+      ],
+      "characters": {
+        "person": {
+          "jp_character": "人",
+          "romanji": [
+            "hito",
+            "jin"
+          ],
+          "sound": "ひと",
+          "meaning": "person",
+          "meaning_id": "orang"
+        },
+        "sun": {
+          "jp_character": "日",
+          "romanji": [
+            "hi",
+            "nichi"
+          ],
+          "sound": "ひ",
+          "meaning": "day / sun",
+          "meaning_id": "hari / matahari"
+        },
+        "moon": {
+          "jp_character": "月",
+          "romanji": [
+            "tsuki",
+            "zuki",
+            "getsu"
+          ],
+          "sound": "つき",
+          "meaning": "moon / month",
+          "meaning_id": "bulan / bulan"
+        },
+        "mountain": {
+          "jp_character": "山",
+          "romanji": [
+            "yama",
+            "san"
+          ],
+          "sound": "やま",
+          "meaning": "mountain",
+          "meaning_id": "gunung"
+        },
+        "river": {
+          "jp_character": "川",
+          "romanji": [
+            "kawa",
+            "sen"
+          ],
+          "sound": "かわ",
+          "meaning": "river",
+          "meaning_id": "sungai"
+        }
+      }
+    },
+    "n5-size": {
+      "title": "N5 Size",
+      "tags": [
+        "main_kana"
+      ],
+      "characters": {
+        "big": {
+          "jp_character": "大",
+          "romanji": [
+            "ooki",
+            "dai"
+          ],
+          "sound": "おお",
+          "meaning": "big",
+          "meaning_id": "besar"
+        },
+        "small": {
+          "jp_character": "小",
+          "romanji": [
+            "chiisai",
+            "shou",
+            "ko"
+          ],
+          "sound": "ちい",
+          "meaning": "small",
+          "meaning_id": "kecil"
+        },
+        "inside": {
+          "jp_character": "中",
+          "romanji": [
+            "naka",
+            "chuu"
+          ],
+          "sound": "なか",
+          "meaning": "inside / middle",
+          "meaning_id": "dalam / tengah"
+        },
+        "before": {
+          "jp_character": "先",
+          "romanji": [
+            "saki",
+            "sen"
+          ],
+          "sound": "さき",
+          "meaning": "before / ahead",
+          "meaning_id": "sebelum / depan"
+        },
+        "friend": {
+          "jp_character": "友",
+          "romanji": [
+            "tomo"
+          ],
+          "sound": "とも",
+          "meaning": "friend",
+          "meaning_id": "teman"
+        }
+      }
+    },
+    "n5-school": {
+      "title": "N5 School",
+      "tags": [
+        "main_kana"
+      ],
+      "characters": {
+        "study": {
+          "jp_character": "学",
+          "romanji": [
+            "manabu",
+            "gaku"
+          ],
+          "sound": "まな",
+          "meaning": "study",
+          "meaning_id": "belajar"
+        },
+        "life": {
+          "jp_character": "生",
+          "romanji": [
+            "i",
+            "sei",
+            "nama"
+          ],
+          "sound": "い",
+          "meaning": "life / birth",
+          "meaning_id": "hidup / lahir"
+        },
+        "school": {
+          "jp_character": "校",
+          "romanji": [
+            "kou",
+            "gakkou"
+          ],
+          "sound": "こう",
+          "meaning": "school",
+          "meaning_id": "sekolah"
+        },
+        "store": {
+          "jp_character": "店",
+          "romanji": [
+            "mise",
+            "ten"
+          ],
+          "sound": "みせ",
+          "meaning": "shop",
+          "meaning_id": "toko"
+        }
+      }
+    },
+    "n5-nature": {
+      "title": "N5 Nature",
+      "tags": [
+        "main_kana"
+      ],
+      "characters": {
+        "water": {
+          "jp_character": "水",
+          "romanji": [
+            "mizu",
+            "sui"
+          ],
+          "sound": "みず",
+          "meaning": "water",
+          "meaning_id": "air"
+        },
+        "tree": {
+          "jp_character": "木",
+          "romanji": [
+            "ki",
+            "moku"
+          ],
+          "sound": "き",
+          "meaning": "tree",
+          "meaning_id": "pohon"
+        },
+        "fire": {
+          "jp_character": "火",
+          "romanji": [
+            "hi",
+            "ka"
+          ],
+          "sound": "ひ",
+          "meaning": "fire",
+          "meaning_id": "api"
+        },
+        "earth": {
+          "jp_character": "土",
+          "romanji": [
+            "tsuchi",
+            "do"
+          ],
+          "sound": "つち",
+          "meaning": "earth / soil",
+          "meaning_id": "tanah"
+        },
+        "field": {
+          "jp_character": "田",
+          "romanji": [
+            "ta",
+            "den"
+          ],
+          "sound": "た",
+          "meaning": "rice field",
+          "meaning_id": "sawah"
+        }
+      }
+    },
+    "n5-body": {
+      "title": "N5 Body",
+      "tags": [
+        "main_kana"
+      ],
+      "characters": {
+        "eye": {
+          "jp_character": "目",
+          "romanji": [
+            "me",
+            "moku"
+          ],
+          "sound": "め",
+          "meaning": "eye",
+          "meaning_id": "mata"
+        },
+        "ear": {
+          "jp_character": "耳",
+          "romanji": [
+            "mimi",
+            "ji"
+          ],
+          "sound": "みみ",
+          "meaning": "ear",
+          "meaning_id": "telinga"
+        },
+        "hand": {
+          "jp_character": "手",
+          "romanji": [
+            "te",
+            "shu"
+          ],
+          "sound": "て",
+          "meaning": "hand",
+          "meaning_id": "tangan"
+        },
+        "foot": {
+          "jp_character": "足",
+          "romanji": [
+            "ashi",
+            "soku"
+          ],
+          "sound": "あし",
+          "meaning": "foot",
+          "meaning_id": "kaki"
+        },
+        "mouth": {
+          "jp_character": "口",
+          "romanji": [
+            "kuchi",
+            "kou"
+          ],
+          "sound": "くち",
+          "meaning": "mouth",
+          "meaning_id": "mulut"
+        }
+      }
+    },
+    "n5-actions": {
+      "title": "N5 Actions",
+      "tags": [
+        "main_kana"
+      ],
+      "characters": {
+        "rest": {
+          "jp_character": "休",
+          "romanji": [
+            "yasumu",
+            "kyuu"
+          ],
+          "sound": "やす",
+          "meaning": "rest",
+          "meaning_id": "istirahat"
+        },
+        "eat": {
+          "jp_character": "食",
+          "romanji": [
+            "taberu",
+            "shoku"
+          ],
+          "sound": "た",
+          "meaning": "eat / food",
+          "meaning_id": "makan / makanan"
+        },
+        "drink": {
+          "jp_character": "飲",
+          "romanji": [
+            "nomu",
+            "in"
+          ],
+          "sound": "の",
+          "meaning": "drink",
+          "meaning_id": "minum"
+        },
+        "see": {
+          "jp_character": "見",
+          "romanji": [
+            "miru",
+            "ken"
+          ],
+          "sound": "み",
+          "meaning": "see",
+          "meaning_id": "lihat"
+        },
+        "go": {
+          "jp_character": "行",
+          "romanji": [
+            "iku",
+            "kou",
+            "gyou"
+          ],
+          "sound": "い",
+          "meaning": "go / travel",
+          "meaning_id": "pergi / perjalanan"
+        }
+      }
+    },
+    "n5-numbers": {
+      "title": "N5 Numbers",
+      "tags": ["main_kana"],
+      "characters": {
+        "one": { "jp_character": "一", "romanji": ["ichi", "hitotsu"], "sound": "いち", "meaning": "one", "meaning_id": "satu" },
+        "two": { "jp_character": "二", "romanji": ["ni", "futatsu"], "sound": "に", "meaning": "two", "meaning_id": "dua" },
+        "three": { "jp_character": "三", "romanji": ["san", "mittsu"], "sound": "さん", "meaning": "three", "meaning_id": "tiga" },
+        "four": { "jp_character": "四", "romanji": ["yon", "shi"], "sound": "よん", "meaning": "four", "meaning_id": "empat" },
+        "five": { "jp_character": "五", "romanji": ["go", "itsutsu"], "sound": "ご", "meaning": "five", "meaning_id": "lima" },
+        "six": { "jp_character": "六", "romanji": ["roku", "muttsu"], "sound": "ろく", "meaning": "six", "meaning_id": "enam" },
+        "seven": { "jp_character": "七", "romanji": ["nana", "shichi"], "sound": "なな", "meaning": "seven", "meaning_id": "tujuh" },
+        "eight": { "jp_character": "八", "romanji": ["hachi", "yattsu"], "sound": "はち", "meaning": "eight", "meaning_id": "delapan" },
+        "nine": { "jp_character": "九", "romanji": ["kyuu", "ku"], "sound": "きゅう", "meaning": "nine", "meaning_id": "sembilan" },
+        "ten": { "jp_character": "十", "romanji": ["juu", "too"], "sound": "じゅう", "meaning": "ten", "meaning_id": "sepuluh" },
+        "hundred": { "jp_character": "百", "romanji": ["hyaku"], "sound": "ひゃく", "meaning": "hundred", "meaning_id": "seratus" },
+        "thousand": { "jp_character": "千", "romanji": ["sen"], "sound": "せん", "meaning": "thousand", "meaning_id": "seribu" },
+        "yen": { "jp_character": "円", "romanji": ["en"], "sound": "えん", "meaning": "yen / circle", "meaning_id": "yen / lingkaran" }
+      }
+    },
+    "n5-time": {
+      "title": "N5 Time",
+      "tags": ["main_kana"],
+      "characters": {
+        "year": { "jp_character": "年", "romanji": ["nen", "toshi"], "sound": "ねん", "meaning": "year", "meaning_id": "tahun" },
+        "hour": { "jp_character": "時", "romanji": ["ji", "toki"], "sound": "じ", "meaning": "time / hour", "meaning_id": "waktu / jam" },
+        "minute": { "jp_character": "分", "romanji": ["fun", "pun", "bun"], "sound": "ふん", "meaning": "minute / part", "meaning_id": "menit / bagian" },
+        "half": { "jp_character": "半", "romanji": ["han"], "sound": "はん", "meaning": "half", "meaning_id": "setengah" },
+        "now": { "jp_character": "今", "romanji": ["ima", "kon"], "sound": "いま", "meaning": "now", "meaning_id": "sekarang" },
+        "noon": { "jp_character": "午", "romanji": ["go"], "sound": "ご", "meaning": "noon", "meaning_id": "siang" },
+        "before": { "jp_character": "前", "romanji": ["mae", "zen"], "sound": "まえ", "meaning": "before / front", "meaning_id": "sebelum / depan" },
+        "after": { "jp_character": "後", "romanji": ["ato", "go", "kou"], "sound": "あと", "meaning": "after / behind", "meaning_id": "setelah / belakang" },
+        "every": { "jp_character": "毎", "romanji": ["mai"], "sound": "まい", "meaning": "every", "meaning_id": "setiap" },
+        "week": { "jp_character": "週", "romanji": ["shuu"], "sound": "しゅう", "meaning": "week", "meaning_id": "minggu" },
+        "weekday": { "jp_character": "曜", "romanji": ["you"], "sound": "よう", "meaning": "weekday", "meaning_id": "hari dalam sepekan" }
+      }
+    },
+    "n5-people": {
+      "title": "N5 People",
+      "tags": ["main_kana"],
+      "characters": {
+        "man": { "jp_character": "男", "romanji": ["otoko", "dan"], "sound": "おとこ", "meaning": "man", "meaning_id": "laki-laki" },
+        "woman": { "jp_character": "女", "romanji": ["onna", "jo"], "sound": "おんな", "meaning": "woman", "meaning_id": "perempuan" },
+        "child": { "jp_character": "子", "romanji": ["ko", "shi"], "sound": "こ", "meaning": "child", "meaning_id": "anak" },
+        "father": { "jp_character": "父", "romanji": ["chichi", "fu"], "sound": "ちち", "meaning": "father", "meaning_id": "ayah" },
+        "mother": { "jp_character": "母", "romanji": ["haha", "bo"], "sound": "はは", "meaning": "mother", "meaning_id": "ibu" },
+        "name": { "jp_character": "名", "romanji": ["na", "mei"], "sound": "な", "meaning": "name", "meaning_id": "nama" }
+      }
+    },
+    "n5-directions": {
+      "title": "N5 Directions",
+      "tags": ["main_kana"],
+      "characters": {
+        "up": { "jp_character": "上", "romanji": ["ue", "jou"], "sound": "うえ", "meaning": "up / above", "meaning_id": "atas" },
+        "down": { "jp_character": "下", "romanji": ["shita", "ka", "ge"], "sound": "した", "meaning": "down / below", "meaning_id": "bawah" },
+        "left": { "jp_character": "左", "romanji": ["hidari", "sa"], "sound": "ひだり", "meaning": "left", "meaning_id": "kiri" },
+        "right": { "jp_character": "右", "romanji": ["migi", "u", "yuu"], "sound": "みぎ", "meaning": "right", "meaning_id": "kanan" },
+        "east": { "jp_character": "東", "romanji": ["higashi", "tou"], "sound": "ひがし", "meaning": "east", "meaning_id": "timur" },
+        "west": { "jp_character": "西", "romanji": ["nishi", "sai", "sei"], "sound": "にし", "meaning": "west", "meaning_id": "barat" },
+        "south": { "jp_character": "南", "romanji": ["minami", "nan"], "sound": "みなみ", "meaning": "south", "meaning_id": "selatan" },
+        "north": { "jp_character": "北", "romanji": ["kita", "hoku"], "sound": "きた", "meaning": "north", "meaning_id": "utara" },
+        "outside": { "jp_character": "外", "romanji": ["soto", "gai"], "sound": "そと", "meaning": "outside", "meaning_id": "luar" }
+      }
+    },
+    "n5-descriptions": {
+      "title": "N5 Descriptions",
+      "tags": ["main_kana"],
+      "characters": {
+        "high": { "jp_character": "高", "romanji": ["takai", "kou"], "sound": "たかい", "meaning": "high / expensive", "meaning_id": "tinggi / mahal" },
+        "cheap": { "jp_character": "安", "romanji": ["yasui", "an"], "sound": "やすい", "meaning": "cheap / safe", "meaning_id": "murah / aman" },
+        "new": { "jp_character": "新", "romanji": ["atarashii", "shin"], "sound": "あたらしい", "meaning": "new", "meaning_id": "baru" },
+        "old": { "jp_character": "古", "romanji": ["furui", "ko"], "sound": "ふるい", "meaning": "old", "meaning_id": "lama" },
+        "long": { "jp_character": "長", "romanji": ["nagai", "chou"], "sound": "ながい", "meaning": "long / leader", "meaning_id": "panjang / pemimpin" },
+        "many": { "jp_character": "多", "romanji": ["ooi", "ta"], "sound": "おおい", "meaning": "many", "meaning_id": "banyak" },
+        "few": { "jp_character": "少", "romanji": ["sukunai", "shou"], "sound": "すくない", "meaning": "few / little", "meaning_id": "sedikit" },
+        "white": { "jp_character": "白", "romanji": ["shiroi", "haku"], "sound": "しろい", "meaning": "white", "meaning_id": "putih" },
+        "black": { "jp_character": "黒", "romanji": ["kuroi", "koku"], "sound": "くろい", "meaning": "black", "meaning_id": "hitam" },
+        "blue": { "jp_character": "青", "romanji": ["ao", "aoi", "sei"], "sound": "あお", "meaning": "blue", "meaning_id": "biru" }
+      }
+    },
+    "n5-places": {
+      "title": "N5 Places",
+      "tags": ["main_kana"],
+      "characters": {
+        "heaven": { "jp_character": "天", "romanji": ["ten"], "sound": "てん", "meaning": "heaven / sky", "meaning_id": "langit" },
+        "weather": { "jp_character": "気", "romanji": ["ki"], "sound": "き", "meaning": "spirit / mood", "meaning_id": "semangat / suasana hati" },
+        "rain": { "jp_character": "雨", "romanji": ["ame", "u"], "sound": "あめ", "meaning": "rain", "meaning_id": "hujan" },
+        "electricity": { "jp_character": "電", "romanji": ["den"], "sound": "でん", "meaning": "electricity", "meaning_id": "listrik" },
+        "vehicle": { "jp_character": "車", "romanji": ["kuruma", "sha"], "sound": "くるま", "meaning": "car / vehicle", "meaning_id": "mobil / kendaraan" },
+        "station": { "jp_character": "駅", "romanji": ["eki"], "sound": "えき", "meaning": "station", "meaning_id": "stasiun" },
+        "country": { "jp_character": "国", "romanji": ["kuni", "koku"], "sound": "くに", "meaning": "country", "meaning_id": "negara" }
+      }
+    },
+    "n5-study": {
+      "title": "N5 Study",
+      "tags": ["main_kana"],
+      "characters": {
+        "book": { "jp_character": "本", "romanji": ["hon", "moto"], "sound": "ほん", "meaning": "book / origin", "meaning_id": "buku / asal" },
+        "writing": { "jp_character": "文", "romanji": ["bun", "mon"], "sound": "ぶん", "meaning": "sentence / writing", "meaning_id": "kalimat / tulisan" },
+        "letter": { "jp_character": "字", "romanji": ["ji", "aza"], "sound": "じ", "meaning": "letter / character", "meaning_id": "huruf / karakter" },
+        "language": { "jp_character": "語", "romanji": ["go", "kata"], "sound": "ご", "meaning": "language / word", "meaning_id": "bahasa / kata" },
+        "speak": { "jp_character": "話", "romanji": ["hanashi", "hanasu", "wa"], "sound": "はなし", "meaning": "talk / speak", "meaning_id": "bicara" },
+        "read": { "jp_character": "読", "romanji": ["yomu", "doku"], "sound": "よむ", "meaning": "read", "meaning_id": "membaca" },
+        "write": { "jp_character": "書", "romanji": ["kaku", "sho"], "sound": "かく", "meaning": "write", "meaning_id": "menulis" },
+        "listen": { "jp_character": "聞", "romanji": ["kiku", "bun"], "sound": "きく", "meaning": "hear / listen", "meaning_id": "mendengar" },
+        "say": { "jp_character": "言", "romanji": ["iu", "gen", "gon"], "sound": "いう", "meaning": "say", "meaning_id": "berkata" }
+      }
+    },
+    "n5-actions-more": {
+      "title": "N5 More Actions",
+      "tags": ["main_kana"],
+      "characters": {
+        "buy": { "jp_character": "買", "romanji": ["kau", "bai"], "sound": "かう", "meaning": "buy", "meaning_id": "membeli" },
+        "come": { "jp_character": "来", "romanji": ["kuru", "rai"], "sound": "くる", "meaning": "come", "meaning_id": "datang" },
+        "return": { "jp_character": "帰", "romanji": ["kaeru", "ki"], "sound": "かえる", "meaning": "return home", "meaning_id": "pulang" },
+        "enter": { "jp_character": "入", "romanji": ["hairu", "nyuu"], "sound": "はいる", "meaning": "enter", "meaning_id": "masuk" },
+        "exit": { "jp_character": "出", "romanji": ["deru", "shutsu"], "sound": "でる", "meaning": "exit / go out", "meaning_id": "keluar" },
+        "meet": { "jp_character": "会", "romanji": ["au", "kai"], "sound": "あう", "meaning": "meet", "meaning_id": "bertemu" }
+      }
+    }
   }
 };
+
+const n5KanjiCategoryDefinitions = [
+  {
+    key: 'n5-numbers',
+    title: 'N5 Numbers',
+    title_id: 'Angka & Jumlah',
+    characters: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '百', '千', '円', '多', '少'],
+  },
+  {
+    key: 'n5-time',
+    title: 'N5 Time & Days',
+    title_id: 'Waktu & Hari',
+    characters: ['日', '月', '年', '時', '分', '半', '今', '午', '前', '後', '毎', '週', '曜'],
+  },
+  {
+    key: 'n5-directions',
+    title: 'N5 Directions & Position',
+    title_id: 'Arah & Posisi',
+    characters: ['上', '下', '左', '右', '東', '西', '南', '北', '外', '中', '先', '大', '小', '高', '安', '新', '古', '長'],
+  },
+  {
+    key: 'n5-nature',
+    title: 'N5 Nature & Environment',
+    title_id: 'Alam & Lingkungan',
+    characters: ['山', '川', '水', '木', '火', '土', '田', '天', '気', '雨', '電', '白', '黒', '青'],
+  },
+  {
+    key: 'n5-people',
+    title: 'N5 People & Relationships',
+    title_id: 'Orang & Hubungan',
+    characters: ['人', '友', '男', '女', '子', '父', '母', '名', '目', '耳', '手', '足', '口'],
+  },
+  {
+    key: 'n5-activities',
+    title: 'N5 Activities & Basic Verbs',
+    title_id: 'Aktivitas & Kata Kerja Dasar',
+    characters: ['学', '生', '校', '店', '休', '食', '飲', '見', '行', '本', '文', '字', '語', '話', '読', '書', '聞', '言', '買', '来', '帰', '入', '出', '会', '車', '駅', '国'],
+  },
+];
+
+const n4KanjiCategoryDefinitions = [
+  {
+    key: 'n4-daily-verbs',
+    title: 'N4 Daily Verbs',
+    title_id: 'Kata Kerja Harian',
+    entries: [
+      ['thing', '事', ['koto', 'ji'], 'こと', 'thing / matter', 'hal / urusan'],
+      ['use', '使', ['tsukau', 'shi'], 'つかう', 'use', 'menggunakan'],
+      ['wait', '待', ['matsu', 'tai'], 'まつ', 'wait', 'menunggu'],
+      ['hold', '持', ['motsu', 'ji'], 'もつ', 'hold / carry', 'memegang / membawa'],
+      ['begin', '始', ['hajimeru', 'shi'], 'はじめる', 'begin', 'memulai'],
+      ['end', '終', ['owaru', 'shuu'], 'おわる', 'end / finish', 'selesai'],
+      ['open', '開', ['hiraku', 'kai'], 'ひらく', 'open', 'membuka'],
+      ['close', '閉', ['shimeru', 'hei'], 'しめる', 'close', 'menutup'],
+      ['move', '動', ['ugoku', 'dou'], 'うごく', 'move', 'bergerak'],
+      ['work', '働', ['hataraku', 'dou'], 'はたらく', 'work', 'bekerja'],
+      ['teach', '教', ['oshieru', 'kyou'], 'おしえる', 'teach', 'mengajar'],
+      ['learn', '習', ['narau', 'shuu'], 'ならう', 'learn / practice', 'belajar / berlatih'],
+      ['think', '考', ['kangaeru', 'kou'], 'かんがえる', 'think', 'berpikir'],
+      ['know', '知', ['shiru', 'chi'], 'しる', 'know', 'mengetahui'],
+      ['feel', '思', ['omou', 'shi'], 'おもう', 'think / feel', 'berpikir / merasa'],
+      ['forget', '忘', ['wasureru', 'bou'], 'わすれる', 'forget', 'lupa'],
+      ['remember', '覚', ['oboeru', 'kaku'], 'おぼえる', 'remember / learn', 'mengingat / menghafal'],
+      ['answer', '答', ['kotaeru', 'tou'], 'こたえる', 'answer', 'menjawab'],
+      ['ask', '問', ['tou', 'mon'], 'とう', 'ask / question', 'bertanya / pertanyaan'],
+      ['study', '勉', ['ben'], 'べん', 'diligence / study', 'ketekunan / belajar'],
+      ['make', '作', ['tsukuru', 'saku'], 'つくる', 'make / create', 'membuat'],
+      ['send', '送', ['okuru', 'sou'], 'おくる', 'send', 'mengirim'],
+      ['return', '返', ['kaesu', 'hen'], 'かえす', 'return / give back', 'mengembalikan'],
+      ['borrow', '借', ['kariru', 'shaku'], 'かりる', 'borrow', 'meminjam'],
+      ['lend', '貸', ['kasu', 'tai'], 'かす', 'lend', 'meminjamkan'],
+      ['pay', '払', ['harau', 'futsu'], 'はらう', 'pay', 'membayar'],
+      ['choose', '選', ['erabu', 'sen'], 'えらぶ', 'choose', 'memilih'],
+      ['wake', '起', ['okiru', 'ki'], 'おきる', 'get up / wake', 'bangun'],
+      ['sleep', '寝', ['neru', 'shin'], 'ねる', 'sleep / go to bed', 'tidur'],
+      ['swim', '泳', ['oyogu', 'ei'], 'およぐ', 'swim', 'berenang'],
+      ['run', '走', ['hashiru', 'sou'], 'はしる', 'run', 'berlari'],
+      ['walk', '歩', ['aruku', 'ho'], 'あるく', 'walk', 'berjalan'],
+      ['cross', '渡', ['wataru', 'to'], 'わたる', 'cross / hand over', 'menyeberang / menyerahkan'],
+      ['ride', '乗', ['noru', 'jou'], 'のる', 'ride / get on', 'naik / menumpang'],
+      ['getOff', '降', ['oriru', 'kou'], 'おりる', 'get off / descend', 'turun'],
+      ['stop', '止', ['tomaru', 'shi'], 'とまる', 'stop', 'berhenti'],
+      ['pass', '通', ['tooru', 'tsuu'], 'とおる', 'pass / go through', 'melewati'],
+      ['advance', '進', ['susumu', 'shin'], 'すすむ', 'advance / proceed', 'maju / melanjutkan'],
+      ['take', '取', ['toru', 'shu'], 'とる', 'take / obtain', 'mengambil'],
+      ['fix', '直', ['naosu', 'choku'], 'なおす', 'fix / repair', 'memperbaiki'],
+    ],
+  },
+  {
+    key: 'n4-qualities',
+    title: 'N4 Qualities & Conditions',
+    title_id: 'Sifat & Kondisi',
+    entries: [
+      ['bright', '明', ['akarui', 'mei'], 'あかるい', 'bright / clear', 'terang / jelas'],
+      ['dark', '暗', ['kurai', 'an'], 'くらい', 'dark', 'gelap'],
+      ['strong', '強', ['tsuyoi', 'kyou'], 'つよい', 'strong', 'kuat'],
+      ['weak', '弱', ['yowai', 'jaku'], 'よわい', 'weak', 'lemah'],
+      ['early', '早', ['hayai', 'sou'], 'はやい', 'early / fast', 'awal / cepat'],
+      ['late', '遅', ['osoi', 'chi'], 'おそい', 'late / slow', 'terlambat / lambat'],
+      ['heavy', '重', ['omoi', 'juu'], 'おもい', 'heavy / important', 'berat / penting'],
+      ['light', '軽', ['karui', 'kei'], 'かるい', 'light (weight)', 'ringan'],
+      ['wide', '広', ['hiroi', 'kou'], 'ひろい', 'wide / spacious', 'luas'],
+      ['low', '低', ['hikui', 'tei'], 'ひくい', 'low', 'rendah'],
+      ['good', '良', ['yoi', 'ryou'], 'よい', 'good', 'baik'],
+      ['bad', '悪', ['warui', 'aku'], 'わるい', 'bad / evil', 'buruk / jahat'],
+      ['pleasant', '楽', ['tanoshii', 'raku'], 'たのしい', 'pleasant / fun', 'menyenangkan'],
+      ['correct', '正', ['tadashii', 'sei'], 'ただしい', 'correct / proper', 'benar / tepat'],
+      ['warm', '暖', ['atatakai', 'dan'], 'あたたかい', 'warm', 'hangat'],
+      ['cold', '寒', ['samui', 'kan'], 'さむい', 'cold (weather)', 'dingin'],
+      ['hot', '暑', ['atsui', 'sho'], 'あつい', 'hot (weather)', 'panas'],
+      ['cool', '涼', ['suzushii', 'ryou'], 'すずしい', 'cool / refreshing', 'sejuk'],
+      ['thick', '太', ['futoi', 'tai'], 'ふとい', 'thick / fat', 'tebal / gemuk'],
+      ['thin', '細', ['hosoi', 'sai'], 'ほそい', 'thin / narrow', 'tipis / sempit'],
+      ['round', '丸', ['marui', 'gan'], 'まるい', 'round', 'bulat'],
+      ['beautiful', '美', ['utsukushii', 'bi'], 'うつくしい', 'beautiful', 'indah / cantik'],
+      ['young', '若', ['wakai', 'jaku'], 'わかい', 'young', 'muda'],
+      ['busy', '忙', ['isogashii', 'bou'], 'いそがしい', 'busy', 'sibuk'],
+      ['quiet', '静', ['shizuka', 'sei'], 'しずか', 'quiet / calm', 'tenang'],
+      ['energy', '元', ['genki', 'gen'], 'げん', 'origin / energy', 'asal / energi'],
+      ['true', '真', ['makoto', 'shin'], 'まこと', 'true / real', 'benar / nyata'],
+      ['same', '同', ['onaji', 'dou'], 'おなじ', 'same', 'sama'],
+      ['different', '別', ['betsu', 'betsu'], 'べつ', 'different / separate', 'berbeda / terpisah'],
+      ['special', '特', ['toku'], 'とく', 'special', 'khusus'],
+      ['necessary', '必', ['hitsu', 'hitsu'], 'ひつ', 'necessary / certain', 'perlu / pasti'],
+      ['strange', '変', ['hen', 'kawaru'], 'へん', 'strange / change', 'aneh / berubah'],
+      ['troubled', '困', ['komaru', 'kon'], 'こまる', 'be troubled', 'kesulitan'],
+      ['tired', '疲', ['tsukareru', 'hi'], 'つかれる', 'tired', 'lelah'],
+      ['painful', '痛', ['itai', 'tsuu'], 'いたい', 'painful', 'sakit'],
+      ['happy', '幸', ['shiawase', 'kou'], 'しあわせ', 'happiness / fortunate', 'bahagia / beruntung'],
+      ['sad', '悲', ['kanashii', 'hi'], 'かなしい', 'sad', 'sedih'],
+      ['scary', '怖', ['kowai', 'fu'], 'こわい', 'scary / frightening', 'menakutkan'],
+      ['deep', '深', ['fukai', 'shin'], 'ふかい', 'deep', 'dalam'],
+      ['shallow', '浅', ['asai', 'sen'], 'あさい', 'shallow', 'dangkal'],
+    ],
+  },
+  {
+    key: 'n4-buildings-places',
+    title: 'N4 Buildings & Places',
+    title_id: 'Bangunan & Tempat',
+    entries: [
+      ['travel', '旅', ['tabi', 'ryo'], 'たび', 'travel / trip', 'perjalanan'],
+      ['building', '館', ['kan'], 'かん', 'large building / hall', 'gedung / aula'],
+      ['road', '道', ['michi', 'dou'], 'みち', 'road / way', 'jalan'],
+      ['near', '近', ['chikai', 'kin'], 'ちかい', 'near', 'dekat'],
+      ['far', '遠', ['tooi', 'en'], 'とおい', 'far', 'jauh'],
+      ['town', '町', ['machi', 'chou'], 'まち', 'town', 'kota kecil'],
+      ['city', '市', ['shi', 'ichi'], 'し', 'city / market', 'kota / pasar'],
+      ['place', '場', ['ba', 'jou'], 'ば', 'place / location', 'tempat'],
+      ['location', '所', ['tokoro', 'sho'], 'ところ', 'place', 'tempat'],
+      ['build', '建', ['tateru', 'ken'], 'たてる', 'build', 'membangun'],
+      ['illness', '病', ['byou', 'yamai'], 'びょう', 'illness', 'penyakit'],
+      ['institution', '院', ['in'], 'いん', 'institution / hospital', 'lembaga / rumah sakit'],
+      ['ward', '区', ['ku'], 'く', 'ward / district', 'kecamatan / distrik'],
+      ['capital', '都', ['miyako', 'to'], 'みやこ', 'capital / metropolis', 'ibu kota / metropolis'],
+      ['prefecture', '県', ['ken'], 'けん', 'prefecture', 'prefektur'],
+      ['village', '村', ['mura', 'son'], 'むら', 'village', 'desa'],
+      ['island', '島', ['shima', 'tou'], 'しま', 'island', 'pulau'],
+      ['bridge', '橋', ['hashi', 'kyou'], 'はし', 'bridge', 'jembatan'],
+      ['pond', '池', ['ike', 'chi'], 'いけ', 'pond', 'kolam'],
+      ['temple', '寺', ['tera', 'ji'], 'てら', 'temple', 'kuil'],
+      ['shrine', '神', ['kami', 'shin'], 'かみ', 'god / deity', 'dewa'],
+      ['gate', '門', ['mon'], 'もん', 'gate', 'gerbang'],
+      ['floor', '階', ['kai'], 'かい', 'floor / story of a building', 'lantai / tingkat gedung'],
+      ['room', '室', ['shitsu', 'muro'], 'しつ', 'room', 'ruangan'],
+      ['shop', '屋', ['ya', 'oku'], 'や', 'shop / roof', 'toko / atap'],
+      ['hall', '堂', ['dou'], 'どう', 'hall', 'aula'],
+      ['port', '港', ['minato', 'kou'], 'みなと', 'port / harbor', 'pelabuhan'],
+      ['boat', '船', ['fune', 'sen'], 'ふね', 'boat / ship', 'perahu / kapal'],
+      ['department', '部', ['bu'], 'ぶ', 'department / section', 'bagian / departemen'],
+      ['craft', '工', ['kou', 'ku'], 'こう', 'craft / construction', 'kerajinan / konstruksi'],
+      ['garden', '庭', ['niwa', 'tei'], 'にわ', 'garden', 'taman'],
+      ['corner', '角', ['kado', 'kaku'], 'かど', 'corner / angle', 'sudut'],
+      ['ground', '地', ['chi', 'ji'], 'ち', 'ground / land', 'tanah / daratan'],
+      ['map', '図', ['zu', 'to'], 'ず', 'diagram / map', 'diagram / peta'],
+      ['slope', '坂', ['saka', 'han'], 'さか', 'slope / hill', 'lereng / tanjakan'],
+      ['shore', '岸', ['kishi', 'gan'], 'きし', 'shore / bank', 'tepi / pantai'],
+      ['lake', '湖', ['mizuumi', 'ko'], 'みずうみ', 'lake', 'danau'],
+      ['forest', '森', ['mori', 'shin'], 'もり', 'forest', 'hutan'],
+      ['plain', '原', ['hara', 'gen'], 'はら', 'plain / field', 'dataran / padang'],
+      ['rock', '岩', ['iwa', 'gan'], 'いわ', 'rock / boulder', 'batu besar'],
+    ],
+  },
+  {
+    key: 'n4-relations-society',
+    title: 'N4 Relationships & Society',
+    title_id: 'Hubungan & Masyarakat',
+    entries: [
+      ['house', '家', ['ie', 'ka'], 'いえ', 'house / home', 'rumah'],
+      ['family', '族', ['zoku'], 'ぞく', 'family / tribe', 'keluarga'],
+      ['parent', '親', ['oya', 'shin'], 'おや', 'parent', 'orang tua'],
+      ['elderBrother', '兄', ['ani', 'kyou'], 'あに', 'older brother', 'kakak laki-laki'],
+      ['elderSister', '姉', ['ane', 'shi'], 'あね', 'older sister', 'kakak perempuan'],
+      ['youngerBrother', '弟', ['otouto', 'tei'], 'おとうと', 'younger brother', 'adik laki-laki'],
+      ['youngerSister', '妹', ['imouto', 'mai'], 'いもうと', 'younger sister', 'adik perempuan'],
+      ['husband', '夫', ['otto', 'fu'], 'おっと', 'husband', 'suami'],
+      ['wife', '妻', ['tsuma', 'sai'], 'つま', 'wife', 'istri'],
+      ['he', '彼', ['kare', 'hi'], 'かれ', 'he / boyfriend', 'dia / pacar laki-laki'],
+      ['member', '員', ['in'], 'いん', 'member / staff', 'anggota / staf'],
+      ['company', '社', ['sha', 'yashiro'], 'しゃ', 'company / shrine', 'perusahaan / kuil'],
+      ['person', '者', ['mono', 'sha'], 'もの', 'person', 'orang'],
+      ['everyone', '皆', ['mina', 'kai'], 'みな', 'everyone', 'semua orang'],
+      ['who', '誰', ['dare'], 'だれ', 'who', 'siapa'],
+      ['you', '君', ['kimi', 'kun'], 'きみ', 'you / lord', 'kamu / tuan'],
+      ['generation', '代', ['dai', 'yo'], 'だい', 'generation / era', 'generasi / zaman'],
+      ['world', '世', ['yo', 'sei'], 'よ', 'world / generation', 'dunia / generasi'],
+      ['society', '界', ['kai'], 'かい', 'world / society', 'dunia / masyarakat'],
+      ['main', '主', ['nushi', 'shu'], 'ぬし', 'main / master', 'utama / tuan'],
+      ['other', '他', ['hoka', 'ta'], 'ほか', 'other', 'lain'],
+      ['guest', '客', ['kyaku'], 'きゃく', 'guest / customer', 'tamu / pelanggan'],
+      ['people', '民', ['tami', 'min'], 'たみ', 'people / citizens', 'rakyat / warga'],
+      ['government', '政', ['sei'], 'せい', 'government / politics', 'pemerintahan / politik'],
+      ['role', '役', ['yaku'], 'やく', 'role / duty', 'peran / tugas'],
+      ['serve', '仕', ['tsukaeru', 'shi'], 'つかえる', 'serve / work for', 'melayani / bekerja untuk'],
+      ['produce', '産', ['umu', 'san'], 'うむ', 'produce / give birth', 'menghasilkan / melahirkan'],
+      ['image', '像', ['zou'], 'ぞう', 'image / statue', 'gambar / patung'],
+      ['body', '身', ['mi', 'shin'], 'み', 'body / oneself', 'tubuh / diri sendiri'],
+      ['heart', '心', ['kokoro', 'shin'], 'こころ', 'heart / mind', 'hati / pikiran'],
+      ['power', '力', ['chikara', 'ryoku'], 'ちから', 'power / strength', 'tenaga / kekuatan'],
+      ['voice', '声', ['koe', 'sei'], 'こえ', 'voice', 'suara'],
+      ['ceremony', '式', ['shiki'], 'しき', 'ceremony / style', 'upacara / gaya'],
+      ['tie', '結', ['musubu', 'ketsu'], 'むすぶ', 'tie / connect', 'mengikat / menghubungkan'],
+      ['marriage', '婚', ['kon'], 'こん', 'marriage', 'pernikahan'],
+      ['stay', '留', ['tomaru', 'ryuu'], 'とまる', 'stay / detain', 'tinggal / menahan'],
+      ['visit', '訪', ['otozureru', 'hou'], 'おとずれる', 'visit', 'mengunjungi'],
+      ['trust', '信', ['shin'], 'しん', 'trust / believe', 'percaya'],
+      ['promise', '約', ['yaku'], 'やく', 'promise / approximately', 'janji / kira-kira'],
+      ['interaction', '交', ['majiwaru', 'kou'], 'まじわる', 'interact / exchange', 'berinteraksi / bertukar'],
+    ],
+  },
+  {
+    key: 'n4-weather-time-nature',
+    title: 'N4 Weather, Time & Nature',
+    title_id: 'Cuaca, Waktu & Alam',
+    entries: [
+      ['medicine', '薬', ['kusuri', 'yaku'], 'くすり', 'medicine', 'obat'],
+      ['bird', '鳥', ['tori', 'chou'], 'とり', 'bird', 'burung'],
+      ['fish', '魚', ['sakana', 'gyo'], 'さかな', 'fish', 'ikan'],
+      ['meat', '肉', ['niku'], 'にく', 'meat', 'daging'],
+      ['field', '野', ['no', 'ya'], 'の', 'field / plain', 'padang / dataran'],
+      ['vegetable', '菜', ['sai', 'na'], 'さい', 'vegetable', 'sayuran'],
+      ['tea', '茶', ['cha', 'sa'], 'ちゃ', 'tea', 'teh'],
+      ['rice', '米', ['kome', 'bei'], 'こめ', 'rice', 'beras'],
+      ['spring', '春', ['haru', 'shun'], 'はる', 'spring', 'musim semi'],
+      ['summer', '夏', ['natsu', 'ka'], 'なつ', 'summer', 'musim panas'],
+      ['autumn', '秋', ['aki', 'shuu'], 'あき', 'autumn', 'musim gugur'],
+      ['winter', '冬', ['fuyu', 'tou'], 'ふゆ', 'winter', 'musim dingin'],
+      ['morning', '朝', ['asa', 'chou'], 'あさ', 'morning', 'pagi'],
+      ['noon', '昼', ['hiru', 'chuu'], 'ひる', 'noon / daytime', 'siang'],
+      ['night', '夜', ['yoru', 'ya'], 'よる', 'night / evening', 'malam'],
+      ['evening', '夕', ['yuu'], 'ゆう', 'evening', 'sore'],
+      ['clearWeather', '晴', ['hareru', 'sei'], 'はれる', 'clear / sunny', 'cerah'],
+      ['cloudy', '曇', ['kumoru', 'don'], 'くもる', 'cloudy', 'berawan'],
+      ['snow', '雪', ['yuki', 'setsu'], 'ゆき', 'snow', 'salju'],
+      ['wind', '風', ['kaze', 'fuu'], 'かぜ', 'wind', 'angin'],
+      ['cloud', '雲', ['kumo', 'un'], 'くも', 'cloud', 'awan'],
+      ['fog', '霧', ['kiri', 'mu'], 'きり', 'fog', 'kabut'],
+      ['thunder', '雷', ['kaminari', 'rai'], 'かみなり', 'thunder', 'guntur'],
+      ['ice', '氷', ['koori', 'hyou'], 'こおり', 'ice', 'es'],
+      ['wave', '波', ['nami', 'ha'], 'なみ', 'wave', 'ombak'],
+      ['grass', '草', ['kusa', 'sou'], 'くさ', 'grass', 'rumput'],
+      ['flower', '花', ['hana', 'ka'], 'はな', 'flower', 'bunga'],
+      ['insect', '虫', ['mushi', 'chuu'], 'むし', 'insect', 'serangga'],
+      ['star', '星', ['hoshi', 'sei'], 'ほし', 'star', 'bintang'],
+      ['light', '光', ['hikari', 'kou'], 'ひかり', 'light', 'cahaya'],
+      ['valley', '谷', ['tani', 'koku'], 'たに', 'valley', 'lembah'],
+      ['degree', '度', ['do', 'tabi'], 'ど', 'degree / time', 'derajat / kali'],
+      ['end', '末', ['sue', 'matsu'], 'すえ', 'end / tip', 'akhir / ujung'],
+      ['beginning', '初', ['hatsu', 'hajime'], 'はつ', 'first / beginning', 'pertama / awal'],
+      ['longAgo', '昔', ['mukashi', 'seki'], 'むかし', 'long ago / old times', 'dahulu / zaman dulu'],
+      ['lateEvening', '晩', ['ban'], 'ばん', 'evening / night', 'petang / malam'],
+      ['leaf', '葉', ['ha', 'you'], 'は', 'leaf', 'daun'],
+      ['branch', '枝', ['eda', 'shi'], 'えだ', 'branch', 'ranting'],
+      ['root', '根', ['ne', 'kon'], 'ね', 'root', 'akar'],
+      ['fruit', '実', ['mi', 'jitsu'], 'み', 'fruit / truth', 'buah / kenyataan'],
+    ],
+  },
+];
+
+function splitKanjiCategory(category, entries) {
+  const groupCount = Math.ceil(entries.length / 10);
+  return Array.from({ length: groupCount }, (_, index) => {
+    const groupNumber = index + 1;
+    return {
+      ...category,
+      key: `${category.key}-${groupNumber}`,
+      title: `${category.title} - ${groupNumber}`,
+      title_id: `Kelompok ${groupNumber}`,
+      themeTitle: category.title,
+      themeTitle_id: category.title_id,
+      groupNumber,
+      entries: entries.slice(index * 10, groupNumber * 10),
+    };
+  });
+}
+
+const n5KanjiGroups = n5KanjiCategoryDefinitions.flatMap(category =>
+  splitKanjiCategory(category, category.characters)
+);
+const n4KanjiGroups = n4KanjiCategoryDefinitions.flatMap(category =>
+  splitKanjiCategory(category, category.entries)
+);
+const kanjiCategoryDefinitions = [
+  ...n5KanjiGroups.map(category => ({ ...category, level: 'N5' })),
+  ...n4KanjiGroups.map(category => ({ ...category, level: 'N4' })),
+];
+const existingKanjiEntries = Object.values(kanaCharacters.kanjiSource)
+  .flatMap(group => Object.values(group.characters));
+const kanjiByCharacter = new Map(existingKanjiEntries.map(character => [character.jp_character, character]));
+const assignedKanji = new Set();
+
+kanaCharacters.kanji = Object.fromEntries(kanjiCategoryDefinitions.map(category => {
+  const characters = category.level === 'N5'
+    ? Object.fromEntries(category.entries.map(character => {
+        const entry = kanjiByCharacter.get(character);
+        if (!entry || assignedKanji.has(character)) {
+          throw new Error(`Kanji N5 category assignment is missing or duplicated: ${character}`);
+        }
+        assignedKanji.add(character);
+        return [character, entry];
+      }))
+    : Object.fromEntries(category.entries.map(([key, jp_character, romanji, sound, meaning, meaning_id]) => {
+        const entry = { jp_character, romanji, sound, meaning, meaning_id };
+        if (kanjiByCharacter.has(entry.jp_character) || assignedKanji.has(entry.jp_character)) {
+          throw new Error(`Kanji N4 category duplicates an existing character: ${entry.jp_character}`);
+        }
+        assignedKanji.add(entry.jp_character);
+        return [key, entry];
+      }));
+
+  return [category.key, {
+    title: category.title,
+    title_id: category.title_id,
+    level: category.level,
+    themeTitle: category.themeTitle,
+    themeTitle_id: category.themeTitle_id,
+    groupNumber: category.groupNumber,
+    tags: ['main_kana'],
+    characters,
+  }];
+}));
+delete kanaCharacters.kanjiSource;
+
+const n4KanjiCount = n4KanjiCategoryDefinitions.reduce((count, category) => count + category.entries.length, 0);
+if (n4KanjiCategoryDefinitions.length !== 5 || n4KanjiCategoryDefinitions.some(category => category.entries.length !== 40) || n4KanjiCount !== 200 || n4KanjiGroups.length !== 20 || n4KanjiGroups.some(category => category.entries.length !== 10)) {
+  throw new Error(`Kanji N4 should have five themes of 40 characters, split into 20 groups of 10; found ${n4KanjiCount} characters.`);
+}
+if (n5KanjiGroups.some(category => category.entries.length > 10)) {
+  throw new Error('Kanji N5 groups must not contain more than 10 characters.');
+}
+if (assignedKanji.size !== existingKanjiEntries.length + n4KanjiCount) {
+  const unassignedKanji = existingKanjiEntries.map(character => character.jp_character);
+  throw new Error(`Kanji N5 characters have no category: ${unassignedKanji.join(', ')}`);
+}
