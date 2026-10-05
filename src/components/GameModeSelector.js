@@ -96,7 +96,7 @@ export default function GameModeSelector(props) {
   return (
     <div className='game-mode-selector-group'>
       <h2>{t('modeTitle')}</h2>
-      <div className='game-mode-selector-button-group'>
+      <div className='game-mode-selector-button-group game-mode-presets'>
         <ButtonWithArrows label={(count) => t('modeKanaCount', { count })} id="kana-selector"/>
         <div className='button-with-arrows'>
           <label data-gamemode="kana-selector">

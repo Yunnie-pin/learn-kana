@@ -35,6 +35,9 @@ const translations = {
     practiceLabel: 'Practice',
     practiceCharacters: 'Characters',
     practiceWords: 'Words',
+    practiceKanji: 'Kanji',
+    kanjiShowAll: 'Show all',
+    kanjiShowLess: 'Show less',
     answerByLabel: 'Answer by',
     answerTyping: 'Typing',
     answerMultipleChoice: 'Multiple choice',
@@ -52,7 +55,7 @@ const translations = {
     gameFontKey: 'normal font',
     gameFontButton: '🔤 Font',
     gameNext: 'Next →',
-    gamePlaceholder: 'type the romaji…',
+    gamePlaceholder: 'type romaji / kana…',
     gameEnd: 'End game',
     gameErrorNoKana: "You didn't select any Kana!",
     gameErrorNoCharacters: 'No characters available to show!',
@@ -127,6 +130,9 @@ const translations = {
     practiceLabel: 'Latihan',
     practiceCharacters: 'Huruf',
     practiceWords: 'Kata',
+    practiceKanji: 'Kanji',
+    kanjiShowAll: 'Tampilkan semua',
+    kanjiShowLess: 'Tampilkan lebih sedikit',
     answerByLabel: 'Jawab dengan',
     answerTyping: 'Mengetik',
     answerMultipleChoice: 'Pilihan ganda',
@@ -143,7 +149,7 @@ const translations = {
     gameFontKey: 'font biasa',
     gameFontButton: '🔤 Font',
     gameNext: 'Lanjut →',
-    gamePlaceholder: 'ketik romajinya…',
+    gamePlaceholder: 'ketik romaji / kana…',
     gameEnd: 'Akhiri permainan',
     gameErrorNoKana: 'Kamu belum memilih kana!',
     gameErrorNoCharacters: 'Tidak ada karakter untuk ditampilkan!',
@@ -212,6 +218,13 @@ const indonesianMeanings = {};
 for (const word of Object.values(kanaCharacters.words)) {
   if (word.meaning_id) {
     indonesianMeanings[word.jp_character] = word.meaning_id;
+  }
+}
+for (const group of Object.values(kanaCharacters.kanji)) {
+  for (const character of Object.values(group.characters)) {
+    if (character.meaning_id) {
+      indonesianMeanings[character.jp_character] = character.meaning_id;
+    }
   }
 }
 

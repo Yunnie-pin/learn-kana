@@ -275,6 +275,7 @@ Game Menu Page
   flex-direction: row;
   justify-content: space-evenly;
   gap: 1em;
+  align-items: flex-start;
 }
 
 .kana-group-selector::before {
@@ -287,10 +288,121 @@ Game Menu Page
   order: -1;
 }
 
+.kana-group-kanji-block {
+  width: min(100%, 960px);
+  margin: 1em auto 0;
+}
+
 .kana-group-elements {
   display: flex;
   flex-direction: column;
   flex-basis: 45em;
+}
+
+.kana-group-kanji-block .kana-group-elements {
+  width: 100%;
+  align-items: center;
+  flex-basis: 100%;
+}
+
+.kana-group-kanji-block .character-title-group {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.kana-group-kanji-block .main_kana-characters {
+  width: 100%;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.kana-group-kanji-block .kanji-theme-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.kanji-theme-section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kanji-theme-groups {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.kanji-theme-groups .kanji-character-element {
+  flex: 0 1 8.3em;
+}
+
+.kanji-theme-groups .character-checkbox-content {
+  width: 100%;
+}
+
+.kanji-level-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+  width: 100%;
+  margin: 0;
+  gap: 0.5em;
+}
+
+.kanji-level-tab {
+  min-width: 0;
+  border: 0;
+  color: #ff9a3c;
+  font: inherit;
+  text-align: center;
+}
+
+.kanji-theme-title {
+  max-width: 100%;
+  margin: 0.5em 0 1em;
+  border: 0;
+  color: #ff9a3c;
+  font: inherit;
+  text-align: center;
+}
+
+.kanji-theme-title.selected,
+.kanji-level-tab.selected {
+  background-color: #00000048;
+}
+
+.kanji-theme-title:first-child {
+  margin-top: 0;
+}
+
+.kanji-show-all {
+  margin: 0.5em auto 1em;
+}
+
+.kanji-show-all .segmented-option {
+  line-height: 1.2;
+}
+
+.kanji-character-element .character-checkbox-content>h3 {
+  font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: clamp(2.4em, 4vw, 4.5em);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.kanji-character-element .character-checkbox-content>p {
+  margin: 0;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .kana-group-elements>h2 {
@@ -424,7 +536,8 @@ Game Menu Page
   border-radius: 8px;
   cursor: pointer;
   width: 8.3em;
-  transition: background-color 0.3s;
+  border: 1px solid transparent;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
 }
 
 
@@ -442,8 +555,10 @@ Game Menu Page
 
 /* Only on devices that can hover, so the effect does not stick after a tap */
 @media (hover: hover) {
-  .character-checkbox-input:hover:not(:checked)~.character-checkbox-content {
+  .character-checkbox-element:hover .character-checkbox-input:not(:checked)~.character-checkbox-content {
     background-color: #00000027;
+    border-color: #ff9a3c35;
+    transform: translateY(-2px);
   }
 }
 
@@ -454,8 +569,10 @@ Game Menu Page
 
 /* Only on devices that can hover, so the effect does not stick after a tap */
 @media (hover: hover) {
-  .character-checkbox-input:hover:checked~.character-checkbox-content {
+  .character-checkbox-element:hover .character-checkbox-input:checked~.character-checkbox-content {
     background-color: #0000006d;
+    border-color: #ff9a3c75;
+    transform: translateY(-2px);
   }
 }
 
@@ -479,29 +596,39 @@ Game Menu Page
   */
 
 .game-mode-selector-group {
-  text-align: -webkit-center;
+  width: min(calc(100% - 2em), 60em);
+  margin: 1em auto;
+  padding: 1.2em 1em;
+  box-sizing: border-box;
+  border: 1px solid #ff9a3c30;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #134a593b, #16576945);
+  box-shadow: 5px 5px 16px #11384366, -4px -4px 14px #1b607033;
+  text-align: center;
 }
 
 .game-mode-selector-group>h2 {
+  margin: 0 0 0.7em;
+  font-size: 1.7em;
   user-select: none;
-
 }
 
 .game-mode-selector-button-group {
   display: flex;
   flex-direction: row;
-  width: min(95vw, 60em);
+  width: 100%;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  gap: 5px;
-  margin: 0.3em auto ;
+  gap: 0.6em;
+  margin: 0.5em auto;
 }
 
 .button-with-arrows {
   display: flex;
   flex-direction: row;
-  height: 3em;
+  height: 3.2em;
+  align-items: center;
 }
 
 .button-with-arrows>label>div>p {
@@ -510,8 +637,11 @@ Game Menu Page
 
 .button-with-arrows>button {
   background-color: transparent;
-  width: 3em;
-  border-style: hidden;
+  width: 2.4em;
+  height: 2.4em;
+  padding: 0;
+  border: 1px solid #ff9a3c45;
+  border-radius: 50%;
   font-size: 1.2em;
   color: #ff9a3c;
   user-select: none;
@@ -531,14 +661,59 @@ Game Menu Page
 }
 
 .button-with-arrows .character-checkbox-content {
-  height: 3em;
-  width: 9em;
+  height: 3.2em;
+  width: 8.5em;
+  border: 1px solid #ff9a3c35;
+  border-radius: 12px;
+  background: #00000016;
 }
 
 .game-mode-selector {
   text-align: center;
 }
 
+.game-mode-presets .button-with-arrows:nth-child(2) .character-checkbox-content {
+  width: 8.5em;
+  border-color: transparent;
+  background: transparent;
+}
+
+.game-mode-presets {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75em;
+  width: min(100%, 48em);
+  margin: 0.8em auto 1em;
+}
+
+.game-mode-presets .button-with-arrows {
+  width: 100%;
+  min-width: 0;
+  justify-content: center;
+  gap: 0.25em;
+}
+
+.game-mode-presets .button-with-arrows>button {
+  flex: 0 0 2.4em;
+}
+
+.game-mode-presets .button-with-arrows label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.game-mode-presets .button-with-arrows .character-checkbox-content,
+.game-mode-presets .button-with-arrows:nth-child(2) .character-checkbox-content {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.game-mode-presets .button-with-arrows:nth-child(2) .character-checkbox-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .game-mode-selector-button-group > label > div {
   height: 3em;
@@ -565,10 +740,6 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 @media (max-width: 655px) {
-  .kana-group-selector {
-    flex-direction: column;
-  }
-
   .game-mode-selector-button-group {
     flex-direction: column;
   }
@@ -781,6 +952,10 @@ Progress Stats Modal
   line-height: 1;
 }
 
+.progress-stats-kanji-character {
+  font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
 .progress-stats-grid-item-romanji {
   display: block;
   width: 100%;
@@ -979,7 +1154,47 @@ Phones
   }
 
   .kana-group-tabs {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(calc(100% - 2em), 30em);
+    gap: 0.5em;
+    margin: 0 auto 0.75em;
+  }
+
+  #game-menu-title {
+    width: calc(100% - 1em);
+    margin: 0.5em auto 0.75em;
+    padding-top: 0;
+    text-align: center;
+    line-height: 1.15;
+    font-size: clamp(1.5em, 7vw, 2em);
+  }
+
+  .kana-group-tab {
+    min-width: 0;
+    padding: 0.6em 0.2em;
+    font-size: clamp(0.82em, 3.8vw, 1.05em);
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .game-menu-page.mobile-tab-kanji .kana-group-selector {
+    display: none;
+  }
+
+  .game-menu-page .kana-group-kanji-block {
+    display: none;
+  }
+
+  .game-menu-page.mobile-tab-kanji .kana-group-kanji-block {
+    display: block;
+  }
+
+  .game-menu-page.mobile-tab-kanji {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: clip;
   }
 
   .kana-group-selector::before,
@@ -990,6 +1205,37 @@ Phones
   .kana-group-selector.show-hiragana .kana-group-katakana,
   .kana-group-selector.show-katakana .kana-group-hiragana {
     display: none;
+  }
+
+  .game-menu-page.mobile-tab-kanji .kana-group-kanji-block .kana-group-elements>h2 {
+    display: block;
+  }
+
+  .kana-group-kanji-block .character-title-group {
+    width: 100%;
+    min-width: 0;
+    padding: 0 0.5em;
+    box-sizing: border-box;
+  }
+
+  .kana-group-kanji-block .main_kana-characters {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kana-group-kanji-block .kanji-level-tabs {
+    flex-basis: auto;
+    width: 100%;
+    justify-content: center;
+    gap: 0.5em;
+  }
+
+  .kana-group-kanji-block .kanji-theme-title,
+  .kana-group-kanji-block .kanji-character-element {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .character-title-group {
@@ -1044,18 +1290,25 @@ Practice / answer type segments
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.8em 2em;
-  margin: 0.8em auto;
+  gap: 0.8em;
+  margin: 1em auto;
 }
 
 .segmented-row {
   display: flex;
   align-items: center;
   gap: 0.6em;
+  padding: 0.25em 0.35em 0.25em 0.8em;
+  border: 1px solid #ff9a3c25;
+  border-radius: 50em;
+  background: #00000016;
 }
 
 .segmented-label {
   font-family: var(--ui-font);
+  font-size: 0.9em;
+  font-weight: 600;
+  line-height: 1.2;
   user-select: none;
 }
 
@@ -1069,13 +1322,111 @@ Practice / answer type segments
 .segmented-option {
   border: none;
   border-radius: 50em;
-  padding: 0.5em 1.1em;
+  padding: 0.5em 0.9em;
   background: transparent;
   color: #ff9a3c;
   font-family: var(--ui-font);
   font-size: 0.95em;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
+}
+
+.game-mode-selector-button-group:not(.game-mode-presets) {
+  gap: 0.35em;
+}
+
+.game-mode-selector-button-group:not(.game-mode-presets) > label > .toggle-content {
+  width: auto;
+  min-width: 10em;
+  height: auto;
+  min-height: 2.8em;
+  padding: 0.35em 0.7em;
+  border-radius: 12px;
+  background: #00000016;
+}
+
+@media (max-width: 655px) {
+  .game-mode-selector-group {
+    width: calc(100% - 1.5em);
+    padding: 1em 0.65em;
+    margin: 0.8em auto;
+    border-radius: 20px;
+  }
+
+  .game-mode-selector-group>h2 {
+    font-size: 1.5em;
+  }
+
+  .game-mode-presets {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35em;
+  }
+
+  .game-mode-presets .button-with-arrows {
+    width: 100%;
+    height: 3em;
+    justify-content: center;
+    gap: 0.1em;
+  }
+
+  .game-mode-presets .button-with-arrows>button {
+    flex: 0 0 1.7em;
+    width: 1.7em;
+    height: 1.7em;
+    font-size: 1em;
+  }
+
+  .game-mode-presets .button-with-arrows .character-checkbox-content,
+  .game-mode-presets .button-with-arrows:nth-child(2) .character-checkbox-content {
+    width: auto;
+    min-width: 0;
+    flex: 1 1 auto;
+    padding: 0.15em;
+    font-size: 0.9em;
+  }
+
+  .game-mode-selector-segments {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5em;
+    margin: 0.7em auto;
+  }
+
+  .segmented-row {
+    justify-content: space-between;
+    gap: 0.35em;
+    padding-left: 0.6em;
+  }
+
+  .segmented-label {
+    flex: none;
+  }
+
+  .segmented-control {
+    min-width: 0;
+  }
+
+  .segmented-option {
+    padding: 0.45em 0.7em;
+    font-size: 0.88em;
+  }
+
+  .game-mode-selector-button-group:not(.game-mode-presets) {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    gap: 0.2em;
+  }
+
+  .game-mode-selector-button-group:not(.game-mode-presets) > label > .toggle-content {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    min-width: 0;
+    min-height: 2.6em;
+    padding: 0.35em 0.75em;
+  }
 }
 
 .segmented-option.active {
@@ -1160,18 +1511,55 @@ Kana group preview on hover
     transition-delay: 0.25s;
   }
 
-  /* Keep the preview on screen for tiles in the first / last column */
-  .main_kana-characters .character-checkbox-element:nth-child(5n + 1) .kana-group-preview,
-  .dakuten_kana-characters .character-checkbox-element:nth-child(5n + 1) .kana-group-preview {
+  .kana-group-kanji .kanji-character-element .kana-group-preview {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: min(88vw, 24em);
+    max-height: min(48vh, 22em);
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: normal;
+    gap: 0.3em;
+  }
+
+  .kana-group-kanji .kana-group-preview-item {
+    min-width: 0;
+    padding: 0.2em 0;
+  }
+
+  .kana-group-kanji .kana-group-preview-kana {
+    font-size: 1.6em;
+  }
+
+  .kana-group-kanji .kana-group-preview-romanji {
+    font-size: 0.65em;
+  }
+
+  /* Keep kana previews inside the viewport at the left and right edges. */
+  .kana-group-hiragana .character-checkbox-element:nth-child(5n + 1) .kana-group-preview,
+  .kana-group-katakana .character-checkbox-element:nth-child(5n + 1) .kana-group-preview {
     left: 0;
     transform: none;
   }
 
-  .main_kana-characters .character-checkbox-element:nth-child(5n) .kana-group-preview,
-  .dakuten_kana-characters .character-checkbox-element:nth-child(5n) .kana-group-preview {
+  .kana-group-hiragana .character-checkbox-element:nth-child(5n) .kana-group-preview,
+  .kana-group-katakana .character-checkbox-element:nth-child(5n) .kana-group-preview {
     left: auto;
     right: 0;
     transform: none;
+  }
+
+}
+
+@media (hover: hover) and (max-width: 655px) {
+  .kana-group-kanji .kanji-character-element .kana-group-preview {
+    position: fixed;
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
