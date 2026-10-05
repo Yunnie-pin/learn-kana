@@ -263,6 +263,7 @@ export default function InGameCharacterShowAndInput() {
     ##########################################
   */
   const [onScreenKana, setKana] = useState('');
+  const [onScreenCharacterType, setOnScreenCharacterType] = useState(null);
   const [onScreenSolution, setSolution] = useState('');
   const [onScreenWordMeaning, setWordMeaning] = useState('');
   const [onScreenScore, setScore] = useState(0);
@@ -644,6 +645,7 @@ export default function InGameCharacterShowAndInput() {
     
     inGameKanaOnScreen = pickedElement.jp_character;
     currentCharacterTypeRef.current = pickedElement.type;
+    setOnScreenCharacterType(pickedElement.type);
 
     // Update totalTimesShown
     let currentUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
@@ -838,6 +840,7 @@ export default function InGameCharacterShowAndInput() {
       } else if (newAnswer === previousAnswer) {
         return;
       }
+      checkAnswer();
     }
 
     function handleKeyDown(e) {
@@ -854,7 +857,12 @@ export default function InGameCharacterShowAndInput() {
       if (e.ctrlKey || e.metaKey || e.altKey) return;
       if (e.key === 'Enter') {
         e.preventDefault();
-        checkAnswer();
+        const currentAnswer =
+          document.querySelector('#in-game-text-input-before-cursor').textContent +
+          document.querySelector('#in-game-text-input-after-cursor').textContent;
+        if (currentCharacterTypeRef.current === 'kanji' && /[\u3040-\u30ff]/.test(currentAnswer)) {
+          checkAnswer(true);
+        }
         return;
       }
 
@@ -908,23 +916,31 @@ export default function InGameCharacterShowAndInput() {
 
       syncHiddenInput();
       document.querySelector('#in-game-text-input-cursor-group').classList.remove('answer-wrong');
+      checkAnswer();
     }
 
-    function checkAnswer() {
+    function checkAnswer(isSubmission = false) {
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const InGameUserCurrentAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
       const typedAnswer = normalizeAnswer(InGameUserCurrentAnswer);
       if (!typedAnswer) return;
 
+      const isKanaInput = currentCharacterTypeRef.current === 'kanji' &&
+        /[\u3040-\u30ff]/.test(InGameUserCurrentAnswer);
+      if (isKanaInput && !isSubmission) return;
+
       const answerGroup = document.querySelector('#in-game-text-input-cursor-group');
       const isCorrect = inGameAnswerListRef.current.includes(typedAnswer);
-      if (!isCorrect) {
+      const isOnTrack = isSubmission
+        ? isCorrect
+        : inGameAnswerListRef.current.some(answer => answer.startsWith(typedAnswer));
+      if (!isOnTrack) {
         setStreak(0);
       }
-      answerGroup.classList.toggle("answer-wrong", !isCorrect && hintsEnabled);
+      answerGroup.classList.toggle("answer-wrong", !isOnTrack && hintsEnabled);
 
-      if (!isCorrect && !wrongSubmissionCounted) {
+      if (!isOnTrack && !wrongSubmissionCounted) {
         updateCurrentGameStats("wrongSubmission");
         wrongSubmissionCounted = true;
       }
@@ -1259,7 +1275,9 @@ export default function InGameCharacterShowAndInput() {
         <span id='in-game-text-input-before-cursor'></span>
         <div id='in-game-text-input-cursor'></div>
         <span id='in-game-text-input-after-cursor'></span>
-        <span id='in-game-text-input-placeholder'>{t('gamePlaceholder')}</span>
+        <span id='in-game-text-input-placeholder'>
+          {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
+        </span>
       </div>
       <input 
         type="text" 
