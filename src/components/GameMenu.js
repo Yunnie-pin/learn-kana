@@ -4,6 +4,7 @@ import GameModeSelector from './GameModeSelector'
 import ProgressStatsModal from './ProgressStatsModal'
 import { Link } from "react-router-dom";
 import { kanaCharacters } from '../kanaCharacters.js'
+import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
 
 const legacyKanjiGroupSelections = {
@@ -70,13 +71,20 @@ function getSelectionSummary() {
     checkedKanas = JSON.parse(localStorage.getItem('checkedKanas')) || [];
   } catch (e) { }
 
-  let groupCount = 0;
-  let characterCount = 0;
+  let kanaGroupCount = 0;
+  let kanjiGroupCount = 0;
+  let kanaCount = 0;
+  let kanjiCount = 0;
   for (const script of ['hiragana', 'katakana', 'kanji']) {
     for (const group of Object.values(kanaCharacters[script] || {})) {
-      if (checkedKanas.includes(group.title)) {
-        groupCount++;
-        characterCount += Object.keys(group.characters).length;
+      if (!checkedKanas.includes(group.title)) continue;
+      const characterCount = Object.keys(group.characters).length;
+      if (script === 'kanji') {
+        kanjiGroupCount++;
+        kanjiCount += characterCount;
+      } else {
+        kanaGroupCount++;
+        kanaCount += characterCount;
       }
     }
   }
@@ -84,7 +92,7 @@ function getSelectionSummary() {
     [...word.hiragana_groups, ...word.katakana_groups].every(group => checkedKanas.includes(group))
   ).length;
 
-  return { groupCount, characterCount, wordCount };
+  return { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount };
 }
 
 export default function GameMenu() {
@@ -101,34 +109,53 @@ export default function GameMenu() {
   }
   migrateKanjiGroupSelections();
 
-  const { groupCount, characterCount, wordCount } = getSelectionSummary();
-  const isWordPractice = localStorage.getItem('game-mode-word') === 'true';
+  const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount } = getSelectionSummary();
+  const practice = localStorage.getItem('game-mode-practice') ||
+    (localStorage.getItem('game-mode-word') === 'true' ? 'words' : 'characters');
+  const srsDueCount = practice === 'srs'
+    ? getSrsKanjiCharacters(getSelectedKanjiGroupTitles()).due.length
+    : 0;
   let summaryText;
   let canStart = true;
-  if (groupCount === 0) {
-    summaryText = t('menuSummaryNone');
-    canStart = false;
-  } else if (isWordPractice && wordCount === 0) {
+  if (practice === 'srs') {
+    summaryText = t('menuSummaryKanjiSrs', { count: srsDueCount });
+    canStart = srsDueCount > 0;
+  } else if (practice === 'words' && wordCount === 0) {
     summaryText = t('menuSummaryNoWords');
     canStart = false;
-  } else if (isWordPractice) {
-    summaryText = t('menuSummaryWords', { words: wordCount, groups: groupCount });
+  } else if (practice === 'kanji' && kanjiCount === 0) {
+    summaryText = t('menuSummaryNoKanji');
+    canStart = false;
+  } else if (practice === 'mixed' && kanaCount + kanjiCount + wordCount === 0) {
+    summaryText = t('menuSummaryNone');
+    canStart = false;
+  } else if (practice === 'characters' && kanaCount === 0) {
+    summaryText = t('menuSummaryNone');
+    canStart = false;
+  } else if (practice === 'words') {
+    summaryText = t('menuSummaryWords', { words: wordCount, groups: kanaGroupCount });
+  } else if (practice === 'kanji') {
+    summaryText = t('menuSummaryCharacters', { groups: kanjiGroupCount, characters: kanjiCount });
+  } else if (practice === 'mixed') {
+    summaryText = t('menuSummaryMixed', { kanas: kanaCount, kanji: kanjiCount, words: wordCount });
   } else {
-    summaryText = t('menuSummaryCharacters', { groups: groupCount, characters: characterCount });
+    summaryText = t('menuSummaryCharacters', { groups: kanaGroupCount, characters: kanaCount });
   }
 
   const handleButtonClick = () => {
     const checkboxes = document.querySelectorAll('.kana-checkbox');
-    const checkedChars = [];
+    const checkedChars = new Set(getSelectedKanjiGroupTitles());
 
     checkboxes.forEach((checkbox) => {
       if (checkbox.checked) {
-        checkedChars.push(checkbox.id);
+        checkedChars.add(checkbox.id);
+      } else {
+        checkedChars.delete(checkbox.id);
       }
     });
 
-    // Save result to local storage
-    localStorage.setItem('checkedKanas', JSON.stringify(checkedChars));
+    localStorage.setItem('checkedKanas', JSON.stringify([...checkedChars]));
+    localStorage.setItem('game-mode-srs', String(practice === 'srs'));
 
   };
 

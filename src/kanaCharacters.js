@@ -1,3 +1,7 @@
+import { kanjiUsage } from './kanjiUsage.js';
+import { kanjiUsageMeanings } from './kanjiUsageMeanings.js';
+import { kanjiReadings, validateKanjiReadings } from './kanjiReadings.js';
+
 // Generated with our favorite GPT
 
 /*
@@ -11077,8 +11081,7 @@ export const kanaCharacters = {
         "school": {
           "jp_character": "校",
           "romanji": [
-            "kou",
-            "gakkou"
+            "kou"
           ],
           "sound": "こう",
           "meaning": "school",
@@ -11510,12 +11513,12 @@ const n4KanjiCategoryDefinitions = [
       ['young', '若', ['wakai', 'jaku'], 'わかい', 'young', 'muda'],
       ['busy', '忙', ['isogashii', 'bou'], 'いそがしい', 'busy', 'sibuk'],
       ['quiet', '静', ['shizuka', 'sei'], 'しずか', 'quiet / calm', 'tenang'],
-      ['energy', '元', ['genki', 'gen'], 'げん', 'origin / energy', 'asal / energi'],
+      ['energy', '元', ['gen'], 'げん', 'origin / energy', 'asal / energi'],
       ['true', '真', ['makoto', 'shin'], 'まこと', 'true / real', 'benar / nyata'],
       ['same', '同', ['onaji', 'dou'], 'おなじ', 'same', 'sama'],
-      ['different', '別', ['betsu', 'betsu'], 'べつ', 'different / separate', 'berbeda / terpisah'],
+      ['different', '別', ['betsu'], 'べつ', 'different / separate', 'berbeda / terpisah'],
       ['special', '特', ['toku'], 'とく', 'special', 'khusus'],
-      ['necessary', '必', ['hitsu', 'hitsu'], 'ひつ', 'necessary / certain', 'perlu / pasti'],
+      ['necessary', '必', ['hitsu'], 'ひつ', 'necessary / certain', 'perlu / pasti'],
       ['strange', '変', ['hen', 'kawaru'], 'へん', 'strange / change', 'aneh / berubah'],
       ['troubled', '困', ['komaru', 'kon'], 'こまる', 'be troubled', 'kesulitan'],
       ['tired', '疲', ['tsukareru', 'hi'], 'つかれる', 'tired', 'lelah'],
@@ -11687,6 +11690,25 @@ function splitKanjiCategory(category, entries) {
   });
 }
 
+function addKanjiUsage(entry) {
+  const usage = kanjiUsage[entry.jp_character];
+  const meanings = kanjiUsageMeanings[entry.jp_character];
+  const readings = kanjiReadings[entry.jp_character];
+  if (!usage || !meanings || !readings) {
+    throw new Error(`Kanji usage, contextual meaning, or readings are missing: ${entry.jp_character}`);
+  }
+  return {
+    ...entry,
+    usage: {
+      word: usage[0],
+      romanji: usage[1],
+      meaning: meanings[0],
+      meaning_id: meanings[1],
+    },
+    readings,
+  };
+}
+
 const n5KanjiGroups = n5KanjiCategoryDefinitions.flatMap(category =>
   splitKanjiCategory(category, category.characters)
 );
@@ -11710,10 +11732,10 @@ kanaCharacters.kanji = Object.fromEntries(kanjiCategoryDefinitions.map(category 
           throw new Error(`Kanji N5 category assignment is missing or duplicated: ${character}`);
         }
         assignedKanji.add(character);
-        return [character, entry];
+        return [character, addKanjiUsage(entry)];
       }))
     : Object.fromEntries(category.entries.map(([key, jp_character, romanji, sound, meaning, meaning_id]) => {
-        const entry = { jp_character, romanji, sound, meaning, meaning_id };
+        const entry = addKanjiUsage({ jp_character, romanji, sound, meaning, meaning_id });
         if (kanjiByCharacter.has(entry.jp_character) || assignedKanji.has(entry.jp_character)) {
           throw new Error(`Kanji N4 category duplicates an existing character: ${entry.jp_character}`);
         }
@@ -11733,6 +11755,16 @@ kanaCharacters.kanji = Object.fromEntries(kanjiCategoryDefinitions.map(category 
   }];
 }));
 delete kanaCharacters.kanjiSource;
+
+validateKanjiReadings(Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters)));
+const kanjiCharacters = Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters));
+const kanjiCharactersById = new Set(kanjiCharacters.map(character => character.jp_character));
+if (
+  kanjiCharactersById.size !== Object.keys(kanjiUsageMeanings).length ||
+  Object.keys(kanjiUsageMeanings).some(character => !kanjiCharactersById.has(character))
+) {
+  throw new Error('Kanji contextual meaning coverage mismatch: keys must match kanaCharacters.kanji exactly.');
+}
 
 const n4KanjiCount = n4KanjiCategoryDefinitions.reduce((count, category) => count + category.entries.length, 0);
 if (n4KanjiCategoryDefinitions.length !== 5 || n4KanjiCategoryDefinitions.some(category => category.entries.length !== 40) || n4KanjiCount !== 200 || n4KanjiGroups.length !== 20 || n4KanjiGroups.some(category => category.entries.length !== 10)) {

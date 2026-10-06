@@ -405,6 +405,12 @@ Game Menu Page
   line-height: 1.2;
 }
 
+.kanji-character-element .character-checkbox-content>.kanji-usage-example {
+  margin-top: 0.25em;
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
 .kana-group-elements>h2 {
   margin-bottom: 0.2em;
   font-size: 2em;
@@ -1410,6 +1416,11 @@ Practice / answer type segments
   .segmented-option {
     padding: 0.45em 0.7em;
     font-size: 0.88em;
+  }
+
+  .game-mode-selector-segments .segmented-row:first-child .segmented-option {
+    padding: 0.4em 0.45em;
+    font-size: 0.78em;
   }
 
   .game-mode-selector-button-group:not(.game-mode-presets) {

@@ -196,6 +196,11 @@ function character_button_group_builder(props, tag, language, kanjiLevel, kanjiT
         <div className="character-checkbox-content">
           <h3>{characterTitle}</h3>
           <p>{characterText}</p>
+          {props.groupToShow === 'kanji' && kanjiSample.usage && (
+            <p className="kanji-usage-example">
+              {kanjiSample.usage.word} · {kanjiSample.usage.romanji}
+            </p>
+          )}
         </div>
         <div className="kana-group-preview" aria-hidden="true">
           {characterValues.map((groupCharacter) => (
