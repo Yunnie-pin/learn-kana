@@ -252,6 +252,78 @@ html.in-game-scroll-lock body {
   transition: color 0.2s;
 }
 
+.kanji-srs-flip-card {
+  width: min(90vw, 34rem);
+  height: min(80vh, 42rem);
+  perspective: 1200px;
+  box-sizing: border-box;
+  font-size: min(35vh, 75vw);
+  touch-action: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 240ms ease-out;
+  background: #144d5d;
+  border-radius: 1rem;
+  box-shadow: 0.4rem 0.5rem 1.5rem #0c354244;
+}
+
+.kanji-srs-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 650ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.kanji-srs-flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.kanji-srs-flip-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 2px solid #ff9a3c55;
+  border-radius: 1rem;
+  background: #144d5d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.kanji-srs-flip-front {
+  color: #ff9a3c;
+  font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: min(30vh, 58vw);
+}
+
+.kanji-srs-flip-back {
+  transform: rotateY(180deg);
+  padding: clamp(0.75rem, 3vw, 1.5rem);
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  font-size: clamp(1rem, 2.3vh, 1.4rem);
+}
+
+.kanji-srs-flip-back .kanji-srs-card-back {
+  width: 100%;
+  max-height: 100%;
+  font-size: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kanji-srs-flip-inner {
+    transition-duration: 1ms;
+  }
+
+  .kanji-srs-flip-card {
+    transition-duration: 1ms;
+  }
+}
+
 .in-game-kana-character.answer-correct {
   color: #4ade80;
   animation: answer-correct-pop 0.25s ease-out;
@@ -265,6 +337,11 @@ html.in-game-scroll-lock body {
 
 .in-game-kana-character>p{
   margin: 0px;
+}
+
+.in-game-kana-character>p.kanji-reading-question-prompt {
+  white-space: nowrap;
+  padding-inline: 0.38em;
 }
 
 .in-game-solution {
@@ -282,6 +359,169 @@ html.in-game-scroll-lock body {
 
 .in-game-solution-separator {
   opacity: 0.5;
+}
+
+.kanji-answer-readings {
+  display: flex;
+  justify-content: center;
+  gap: 1.25em;
+  margin-top: 0.35em;
+  font-size: 0.45em;
+  line-height: 1.35;
+}
+
+.kanji-answer-reading-label {
+  margin-right: 0.35em;
+  font-weight: 700;
+}
+
+.in-game-kanji-usage {
+  margin-top: 0.25em;
+  font-size: min(3.5vh, 5vw);
+}
+
+@media (max-width: 655px) {
+  .kanji-answer-readings {
+    flex-wrap: wrap;
+    gap: 0.35em 1em;
+  }
+}
+
+.kanji-usage-romanji {
+  opacity: 0.75;
+}
+
+.kanji-srs-card-back {
+  width: min(92vw, 38em);
+  max-height: 26vh;
+  overflow-y: auto;
+  font-family: var(--ui-font);
+  font-size: clamp(1rem, 2.5vh, 1.5rem);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.kanji-srs-card-meaning {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.kanji-srs-card-back .kanji-answer-readings {
+  margin-top: 0.4em;
+  font-size: 0.85em;
+}
+
+.kanji-srs-card-example {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.55em;
+  margin-top: 0.35em;
+  opacity: 0.85;
+}
+
+.kanji-srs-card-example strong {
+  font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
+.kanji-srs-card-controls {
+  display: flex;
+  flex: none;
+  justify-content: center;
+  gap: 0.75em;
+  width: 100%;
+  padding: 0.5em 0 1em;
+}
+
+.kanji-srs-card-button {
+  min-width: 8em;
+  padding: 0.55em 1.2em;
+  border: 0;
+  border-radius: 50em;
+  background: #ff9a3c;
+  color: #155263;
+  font: inherit;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.kanji-srs-card-button.srs-again {
+  background: #ff9a3c;
+}
+
+.kanji-srs-card-button.srs-remembered {
+  background: #4ade80;
+}
+
+.kanji-reading-question {
+  position: relative;
+  display: inline-block;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 0.03em;
+}
+
+.kanji-reading-question-character {
+  display: block;
+  line-height: 1;
+}
+
+.kanji-reading-question-columns {
+  position: absolute;
+  top: 0.05em;
+  display: flex;
+  gap: 0.35em;
+  width: 1.2em;
+  color: #153f49;
+  font-family: var(--ui-font);
+  font-size: 0.07em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.kanji-reading-question.reading-left .kanji-reading-question-columns {
+  right: calc(100% + 0.12em);
+}
+
+.kanji-reading-question.reading-right .kanji-reading-question-columns {
+  left: calc(100% + 0.12em);
+}
+
+.kanji-reading-question.reading-left .kanji-reading-question-columns {
+  flex-direction: column;
+  gap: 0.55em;
+  width: auto;
+  right: calc(100% + 0.12em);
+}
+
+.kanji-reading-question.reading-right .kanji-reading-question-columns {
+  flex-direction: column;
+  gap: 0.55em;
+  width: auto;
+  left: calc(100% + 0.12em);
+}
+
+.kanji-reading-question-column {
+  display: flex;
+  flex: none;
+  min-width: 1.2em;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.kanji-reading-question-label {
+  margin-bottom: 0.3em;
+}
+
+@media (max-width: 655px) {
+  .kanji-reading-question-columns { top: 0.05em; }
+}
+
+.kanji-reading-question-label {
+  margin-bottom: 0.3em;
+  opacity: 0.75;
 }
 
 .in-game-romanji-character {

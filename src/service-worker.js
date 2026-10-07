@@ -49,6 +49,18 @@ registerRoute(
 // An example runtime caching route for requests that aren't handled by the
 // precache, in this case same-origin .png requests like those from in public/
 registerRoute(
+  ({ url }) =>
+    url.origin === self.location.origin &&
+    /\/static\/media\/(?:KleeOne-Regular|NotoSerifJP-Regular|ShipporiMincho-Regular|YujiBoku-Regular)\./.test(url.pathname),
+  new StaleWhileRevalidate({
+    cacheName: 'large-fonts',
+    plugins: [
+      new ExpirationPlugin({ maxEntries: 8, maxAgeSeconds: 60 * 60 * 24 * 365 }),
+    ],
+  })
+);
+
+registerRoute(
   // Add in any other file extensions or routing criteria as needed.
   ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
   new StaleWhileRevalidate({

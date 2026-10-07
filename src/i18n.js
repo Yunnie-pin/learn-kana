@@ -22,6 +22,9 @@ const translations = {
     dakutenKana: 'Dakuten Kana',
     menuSummaryNone: 'Select at least one group to start',
     menuSummaryNoWords: 'No words with these groups yet, select more',
+    menuSummaryNoKanji: 'Select at least one Kanji group to start',
+    menuSummaryKanjiSrs: ({ count }) => `SRS review: ${count} kanji due`,
+    menuSummaryMixed: ({ kanas, kanji, words }) => `Mixed: ${kanas} kana · ${kanji} kanji · ${words} words`,
     menuSummaryWords: ({ words, groups }) => `${words} word${words === 1 ? '' : 's'} from ${groups} group${groups === 1 ? '' : 's'}`,
     menuSummaryCharacters: ({ groups, characters }) => `${groups} group${groups === 1 ? '' : 's'} · ${characters} characters`,
     menuStart: "Let's start!",
@@ -35,10 +38,22 @@ const translations = {
     practiceLabel: 'Practice',
     practiceCharacters: 'Characters',
     practiceWords: 'Words',
+    practiceKanji: 'Kanji',
+    practiceMixed: 'Mixed',
+    practiceSrs: 'SRS',
+    kanjiShowAll: 'Show all',
+    kanjiShowLess: 'Show less',
+    kanjiSrsDue: ({ count }) => `${count} kanji ready for review`,
+    kanjiSrsNothingDue: 'No kanji due right now',
+    kanjiSrsUpcoming: ({ date }) => `Next review: ${date}`,
+    kanjiSrsDueList: 'Kanji due for review',
+    kanjiSrsReveal: 'Show answer',
+    kanjiSrsAgain: 'Again',
+    kanjiSrsRemembered: 'Remembered',
     answerByLabel: 'Answer by',
     answerTyping: 'Typing',
     answerMultipleChoice: 'Multiple choice',
-    answerMultipleChoiceDisabled: 'Only available when practicing characters',
+    answerMultipleChoiceDisabled: 'Not available for word or mixed practice',
     optionHints: 'Hints',
     optionHandwrittenFonts: 'Handwritten Fonts',
     optionAutoNext: 'Auto Next',
@@ -52,7 +67,14 @@ const translations = {
     gameFontKey: 'normal font',
     gameFontButton: '🔤 Font',
     gameNext: 'Next →',
-    gamePlaceholder: 'type the romaji…',
+    gamePlaceholder: 'type romaji…',
+    kanjiGamePlaceholder: 'type romaji / kana…',
+    kanjiOnyomi: 'On’yomi',
+    kanjiKunyomi: 'Kun’yomi',
+    kanjiReadingsOption: 'On’yomi & Kun’yomi',
+    kanjiOnShort: 'on',
+    kanjiKunShort: 'kun',
+    kanjiKuShort: 'ku',
     gameEnd: 'End game',
     gameErrorNoKana: "You didn't select any Kana!",
     gameErrorNoCharacters: 'No characters available to show!',
@@ -115,6 +137,9 @@ const translations = {
     dakutenKana: 'Kana Dakuten',
     menuSummaryNone: 'Pilih minimal satu grup untuk mulai',
     menuSummaryNoWords: 'Belum ada kata untuk grup ini, pilih grup lain',
+    menuSummaryNoKanji: 'Pilih minimal satu grup kanji untuk mulai',
+    menuSummaryKanjiSrs: ({ count }) => `SRS: ${count} kanji siap diulang`,
+    menuSummaryMixed: ({ kanas, kanji, words }) => `Campuran: ${kanas} kana · ${kanji} kanji · ${words} kata`,
     menuSummaryWords: ({ words, groups }) => `${words} kata dari ${groups} grup`,
     menuSummaryCharacters: ({ groups, characters }) => `${groups} grup · ${characters} karakter`,
     menuStart: 'Ayo mulai!',
@@ -127,10 +152,22 @@ const translations = {
     practiceLabel: 'Latihan',
     practiceCharacters: 'Huruf',
     practiceWords: 'Kata',
+    practiceKanji: 'Kanji',
+    practiceMixed: 'Campuran',
+    practiceSrs: 'SRS',
+    kanjiShowAll: 'Tampilkan semua',
+    kanjiShowLess: 'Tampilkan lebih sedikit',
+    kanjiSrsDue: ({ count }) => `${count} kanji siap diulang`,
+    kanjiSrsNothingDue: 'Belum ada kanji yang perlu diulang',
+    kanjiSrsUpcoming: ({ date }) => `Pengulangan berikutnya: ${date}`,
+    kanjiSrsDueList: 'Kanji yang siap diulang',
+    kanjiSrsReveal: 'Lihat jawaban',
+    kanjiSrsAgain: 'Ulangi',
+    kanjiSrsRemembered: 'Ingat',
     answerByLabel: 'Jawab dengan',
     answerTyping: 'Mengetik',
     answerMultipleChoice: 'Pilihan ganda',
-    answerMultipleChoiceDisabled: 'Hanya tersedia saat latihan huruf',
+    answerMultipleChoiceDisabled: 'Tidak tersedia untuk latihan kata atau campuran',
     optionHints: 'Petunjuk',
     optionHandwrittenFonts: 'Font tulisan tangan',
     optionAutoNext: 'Lanjut otomatis',
@@ -143,7 +180,14 @@ const translations = {
     gameFontKey: 'font biasa',
     gameFontButton: '🔤 Font',
     gameNext: 'Lanjut →',
-    gamePlaceholder: 'ketik romajinya…',
+    gamePlaceholder: 'ketik romaji…',
+    kanjiGamePlaceholder: 'ketik romaji / kana…',
+    kanjiOnyomi: 'On’yomi',
+    kanjiKunyomi: 'Kun’yomi',
+    kanjiReadingsOption: 'On’yomi & Kun’yomi',
+    kanjiOnShort: 'on',
+    kanjiKunShort: 'kun',
+    kanjiKuShort: 'ku',
     gameEnd: 'Akhiri permainan',
     gameErrorNoKana: 'Kamu belum memilih kana!',
     gameErrorNoCharacters: 'Tidak ada karakter untuk ditampilkan!',
@@ -212,6 +256,16 @@ const indonesianMeanings = {};
 for (const word of Object.values(kanaCharacters.words)) {
   if (word.meaning_id) {
     indonesianMeanings[word.jp_character] = word.meaning_id;
+  }
+}
+for (const group of Object.values(kanaCharacters.kanji)) {
+  for (const character of Object.values(group.characters)) {
+    if (character.meaning_id) {
+      indonesianMeanings[character.jp_character] = character.meaning_id;
+    }
+    if (character.usage?.meaning_id) {
+      indonesianMeanings[character.usage.word] = character.usage.meaning_id;
+    }
   }
 }
 

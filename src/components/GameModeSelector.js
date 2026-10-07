@@ -3,7 +3,7 @@ import ButtonWithArrows from './ButtonWithArrows'
 import CheckMark from './CheckMark';
 import { useLanguage } from '../i18n';
 
-// A row of mutually exclusive buttons, e.g. Practice: [Characters | Words]
+// A row of mutually exclusive practice or answer modes.
 function SegmentedControl(props) {
   return (
     <div className='segmented-row'>
@@ -32,18 +32,31 @@ export default function GameModeSelector(props) {
   const { t } = useLanguage();
   // Checks if the current device has a touchscreen
   const touchDefault = ('ontouchstart' in window | navigator.msMaxTouchPoints) === 1;
+  if (localStorage.getItem('game-mode-kanji-readings') === null) {
+    const showReadings =
+      localStorage.getItem('game-mode-kanji-onyomi') === 'true' ||
+      localStorage.getItem('game-mode-kanji-kunyomi') === 'true';
+    localStorage.setItem('game-mode-kanji-readings', String(showReadings));
+  }
 
-  // "game-mode-word" and "game-mode-touch" can't both be on: multiple choice only exists for characters
   const [practice, setPractice] = useState(() =>
-    localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
+    localStorage.getItem('game-mode-srs') === 'true'
+      ? 'srs'
+      : localStorage.getItem('game-mode-practice') ||
+        (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters"));
   const [answerBy, setAnswerBy] = useState(() => {
     const storedTouch = localStorage.getItem("game-mode-touch");
     const useTouch = storedTouch === null ? touchDefault : storedTouch === "true";
-    return useTouch && localStorage.getItem("game-mode-word") !== "true" ? "touch" : "typing";
+    return useTouch && !['words', 'mixed', 'srs'].includes(practice) ? "touch" : "typing";
   });
 
   React.useEffect(() => {
+    localStorage.setItem("game-mode-practice", practice);
+    localStorage.setItem("game-mode-srs", String(practice === 'srs'));
     localStorage.setItem("game-mode-word", practice === "words");
+    if (['words', 'mixed', 'srs'].includes(practice) && answerBy === 'touch') {
+      setAnswerBy('typing');
+    }
     localStorage.setItem("game-mode-touch", answerBy === "touch");
     if (props.onChange) {
       props.onChange();
@@ -53,7 +66,7 @@ export default function GameModeSelector(props) {
 
   const handlePracticeChange = (value) => {
     setPractice(value);
-    if (value === "words") {
+    if (['words', 'mixed', 'srs'].includes(value)) {
       setAnswerBy("typing");
     }
   };
@@ -96,7 +109,7 @@ export default function GameModeSelector(props) {
   return (
     <div className='game-mode-selector-group'>
       <h2>{t('modeTitle')}</h2>
-      <div className='game-mode-selector-button-group'>
+      <div className='game-mode-selector-button-group game-mode-presets'>
         <ButtonWithArrows label={(count) => t('modeKanaCount', { count })} id="kana-selector"/>
         <div className='button-with-arrows'>
           <label data-gamemode="kana-selector">
@@ -121,6 +134,9 @@ export default function GameModeSelector(props) {
           options={[
             { value: "characters", label: t('practiceCharacters') },
             { value: "words", label: t('practiceWords') },
+            { value: "kanji", label: t('practiceKanji') },
+            { value: "mixed", label: t('practiceMixed') },
+            { value: "srs", label: t('practiceSrs') },
           ]}
         />
         <SegmentedControl
@@ -129,7 +145,7 @@ export default function GameModeSelector(props) {
           onChange={setAnswerBy}
           options={[
             { value: "typing", label: t('answerTyping') },
-            { value: "touch", label: t('answerMultipleChoice'), disabled: practice === "words", disabledReason: t('answerMultipleChoiceDisabled') },
+            { value: "touch", label: t('answerMultipleChoice'), disabled: ['words', 'mixed', 'srs'].includes(practice), disabledReason: t('answerMultipleChoiceDisabled') },
           ]}
         />
       </div>
@@ -137,6 +153,7 @@ export default function GameModeSelector(props) {
         <CheckMark characterText={t('optionHints')} class="game-mode-selector-button-group-row-2" id="game-mode-hints" default="true"/>
         <CheckMark characterText={t('optionHandwrittenFonts')} class="game-mode-selector-button-group-row-2" id="game-mode-random-fonts"/>
         <CheckMark characterText={t('optionAutoNext')} class="game-mode-selector-button-group-row-2" id="game-mode-auto-next" default="true"/>
+        <CheckMark characterText={t('kanjiReadingsOption')} class="game-mode-selector-button-group-row-2" id="game-mode-kanji-readings"/>
       </div>
     </div>
   )

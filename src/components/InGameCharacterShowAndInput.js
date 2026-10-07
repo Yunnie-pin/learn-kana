@@ -1,7 +1,10 @@
 import React from 'react'
-import {  useState, useEffect, useRef } from 'react'
+import {  useState, useEffect, useRef, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { toHiragana } from 'wanakana';
 import { kanaCharacters } from '../kanaCharacters.js'
+import { kanjiReadings } from '../kanjiReadings.js'
+import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
 
@@ -47,6 +50,7 @@ let fontClassList = [
                 "askForHelpCounter": 1,
                 "responseTimeSum": 1.45 // Sum of response times for correct guesses this day
             }
+
             // ... more entries for other days
         ],
         "last7DaysStats": [ // Potentially deprecated or to be phased out in favor of dailyPerformance
@@ -69,6 +73,14 @@ if (localStorage.getItem('userStats') === null) {
 // We use it to calculate how long it takes the user to respond.
 let kanaTimeToAnswerTimer = 0;
 let inGameKanaOnScreen = "";
+
+function normalizeAnswer(answer) {
+  return String(answer ?? '')
+    .normalize('NFKC')
+    .toLowerCase()
+    .replace(/[\u200B-\u200D\uFEFF]/g, '')
+    .replace(/[\s-]/g, '');
+}
 
 async function selectNextCharacter(charactersToShow) {
   let userStats = JSON.parse(localStorage.getItem('userStats')) || {};
@@ -247,6 +259,7 @@ async function selectNextCharacter(charactersToShow) {
 
 export default function InGameCharacterShowAndInput() {
   const { t, meaningOf } = useLanguage();
+  const isMacOS = /Mac/i.test(navigator.userAgentData?.platform || navigator.platform);
 
   /* 
     ##########################################
@@ -254,6 +267,12 @@ export default function InGameCharacterShowAndInput() {
     ##########################################
   */
   const [onScreenKana, setKana] = useState('');
+  const [srsCardRevealed, setSrsCardRevealed] = useState(false);
+  const [srsCardDragOffset, setSrsCardDragOffset] = useState(0);
+  const [srsCardSwipeDirection, setSrsCardSwipeDirection] = useState(null);
+  const [onScreenCharacterType, setOnScreenCharacterType] = useState(null);
+  const [onScreenKanjiUsage, setOnScreenKanjiUsage] = useState(null);
+  const [isKanjiUsageQuestion, setIsKanjiUsageQuestion] = useState(false);
   const [onScreenSolution, setSolution] = useState('');
   const [onScreenWordMeaning, setWordMeaning] = useState('');
   const [onScreenScore, setScore] = useState(0);
@@ -264,7 +283,16 @@ export default function InGameCharacterShowAndInput() {
   const [bestStreak, setBestStreak] = useState(0);
   // Read by the keyboard handlers (registered once on mount) to ignore input behind the summary window
   const scoreWindowVisibleRef = useRef(false);
-  let inGameAnswerList = [];
+  const hasStartedInitialCharacterRef = useRef(false);
+  const currentCharacterTypeRef = useRef(null);
+  const waitingForKanjiNextRef = useRef(false);
+  const kanjiAutoAdvanceTimeoutRef = useRef(null);
+  const inGameAnswerListRef = useRef([]);
+  const srsQueueRef = useRef(null);
+  const srsFailedRef = useRef(false);
+  const srsCurrentCardRef = useRef(null);
+  const srsCardPointerStartRef = useRef(null);
+  const srsCardDraggedRef = useRef(false);
 
   // Hints ("?" key / Hint button) can be turned off in the menu
   const hintsEnabled = localStorage.getItem("game-mode-hints") !== "false";
@@ -275,7 +303,18 @@ export default function InGameCharacterShowAndInput() {
     ? gameModeSetting.value
     : null;
 
-  const characterGroupsToShow = JSON.parse(localStorage.getItem("checkedKanas"))
+  const characterGroupsToShow = useMemo(() => {
+    const storedCharacterGroups = JSON.parse(localStorage.getItem("checkedKanas") || '[]');
+    return Array.isArray(storedCharacterGroups) ? storedCharacterGroups : [];
+  }, []);
+  const practiceMode = localStorage.getItem('game-mode-practice') ||
+    (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
+  const isSrsPractice = localStorage.getItem('game-mode-srs') === 'true';
+  const selectedKanjiGroups = useMemo(() => getSelectedKanjiGroupTitles(), []);
+  const srsKanjiOverview = useMemo(
+    () => isSrsPractice ? getSrsKanjiCharacters(selectedKanjiGroups) : null,
+    [isSrsPractice, selectedKanjiGroups]
+  );
 
 
   // Creates a list of all possible Kanas/Words to show, the element outputs look like this:
@@ -283,17 +322,20 @@ export default function InGameCharacterShowAndInput() {
   // *The key "vocal" only shows up when the type is "kana"
   // *The key "meaning" only shows up when the type is "word"
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  let charactersToShow = []
-  if (localStorage.getItem("game-mode-word") === "true") {
-    charactersToShow = getListOfWords(characterGroupsToShow)
-  } else {
-    charactersToShow = getListOfKanas(characterGroupsToShow);
+  let charactersToShow = useMemo(
+    () => isSrsPractice
+      ? srsKanjiOverview.due
+      : getListForPractice(characterGroupsToShow, practiceMode),
+    [isSrsPractice, srsKanjiOverview, characterGroupsToShow, practiceMode]
+  );
+  if (isSrsPractice && srsQueueRef.current === null) {
+    srsQueueRef.current = [...charactersToShow].sort(() => Math.random() - 0.5);
   }
 
   // Filter to problematic characters if that mode is active
   const problematicFilter = localStorage.getItem('problematicKanasFilter');
   let isProblematicsMode = false;
-  if (problematicFilter) {
+  if (problematicFilter && !isSrsPractice) {
     const problematicChars = JSON.parse(problematicFilter);
     charactersToShow = charactersToShow.filter(char => problematicChars.includes(char.jp_character));
     isProblematicsMode = true;
@@ -303,11 +345,9 @@ export default function InGameCharacterShowAndInput() {
       localStorage.removeItem('problematicKanasFilter');
       isProblematicsMode = false;
       // Restore original list
-      if (localStorage.getItem("game-mode-word") === "true") {
-        charactersToShow = getListOfWords(characterGroupsToShow)
-      } else {
-        charactersToShow = getListOfKanas(characterGroupsToShow);
-      }
+      charactersToShow = isSrsPractice
+        ? getSrsKanjiCharacters(getSelectedKanjiGroupTitles()).due
+        : getListForPractice(characterGroupsToShow, practiceMode);
     }
   }
 
@@ -315,10 +355,10 @@ export default function InGameCharacterShowAndInput() {
   const navigate = useNavigate();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (charactersToShow.length === 0) {
+    if (charactersToShow.length === 0 && !isSrsPractice) {
       navigate('/bruh', { state: { message: t('gameErrorNoKana') } });
     }
-  }, [charactersToShow, navigate, t]);
+  }, [charactersToShow, isSrsPractice, navigate, t]);
 
   // game-mode-auto-next
   let autoNext = false;
@@ -329,15 +369,22 @@ export default function InGameCharacterShowAndInput() {
 
   function getListOfKanas(charGroups) {
     let output = []
-    Object.entries(kanaCharacters).forEach(([key, category]) => {
-      Object.entries(category).forEach(([key, charGroup]) => {
-        if (charGroups.includes(charGroup.title)) {
-          Object.entries(charGroup.characters).forEach(([charVocal, char]) => {
-            char.vocal = charVocal;
-            char.type = "kana";
-            output.push(char);
-          });
-        }
+    const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
+    Object.entries(kanaCharacters).forEach(([categoryKey, category]) => {
+      if (categoryKey === 'words') return;
+      Object.entries(category).forEach(([groupKey, charGroup]) => {
+        if (!charGroup || !charGroup.title || !selectedGroups.includes(charGroup.title)) return;
+        Object.entries(charGroup.characters).forEach(([charKey, char]) => {
+          if (!char || typeof char !== 'object') return;
+          const normalizedChar = { ...char };
+          if (categoryKey === 'kanji') {
+            normalizedChar.type = 'kanji';
+          } else {
+            normalizedChar.vocal = normalizedChar.vocal || charKey;
+            normalizedChar.type = 'kana';
+          }
+          output.push(normalizedChar);
+        });
       });
     });
     return output;
@@ -345,15 +392,16 @@ export default function InGameCharacterShowAndInput() {
 
   function getListOfWords(charGroups) {
     let output = []
+    const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
     Object.entries(kanaCharacters.words).forEach(([key, value]) => {
       let ignoreWord = false;
       for (let i = 0; i < value.hiragana_groups.length; i++) {
-        if (!charGroups.includes(value.hiragana_groups[i])) {
+        if (!selectedGroups.includes(value.hiragana_groups[i])) {
           ignoreWord = true;
         }
       }
       for (let i = 0; i < value.katakana_groups.length; i++) {
-        if (!charGroups.includes(value.katakana_groups[i])) {
+        if (!selectedGroups.includes(value.katakana_groups[i])) {
           ignoreWord = true;
         }
       }
@@ -370,6 +418,16 @@ export default function InGameCharacterShowAndInput() {
     return output;
   }
 
+  function getListForPractice(charGroups, mode) {
+    const characters = getListOfKanas(charGroups);
+    if (mode === 'kanji') return characters.filter(character => character.type === 'kanji');
+    if (mode === 'mixed') {
+      return [...characters, ...getListOfWords(charGroups)];
+    }
+    if (mode === 'words') return getListOfWords(charGroups);
+    return characters.filter(character => character.type === 'kana');
+  }
+
   // Helper function to get n random unique elements from an array
   function sample(inputArray, numberOfOutputs, onePerVocal = false) {
     const vocals = ["a", "i", "u", "e", "o"];
@@ -384,6 +442,11 @@ export default function InGameCharacterShowAndInput() {
       onePerVocal = false;
     }
 
+    const hasVocalHints = copyArray.some(item => item && item.vocal && vocals.includes(item.vocal));
+    if (onePerVocal && !hasVocalHints) {
+      onePerVocal = false;
+    }
+
     // If n is greater than the size of a, set possible unique outputs to the size of array
     const numberOfUniqueOutputs = Math.min(numberOfOutputs, copyArray.length);
 
@@ -391,9 +454,16 @@ export default function InGameCharacterShowAndInput() {
       while (true) {
         const randomIndex = Math.floor(Math.random() * copyArray.length);
         if (onePerVocal) {
-          if (copyArray[randomIndex].vocal === vocals[current_vocal]) {
-            current_vocal++;
-          } else { continue }
+          const candidate = copyArray[randomIndex];
+          if (candidate?.vocal && vocals.includes(candidate.vocal)) {
+            if (candidate.vocal === vocals[current_vocal]) {
+              current_vocal++;
+            } else {
+              continue;
+            }
+          } else {
+            onePerVocal = false;
+          }
         }
         sampledElements.push(copyArray[randomIndex]);
         // Remove the selected element from the copyArray to avoid duplicates
@@ -418,17 +488,25 @@ export default function InGameCharacterShowAndInput() {
   ##########################################
   */
   function fillTouchAnswers(picked_kana) {
-    const possibleAnswers = sample(charactersToShow, 5, true);
+    const useVocalSampling = Boolean(picked_kana && picked_kana.vocal);
+    const possibleAnswers = sample(charactersToShow, 5, useVocalSampling);
     const elements = document.querySelectorAll('.in-game-touch-answer>p');
-    for (let i = 0; i < possibleAnswers.length; i++) {
-      if (possibleAnswers[i].vocal === picked_kana.vocal) {
-        Object.assign(possibleAnswers[i], picked_kana)
+
+    if (useVocalSampling) {
+      for (let i = 0; i < possibleAnswers.length; i++) {
+        if (possibleAnswers[i].vocal === picked_kana.vocal) {
+          Object.assign(possibleAnswers[i], picked_kana);
+        }
       }
+    } else {
+      const targetIndex = Math.floor(Math.random() * possibleAnswers.length);
+      Object.assign(possibleAnswers[targetIndex], picked_kana);
     }
 
     // Go over the elements
     for (let i = 0; i < elements.length; i++) {
-      elements[i].textContent = possibleAnswers[i].romanji;
+      const answer = Array.isArray(possibleAnswers[i]?.romanji) ? possibleAnswers[i].romanji : [possibleAnswers[i]?.romanji || ''];
+      elements[i].textContent = answer[0];
     }
   }
 
@@ -571,11 +649,12 @@ export default function InGameCharacterShowAndInput() {
 
   // Function gets called at the beginning and every time the kana changes
   async function showNewCharacter() {
+    setSrsCardRevealed(false);
 
     // Check if the user already answered its kana limits. If so, show stats.
     const gameScoreElement = document.getElementById("in-game-score");
     const gameMode = JSON.parse(localStorage.getItem("gameMode"));
-    if (gameMode && gameMode.type === "kana-selector" && gameMode.value !== -1 &&
+    if (!isSrsPractice && gameMode && gameMode.type === "kana-selector" && gameMode.value !== -1 &&
         gameScoreElement &&
         parseInt(gameScoreElement.textContent.replace(/^\D+/g, ''), 10) >= gameMode.value) {
       setUserGameScoreWindowVisible(true);
@@ -587,16 +666,21 @@ export default function InGameCharacterShowAndInput() {
       kanaElement.classList.remove("answer-correct");
     }
 
-    // Reset visibility of help
-    const helpSolutionElement = document.querySelector('#in-game-kana-solution');
-    if (helpSolutionElement) {
-      helpSolutionElement.classList.add("hidden-element");
-    }
+    // Never carry the previous character's answer or meaning into the next question.
+    document.querySelector('#in-game-kana-solution')?.classList.add('hidden-element');
+    document.querySelector('#in-game-kanji-usage')?.classList.add('hidden-element');
+    document.querySelector('#in-game-solution')?.classList.add('hidden-element');
 
     // Get and show the current Kana using the weighted selection logic
-    let pickedElement = await selectNextCharacter(charactersToShow);
+    let pickedElement = isSrsPractice
+      ? srsQueueRef.current?.shift()
+      : await selectNextCharacter(charactersToShow);
     
     if (!pickedElement) {
+      if (isSrsPractice) {
+        setUserGameScoreWindowVisible(true);
+        return;
+      }
       console.warn("selectNextCharacter returned undefined. Fallback to random selection from charactersToShow.");
       if (charactersToShow.length > 0) {
         pickedElement = charactersToShow[Math.floor(Math.random() * charactersToShow.length)];
@@ -607,6 +691,10 @@ export default function InGameCharacterShowAndInput() {
     }
     
     inGameKanaOnScreen = pickedElement.jp_character;
+    currentCharacterTypeRef.current = pickedElement.type;
+    srsFailedRef.current = false;
+    srsCurrentCardRef.current = isSrsPractice ? pickedElement : null;
+    setOnScreenCharacterType(pickedElement.type);
 
     // Update totalTimesShown
     let currentUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
@@ -642,45 +730,146 @@ export default function InGameCharacterShowAndInput() {
     }
     localStorage.setItem('userStats', JSON.stringify(currentUserStats));
 
-    setKana(pickedElement.jp_character);
+    const useKanjiUsageQuestion = !isSrsPractice &&
+      pickedElement.type === 'kanji' &&
+      pickedElement.usage &&
+      Math.random() < 0.5;
+    const questionCharacter = useKanjiUsageQuestion
+      ? pickedElement.usage.word
+      : pickedElement.jp_character;
+    setKana(questionCharacter);
+    const charTextElement = document.querySelector("#in-game-kana-character>p");
+    if (charTextElement) {
+      const displayLength = [...questionCharacter].length;
+      const showReadingHints = useKanjiUsageQuestion &&
+        localStorage.getItem('game-mode-kanji-readings') === 'true';
+      charTextElement.dataset.displayLength = String(displayLength);
+      charTextElement.style.fontSize = showReadingHints
+        ? `min(35vh, ${72 / displayLength}vw)`
+        : "35vh";
+      charTextElement.setAttribute("data-word-wraped", "false");
+    }
+    setOnScreenKanjiUsage(pickedElement.type === 'kanji' ? pickedElement.usage : null);
+    setIsKanjiUsageQuestion(Boolean(useKanjiUsageQuestion));
     // @ts-ignore
-    inGameAnswerList = pickedElement.romanji;
+    const readings = Array.isArray(pickedElement.romanji) ? pickedElement.romanji : [pickedElement.romanji];
+    const answerReadings = useKanjiUsageQuestion
+      ? [pickedElement.usage.romanji]
+      : readings;
+    const acceptedAnswers = pickedElement.type === 'kanji'
+      ? answerReadings.flatMap(reading => [reading, toHiragana(reading)])
+      : answerReadings;
+    inGameAnswerListRef.current = acceptedAnswers
+      .map(normalizeAnswer)
+      .filter(Boolean);
     // @ts-ignore
-    setSolution(pickedElement.romanji);
+    setSolution(pickedElement.type === 'kanji' ? answerReadings : pickedElement.romanji);
     // @ts-ignore
-    if (pickedElement.type === "word") {
+    if (useKanjiUsageQuestion) {
+      setWordMeaning(meaningOf(pickedElement.usage.word, pickedElement.usage.meaning));
+    } else if (pickedElement.type === "word" || pickedElement.type === "kanji") {
       // @ts-ignore
       setWordMeaning(meaningOf(pickedElement.jp_character, pickedElement.meaning));
+    } else {
+      setWordMeaning('');
     }
 
-    if (localStorage.getItem("game-mode-random-fonts") === "true") {
-      const randomFontIndex = Math.floor(Math.random() * fontClassList.length);
-      const fontClass = fontClassList[randomFontIndex];
-      const charDisplayElement = document.querySelector('#in-game-kana-character');
-      if (charDisplayElement) {
-        charDisplayElement.classList.forEach(cls => {
-          if (cls.startsWith('font-')) {
-            charDisplayElement.classList.remove(cls);
-          }
-        });
+    const charDisplayElement = document.querySelector('#in-game-kana-character');
+    if (charDisplayElement) {
+      Array.from(charDisplayElement.classList)
+        .filter(cls => cls.startsWith('font-'))
+        .forEach(cls => charDisplayElement.classList.remove(cls));
+
+      if (localStorage.getItem("game-mode-random-fonts") === "true") {
+        const randomFontIndex = Math.floor(Math.random() * fontClassList.length);
+        const fontClass = fontClassList[randomFontIndex];
         charDisplayElement.classList.add("font-" + fontClass);
+      } else if (isMacOS) {
+        charDisplayElement.classList.add("font-forceDefault");
       }
     }
 
     if (localStorage.getItem("game-mode-touch") === "true") {
       // @ts-ignore
-      fillTouchAnswers(pickedElement);
-    }
-
-    const charTextElement = document.querySelector("#in-game-kana-character>p");
-    if (charTextElement) {
-      // @ts-ignore
-      charTextElement.style.fontSize = "35vh";
-      charTextElement.setAttribute("data-word-wraped", "false");
+      fillTouchAnswers({ ...pickedElement, romanji: answerReadings });
     }
 
     kanaTimeToAnswerTimer = Date.now();
 
+  }
+
+  function advanceToNextKanji() {
+    if (!waitingForKanjiNextRef.current) return;
+    window.clearTimeout(kanjiAutoAdvanceTimeoutRef.current);
+    kanjiAutoAdvanceTimeoutRef.current = null;
+
+    const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+    const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
+    const cursorGroup = document.querySelector('#in-game-text-input-cursor-group');
+    const hiddenInput = document.querySelector('#in-game-text-input');
+    if (beforeCursor) beforeCursor.textContent = '';
+    if (afterCursor) afterCursor.textContent = '';
+    if (cursorGroup) cursorGroup.classList.remove('answer-correct', 'answer-wrong');
+    if (hiddenInput) hiddenInput.value = '';
+
+    waitingForKanjiNextRef.current = false;
+    document.querySelector('#in-game-kana-solution')?.classList.add('hidden-element');
+    document.querySelector('#in-game-kanji-usage')?.classList.add('hidden-element');
+    document.querySelector('#in-game-next-button')?.classList.add('hidden-element');
+    showNewCharacter();
+  }
+
+  function showKanjiAnswer(showNextButton = true) {
+    document.querySelector('#in-game-kana-solution')?.classList.add('hidden-element');
+    document.querySelector('#in-game-solution')?.classList.remove('hidden-element');
+    document.querySelector('#in-game-kanji-usage')?.classList.remove('hidden-element');
+    document.querySelector('#in-game-next-button')?.classList.toggle('hidden-element', !showNextButton);
+  }
+
+  function rateSrsCard(remembered) {
+    const card = srsCurrentCardRef.current;
+    if (!isSrsPractice || !card || waitingForKanjiNextRef.current) return;
+
+    recordKanjiSrsAnswer(card.jp_character, remembered);
+    updateCurrentGameStats(remembered ? 'correct' : 'wrong');
+    if (remembered) {
+      setScore(score => score + 1);
+    }
+
+    srsCurrentCardRef.current = null;
+    setSrsCardRevealed(false);
+    setSrsCardDragOffset(0);
+    setSrsCardSwipeDirection(null);
+    showNewCharacter();
+  }
+
+  function handleSrsCardPointerDown(event) {
+    if (srsCardSwipeDirection) return;
+    srsCardPointerStartRef.current = event.clientX;
+    srsCardDraggedRef.current = false;
+    event.currentTarget.setPointerCapture(event.pointerId);
+  }
+
+  function handleSrsCardPointerMove(event) {
+    if (srsCardPointerStartRef.current === null || srsCardSwipeDirection) return;
+    const offset = event.clientX - srsCardPointerStartRef.current;
+    if (Math.abs(offset) > 6) srsCardDraggedRef.current = true;
+    setSrsCardDragOffset(offset);
+  }
+
+  function handleSrsCardPointerUp(event) {
+    if (srsCardPointerStartRef.current === null) return;
+    const offset = event.clientX - srsCardPointerStartRef.current;
+    srsCardPointerStartRef.current = null;
+    if (srsCardSwipeDirection) {
+      setSrsCardDragOffset(0);
+      return;
+    }
+    if (Math.abs(offset) >= 140) {
+      setSrsCardSwipeDirection(offset < 0 ? 'left' : 'right');
+      return;
+    }
+    setSrsCardDragOffset(0);
   }
 
   /* 
@@ -745,7 +934,7 @@ export default function InGameCharacterShowAndInput() {
     // Mobile virtual keyboards (e.g. Android Gboard) send keydown events with
     // key "Unidentified", so typed text is read from the input event instead
     function handleInput(e) {
-      if (scoreWindowVisibleRef.current) return;
+      if (scoreWindowVisibleRef.current || waitingForKanjiNextRef.current) return;
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const previousAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
@@ -760,22 +949,42 @@ export default function InGameCharacterShowAndInput() {
       InGameTextInput.textContent = newAnswer;
       InGameTextInputAfterCursor.textContent = '';
       InGameTextInputAfterCursor.style.visibility = "hidden";
+      document.querySelector('#in-game-text-input-cursor-group').classList.remove('answer-wrong');
 
-      let key = newAnswer.slice(-1);
       if (newAnswer.length < previousAnswer.length) {
-        key = 'Backspace';
         updateCurrentGameStats("edit");
       } else if (newAnswer === previousAnswer) {
         return;
       }
-      checkAnswer(key);
+      checkAnswer();
     }
 
     function handleKeyDown(e) {
       if (scoreWindowVisibleRef.current) return;
+      if (waitingForKanjiNextRef.current) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          advanceToNextKanji();
+        }
+        return;
+      }
       // Let the input event handle keys coming from mobile IMEs
       if (e.key === 'Unidentified' || e.isComposing || e.keyCode === 229) return;
       if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const currentAnswer =
+          document.querySelector('#in-game-text-input-before-cursor').textContent +
+          document.querySelector('#in-game-text-input-after-cursor').textContent;
+        if (currentCharacterTypeRef.current === 'kanji' && /[\u3040-\u30ff]/.test(currentAnswer)) {
+          checkAnswer(true);
+        }
+        return;
+      }
+
+      const hiddenInput = document.querySelector('#in-game-text-input');
+      const isTextEdit = e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete';
+      if (e.target === hiddenInput && isTextEdit) return;
 
       // Check if key is a printable character and append it to the input field
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
@@ -793,10 +1002,13 @@ export default function InGameCharacterShowAndInput() {
         // Track edit
         updateCurrentGameStats("edit");
       } else if (e.key === 'Shift') {
-        document.querySelector('#in-game-kana-character').classList.add("font-forceDefault");
-        setTimeout(function () {
-          document.querySelector('#in-game-kana-character').classList.remove("font-forceDefault");
-        }, (1500))
+        const charDisplayElement = document.querySelector('#in-game-kana-character');
+        charDisplayElement.classList.add("font-forceDefault");
+        if (!isMacOS || localStorage.getItem("game-mode-random-fonts") === "true") {
+          setTimeout(function () {
+            charDisplayElement.classList.remove("font-forceDefault");
+          }, 1500)
+        }
       } else if (e.key === 'Escape') {
         setUserGameScoreWindowVisible(true);
       } else if (e.key === '?') {
@@ -822,29 +1034,38 @@ export default function InGameCharacterShowAndInput() {
       }
 
       syncHiddenInput();
-      checkAnswer(e.key);
+      document.querySelector('#in-game-text-input-cursor-group').classList.remove('answer-wrong');
+      checkAnswer();
     }
 
-    function checkAnswer(key) {
+    function checkAnswer(isSubmission = false) {
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const InGameUserCurrentAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
+      const typedAnswer = normalizeAnswer(InGameUserCurrentAnswer);
+      if (!typedAnswer) return;
 
-      // As soon as no valid answer starts with what was typed: reset the streak, and
-      // turn the answer red (only with hints on, the red text gives the mistake away)
+      const isKanaInput = currentCharacterTypeRef.current === 'kanji' &&
+        /[\u3040-\u30ff]/.test(InGameUserCurrentAnswer);
+      if (isKanaInput && !isSubmission) return;
+
       const answerGroup = document.querySelector('#in-game-text-input-cursor-group');
-      const typedAnswer = InGameUserCurrentAnswer.trim().toLowerCase();
-      const isOnTrack = inGameAnswerList.some(answer => answer.startsWith(typedAnswer));
+      const isCorrect = inGameAnswerListRef.current.includes(typedAnswer);
+      const isOnTrack = isSubmission
+        ? isCorrect
+        : inGameAnswerListRef.current.some(answer => answer.startsWith(typedAnswer));
       if (!isOnTrack) {
         setStreak(0);
       }
       answerGroup.classList.toggle("answer-wrong", !isOnTrack && hintsEnabled);
 
-      // Track wrong submissions: as soon as the typed text can't become a valid answer
-      // anymore, count one mistake for this kana (fixing and failing again doesn't add more)
       if (!isOnTrack && !wrongSubmissionCounted) {
         updateCurrentGameStats("wrongSubmission");
         wrongSubmissionCounted = true;
+        if (isSrsPractice && currentCharacterTypeRef.current === 'kanji') {
+          recordKanjiSrsAnswer(inGameKanaOnScreen, false);
+          srsFailedRef.current = true;
+        }
       }
 
 
@@ -854,15 +1075,18 @@ export default function InGameCharacterShowAndInput() {
 
       if (timeoutInProgress) return;
       //  Make that known and pass to the next character
-      if (inGameAnswerList.includes(InGameUserCurrentAnswer.trim().toLowerCase())) {
+      if (isCorrect) {
         updateCurrentGameStats("correct");
+        if (isSrsPractice && currentCharacterTypeRef.current === 'kanji' && !srsFailedRef.current) {
+          recordKanjiSrsAnswer(inGameKanaOnScreen, true);
+        }
         answerGroup.classList.add("answer-correct");
         document.querySelector('#in-game-kana-character').classList.add("answer-correct");
         wrongSubmissionCounted = false; // Reset for next character
         setScore(prevScore => prevScore + 1)
 
         // If the user is in word mode, show the translation of the word
-        if (localStorage.getItem("game-mode-word") === "true") {
+        if (currentCharacterTypeRef.current === 'word') {
           if (!document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
             document.querySelector('#in-game-kana-solution').classList.add("hidden-element");
           }
@@ -905,16 +1129,40 @@ export default function InGameCharacterShowAndInput() {
           }
         }
         else {
-          // Wait 200 milisecond and then clear the input field and show a new character
-          setTimeout(function () {
-            clearAnswerInput();
-            showNewCharacter();
-          }, 200)
+          if (currentCharacterTypeRef.current === 'kanji') {
+            if (isSrsPractice && !srsFailedRef.current) {
+              recordKanjiSrsAnswer(inGameKanaOnScreen, true);
+            }
+            waitingForKanjiNextRef.current = true;
+            showKanjiAnswer(!autoNext);
+            if (autoNext) {
+              timeoutInProgress = true;
+              kanjiAutoAdvanceTimeoutRef.current = window.setTimeout(() => {
+                clearAnswerInput();
+                waitingForKanjiNextRef.current = false;
+                document.querySelector('#in-game-solution').classList.add('hidden-element');
+                document.querySelector('#in-game-kana-solution').classList.add('hidden-element');
+                document.querySelector('#in-game-kanji-usage').classList.add('hidden-element');
+                document.querySelector('#in-game-next-button').classList.add('hidden-element');
+                showNewCharacter();
+                kanjiAutoAdvanceTimeoutRef.current = null;
+                timeoutInProgress = false;
+              }, 700);
+            }
+          } else {
+            // Kana continues to advance automatically.
+            setTimeout(function () {
+              clearAnswerInput();
+              showNewCharacter();
+            }, 200)
+          }
         }
       }
     }
-    if (localStorage.getItem("game-mode-touch") !== "true") {
+    if (!isSrsPractice && localStorage.getItem("game-mode-touch") !== "true") {
       const hiddenInput = document.querySelector('#in-game-text-input');
+      if (!hiddenInput) return;
+
       window.addEventListener('keydown', handleKeyDown);
       hiddenInput.addEventListener('input', handleInput);
       return () => {
@@ -985,15 +1233,16 @@ export default function InGameCharacterShowAndInput() {
         const lineHeightParsed = parseInt(lineHeight.split('px')[0]);
         const amountOfLinesTilAdjust = 2;
         const isWraped = kanaCharacter.getAttribute("data-word-wraped") === "true"
+        const displayLength = Number(kanaCharacter.dataset.displayLength) || kanaCharacter.textContent.length;
         if (isWraped & getFontSizeInVH(kanaCharacter) >= 35) {
           kanaCharacter.style.fontSize = "35vh";
           kanaCharacter.setAttribute("data-word-wraped", "false")
         }
         else if (isWraped) {
-          kanaCharacter.style.fontSize = (90 / kanaCharacter.textContent.length) + "vw";
+          kanaCharacter.style.fontSize = (90 / displayLength) + "vw";
           kanaCharacter.setAttribute("data-word-wraped", "true")
         } else if (!isWraped & kanaCharacter.offsetHeight >= (lineHeightParsed * amountOfLinesTilAdjust)) {
-          kanaCharacter.style.fontSize = (90 / kanaCharacter.textContent.length) + "vw";
+          kanaCharacter.style.fontSize = (90 / displayLength) + "vw";
           kanaCharacter.setAttribute("data-word-wraped", "true")
         }
       } catch (error) { }
@@ -1002,7 +1251,7 @@ export default function InGameCharacterShowAndInput() {
     // window.addEventListener('resize', onLineWrapDoSomething)
 
     //handles style changes on banner to check wrapping
-    setInterval(onLineWrapDoSomething, 100)
+    const lineWrapInterval = setInterval(onLineWrapDoSomething, 100)
 
     function handleFocus() {
       document.querySelector('#in-game-text-input').focus();
@@ -1018,13 +1267,18 @@ export default function InGameCharacterShowAndInput() {
         }
       }, 700);
     }
-    if (localStorage.getItem("game-mode-touch") !== "true") {
+    if (!isSrsPractice && localStorage.getItem("game-mode-touch") !== "true") {
       handleFocus();
     }
-    resetCurentGameStats();
-    showNewCharacter();
+    if (!hasStartedInitialCharacterRef.current) {
+      hasStartedInitialCharacterRef.current = true;
+      resetCurentGameStats();
+      showNewCharacter();
+    }
     return () => {
       clearInterval(cursorBlinkInterval.current);
+      clearInterval(lineWrapInterval);
+      window.clearTimeout(kanjiAutoAdvanceTimeoutRef.current);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -1045,6 +1299,8 @@ export default function InGameCharacterShowAndInput() {
   ########################
   */
   function onClickAnswerButtonHandler(event) {
+    if (waitingForKanjiNextRef.current || scoreWindowVisibleRef.current) return;
+
     if (onScreenSolution.includes(event.target.firstChild.textContent)) {
       updateCurrentGameStats("correct");
       const answerButton = event.currentTarget;
@@ -1053,9 +1309,32 @@ export default function InGameCharacterShowAndInput() {
         answerButton.classList.remove("touch-answer-correct");
       }, 300);
       setScore(onScreenScore + 1)
-      showNewCharacter();
+      if (currentCharacterTypeRef.current === 'kanji') {
+        if (isSrsPractice && !srsFailedRef.current) {
+          recordKanjiSrsAnswer(inGameKanaOnScreen, true);
+        }
+        waitingForKanjiNextRef.current = true;
+        showKanjiAnswer(!autoNext);
+        if (autoNext) {
+          kanjiAutoAdvanceTimeoutRef.current = window.setTimeout(() => {
+            waitingForKanjiNextRef.current = false;
+            document.querySelector('#in-game-solution').classList.add('hidden-element');
+            document.querySelector('#in-game-kana-solution').classList.add('hidden-element');
+            document.querySelector('#in-game-kanji-usage').classList.add('hidden-element');
+            document.querySelector('#in-game-next-button').classList.add('hidden-element');
+            showNewCharacter();
+            kanjiAutoAdvanceTimeoutRef.current = null;
+          }, 700);
+        }
+      } else {
+        showNewCharacter();
+      }
     } else {
       updateCurrentGameStats("wrong");
+      if (isSrsPractice && currentCharacterTypeRef.current === 'kanji' && !srsFailedRef.current) {
+        recordKanjiSrsAnswer(inGameKanaOnScreen, false);
+        srsFailedRef.current = true;
+      }
       // Short haptic feedback on phones that support it (Android)
       if (navigator.vibrate) {
         navigator.vibrate(50);
@@ -1069,10 +1348,13 @@ export default function InGameCharacterShowAndInput() {
   }
 
   function onClickChangeFontToDefault(event) {
-    document.querySelector('#in-game-kana-character').classList.add("font-forceDefault");
-    setTimeout(function () {
-      document.querySelector('#in-game-kana-character').classList.remove("font-forceDefault");
-    }, (1500))
+    const charDisplayElement = document.querySelector('#in-game-kana-character');
+    charDisplayElement.classList.add("font-forceDefault");
+    if (!isMacOS || localStorage.getItem("game-mode-random-fonts") === "true") {
+      setTimeout(function () {
+        charDisplayElement.classList.remove("font-forceDefault");
+      }, 1500)
+    }
   }
 
   // Mobile browsers only open the virtual keyboard when the input is focused by a user tap
@@ -1135,13 +1417,15 @@ export default function InGameCharacterShowAndInput() {
     </>
 
     // Make answer input via keyboard
-  } else {
+  } else if (!isSrsPractice) {
     inGameInputElement = <>
       <div id='in-game-text-input-cursor-group'>
         <span id='in-game-text-input-before-cursor'></span>
         <div id='in-game-text-input-cursor'></div>
         <span id='in-game-text-input-after-cursor'></span>
-        <span id='in-game-text-input-placeholder'>{t('gamePlaceholder')}</span>
+        <span id='in-game-text-input-placeholder'>
+          {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
+        </span>
       </div>
       <input 
         type="text" 
@@ -1154,6 +1438,29 @@ export default function InGameCharacterShowAndInput() {
       />
     </>
   }
+
+  const kanjiSrsCardBack = (
+    <div className='kanji-srs-card-back'>
+      <div className='kanji-srs-card-meaning'>{onScreenWordMeaning}</div>
+      <div className='kanji-answer-readings'>
+        <span>
+          <span className='kanji-answer-reading-label'>{t('kanjiOnShort')}</span>
+          {kanjiReadings[onScreenKana]?.onyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
+        </span>
+        <span>
+          <span className='kanji-answer-reading-label'>{t('kanjiKuShort')}</span>
+          {kanjiReadings[onScreenKana]?.kunyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
+        </span>
+      </div>
+      {onScreenKanjiUsage && (
+        <div className='kanji-srs-card-example'>
+          <strong>{onScreenKanjiUsage.word}</strong>
+          <span>{onScreenKanjiUsage.romanji}</span>
+          <span>{meaningOf(onScreenKanjiUsage.word, onScreenKanjiUsage.meaning)}</span>
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <>
@@ -1194,24 +1501,142 @@ export default function InGameCharacterShowAndInput() {
       <div className='in-game-game-screen' onClick={focusTextInput}>
 
         <div className='in-game-kana-area'>
-          <div id='in-game-kana-character' onClick={onClickChangeFontToDefault} className='in-game-kana-character'>
-            <p>
-              {onScreenKana}
+          {isSrsPractice ? (
+            <div
+              id='in-game-kana-character'
+              className={`in-game-kana-character kanji-srs-flip-card${isMacOS && localStorage.getItem("game-mode-random-fonts") !== "true" ? ' font-forceDefault' : ''}`}
+              style={{
+                transform: srsCardSwipeDirection
+                  ? `translate3d(${srsCardSwipeDirection === 'left' ? '-120vw' : '120vw'}, 0, 0) rotate(${srsCardSwipeDirection === 'left' ? '-8deg' : '8deg'})`
+                  : srsCardDragOffset !== 0
+                    ? `translate3d(${srsCardDragOffset}px, 0, 0)`
+                    : undefined
+              }}
+              onPointerDown={handleSrsCardPointerDown}
+              onPointerMove={handleSrsCardPointerMove}
+              onPointerUp={handleSrsCardPointerUp}
+              onPointerCancel={handleSrsCardPointerUp}
+              onClick={() => {
+                if (srsCardDraggedRef.current) {
+                  srsCardDraggedRef.current = false;
+                  return;
+                }
+                setSrsCardRevealed(revealed => !revealed);
+              }}
+              onTransitionEnd={event => {
+                if (event.target !== event.currentTarget || event.propertyName !== 'transform' || !srsCardSwipeDirection) return;
+                rateSrsCard(srsCardSwipeDirection === 'right');
+              }}
+            >
+              <div className={`kanji-srs-flip-inner${srsCardRevealed ? ' is-flipped' : ''}`}>
+                <div className='kanji-srs-flip-face kanji-srs-flip-front'>
+                  <span>{onScreenKana}</span>
+                </div>
+                <div className='kanji-srs-flip-face kanji-srs-flip-back'>
+                  {kanjiSrsCardBack}
+                </div>
+              </div>
+            </div>
+          ) : <div
+            id='in-game-kana-character'
+            onClick={onClickChangeFontToDefault}
+            className={`in-game-kana-character${isMacOS && localStorage.getItem("game-mode-random-fonts") !== "true" ? ' font-forceDefault' : ''}`}
+          >
+            <p className={
+              onScreenCharacterType === 'kanji' &&
+              isKanjiUsageQuestion &&
+              localStorage.getItem('game-mode-kanji-readings') === 'true'
+                ? 'kanji-reading-question-prompt'
+                : ''
+            }>
+              {onScreenCharacterType === 'kanji' &&
+              isKanjiUsageQuestion &&
+              localStorage.getItem('game-mode-kanji-readings') === 'true'
+                ? [...onScreenKana].map((character, index) => kanjiReadings[character] ? (
+                  <span
+                    className={`kanji-reading-question ${index === 0 ? 'reading-left' : 'reading-right'}`}
+                    key={`${character}-${index}`}
+                  >
+                    {index === 0 && (
+                      <span className='kanji-reading-question-columns'>
+                        <span className='kanji-reading-question-column'>
+                          <span className='kanji-reading-question-label'>{t('kanjiOnShort')}</span>
+                          {kanjiReadings[character].onyomi.length === 0
+                            ? <span>—</span>
+                            : kanjiReadings[character].onyomi.map((reading, readingIndex) => (
+                            <span key={`on-${readingIndex}`}>{toHiragana(reading)}</span>
+                          ))}
+                        </span>
+                        <span className='kanji-reading-question-column'>
+                          <span className='kanji-reading-question-label'>{t('kanjiKuShort')}</span>
+                          {kanjiReadings[character].kunyomi.length === 0
+                            ? <span>—</span>
+                            : kanjiReadings[character].kunyomi.map((reading, readingIndex) => (
+                            <span key={`kun-${readingIndex}`}>{toHiragana(reading)}</span>
+                          ))}
+                        </span>
+                      </span>
+                    )}
+                    <span className='kanji-reading-question-character'>{character}</span>
+                    {index > 0 && (
+                      <span className='kanji-reading-question-columns'>
+                      <span className='kanji-reading-question-column'>
+                        <span className='kanji-reading-question-label'>{t('kanjiOnShort')}</span>
+                        {kanjiReadings[character].onyomi.length === 0
+                          ? <span>—</span>
+                          : kanjiReadings[character].onyomi.map((reading, readingIndex) => (
+                          <span key={`on-${readingIndex}`}>{toHiragana(reading)}</span>
+                        ))}
+                      </span>
+                      <span className='kanji-reading-question-column'>
+                        <span className='kanji-reading-question-label'>{t('kanjiKuShort')}</span>
+                        {kanjiReadings[character].kunyomi.length === 0
+                          ? <span>—</span>
+                          : kanjiReadings[character].kunyomi.map((reading, readingIndex) => (
+                          <span key={`kun-${readingIndex}`}>{toHiragana(reading)}</span>
+                        ))}
+                      </span>
+                      </span>
+                    )}
+                  </span>
+                ) : character)
+                : onScreenKana}
             </p>
-          </div>
+          </div>}
           <div id='in-game-solution' className='in-game-solution hidden-element'>
             <span className='in-game-solution-romanji'>{onScreenSolution[0]}</span>
             <span className='in-game-solution-separator'> · </span>
             {onScreenWordMeaning}
+            {onScreenCharacterType === 'kanji' &&
+              !isKanjiUsageQuestion &&
+              localStorage.getItem('game-mode-kanji-readings') === 'true' &&
+              kanjiReadings[onScreenKana] && (
+                <span className='kanji-answer-readings'>
+                  <span>
+                    <span className='kanji-answer-reading-label'>{t('kanjiOnShort')}</span>
+                    {kanjiReadings[onScreenKana].onyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
+                  </span>
+                  <span>
+                    <span className='kanji-answer-reading-label'>{t('kanjiKuShort')}</span>
+                    {kanjiReadings[onScreenKana].kunyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
+                  </span>
+                </span>
+              )}
           </div>
           <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
             {Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution}
           </div>
-          <button id='in-game-next-button' className='in-game-next-button hidden-element'>
+          {onScreenKanjiUsage && (
+            <div id='in-game-kanji-usage' className='in-game-solution in-game-kanji-usage hidden-element'>
+              {!isKanjiUsageQuestion && <span className='kanji-usage-word'>{onScreenKanjiUsage.word}</span>}
+              <span className='kanji-usage-romanji'>{onScreenKanjiUsage.romanji}</span>
+            </div>
+          )}
+          <button id='in-game-next-button' className='in-game-next-button hidden-element' onClick={advanceToNextKanji}>
             {t('gameNext')}<span className='label-keyboard'> (Enter)</span>
           </button>
         </div>
-        {inGameInputElement}
+        {!isSrsPractice && inGameInputElement}
         <div className='hidden-text-for-font-loading'>
           {
             // Go with a for loop over every font, and create an element p with a class of the font
