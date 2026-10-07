@@ -46,23 +46,46 @@ function updateCheckedKana(title, isChecked) {
 }
 
 
+// How many groups with this tag are selected, read from localStorage so it always
+// matches the checkboxes (also when they were checked one by one)
+function getTagSelection(script, tag) {
+  let checkedKanas = [];
+  try {
+    checkedKanas = JSON.parse(localStorage.getItem('checkedKanas')) || [];
+  } catch (e) { }
+  const groups = Object.values(kanaCharacters[script]).filter(group => group.tags.includes(tag));
+  const selected = groups.filter(group => checkedKanas.includes(group.title)).length;
+  return { selected, total: groups.length, allSelected: selected === groups.length };
+}
+
 export default function KanaGroup(props) {
   const { t, language } = useLanguage();
-  const [mainKanaSelected, setMainKanaSelected] = useState(false);
-  const [dakutenKanaSelected, setDakutenKanaSelected] = useState(false);
   const [kanjiLevel, setKanjiLevel] = useState('N5');
   const [showAllKanjiThemes, setShowAllKanjiThemes] = useState(false);
   const groupRef = useRef(null);
   const isKanjiGroup = props.groupToShow === 'kanji';
 
+  // Selects every group with this tag, or clears them when they are all selected already
   const toggleSelectAll = (tag) => {
-    if (tag === "main_kana") {
-      setMainKanaSelected(!mainKanaSelected);
-      toggleCheckboxes("main_kana", !mainKanaSelected);
-    } else if (tag === "dakuten_kana") {
-      setDakutenKanaSelected(!dakutenKanaSelected);
-      toggleCheckboxes("dakuten_kana", !dakutenKanaSelected);
-    }
+    toggleCheckboxes(tag, !getTagSelection(props.groupToShow, tag).allSelected);
+  };
+
+  const renderSelectAllButton = (tag, label) => {
+    const { selected, total, allSelected } = getTagSelection(props.groupToShow, tag);
+    return (
+      <button
+        type="button"
+        className={`character-title-group-button select-all-button ${allSelected ? 'selected' : ''}`}
+        aria-pressed={allSelected}
+        onClick={() => toggleSelectAll(tag)}
+      >
+        <h3>
+          <span className="select-all-check" aria-hidden="true">{allSelected ? '✓' : '+'}</span>
+          {label}
+          <span className="select-all-count">{selected}/{total}</span>
+        </h3>
+      </button>
+    );
   };
 
   const toggleCheckboxes = (tag, isChecked) => {
@@ -119,7 +142,6 @@ export default function KanaGroup(props) {
                 className={`character-title-group-button kanji-level-tab${kanjiLevel === level ? ' selected' : ''}`}
                 onClick={() => {
                   setKanjiLevel(level);
-                  setMainKanaSelected(false);
                   setShowAllKanjiThemes(false);
                 }}
               >
@@ -128,12 +150,7 @@ export default function KanaGroup(props) {
             ))}
           </div>
         )}
-        {!isKanjiGroup && (
-          <div className={`character-title-group-button ${mainKanaSelected ? 'selected' : ''}`}
-               onClick={() => toggleSelectAll("main_kana")}>
-            <h3>{t('mainKana')}</h3>
-          </div>
-        )}
+        {!isKanjiGroup && renderSelectAllButton("main_kana", t('mainKana'))}
         {character_button_group_builder(props, "main_kana", language, kanjiLevel, {
           toggleKanjiTheme,
           isKanjiThemeSelected,
@@ -144,10 +161,7 @@ export default function KanaGroup(props) {
 
         {!isKanjiGroup && (
           <>
-            <div className={`character-title-group-button ${dakutenKanaSelected ? 'selected' : ''}`}
-                 onClick={() => toggleSelectAll("dakuten_kana")}>
-              <h3>{t('dakutenKana')}</h3>
-            </div>
+            {renderSelectAllButton("dakuten_kana", t('dakutenKana'))}
             {character_button_group_builder(props, "dakuten_kana", language)}
           </>
         )}
@@ -170,15 +184,16 @@ function character_button_group_builder(props, tag, language, kanjiLevel, kanjiT
     ? groups.filter(([, group]) => displayedThemes.includes(group.themeTitle))
     : groups;
   const renderCharacter = ([character, group]) => {
-    const { title, title_id, characters } = group;
+    const { title, characters } = group;
     const characterValues = Object.values(characters);
     const kanjiSample = characterValues[0];
     const characterTitle = props.groupToShow === 'kanji'
       ? kanjiSample.jp_character
       : group.title;
+    // Kana groups show the romaji range they cover (e.g. "ka–ko"), the full list is in the hover preview
     const characterText = props.groupToShow === 'kanji'
       ? kanjiSample.romanji[0]
-      : language === 'id' ? title_id || title : title;
+      : `${characterValues[0].romanji[0]}–${characterValues[characterValues.length - 1].romanji[0]}`;
 
     return (
       <label className={`character-checkbox-element${props.groupToShow === 'kanji' ? ' kanji-character-element' : ''}`} key={character}>

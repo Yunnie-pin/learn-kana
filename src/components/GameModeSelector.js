@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ButtonWithArrows from './ButtonWithArrows'
 import CheckMark from './CheckMark';
 import { useLanguage } from '../i18n';
 
@@ -39,22 +38,24 @@ export default function GameModeSelector(props) {
     localStorage.setItem('game-mode-kanji-readings', String(showReadings));
   }
 
-  const [practice, setPractice] = useState(() =>
-    localStorage.getItem('game-mode-srs') === 'true'
-      ? 'srs'
-      : localStorage.getItem('game-mode-practice') ||
-        (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters"));
+  const [practice, setPractice] = useState(() => {
+    const stored = localStorage.getItem('game-mode-practice') ||
+      (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
+    // "kanji" and "srs" used to be practice types: kanji now come with "characters"
+    // and SRS reviews are started from the menu (review banner / Kanji tab)
+    return ['words', 'mixed'].includes(stored) ? stored : 'characters';
+  });
   const [answerBy, setAnswerBy] = useState(() => {
     const storedTouch = localStorage.getItem("game-mode-touch");
     const useTouch = storedTouch === null ? touchDefault : storedTouch === "true";
-    return useTouch && !['words', 'mixed', 'srs'].includes(practice) ? "touch" : "typing";
+    return useTouch && !['words', 'mixed'].includes(practice) ? "touch" : "typing";
   });
 
   React.useEffect(() => {
     localStorage.setItem("game-mode-practice", practice);
-    localStorage.setItem("game-mode-srs", String(practice === 'srs'));
+    localStorage.setItem("game-mode-srs", "false");
     localStorage.setItem("game-mode-word", practice === "words");
-    if (['words', 'mixed', 'srs'].includes(practice) && answerBy === 'touch') {
+    if (['words', 'mixed'].includes(practice) && answerBy === 'touch') {
       setAnswerBy('typing');
     }
     localStorage.setItem("game-mode-touch", answerBy === "touch");
@@ -66,67 +67,74 @@ export default function GameModeSelector(props) {
 
   const handlePracticeChange = (value) => {
     setPractice(value);
-    if (['words', 'mixed', 'srs'].includes(value)) {
+    if (['words', 'mixed'].includes(value)) {
       setAnswerBy("typing");
     }
   };
 
-  // At start with react we check if we have values for the buttons saved on localStorage
-  React.useEffect(() => {
-    // Check if we have a value for the time-selector
-    if (localStorage.getItem("gameMode")) {
-      const gameMode = JSON.parse(localStorage.getItem("gameMode"));
-      if (gameMode.type === "kana-selector" && gameMode.value === -1) {
-        document.getElementById("time-selector-unlimited-radio-button").checked = true;
-      } else if (gameMode.type === "time-selector") {
-        document.getElementById("time-selector-radio-button").checked = true;
-        gameMode.value = 5;
-      } else if (gameMode.type === "kana-selector") {
-          document.getElementById("kana-selector-radio-button").checked = true;
-          gameMode.value = 5;
-      }
-      localStorage.setItem("gameMode", JSON.stringify(gameMode));
-    } else {
-      // Initialize localStorage
-      localStorage.setItem("gameMode", JSON.stringify({
-        "type": "kana-selector",
-        "value": -1
-      }));
-    }
-    // Only on first render: running it again would reset the chosen amount back to 5
-  }, []);
+  // Session length: a number of kanas, a number of minutes or unlimited.
+  // Stored as gameMode = { type: "kana-selector" | "time-selector", value }, value -1 means unlimited
+  const [limit, setLimit] = useState(() => {
+    let gameMode = null;
+    try {
+      gameMode = JSON.parse(localStorage.getItem("gameMode"));
+    } catch (e) { }
+    const isTime = gameMode?.type === "time-selector";
+    const isUnlimited = !gameMode || (!isTime && gameMode.value === -1);
+    const storedValue = Number(gameMode?.value) > 0 ? Number(gameMode.value) : 5;
+    return {
+      type: isUnlimited ? "unlimited" : isTime ? "time" : "count",
+      count: !isUnlimited && !isTime ? storedValue : 5,
+      minutes: isTime ? storedValue : 5,
+    };
+  });
 
-  const handleCheckMarked = (e) => {
-    // Mark the checkbox as checked
+  React.useEffect(() => {
     localStorage.setItem("gameMode", JSON.stringify(
-      {
-        "type": "kana-selector",
-        "value": -1
-      }
+      limit.type === "time"
+        ? { type: "time-selector", value: limit.minutes }
+        : { type: "kana-selector", value: limit.type === "count" ? limit.count : -1 }
     ));
-  }
+  }, [limit]);
+
+  // Kanas go up in steps of 5 until 50 and in steps of 10 after that, minutes in steps of 1
+  const changeLimit = (direction) => {
+    setLimit(current => {
+      if (current.type === "time") {
+        return { ...current, minutes: Math.max(1, current.minutes + direction) };
+      }
+      const step = current.count > 50 || (current.count === 50 && direction > 0) ? 10 : 5;
+      return { ...current, count: Math.max(5, current.count + direction * step) };
+    });
+  };
 
   return (
     <div className='game-mode-selector-group'>
       <h2>{t('modeTitle')}</h2>
-      <div className='game-mode-selector-button-group game-mode-presets'>
-        <ButtonWithArrows label={(count) => t('modeKanaCount', { count })} id="kana-selector"/>
-        <div className='button-with-arrows'>
-          <label data-gamemode="kana-selector">
-            <input type="radio" 
-              onClick={handleCheckMarked} 
-              name="button-with-arrows-group" 
-              id='time-selector-unlimited-radio-button' 
-              className="character-checkbox-input game-mode-select-checkbox">
-            </input>
-            <div className="character-checkbox-content">
-              <p>{t('modeUnlimited')}</p>
-            </div>
-          </label>
-        </div>
-        <ButtonWithArrows label={(count) => t('modeMinutes', { count })} id="time-selector"/>
-      </div>
       <div className='game-mode-selector-segments'>
+        <div className='limit-setting'>
+          <SegmentedControl
+            label={t('limitLabel')}
+            value={limit.type}
+            onChange={(type) => setLimit(current => ({ ...current, type }))}
+            options={[
+              { value: "count", label: t('limitCount') },
+              { value: "time", label: t('limitTime') },
+              { value: "unlimited", label: t('modeUnlimited') },
+            ]}
+          />
+          {limit.type !== "unlimited" && (
+            <div className='limit-stepper'>
+              <button type='button' aria-label={t('limitDecrease')} onClick={() => changeLimit(-1)}>−</button>
+              <span aria-live='polite'>
+                {limit.type === "time"
+                  ? t('modeMinutes', { count: limit.minutes })
+                  : t('modeKanaCount', { count: limit.count })}
+              </span>
+              <button type='button' aria-label={t('limitIncrease')} onClick={() => changeLimit(1)}>+</button>
+            </div>
+          )}
+        </div>
         <SegmentedControl
           label={t('practiceLabel')}
           value={practice}
@@ -134,9 +142,7 @@ export default function GameModeSelector(props) {
           options={[
             { value: "characters", label: t('practiceCharacters') },
             { value: "words", label: t('practiceWords') },
-            { value: "kanji", label: t('practiceKanji') },
             { value: "mixed", label: t('practiceMixed') },
-            { value: "srs", label: t('practiceSrs') },
           ]}
         />
         <SegmentedControl
@@ -145,7 +151,7 @@ export default function GameModeSelector(props) {
           onChange={setAnswerBy}
           options={[
             { value: "typing", label: t('answerTyping') },
-            { value: "touch", label: t('answerMultipleChoice'), disabled: ['words', 'mixed', 'srs'].includes(practice), disabledReason: t('answerMultipleChoiceDisabled') },
+            { value: "touch", label: t('answerMultipleChoice'), disabled: ['words', 'mixed'].includes(practice), disabledReason: t('answerMultipleChoiceDisabled') },
           ]}
         />
       </div>

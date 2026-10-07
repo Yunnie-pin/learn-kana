@@ -4,7 +4,7 @@ import GameModeSelector from './GameModeSelector'
 import ProgressStatsModal from './ProgressStatsModal'
 import { Link } from "react-router-dom";
 import { kanaCharacters } from '../kanaCharacters.js'
-import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
+import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
 
 const legacyKanjiGroupSelections = {
@@ -98,8 +98,10 @@ function getSelectionSummary() {
 export default function GameMenu() {
   const { t } = useLanguage();
   const [showStatsModal, setShowStatsModal] = useState(false);
-  // On phones only one kana group is shown at a time (see .kana-group-tabs in App.css)
+  // On phones only one group is shown at a time (.kana-group-tabs); on larger screens
+  // hiragana + katakana share one "Kana" tab next to a "Kanji" tab (.kana-group-tabs-wide)
   const [activeKanaTab, setActiveKanaTab] = useState('hiragana');
+  const isKanjiTab = activeKanaTab === 'kanji';
   // Bumped whenever the selection or game mode changes, so the summary below is recomputed
   const [, setSettingsVersion] = useState(0);
   const refreshSummary = () => setSettingsVersion(version => version + 1);
@@ -110,36 +112,36 @@ export default function GameMenu() {
   migrateKanjiGroupSelections();
 
   const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount } = getSelectionSummary();
-  const practice = localStorage.getItem('game-mode-practice') ||
+  const storedPractice = localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem('game-mode-word') === 'true' ? 'words' : 'characters');
-  const srsDueCount = practice === 'srs'
-    ? getSrsKanjiCharacters(getSelectedKanjiGroupTitles()).due.length
-    : 0;
+  // Older "kanji" / "srs" values count as "characters", like in GameModeSelector
+  const practice = ['words', 'mixed'].includes(storedPractice) ? storedPractice : 'characters';
+  const selectedKanjiGroups = getSelectedKanjiGroupTitles();
+  // SRS session for the Kanji tab: due kanji including ones never practiced
+  const srsDueCount = getSrsKanjiCharacters(selectedKanjiGroups).due.length;
+  // Kanji practiced before that are due again, offered in the banner at the top
+  const dueReviewCount = getDueReviewCount(selectedKanjiGroups);
   let summaryText;
   let canStart = true;
-  if (practice === 'srs') {
-    summaryText = t('menuSummaryKanjiSrs', { count: srsDueCount });
-    canStart = srsDueCount > 0;
-  } else if (practice === 'words' && wordCount === 0) {
+  if (practice === 'words' && wordCount === 0) {
     summaryText = t('menuSummaryNoWords');
-    canStart = false;
-  } else if (practice === 'kanji' && kanjiCount === 0) {
-    summaryText = t('menuSummaryNoKanji');
     canStart = false;
   } else if (practice === 'mixed' && kanaCount + kanjiCount + wordCount === 0) {
     summaryText = t('menuSummaryNone');
     canStart = false;
-  } else if (practice === 'characters' && kanaCount === 0) {
+  } else if (practice === 'characters' && kanaCount + kanjiCount === 0) {
     summaryText = t('menuSummaryNone');
     canStart = false;
   } else if (practice === 'words') {
     summaryText = t('menuSummaryWords', { words: wordCount, groups: kanaGroupCount });
-  } else if (practice === 'kanji') {
-    summaryText = t('menuSummaryCharacters', { groups: kanjiGroupCount, characters: kanjiCount });
   } else if (practice === 'mixed') {
     summaryText = t('menuSummaryMixed', { kanas: kanaCount, kanji: kanjiCount, words: wordCount });
   } else {
-    summaryText = t('menuSummaryCharacters', { groups: kanaGroupCount, characters: kanaCount });
+    summaryText = t('menuSummaryCharacters', {
+      groups: kanaGroupCount + kanjiGroupCount,
+      kanas: kanaCount,
+      kanji: kanjiCount,
+    });
   }
 
   const handleButtonClick = () => {
@@ -155,52 +157,97 @@ export default function GameMenu() {
     });
 
     localStorage.setItem('checkedKanas', JSON.stringify([...checkedChars]));
-    localStorage.setItem('game-mode-srs', String(practice === 'srs'));
+    localStorage.setItem('game-mode-srs', 'false');
 
   };
 
+  // SRS is a one-off session: the practice type picked in the menu stays as it is,
+  // and GameModeSelector sets game-mode-srs back to false when the menu opens again
+  const startSrsReview = () => {
+    localStorage.setItem('game-mode-srs', 'true');
+  };
+
   return (
-    <div className={`game-menu-page mobile-tab-${activeKanaTab}`}>
+    <div className={`game-menu-page tab-${activeKanaTab}`}>
       <h2 id='game-menu-title'>{t('menuTitle')}</h2>
-      <div className='kana-group-tabs'>
-        {['hiragana', 'katakana', 'kanji'].map((group) => (
+      {dueReviewCount > 0 && (
+        <div className='srs-review-banner' role='status'>
+          <span>{t('kanjiSrsDue', { count: dueReviewCount })}</span>
+          <Link to='/learn-kana∕game' className='srs-review-banner-button' onClick={startSrsReview}>
+            {t('srsBannerStart')}
+          </Link>
+        </div>
+      )}
+      <div className='game-menu-groups'>
+        <div className='kana-group-tabs-wide'>
           <button
-            key={group}
             type='button'
-            className={`kana-group-tab ${activeKanaTab === group ? 'active' : ''}`}
-            onClick={() => setActiveKanaTab(group)}
+            className={`kana-group-tab ${isKanjiTab ? '' : 'active'}`}
+            onClick={() => setActiveKanaTab('hiragana')}
           >
-            {group === 'hiragana' ? 'Hiragana' : group === 'katakana' ? 'Katakana' : 'Kanji'}
+            Kana
           </button>
-        ))}
-      </div>
-      <div className={`kana-group-selector show-${activeKanaTab}`}>
-        <KanaGroup groupToShow="hiragana" onSelectionChange={refreshSummary} />
-        <KanaGroup groupToShow="katakana" onSelectionChange={refreshSummary} />
-      </div>
-      <div className="kana-group-kanji-block">
-        <KanaGroup groupToShow="kanji" onSelectionChange={refreshSummary} />
-      </div>
-      <div className='game-mode-selector'>
-        <GameModeSelector onChange={refreshSummary} />
-      </div>
-      <div className='game-menu-start-bar'>
-        <button className='neoButton stats-button-floating' onClick={() => setShowStatsModal(true)} title={t('menuStats')}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M3 13h2v8H3v-8zm4-6h2v14H7V7zm4-4h2v18h-2V3zm4 8h2v10h-2V11zm4-6h2v16h-2V5z"/>
-          </svg>
-        </button>
-        <div className='game-menu-start'>
-          <p className={'game-menu-summary' + (canStart ? '' : ' game-menu-summary-warning')}>{summaryText}</p>
-          {canStart ? (
-            <Link to='/learn-kana∕game'>
-              <button className='glowButton' onClick={handleButtonClick}>{t('menuStart')}</button>
-            </Link>
-          ) : (
-            <button className='glowButton' disabled>{t('menuStart')}</button>
+          <button
+            type='button'
+            className={`kana-group-tab ${isKanjiTab ? 'active' : ''}`}
+            onClick={() => setActiveKanaTab('kanji')}
+          >
+            Kanji
+          </button>
+        </div>
+        <div className='kana-group-tabs'>
+          {['hiragana', 'katakana', 'kanji'].map((group) => (
+            <button
+              key={group}
+              type='button'
+              className={`kana-group-tab ${activeKanaTab === group ? 'active' : ''}`}
+              onClick={() => setActiveKanaTab(group)}
+            >
+              {group === 'hiragana' ? 'Hiragana' : group === 'katakana' ? 'Katakana' : 'Kanji'}
+            </button>
+          ))}
+        </div>
+        <div className={`kana-group-selector show-${activeKanaTab}`}>
+          <KanaGroup groupToShow="hiragana" onSelectionChange={refreshSummary} />
+          <KanaGroup groupToShow="katakana" onSelectionChange={refreshSummary} />
+        </div>
+        <div className="kana-group-kanji-block">
+          {kanjiCount > 0 && (
+            <div className='kanji-srs-start'>
+              {srsDueCount > 0 ? (
+                <Link to='/learn-kana∕game' className='srs-review-banner-button' onClick={startSrsReview}>
+                  {t('srsStartButton', { count: srsDueCount })}
+                </Link>
+              ) : (
+                <p>{t('kanjiSrsNothingDue')}</p>
+              )}
+            </div>
           )}
+          <KanaGroup groupToShow="kanji" onSelectionChange={refreshSummary} />
         </div>
       </div>
+      <aside className='game-menu-side'>
+        <div className='game-mode-selector'>
+          <GameModeSelector onChange={refreshSummary} />
+        </div>
+        <div className='game-menu-start-bar'>
+          <button className='neoButton stats-button-floating' onClick={() => setShowStatsModal(true)} title={t('menuStats')}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M3 13h2v8H3v-8zm4-6h2v14H7V7zm4-4h2v18h-2V3zm4 8h2v10h-2V11zm4-6h2v16h-2V5z"/>
+            </svg>
+          </button>
+          <div className='game-menu-start'>
+            <p className={'game-menu-summary' + (canStart ? '' : ' game-menu-summary-warning')}>{summaryText}</p>
+            {canStart ? (
+              <Link to='/learn-kana∕game'>
+                <button className='glowButton' onClick={handleButtonClick}>{t('menuStart')}</button>
+              </Link>
+            ) : (
+              <button className='glowButton' disabled>{t('menuStart')}</button>
+            )}
+          </div>
+        </div>
+      </aside>
       <ProgressStatsModal visible={showStatsModal} onClose={() => setShowStatsModal(false)} />
     </div>
   )

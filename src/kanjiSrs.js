@@ -102,3 +102,14 @@ export function recordKanjiSrsAnswer(character, correct, now = Date.now()) {
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
 }
+
+// Kanji from the selected groups that were practiced before and are due again.
+// Unlike getSrsKanjiCharacters(...).due this leaves out kanji that were never practiced.
+export function getDueReviewCount(selectedGroups, now = Date.now()) {
+  const progress = readProgress();
+  const selected = new Set(selectedGroups);
+  return getAllKanjiCharacters().filter(character => {
+    const dueAt = Number(progress[character.jp_character]?.dueAt);
+    return selected.has(character.groupTitle) && Number.isFinite(dueAt) && dueAt <= now;
+  }).length;
+}
