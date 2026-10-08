@@ -5,7 +5,8 @@ import { toHiragana } from 'wanakana';
 import { kanjiReadings } from '../kanjiReadings.js'
 import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
 import { getListForPractice } from '../practiceList.js'
-import { findKanaForAnswer, recordConfusion } from '../confusions.js'
+import { findKanaForAnswer, getSimilarKana, recordConfusion } from '../confusions.js'
+import { chooseTouchOptions } from '../touchAnswers.js'
 import { speakIfEnabled } from '../speech.js'
 import Icon from './Icon.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
@@ -374,86 +375,19 @@ export default function InGameCharacterShowAndInput() {
   }
 
 
-  // Helper function to get n random unique elements from an array
-  function sample(inputArray, numberOfOutputs, onePerVocal = false) {
-    const vocals = ["a", "i", "u", "e", "o"];
-    let current_vocal = 0;
-
-    // Create a copy of the original array to avoid modifying it
-    const copyArray = [...inputArray];
-    const sampledElements = [];
-
-    if (inputArray.length < numberOfOutputs) {
-      inputArray = inputArray.concat(inputArray);
-      onePerVocal = false;
-    }
-
-    const hasVocalHints = copyArray.some(item => item && item.vocal && vocals.includes(item.vocal));
-    if (onePerVocal && !hasVocalHints) {
-      onePerVocal = false;
-    }
-
-    // If n is greater than the size of a, set possible unique outputs to the size of array
-    const numberOfUniqueOutputs = Math.min(numberOfOutputs, copyArray.length);
-
-    for (let i = 0; i < numberOfUniqueOutputs; i++) {
-      while (true) {
-        const randomIndex = Math.floor(Math.random() * copyArray.length);
-        if (onePerVocal) {
-          const candidate = copyArray[randomIndex];
-          if (candidate?.vocal && vocals.includes(candidate.vocal)) {
-            if (candidate.vocal === vocals[current_vocal]) {
-              current_vocal++;
-            } else {
-              continue;
-            }
-          } else {
-            onePerVocal = false;
-          }
-        }
-        sampledElements.push(copyArray[randomIndex]);
-        // Remove the selected element from the copyArray to avoid duplicates
-        copyArray.splice(randomIndex, 1);
-        break;
-      }
-    }
-
-    // If still space, fill it with duplicate elements
-    const remainingOutputs = numberOfOutputs - numberOfUniqueOutputs;
-    for (let i = 0; i < remainingOutputs; i++) {
-      const randomIndex = Math.floor(Math.random() * numberOfUniqueOutputs);
-      sampledElements.push(sampledElements[randomIndex]);
-    }
-
-    return sampledElements;
-  }
-
   /* 
   ##########################################
   # Creates and handles the touch answers #
   ##########################################
   */
+  // Kana the user mixes up (or that look alike) are offered as wrong options more often
   function fillTouchAnswers(picked_kana) {
-    const useVocalSampling = Boolean(picked_kana && picked_kana.vocal);
-    const possibleAnswers = sample(charactersToShow, 5, useVocalSampling);
+    const similar = picked_kana.type === 'kana' ? getSimilarKana(picked_kana.jp_character) : [];
     const elements = document.querySelectorAll('.in-game-touch-answer>p');
-
-    if (useVocalSampling) {
-      for (let i = 0; i < possibleAnswers.length; i++) {
-        if (possibleAnswers[i].vocal === picked_kana.vocal) {
-          Object.assign(possibleAnswers[i], picked_kana);
-        }
-      }
-    } else {
-      const targetIndex = Math.floor(Math.random() * possibleAnswers.length);
-      Object.assign(possibleAnswers[targetIndex], picked_kana);
-    }
-
-    // Go over the elements
-    for (let i = 0; i < elements.length; i++) {
-      const answer = Array.isArray(possibleAnswers[i]?.romanji) ? possibleAnswers[i].romanji : [possibleAnswers[i]?.romanji || ''];
-      elements[i].textContent = answer[0];
-    }
+    const options = chooseTouchOptions(picked_kana, charactersToShow, similar, elements.length || 5);
+    elements.forEach((element, i) => {
+      element.textContent = options[i] || '';
+    });
   }
 
   function resetCurentGameStats() {

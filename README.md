@@ -22,7 +22,7 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 
 **Game modes**
 - Practice **characters** or **words** (~600 beginner words, only the ones you can read with the groups you picked).
-- Answer by **typing** the romaji or by **multiple choice**.
+- Answer by **typing** the romaji or by **multiple choice**. Multiple choice offers kana that look alike (シ / ツ, ぬ / め, ...) and the ones you mix up the most as wrong answers.
 - Play a fixed amount (*Give me 10 Kanas*), against the clock (*Give me 5 minutes*) or without a limit.
 - Options: hints on/off, handwritten fonts, auto next, sound (reads each kana or word aloud in Japanese when you get it right).
 
@@ -65,6 +65,7 @@ Requires Node.js 18 or newer.
 npm install
 npm start          # development server on http://localhost:3000
 npm run build      # production build in ./build
+npm run fonts      # regenerate the subset fonts after adding kana, words or kanji
 ```
 
 ## Running with Docker
@@ -79,7 +80,6 @@ The app is served at `http://localhost:<APP_PORT>` (default `8080`). To change t
 ## Ideas to implement
 - A beginner mode that slowly includes more characters into the mix. ❔
 - A help window showing Kanas with their romanjis, together with similar Kanas. ❔
-- Smaller font files (the Japanese fonts are ~47 MB in total). ❔
 - Online sync of progress and settings. ❔
 
 ## Privacy & Analytics

@@ -1,4 +1,4 @@
-import { findKanaForAnswer, getConfusionPairs, readConfusions, recordConfusion } from './confusions.js';
+import { findKanaForAnswer, getConfusionPairs, getSimilarKana, readConfusions, recordConfusion } from './confusions.js';
 
 beforeEach(() => localStorage.clear());
 
@@ -37,4 +37,13 @@ test('broken stored data is ignored', () => {
   localStorage.setItem('kanaConfusions', 'not json');
   expect(readConfusions()).toEqual({});
   expect(getConfusionPairs(undefined)).toEqual([]);
+});
+
+test('similar kana list the user mix-ups first, most frequent first, then the look-alikes', () => {
+  recordConfusion('ツ', 'ン');
+  recordConfusion('ソ', 'ツ');
+  recordConfusion('ソ', 'ツ');
+  expect(getSimilarKana('ツ')).toEqual(['ソ', 'ン', 'シ']);
+  expect(getSimilarKana('ぬ')).toEqual(['め']);
+  expect(getSimilarKana('山')).toEqual([]);
 });

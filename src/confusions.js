@@ -39,6 +39,36 @@ export function findKanaForAnswer(candidates, answer, shown) {
   return (sameScript || matches[0])?.jp_character || null;
 }
 
+// Kana that look alike, so multiple choice can offer them even before the user mixed them up
+const LOOKALIKE_GROUPS = [
+  'シツ', 'ソン', 'クケタ', 'ウワフ', 'コユロ', 'チテ', 'スヌ', 'アマ', 'ルレ', 'ナメ',
+  'ぬめ', 'ねれわ', 'るろ', 'はほ', 'きさち', 'いり', 'こに', 'あお', 'けは', 'たな',
+];
+
+// Kana that `character` gets mixed up with: the user's own mix-ups first (most frequent first,
+// both directions), then the built-in look-alikes
+export function getSimilarKana(character, confusions = readConfusions()) {
+  const counts = {};
+  for (const [answeredAs, entry] of Object.entries(confusions[character] || {})) {
+    counts[answeredAs] = (counts[answeredAs] || 0) + (entry.count || 0);
+  }
+  for (const [shown, answers] of Object.entries(confusions)) {
+    if (shown !== character && answers?.[character]) {
+      counts[shown] = (counts[shown] || 0) + (answers[character].count || 0);
+    }
+  }
+  const fromHistory = Object.keys(counts)
+    .filter(other => counts[other] > 0)
+    .sort((a, b) => counts[b] - counts[a]);
+
+  const lookalikes = LOOKALIKE_GROUPS
+    .filter(group => Array.from(group).includes(character))
+    .flatMap(group => Array.from(group))
+    .filter(other => other !== character);
+
+  return [...new Set([...fromHistory, ...lookalikes])];
+}
+
 // Mix-ups in both directions added together, most frequent first
 export function getConfusionPairs(confusions, limit = 8) {
   const pairs = {};

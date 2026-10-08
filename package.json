@@ -30,10 +30,12 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "fonts": "node scripts/subset-fonts.mjs"
   },
   "devDependencies": {
-    "@craco/craco": "^7.1.0"
+    "@craco/craco": "^7.1.0",
+    "subset-font": "^2.9.0"
   },
   "eslintConfig": {
     "extends": [

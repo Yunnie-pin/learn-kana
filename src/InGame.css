@@ -9,7 +9,7 @@
 @font-face {
   font-family: "KleeOne";
   src: local("KleeOne"),
-    url("./fonts/Klee_One/KleeOne-Regular.ttf") format("truetype");
+    url("./fonts/subset/KleeOne-Regular.woff2") format("woff2");
   font-weight: bold;
   font-display: swap;
 }
@@ -18,7 +18,7 @@
 @font-face {
   font-family: "Kaisei_Tokumin";
   src: local("Kaisei_Tokumin"),
-    url("./fonts/Kaisei_Tokumin/KaiseiTokumin-Regular.ttf") format("truetype");
+    url("./fonts/subset/KaiseiTokumin-Regular.woff2") format("woff2");
   font-weight: bold;
   font-display: block;
 }
@@ -26,7 +26,7 @@
 @font-face {
   font-family: "Noto_Serif_JP";
   src: local("Noto_Serif_JP"),
-    url("./fonts/Noto_Serif_JP/NotoSerifJP-Regular.otf") format("opentype");
+    url("./fonts/subset/NotoSerifJP-Regular.woff2") format("woff2");
   font-weight: bold;
   font-display: swap;
 }
@@ -34,7 +34,7 @@
 @font-face {
   font-family: "Shippori_Mincho";
   src: local("Shippori_Mincho"),
-    url("./fonts/Shippori_Mincho/ShipporiMincho-Regular.ttf") format("truetype");
+    url("./fonts/subset/ShipporiMincho-Regular.woff2") format("woff2");
   font-weight: bold;
   font-display: block;
 }
@@ -42,7 +42,7 @@
 @font-face {
   font-family: "Tsukimi_Rounded";
   src: local("Tsukimi_Rounded"),
-    url("./fonts/Tsukimi_Rounded/TsukimiRounded-Regular.ttf") format("truetype");
+    url("./fonts/subset/TsukimiRounded-Regular.woff2") format("woff2");
   font-weight: bold;
   font-display: block;
 }
@@ -50,7 +50,7 @@
 @font-face {
   font-family: "YokoMoji";
   src: local("YokoMoji"),
-    url("./fonts/YokoMoji/yokomoji.otf") format("opentype");
+    url("./fonts/subset/yokomoji.woff2") format("woff2");
   font-weight: bold;
   font-display: block;
 }
@@ -58,7 +58,7 @@
 @font-face {
   font-family: "LeftHanded";
   src: local("freefont_lefthanded"),
-    url("./fonts/freefont_lefthanded/freefont_lefthanded.otf") format("opentype");
+    url("./fonts/subset/freefont_lefthanded.woff2") format("woff2");
   font-weight: bold;
   font-display: block;
 }
@@ -66,7 +66,7 @@
 @font-face {
   font-family: "JiyunoTsubasa";
   src: local("JiyunoTsubasa"),
-    url("./fonts/JiyunoTsubasa/JiyunoTsubasa.ttf") format("truetype");
+    url("./fonts/subset/JiyunoTsubasa.woff2") format("woff2");
   font-weight: bold;
   font-display: block;
 }
@@ -74,7 +74,7 @@
 @font-face {
   font-family: "YujiBoku";
   src: local("Yuji_Boku"),
-    url("./fonts/Yuji_Boku/YujiBoku-Regular.ttf") format("truetype");
+    url("./fonts/subset/YujiBoku-Regular.woff2") format("woff2");
   font-weight: bold;
   font-display: block;
 }
