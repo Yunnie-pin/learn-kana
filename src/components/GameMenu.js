@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import KanaGroup from './KanaGroup'
 import GameModeSelector from './GameModeSelector'
 import ProgressStatsModal from './ProgressStatsModal'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
@@ -97,6 +97,7 @@ function getSelectionSummary() {
 
 export default function GameMenu() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [showStatsModal, setShowStatsModal] = useState(false);
   // On phones only one group is shown at a time (.kana-group-tabs); on larger screens
   // hiragana + katakana share one "Kana" tab next to a "Kanji" tab (.kana-group-tabs-wide)
@@ -183,6 +184,13 @@ export default function GameMenu() {
     localStorage.setItem('game-mode-srs', 'true');
   };
 
+  // Starts a game with only the given characters, through the same filter as "Try Problematics"
+  const practiceWeakest = (characters) => {
+    handleButtonClick();
+    localStorage.setItem('problematicKanasFilter', JSON.stringify(characters));
+    navigate('/learn-kana∕game');
+  };
+
   return (
     <div className={`game-menu-page tab-${activeKanaTab}`}>
       <h2 id='game-menu-title'>{t('menuTitle')}</h2>
@@ -264,7 +272,11 @@ export default function GameMenu() {
           </div>
         </div>
       </aside>
-      <ProgressStatsModal visible={showStatsModal} onClose={() => setShowStatsModal(false)} />
+      <ProgressStatsModal
+        visible={showStatsModal}
+        onClose={() => setShowStatsModal(false)}
+        onPracticeWeakest={practiceWeakest}
+      />
     </div>
   )
 }

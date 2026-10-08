@@ -10,6 +10,7 @@ import './fonts/Belanosima/Belanosima-SemiBold.ttf'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { loadAnalytics } from './analytics';
 import { LanguageProvider } from './i18n';
+import { runStatsMaintenance } from './statsStorage';
 
 
 
@@ -38,6 +39,13 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+// Keeps the saved practice history small; does nothing when it already ran today
+try {
+  runStatsMaintenance();
+} catch (error) {
+  console.warn('Stats maintenance failed.', error);
+}
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

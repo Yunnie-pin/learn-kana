@@ -2,9 +2,10 @@ import React from 'react'
 import {  useState, useEffect, useRef, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toHiragana } from 'wanakana';
-import { kanaCharacters } from '../kanaCharacters.js'
 import { kanjiReadings } from '../kanjiReadings.js'
 import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
+import { getListForPractice } from '../practiceList.js'
+import { findKanaForAnswer, recordConfusion } from '../confusions.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
 
@@ -290,6 +291,8 @@ export default function InGameCharacterShowAndInput() {
   const inGameAnswerListRef = useRef([]);
   const srsQueueRef = useRef(null);
   const srsFailedRef = useRef(false);
+  // A typed mix-up ("shi" for ツ) is recorded once per character shown
+  const confusionRecordedRef = useRef(false);
   const srsCurrentCardRef = useRef(null);
   const srsCardPointerStartRef = useRef(null);
   const srsCardDraggedRef = useRef(false);
@@ -368,67 +371,6 @@ export default function InGameCharacterShowAndInput() {
     autoNext = true;
   }
 
-
-  function getListOfKanas(charGroups) {
-    let output = []
-    const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
-    Object.entries(kanaCharacters).forEach(([categoryKey, category]) => {
-      if (categoryKey === 'words') return;
-      Object.entries(category).forEach(([groupKey, charGroup]) => {
-        if (!charGroup || !charGroup.title || !selectedGroups.includes(charGroup.title)) return;
-        Object.entries(charGroup.characters).forEach(([charKey, char]) => {
-          if (!char || typeof char !== 'object') return;
-          const normalizedChar = { ...char };
-          if (categoryKey === 'kanji') {
-            normalizedChar.type = 'kanji';
-          } else {
-            normalizedChar.vocal = normalizedChar.vocal || charKey;
-            normalizedChar.type = 'kana';
-          }
-          output.push(normalizedChar);
-        });
-      });
-    });
-    return output;
-  }
-
-  function getListOfWords(charGroups) {
-    let output = []
-    const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
-    Object.entries(kanaCharacters.words).forEach(([key, value]) => {
-      let ignoreWord = false;
-      for (let i = 0; i < value.hiragana_groups.length; i++) {
-        if (!selectedGroups.includes(value.hiragana_groups[i])) {
-          ignoreWord = true;
-        }
-      }
-      for (let i = 0; i < value.katakana_groups.length; i++) {
-        if (!selectedGroups.includes(value.katakana_groups[i])) {
-          ignoreWord = true;
-        }
-      }
-      if (!ignoreWord) {
-        output.push({
-          "jp_character": value.jp_character,
-          "romanji": value.romanji,
-          "sound": value.sound,
-          "meaning": value.meaning,
-          "type": "word",
-        })
-      }
-    })
-    return output;
-  }
-
-  function getListForPractice(charGroups, mode) {
-    const characters = getListOfKanas(charGroups);
-    if (mode === 'mixed') {
-      return [...characters, ...getListOfWords(charGroups)];
-    }
-    if (mode === 'words') return getListOfWords(charGroups);
-    // "characters": every selected kana and kanji group
-    return characters;
-  }
 
   // Helper function to get n random unique elements from an array
   function sample(inputArray, numberOfOutputs, onePerVocal = false) {
@@ -695,6 +637,7 @@ export default function InGameCharacterShowAndInput() {
     inGameKanaOnScreen = pickedElement.jp_character;
     currentCharacterTypeRef.current = pickedElement.type;
     srsFailedRef.current = false;
+    confusionRecordedRef.current = false;
     srsCurrentCardRef.current = isSrsPractice ? pickedElement : null;
     setOnScreenCharacterType(pickedElement.type);
 
@@ -1062,6 +1005,16 @@ export default function InGameCharacterShowAndInput() {
       }
       answerGroup.classList.toggle("answer-wrong", !isOnTrack && hintsEnabled);
 
+      // Only a finished answer: "n" on the way to "na" is not a mix-up with ん
+      if (!isCorrect && (!isOnTrack || isSubmission) && !confusionRecordedRef.current &&
+        currentCharacterTypeRef.current === 'kana') {
+        const answeredAs = findKanaForAnswer(charactersToShow, typedAnswer, inGameKanaOnScreen);
+        if (answeredAs) {
+          recordConfusion(inGameKanaOnScreen, answeredAs);
+          confusionRecordedRef.current = true;
+        }
+      }
+
       if (!isOnTrack && !wrongSubmissionCounted) {
         updateCurrentGameStats("wrongSubmission");
         wrongSubmissionCounted = true;
@@ -1334,6 +1287,10 @@ export default function InGameCharacterShowAndInput() {
       }
     } else {
       updateCurrentGameStats("wrong");
+      if (currentCharacterTypeRef.current === 'kana') {
+        const pickedAnswer = normalizeAnswer(event.target.firstChild.textContent);
+        recordConfusion(inGameKanaOnScreen, findKanaForAnswer(charactersToShow, pickedAnswer, inGameKanaOnScreen));
+      }
       if (isSrsPractice && currentCharacterTypeRef.current === 'kanji' && !srsFailedRef.current) {
         recordKanjiSrsAnswer(inGameKanaOnScreen, false);
         srsFailedRef.current = true;

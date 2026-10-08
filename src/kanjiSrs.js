@@ -113,3 +113,51 @@ export function getDueReviewCount(selectedGroups, now = Date.now()) {
     return selected.has(character.groupTitle) && Number.isFinite(dueAt) && dueAt <= now;
   }).length;
 }
+
+export function getKanjiSrsProgress() {
+  return readProgress();
+}
+
+// "new" (never reviewed), "learning" (missed or fewer than 3 correct reviews in a row),
+// "young" (next review within 3 weeks) or "mature"
+export function getKanjiSrsStage(entry) {
+  if (!entry || !Number.isFinite(Number(entry.dueAt))) return 'new';
+  const repetitions = Number(entry.repetitions) || 0;
+  const intervalDays = Number(entry.intervalDays) || 0;
+  if (repetitions < 3) return 'learning';
+  return intervalDays >= 21 ? 'mature' : 'young';
+}
+
+// Stage counts, kanji due now, and how many more come due on each of the next `days` days
+export function getKanjiSrsSummary(kanji = getAllKanjiCharacters(), now = Date.now(), days = 7) {
+  const progress = readProgress();
+  const stages = { new: 0, learning: 0, young: 0, mature: 0 };
+  const forecast = Array(days).fill(0);
+  let dueNow = 0;
+
+  const startOfToday = new Date(now);
+  startOfToday.setHours(0, 0, 0, 0);
+  const dayStarts = Array.from({ length: days + 1 }, (_, index) => {
+    const date = new Date(startOfToday);
+    date.setDate(date.getDate() + index + 1);
+    return date.getTime();
+  });
+
+  for (const character of kanji) {
+    const entry = progress[character.jp_character];
+    const stage = getKanjiSrsStage(entry);
+    stages[stage]++;
+    if (stage === 'new') continue;
+
+    const dueAt = Number(entry.dueAt);
+    if (dueAt <= now) {
+      dueNow++;
+      continue;
+    }
+    // Later today counts as day 0, tomorrow as day 1, ...
+    const day = dayStarts.findIndex(dayEnd => dueAt < dayEnd);
+    if (day !== -1 && day < days) forecast[day]++;
+  }
+
+  return { stages, dueNow, forecast, total: kanji.length };
+}

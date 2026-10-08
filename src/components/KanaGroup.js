@@ -61,7 +61,6 @@ function getTagSelection(script, tag) {
 export default function KanaGroup(props) {
   const { t, language } = useLanguage();
   const [kanjiLevel, setKanjiLevel] = useState('N5');
-  const [showAllKanjiThemes, setShowAllKanjiThemes] = useState(false);
   const groupRef = useRef(null);
   const isKanjiGroup = props.groupToShow === 'kanji';
 
@@ -115,16 +114,16 @@ export default function KanaGroup(props) {
     }
   };
 
-  const isKanjiThemeSelected = (themeTitle) => {
+  // Selected / total groups of a kanji theme, shown on its button like the kana select-all buttons
+  const getKanjiThemeSelection = (themeTitle) => {
     let checkedKanas = [];
     try {
       checkedKanas = JSON.parse(localStorage.getItem('checkedKanas')) || [];
-    } catch (e) {
-      return false;
-    }
+    } catch (e) { }
     const themeGroups = Object.values(kanaCharacters.kanji)
       .filter(group => group.level === kanjiLevel && group.themeTitle === themeTitle);
-    return themeGroups.length > 0 && themeGroups.every(group => checkedKanas.includes(group.title));
+    const selected = themeGroups.filter(group => checkedKanas.includes(group.title)).length;
+    return { selected, total: themeGroups.length, allSelected: themeGroups.length > 0 && selected === themeGroups.length };
   };
 
   return (
@@ -140,10 +139,7 @@ export default function KanaGroup(props) {
                 role="tab"
                 aria-selected={kanjiLevel === level}
                 className={`character-title-group-button kanji-level-tab${kanjiLevel === level ? ' selected' : ''}`}
-                onClick={() => {
-                  setKanjiLevel(level);
-                  setShowAllKanjiThemes(false);
-                }}
+                onClick={() => setKanjiLevel(level)}
               >
                 <h3>{level}</h3>
               </button>
@@ -153,10 +149,7 @@ export default function KanaGroup(props) {
         {!isKanjiGroup && renderSelectAllButton("main_kana", t('mainKana'))}
         {character_button_group_builder(props, "main_kana", language, kanjiLevel, {
           toggleKanjiTheme,
-          isKanjiThemeSelected,
-          showAllKanjiThemes,
-          onToggleShowAll: () => setShowAllKanjiThemes(visible => !visible),
-          showAllLabel: t(showAllKanjiThemes ? 'kanjiShowLess' : 'kanjiShowAll'),
+          getKanjiThemeSelection,
         })}
 
         {!isKanjiGroup && (
@@ -177,12 +170,6 @@ function character_button_group_builder(props, tag, language, kanjiLevel, kanjiT
   const visibleThemes = props.groupToShow === 'kanji'
     ? [...new Set(groups.map(([, group]) => group.themeTitle))]
     : [];
-  const displayedThemes = kanjiThemeActions?.showAllKanjiThemes
-    ? visibleThemes
-    : visibleThemes.slice(0, 2);
-  const displayedGroups = props.groupToShow === 'kanji'
-    ? groups.filter(([, group]) => displayedThemes.includes(group.themeTitle))
-    : groups;
   const renderCharacter = ([character, group]) => {
     const { title, characters } = group;
     const characterValues = Object.values(characters);
@@ -232,19 +219,23 @@ function character_button_group_builder(props, tag, language, kanjiLevel, kanjiT
   if (props.groupToShow === 'kanji') {
     return (
       <div className={`${tag}-characters kanji-theme-list`}>
-        {displayedThemes.map(themeKey => {
-          const themeGroups = displayedGroups.filter(([, group]) => group.themeTitle === themeKey);
+        {visibleThemes.map(themeKey => {
+          const themeGroups = groups.filter(([, group]) => group.themeTitle === themeKey);
           const themeTitle = language === 'id' ? themeGroups[0][1].themeTitle_id : themeKey;
-          const themeSelected = kanjiThemeActions.isKanjiThemeSelected(themeKey);
+          const { selected, total, allSelected } = kanjiThemeActions.getKanjiThemeSelection(themeKey);
           return (
             <section className="kanji-theme-section" key={themeKey}>
               <button
                 type="button"
-                className={`character-title-group-button kanji-theme-title${themeSelected ? ' selected' : ''}`}
-                aria-pressed={themeSelected}
+                className={`character-title-group-button select-all-button kanji-theme-title${allSelected ? ' selected' : ''}`}
+                aria-pressed={allSelected}
                 onClick={() => kanjiThemeActions.toggleKanjiTheme(themeKey)}
               >
-                <h3>{themeTitle}</h3>
+                <h3>
+                  <span className="select-all-check" aria-hidden="true">{allSelected ? '✓' : '+'}</span>
+                  {themeTitle}
+                  <span className="select-all-count">{selected}/{total}</span>
+                </h3>
               </button>
               <div className="kanji-theme-groups">
                 {themeGroups.map(renderCharacter)}
@@ -252,21 +243,9 @@ function character_button_group_builder(props, tag, language, kanjiLevel, kanjiT
             </section>
           );
         })}
-        {visibleThemes.length > 2 && (
-          <div className="segmented-control kanji-show-all">
-            <button
-              type="button"
-              className="segmented-option active"
-              aria-expanded={kanjiThemeActions.showAllKanjiThemes}
-              onClick={kanjiThemeActions.onToggleShowAll}
-            >
-              {kanjiThemeActions.showAllLabel}
-            </button>
-          </div>
-        )}
       </div>
     );
   }
 
-  return <div className={`${tag}-characters`}>{displayedGroups.map(renderCharacter)}</div>;
+  return <div className={`${tag}-characters`}>{groups.map(renderCharacter)}</div>;
 }

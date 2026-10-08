@@ -1,17 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { kanaCharacters } from '../kanaCharacters.js';
 import { useLanguage } from '../i18n';
+import { getKanjiSrsProgress, getKanjiSrsStage, getSelectedKanjiGroupTitles } from '../kanjiSrs.js';
+import { calculateMastery, getWeakestItems } from '../mastery.js';
+import { getConfusionPairs, readConfusions } from '../confusions.js';
+import { getListForPractice, getStoredPracticeMode } from '../practiceList.js';
+import ProgressActivity from './ProgressActivity.js';
+import KanjiSrsPanel from './KanjiSrsPanel.js';
+
+const SRS_STAGE_LABEL_KEYS = {
+    learning: 'srsStageLearning',
+    young: 'srsStageYoung',
+    mature: 'srsStageMature',
+};
 
 function ProgressStatsModal(props) {
-    const { t, meaningOf } = useLanguage();
+    const { t, meaningOf, language } = useLanguage();
     const [activeTab, setActiveTab] = useState('characters');
     const [userStats, setUserStats] = useState({});
+    const [confusions, setConfusions] = useState({});
     const [hoveredItem, setHoveredItem] = useState(null);
 
     useEffect(() => {
         // Load user stats from localStorage
         const stats = JSON.parse(localStorage.getItem('userStats')) || {};
         setUserStats(stats);
+        setConfusions(readConfusions());
     }, [props.visible]);
 
     useEffect(() => {
@@ -33,49 +47,42 @@ function ProgressStatsModal(props) {
         };
     }, [props.visible]);
 
-    // Calculate mastery level based on stats (0-100)
-    const calculateMastery = (character) => {
-        const stats = userStats[character];
-        if (!stats) return null;
+    // Mastery of every practiced item, calculated once each time the stats are loaded
+    const masteryByCharacter = useMemo(() => {
+        const now = Date.now();
+        const result = {};
+        for (const character of Object.keys(userStats)) {
+            result[character] = calculateMastery(userStats[character], character, now);
+        }
+        return result;
+    }, [userStats]);
 
-        const totalAttempts = stats.totalRightGuesses + stats.totalWrongGuesses;
-        if (totalAttempts === 0) return null;
+    const getMastery = (character) => masteryByCharacter[character] ?? null;
 
-        // Calculate accuracy (0-1)
-        const accuracy = stats.totalRightGuesses / totalAttempts;
+    // What a game would show now: the selected groups and practice type
+    const practiceList = useMemo(
+        () => props.visible ? getListForPractice(getSelectedKanjiGroupTitles(), getStoredPracticeMode()) : [],
+        [props.visible]
+    );
 
-        // Calculate average response time (lower is better, cap at 5 seconds)
-        const avgResponseTime = stats.totaltotalResponseTime / stats.totalRightGuesses / 1000;
-        const timeScore = Math.max(0, 1 - (avgResponseTime / 5));
+    const weakestItems = useMemo(() => {
+        return getWeakestItems(practiceList, userStats).map(item => ({
+            character: item.jp_character,
+            romanji: item.romanji[0],
+            meaning: item.meaning ? meaningOf(item.jp_character, item.meaning) : undefined,
+            mastery: item.mastery,
+        }));
+        // meaningOf changes on every render, the language it depends on does not
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [practiceList, userStats, language]);
 
-        // Calculate help factor (less help is better)
-        const helpFactor = Math.max(0, 1 - (stats.totalAskForHelpCounter / totalAttempts));
-
-        // Calculate edit efficiency (fewer edits per correct answer is better)
-        const avgEditsPerCorrect = stats.totalRightGuesses > 0 
-            ? (stats.totalEditCount || 0) / stats.totalRightGuesses 
-            : 0;
-        const editEfficiency = Math.max(0, 1 - (avgEditsPerCorrect / 5)); // Cap at 5 edits
-
-        // Calculate wrong submission penalty (fewer wrong submissions is better)
-        const wrongSubmissionRate = (stats.totalWrongSubmissions || 0) / totalAttempts;
-        const submissionAccuracy = Math.max(0, 1 - wrongSubmissionRate);
-
-        // Calculate experience factor (more practice is better, cap at 20 attempts)
-        const experienceFactor = Math.min(totalAttempts / 20, 1);
-
-        // Weighted formula: accuracy (40%), time (15%), help (10%), edits (15%), submissions (10%), experience (10%)
-        const mastery = (
-            accuracy * 0.4 + 
-            timeScore * 0.15 + 
-            helpFactor * 0.1 + 
-            editEfficiency * 0.15 + 
-            submissionAccuracy * 0.1 + 
-            experienceFactor * 0.1
-        ) * 100;
-
-        return Math.round(mastery);
-    };
+    // Most frequent mix-ups, and which of their kana a game with the current selection can show
+    const confusionPairs = useMemo(() => getConfusionPairs(confusions), [confusions]);
+    const practicableConfusedKana = useMemo(() => {
+        const available = new Set(practiceList.map(item => item.jp_character));
+        return [...new Set(confusionPairs.flatMap(pair => pair.characters))]
+            .filter(character => available.has(character));
+    }, [confusionPairs, practiceList]);
 
     // Get color based on mastery level
     const getMasteryColor = (mastery) => {
@@ -120,8 +127,8 @@ function ProgressStatsModal(props) {
         // Sort: characters with data first (by mastery bracket), then characters without data
         // Within same bracket, sort by original order
         return characters.sort((a, b) => {
-            const masteryA = calculateMastery(a.character);
-            const masteryB = calculateMastery(b.character);
+            const masteryA = getMastery(a.character);
+            const masteryB = getMastery(b.character);
 
             const bracketA = getMasteryBracket(masteryA);
             const bracketB = getMasteryBracket(masteryB);
@@ -150,8 +157,8 @@ function ProgressStatsModal(props) {
         });
 
         return kanji.sort((a, b) => {
-            const masteryA = calculateMastery(a.character);
-            const masteryB = calculateMastery(b.character);
+            const masteryA = getMastery(a.character);
+            const masteryB = getMastery(b.character);
             const bracketDifference = getMasteryBracket(masteryB) - getMasteryBracket(masteryA);
             return bracketDifference || a.originalIndex - b.originalIndex;
         });
@@ -159,27 +166,17 @@ function ProgressStatsModal(props) {
 
     // Get all words from kanaCharacters
     const getAllWords = () => {
-        const words = [];
+        const words = Object.values(kanaCharacters.words).map((word, index) => ({
+            character: word.jp_character,
+            romanji: word.romanji[0],
+            meaning: meaningOf(word.jp_character, word.meaning),
+            originalIndex: index
+        }));
 
-        Object.keys(kanaCharacters.words).forEach(wordKey => {
-            const word = kanaCharacters.words[wordKey];
-            words.push({
-                character: word.jp_character,
-                romanji: word.romanji[0],
-                meaning: meaningOf(word.jp_character, word.meaning)
-            });
-        });
-
-        // Sort: words with data first (by mastery), then words without data
+        // Same order as the other tabs: by mastery bracket, then the original order
         return words.sort((a, b) => {
-            const masteryA = calculateMastery(a.character);
-            const masteryB = calculateMastery(b.character);
-
-            if (masteryA === null && masteryB === null) return 0;
-            if (masteryA === null) return 1;
-            if (masteryB === null) return -1;
-
-            return masteryB - masteryA; // Higher mastery first
+            const bracketDifference = getMasteryBracket(getMastery(b.character)) - getMasteryBracket(getMastery(a.character));
+            return bracketDifference || a.originalIndex - b.originalIndex;
         });
     };
 
@@ -218,12 +215,24 @@ function ProgressStatsModal(props) {
             statsLines.push(t('statsHelpRequested', { count: stats.totalAskForHelpCounter }));
         }
 
+        if (activeTab === 'kanji') {
+            const srsEntry = getKanjiSrsProgress()[character];
+            const stage = getKanjiSrsStage(srsEntry);
+            if (stage !== 'new') {
+                const dueAt = Number(srsEntry.dueAt);
+                const next = dueAt <= Date.now()
+                    ? t('srsForecastNow')
+                    : new Date(dueAt).toLocaleDateString(language === 'id' ? 'id-ID' : 'en-US', { month: 'short', day: 'numeric' });
+                statsLines.push(t('srsTooltip', { stage: t(SRS_STAGE_LABEL_KEYS[stage]), next }));
+            }
+        }
+
         return statsLines.join('\n');
     };
 
     // Render character grid item
     const renderGridItem = (item, index) => {
-        const mastery = calculateMastery(item.character);
+        const mastery = getMastery(item.character);
         const color = getMasteryColor(mastery);
 
         return (
@@ -248,11 +257,11 @@ function ProgressStatsModal(props) {
                 <div className="progress-stats-grid-item-romanji">
                     {item.romanji}
                 </div>
-                {/* {mastery !== null && (
+                {mastery !== null && (
                     <div className="progress-stats-grid-item-mastery">
                         {mastery}%
                     </div>
-                )} */}
+                )}
             </div>
         );
     };
@@ -277,22 +286,19 @@ function ProgressStatsModal(props) {
     };
 
     // Get summary stats
-    const getSummaryStats = () => {
-        const items = activeTab === 'characters'
-            ? getAllCharacters()
-            : activeTab === 'kanji' ? getAllKanji() : getAllWords();
-        const withData = items.filter(item => calculateMastery(item.character) !== null);
-        const withoutData = items.filter(item => calculateMastery(item.character) === null);
+    const getSummaryStats = (items) => {
+        const withData = items.filter(item => getMastery(item.character) !== null);
 
-        const avgMastery = withData.length > 0
-            ? Math.round(withData.reduce((sum, item) => sum + calculateMastery(item.character), 0) / withData.length)
-            : 0;
+        const masterySum = withData.reduce((sum, item) => sum + getMastery(item.character), 0);
+        const avgMastery = withData.length > 0 ? Math.round(masterySum / withData.length) : 0;
+        // Over everything in the tab: an item never practiced counts as 0%
+        const overallProgress = items.length > 0 ? Math.round(masterySum / items.length) : 0;
 
         return {
             total: items.length,
             practiced: withData.length,
-            notPracticed: withoutData.length,
-            avgMastery: avgMastery
+            avgMastery: avgMastery,
+            overallProgress: overallProgress
         };
     };
 
@@ -300,10 +306,10 @@ function ProgressStatsModal(props) {
         return null;
     }
 
-    const items = activeTab === 'characters'
-        ? getAllCharacters()
-        : activeTab === 'kanji' ? getAllKanji() : getAllWords();
-    const summary = getSummaryStats();
+    const items = activeTab === 'characters' ? getAllCharacters()
+        : activeTab === 'kanji' ? getAllKanji()
+        : activeTab === 'words' ? getAllWords() : [];
+    const summary = getSummaryStats(items);
 
     return (
         <div className='progress-stats-modal-background' onClick={props.onClose}>
@@ -311,6 +317,42 @@ function ProgressStatsModal(props) {
                 <div className='progress-stats-modal-header'>
                     <h2>{t('statsTitle')}</h2>
                     <button className='progress-stats-modal-close' onClick={props.onClose}>×</button>
+                </div>
+
+                <div className='progress-stats-weakest'>
+                    <div className='progress-stats-weakest-header'>
+                        <span>{t('statsWeakestTitle')}</span>
+                        {weakestItems.length > 0 && (
+                            <button
+                                className='progress-stats-weakest-button'
+                                onClick={() => props.onPracticeWeakest(weakestItems.map(item => item.character))}
+                            >
+                                {t('statsPracticeWeakest')}
+                            </button>
+                        )}
+                    </div>
+                    {weakestItems.length > 0 ? (
+                        <div className='progress-stats-weakest-list'>
+                            {weakestItems.map(item => (
+                                <div
+                                    key={item.character}
+                                    className='progress-stats-weakest-item'
+                                    style={{ backgroundColor: getMasteryColor(item.mastery) }}
+                                    onMouseEnter={() => setHoveredItem(item)}
+                                    onMouseLeave={() => setHoveredItem(null)}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setHoveredItem(item);
+                                    }}
+                                >
+                                    <span className='progress-stats-weakest-character'>{item.character}</span>
+                                    <span className='progress-stats-weakest-mastery'>{item.mastery}%</span>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <p className='progress-stats-weakest-empty'>{t('statsWeakestEmpty')}</p>
+                    )}
                 </div>
 
                 <div className='progress-stats-modal-tabs'>
@@ -332,55 +374,78 @@ function ProgressStatsModal(props) {
                     >
                         {t('practiceKanji')}
                     </button>
+                    <button
+                        className={`progress-stats-tab ${activeTab === 'activity' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('activity')}
+                    >
+                        {t('statsTabActivity')}
+                    </button>
                 </div>
 
-                <div className='progress-stats-summary'>
-                    <div className='progress-stats-summary-item'>
-                        <div className='progress-stats-summary-value'>{summary.practiced}/{summary.total}</div>
-                        <div className='progress-stats-summary-label'>{t('statsPracticed')}</div>
+                {activeTab === 'activity' ? (
+                    <div className='progress-activity-scroll'>
+                        <ProgressActivity
+                            userStats={userStats}
+                            confusionPairs={confusionPairs}
+                            practicableConfusedKana={practicableConfusedKana}
+                            onPractice={props.onPracticeWeakest}
+                            language={language}
+                            t={t}
+                        />
                     </div>
-                    <div className='progress-stats-summary-item'>
-                        <div className='progress-stats-summary-value'>{summary.avgMastery}%</div>
-                        <div className='progress-stats-summary-label'>{t('statsAvgMastery')}</div>
-                    </div>
-                    <div className='progress-stats-summary-item'>
-                        <div className='progress-stats-summary-value'>{summary.notPracticed}</div>
-                        <div className='progress-stats-summary-label'>{t('statsNotPracticed')}</div>
-                    </div>
-                </div>
+                ) : (
+                    <>
+                        <div className='progress-stats-summary'>
+                            <div className='progress-stats-summary-item'>
+                                <div className='progress-stats-summary-value'>{summary.practiced}/{summary.total}</div>
+                                <div className='progress-stats-summary-label'>{t('statsPracticed')}</div>
+                            </div>
+                            <div className='progress-stats-summary-item'>
+                                <div className='progress-stats-summary-value'>{summary.avgMastery}%</div>
+                                <div className='progress-stats-summary-label'>{t('statsAvgMastery')}</div>
+                            </div>
+                            <div className='progress-stats-summary-item'>
+                                <div className='progress-stats-summary-value'>{summary.overallProgress}%</div>
+                                <div className='progress-stats-summary-label'>{t('statsOverallProgress')}</div>
+                            </div>
+                        </div>
 
-                <div className='progress-stats-legend'>
-                    <div className='progress-stats-legend-item'>
-                        <div className='progress-stats-legend-color' style={{backgroundColor: '#4ade80'}}></div>
-                        <span>{t('statsExcellent')}</span>
-                    </div>
-                    <div className='progress-stats-legend-item'>
-                        <div className='progress-stats-legend-color' style={{backgroundColor: '#22d3ee'}}></div>
-                        <span>{t('statsGood')}</span>
-                    </div>
-                    <div className='progress-stats-legend-item'>
-                        <div className='progress-stats-legend-color' style={{backgroundColor: '#fbbf24'}}></div>
-                        <span>{t('statsOk')}</span>
-                    </div>
-                    <div className='progress-stats-legend-item'>
-                        <div className='progress-stats-legend-color' style={{backgroundColor: '#fb923c'}}></div>
-                        <span>{t('statsNeedsWork')}</span>
-                    </div>
-                    <div className='progress-stats-legend-item'>
-                        <div className='progress-stats-legend-color' style={{backgroundColor: '#f87171'}}></div>
-                        <span>{t('statsStruggling')}</span>
-                    </div>
-                    <div className='progress-stats-legend-item'>
-                        <div className='progress-stats-legend-color' style={{backgroundColor: '#ffffff10'}}></div>
-                        <span>{t('statsNoData')}</span>
-                    </div>
-                </div>
+                        {activeTab === 'kanji' && <KanjiSrsPanel visible={props.visible} language={language} t={t} />}
 
-                <div className='progress-stats-grid-container'>
-                    <div className='progress-stats-grid' key={activeTab}>
-                        {items.map((item, index) => renderGridItem(item, index))}
-                    </div>
-                </div>
+                        <div className='progress-stats-legend'>
+                            <div className='progress-stats-legend-item'>
+                                <div className='progress-stats-legend-color' style={{backgroundColor: '#4ade80'}}></div>
+                                <span>{t('statsExcellent')}</span>
+                            </div>
+                            <div className='progress-stats-legend-item'>
+                                <div className='progress-stats-legend-color' style={{backgroundColor: '#22d3ee'}}></div>
+                                <span>{t('statsGood')}</span>
+                            </div>
+                            <div className='progress-stats-legend-item'>
+                                <div className='progress-stats-legend-color' style={{backgroundColor: '#fbbf24'}}></div>
+                                <span>{t('statsOk')}</span>
+                            </div>
+                            <div className='progress-stats-legend-item'>
+                                <div className='progress-stats-legend-color' style={{backgroundColor: '#fb923c'}}></div>
+                                <span>{t('statsNeedsWork')}</span>
+                            </div>
+                            <div className='progress-stats-legend-item'>
+                                <div className='progress-stats-legend-color' style={{backgroundColor: '#f87171'}}></div>
+                                <span>{t('statsStruggling')}</span>
+                            </div>
+                            <div className='progress-stats-legend-item'>
+                                <div className='progress-stats-legend-color' style={{backgroundColor: '#ffffff10'}}></div>
+                                <span>{t('statsNoData')}</span>
+                            </div>
+                        </div>
+
+                        <div className='progress-stats-grid-container'>
+                            <div className='progress-stats-grid' key={activeTab}>
+                                {items.map((item, index) => renderGridItem(item, index))}
+                            </div>
+                        </div>
+                    </>
+                )}
 
                 {renderTooltip()}
             </div>
