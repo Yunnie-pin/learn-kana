@@ -76,6 +76,21 @@ Navbar
   gap: 0.8em;
 }
 
+.navbar-theme-toggle {
+  display: inline-grid;
+  width: 2.25em;
+  height: 2.25em;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #ff9a3c66;
+  border-radius: 50%;
+  background: #155263;
+  color: #ff9a3c;
+  font-size: 1.05em;
+  line-height: 1;
+  cursor: pointer;
+}
+
 .navbar-install {
   border: 2px solid #ff9a3c;
   border-radius: 50em;
@@ -231,6 +246,101 @@ Game Menu Page
   padding-right: env(safe-area-inset-right);
 }
 
+.game-menu-layout,
+.game-menu-selection,
+.game-menu-sidebar {
+  display: contents;
+}
+
+.desktop-kana-group-tabs {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .game-menu-page {
+    min-height: calc(100vh - 3.5rem);
+    box-sizing: border-box;
+    justify-content: flex-start;
+    padding: 0 2.5vw 1.5em;
+  }
+
+  #game-menu-title {
+    width: 100%;
+    margin: 0.4em 0 0.55em;
+    padding: 0;
+    text-align: center;
+    font-size: clamp(2em, 2.6vw, 2.8em);
+  }
+
+  .game-menu-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(23rem, 26vw);
+    align-items: start;
+    gap: clamp(1.25rem, 3vw, 3rem);
+    width: 100%;
+  }
+
+  .game-menu-selection,
+  .game-menu-sidebar {
+    display: block;
+    min-width: 0;
+  }
+
+  .desktop-kana-group-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+    margin: 0 auto 0.75em;
+  }
+
+  .desktop-kana-group-tabs .kana-group-tab {
+    min-width: 6em;
+    padding: 0.6em 1.2em;
+  }
+
+  .game-menu-page .kana-group-tabs {
+    display: none;
+  }
+
+  .desktop-tab-kana .kana-group-selector {
+    display: flex;
+    width: 100%;
+    gap: 0.5em;
+  }
+
+  .desktop-tab-kana .kana-group-selector .kana-group-elements {
+    min-width: 0;
+    flex: 1 1 0;
+  }
+
+  .desktop-tab-kana .kana-group-kanji-block,
+  .desktop-tab-kanji .kana-group-selector {
+    display: none;
+  }
+
+  .desktop-tab-kanji .kana-group-kanji-block {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  .game-menu-sidebar .game-mode-selector-group {
+    width: 100%;
+    margin: 0;
+    padding: 1.2em 1em;
+  }
+
+  .game-menu-sidebar .game-menu-start-bar {
+    margin-top: 0.75em;
+  }
+
+  .game-menu-sidebar .game-menu-start-bar .glowButton {
+    width: min(100%, 18rem);
+    margin: 0.5em 0;
+  }
+}
+
 /* Start button + stats button. Sticks to the bottom of the screen on phones */
 .game-menu-start-bar {
   position: relative;
@@ -338,17 +448,25 @@ Game Menu Page
 }
 
 .kana-group-kanji-block .kanji-theme-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5em;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 0.75em;
 }
 
 .kanji-theme-section {
   display: flex;
   width: 100%;
+  min-width: 0;
   flex-direction: column;
   align-items: center;
+}
+
+.kanji-theme-section .kanji-theme-title {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 0.5em;
+  text-align: center;
 }
 
 .kanji-theme-groups {
@@ -366,6 +484,11 @@ Game Menu Page
 
 .kanji-theme-groups .character-checkbox-content {
   width: 100%;
+}
+
+.kanji-show-all {
+  grid-column: 1 / -1;
+  justify-self: center;
 }
 
 .kanji-level-tabs {
@@ -413,7 +536,7 @@ Game Menu Page
 }
 
 .kanji-character-element .character-checkbox-content>h3 {
-  font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", serif;
   font-size: clamp(2.4em, 4vw, 4.5em);
   line-height: 1.15;
   margin: 0;
@@ -623,6 +746,7 @@ Game Menu Page
 
 .game-mode-selector-group {
   width: min(calc(100% - 2em), 60em);
+  min-width: 0;
   margin: 1em auto;
   padding: 1.2em 1em;
   box-sizing: border-box;
@@ -1156,11 +1280,59 @@ Phones
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .kana-group-kanji-block .main_kana-characters.kanji-theme-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85em;
+    padding: 0 0.5em;
+  }
+
+  .kana-group-kanji-block .kanji-theme-section {
+    align-items: stretch;
+  }
+
+  .kana-group-kanji-block .kanji-theme-title {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 0.5em;
+    padding: 0.35em 1em;
+    line-height: 1.2;
+  }
+
+  .kana-group-kanji-block .kanji-theme-groups {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .kana-group-kanji-block .kanji-character-element .character-checkbox-content {
+    min-height: 76px;
+    padding: 0.3em 0.15em;
+    box-sizing: border-box;
+  }
+
+  .kana-group-kanji-block .kanji-character-element .character-checkbox-content>h3 {
+    font-size: clamp(2em, 10vw, 2.8em);
+  }
+
+  .kana-group-kanji-block .kanji-character-element .character-checkbox-content>p {
+    font-size: 0.7em;
+    overflow-wrap: anywhere;
+  }
+
+  .kana-group-kanji-block .kanji-character-element .character-checkbox-content>.kanji-usage-example {
+    font-size: 0.62em;
+  }
+
   .kana-group-kanji-block .kanji-level-tabs {
     flex-basis: auto;
     width: 100%;
     justify-content: center;
     gap: 0.5em;
+  }
+
+  .kana-group-kanji-block .kanji-level-tab {
+    margin: 0.25em 0 0.6em;
+    padding: 0.25em 0.8em;
   }
 
   .kana-group-kanji-block .kanji-theme-title,
@@ -1176,6 +1348,12 @@ Phones
   .main_kana-characters,
   .dakuten_kana-characters {
     gap: 4px;
+  }
+
+  @media (max-width: 360px) {
+    .kana-group-kanji-block .kanji-theme-groups {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   .main_kana-characters .character-checkbox-content,
@@ -1223,6 +1401,7 @@ Practice / answer type segments
   justify-content: center;
   gap: 0.8em;
   margin: 1em auto;
+  min-width: 0;
 }
 
 .segmented-row {
@@ -1262,26 +1441,14 @@ Practice / answer type segments
   transition: background-color 0.2s, color 0.2s;
 }
 
-.game-mode-selector-button-group:not(.game-mode-presets) {
-  gap: 0.35em;
-}
-
-.game-mode-selector-button-group:not(.game-mode-presets) > label > .toggle-content {
-  width: auto;
-  min-width: 10em;
-  height: auto;
-  min-height: 2.8em;
-  padding: 0.35em 0.7em;
-  border-radius: 12px;
-  background: #00000016;
-}
-
 @media (max-width: 655px) {
   .game-mode-selector-group {
     width: calc(100% - 1.5em);
-    padding: 1em 0.65em;
+    padding: 1em 0.7em;
     margin: 0.8em auto;
     border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
   }
 
   .game-mode-selector-group>h2 {
@@ -1295,44 +1462,238 @@ Practice / answer type segments
     margin: 0.7em auto;
   }
 
-  .segmented-row {
-    justify-content: space-between;
-    gap: 0.35em;
-    padding-left: 0.6em;
-  }
-
-  .segmented-label {
-    flex: none;
-  }
-
-  .segmented-control {
-    min-width: 0;
-  }
-
-  .segmented-option {
-    padding: 0.45em 0.7em;
-    font-size: 0.88em;
-  }
-
-  .game-mode-selector-segments .segmented-row:first-child .segmented-option {
-    padding: 0.4em 0.45em;
-    font-size: 0.78em;
-  }
-
-  .game-mode-selector-button-group:not(.game-mode-presets) {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: stretch;
-    gap: 0.2em;
-  }
-
-  .game-mode-selector-button-group:not(.game-mode-presets) > label > .toggle-content {
+  .game-mode-selector-segments .segmented-row.practice-mode-row,
+  .game-mode-selector-segments .segmented-row.answer-mode-row {
+    display: flex;
     width: 100%;
-    box-sizing: border-box;
-    justify-content: flex-start;
     min-width: 0;
-    min-height: 2.6em;
-    padding: 0.35em 0.75em;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35em;
+    padding: 0.55em;
+    border-radius: 16px;
+  }
+
+  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-label,
+  .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-label {
+    padding: 0;
+    text-align: center;
+  }
+
+  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-control,
+  .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-control {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px;
+    border-radius: 12px;
+  }
+
+  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-option,
+  .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-option {
+    min-width: 0;
+    padding: 0.45em 0.2em;
+    font-size: 0.8em;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  .game-mode-selector-segments .answer-mode-row .segmented-control {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .game-mode-selector-segments .practice-mode-row .segmented-control {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 999px) {
+  .game-mode-selector-group {
+    width: calc(100% - 1.5em);
+    max-width: 60em;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .game-mode-selector-segments {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .game-mode-selector-segments {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: stretch;
+  }
+
+  .game-mode-selector-segments .segmented-row.practice-mode-row,
+  .game-mode-selector-segments .segmented-row.answer-mode-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: stretch;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    gap: 0.35em;
+    padding: 0.55em;
+    border-radius: 16px;
+  }
+
+  .limit-setting {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .limit-setting > .segmented-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .limit-setting .segmented-control {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .limit-setting .segmented-option {
+    min-width: 0;
+    padding: 0.45em 0.2em;
+    font-size: clamp(0.65rem, 2.5vw, 0.8rem);
+    white-space: nowrap;
+  }
+
+  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-label,
+  .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-label {
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-control,
+  .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-control {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px;
+  }
+
+  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-option,
+  .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-option {
+    min-width: 0;
+    padding: 0.45em 0.1em;
+    font-size: clamp(0.65rem, 2.5vw, 0.8rem);
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-control {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 655px) {
+  .game-menu-side {
+    display: flex;
+    width: min(100%, 36rem);
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75em;
+    box-sizing: border-box;
+  }
+
+  .game-menu-side .game-mode-selector {
+    width: 100%;
+  }
+
+  .game-menu-side .game-mode-selector-group {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 1em clamp(0.7em, 4vw, 1em);
+  }
+
+  .game-menu-side .game-mode-selector-group > h2 {
+    margin-bottom: 0.6em;
+  }
+
+  .game-menu-side .game-mode-selector-segments {
+    gap: 0.45em;
+    margin: 0.6em auto;
+  }
+
+  .game-menu-side .limit-setting > .segmented-row {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: stretch;
+    gap: 0.35em;
+    padding: 0.5em;
+    border-radius: 14px;
+  }
+
+  .game-menu-side .limit-setting > .segmented-row > .segmented-label {
+    text-align: center;
+  }
+
+  .game-menu-side .limit-setting .segmented-control {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-radius: 12px;
+  }
+
+  .game-menu-side .limit-setting .segmented-option {
+    padding: 0.45em 0.15em;
+    font-size: clamp(0.68rem, 3.2vw, 0.82rem);
+  }
+
+  .game-menu-side .limit-stepper {
+    gap: 0.5em;
+  }
+
+  .game-menu-side .limit-stepper > span {
+    min-width: 6.5em;
+  }
+
+  .game-menu-side .game-mode-selector-button-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45em;
+    margin: 0.65em auto 0;
+  }
+
+  .game-menu-side .game-mode-selector-button-group > label {
+    min-width: 0;
+  }
+
+  .game-menu-side .game-mode-selector-button-group > label > .toggle-content {
+    width: 100%;
+    min-width: 0;
+    min-height: 3.1em;
+    padding: 0.4em;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.4em;
+    font-size: 0.9em;
+    text-align: center;
+  }
+
+  .game-menu-side .game-menu-start-bar {
+    margin-top: 0;
   }
 }
 
@@ -1710,6 +2071,66 @@ a:focus-visible {
 
 .character-checkbox-element .kana-checkbox:focus-visible ~ .character-checkbox-content {
   opacity: 1;
+}
+
+html[data-theme='dark'],
+html[data-theme='dark'] body,
+html[data-theme='dark'] #root {
+  background-color: #2a373d;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+html[data-theme='dark'] .game-menu-page,
+html[data-theme='dark'] .kana-group-tab,
+html[data-theme='dark'] .character-title-group-button,
+html[data-theme='dark'] .game-mode-selector-group,
+html[data-theme='dark'] .segmented-row,
+html[data-theme='dark'] .segmented-control,
+html[data-theme='dark'] .progress-stats-modal {
+}
+
+html[data-theme='dark'] .character-title-group-button {
+  background: #38454c;
+  box-shadow: 5px 5px 12px #1e272b, -5px -5px 12px #1e272b;
+}
+
+html[data-theme='dark'] .character-title-group-button.selected {
+  background: #38454c;
+  box-shadow: inset 4px 4px 9px #1e272b, inset -4px -4px 9px #1e272b;
+}
+
+html[data-theme='dark'] .navbar-theme-toggle,
+html[data-theme='dark'] .kana-group-tab,
+html[data-theme='dark'] .neoButton,
+html[data-theme='dark'] .progress-stats-tab,
+html[data-theme='dark'] .progress-stats-grid-container,
+html[data-theme='dark'] .progress-stats-summary,
+html[data-theme='dark'] .game-mode-selector-group,
+html[data-theme='dark'] .kanji-srs-flip-card,
+html[data-theme='dark'] .inGameUserGameScoreWindow,
+html[data-theme='dark'] .in-game-next-button {
+  box-shadow: 0 0 12px #1e272b;
+}
+
+html[data-theme='dark'] .navbar-theme-toggle {
+  background: #2a373d;
+  box-shadow: 0 0 8px #1e272b;
+}
+
+html[data-theme='dark'] .game-mode-selector-group {
+  background-image: linear-gradient(145deg, #2a373d, #38454c);
+}
+
+html[data-theme='dark'] .game-menu-start-bar {
+  background-image: linear-gradient(to top, #2a373d 70%, #2a373d00);
+}
+
+html[data-theme='dark'] .progress-stats-grid-container,
+html[data-theme='dark'] .progress-stats-summary {
+  background-color: #38454c;
 }
 
 /*

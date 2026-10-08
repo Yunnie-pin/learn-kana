@@ -15,6 +15,8 @@ const translations = {
     navbarInstall: 'Install app',
     navbarGitHub: 'View on GitHub',
     navbarLanguage: 'Language',
+    navbarLightMode: 'Switch to light mode',
+    navbarDarkMode: 'Switch to dark mode',
 
     // Menu
     menuTitle: 'Select a group to learn',
@@ -136,6 +138,8 @@ const translations = {
     navbarInstall: 'Pasang aplikasi',
     navbarGitHub: 'Lihat di GitHub',
     navbarLanguage: 'Bahasa',
+    navbarLightMode: 'Ganti ke mode terang',
+    navbarDarkMode: 'Ganti ke mode gelap',
 
     menuTitle: 'Pilih grup yang ingin dipelajari',
     mainKana: 'Kana Dasar',

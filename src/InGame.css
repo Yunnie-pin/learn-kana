@@ -28,7 +28,7 @@
   src: local("Noto_Serif_JP"),
     url("./fonts/Noto_Serif_JP/NotoSerifJP-Regular.otf") format("opentype");
   font-weight: bold;
-  font-display: block;
+  font-display: swap;
 }
 
 @font-face {
@@ -944,6 +944,32 @@ html.in-game-scroll-lock body {
 .in-game-container {
   background-color: color-mix(in srgb, #2a8f9e var(--streak-level, 0%), #155263);
   transition: background-color 0.8s ease;
+}
+
+html[data-theme='dark'] .in-game-container {
+  background-color: #2a373d;
+}
+
+html[data-theme='dark'] .in-game-top-var {
+  background-color: #2a373d;
+}
+
+html[data-theme='dark'] .kanji-srs-flip-card,
+html[data-theme='dark'] .kanji-srs-flip-face,
+html[data-theme='dark'] .inGameUserGameScoreWindow {
+  background-color: #2a373d;
+}
+
+html[data-theme='dark'] .kanji-srs-flip-card,
+html[data-theme='dark'] .inGameUserGameScoreWindow,
+html[data-theme='dark'] .score-card,
+html[data-theme='dark'] .in-game-touch-answer {
+  box-shadow: 0 0 12px #1e272b;
+}
+
+html[data-theme='dark'] .score-card,
+html[data-theme='dark'] .in-game-touch-answer {
+  background-color: #38454c;
 }
 
 /*
