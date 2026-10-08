@@ -7,6 +7,7 @@ import { getConfusionPairs, readConfusions } from '../confusions.js';
 import { getListForPractice, getStoredPracticeMode } from '../practiceList.js';
 import ProgressActivity from './ProgressActivity.js';
 import KanjiSrsPanel from './KanjiSrsPanel.js';
+import Icon from './Icon.js';
 
 const SRS_STAGE_LABEL_KEYS = {
     learning: 'srsStageLearning',
@@ -316,7 +317,7 @@ function ProgressStatsModal(props) {
             <div className='progress-stats-modal' onClick={(e) => { e.stopPropagation(); setHoveredItem(null); }}>
                 <div className='progress-stats-modal-header'>
                     <h2>{t('statsTitle')}</h2>
-                    <button className='progress-stats-modal-close' onClick={props.onClose}>×</button>
+                    <button className='progress-stats-modal-close' onClick={props.onClose} aria-label={t('statsClose')}><Icon name='x' strokeWidth={2.5} /></button>
                 </div>
 
                 <div className='progress-stats-weakest'>
@@ -355,30 +356,42 @@ function ProgressStatsModal(props) {
                     )}
                 </div>
 
-                <div className='progress-stats-modal-tabs'>
+                <div className='progress-stats-modal-tabs segmented-control' role='tablist'>
                     <button
-                        className={`progress-stats-tab ${activeTab === 'characters' ? 'active' : ''}`}
+                        role='tab'
+                        aria-selected={activeTab === 'characters'}
+                        className={`progress-stats-tab segmented-option${activeTab === 'characters' ? ' active' : ''}`}
                         onClick={() => setActiveTab('characters')}
                     >
-                        {t('practiceCharacters')}
+                        <Icon name='type' className='segmented-option-icon' />
+                        <span>{t('practiceCharacters')}</span>
                     </button>
                     <button
-                        className={`progress-stats-tab ${activeTab === 'words' ? 'active' : ''}`}
+                        role='tab'
+                        aria-selected={activeTab === 'words'}
+                        className={`progress-stats-tab segmented-option${activeTab === 'words' ? ' active' : ''}`}
                         onClick={() => setActiveTab('words')}
                     >
-                        {t('practiceWords')}
+                        <Icon name='book-open' className='segmented-option-icon' />
+                        <span>{t('practiceWords')}</span>
                     </button>
                     <button
-                        className={`progress-stats-tab ${activeTab === 'kanji' ? 'active' : ''}`}
+                        role='tab'
+                        aria-selected={activeTab === 'kanji'}
+                        className={`progress-stats-tab segmented-option${activeTab === 'kanji' ? ' active' : ''}`}
                         onClick={() => setActiveTab('kanji')}
                     >
-                        {t('practiceKanji')}
+                        <Icon name='languages' className='segmented-option-icon' />
+                        <span>{t('practiceKanji')}</span>
                     </button>
                     <button
-                        className={`progress-stats-tab ${activeTab === 'activity' ? 'active' : ''}`}
+                        role='tab'
+                        aria-selected={activeTab === 'activity'}
+                        className={`progress-stats-tab segmented-option${activeTab === 'activity' ? ' active' : ''}`}
                         onClick={() => setActiveTab('activity')}
                     >
-                        {t('statsTabActivity')}
+                        <Icon name='bar-chart' className='segmented-option-icon' />
+                        <span>{t('statsTabActivity')}</span>
                     </button>
                 </div>
 

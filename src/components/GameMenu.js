@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
+import Icon from './Icon'
 
 const legacyKanjiGroupSelections = {
   'N5 Basics': ['N5 Time & Days', 'N5 Nature & Environment', 'N5 People & Relationships'],
@@ -196,7 +197,7 @@ export default function GameMenu() {
       <h2 id='game-menu-title'>{t('menuTitle')}</h2>
       {dueReviewCount > 0 && (
         <div className='srs-review-banner' role='status'>
-          <span>{t('kanjiSrsDue', { count: dueReviewCount })}</span>
+          <span><Icon name='bell' className='icon-leading icon-bell' />{t('kanjiSrsDue', { count: dueReviewCount })}</span>
           <Link to='/learn-kana∕game' className='srs-review-banner-button' onClick={startSrsReview}>
             {t('srsBannerStart')}
           </Link>
@@ -256,18 +257,16 @@ export default function GameMenu() {
         </div>
         <div className='game-menu-start-bar'>
           <button className='neoButton stats-button-floating' onClick={() => setShowStatsModal(true)} title={t('menuStats')}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M3 13h2v8H3v-8zm4-6h2v14H7V7zm4-4h2v18h-2V3zm4 8h2v10h-2V11zm4-6h2v16h-2V5z"/>
-            </svg>
+            <Icon name='bar-chart' title={t('menuStats')} />
           </button>
           <div className='game-menu-start'>
             <p className={'game-menu-summary' + (canStart ? '' : ' game-menu-summary-warning')}>{summaryText}</p>
             {canStart ? (
               <Link to='/learn-kana∕game'>
-                <button className='glowButton' onClick={handleButtonClick}>{t('menuStart')}</button>
+                <button className='glowButton' onClick={handleButtonClick}><Icon name='play' className='icon-leading icon-play' />{t('menuStart')}</button>
               </Link>
             ) : (
-              <button className='glowButton' disabled>{t('menuStart')}</button>
+              <button className='glowButton' disabled><Icon name='play' className='icon-leading icon-play' />{t('menuStart')}</button>
             )}
           </div>
         </div>

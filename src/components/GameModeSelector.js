@@ -21,7 +21,8 @@ function SegmentedControl(props) {
             title={option.disabled ? option.disabledReason : undefined}
             onClick={() => props.onChange(option.value)}
           >
-            {option.label}
+            {option.icon && <Icon name={option.icon} className='segmented-option-icon' />}
+            <span>{option.label}</span>
           </button>
         ))}
       </div>
@@ -120,20 +121,20 @@ export default function GameModeSelector(props) {
             value={limit.type}
             onChange={(type) => setLimit(current => ({ ...current, type }))}
             options={[
-              { value: "count", label: t('limitCount') },
-              { value: "time", label: t('limitTime') },
-              { value: "unlimited", label: t('modeUnlimited') },
+              { value: "count", label: t('limitCount'), icon: 'hash' },
+              { value: "time", label: t('limitTime'), icon: 'timer' },
+              { value: "unlimited", label: t('modeUnlimited'), icon: 'infinity' },
             ]}
           />
           {limit.type !== "unlimited" && (
             <div className='limit-stepper'>
-              <button type='button' aria-label={t('limitDecrease')} onClick={() => changeLimit(-1)}>−</button>
+              <button type='button' aria-label={t('limitDecrease')} onClick={() => changeLimit(-1)}><Icon name='minus' strokeWidth={2.5} /></button>
               <span aria-live='polite'>
                 {limit.type === "time"
                   ? t('modeMinutes', { count: limit.minutes })
                   : t('modeKanaCount', { count: limit.count })}
               </span>
-              <button type='button' aria-label={t('limitIncrease')} onClick={() => changeLimit(1)}>+</button>
+              <button type='button' aria-label={t('limitIncrease')} onClick={() => changeLimit(1)}><Icon name='plus' strokeWidth={2.5} /></button>
             </div>
           )}
         </div>
@@ -143,9 +144,9 @@ export default function GameModeSelector(props) {
           value={practice}
           onChange={handlePracticeChange}
           options={[
-            { value: "characters", label: t('practiceCharacters') },
-            { value: "words", label: t('practiceWords') },
-            { value: "mixed", label: t('practiceMixed') },
+            { value: "characters", label: t('practiceCharacters'), icon: 'type' },
+            { value: "words", label: t('practiceWords'), icon: 'book-open' },
+            { value: "mixed", label: t('practiceMixed'), icon: 'shuffle' },
           ]}
         />
         <SegmentedControl
@@ -154,17 +155,17 @@ export default function GameModeSelector(props) {
           value={answerBy}
           onChange={setAnswerBy}
           options={[
-            { value: "typing", label: t('answerTyping') },
-            { value: "touch", label: t('answerMultipleChoice'), disabled: ['words', 'mixed'].includes(practice), disabledReason: t('answerMultipleChoiceDisabled') },
+            { value: "typing", label: t('answerTyping'), icon: 'keyboard' },
+            { value: "touch", label: t('answerMultipleChoice'), icon: 'grid', disabled: ['words', 'mixed'].includes(practice), disabledReason: t('answerMultipleChoiceDisabled') },
           ]}
         />
       </div>
       <div className='game-mode-selector-button-group'>
-        <CheckMark characterText={t('optionHints')} class="game-mode-selector-button-group-row-2" id="game-mode-hints" default="true"/>
-        <CheckMark characterText={t('optionHandwrittenFonts')} class="game-mode-selector-button-group-row-2" id="game-mode-random-fonts"/>
-        <CheckMark characterText={t('optionAutoNext')} class="game-mode-selector-button-group-row-2" id="game-mode-auto-next" default="true"/>
+        <CheckMark characterText={<><Icon name='lightbulb' className='icon-leading' />{t('optionHints')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-hints" default="true"/>
+        <CheckMark characterText={<><Icon name='pen' className='icon-leading' />{t('optionHandwrittenFonts')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-random-fonts"/>
+        <CheckMark characterText={<><Icon name='skip-forward' className='icon-leading' />{t('optionAutoNext')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-auto-next" default="true"/>
         {isSpeechSupported() && <CheckMark characterText={<><Icon name='volume' className='icon-leading' />{t('optionSound')}</>} class="game-mode-selector-button-group-row-2" id={SOUND_SETTING_KEY}/>}
-        <CheckMark characterText={t('kanjiReadingsOption')} class="game-mode-selector-button-group-row-2" id="game-mode-kanji-readings"/>
+        <CheckMark characterText={<><Icon name='languages' className='icon-leading' />{t('kanjiReadingsOption')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-kanji-readings"/>
       </div>
     </div>
   )

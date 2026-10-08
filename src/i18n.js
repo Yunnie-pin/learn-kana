@@ -108,6 +108,7 @@ const translations = {
 
     // Progress stats
     statsTitle: 'Learning Progress',
+    statsClose: 'Close',
     statsPracticed: 'Practiced',
     statsAvgMastery: 'Avg mastery (practiced)',
     statsOverallProgress: 'Overall progress',
@@ -262,6 +263,7 @@ const translations = {
     summaryNoProblematics: 'Tidak ada karakter yang sulit! Kamu hebat!',
 
     statsTitle: 'Progres Belajar',
+    statsClose: 'Tutup',
     statsPracticed: 'Sudah dilatih',
     statsAvgMastery: 'Rata-rata penguasaan (dilatih)',
     statsOverallProgress: 'Progres keseluruhan',

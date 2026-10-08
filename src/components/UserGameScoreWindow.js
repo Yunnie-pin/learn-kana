@@ -86,6 +86,8 @@ export default function UserGameScoreWindow(props) {
             }
         },
     } : {};
+    // Shows that a chip can be tapped to hear it
+    const listenIcon = isSpeechSupported() ? <Icon name='volume' className='score-chip-listen-icon' /> : null;
     const userStats = JSON.parse(localStorage.getItem('userStats')) || {};
     const [isNewStreakRecord, setIsNewStreakRecord] = useState(false);
 
@@ -254,44 +256,50 @@ export default function UserGameScoreWindow(props) {
         userStatsElement = <>
             <div className='score-cards'>
                 <div className='score-card'>
+                    <Icon name='circle-check' className='score-card-icon' />
                     <div className='score-card-value'>{accuracy}%</div>
                     <div className='score-card-label'>{t('summaryAccuracy')}</div>
                 </div>
                 <div className='score-card'>
+                    <Icon name='gauge' className='score-card-icon' />
                     <div className='score-card-value'>{averageTime.toFixed(1)}s</div>
                     <div className='score-card-label'>{t('summaryAvgTime')}</div>
                     {comparisonText && <div className='score-card-note'>{comparisonText}</div>}
                 </div>
                 <div className='score-card'>
-                    <div className='score-card-value'><Icon name='flame' className='icon-flame icon-leading' />{props.bestStreak}</div>
+                    <Icon name='flame' className='score-card-icon icon-flame' />
+                    <div className='score-card-value'>{props.bestStreak}</div>
                     <div className='score-card-label'>{t('summaryBestStreak')}</div>
-                    {isNewStreakRecord && <div className='score-card-note score-card-note-highlight'>{t('summaryNewRecord')}</div>}
+                    {isNewStreakRecord && <div className='score-card-note score-card-note-highlight score-new-record'><Icon name='trophy' className='icon-leading' />{t('summaryNewRecord')}</div>}
                 </div>
                 <div className='score-card'>
+                    <Icon name='lightbulb' className='score-card-icon' />
                     <div className='score-card-value'>{totalHints}</div>
                     <div className='score-card-label'>{t('summaryHintsUsed')}</div>
                 </div>
             </div>
             {needsPractice.length > 0 && (
                 <div className='score-section'>
-                    <h3>{t('summaryNeedsPractice')}</h3>
+                    <h3><Icon name='alert-triangle' className='icon-leading' />{t('summaryNeedsPractice')}</h3>
                     <div className='score-chips'>
                         {needsPractice.map(entry => (
                             <span className='score-chip' key={'practice-' + entry.kana} {...listenProps(entry.kana)}>
                                 <span className='score-chip-kana'>{entry.kana}</span>
                                 <span className='score-chip-detail'>{romanjiOf[entry.kana] || ''}</span>
+                                {listenIcon}
                             </span>
                         ))}
                     </div>
                 </div>
             )}
             <div className='score-section'>
-                <h3>{t('summarySlowest')}</h3>
+                <h3><Icon name='snail' className='icon-leading' />{t('summarySlowest')}</h3>
                 <div className='score-chips'>
                     {slowest.map(entry => (
                         <span className='score-chip' key={'slow-' + entry.kana} {...listenProps(entry.kana)}>
                             <span className='score-chip-kana'>{entry.kana}</span>
                             <span className='score-chip-detail'>{entry.seconds.toFixed(1)}s</span>
+                            {listenIcon}
                         </span>
                     ))}
                 </div>
@@ -314,9 +322,9 @@ export default function UserGameScoreWindow(props) {
                 </div>
                 {userStatsElement}
                 <div className='inGameUserGameScoreWindow_buttons'>
-                    <button onClick={goToMainMenu}>{t('summaryBackToMenu')}</button>
-                    <button onClick={handleTryProblematicsClick}>{t('summaryTryProblematics')}</button>
-                    <button className='score-button-primary' onClick={playAgain}>{t('summaryPlayAgain')}</button>
+                    <button onClick={goToMainMenu}><Icon name='home' className='icon-leading' />{t('summaryBackToMenu')}</button>
+                    <button onClick={handleTryProblematicsClick}><Icon name='target' className='icon-leading' />{t('summaryTryProblematics')}</button>
+                    <button className='score-button-primary' onClick={playAgain}><Icon name='rotate-ccw' className='icon-leading' />{t('summaryPlayAgain')}</button>
                 </div>
                 <div className='score-shortcuts label-keyboard'>{t('summaryShortcuts')}</div>
             </div>

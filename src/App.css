@@ -2406,17 +2406,6 @@ so the start button stays in view without scrolling.
     padding: 0.45em 0.7em;
   }
 
-  .game-menu-side .game-mode-selector-button-group:not(.game-mode-presets) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .game-menu-side .game-mode-selector-button-group:not(.game-mode-presets) > label > .toggle-content {
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-  }
-
   .game-menu-side .game-menu-start-bar {
     gap: 0.75em;
     padding-top: 0.5em;
@@ -2763,5 +2752,377 @@ html[data-theme='dark'] .progress-stats-weakest-button:not(.backup-panel-import)
 @media (hover: hover) {
   html[data-theme='dark'] .progress-stats-modal-close:hover {
     color: #2a373d;
+  }
+}
+
+/*
+############################
+Menu icons
+############################
+*/
+/* Mode panel layout, the same at every screen width. Prefixed with .game-mode-selector-group
+   so it wins over the older per-breakpoint rules above */
+
+/* Length, Practice and Answer by: equal cards, stacked in the sidebar and on phones,
+   side by side when the panel is wide */
+.game-mode-selector-group .game-mode-selector-segments {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17em, 1fr));
+  align-items: start;
+  gap: 0.5em;
+  width: 100%;
+  margin: 0.6em 0;
+}
+
+.game-mode-selector-group .limit-setting {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5em;
+  width: 100%;
+  min-width: 0;
+}
+
+.game-mode-selector-group .game-mode-selector-segments .segmented-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4em;
+  width: 100%;
+  min-width: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  border-radius: 16px;
+}
+
+.game-mode-selector-group .game-mode-selector-segments .segmented-label {
+  width: auto;
+  padding: 0;
+  text-align: center;
+}
+
+/* Options share the width equally, whatever their label length */
+.game-mode-selector-group .game-mode-selector-segments .segmented-row .segmented-control {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-template-columns: none;
+  gap: 2px;
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+
+/* Icon above the label */
+.game-mode-selector-group .game-mode-selector-segments .segmented-row .segmented-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25em;
+  min-width: 0;
+  padding: 0.5em 0.25em;
+  border-radius: 10px;
+  font-size: 0.85em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.game-mode-selector-group .segmented-option > span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.game-mode-selector-group .limit-stepper {
+  justify-content: center;
+}
+
+/* Option toggles: two columns of equal cards, icon and label on the left, switch on the right */
+.game-mode-selector-group .game-mode-selector-button-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45em;
+  width: 100%;
+  margin: 0.5em 0 0;
+}
+
+.game-mode-selector-group .game-mode-selector-button-group > label {
+  min-width: 0;
+}
+
+/* An odd last toggle takes the whole row instead of sitting alone in a half */
+.game-mode-selector-group .game-mode-selector-button-group > label:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.game-mode-selector-group .game-mode-selector-button-group > label > .toggle-content {
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.6em;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 3em;
+  padding: 0.5em 0.75em;
+  box-sizing: border-box;
+  border-radius: 12px;
+  font-size: 0.9em;
+  text-align: left;
+}
+
+/* On or off, every toggle is a card: the switch shows the state */
+.game-mode-selector-group .game-mode-selector-button-group .character-checkbox-input~.toggle-content {
+  background-color: #00000025;
+  border-color: #ff9a3c1f;
+}
+
+.game-mode-selector-group .game-mode-selector-button-group .character-checkbox-input:checked~.toggle-content {
+  background-color: #00000040;
+  border-color: #ff9a3c55;
+}
+
+.game-mode-selector-group .game-mode-selector-button-group > label > .toggle-content > p {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.game-mode-selector-group .game-mode-selector-button-group .toggle-switch {
+  order: 1;
+}
+
+.segmented-option-icon {
+  width: 1.15em;
+  height: 1.15em;
+  opacity: 0.75;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.segmented-option.active .segmented-option-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.limit-stepper>button {
+  display: inline-grid;
+  place-items: center;
+}
+
+.game-mode-selector-button-group .toggle-content .icon {
+  opacity: 0.8;
+}
+
+/* The stats button styles its svg with fill, the line icon needs none */
+.neoButton svg.icon {
+  fill: none;
+  stroke: currentColor;
+  color: #ff9a3c;
+}
+
+.glowButton .icon-play {
+  width: 0.75em;
+  height: 0.75em;
+  vertical-align: -0.02em;
+  transition: transform 0.2s;
+}
+
+@media (hover: hover) {
+  .glowButton:not(:disabled):hover .icon-play {
+    transform: translateX(3px) scale(1.1);
+  }
+}
+
+/* The review bell rings now and then while reviews are due */
+.icon-bell {
+  transform-origin: 50% 10%;
+  animation: bell-ring 4s ease-in-out infinite;
+}
+
+@keyframes bell-ring {
+  0%, 82%, 100% { transform: rotate(0); }
+  85% { transform: rotate(14deg); }
+  88% { transform: rotate(-12deg); }
+  91% { transform: rotate(8deg); }
+  94% { transform: rotate(-4deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-bell {
+    animation: none;
+  }
+  .glowButton .icon-play,
+  .segmented-option-icon {
+    transition: none;
+  }
+}
+
+/*
+############################
+Learning Progress window, styled like the mode panel
+############################
+*/
+/* Window: the panel's border, soft gradient and shadow, on a solid base since it covers the page */
+.progress-stats-modal {
+  border: 1px solid #ff9a3c30;
+  border-radius: 24px;
+  background-color: #155263;
+  background-image: linear-gradient(145deg, #134a593b, #16576945);
+  box-shadow: 5px 5px 16px #11384366, -4px -4px 14px #1b607033;
+  gap: 1em;
+  font-family: var(--ui-font);
+}
+
+/* Text uses the app font like the panel, kana keep a Japanese font (the app font has none) */
+.progress-stats-modal .progress-stats-grid-item-character,
+.progress-stats-modal .progress-stats-weakest-character,
+.progress-stats-modal .progress-activity-confusion-character {
+  font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
+@media (min-width: 656px) {
+  .progress-stats-modal {
+    padding: 1.5em;
+  }
+}
+
+.progress-stats-modal-header {
+  margin-bottom: 0;
+}
+
+.progress-stats-modal-header h2 {
+  font-size: 1.7em;
+}
+
+/* Close: a round button like the length stepper's − / + */
+.progress-stats-modal-close {
+  width: 2.2em;
+  height: 2.2em;
+  padding: 0;
+  border: 1px solid #ff9a3c45;
+  font-size: 1.1em;
+  transition: background-color 0.2s;
+}
+
+@media (hover: hover) {
+  .progress-stats-modal-close:hover {
+    background-color: #00000027;
+    color: #ff9a3c;
+    transform: none;
+  }
+}
+
+/* Tabs: the same segmented control as Practice / Answer by, icon above the label */
+.progress-stats-modal .progress-stats-modal-tabs.segmented-control {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px;
+}
+
+.progress-stats-modal-tabs .progress-stats-tab.segmented-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25em;
+  min-width: 0;
+  padding: 0.5em 0.25em;
+  border-radius: 10px;
+  background: transparent;
+  box-shadow: none;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  font-size: 0.95em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.progress-stats-modal-tabs .progress-stats-tab.segmented-option.active {
+  background: #ff9a3c;
+  color: #155263;
+}
+
+@media (hover: hover) {
+  .progress-stats-modal-tabs .progress-stats-tab.segmented-option:not(.active):hover {
+    background: #ff9a3c26;
+  }
+}
+
+/* Sections: like the Length / Practice / Answer by cards */
+.progress-stats-modal .progress-stats-weakest,
+.progress-stats-modal .progress-stats-summary,
+.progress-stats-modal .progress-stats-grid-container,
+.progress-stats-modal .progress-activity-calendar-block,
+.progress-stats-modal .progress-activity-chart {
+  padding: 0.6em 0.8em;
+  border: 1px solid #ff9a3c25;
+  border-radius: 16px;
+  background: #00000016;
+  box-shadow: none;
+}
+
+.progress-stats-modal .progress-stats-grid-container {
+  padding: 0.3em;
+}
+
+/* Section titles: like the panel's section labels */
+.progress-stats-modal .progress-stats-weakest-header,
+.progress-stats-modal .progress-activity-chart-title {
+  font-family: var(--ui-font);
+  font-size: 0.95em;
+  font-weight: 600;
+}
+
+.progress-stats-modal .progress-stats-summary-value {
+  font-size: 1.9em;
+}
+
+.progress-stats-modal .progress-stats-summary-label {
+  margin-top: 0;
+  font-size: 0.85em;
+}
+
+/* Mix-up pairs: like the option toggles */
+.progress-stats-modal .progress-activity-confusion {
+  border: 1px solid #ff9a3c1f;
+  border-radius: 12px;
+  background: #00000025;
+}
+
+html[data-theme='dark'] .progress-stats-modal {
+  background-color: #2a373d;
+  background-image: linear-gradient(145deg, #2a373d, #38454c);
+  box-shadow: 0 0 12px #1e272b;
+}
+
+html[data-theme='dark'] .progress-stats-modal .progress-stats-weakest,
+html[data-theme='dark'] .progress-stats-modal .progress-stats-summary,
+html[data-theme='dark'] .progress-stats-modal .progress-stats-grid-container,
+html[data-theme='dark'] .progress-stats-modal .progress-activity-calendar-block,
+html[data-theme='dark'] .progress-stats-modal .progress-activity-chart {
+  background: #00000016;
+  box-shadow: none;
+}
+
+html[data-theme='dark'] .progress-stats-modal-tabs .progress-stats-tab.segmented-option {
+  background: transparent;
+  box-shadow: none;
+}
+
+html[data-theme='dark'] .progress-stats-modal-tabs .progress-stats-tab.segmented-option.active {
+  background: #ff9a3c;
+}
+
+@media (hover: hover) {
+  html[data-theme='dark'] .progress-stats-modal-close:hover {
+    color: #ff9a3c;
   }
 }
