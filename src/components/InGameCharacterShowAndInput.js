@@ -310,6 +310,8 @@ export default function InGameCharacterShowAndInput() {
   const practiceMode = localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
   const isSrsPractice = localStorage.getItem('game-mode-srs') === 'true';
+  // SRS reviews are always answered by typing, whatever is picked in the menu
+  const useTouchAnswers = !isSrsPractice && localStorage.getItem("game-mode-touch") === "true";
   const selectedKanjiGroups = useMemo(() => getSelectedKanjiGroupTitles(), []);
   const srsKanjiOverview = useMemo(
     () => isSrsPractice ? getSrsKanjiCharacters(selectedKanjiGroups) : null,
@@ -420,12 +422,12 @@ export default function InGameCharacterShowAndInput() {
 
   function getListForPractice(charGroups, mode) {
     const characters = getListOfKanas(charGroups);
-    if (mode === 'kanji') return characters.filter(character => character.type === 'kanji');
     if (mode === 'mixed') {
       return [...characters, ...getListOfWords(charGroups)];
     }
     if (mode === 'words') return getListOfWords(charGroups);
-    return characters.filter(character => character.type === 'kana');
+    // "characters": every selected kana and kanji group
+    return characters;
   }
 
   // Helper function to get n random unique elements from an array
@@ -733,6 +735,7 @@ export default function InGameCharacterShowAndInput() {
     const useKanjiUsageQuestion = !isSrsPractice &&
       pickedElement.type === 'kanji' &&
       pickedElement.usage &&
+      practiceMode === 'mixed' &&
       Math.random() < 0.5;
     const questionCharacter = useKanjiUsageQuestion
       ? pickedElement.usage.word
@@ -789,7 +792,7 @@ export default function InGameCharacterShowAndInput() {
       }
     }
 
-    if (localStorage.getItem("game-mode-touch") === "true") {
+    if (useTouchAnswers) {
       // @ts-ignore
       fillTouchAnswers({ ...pickedElement, romanji: answerReadings });
     }
@@ -1393,7 +1396,7 @@ export default function InGameCharacterShowAndInput() {
 
   // Make answer input via touch buttons
   let inGameInputElement = <></>
-  if (localStorage.getItem("game-mode-touch") === "true") {
+  if (useTouchAnswers) {
     function makeTouchAnswerDivs(params) {
       const numberOfAnswers = 5;
       const answerElements = [];

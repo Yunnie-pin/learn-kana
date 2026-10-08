@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import { LANGUAGES, useLanguage } from '../i18n';
 
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
+  const { theme, toggleTheme } = useOutletContext();
+  const darkMode = theme === 'dark';
 
   // Code snippet for the PWA install button
   const [deferredPrompt, setDeferredPrompt] = useState(null);
@@ -36,6 +39,16 @@ export default function Navbar() {
           <span className='navbar-author'>{t('navbarBy')} Eldoprano</span>
         </div>
         <div className='navbar-actions'>
+          <button
+            type='button'
+            className='navbar-theme-toggle'
+            aria-label={darkMode ? t('navbarLightMode') : t('navbarDarkMode')}
+            aria-pressed={darkMode}
+            title={darkMode ? t('navbarLightMode') : t('navbarDarkMode')}
+            onClick={toggleTheme}
+          >
+            {darkMode ? '☀' : '☾'}
+          </button>
           <div className='segmented-control navbar-language' role='radiogroup' aria-label={t('navbarLanguage')}>
             {LANGUAGES.map((option) => (
               <button
