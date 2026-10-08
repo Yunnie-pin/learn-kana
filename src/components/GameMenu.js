@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import KanaGroup from './KanaGroup'
 import GameModeSelector from './GameModeSelector'
 import ProgressStatsModal from './ProgressStatsModal'
@@ -103,8 +103,15 @@ export default function GameMenu() {
   const [activeKanaTab, setActiveKanaTab] = useState('hiragana');
   const isKanjiTab = activeKanaTab === 'kanji';
   // Bumped whenever the selection or game mode changes, so the summary below is recomputed
-  const [, setSettingsVersion] = useState(0);
+  const [settingsVersion, setSettingsVersion] = useState(0);
   const refreshSummary = () => setSettingsVersion(version => version + 1);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setSettingsVersion(version => version + 1);
+    }, 60 * 1000);
+    return () => window.clearInterval(interval);
+  }, []);
 
   if(localStorage.getItem('checkedKanas') === null) {
     localStorage.setItem('checkedKanas', JSON.stringify(["あ"]))
@@ -116,11 +123,20 @@ export default function GameMenu() {
     (localStorage.getItem('game-mode-word') === 'true' ? 'words' : 'characters');
   // Older "kanji" / "srs" values count as "characters", like in GameModeSelector
   const practice = ['words', 'mixed'].includes(storedPractice) ? storedPractice : 'characters';
-  const selectedKanjiGroups = getSelectedKanjiGroupTitles();
+  const selectedKanjiGroups = useMemo(
+    () => getSelectedKanjiGroupTitles(),
+    [settingsVersion]
+  );
   // SRS session for the Kanji tab: due kanji including ones never practiced
-  const srsDueCount = getSrsKanjiCharacters(selectedKanjiGroups).due.length;
+  const srsDueCount = useMemo(
+    () => getSrsKanjiCharacters(selectedKanjiGroups).due.length,
+    [selectedKanjiGroups]
+  );
   // Kanji practiced before that are due again, offered in the banner at the top
-  const dueReviewCount = getDueReviewCount(selectedKanjiGroups);
+  const dueReviewCount = useMemo(
+    () => getDueReviewCount(selectedKanjiGroups),
+    [selectedKanjiGroups]
+  );
   let summaryText;
   let canStart = true;
   if (practice === 'words' && wordCount === 0) {

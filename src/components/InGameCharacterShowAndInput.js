@@ -735,6 +735,7 @@ export default function InGameCharacterShowAndInput() {
     const useKanjiUsageQuestion = !isSrsPractice &&
       pickedElement.type === 'kanji' &&
       pickedElement.usage &&
+      practiceMode === 'mixed' &&
       Math.random() < 0.5;
     const questionCharacter = useKanjiUsageQuestion
       ? pickedElement.usage.word

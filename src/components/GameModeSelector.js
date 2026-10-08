@@ -5,7 +5,7 @@ import { useLanguage } from '../i18n';
 // A row of mutually exclusive practice or answer modes.
 function SegmentedControl(props) {
   return (
-    <div className='segmented-row'>
+    <div className={`segmented-row${props.className ? ` ${props.className}` : ''}`}>
       <span className='segmented-label'>{props.label}</span>
       <div className='segmented-control' role='radiogroup' aria-label={props.label}>
         {props.options.map((option) => (
@@ -136,6 +136,7 @@ export default function GameModeSelector(props) {
           )}
         </div>
         <SegmentedControl
+          className='practice-mode-row'
           label={t('practiceLabel')}
           value={practice}
           onChange={handlePracticeChange}
@@ -146,6 +147,7 @@ export default function GameModeSelector(props) {
           ]}
         />
         <SegmentedControl
+          className='answer-mode-row'
           label={t('answerByLabel')}
           value={answerBy}
           onChange={setAnswerBy}
