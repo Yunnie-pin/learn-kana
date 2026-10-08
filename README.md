@@ -24,7 +24,7 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 - Practice **characters** or **words** (~600 beginner words, only the ones you can read with the groups you picked).
 - Answer by **typing** the romaji or by **multiple choice**.
 - Play a fixed amount (*Give me 10 Kanas*), against the clock (*Give me 5 minutes*) or without a limit.
-- Options: hints on/off, handwritten fonts, auto next.
+- Options: hints on/off, handwritten fonts, auto next, sound (reads each kana or word aloud in Japanese when you get it right).
 
 **While playing**
 - Instant feedback: the answer turns green when right and red as soon as it can't be right anymore (red only with hints on).
@@ -34,7 +34,7 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 
 **After a game**
 - Accuracy, average time per answer, best streak and hints used.
-- The kana you got wrong (with the right answer) and your slowest ones.
+- The kana you got wrong (with the right answer) and your slowest ones. Tap one to hear it.
 - Comparison with your average of the last 30 days, and your all-time best streak.
 - *Try Problematics*: a new game with only the characters you struggle with.
 - Progress stats per character, colored by how well you know them.

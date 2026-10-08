@@ -6,6 +6,8 @@ import { kanjiReadings } from '../kanjiReadings.js'
 import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
 import { getListForPractice } from '../practiceList.js'
 import { findKanaForAnswer, recordConfusion } from '../confusions.js'
+import { speakIfEnabled } from '../speech.js'
+import Icon from './Icon.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
 
@@ -1033,6 +1035,7 @@ export default function InGameCharacterShowAndInput() {
       //  Make that known and pass to the next character
       if (isCorrect) {
         updateCurrentGameStats("correct");
+        speakCorrectAnswer();
         if (isSrsPractice && currentCharacterTypeRef.current === 'kanji' && !srsFailedRef.current) {
           recordKanjiSrsAnswer(inGameKanaOnScreen, true);
         }
@@ -1239,6 +1242,12 @@ export default function InGameCharacterShowAndInput() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Kana and words are read aloud; a lone kanji is skipped since the voice can't know which reading is asked
+  function speakCorrectAnswer() {
+    if (currentCharacterTypeRef.current === 'kanji') return;
+    speakIfEnabled(inGameKanaOnScreen);
+  }
+
   function handleUserAskForHelp() {
     if (!hintsEnabled) {
       return;
@@ -1259,6 +1268,7 @@ export default function InGameCharacterShowAndInput() {
 
     if (onScreenSolution.includes(event.target.firstChild.textContent)) {
       updateCurrentGameStats("correct");
+      speakCorrectAnswer();
       const answerButton = event.currentTarget;
       answerButton.classList.add("touch-answer-correct");
       setTimeout(function () {
@@ -1427,10 +1437,11 @@ export default function InGameCharacterShowAndInput() {
       <div className="in-game-top-var">
         <div className='in-game-score-group'>
           <div className='in-game-score' id='in-game-score'>
+            {isProblematicsMode && <Icon name='target' className='icon-leading' />}
             {isProblematicsMode ? t('gameScoreProblematics') : t('gameScoreKanas')}{onScreenScore}
             {kanaGoal !== null && <span className='in-game-score-goal'> / {kanaGoal}</span>}
           </div>
-          {streak >= 3 && <div className='in-game-streak' title={t('gameStreakTitle')}>🔥 {streak}</div>}
+          {streak >= 3 && <div className='in-game-streak' title={t('gameStreakTitle')}><Icon name='flame' className='icon-flame icon-leading' />{streak}</div>}
         </div>
         {remainingTime !== null ? (
           <div
@@ -1443,15 +1454,15 @@ export default function InGameCharacterShowAndInput() {
           <div className='in-game-help-bar'>
             {hintsEnabled ? <div className='in-game-help-button' onClick={handleUserAskForHelp}>
               <span className='label-keyboard'><strong>?</strong>: {t('gameHelpKey')}</span>
-              <span className='label-touch'>{t('gameHintButton')}</span>
+              <span className='label-touch'><Icon name='lightbulb' className='icon-leading' />{t('gameHintButton')}</span>
             </div> : null}
             {(localStorage.getItem("game-mode-random-fonts") === "true") ? <div className='in-game-help-button' onClick={onClickChangeFontToDefault}>
               <span className='label-keyboard'><strong>shift</strong>: {t('gameFontKey')}</span>
-              <span className='label-touch'>{t('gameFontButton')}</span>
+              <span className='label-touch'><Icon name='type' className='icon-leading' />{t('gameFontButton')}</span>
             </div> : <div></div>}
           </div>
         )}
-        <div onClick={onClickExitButton} className='in-game-exit-button' title={t('gameEnd')}>✖</div>
+        <div onClick={onClickExitButton} className='in-game-exit-button' title={t('gameEnd')}><Icon name='x' strokeWidth={2.5} /></div>
       </div>
       {kanaGoal !== null && (
         <div className='in-game-progress'>
@@ -1593,7 +1604,7 @@ export default function InGameCharacterShowAndInput() {
             </div>
           )}
           <button id='in-game-next-button' className='in-game-next-button hidden-element' onClick={advanceToNextKanji}>
-            {t('gameNext')}<span className='label-keyboard'> (Enter)</span>
+            {t('gameNext')}<Icon name='arrow-right' className='icon-trailing' /><span className='label-keyboard'> (Enter)</span>
           </button>
         </div>
         {!isSrsPractice && inGameInputElement}

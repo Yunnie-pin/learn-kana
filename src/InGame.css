@@ -1041,6 +1041,15 @@ Game summary
   user-select: none;
 }
 
+.score-chip-listen {
+  cursor: pointer;
+}
+
+.score-chip-listen:hover,
+.score-chip-listen:focus-visible {
+  background-color: #ff9a3c22;
+}
+
 .score-chip-kana {
   font-size: 1.4rem;
 }

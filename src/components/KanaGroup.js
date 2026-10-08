@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { useLanguage } from '../i18n'
+import Icon from './Icon'
 
 
 /*
@@ -79,7 +80,7 @@ export default function KanaGroup(props) {
         onClick={() => toggleSelectAll(tag)}
       >
         <h3>
-          <span className="select-all-check" aria-hidden="true">{allSelected ? '✓' : '+'}</span>
+          <span className="select-all-check" aria-hidden="true"><Icon name={allSelected ? 'check' : 'plus'} strokeWidth={2.5} /></span>
           {label}
           <span className="select-all-count">{selected}/{total}</span>
         </h3>
@@ -232,7 +233,7 @@ function character_button_group_builder(props, tag, language, kanjiLevel, kanjiT
                 onClick={() => kanjiThemeActions.toggleKanjiTheme(themeKey)}
               >
                 <h3>
-                  <span className="select-all-check" aria-hidden="true">{allSelected ? '✓' : '+'}</span>
+                  <span className="select-all-check" aria-hidden="true"><Icon name={allSelected ? 'check' : 'plus'} strokeWidth={2.5} /></span>
                   {themeTitle}
                   <span className="select-all-count">{selected}/{total}</span>
                 </h3>

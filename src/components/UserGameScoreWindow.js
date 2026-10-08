@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { kanaCharacters } from '../kanaCharacters.js'
 import { useLanguage } from '../i18n'
+import { isSpeechSupported, speak } from '../speech'
+import Icon from './Icon'
 
 /* userStats object structure:
 {
@@ -68,6 +70,22 @@ function playAgain() {
 
 export default function UserGameScoreWindow(props) {
     const { t } = useLanguage();
+
+    // Tapping a chip reads it aloud (when the browser has speech synthesis)
+    const listenProps = (text) => isSpeechSupported() ? {
+        role: 'button',
+        tabIndex: 0,
+        title: t('summaryListenTitle'),
+        className: 'score-chip score-chip-listen',
+        onClick: () => speak(text),
+        onKeyDown: (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                event.stopPropagation();
+                speak(text);
+            }
+        },
+    } : {};
     const userStats = JSON.parse(localStorage.getItem('userStats')) || {};
     const [isNewStreakRecord, setIsNewStreakRecord] = useState(false);
 
@@ -223,9 +241,9 @@ export default function UserGameScoreWindow(props) {
         if (Math.abs(difference) < 0.05) {
             comparisonText = t('summarySamePace');
         } else if (difference < 0) {
-            comparisonText = t('summaryFaster', { seconds: Math.abs(difference).toFixed(1) });
+            comparisonText = <><Icon name='arrow-up' className='icon-leading' />{t('summaryFaster', { seconds: Math.abs(difference).toFixed(1) })}</>;
         } else {
-            comparisonText = t('summarySlower', { seconds: difference.toFixed(1) });
+            comparisonText = <><Icon name='arrow-down' className='icon-leading' />{t('summarySlower', { seconds: difference.toFixed(1) })}</>;
         }
     }
 
@@ -245,7 +263,7 @@ export default function UserGameScoreWindow(props) {
                     {comparisonText && <div className='score-card-note'>{comparisonText}</div>}
                 </div>
                 <div className='score-card'>
-                    <div className='score-card-value'>🔥 {props.bestStreak}</div>
+                    <div className='score-card-value'><Icon name='flame' className='icon-flame icon-leading' />{props.bestStreak}</div>
                     <div className='score-card-label'>{t('summaryBestStreak')}</div>
                     {isNewStreakRecord && <div className='score-card-note score-card-note-highlight'>{t('summaryNewRecord')}</div>}
                 </div>
@@ -259,7 +277,7 @@ export default function UserGameScoreWindow(props) {
                     <h3>{t('summaryNeedsPractice')}</h3>
                     <div className='score-chips'>
                         {needsPractice.map(entry => (
-                            <span className='score-chip' key={'practice-' + entry.kana}>
+                            <span className='score-chip' key={'practice-' + entry.kana} {...listenProps(entry.kana)}>
                                 <span className='score-chip-kana'>{entry.kana}</span>
                                 <span className='score-chip-detail'>{romanjiOf[entry.kana] || ''}</span>
                             </span>
@@ -271,7 +289,7 @@ export default function UserGameScoreWindow(props) {
                 <h3>{t('summarySlowest')}</h3>
                 <div className='score-chips'>
                     {slowest.map(entry => (
-                        <span className='score-chip' key={'slow-' + entry.kana}>
+                        <span className='score-chip' key={'slow-' + entry.kana} {...listenProps(entry.kana)}>
                             <span className='score-chip-kana'>{entry.kana}</span>
                             <span className='score-chip-detail'>{entry.seconds.toFixed(1)}s</span>
                         </span>

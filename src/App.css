@@ -10,6 +10,30 @@ body,
 
 :root {
   --ui-font: "Belanosima", "Trebuchet MS", sans-serif;
+  /* Same check as <Icon name="check" />, for places that can only use CSS (::after) */
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+}
+
+/* SVG icons (components/Icon.js), sized like the text around them */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  vertical-align: -0.125em;
+}
+
+.icon-leading {
+  margin-right: 0.3em;
+}
+
+.icon-trailing {
+  margin-left: 0.3em;
+}
+
+.icon-flame {
+  color: #ff6b2c;
+  fill: #ff6b2c33;
 }
 
 body {
@@ -2434,13 +2458,15 @@ Group selection feedback
 }
 
 .character-checkbox-element .kana-checkbox:checked ~ .character-checkbox-content::after {
-  content: '✓';
+  content: '';
   position: absolute;
   top: 4px;
   right: 6px;
-  font-family: var(--ui-font);
-  font-size: 0.8em;
-  line-height: 1;
+  width: 0.8em;
+  height: 0.8em;
+  background-color: currentColor;
+  -webkit-mask: var(--icon-check) center / contain no-repeat;
+  mask: var(--icon-check) center / contain no-repeat;
 }
 
 .character-checkbox-element .kana-checkbox:not(:checked) ~ .character-checkbox-content {
@@ -2467,8 +2493,14 @@ button.character-title-group-button {
 }
 
 .select-all-check {
+  display: inline-flex;
   width: 1.2em;
-  text-align: center;
+  justify-content: center;
+}
+
+.select-all-check .icon {
+  width: 0.85em;
+  height: 0.85em;
 }
 
 .select-all-count {

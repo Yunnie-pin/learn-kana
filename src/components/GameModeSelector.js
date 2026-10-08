@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import CheckMark from './CheckMark';
+import Icon from './Icon';
 import { useLanguage } from '../i18n';
+import { isSpeechSupported, SOUND_SETTING_KEY } from '../speech';
 
 // A row of mutually exclusive practice or answer modes.
 function SegmentedControl(props) {
@@ -161,6 +163,7 @@ export default function GameModeSelector(props) {
         <CheckMark characterText={t('optionHints')} class="game-mode-selector-button-group-row-2" id="game-mode-hints" default="true"/>
         <CheckMark characterText={t('optionHandwrittenFonts')} class="game-mode-selector-button-group-row-2" id="game-mode-random-fonts"/>
         <CheckMark characterText={t('optionAutoNext')} class="game-mode-selector-button-group-row-2" id="game-mode-auto-next" default="true"/>
+        {isSpeechSupported() && <CheckMark characterText={<><Icon name='volume' className='icon-leading' />{t('optionSound')}</>} class="game-mode-selector-button-group-row-2" id={SOUND_SETTING_KEY}/>}
         <CheckMark characterText={t('kanjiReadingsOption')} class="game-mode-selector-button-group-row-2" id="game-mode-kanji-readings"/>
       </div>
     </div>

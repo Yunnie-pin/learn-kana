@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { LANGUAGES, useLanguage } from '../i18n';
+import Icon from './Icon';
 
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
@@ -47,7 +48,7 @@ export default function Navbar() {
             title={darkMode ? t('navbarLightMode') : t('navbarDarkMode')}
             onClick={toggleTheme}
           >
-            {darkMode ? '☀' : '☾'}
+            <Icon name={darkMode ? 'sun' : 'moon'} />
           </button>
           <div className='segmented-control navbar-language' role='radiogroup' aria-label={t('navbarLanguage')}>
             {LANGUAGES.map((option) => (
