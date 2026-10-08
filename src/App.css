@@ -116,6 +116,9 @@ Navbar
 }
 
 .navbar-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
   border: 2px solid #ff9a3c;
   border-radius: 50em;
   padding: 0.3em 0.9em;
@@ -123,7 +126,24 @@ Navbar
   color: #ff9a3c;
   font-family: var(--ui-font);
   font-size: 0.9em;
+  white-space: nowrap;
   cursor: pointer;
+}
+
+/* On phones the install button is a round icon like the theme toggle, so the navbar fits */
+@media (max-width: 655px) {
+  .navbar-install {
+    justify-content: center;
+    width: 2.25em;
+    height: 2.25em;
+    padding: 0;
+    border-width: 1px;
+    font-size: 1.05em;
+  }
+
+  .navbar-install-label {
+    display: none;
+  }
 }
 
 .github-icon {
@@ -1820,7 +1840,9 @@ Phones
     position: sticky;
     bottom: 0;
     z-index: 50;
-    background: linear-gradient(to top, #155263 70%, #15526300);
+    /* The fade stays in the top padding, so the selection summary always sits on a solid background */
+    padding-top: 1.2em;
+    background: linear-gradient(to top, #155263 calc(100% - 1.2em), #15526300);
   }
 
   .game-menu-start {
@@ -2567,7 +2589,7 @@ html[data-theme='dark'] .game-mode-selector-group {
 }
 
 html[data-theme='dark'] .game-menu-start-bar {
-  background-image: linear-gradient(to top, #2a373d 70%, #2a373d00);
+  background-image: linear-gradient(to top, #2a373d calc(100% - 1.2em), #2a373d00);
 }
 
 html[data-theme='dark'] .progress-stats-grid-container,

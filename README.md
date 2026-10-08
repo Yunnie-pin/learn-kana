@@ -8,9 +8,9 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 > The original version is live on [GitHub Pages](https://eldoprano.github.io/learn-kana/) and [Cloudflare Pages](https://learn-kana.pages.dev/).
 
 <p align="center">
-  <img src="docs/screenshots/home-desktop.png" alt="Learn Kana home page on desktop: hiragana and katakana group selection with game mode options" width="68%">
+  <img src="docs/screenshots/home-desktop.png" alt="Learn Kana home page on desktop: hiragana and katakana group selection, with the mode panel on the side" width="68%">
   &nbsp;
-  <img src="docs/screenshots/home-mobile.png" alt="Learn Kana home page on mobile, with hiragana / katakana tabs and a sticky start button" width="24%">
+  <img src="docs/screenshots/home-mobile.png" alt="Learn Kana home page on mobile, with hiragana / katakana / kanji tabs and a sticky start button" width="24%">
 </p>
 
 ## Features
