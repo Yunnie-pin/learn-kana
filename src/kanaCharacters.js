@@ -10931,6 +10931,3304 @@ export const kanaCharacters = {
         "ナ"
       ],
       "hiragana_groups": []
+    },
+    "sandoitchi": {
+      "jp_character": "サンドイッチ",
+      "romanji": [
+        "sandoitchi"
+      ],
+      "sound": "サンドイッチ",
+      "meaning": "sandwich",
+      "meaning_id": "roti lapis",
+      "tags": ["food"],
+      "katakana_groups": [
+        "サ",
+        "ワ",
+        "ダ",
+        "ア",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "hanbaagu": {
+      "jp_character": "ハンバーグ",
+      "romanji": [
+        "hanbaagu",
+        "hanbagu"
+      ],
+      "sound": "ハンバーグ",
+      "meaning": "hamburg steak",
+      "meaning_id": "steik hamburg",
+      "tags": ["food"],
+      "katakana_groups": [
+        "ハ",
+        "ワ",
+        "バ",
+        "ガ"
+      ],
+      "hiragana_groups": []
+    },
+    "suteeki": {
+      "jp_character": "ステーキ",
+      "romanji": [
+        "suteeki",
+        "suteki"
+      ],
+      "sound": "ステーキ",
+      "meaning": "steak",
+      "meaning_id": "steik",
+      "tags": ["food", "meat"],
+      "katakana_groups": [
+        "サ",
+        "タ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "sooseeji": {
+      "jp_character": "ソーセージ",
+      "romanji": [
+        "sooseeji",
+        "soseji"
+      ],
+      "sound": "ソーセージ",
+      "meaning": "sausage",
+      "meaning_id": "sosis",
+      "tags": ["food", "meat"],
+      "katakana_groups": [
+        "サ",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "doonatsu": {
+      "jp_character": "ドーナツ",
+      "romanji": [
+        "doonatsu",
+        "donatsu"
+      ],
+      "sound": "ドーナツ",
+      "meaning": "donut",
+      "meaning_id": "donat",
+      "tags": ["food", "sweets"],
+      "katakana_groups": [
+        "ダ",
+        "ナ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "kukkii": {
+      "jp_character": "クッキー",
+      "romanji": [
+        "kukkii",
+        "kukki"
+      ],
+      "sound": "クッキー",
+      "meaning": "cookie",
+      "meaning_id": "kue kering",
+      "tags": ["food", "sweets"],
+      "katakana_groups": [
+        "カ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "purin": {
+      "jp_character": "プリン",
+      "romanji": [
+        "purin"
+      ],
+      "sound": "プリン",
+      "meaning": "pudding",
+      "meaning_id": "puding",
+      "tags": ["food", "sweets"],
+      "katakana_groups": [
+        "パ",
+        "ラ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "yooguruto": {
+      "jp_character": "ヨーグルト",
+      "romanji": [
+        "yooguruto",
+        "yoguruto"
+      ],
+      "sound": "ヨーグルト",
+      "meaning": "yogurt",
+      "meaning_id": "yoghurt",
+      "tags": ["food"],
+      "katakana_groups": [
+        "ヤ",
+        "ガ",
+        "ラ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "chiizu": {
+      "jp_character": "チーズ",
+      "romanji": [
+        "chiizu",
+        "chizu"
+      ],
+      "sound": "チーズ",
+      "meaning": "cheese",
+      "meaning_id": "keju",
+      "tags": ["food"],
+      "katakana_groups": [
+        "タ",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "bataa": {
+      "jp_character": "バター",
+      "romanji": [
+        "bataa",
+        "bata"
+      ],
+      "sound": "バター",
+      "meaning": "butter",
+      "meaning_id": "mentega",
+      "tags": ["food"],
+      "katakana_groups": [
+        "バ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "jamu": {
+      "jp_character": "ジャム",
+      "romanji": [
+        "jamu"
+      ],
+      "sound": "ジャム",
+      "meaning": "jam",
+      "meaning_id": "selai",
+      "tags": ["food", "sweets"],
+      "katakana_groups": [
+        "ザ",
+        "ヤ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "soosu": {
+      "jp_character": "ソース",
+      "romanji": [
+        "soosu",
+        "sosu"
+      ],
+      "sound": "ソース",
+      "meaning": "sauce",
+      "meaning_id": "saus",
+      "tags": ["food", "condiments"],
+      "katakana_groups": [
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "kechappu": {
+      "jp_character": "ケチャップ",
+      "romanji": [
+        "kechappu"
+      ],
+      "sound": "ケチャップ",
+      "meaning": "ketchup",
+      "meaning_id": "saus tomat",
+      "tags": ["food", "condiments"],
+      "katakana_groups": [
+        "カ",
+        "タ",
+        "ヤ",
+        "パ"
+      ],
+      "hiragana_groups": []
+    },
+    "menyuu": {
+      "jp_character": "メニュー",
+      "romanji": [
+        "menyuu",
+        "menyu"
+      ],
+      "sound": "メニュー",
+      "meaning": "menu",
+      "meaning_id": "menu",
+      "tags": ["food", "places"],
+      "katakana_groups": [
+        "マ",
+        "ナ",
+        "ヤ"
+      ],
+      "hiragana_groups": []
+    },
+    "koora": {
+      "jp_character": "コーラ",
+      "romanji": [
+        "koora",
+        "kora"
+      ],
+      "sound": "コーラ",
+      "meaning": "cola",
+      "meaning_id": "kola",
+      "tags": ["food", "drinks"],
+      "katakana_groups": [
+        "カ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "sooda": {
+      "jp_character": "ソーダ",
+      "romanji": [
+        "sooda",
+        "soda"
+      ],
+      "sound": "ソーダ",
+      "meaning": "soda",
+      "meaning_id": "soda",
+      "tags": ["food", "drinks"],
+      "katakana_groups": [
+        "サ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "kokoa": {
+      "jp_character": "ココア",
+      "romanji": [
+        "kokoa"
+      ],
+      "sound": "ココア",
+      "meaning": "cocoa",
+      "meaning_id": "cokelat panas",
+      "tags": ["food", "drinks"],
+      "katakana_groups": [
+        "カ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "gamu": {
+      "jp_character": "ガム",
+      "romanji": [
+        "gamu"
+      ],
+      "sound": "ガム",
+      "meaning": "chewing gum",
+      "meaning_id": "permen karet",
+      "tags": ["food", "sweets"],
+      "katakana_groups": [
+        "ガ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "zerii": {
+      "jp_character": "ゼリー",
+      "romanji": [
+        "zerii",
+        "zeri"
+      ],
+      "sound": "ゼリー",
+      "meaning": "jelly",
+      "meaning_id": "jeli",
+      "tags": ["food", "sweets"],
+      "katakana_groups": [
+        "ザ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "painappuru": {
+      "jp_character": "パイナップル",
+      "romanji": [
+        "painappuru"
+      ],
+      "sound": "パイナップル",
+      "meaning": "pineapple",
+      "meaning_id": "nanas",
+      "tags": ["food", "fruits"],
+      "katakana_groups": [
+        "パ",
+        "ア",
+        "ナ",
+        "タ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "kiui": {
+      "jp_character": "キウイ",
+      "romanji": [
+        "kiui"
+      ],
+      "sound": "キウイ",
+      "meaning": "kiwi",
+      "meaning_id": "kiwi",
+      "tags": ["food", "fruits"],
+      "katakana_groups": [
+        "カ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "mangoo": {
+      "jp_character": "マンゴー",
+      "romanji": [
+        "mangoo",
+        "mango"
+      ],
+      "sound": "マンゴー",
+      "meaning": "mango",
+      "meaning_id": "mangga",
+      "tags": ["food", "fruits"],
+      "katakana_groups": [
+        "マ",
+        "ワ",
+        "ガ"
+      ],
+      "hiragana_groups": []
+    },
+    "gureepufuruutsu": {
+      "jp_character": "グレープフルーツ",
+      "romanji": [
+        "gureepufuruutsu",
+        "gurepufurutsu"
+      ],
+      "sound": "グレープフルーツ",
+      "meaning": "grapefruit",
+      "meaning_id": "jeruk bali",
+      "tags": ["food", "fruits"],
+      "katakana_groups": [
+        "ガ",
+        "ラ",
+        "パ",
+        "ハ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "kokonattsu": {
+      "jp_character": "ココナッツ",
+      "romanji": [
+        "kokonattsu"
+      ],
+      "sound": "ココナッツ",
+      "meaning": "coconut",
+      "meaning_id": "kelapa",
+      "tags": ["food", "fruits"],
+      "katakana_groups": [
+        "カ",
+        "ナ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "abokado": {
+      "jp_character": "アボカド",
+      "romanji": [
+        "abokado"
+      ],
+      "sound": "アボカド",
+      "meaning": "avocado",
+      "meaning_id": "alpukat",
+      "tags": ["food", "fruits"],
+      "katakana_groups": [
+        "ア",
+        "バ",
+        "カ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "burokkorii": {
+      "jp_character": "ブロッコリー",
+      "romanji": [
+        "burokkorii",
+        "burokkori"
+      ],
+      "sound": "ブロッコリー",
+      "meaning": "broccoli",
+      "meaning_id": "brokoli",
+      "tags": ["food", "vegetables"],
+      "katakana_groups": [
+        "バ",
+        "ラ",
+        "タ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "retasu": {
+      "jp_character": "レタス",
+      "romanji": [
+        "retasu"
+      ],
+      "sound": "レタス",
+      "meaning": "lettuce",
+      "meaning_id": "selada",
+      "tags": ["food", "vegetables"],
+      "katakana_groups": [
+        "ラ",
+        "タ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "omuraisu": {
+      "jp_character": "オムライス",
+      "romanji": [
+        "omuraisu"
+      ],
+      "sound": "オムライス",
+      "meaning": "omelette rice",
+      "meaning_id": "nasi omelet",
+      "tags": ["food", "japanese_culture"],
+      "katakana_groups": [
+        "ア",
+        "マ",
+        "ラ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "katsukaree": {
+      "jp_character": "カツカレー",
+      "romanji": [
+        "katsukaree",
+        "katsukare"
+      ],
+      "sound": "カツカレー",
+      "meaning": "katsu curry",
+      "meaning_id": "kari katsu",
+      "tags": ["food", "japanese_culture"],
+      "katakana_groups": [
+        "カ",
+        "タ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "takosu": {
+      "jp_character": "タコス",
+      "romanji": [
+        "takosu"
+      ],
+      "sound": "タコス",
+      "meaning": "tacos",
+      "meaning_id": "taco",
+      "tags": ["food"],
+      "katakana_groups": [
+        "タ",
+        "カ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "hottodoggu": {
+      "jp_character": "ホットドッグ",
+      "romanji": [
+        "hottodoggu"
+      ],
+      "sound": "ホットドッグ",
+      "meaning": "hot dog",
+      "meaning_id": "hotdog",
+      "tags": ["food"],
+      "katakana_groups": [
+        "ハ",
+        "タ",
+        "ダ",
+        "ガ"
+      ],
+      "hiragana_groups": []
+    },
+    "furaidopoteto": {
+      "jp_character": "フライドポテト",
+      "romanji": [
+        "furaidopoteto"
+      ],
+      "sound": "フライドポテト",
+      "meaning": "french fries",
+      "meaning_id": "kentang goreng",
+      "tags": ["food"],
+      "katakana_groups": [
+        "ハ",
+        "ラ",
+        "ア",
+        "ダ",
+        "パ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "poppukoon": {
+      "jp_character": "ポップコーン",
+      "romanji": [
+        "poppukoon",
+        "poppukon"
+      ],
+      "sound": "ポップコーン",
+      "meaning": "popcorn",
+      "meaning_id": "berondong jagung",
+      "tags": ["food"],
+      "katakana_groups": [
+        "パ",
+        "タ",
+        "カ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "korokke": {
+      "jp_character": "コロッケ",
+      "romanji": [
+        "korokke"
+      ],
+      "sound": "コロッケ",
+      "meaning": "croquette",
+      "meaning_id": "kroket",
+      "tags": ["food", "japanese_culture"],
+      "katakana_groups": [
+        "カ",
+        "ラ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "guratan": {
+      "jp_character": "グラタン",
+      "romanji": [
+        "guratan"
+      ],
+      "sound": "グラタン",
+      "meaning": "gratin",
+      "meaning_id": "gratin",
+      "tags": ["food"],
+      "katakana_groups": [
+        "ガ",
+        "ラ",
+        "タ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "apaato": {
+      "jp_character": "アパート",
+      "romanji": [
+        "apaato",
+        "apato"
+      ],
+      "sound": "アパート",
+      "meaning": "apartment",
+      "meaning_id": "apartemen",
+      "tags": ["places", "home"],
+      "katakana_groups": [
+        "ア",
+        "パ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "manshon": {
+      "jp_character": "マンション",
+      "romanji": [
+        "manshon"
+      ],
+      "sound": "マンション",
+      "meaning": "condominium",
+      "meaning_id": "apartemen",
+      "tags": ["places", "home"],
+      "katakana_groups": [
+        "マ",
+        "ワ",
+        "サ",
+        "ヤ"
+      ],
+      "hiragana_groups": []
+    },
+    "erebeetaa": {
+      "jp_character": "エレベーター",
+      "romanji": [
+        "erebeetaa",
+        "erebeta"
+      ],
+      "sound": "エレベーター",
+      "meaning": "elevator",
+      "meaning_id": "lift",
+      "tags": ["buildings"],
+      "katakana_groups": [
+        "ア",
+        "ラ",
+        "バ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "esukareetaa": {
+      "jp_character": "エスカレーター",
+      "romanji": [
+        "esukareetaa",
+        "esukareta"
+      ],
+      "sound": "エスカレーター",
+      "meaning": "escalator",
+      "meaning_id": "eskalator",
+      "tags": ["buildings"],
+      "katakana_groups": [
+        "ア",
+        "サ",
+        "カ",
+        "ラ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "puuru": {
+      "jp_character": "プール",
+      "romanji": [
+        "puuru",
+        "puru"
+      ],
+      "sound": "プール",
+      "meaning": "swimming pool",
+      "meaning_id": "kolam renang",
+      "tags": ["places", "sports"],
+      "katakana_groups": [
+        "パ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "jimu": {
+      "jp_character": "ジム",
+      "romanji": [
+        "jimu"
+      ],
+      "sound": "ジム",
+      "meaning": "gym",
+      "meaning_id": "gym",
+      "tags": ["places", "sports"],
+      "katakana_groups": [
+        "ザ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "gasorinsutando": {
+      "jp_character": "ガソリンスタンド",
+      "romanji": [
+        "gasorinsutando"
+      ],
+      "sound": "ガソリンスタンド",
+      "meaning": "gas station",
+      "meaning_id": "pom bensin",
+      "tags": ["places", "transportation"],
+      "katakana_groups": [
+        "ガ",
+        "サ",
+        "ラ",
+        "ワ",
+        "タ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "reji": {
+      "jp_character": "レジ",
+      "romanji": [
+        "reji"
+      ],
+      "sound": "レジ",
+      "meaning": "cash register",
+      "meaning_id": "kasir",
+      "tags": ["shopping"],
+      "katakana_groups": [
+        "ラ",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "kauntaa": {
+      "jp_character": "カウンター",
+      "romanji": [
+        "kauntaa",
+        "kaunta"
+      ],
+      "sound": "カウンター",
+      "meaning": "counter",
+      "meaning_id": "konter",
+      "tags": ["places"],
+      "katakana_groups": [
+        "カ",
+        "ア",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "robii": {
+      "jp_character": "ロビー",
+      "romanji": [
+        "robii",
+        "robi"
+      ],
+      "sound": "ロビー",
+      "meaning": "lobby",
+      "meaning_id": "lobi",
+      "tags": ["buildings"],
+      "katakana_groups": [
+        "ラ",
+        "バ"
+      ],
+      "hiragana_groups": []
+    },
+    "kitchin": {
+      "jp_character": "キッチン",
+      "romanji": [
+        "kitchin"
+      ],
+      "sound": "キッチン",
+      "meaning": "kitchen",
+      "meaning_id": "dapur",
+      "tags": ["home"],
+      "katakana_groups": [
+        "カ",
+        "タ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "beranda": {
+      "jp_character": "ベランダ",
+      "romanji": [
+        "beranda"
+      ],
+      "sound": "ベランダ",
+      "meaning": "balcony",
+      "meaning_id": "balkon",
+      "tags": ["home"],
+      "katakana_groups": [
+        "バ",
+        "ラ",
+        "ワ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "teeburu": {
+      "jp_character": "テーブル",
+      "romanji": [
+        "teeburu",
+        "teburu"
+      ],
+      "sound": "テーブル",
+      "meaning": "table",
+      "meaning_id": "meja",
+      "tags": ["furniture", "home"],
+      "katakana_groups": [
+        "タ",
+        "バ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "kaaten": {
+      "jp_character": "カーテン",
+      "romanji": [
+        "kaaten",
+        "katen"
+      ],
+      "sound": "カーテン",
+      "meaning": "curtain",
+      "meaning_id": "gorden",
+      "tags": ["home"],
+      "katakana_groups": [
+        "カ",
+        "タ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "ranpu": {
+      "jp_character": "ランプ",
+      "romanji": [
+        "ranpu"
+      ],
+      "sound": "ランプ",
+      "meaning": "lamp",
+      "meaning_id": "lampu",
+      "tags": ["home", "items"],
+      "katakana_groups": [
+        "ラ",
+        "ワ",
+        "パ"
+      ],
+      "hiragana_groups": []
+    },
+    "eakon": {
+      "jp_character": "エアコン",
+      "romanji": [
+        "eakon"
+      ],
+      "sound": "エアコン",
+      "meaning": "air conditioner",
+      "meaning_id": "AC",
+      "tags": ["home", "items"],
+      "katakana_groups": [
+        "ア",
+        "カ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "sutoobu": {
+      "jp_character": "ストーブ",
+      "romanji": [
+        "sutoobu",
+        "sutobu"
+      ],
+      "sound": "ストーブ",
+      "meaning": "heater",
+      "meaning_id": "pemanas ruangan",
+      "tags": ["home", "items"],
+      "katakana_groups": [
+        "サ",
+        "タ",
+        "バ"
+      ],
+      "hiragana_groups": []
+    },
+    "shawaa": {
+      "jp_character": "シャワー",
+      "romanji": [
+        "shawaa",
+        "shawa"
+      ],
+      "sound": "シャワー",
+      "meaning": "shower",
+      "meaning_id": "pancuran",
+      "tags": ["home"],
+      "katakana_groups": [
+        "サ",
+        "ヤ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "taoru": {
+      "jp_character": "タオル",
+      "romanji": [
+        "taoru"
+      ],
+      "sound": "タオル",
+      "meaning": "towel",
+      "meaning_id": "handuk",
+      "tags": ["home", "items"],
+      "katakana_groups": [
+        "タ",
+        "ア",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "shanpuu": {
+      "jp_character": "シャンプー",
+      "romanji": [
+        "shanpuu",
+        "shanpu"
+      ],
+      "sound": "シャンプー",
+      "meaning": "shampoo",
+      "meaning_id": "sampo",
+      "tags": ["home", "items"],
+      "katakana_groups": [
+        "サ",
+        "ヤ",
+        "ワ",
+        "パ"
+      ],
+      "hiragana_groups": []
+    },
+    "botan": {
+      "jp_character": "ボタン",
+      "romanji": [
+        "botan"
+      ],
+      "sound": "ボタン",
+      "meaning": "button",
+      "meaning_id": "tombol",
+      "tags": ["items"],
+      "katakana_groups": [
+        "バ",
+        "タ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "suitchi": {
+      "jp_character": "スイッチ",
+      "romanji": [
+        "suitchi"
+      ],
+      "sound": "スイッチ",
+      "meaning": "switch",
+      "meaning_id": "sakelar",
+      "tags": ["items"],
+      "katakana_groups": [
+        "サ",
+        "ア",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "konsento": {
+      "jp_character": "コンセント",
+      "romanji": [
+        "konsento"
+      ],
+      "sound": "コンセント",
+      "meaning": "power outlet",
+      "meaning_id": "stopkontak",
+      "tags": ["home", "items"],
+      "katakana_groups": [
+        "カ",
+        "ワ",
+        "サ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "doraiyaa": {
+      "jp_character": "ドライヤー",
+      "romanji": [
+        "doraiyaa",
+        "doraiya"
+      ],
+      "sound": "ドライヤー",
+      "meaning": "hair dryer",
+      "meaning_id": "pengering rambut",
+      "tags": ["home", "items"],
+      "katakana_groups": [
+        "ダ",
+        "ラ",
+        "ア",
+        "ヤ"
+      ],
+      "hiragana_groups": []
+    },
+    "konpyuutaa": {
+      "jp_character": "コンピューター",
+      "romanji": [
+        "konpyuutaa",
+        "konpyuta"
+      ],
+      "sound": "コンピューター",
+      "meaning": "computer",
+      "meaning_id": "komputer",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "カ",
+        "ワ",
+        "パ",
+        "ヤ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "intaanetto": {
+      "jp_character": "インターネット",
+      "romanji": [
+        "intaanetto",
+        "intanetto"
+      ],
+      "sound": "インターネット",
+      "meaning": "internet",
+      "meaning_id": "internet",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "ア",
+        "ワ",
+        "タ",
+        "ナ"
+      ],
+      "hiragana_groups": []
+    },
+    "meeru": {
+      "jp_character": "メール",
+      "romanji": [
+        "meeru",
+        "meru"
+      ],
+      "sound": "メール",
+      "meaning": "email",
+      "meaning_id": "surel",
+      "tags": ["technology", "communication"],
+      "katakana_groups": [
+        "マ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "pasuwaado": {
+      "jp_character": "パスワード",
+      "romanji": [
+        "pasuwaado",
+        "pasuwado"
+      ],
+      "sound": "パスワード",
+      "meaning": "password",
+      "meaning_id": "kata sandi",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "パ",
+        "サ",
+        "ワ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "kiiboodo": {
+      "jp_character": "キーボード",
+      "romanji": [
+        "kiiboodo",
+        "kibodo"
+      ],
+      "sound": "キーボード",
+      "meaning": "keyboard",
+      "meaning_id": "papan ketik",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "カ",
+        "バ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "mausu": {
+      "jp_character": "マウス",
+      "romanji": [
+        "mausu"
+      ],
+      "sound": "マウス",
+      "meaning": "mouse (computer)",
+      "meaning_id": "tetikus",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "マ",
+        "ア",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "purintaa": {
+      "jp_character": "プリンター",
+      "romanji": [
+        "purintaa",
+        "purinta"
+      ],
+      "sound": "プリンター",
+      "meaning": "printer",
+      "meaning_id": "printer",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "パ",
+        "ラ",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "sukuriin": {
+      "jp_character": "スクリーン",
+      "romanji": [
+        "sukuriin",
+        "sukurin"
+      ],
+      "sound": "スクリーン",
+      "meaning": "screen",
+      "meaning_id": "layar",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "サ",
+        "カ",
+        "ラ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "apuri": {
+      "jp_character": "アプリ",
+      "romanji": [
+        "apuri"
+      ],
+      "sound": "アプリ",
+      "meaning": "app",
+      "meaning_id": "aplikasi",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "ア",
+        "パ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "deeta": {
+      "jp_character": "データ",
+      "romanji": [
+        "deeta",
+        "deta"
+      ],
+      "sound": "データ",
+      "meaning": "data",
+      "meaning_id": "data",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "ダ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "robotto": {
+      "jp_character": "ロボット",
+      "romanji": [
+        "robotto"
+      ],
+      "sound": "ロボット",
+      "meaning": "robot",
+      "meaning_id": "robot",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "ラ",
+        "バ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "batterii": {
+      "jp_character": "バッテリー",
+      "romanji": [
+        "batterii",
+        "batteri"
+      ],
+      "sound": "バッテリー",
+      "meaning": "battery",
+      "meaning_id": "baterai",
+      "tags": ["technology", "items"],
+      "katakana_groups": [
+        "バ",
+        "タ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "keeburu": {
+      "jp_character": "ケーブル",
+      "romanji": [
+        "keeburu",
+        "keburu"
+      ],
+      "sound": "ケーブル",
+      "meaning": "cable",
+      "meaning_id": "kabel",
+      "tags": ["technology", "items"],
+      "katakana_groups": [
+        "カ",
+        "バ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "iyahon": {
+      "jp_character": "イヤホン",
+      "romanji": [
+        "iyahon"
+      ],
+      "sound": "イヤホン",
+      "meaning": "earphones",
+      "meaning_id": "earphone",
+      "tags": ["technology", "items"],
+      "katakana_groups": [
+        "ア",
+        "ヤ",
+        "ハ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "maiku": {
+      "jp_character": "マイク",
+      "romanji": [
+        "maiku"
+      ],
+      "sound": "マイク",
+      "meaning": "microphone",
+      "meaning_id": "mikrofon",
+      "tags": ["technology", "music"],
+      "katakana_groups": [
+        "マ",
+        "ア",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "bideo": {
+      "jp_character": "ビデオ",
+      "romanji": [
+        "bideo"
+      ],
+      "sound": "ビデオ",
+      "meaning": "video",
+      "meaning_id": "video",
+      "tags": ["technology", "entertainment"],
+      "katakana_groups": [
+        "バ",
+        "ダ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "saito": {
+      "jp_character": "サイト",
+      "romanji": [
+        "saito"
+      ],
+      "sound": "サイト",
+      "meaning": "website",
+      "meaning_id": "situs web",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "サ",
+        "ア",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "burogu": {
+      "jp_character": "ブログ",
+      "romanji": [
+        "burogu"
+      ],
+      "sound": "ブログ",
+      "meaning": "blog",
+      "meaning_id": "blog",
+      "tags": ["technology"],
+      "katakana_groups": [
+        "バ",
+        "ラ",
+        "ガ"
+      ],
+      "hiragana_groups": []
+    },
+    "jaketto": {
+      "jp_character": "ジャケット",
+      "romanji": [
+        "jaketto"
+      ],
+      "sound": "ジャケット",
+      "meaning": "jacket",
+      "meaning_id": "jaket",
+      "tags": ["clothing"],
+      "katakana_groups": [
+        "ザ",
+        "ヤ",
+        "カ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "kooto": {
+      "jp_character": "コート",
+      "romanji": [
+        "kooto",
+        "koto"
+      ],
+      "sound": "コート",
+      "meaning": "coat",
+      "meaning_id": "mantel",
+      "tags": ["clothing"],
+      "katakana_groups": [
+        "カ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "seetaa": {
+      "jp_character": "セーター",
+      "romanji": [
+        "seetaa",
+        "seta"
+      ],
+      "sound": "セーター",
+      "meaning": "sweater",
+      "meaning_id": "sweter",
+      "tags": ["clothing"],
+      "katakana_groups": [
+        "サ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "nekutai": {
+      "jp_character": "ネクタイ",
+      "romanji": [
+        "nekutai"
+      ],
+      "sound": "ネクタイ",
+      "meaning": "necktie",
+      "meaning_id": "dasi",
+      "tags": ["clothing", "accessories"],
+      "katakana_groups": [
+        "ナ",
+        "カ",
+        "タ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "beruto": {
+      "jp_character": "ベルト",
+      "romanji": [
+        "beruto"
+      ],
+      "sound": "ベルト",
+      "meaning": "belt",
+      "meaning_id": "ikat pinggang",
+      "tags": ["clothing", "accessories"],
+      "katakana_groups": [
+        "バ",
+        "ラ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "buutsu": {
+      "jp_character": "ブーツ",
+      "romanji": [
+        "buutsu",
+        "butsu"
+      ],
+      "sound": "ブーツ",
+      "meaning": "boots",
+      "meaning_id": "sepatu bot",
+      "tags": ["clothing"],
+      "katakana_groups": [
+        "バ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "sandaru": {
+      "jp_character": "サンダル",
+      "romanji": [
+        "sandaru"
+      ],
+      "sound": "サンダル",
+      "meaning": "sandals",
+      "meaning_id": "sandal",
+      "tags": ["clothing"],
+      "katakana_groups": [
+        "サ",
+        "ワ",
+        "ダ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "suniikaa": {
+      "jp_character": "スニーカー",
+      "romanji": [
+        "suniikaa",
+        "sunika"
+      ],
+      "sound": "スニーカー",
+      "meaning": "sneakers",
+      "meaning_id": "sepatu kets",
+      "tags": ["clothing"],
+      "katakana_groups": [
+        "サ",
+        "ナ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "doresu": {
+      "jp_character": "ドレス",
+      "romanji": [
+        "doresu"
+      ],
+      "sound": "ドレス",
+      "meaning": "dress",
+      "meaning_id": "gaun",
+      "tags": ["clothing"],
+      "katakana_groups": [
+        "ダ",
+        "ラ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "jiinzu": {
+      "jp_character": "ジーンズ",
+      "romanji": [
+        "jiinzu",
+        "jinzu"
+      ],
+      "sound": "ジーンズ",
+      "meaning": "jeans",
+      "meaning_id": "celana jin",
+      "tags": ["clothing"],
+      "katakana_groups": [
+        "ザ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "poketto": {
+      "jp_character": "ポケット",
+      "romanji": [
+        "poketto"
+      ],
+      "sound": "ポケット",
+      "meaning": "pocket",
+      "meaning_id": "saku",
+      "tags": ["clothing"],
+      "katakana_groups": [
+        "パ",
+        "カ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "masuku": {
+      "jp_character": "マスク",
+      "romanji": [
+        "masuku"
+      ],
+      "sound": "マスク",
+      "meaning": "face mask",
+      "meaning_id": "masker",
+      "tags": ["items", "health"],
+      "katakana_groups": [
+        "マ",
+        "サ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "baggu": {
+      "jp_character": "バッグ",
+      "romanji": [
+        "baggu"
+      ],
+      "sound": "バッグ",
+      "meaning": "bag",
+      "meaning_id": "tas",
+      "tags": ["items", "accessories"],
+      "katakana_groups": [
+        "バ",
+        "タ",
+        "ガ"
+      ],
+      "hiragana_groups": []
+    },
+    "ryukku": {
+      "jp_character": "リュック",
+      "romanji": [
+        "ryukku"
+      ],
+      "sound": "リュック",
+      "meaning": "backpack",
+      "meaning_id": "ransel",
+      "tags": ["items", "accessories"],
+      "katakana_groups": [
+        "ラ",
+        "ヤ",
+        "タ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "hankachi": {
+      "jp_character": "ハンカチ",
+      "romanji": [
+        "hankachi"
+      ],
+      "sound": "ハンカチ",
+      "meaning": "handkerchief",
+      "meaning_id": "sapu tangan",
+      "tags": ["items", "accessories"],
+      "katakana_groups": [
+        "ハ",
+        "ワ",
+        "カ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "nekkuresu": {
+      "jp_character": "ネックレス",
+      "romanji": [
+        "nekkuresu"
+      ],
+      "sound": "ネックレス",
+      "meaning": "necklace",
+      "meaning_id": "kalung",
+      "tags": ["accessories"],
+      "katakana_groups": [
+        "ナ",
+        "タ",
+        "カ",
+        "ラ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "ribon": {
+      "jp_character": "リボン",
+      "romanji": [
+        "ribon"
+      ],
+      "sound": "リボン",
+      "meaning": "ribbon",
+      "meaning_id": "pita",
+      "tags": ["accessories"],
+      "katakana_groups": [
+        "ラ",
+        "バ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "sangurasu": {
+      "jp_character": "サングラス",
+      "romanji": [
+        "sangurasu"
+      ],
+      "sound": "サングラス",
+      "meaning": "sunglasses",
+      "meaning_id": "kacamata hitam",
+      "tags": ["accessories"],
+      "katakana_groups": [
+        "サ",
+        "ワ",
+        "ガ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "basukettobooru": {
+      "jp_character": "バスケットボール",
+      "romanji": [
+        "basukettobooru",
+        "basukettoboru"
+      ],
+      "sound": "バスケットボール",
+      "meaning": "basketball",
+      "meaning_id": "bola basket",
+      "tags": ["sports"],
+      "katakana_groups": [
+        "バ",
+        "サ",
+        "カ",
+        "タ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "bareebooru": {
+      "jp_character": "バレーボール",
+      "romanji": [
+        "bareebooru",
+        "bareboru"
+      ],
+      "sound": "バレーボール",
+      "meaning": "volleyball",
+      "meaning_id": "bola voli",
+      "tags": ["sports"],
+      "katakana_groups": [
+        "バ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "gorufu": {
+      "jp_character": "ゴルフ",
+      "romanji": [
+        "gorufu"
+      ],
+      "sound": "ゴルフ",
+      "meaning": "golf",
+      "meaning_id": "golf",
+      "tags": ["sports"],
+      "katakana_groups": [
+        "ガ",
+        "ラ",
+        "ハ"
+      ],
+      "hiragana_groups": []
+    },
+    "sukii": {
+      "jp_character": "スキー",
+      "romanji": [
+        "sukii",
+        "suki"
+      ],
+      "sound": "スキー",
+      "meaning": "skiing",
+      "meaning_id": "ski",
+      "tags": ["sports"],
+      "katakana_groups": [
+        "サ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "sukeeto": {
+      "jp_character": "スケート",
+      "romanji": [
+        "sukeeto",
+        "suketo"
+      ],
+      "sound": "スケート",
+      "meaning": "skating",
+      "meaning_id": "seluncur es",
+      "tags": ["sports"],
+      "katakana_groups": [
+        "サ",
+        "カ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "marason": {
+      "jp_character": "マラソン",
+      "romanji": [
+        "marason"
+      ],
+      "sound": "マラソン",
+      "meaning": "marathon",
+      "meaning_id": "maraton",
+      "tags": ["sports"],
+      "katakana_groups": [
+        "マ",
+        "ラ",
+        "サ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "jogingu": {
+      "jp_character": "ジョギング",
+      "romanji": [
+        "jogingu"
+      ],
+      "sound": "ジョギング",
+      "meaning": "jogging",
+      "meaning_id": "jogging",
+      "tags": ["sports", "activities"],
+      "katakana_groups": [
+        "ザ",
+        "ヤ",
+        "ガ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "dansu": {
+      "jp_character": "ダンス",
+      "romanji": [
+        "dansu"
+      ],
+      "sound": "ダンス",
+      "meaning": "dance",
+      "meaning_id": "tari",
+      "tags": ["activities", "hobbies"],
+      "katakana_groups": [
+        "ダ",
+        "ワ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "bokushingu": {
+      "jp_character": "ボクシング",
+      "romanji": [
+        "bokushingu"
+      ],
+      "sound": "ボクシング",
+      "meaning": "boxing",
+      "meaning_id": "tinju",
+      "tags": ["sports"],
+      "katakana_groups": [
+        "バ",
+        "カ",
+        "サ",
+        "ワ",
+        "ガ"
+      ],
+      "hiragana_groups": []
+    },
+    "gooru": {
+      "jp_character": "ゴール",
+      "romanji": [
+        "gooru",
+        "goru"
+      ],
+      "sound": "ゴール",
+      "meaning": "goal",
+      "meaning_id": "gol",
+      "tags": ["sports"],
+      "katakana_groups": [
+        "ガ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "chiimu": {
+      "jp_character": "チーム",
+      "romanji": [
+        "chiimu",
+        "chimu"
+      ],
+      "sound": "チーム",
+      "meaning": "team",
+      "meaning_id": "tim",
+      "tags": ["sports", "people"],
+      "katakana_groups": [
+        "タ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "booru": {
+      "jp_character": "ボール",
+      "romanji": [
+        "booru",
+        "boru"
+      ],
+      "sound": "ボール",
+      "meaning": "ball",
+      "meaning_id": "bola",
+      "tags": ["sports", "items"],
+      "katakana_groups": [
+        "バ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "piano": {
+      "jp_character": "ピアノ",
+      "romanji": [
+        "piano"
+      ],
+      "sound": "ピアノ",
+      "meaning": "piano",
+      "meaning_id": "piano",
+      "tags": ["music"],
+      "katakana_groups": [
+        "パ",
+        "ア",
+        "ナ"
+      ],
+      "hiragana_groups": []
+    },
+    "gitaa": {
+      "jp_character": "ギター",
+      "romanji": [
+        "gitaa",
+        "gita"
+      ],
+      "sound": "ギター",
+      "meaning": "guitar",
+      "meaning_id": "gitar",
+      "tags": ["music"],
+      "katakana_groups": [
+        "ガ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "doramu": {
+      "jp_character": "ドラム",
+      "romanji": [
+        "doramu"
+      ],
+      "sound": "ドラム",
+      "meaning": "drum",
+      "meaning_id": "drum",
+      "tags": ["music"],
+      "katakana_groups": [
+        "ダ",
+        "ラ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "baiorin": {
+      "jp_character": "バイオリン",
+      "romanji": [
+        "baiorin"
+      ],
+      "sound": "バイオリン",
+      "meaning": "violin",
+      "meaning_id": "biola",
+      "tags": ["music"],
+      "katakana_groups": [
+        "バ",
+        "ア",
+        "ラ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "konsaato": {
+      "jp_character": "コンサート",
+      "romanji": [
+        "konsaato",
+        "konsato"
+      ],
+      "sound": "コンサート",
+      "meaning": "concert",
+      "meaning_id": "konser",
+      "tags": ["music", "events"],
+      "katakana_groups": [
+        "カ",
+        "ワ",
+        "サ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "dorama": {
+      "jp_character": "ドラマ",
+      "romanji": [
+        "dorama"
+      ],
+      "sound": "ドラマ",
+      "meaning": "TV drama",
+      "meaning_id": "drama",
+      "tags": ["entertainment"],
+      "katakana_groups": [
+        "ダ",
+        "ラ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "kyarakutaa": {
+      "jp_character": "キャラクター",
+      "romanji": [
+        "kyarakutaa",
+        "kyarakuta"
+      ],
+      "sound": "キャラクター",
+      "meaning": "character",
+      "meaning_id": "karakter",
+      "tags": ["anime", "entertainment"],
+      "katakana_groups": [
+        "カ",
+        "ヤ",
+        "ラ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "hiiroo": {
+      "jp_character": "ヒーロー",
+      "romanji": [
+        "hiiroo",
+        "hiro"
+      ],
+      "sound": "ヒーロー",
+      "meaning": "hero",
+      "meaning_id": "pahlawan",
+      "tags": ["anime", "entertainment"],
+      "katakana_groups": [
+        "ハ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "geemusentaa": {
+      "jp_character": "ゲームセンター",
+      "romanji": [
+        "geemusentaa",
+        "gemusenta"
+      ],
+      "sound": "ゲームセンター",
+      "meaning": "arcade",
+      "meaning_id": "pusat permainan",
+      "tags": ["places", "entertainment"],
+      "katakana_groups": [
+        "ガ",
+        "マ",
+        "サ",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "baiku": {
+      "jp_character": "バイク",
+      "romanji": [
+        "baiku"
+      ],
+      "sound": "バイク",
+      "meaning": "motorbike",
+      "meaning_id": "motor",
+      "tags": ["transportation"],
+      "katakana_groups": [
+        "バ",
+        "ア",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "booto": {
+      "jp_character": "ボート",
+      "romanji": [
+        "booto",
+        "boto"
+      ],
+      "sound": "ボート",
+      "meaning": "boat",
+      "meaning_id": "perahu",
+      "tags": ["transportation"],
+      "katakana_groups": [
+        "バ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "herikoputaa": {
+      "jp_character": "ヘリコプター",
+      "romanji": [
+        "herikoputaa",
+        "herikoputa"
+      ],
+      "sound": "ヘリコプター",
+      "meaning": "helicopter",
+      "meaning_id": "helikopter",
+      "tags": ["transportation"],
+      "katakana_groups": [
+        "ハ",
+        "ラ",
+        "カ",
+        "パ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "torakku": {
+      "jp_character": "トラック",
+      "romanji": [
+        "torakku"
+      ],
+      "sound": "トラック",
+      "meaning": "truck",
+      "meaning_id": "truk",
+      "tags": ["transportation"],
+      "katakana_groups": [
+        "タ",
+        "ラ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "monoreeru": {
+      "jp_character": "モノレール",
+      "romanji": [
+        "monoreeru",
+        "monoreru"
+      ],
+      "sound": "モノレール",
+      "meaning": "monorail",
+      "meaning_id": "monorel",
+      "tags": ["transportation"],
+      "katakana_groups": [
+        "マ",
+        "ナ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "doraibu": {
+      "jp_character": "ドライブ",
+      "romanji": [
+        "doraibu"
+      ],
+      "sound": "ドライブ",
+      "meaning": "drive",
+      "meaning_id": "jalan-jalan naik mobil",
+      "tags": ["transportation", "activities"],
+      "katakana_groups": [
+        "ダ",
+        "ラ",
+        "ア",
+        "バ"
+      ],
+      "hiragana_groups": []
+    },
+    "gasorin": {
+      "jp_character": "ガソリン",
+      "romanji": [
+        "gasorin"
+      ],
+      "sound": "ガソリン",
+      "meaning": "gasoline",
+      "meaning_id": "bensin",
+      "tags": ["transportation"],
+      "katakana_groups": [
+        "ガ",
+        "サ",
+        "ラ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "handoru": {
+      "jp_character": "ハンドル",
+      "romanji": [
+        "handoru"
+      ],
+      "sound": "ハンドル",
+      "meaning": "steering wheel",
+      "meaning_id": "setir",
+      "tags": ["transportation"],
+      "katakana_groups": [
+        "ハ",
+        "ワ",
+        "ダ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "chiketto": {
+      "jp_character": "チケット",
+      "romanji": [
+        "chiketto"
+      ],
+      "sound": "チケット",
+      "meaning": "ticket",
+      "meaning_id": "tiket",
+      "tags": ["travel", "items"],
+      "katakana_groups": [
+        "タ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "suutsukeesu": {
+      "jp_character": "スーツケース",
+      "romanji": [
+        "suutsukeesu",
+        "sutsukesu"
+      ],
+      "sound": "スーツケース",
+      "meaning": "suitcase",
+      "meaning_id": "koper",
+      "tags": ["travel", "items"],
+      "katakana_groups": [
+        "サ",
+        "タ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "tsuaa": {
+      "jp_character": "ツアー",
+      "romanji": [
+        "tsuaa",
+        "tsua"
+      ],
+      "sound": "ツアー",
+      "meaning": "tour",
+      "meaning_id": "tur",
+      "tags": ["travel"],
+      "katakana_groups": [
+        "タ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "gaido": {
+      "jp_character": "ガイド",
+      "romanji": [
+        "gaido"
+      ],
+      "sound": "ガイド",
+      "meaning": "guide",
+      "meaning_id": "pemandu",
+      "tags": ["travel", "people"],
+      "katakana_groups": [
+        "ガ",
+        "ア",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "hoomusutei": {
+      "jp_character": "ホームステイ",
+      "romanji": [
+        "hoomusutei",
+        "homusutei"
+      ],
+      "sound": "ホームステイ",
+      "meaning": "homestay",
+      "meaning_id": "homestay",
+      "tags": ["travel"],
+      "katakana_groups": [
+        "ハ",
+        "マ",
+        "サ",
+        "タ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "mappu": {
+      "jp_character": "マップ",
+      "romanji": [
+        "mappu"
+      ],
+      "sound": "マップ",
+      "meaning": "map",
+      "meaning_id": "peta",
+      "tags": ["travel", "items"],
+      "katakana_groups": [
+        "マ",
+        "タ",
+        "パ"
+      ],
+      "hiragana_groups": []
+    },
+    "tesuto": {
+      "jp_character": "テスト",
+      "romanji": [
+        "tesuto"
+      ],
+      "sound": "テスト",
+      "meaning": "test",
+      "meaning_id": "ujian",
+      "tags": ["education", "school"],
+      "katakana_groups": [
+        "タ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "kurasu_kata": {
+      "jp_character": "クラス",
+      "romanji": [
+        "kurasu"
+      ],
+      "sound": "クラス",
+      "meaning": "class",
+      "meaning_id": "kelas",
+      "tags": ["education", "school"],
+      "katakana_groups": [
+        "カ",
+        "ラ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "tekisuto": {
+      "jp_character": "テキスト",
+      "romanji": [
+        "tekisuto"
+      ],
+      "sound": "テキスト",
+      "meaning": "textbook",
+      "meaning_id": "buku teks",
+      "tags": ["education", "school"],
+      "katakana_groups": [
+        "タ",
+        "カ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "repooto": {
+      "jp_character": "レポート",
+      "romanji": [
+        "repooto",
+        "repoto"
+      ],
+      "sound": "レポート",
+      "meaning": "report",
+      "meaning_id": "laporan",
+      "tags": ["education", "work"],
+      "katakana_groups": [
+        "ラ",
+        "パ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "purinto": {
+      "jp_character": "プリント",
+      "romanji": [
+        "purinto"
+      ],
+      "sound": "プリント",
+      "meaning": "handout",
+      "meaning_id": "lembar cetak",
+      "tags": ["education", "school"],
+      "katakana_groups": [
+        "パ",
+        "ラ",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "memo": {
+      "jp_character": "メモ",
+      "romanji": [
+        "memo"
+      ],
+      "sound": "メモ",
+      "meaning": "memo",
+      "meaning_id": "catatan",
+      "tags": ["items", "work"],
+      "katakana_groups": [
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "arubaito": {
+      "jp_character": "アルバイト",
+      "romanji": [
+        "arubaito"
+      ],
+      "sound": "アルバイト",
+      "meaning": "part-time job",
+      "meaning_id": "kerja paruh waktu",
+      "tags": ["work"],
+      "katakana_groups": [
+        "ア",
+        "ラ",
+        "バ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "sarariiman": {
+      "jp_character": "サラリーマン",
+      "romanji": [
+        "sarariiman",
+        "sarariman"
+      ],
+      "sound": "サラリーマン",
+      "meaning": "office worker",
+      "meaning_id": "pegawai kantoran",
+      "tags": ["work", "people"],
+      "katakana_groups": [
+        "サ",
+        "ラ",
+        "マ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "sukejuuru": {
+      "jp_character": "スケジュール",
+      "romanji": [
+        "sukejuuru",
+        "sukejuru"
+      ],
+      "sound": "スケジュール",
+      "meaning": "schedule",
+      "meaning_id": "jadwal",
+      "tags": ["work", "time"],
+      "katakana_groups": [
+        "サ",
+        "カ",
+        "ザ",
+        "ヤ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "karendaa": {
+      "jp_character": "カレンダー",
+      "romanji": [
+        "karendaa",
+        "karenda"
+      ],
+      "sound": "カレンダー",
+      "meaning": "calendar",
+      "meaning_id": "kalender",
+      "tags": ["time", "items"],
+      "katakana_groups": [
+        "カ",
+        "ラ",
+        "ワ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "nyuusu": {
+      "jp_character": "ニュース",
+      "romanji": [
+        "nyuusu",
+        "nyusu"
+      ],
+      "sound": "ニュース",
+      "meaning": "news",
+      "meaning_id": "berita",
+      "tags": ["communication"],
+      "katakana_groups": [
+        "ナ",
+        "ヤ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "kurabu": {
+      "jp_character": "クラブ",
+      "romanji": [
+        "kurabu"
+      ],
+      "sound": "クラブ",
+      "meaning": "club",
+      "meaning_id": "klub",
+      "tags": ["school", "activities"],
+      "katakana_groups": [
+        "カ",
+        "ラ",
+        "バ"
+      ],
+      "hiragana_groups": []
+    },
+    "guruupu": {
+      "jp_character": "グループ",
+      "romanji": [
+        "guruupu",
+        "gurupu"
+      ],
+      "sound": "グループ",
+      "meaning": "group",
+      "meaning_id": "grup",
+      "tags": ["people"],
+      "katakana_groups": [
+        "ガ",
+        "ラ",
+        "パ"
+      ],
+      "hiragana_groups": []
+    },
+    "riidaa": {
+      "jp_character": "リーダー",
+      "romanji": [
+        "riidaa",
+        "rida"
+      ],
+      "sound": "リーダー",
+      "meaning": "leader",
+      "meaning_id": "pemimpin",
+      "tags": ["people", "work"],
+      "katakana_groups": [
+        "ラ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "menbaa": {
+      "jp_character": "メンバー",
+      "romanji": [
+        "menbaa",
+        "menba"
+      ],
+      "sound": "メンバー",
+      "meaning": "member",
+      "meaning_id": "anggota",
+      "tags": ["people"],
+      "katakana_groups": [
+        "マ",
+        "ワ",
+        "バ"
+      ],
+      "hiragana_groups": []
+    },
+    "chansu": {
+      "jp_character": "チャンス",
+      "romanji": [
+        "chansu"
+      ],
+      "sound": "チャンス",
+      "meaning": "chance",
+      "meaning_id": "kesempatan",
+      "tags": ["basic"],
+      "katakana_groups": [
+        "タ",
+        "ヤ",
+        "ワ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "ruuru": {
+      "jp_character": "ルール",
+      "romanji": [
+        "ruuru",
+        "ruru"
+      ],
+      "sound": "ルール",
+      "meaning": "rule",
+      "meaning_id": "aturan",
+      "tags": ["basic"],
+      "katakana_groups": [
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "misu": {
+      "jp_character": "ミス",
+      "romanji": [
+        "misu"
+      ],
+      "sound": "ミス",
+      "meaning": "mistake",
+      "meaning_id": "kesalahan",
+      "tags": ["basic"],
+      "katakana_groups": [
+        "マ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "pointo": {
+      "jp_character": "ポイント",
+      "romanji": [
+        "pointo"
+      ],
+      "sound": "ポイント",
+      "meaning": "point",
+      "meaning_id": "poin",
+      "tags": ["basic"],
+      "katakana_groups": [
+        "パ",
+        "ア",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "supiido": {
+      "jp_character": "スピード",
+      "romanji": [
+        "supiido",
+        "supido"
+      ],
+      "sound": "スピード",
+      "meaning": "speed",
+      "meaning_id": "kecepatan",
+      "tags": ["basic"],
+      "katakana_groups": [
+        "サ",
+        "パ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "saizu": {
+      "jp_character": "サイズ",
+      "romanji": [
+        "saizu"
+      ],
+      "sound": "サイズ",
+      "meaning": "size",
+      "meaning_id": "ukuran",
+      "tags": ["shopping"],
+      "katakana_groups": [
+        "サ",
+        "ア",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "taipu": {
+      "jp_character": "タイプ",
+      "romanji": [
+        "taipu"
+      ],
+      "sound": "タイプ",
+      "meaning": "type",
+      "meaning_id": "tipe",
+      "tags": ["basic"],
+      "katakana_groups": [
+        "タ",
+        "ア",
+        "パ"
+      ],
+      "hiragana_groups": []
+    },
+    "dezain": {
+      "jp_character": "デザイン",
+      "romanji": [
+        "dezain"
+      ],
+      "sound": "デザイン",
+      "meaning": "design",
+      "meaning_id": "desain",
+      "tags": ["art"],
+      "katakana_groups": [
+        "ダ",
+        "ザ",
+        "ア",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "gorira": {
+      "jp_character": "ゴリラ",
+      "romanji": [
+        "gorira"
+      ],
+      "sound": "ゴリラ",
+      "meaning": "gorilla",
+      "meaning_id": "gorila",
+      "tags": ["animals"],
+      "katakana_groups": [
+        "ガ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "koara": {
+      "jp_character": "コアラ",
+      "romanji": [
+        "koara"
+      ],
+      "sound": "コアラ",
+      "meaning": "koala",
+      "meaning_id": "koala",
+      "tags": ["animals"],
+      "katakana_groups": [
+        "カ",
+        "ア",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "kangaruu": {
+      "jp_character": "カンガルー",
+      "romanji": [
+        "kangaruu",
+        "kangaru"
+      ],
+      "sound": "カンガルー",
+      "meaning": "kangaroo",
+      "meaning_id": "kanguru",
+      "tags": ["animals"],
+      "katakana_groups": [
+        "カ",
+        "ワ",
+        "ガ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "chiitaa": {
+      "jp_character": "チーター",
+      "romanji": [
+        "chiitaa",
+        "chita"
+      ],
+      "sound": "チーター",
+      "meaning": "cheetah",
+      "meaning_id": "citah",
+      "tags": ["animals"],
+      "katakana_groups": [
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "rakko": {
+      "jp_character": "ラッコ",
+      "romanji": [
+        "rakko"
+      ],
+      "sound": "ラッコ",
+      "meaning": "sea otter",
+      "meaning_id": "berang-berang laut",
+      "tags": ["animals"],
+      "katakana_groups": [
+        "ラ",
+        "タ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "hamusutaa": {
+      "jp_character": "ハムスター",
+      "romanji": [
+        "hamusutaa",
+        "hamusuta"
+      ],
+      "sound": "ハムスター",
+      "meaning": "hamster",
+      "meaning_id": "hamster",
+      "tags": ["animals", "pets"],
+      "katakana_groups": [
+        "ハ",
+        "マ",
+        "サ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "mama": {
+      "jp_character": "ママ",
+      "romanji": [
+        "mama"
+      ],
+      "sound": "ママ",
+      "meaning": "mom",
+      "meaning_id": "mama",
+      "tags": ["family"],
+      "katakana_groups": [
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "papa": {
+      "jp_character": "パパ",
+      "romanji": [
+        "papa"
+      ],
+      "sound": "パパ",
+      "meaning": "dad",
+      "meaning_id": "papa",
+      "tags": ["family"],
+      "katakana_groups": [
+        "パ"
+      ],
+      "hiragana_groups": []
+    },
+    "sutaffu": {
+      "jp_character": "スタッフ",
+      "romanji": [
+        "sutaffu"
+      ],
+      "sound": "スタッフ",
+      "meaning": "staff",
+      "meaning_id": "staf",
+      "tags": ["work", "people"],
+      "katakana_groups": [
+        "サ",
+        "タ",
+        "ハ"
+      ],
+      "hiragana_groups": []
+    },
+    "gesuto": {
+      "jp_character": "ゲスト",
+      "romanji": [
+        "gesuto"
+      ],
+      "sound": "ゲスト",
+      "meaning": "guest",
+      "meaning_id": "tamu",
+      "tags": ["people"],
+      "katakana_groups": [
+        "ガ",
+        "サ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "purezento": {
+      "jp_character": "プレゼント",
+      "romanji": [
+        "purezento"
+      ],
+      "sound": "プレゼント",
+      "meaning": "present",
+      "meaning_id": "hadiah",
+      "tags": ["celebrations", "items"],
+      "katakana_groups": [
+        "パ",
+        "ラ",
+        "ザ",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "puran": {
+      "jp_character": "プラン",
+      "romanji": [
+        "puran"
+      ],
+      "sound": "プラン",
+      "meaning": "plan",
+      "meaning_id": "rencana",
+      "tags": ["basic"],
+      "katakana_groups": [
+        "パ",
+        "ラ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "ibento": {
+      "jp_character": "イベント",
+      "romanji": [
+        "ibento"
+      ],
+      "sound": "イベント",
+      "meaning": "event",
+      "meaning_id": "acara",
+      "tags": ["events"],
+      "katakana_groups": [
+        "ア",
+        "バ",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "seeru": {
+      "jp_character": "セール",
+      "romanji": [
+        "seeru",
+        "seru"
+      ],
+      "sound": "セール",
+      "meaning": "sale",
+      "meaning_id": "obral",
+      "tags": ["shopping"],
+      "katakana_groups": [
+        "サ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "reshiito": {
+      "jp_character": "レシート",
+      "romanji": [
+        "reshiito",
+        "reshito"
+      ],
+      "sound": "レシート",
+      "meaning": "receipt",
+      "meaning_id": "struk",
+      "tags": ["shopping"],
+      "katakana_groups": [
+        "ラ",
+        "サ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "kaado": {
+      "jp_character": "カード",
+      "romanji": [
+        "kaado",
+        "kado"
+      ],
+      "sound": "カード",
+      "meaning": "card",
+      "meaning_id": "kartu",
+      "tags": ["items", "money"],
+      "katakana_groups": [
+        "カ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "kurejittokaado": {
+      "jp_character": "クレジットカード",
+      "romanji": [
+        "kurejittokaado",
+        "kurejittokado"
+      ],
+      "sound": "クレジットカード",
+      "meaning": "credit card",
+      "meaning_id": "kartu kredit",
+      "tags": ["money", "shopping"],
+      "katakana_groups": [
+        "カ",
+        "ラ",
+        "ザ",
+        "タ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "koin": {
+      "jp_character": "コイン",
+      "romanji": [
+        "koin"
+      ],
+      "sound": "コイン",
+      "meaning": "coin",
+      "meaning_id": "koin",
+      "tags": ["money"],
+      "katakana_groups": [
+        "カ",
+        "ア",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "saabisu": {
+      "jp_character": "サービス",
+      "romanji": [
+        "saabisu",
+        "sabisu"
+      ],
+      "sound": "サービス",
+      "meaning": "service",
+      "meaning_id": "layanan",
+      "tags": ["shopping"],
+      "katakana_groups": [
+        "サ",
+        "バ"
+      ],
+      "hiragana_groups": []
+    },
+    "buruu": {
+      "jp_character": "ブルー",
+      "romanji": [
+        "buruu",
+        "buru"
+      ],
+      "sound": "ブルー",
+      "meaning": "blue",
+      "meaning_id": "biru",
+      "tags": ["colors"],
+      "katakana_groups": [
+        "バ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "guriin": {
+      "jp_character": "グリーン",
+      "romanji": [
+        "guriin",
+        "gurin"
+      ],
+      "sound": "グリーン",
+      "meaning": "green",
+      "meaning_id": "hijau",
+      "tags": ["colors"],
+      "katakana_groups": [
+        "ガ",
+        "ラ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "guree": {
+      "jp_character": "グレー",
+      "romanji": [
+        "guree",
+        "gure"
+      ],
+      "sound": "グレー",
+      "meaning": "gray",
+      "meaning_id": "abu-abu",
+      "tags": ["colors"],
+      "katakana_groups": [
+        "ガ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "goorudo": {
+      "jp_character": "ゴールド",
+      "romanji": [
+        "goorudo",
+        "gorudo"
+      ],
+      "sound": "ゴールド",
+      "meaning": "gold",
+      "meaning_id": "emas",
+      "tags": ["colors"],
+      "katakana_groups": [
+        "ガ",
+        "ラ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "shirubaa": {
+      "jp_character": "シルバー",
+      "romanji": [
+        "shirubaa",
+        "shiruba"
+      ],
+      "sound": "シルバー",
+      "meaning": "silver",
+      "meaning_id": "perak",
+      "tags": ["colors"],
+      "katakana_groups": [
+        "サ",
+        "ラ",
+        "バ"
+      ],
+      "hiragana_groups": []
+    },
+    "beeju": {
+      "jp_character": "ベージュ",
+      "romanji": [
+        "beeju",
+        "beju"
+      ],
+      "sound": "ベージュ",
+      "meaning": "beige",
+      "meaning_id": "krem",
+      "tags": ["colors"],
+      "katakana_groups": [
+        "バ",
+        "ザ",
+        "ヤ"
+      ],
+      "hiragana_groups": []
+    },
+    "hansamu": {
+      "jp_character": "ハンサム",
+      "romanji": [
+        "hansamu"
+      ],
+      "sound": "ハンサム",
+      "meaning": "handsome",
+      "meaning_id": "tampan",
+      "tags": ["adjectives", "appearance"],
+      "katakana_groups": [
+        "ハ",
+        "ワ",
+        "サ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "sumaato": {
+      "jp_character": "スマート",
+      "romanji": [
+        "sumaato",
+        "sumato"
+      ],
+      "sound": "スマート",
+      "meaning": "slim",
+      "meaning_id": "langsing",
+      "tags": ["adjectives", "appearance"],
+      "katakana_groups": [
+        "サ",
+        "マ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "rakkii": {
+      "jp_character": "ラッキー",
+      "romanji": [
+        "rakkii",
+        "rakki"
+      ],
+      "sound": "ラッキー",
+      "meaning": "lucky",
+      "meaning_id": "beruntung",
+      "tags": ["adjectives"],
+      "katakana_groups": [
+        "ラ",
+        "タ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "yuniiku": {
+      "jp_character": "ユニーク",
+      "romanji": [
+        "yuniiku",
+        "yuniku"
+      ],
+      "sound": "ユニーク",
+      "meaning": "unique",
+      "meaning_id": "unik",
+      "tags": ["adjectives"],
+      "katakana_groups": [
+        "ヤ",
+        "ナ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "shinpuru": {
+      "jp_character": "シンプル",
+      "romanji": [
+        "shinpuru"
+      ],
+      "sound": "シンプル",
+      "meaning": "simple",
+      "meaning_id": "sederhana",
+      "tags": ["adjectives"],
+      "katakana_groups": [
+        "サ",
+        "ワ",
+        "パ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "janguru": {
+      "jp_character": "ジャングル",
+      "romanji": [
+        "janguru"
+      ],
+      "sound": "ジャングル",
+      "meaning": "jungle",
+      "meaning_id": "hutan rimba",
+      "tags": ["nature"],
+      "katakana_groups": [
+        "ザ",
+        "ヤ",
+        "ワ",
+        "ガ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "biichi": {
+      "jp_character": "ビーチ",
+      "romanji": [
+        "biichi",
+        "bichi"
+      ],
+      "sound": "ビーチ",
+      "meaning": "beach",
+      "meaning_id": "pantai",
+      "tags": ["nature", "places"],
+      "katakana_groups": [
+        "バ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "amerika": {
+      "jp_character": "アメリカ",
+      "romanji": [
+        "amerika"
+      ],
+      "sound": "アメリカ",
+      "meaning": "America",
+      "meaning_id": "Amerika",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "ア",
+        "マ",
+        "ラ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "igirisu": {
+      "jp_character": "イギリス",
+      "romanji": [
+        "igirisu"
+      ],
+      "sound": "イギリス",
+      "meaning": "United Kingdom",
+      "meaning_id": "Inggris",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "ア",
+        "ガ",
+        "ラ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "furansu": {
+      "jp_character": "フランス",
+      "romanji": [
+        "furansu"
+      ],
+      "sound": "フランス",
+      "meaning": "France",
+      "meaning_id": "Prancis",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "ハ",
+        "ラ",
+        "ワ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "doitsu": {
+      "jp_character": "ドイツ",
+      "romanji": [
+        "doitsu"
+      ],
+      "sound": "ドイツ",
+      "meaning": "Germany",
+      "meaning_id": "Jerman",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "ダ",
+        "ア",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "indoneshia": {
+      "jp_character": "インドネシア",
+      "romanji": [
+        "indoneshia"
+      ],
+      "sound": "インドネシア",
+      "meaning": "Indonesia",
+      "meaning_id": "Indonesia",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "ア",
+        "ワ",
+        "ダ",
+        "ナ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "tai": {
+      "jp_character": "タイ",
+      "romanji": [
+        "tai"
+      ],
+      "sound": "タイ",
+      "meaning": "Thailand",
+      "meaning_id": "Thailand",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "タ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "burajiru": {
+      "jp_character": "ブラジル",
+      "romanji": [
+        "burajiru"
+      ],
+      "sound": "ブラジル",
+      "meaning": "Brazil",
+      "meaning_id": "Brasil",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "バ",
+        "ラ",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "kanada": {
+      "jp_character": "カナダ",
+      "romanji": [
+        "kanada"
+      ],
+      "sound": "カナダ",
+      "meaning": "Canada",
+      "meaning_id": "Kanada",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "カ",
+        "ナ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "oosutoraria": {
+      "jp_character": "オーストラリア",
+      "romanji": [
+        "oosutoraria",
+        "osutoraria"
+      ],
+      "sound": "オーストラリア",
+      "meaning": "Australia",
+      "meaning_id": "Australia",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "ア",
+        "サ",
+        "タ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "roshia": {
+      "jp_character": "ロシア",
+      "romanji": [
+        "roshia"
+      ],
+      "sound": "ロシア",
+      "meaning": "Russia",
+      "meaning_id": "Rusia",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "ラ",
+        "サ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "ejiputo": {
+      "jp_character": "エジプト",
+      "romanji": [
+        "ejiputo"
+      ],
+      "sound": "エジプト",
+      "meaning": "Egypt",
+      "meaning_id": "Mesir",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "ア",
+        "ザ",
+        "パ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "supein": {
+      "jp_character": "スペイン",
+      "romanji": [
+        "supein"
+      ],
+      "sound": "スペイン",
+      "meaning": "Spain",
+      "meaning_id": "Spanyol",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "サ",
+        "パ",
+        "ア",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "mekishiko": {
+      "jp_character": "メキシコ",
+      "romanji": [
+        "mekishiko"
+      ],
+      "sound": "メキシコ",
+      "meaning": "Mexico",
+      "meaning_id": "Meksiko",
+      "tags": ["countries"],
+      "katakana_groups": [
+        "マ",
+        "カ",
+        "サ"
+      ],
+      "hiragana_groups": []
     }
   },
   "kanjiSource": {
