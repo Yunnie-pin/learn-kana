@@ -42,15 +42,14 @@ function weekKey(timestamp) {
 }
 
 // Every notification that applies right now, most useful first.
-// { id, icon, titleKey?, key, params, chips?, action, actionKey? } where action is one of:
+// { id, icon, titleKey?, key, params, chips?, action, section? } where action is one of:
 // 'srs' (start the kanji review), 'practice' (start a game with the selection),
-// 'practice-characters' (with `characters`), 'backup' (save a backup file)
+// 'open-progress' (the Learning Progress window at `section`), 'backup' (save a backup file)
 export function buildNotifications({
   now = Date.now(),
   dailyTotals = {},
   dueKanji = 0,
   confusionPairs = [],
-  practicableKana = [],
   weakest = [],
   hasSelection = false,
   lastBackupAt = null,
@@ -85,19 +84,14 @@ export function buildNotifications({
       key: 'notifyWeakest',
       params: { count: weakest.length },
       chips: weakest.slice(0, WEAKEST_CHIPS).map(item => ({ text: item.character, detail: `${item.mastery}%` })),
-      action: 'practice-characters',
-      actionKey: 'statsPracticeWeakest',
-      characters: weakest.map(item => item.character),
+      action: 'open-progress',
+      section: 'weakest',
     });
   }
 
-  // "Often mixed up", like the Learning Progress window: the most frequent pairs, and a game with
-  // those of their kana the current selection can show
+  // "Often mixed up", like the Learning Progress window (Activity tab): the most frequent pairs
   const frequentPairs = confusionPairs.filter(pair => pair.count >= CONFUSION_MIN_COUNT);
   if (frequentPairs.length > 0) {
-    const available = new Set(practicableKana);
-    const practicable = [...new Set(frequentPairs.flatMap(pair => pair.characters))]
-      .filter(character => available.has(character));
     notifications.push({
       id: `confusions-${weekKey(now)}`,
       icon: 'arrow-left-right',
@@ -108,9 +102,8 @@ export function buildNotifications({
         text: pair.characters.join(' ⇄ '),
         detail: `×${pair.count}`,
       })),
-      action: practicable.length > 0 ? 'practice-characters' : null,
-      actionKey: 'statsPracticeWeakest',
-      characters: practicable,
+      action: 'open-progress',
+      section: 'confusions',
     });
   }
 

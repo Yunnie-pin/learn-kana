@@ -12,6 +12,91 @@ body,
   --ui-font: "Belanosima", "Trebuchet MS", sans-serif;
   /* Same check as <Icon name="check" />, for places that can only use CSS (::after) */
   --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  --scrollbar-thumb: #ff9a3cb3;
+  --scrollbar-thumb-hover: #ff9a3c;
+  --scrollbar-track: transparent;
+}
+
+/* Cursors: an orange arrow, and an orange pointing hand on everything that can be clicked.
+   Only with a mouse; the browser's own cursors stay the fallback (and on touch screens) */
+:root {
+  --cursor-default: auto;
+  --cursor-pointer: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :root {
+    --cursor-default: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath d='M5 2.5v16.8l4.3-4.1 2.9 6.5 3.1-1.4-2.8-6.3h6z' fill='%23ff9a3c' stroke='%230f3540' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 6 3, auto;
+    --cursor-pointer: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24'%3E%3Cpath d='M7.5 12.5V4.2a2 2 0 0 1 4 0v6a1.6 1.6 0 0 1 3.2 0v1a1.6 1.6 0 0 1 3.2 0v1a1.6 1.6 0 0 1 3.2 0V17a5 5 0 0 1-5 5h-2.8a5 5 0 0 1-3.9-1.9l-3.7-4.6a1.6 1.6 0 0 1 2.3-2.2z' fill='%23ff9a3c' stroke='%230f3540' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 11 3, pointer;
+  }
+}
+
+html {
+  cursor: var(--cursor-default);
+}
+
+a[href],
+button:not(:disabled),
+label,
+select,
+summary,
+[role='button'],
+[role='tab'],
+[role='radio'] {
+  cursor: var(--cursor-pointer, pointer);
+}
+
+button:disabled {
+  cursor: var(--cursor-default);
+}
+
+input:not([type='checkbox']):not([type='radio']),
+textarea,
+[contenteditable='true'] {
+  cursor: text;
+}
+
+html[data-theme='dark'] {
+  --scrollbar-thumb: #ff9a3c99;
+  --scrollbar-thumb-hover: #ff9a3cdd;
+}
+
+/*
+############################
+Scrollbars, the same for the page and every scrolling panel
+############################
+*/
+/* Chrome, Edge, Safari: a rounded thumb floating in a transparent track */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 3rem;
+  min-width: 3rem;
+  border: 3px solid transparent;
+  border-radius: 50em;
+  background-color: var(--scrollbar-thumb);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+/* Firefox. Only where ::-webkit-scrollbar is unsupported: in Chrome 121+ these standard
+   properties would switch the styles above off */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
 }
 
 /* SVG icons (components/Icon.js), sized like the text around them */
@@ -113,7 +198,7 @@ Navbar
   color: #ff9a3c;
   font-size: 1.05em;
   line-height: 1;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
 }
 
 .navbar-install {
@@ -128,7 +213,7 @@ Navbar
   font-family: var(--ui-font);
   font-size: 0.9em;
   white-space: nowrap;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
 }
 
 /* On phones the install button is a round icon like the theme toggle, so the navbar fits */
@@ -185,7 +270,7 @@ Navbar
   text-decoration: none;
   transition: filter 0.3s;
   letter-spacing: 2px;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -225,7 +310,7 @@ Navbar
   border-radius: 50em;
   padding: 0.5em;
   font-size: 1.5em;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   background: #155263;
   box-shadow:  6px 6px 12px #144d5d,
   -6px -6px 12px #165769;
@@ -437,7 +522,7 @@ Game Menu Page
   color: #ff9a3c;
   font-size: 1.1em;
   font-family: "Belanosima";
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
 }
 
 .kana-group-tab.active {
@@ -623,7 +708,7 @@ Game Menu Page
   margin-top: 0.5em;
   margin-bottom: 1em;
   transition: box-shadow 0.7s ease;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
 }
 
 .character-title-group-button.selected {
@@ -716,7 +801,7 @@ Game Menu Page
   justify-content: center;
   height: 100px;
   border-radius: 8px;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   width: 8.3em;
   border: 1px solid transparent;
   transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
@@ -819,22 +904,6 @@ Game Menu Page
   margin: auto;
 }
 
-/* // === CUSTOM SCROLLBAR === */
-
-body::-webkit-scrollbar {
-  width: 1rem;
-}
-body::-webkit-scrollbar-thumb {
-  height: 4rem;
-  border-radius: 0.5rem;
-  border: 4px solid transparent;
-  background-clip: content-box;
-  background-color: #ff9a3c;;
-}
-body::-webkit-scrollbar-thumb:hover {
-  background-color: #db8331;;
-}
-
 @media (max-width: 655px) {
   .game-mode-selector-button-group {
     flex-direction: column;
@@ -898,7 +967,7 @@ Progress Stats Modal
   height: 2em;
   font-size: 2em;
   color: #ff9a3c;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -930,7 +999,7 @@ Progress Stats Modal
   color: #ff9a3c;
   font-size: 1.2em;
   font-family: "Belanosima";
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   transition: all 0.3s;
   user-select: none;
 }
@@ -1022,7 +1091,7 @@ Progress Stats Modal
   color: #155263;
   font-family: var(--ui-font);
   font-size: 0.9em;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   white-space: nowrap;
 }
 
@@ -1047,7 +1116,7 @@ Progress Stats Modal
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   color: #155263;
   box-shadow: 3px 3px 6px #00000050;
 }
@@ -1117,11 +1186,11 @@ Progress Stats Modal
 .progress-activity-day {
   aspect-ratio: 1;
   border-radius: 3px;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
 }
 
 .progress-activity-day.future {
-  cursor: default;
+  cursor: var(--cursor-default, default);
 }
 
 .progress-activity-day.level-0 { background: #ffffff14; }
@@ -1155,7 +1224,7 @@ Progress Stats Modal
 
 .progress-activity-scale .progress-activity-day {
   width: 0.9em;
-  cursor: default;
+  cursor: var(--cursor-default, default);
 }
 
 .progress-activity-scale .progress-activity-day:first-of-type {
@@ -1392,7 +1461,7 @@ Progress Stats Modal
 
 .progress-activity-hit {
   fill: transparent;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   outline: none;
 }
 
@@ -1446,7 +1515,7 @@ Progress Stats Modal
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   transition: all 0.2s;
   box-shadow: 3px 3px 6px #00000050, -2px -2px 6px #ffffff10;
   position: relative;
@@ -1535,23 +1604,6 @@ Progress Stats Modal
 
 .progress-stats-tooltip-content > div {
   margin: 0.2em 0;
-}
-
-/* Custom scrollbar for stats grid */
-.progress-stats-grid-container::-webkit-scrollbar {
-  width: 0.8rem;
-}
-
-.progress-stats-grid-container::-webkit-scrollbar-thumb {
-  height: 3rem;
-  border-radius: 0.5rem;
-  border: 3px solid transparent;
-  background-clip: content-box;
-  background-color: #ff9a3c;
-}
-
-.progress-stats-grid-container::-webkit-scrollbar-thumb:hover {
-  background-color: #db8331;
 }
 
 @media (max-width: 655px) {
@@ -1903,7 +1955,7 @@ Practice / answer type segments
   color: #ff9a3c;
   font-family: var(--ui-font);
   font-size: 0.95em;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   transition: background-color 0.2s, color 0.2s;
 }
 
@@ -2727,7 +2779,7 @@ Session length (count / time / unlimited)
   background: transparent;
   color: #ff9a3c;
   font-size: 1.1em;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   user-select: none;
 }
 
@@ -3315,7 +3367,7 @@ Notifications (navbar bell)
   color: #155263;
   font-family: var(--ui-font);
   font-size: 0.85em;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
 }
 
 .notification-dismiss {
@@ -3331,7 +3383,7 @@ Notifications (navbar bell)
   color: #ff9a3c;
   font-size: 0.85em;
   opacity: 0.6;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
 }
 
 .notification-empty {
@@ -3412,5 +3464,24 @@ html[data-theme='dark'] .notification-action {
 @media (prefers-reduced-motion: reduce) {
   .notification-panel {
     animation: none;
+  }
+}
+
+/* A Learning Progress section opened from a notification glows for a moment,
+   so the user sees where the feature lives */
+.progress-stats-modal .progress-section-highlight {
+  border-color: #ff9a3c;
+  animation: progress-section-highlight 1.4s ease-in-out 2;
+}
+
+@keyframes progress-section-highlight {
+  0%, 100% { box-shadow: 0 0 0 0 #ff9a3c00; }
+  50% { box-shadow: 0 0 0 3px #ff9a3caa, 0 0 22px 4px #ff9a3c66; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-stats-modal .progress-section-highlight {
+    animation: none;
+    box-shadow: 0 0 0 3px #ff9a3caa;
   }
 }

@@ -16,6 +16,7 @@ import {
   readNotificationState,
   visibleNotifications,
 } from '../notifications.js';
+import { openLearningProgress } from '../progressNavigation.js';
 
 const GAME_PATH = '/learn-kana∕game';
 
@@ -38,7 +39,6 @@ function collectNotifications() {
       .map(item => ({ character: item.jp_character, mastery: item.mastery })),
     dueKanji: getDueReviewCount(getSelectedKanjiGroupTitles()),
     confusionPairs: getConfusionPairs(readConfusions()),
-    practicableKana: practiceList.map(item => item.jp_character),
     hasSelection: practiceList.length > 0,
     lastBackupAt: Number(localStorage.getItem(LAST_BACKUP_KEY)) || null,
     storedBestStreak: Number(localStorage.getItem(BEST_PRACTICE_STREAK_KEY)) || 0,
@@ -108,10 +108,8 @@ export default function NotificationMenu() {
         localStorage.setItem('game-mode-srs', 'false');
         navigate(GAME_PATH);
         break;
-      case 'practice-characters':
-        localStorage.setItem('game-mode-srs', 'false');
-        localStorage.setItem('problematicKanasFilter', JSON.stringify(notification.characters));
-        navigate(GAME_PATH);
+      case 'open-progress':
+        openLearningProgress(notification.section);
         break;
       case 'backup':
         downloadBackup();
@@ -127,6 +125,7 @@ export default function NotificationMenu() {
     srs: t('notifyActionReview'),
     practice: t('notifyActionPractice'),
     backup: t('notifyActionBackup'),
+    'open-progress': t('notifyActionOpenProgress'),
   };
 
   return (
@@ -171,7 +170,7 @@ export default function NotificationMenu() {
                     )}
                     {notification.action && (
                       <button type='button' className='notification-action' onClick={() => runAction(notification)}>
-                        {notification.actionKey ? t(notification.actionKey) : actionLabels[notification.action]}
+                        {actionLabels[notification.action]}
                       </button>
                     )}
                   </div>

@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
+import { OPEN_PROGRESS_EVENT } from '../progressNavigation.js'
 import Icon from './Icon'
 
 const legacyKanjiGroupSelections = {
@@ -100,6 +101,17 @@ export default function GameMenu() {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const [showStatsModal, setShowStatsModal] = useState(false);
+  // Section to show and highlight when the window is opened from a notification
+  const [statsFocusSection, setStatsFocusSection] = useState(null);
+
+  useEffect(() => {
+    const openAtSection = (event) => {
+      setStatsFocusSection(event.detail?.section || null);
+      setShowStatsModal(true);
+    };
+    window.addEventListener(OPEN_PROGRESS_EVENT, openAtSection);
+    return () => window.removeEventListener(OPEN_PROGRESS_EVENT, openAtSection);
+  }, []);
   // On phones only one group is shown at a time (.kana-group-tabs); on larger screens
   // hiragana + katakana share one "Kana" tab next to a "Kanji" tab (.kana-group-tabs-wide)
   const [activeKanaTab, setActiveKanaTab] = useState('hiragana');
@@ -256,7 +268,7 @@ export default function GameMenu() {
           <GameModeSelector onChange={refreshSummary} />
         </div>
         <div className='game-menu-start-bar'>
-          <button className='neoButton stats-button-floating' onClick={() => setShowStatsModal(true)} title={t('menuStats')}>
+          <button className='neoButton stats-button-floating' onClick={() => { setStatsFocusSection(null); setShowStatsModal(true); }} title={t('menuStats')}>
             <Icon name='bar-chart' title={t('menuStats')} />
           </button>
           <div className='game-menu-start'>
@@ -273,7 +285,8 @@ export default function GameMenu() {
       </aside>
       <ProgressStatsModal
         visible={showStatsModal}
-        onClose={() => setShowStatsModal(false)}
+        focusSection={statsFocusSection}
+        onClose={() => { setShowStatsModal(false); setStatsFocusSection(null); }}
         onPracticeWeakest={practiceWeakest}
       />
     </div>

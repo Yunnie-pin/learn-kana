@@ -31,7 +31,7 @@
     font-size: 1rem;
     color: inherit;
     border: none;
-    cursor: pointer;
+    cursor: var(--cursor-pointer, pointer);
     border-radius: 26px;
     background: #155263;
     box-shadow:  5px 5px 10px #124756,

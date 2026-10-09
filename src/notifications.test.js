@@ -50,15 +50,15 @@ test('reaching a streak milestone today is celebrated', () => {
   expect(buildNotifications({ now, dailyTotals: practiced(0, 1) }).some(item => item.key === 'notifyStreakMilestone')).toBe(false);
 });
 
-test('the weakest kana of the selection are listed with a button to practice all of them', () => {
+test('the weakest kana of the selection are listed and lead to that section of Learning Progress', () => {
   const weakest = ['ぬ', 'め', 'ツ', 'シ', 'ソ', 'ン'].map((character, i) => ({ character, mastery: 20 + i * 10 }));
   const notification = buildNotifications({ now, dailyTotals: practiced(0), weakest })
     .find(item => item.key === 'notifyWeakest');
   expect(notification).toMatchObject({
     titleKey: 'statsWeakestTitle',
     params: { count: 6 },
-    action: 'practice-characters',
-    characters: ['ぬ', 'め', 'ツ', 'シ', 'ソ', 'ン'],
+    action: 'open-progress',
+    section: 'weakest',
   });
   expect(notification.chips).toHaveLength(5);
   expect(notification.chips[0]).toEqual({ text: 'ぬ', detail: '20%' });
@@ -66,25 +66,21 @@ test('the weakest kana of the selection are listed with a button to practice all
   expect(buildNotifications({ now, dailyTotals: practiced(0) }).some(item => item.key === 'notifyWeakest')).toBe(false);
 });
 
-test('frequent mix-ups are listed as pairs, practice takes the kana the selection can show', () => {
+test('frequent mix-ups are listed as pairs and lead to that section of Learning Progress', () => {
   const confusionPairs = [
     { characters: ['シ', 'ツ'], count: 5, last: now },
     { characters: ['ソ', 'ン'], count: 3, last: now },
     { characters: ['ぬ', 'め'], count: 2, last: now },
   ];
-  const notification = buildNotifications({ now, dailyTotals: practiced(0), confusionPairs, practicableKana: ['シ', 'ツ', 'ソ'] })
+  const notification = buildNotifications({ now, dailyTotals: practiced(0), confusionPairs })
     .find(item => item.key === 'notifyConfusions');
   expect(notification).toMatchObject({
     titleKey: 'statsConfusionsTitle',
     params: { count: 2 },
-    action: 'practice-characters',
-    characters: ['シ', 'ツ', 'ソ'],
+    action: 'open-progress',
+    section: 'confusions',
   });
   expect(notification.chips).toEqual([{ text: 'シ ⇄ ツ', detail: '×5' }, { text: 'ソ ⇄ ン', detail: '×3' }]);
-
-  const nothingPracticable = buildNotifications({ now, dailyTotals: practiced(0), confusionPairs, practicableKana: [] })
-    .find(item => item.key === 'notifyConfusions');
-  expect(nothingPracticable.action).toBeNull();
 
   expect(buildNotifications({ now, dailyTotals: practiced(0), confusionPairs: [confusionPairs[2]] })
     .some(item => item.key === 'notifyConfusions')).toBe(false);

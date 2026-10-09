@@ -8,6 +8,9 @@ import { getListForPractice, getStoredPracticeMode } from '../practiceList.js';
 import ProgressActivity from './ProgressActivity.js';
 import KanjiSrsPanel from './KanjiSrsPanel.js';
 import Icon from './Icon.js';
+import { PROGRESS_SECTIONS } from '../progressNavigation.js';
+
+const HIGHLIGHT_MS = 2800;
 
 const SRS_STAGE_LABEL_KEYS = {
     learning: 'srsStageLearning',
@@ -28,6 +31,28 @@ function ProgressStatsModal(props) {
         setUserStats(stats);
         setConfusions(readConfusions());
     }, [props.visible]);
+
+    // Opened from a notification: go to the tab of that section, bring it into view and
+    // highlight it for a moment, so the user sees where the feature lives
+    useEffect(() => {
+        if (!props.visible || !props.focusSection) return undefined;
+        const tab = PROGRESS_SECTIONS[props.focusSection];
+        if (tab) setActiveTab(tab);
+
+        let section = null;
+        const timers = [];
+        timers.push(window.setTimeout(() => {
+            section = document.querySelector(`.progress-stats-modal [data-progress-section='${props.focusSection}']`);
+            if (!section) return;
+            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            section.classList.add('progress-section-highlight');
+            timers.push(window.setTimeout(() => section.classList.remove('progress-section-highlight'), HIGHLIGHT_MS));
+        }, 150));
+        return () => {
+            timers.forEach(timer => window.clearTimeout(timer));
+            section?.classList.remove('progress-section-highlight');
+        };
+    }, [props.visible, props.focusSection]);
 
     useEffect(() => {
         // Clear hovered item when switching tabs
@@ -320,7 +345,7 @@ function ProgressStatsModal(props) {
                     <button className='progress-stats-modal-close' onClick={props.onClose} aria-label={t('statsClose')}><Icon name='x' strokeWidth={2.5} /></button>
                 </div>
 
-                <div className='progress-stats-weakest'>
+                <div className='progress-stats-weakest' data-progress-section='weakest'>
                     <div className='progress-stats-weakest-header'>
                         <span>{t('statsWeakestTitle')}</span>
                         {weakestItems.length > 0 && (

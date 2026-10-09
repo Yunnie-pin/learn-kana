@@ -25,7 +25,7 @@ function getKanaRomanji(character) {
 
 function ConfusionPairs({ pairs, practicableKana, onPractice, t }) {
   return (
-    <div className='progress-activity-calendar-block'>
+    <div className='progress-activity-calendar-block' data-progress-section='confusions'>
       <div className='progress-stats-weakest-header progress-activity-panel-header'>
         <span>{t('statsConfusionsTitle')}</span>
         {practicableKana.length > 0 && (

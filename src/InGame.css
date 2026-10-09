@@ -141,7 +141,7 @@ body {
   color: #ff9a3c;
   font-size: 1.8em;
   margin-right: 14px;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   user-select: none;
   text-align: right;
   justify-self: end;
@@ -259,7 +259,7 @@ html.in-game-scroll-lock body {
   box-sizing: border-box;
   font-size: min(35vh, 75vw);
   touch-action: none;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   -webkit-tap-highlight-color: transparent;
   transition: transform 240ms ease-out;
   background: #144d5d;
@@ -442,7 +442,7 @@ html.in-game-scroll-lock body {
   color: #155263;
   font: inherit;
   font-size: 1.1em;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
 }
 
 .kanji-srs-card-button.srs-again {
@@ -622,7 +622,7 @@ html.in-game-scroll-lock body {
   border-radius: 30px;
   background-color: #00000027;
   user-select: none;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   display: grid;
   align-content: center;
 }
@@ -730,7 +730,7 @@ html.in-game-scroll-lock body {
   font-size: 2.5vh;
   color: #ff9a3c;
   font-weight: bold;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
 }
 /* Only on devices that can hover, so the effect does not stick after a tap */
 @media (hover: hover) {
@@ -890,7 +890,7 @@ html.in-game-scroll-lock body {
   padding: 0.6em 1.6em;
   font-size: 1.3em;
   font-weight: bold;
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
   user-select: none;
   box-shadow: 0.3rem 0.3rem 15px #00000060;
 }
@@ -911,14 +911,14 @@ html.in-game-scroll-lock body {
     border: 2px solid #ff9a3c;
     border-radius: 20px;
     padding: 0.15em 0.7em;
-    cursor: pointer;
+    cursor: var(--cursor-pointer, pointer);
   }
 }
 
 /* Desktop: make the help shortcuts look clickable */
 @media (hover: hover) {
   .in-game-help-button {
-    cursor: pointer;
+    cursor: var(--cursor-pointer, pointer);
     border-bottom: 1px dashed #ff9a3c80;
     transition: border-color 0.2s, opacity 0.2s;
   }
@@ -1042,7 +1042,7 @@ Game summary
 }
 
 .score-chip-listen {
-  cursor: pointer;
+  cursor: var(--cursor-pointer, pointer);
 }
 
 .score-chip-listen:hover,
