@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { LANGUAGES, useLanguage } from '../i18n';
 import Icon from './Icon';
+import NotificationMenu from './NotificationMenu';
 
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
@@ -40,6 +41,7 @@ export default function Navbar() {
           <span className='navbar-author'>{t('navbarBy')} Eldoprano</span>
         </div>
         <div className='navbar-actions'>
+          <NotificationMenu />
           <button
             type='button'
             className='navbar-theme-toggle'

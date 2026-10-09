@@ -43,6 +43,10 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 - Works with on-screen keyboards (Android and iOS) and keeps the answer above the keyboard.
 - Touch friendly layout, safe-area support for notched phones, installable as an app (PWA).
 
+**Notifications**
+- A bell in the navbar collects reminders made from your own progress: kanji due for review, a day streak about to end, kana you keep mixing up, a backup you haven't saved in a while, and what's new in the app.
+- Most reminders have a button to act on them right away (start the review, practice the pair, save the backup). Dismissed reminders come back the next day, week or month when they still apply.
+
 **Languages**
 - Interface and word meanings in English and Indonesian (Bahasa Indonesia), switchable from the navbar. The first visit follows the browser language.
 

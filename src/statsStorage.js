@@ -142,3 +142,21 @@ export function restoreBackup(data) {
   // The restored stats get checked and compacted again on the next start
   localStorage.removeItem(LAST_COMPACTION_KEY);
 }
+
+// When the last backup file was saved, so the navbar can remind about it (not part of the backup)
+export const LAST_BACKUP_KEY = 'lastBackupAt';
+
+// Saves the backup as a .json file through the browser's download
+export function downloadBackup(now = Date.now()) {
+  const backup = createBackup(now);
+  const blob = new Blob([JSON.stringify(backup)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `learn-kana-progress-${backup.exportedAt.slice(0, 10)}.json`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+  localStorage.setItem(LAST_BACKUP_KEY, String(now));
+}

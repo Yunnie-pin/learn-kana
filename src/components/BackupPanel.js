@@ -1,21 +1,12 @@
 import React, { useRef } from 'react';
-import { createBackup, readBackup, restoreBackup } from '../statsStorage.js';
+import { downloadBackup, readBackup, restoreBackup } from '../statsStorage.js';
 
 // Saves all progress to a file and loads it back, e.g. on another device
 function BackupPanel({ t }) {
   const fileInputRef = useRef(null);
 
   function exportProgress() {
-    const backup = createBackup();
-    const blob = new Blob([JSON.stringify(backup)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `learn-kana-progress-${backup.exportedAt.slice(0, 10)}.json`;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    URL.revokeObjectURL(url);
+    downloadBackup();
   }
 
   async function importProgress(event) {
