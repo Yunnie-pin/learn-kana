@@ -50,16 +50,44 @@ test('reaching a streak milestone today is celebrated', () => {
   expect(buildNotifications({ now, dailyTotals: practiced(0, 1) }).some(item => item.key === 'notifyStreakMilestone')).toBe(false);
 });
 
-test('a frequent mix-up of practicable kana suggests practicing the pair', () => {
-  const confusionPairs = [{ characters: ['シ', 'ツ'], count: 4, last: now }];
-  const notification = buildNotifications({ now, dailyTotals: practiced(0), confusionPairs, practicableKana: ['シ', 'ツ'] })
-    .find(item => item.key === 'notifyConfusion');
-  expect(notification).toMatchObject({ action: 'practice-characters', characters: ['シ', 'ツ'], params: { count: 4 } });
+test('the weakest kana of the selection are listed with a button to practice all of them', () => {
+  const weakest = ['ぬ', 'め', 'ツ', 'シ', 'ソ', 'ン'].map((character, i) => ({ character, mastery: 20 + i * 10 }));
+  const notification = buildNotifications({ now, dailyTotals: practiced(0), weakest })
+    .find(item => item.key === 'notifyWeakest');
+  expect(notification).toMatchObject({
+    titleKey: 'statsWeakestTitle',
+    params: { count: 6 },
+    action: 'practice-characters',
+    characters: ['ぬ', 'め', 'ツ', 'シ', 'ソ', 'ン'],
+  });
+  expect(notification.chips).toHaveLength(5);
+  expect(notification.chips[0]).toEqual({ text: 'ぬ', detail: '20%' });
 
-  expect(buildNotifications({ now, dailyTotals: practiced(0), confusionPairs, practicableKana: ['シ'] })
-    .some(item => item.key === 'notifyConfusion')).toBe(false);
-  expect(buildNotifications({ now, dailyTotals: practiced(0), confusionPairs: [{ ...confusionPairs[0], count: 2 }], practicableKana: ['シ', 'ツ'] })
-    .some(item => item.key === 'notifyConfusion')).toBe(false);
+  expect(buildNotifications({ now, dailyTotals: practiced(0) }).some(item => item.key === 'notifyWeakest')).toBe(false);
+});
+
+test('frequent mix-ups are listed as pairs, practice takes the kana the selection can show', () => {
+  const confusionPairs = [
+    { characters: ['シ', 'ツ'], count: 5, last: now },
+    { characters: ['ソ', 'ン'], count: 3, last: now },
+    { characters: ['ぬ', 'め'], count: 2, last: now },
+  ];
+  const notification = buildNotifications({ now, dailyTotals: practiced(0), confusionPairs, practicableKana: ['シ', 'ツ', 'ソ'] })
+    .find(item => item.key === 'notifyConfusions');
+  expect(notification).toMatchObject({
+    titleKey: 'statsConfusionsTitle',
+    params: { count: 2 },
+    action: 'practice-characters',
+    characters: ['シ', 'ツ', 'ソ'],
+  });
+  expect(notification.chips).toEqual([{ text: 'シ ⇄ ツ', detail: '×5' }, { text: 'ソ ⇄ ン', detail: '×3' }]);
+
+  const nothingPracticable = buildNotifications({ now, dailyTotals: practiced(0), confusionPairs, practicableKana: [] })
+    .find(item => item.key === 'notifyConfusions');
+  expect(nothingPracticable.action).toBeNull();
+
+  expect(buildNotifications({ now, dailyTotals: practiced(0), confusionPairs: [confusionPairs[2]] })
+    .some(item => item.key === 'notifyConfusions')).toBe(false);
 });
 
 test('a backup is suggested after enough practice and again a month after the last one', () => {

@@ -11,6 +11,9 @@ const DAY = 24 * 60 * 60 * 1000;
 const STREAK_MILESTONES = [3, 7, 14, 30, 50, 100, 200, 365];
 // A pair mixed up at least this often is worth a reminder
 const CONFUSION_MIN_COUNT = 3;
+// How many kana / pairs a notification shows, its practice button still takes all of them
+const WEAKEST_CHIPS = 5;
+const CONFUSION_CHIPS = 3;
 // Remind to save a backup once there is this much practice to lose, then every BACKUP_EVERY_DAYS
 const BACKUP_MIN_PRACTICE_DAYS = 5;
 const BACKUP_EVERY_DAYS = 30;
@@ -39,7 +42,7 @@ function weekKey(timestamp) {
 }
 
 // Every notification that applies right now, most useful first.
-// { id, icon, key, params, action } where action is one of:
+// { id, icon, titleKey?, key, params, chips?, action, actionKey? } where action is one of:
 // 'srs' (start the kanji review), 'practice' (start a game with the selection),
 // 'practice-characters' (with `characters`), 'backup' (save a backup file)
 export function buildNotifications({
@@ -48,6 +51,7 @@ export function buildNotifications({
   dueKanji = 0,
   confusionPairs = [],
   practicableKana = [],
+  weakest = [],
   hasSelection = false,
   lastBackupAt = null,
   storedBestStreak = 0,
@@ -72,18 +76,41 @@ export function buildNotifications({
     });
   }
 
-  const available = new Set(practicableKana);
-  const pair = confusionPairs.find(candidate =>
-    candidate.count >= CONFUSION_MIN_COUNT && candidate.characters.every(character => available.has(character)));
-  if (pair) {
-    const [first, second] = pair.characters;
+  // "Weakest in your selection", like the Learning Progress window: practiced kana under 80% mastery
+  if (weakest.length > 0) {
     notifications.push({
-      id: `confusion-${first}${second}-${weekKey(now)}`,
-      icon: 'arrow-left-right',
-      key: 'notifyConfusion',
-      params: { first, second, count: pair.count },
+      id: `weakest-${weekKey(now)}`,
+      icon: 'alert-triangle',
+      titleKey: 'statsWeakestTitle',
+      key: 'notifyWeakest',
+      params: { count: weakest.length },
+      chips: weakest.slice(0, WEAKEST_CHIPS).map(item => ({ text: item.character, detail: `${item.mastery}%` })),
       action: 'practice-characters',
-      characters: pair.characters,
+      actionKey: 'statsPracticeWeakest',
+      characters: weakest.map(item => item.character),
+    });
+  }
+
+  // "Often mixed up", like the Learning Progress window: the most frequent pairs, and a game with
+  // those of their kana the current selection can show
+  const frequentPairs = confusionPairs.filter(pair => pair.count >= CONFUSION_MIN_COUNT);
+  if (frequentPairs.length > 0) {
+    const available = new Set(practicableKana);
+    const practicable = [...new Set(frequentPairs.flatMap(pair => pair.characters))]
+      .filter(character => available.has(character));
+    notifications.push({
+      id: `confusions-${weekKey(now)}`,
+      icon: 'arrow-left-right',
+      titleKey: 'statsConfusionsTitle',
+      key: 'notifyConfusions',
+      params: { count: frequentPairs.length },
+      chips: frequentPairs.slice(0, CONFUSION_CHIPS).map(pair => ({
+        text: pair.characters.join(' ⇄ '),
+        detail: `×${pair.count}`,
+      })),
+      action: practicable.length > 0 ? 'practice-characters' : null,
+      actionKey: 'statsPracticeWeakest',
+      characters: practicable,
     });
   }
 

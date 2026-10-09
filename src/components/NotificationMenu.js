@@ -4,6 +4,7 @@ import { useLanguage } from '../i18n';
 import Icon from './Icon';
 import { getDailyTotals } from '../activityStats.js';
 import { getDueReviewCount, getSelectedKanjiGroupTitles } from '../kanjiSrs.js';
+import { getWeakestItems } from '../mastery.js';
 import { getConfusionPairs, readConfusions } from '../confusions.js';
 import { getListForPractice, getStoredPracticeMode } from '../practiceList.js';
 import { BEST_PRACTICE_STREAK_KEY, LAST_BACKUP_KEY, downloadBackup } from '../statsStorage.js';
@@ -28,10 +29,13 @@ function readJson(key, fallback) {
 
 // Everything the notifications are made from, read fresh from localStorage
 function collectNotifications() {
-  const checkedGroups = readJson('checkedKanas', []);
-  const practiceList = getListForPractice(Array.isArray(checkedGroups) ? checkedGroups : [], getStoredPracticeMode());
+  // What a game would show now, the same list the Learning Progress window uses
+  const practiceList = getListForPractice(getSelectedKanjiGroupTitles(), getStoredPracticeMode());
+  const userStats = readJson('userStats', {});
   return buildNotifications({
-    dailyTotals: getDailyTotals(readJson('userStats', {})),
+    dailyTotals: getDailyTotals(userStats),
+    weakest: getWeakestItems(practiceList, userStats)
+      .map(item => ({ character: item.jp_character, mastery: item.mastery })),
     dueKanji: getDueReviewCount(getSelectedKanjiGroupTitles()),
     confusionPairs: getConfusionPairs(readConfusions()),
     practicableKana: practiceList.map(item => item.jp_character),
@@ -122,7 +126,6 @@ export default function NotificationMenu() {
   const actionLabels = {
     srs: t('notifyActionReview'),
     practice: t('notifyActionPractice'),
-    'practice-characters': t('notifyActionPracticePair'),
     backup: t('notifyActionBackup'),
   };
 
@@ -154,10 +157,21 @@ export default function NotificationMenu() {
                 <li key={notification.id} className={`notification-item notification-${notification.icon}`}>
                   <span className='notification-item-icon'><Icon name={notification.icon} /></span>
                   <div className='notification-item-body'>
+                    {notification.titleKey && <h3 className='notification-item-title'>{t(notification.titleKey)}</h3>}
                     <p>{t(notification.key, notification.params)}</p>
+                    {notification.chips && (
+                      <div className='notification-chips'>
+                        {notification.chips.map(chip => (
+                          <span key={chip.text} className='notification-chip'>
+                            <span className='notification-chip-text'>{chip.text}</span>
+                            <span className='notification-chip-detail'>{chip.detail}</span>
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     {notification.action && (
                       <button type='button' className='notification-action' onClick={() => runAction(notification)}>
-                        {actionLabels[notification.action]}
+                        {notification.actionKey ? t(notification.actionKey) : actionLabels[notification.action]}
                       </button>
                     )}
                   </div>
