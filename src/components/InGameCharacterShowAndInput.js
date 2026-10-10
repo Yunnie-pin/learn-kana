@@ -1284,42 +1284,47 @@ export default function InGameCharacterShowAndInput() {
   }
 
   const cursorBlinkInterval = useRef(null);
+
+  // An element's computed font size expressed in viewport-height units
+  function getFontSizeInVH(element) {
+    const fontSizeInPixels = parseFloat(window.getComputedStyle(element).fontSize);
+    return (fontSizeInPixels / window.innerHeight) * 100;
+  }
+
+  // Long sentences do not fit on one line at the default 35vh, so shrink them
+  // to a per-character size as soon as they wrap. This runs in a layout effect
+  // (before paint) so switching questions never flashes an oversized, wrapped
+  // frame, and again on an interval to catch late webfont metrics.
+  function fitCharacterToLine() {
+    try {
+      const kanaCharacter = document.querySelector("#in-game-kana-character>p");
+      if (!kanaCharacter) return;
+      const lineHeightParsed = parseInt(window.getComputedStyle(kanaCharacter).fontSize, 10);
+      const amountOfLinesTilAdjust = 2;
+      const isWraped = kanaCharacter.getAttribute("data-word-wraped") === "true";
+      const displayLength = Number(kanaCharacter.dataset.displayLength) || kanaCharacter.textContent.length;
+      if (isWraped && getFontSizeInVH(kanaCharacter) >= 35) {
+        kanaCharacter.style.fontSize = "35vh";
+        kanaCharacter.setAttribute("data-word-wraped", "false");
+      } else if (isWraped) {
+        kanaCharacter.style.fontSize = (90 / displayLength) + "vw";
+        kanaCharacter.setAttribute("data-word-wraped", "true");
+      } else if (kanaCharacter.offsetHeight >= lineHeightParsed * amountOfLinesTilAdjust) {
+        kanaCharacter.style.fontSize = (90 / displayLength) + "vw";
+        kanaCharacter.setAttribute("data-word-wraped", "true");
+      }
+    } catch (error) { }
+  }
+
+  // Fit the new question before it is painted, so the oversized wrapped frame
+  // is never shown while the question swaps
+  React.useLayoutEffect(() => {
+    fitCharacterToLine();
+  }, [onScreenKana, onScreenCharacterType, isKanjiUsageQuestion]);
   React.useEffect(() => {
-    function getFontSizeInVH(element) {
-      const computedStyles = window.getComputedStyle(element);
-      const fontSizeInPixels = parseFloat(computedStyles.fontSize);
-      const viewportHeight = window.innerHeight;
-      const fontSizeInVh = (fontSizeInPixels / viewportHeight) * 100;
-      return fontSizeInVh;
-    }
-    function onLineWrapDoSomething() {
-      try {
-        const kanaCharacter = document.querySelector("#in-game-kana-character>p")
-        // kanaCharacter.style.fontSize = "35vh";
-        const lineHeight = window.getComputedStyle(kanaCharacter).getPropertyValue('font-size');
-        const lineHeightParsed = parseInt(lineHeight.split('px')[0]);
-        const amountOfLinesTilAdjust = 2;
-        const isWraped = kanaCharacter.getAttribute("data-word-wraped") === "true"
-        const displayLength = Number(kanaCharacter.dataset.displayLength) || kanaCharacter.textContent.length;
-        if (isWraped & getFontSizeInVH(kanaCharacter) >= 35) {
-          kanaCharacter.style.fontSize = "35vh";
-          kanaCharacter.setAttribute("data-word-wraped", "false")
-        }
-        else if (isWraped) {
-          kanaCharacter.style.fontSize = (90 / displayLength) + "vw";
-          kanaCharacter.setAttribute("data-word-wraped", "true")
-        } else if (!isWraped & kanaCharacter.offsetHeight >= (lineHeightParsed * amountOfLinesTilAdjust)) {
-          kanaCharacter.style.fontSize = (90 / displayLength) + "vw";
-          kanaCharacter.setAttribute("data-word-wraped", "true")
-        }
-      } catch (error) { }
-    }
-
-    // window.addEventListener('resize', onLineWrapDoSomething)
-
     //handles style changes on banner to check wrapping
     const lineWrapInterval = setInterval(() => {
-      onLineWrapDoSomething();
+      fitCharacterToLine();
       // Also keep the typed answer fitting inside the input line
       fitTypedAnswerFontSize();
     }, 100)
