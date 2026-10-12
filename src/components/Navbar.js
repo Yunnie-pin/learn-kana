@@ -37,7 +37,7 @@ export default function Navbar() {
     <>
       <nav className='navbar'>
         <div className='navbar-brand'>
-          <span className='navbar-title'>Learn Kana!</span>
+          <span className='navbar-title'>日本語</span>
           <span className='navbar-author'>{t('navbarBy')} Eldoprano</span>
         </div>
         <div className='navbar-actions'>
