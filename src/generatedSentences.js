@@ -29,36 +29,6 @@ export const generatedSentences = [
     "meaning_id": "Stasiun itu kecil"
   },
   {
-    "jp_character": "その車は小さいです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "sono kuruma wa chiisai desu"
-    ],
-    "furigana": {
-      "2": "くるま",
-      "4": "ちい"
-    },
-    "meaning": "That car is small",
-    "meaning_id": "Mobil itu kecil"
-  },
-  {
-    "jp_character": "その川は長いです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "sono kawa wa nagai desu"
-    ],
-    "furigana": {
-      "2": "かわ",
-      "4": "なが"
-    },
-    "meaning": "That river is long",
-    "meaning_id": "Sungai itu panjang"
-  },
-  {
     "jp_character": "あの店は大きいです",
     "particles": [
       3
@@ -72,50 +42,6 @@ export const generatedSentences = [
     },
     "meaning": "That shop over there is big",
     "meaning_id": "Toko itu besar"
-  },
-  {
-    "jp_character": "あの店は小さいです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "ano mise wa chiisai desu"
-    ],
-    "furigana": {
-      "2": "みせ",
-      "4": "ちい"
-    },
-    "meaning": "That shop over there is small",
-    "meaning_id": "Toko itu kecil"
-  },
-  {
-    "jp_character": "その車は青いです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "sono kuruma wa aoi desu"
-    ],
-    "furigana": {
-      "2": "くるま",
-      "4": "あお"
-    },
-    "meaning": "That car is blue",
-    "meaning_id": "Mobil itu biru"
-  },
-  {
-    "jp_character": "あのテレビは小さいです",
-    "particles": [
-      5
-    ],
-    "romanji": [
-      "ano terebi wa chiisai desu"
-    ],
-    "furigana": {
-      "6": "ちい"
-    },
-    "meaning": "That TV over there is small",
-    "meaning_id": "TV itu kecil"
   },
   {
     "jp_character": "この本は古いです",
@@ -133,6 +59,50 @@ export const generatedSentences = [
     "meaning_id": "Buku ini lama"
   },
   {
+    "jp_character": "その川は長いです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono kawa wa nagai desu"
+    ],
+    "furigana": {
+      "2": "かわ",
+      "4": "なが"
+    },
+    "meaning": "That river is long",
+    "meaning_id": "Sungai itu panjang"
+  },
+  {
+    "jp_character": "このテレビは安いです",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "kono terebi wa yasui desu"
+    ],
+    "furigana": {
+      "6": "やす"
+    },
+    "meaning": "This TV is cheap",
+    "meaning_id": "TV ini murah"
+  },
+  {
+    "jp_character": "あの車は新しいです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "ano kuruma wa atarashii desu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "あたら"
+    },
+    "meaning": "That car over there is new",
+    "meaning_id": "Mobil itu baru"
+  },
+  {
     "jp_character": "そのかばんは高いです",
     "particles": [
       5
@@ -145,21 +115,6 @@ export const generatedSentences = [
     },
     "meaning": "That bag is expensive",
     "meaning_id": "Tas itu mahal"
-  },
-  {
-    "jp_character": "あの車は小さいです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "ano kuruma wa chiisai desu"
-    ],
-    "furigana": {
-      "2": "くるま",
-      "4": "ちい"
-    },
-    "meaning": "That car over there is small",
-    "meaning_id": "Mobil itu kecil"
   },
   {
     "jp_character": "この学校は大きいです",
@@ -178,6 +133,51 @@ export const generatedSentences = [
     "meaning_id": "Sekolah ini besar"
   },
   {
+    "jp_character": "その車は青いです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono kuruma wa aoi desu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "あお"
+    },
+    "meaning": "That car is blue",
+    "meaning_id": "Mobil itu biru"
+  },
+  {
+    "jp_character": "あの店は小さいです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "ano mise wa chiisai desu"
+    ],
+    "furigana": {
+      "2": "みせ",
+      "4": "ちい"
+    },
+    "meaning": "That shop over there is small",
+    "meaning_id": "Toko itu kecil"
+  },
+  {
+    "jp_character": "この車は白いです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono kuruma wa shiroi desu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "しろ"
+    },
+    "meaning": "This car is white",
+    "meaning_id": "Mobil ini putih"
+  },
+  {
     "jp_character": "その駅は新しいです",
     "particles": [
       3
@@ -191,20 +191,6 @@ export const generatedSentences = [
     },
     "meaning": "That station is new",
     "meaning_id": "Stasiun itu baru"
-  },
-  {
-    "jp_character": "このテレビは安いです",
-    "particles": [
-      5
-    ],
-    "romanji": [
-      "kono terebi wa yasui desu"
-    ],
-    "furigana": {
-      "6": "やす"
-    },
-    "meaning": "This TV is cheap",
-    "meaning_id": "TV ini murah"
   },
   {
     "jp_character": "あの本は古いです",
@@ -222,18 +208,93 @@ export const generatedSentences = [
     "meaning_id": "Buku itu lama"
   },
   {
-    "jp_character": "そのかばんは大きいです",
+    "jp_character": "このかばんは安いです",
     "particles": [
       5
     ],
     "romanji": [
-      "sono kaban wa ookii desu"
+      "kono kaban wa yasui desu"
     ],
     "furigana": {
-      "6": "おお"
+      "6": "やす"
     },
-    "meaning": "That bag is big",
-    "meaning_id": "Tas itu besar"
+    "meaning": "This bag is cheap",
+    "meaning_id": "Tas ini murah"
+  },
+  {
+    "jp_character": "この川は長いです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono kawa wa nagai desu"
+    ],
+    "furigana": {
+      "2": "かわ",
+      "4": "なが"
+    },
+    "meaning": "This river is long",
+    "meaning_id": "Sungai ini panjang"
+  },
+  {
+    "jp_character": "あのテレビは小さいです",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "ano terebi wa chiisai desu"
+    ],
+    "furigana": {
+      "6": "ちい"
+    },
+    "meaning": "That TV over there is small",
+    "meaning_id": "TV itu kecil"
+  },
+  {
+    "jp_character": "その学校は大きいです",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "sono gakkou wa ookii desu"
+    ],
+    "furigana": {
+      "2": "がっ",
+      "3": "こう",
+      "5": "おお"
+    },
+    "meaning": "That school is big",
+    "meaning_id": "Sekolah itu besar"
+  },
+  {
+    "jp_character": "この車は黒いです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono kuruma wa kuroi desu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "くろ"
+    },
+    "meaning": "This car is black",
+    "meaning_id": "Mobil ini hitam"
+  },
+  {
+    "jp_character": "その山は高いです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono yama wa takai desu"
+    ],
+    "furigana": {
+      "2": "やま",
+      "4": "たか"
+    },
+    "meaning": "That mountain is high",
+    "meaning_id": "Gunung itu tinggi"
   },
   {
     "jp_character": "あの店は安いです",
@@ -267,95 +328,6 @@ export const generatedSentences = [
     "meaning_id": "Sekolah itu lama"
   },
   {
-    "jp_character": "あのテレビは新しいです",
-    "particles": [
-      5
-    ],
-    "romanji": [
-      "ano terebi wa atarashii desu"
-    ],
-    "furigana": {
-      "6": "あたら"
-    },
-    "meaning": "That TV over there is new",
-    "meaning_id": "TV itu baru"
-  },
-  {
-    "jp_character": "この車は白いです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kono kuruma wa shiroi desu"
-    ],
-    "furigana": {
-      "2": "くるま",
-      "4": "しろ"
-    },
-    "meaning": "This car is white",
-    "meaning_id": "Mobil ini putih"
-  },
-  {
-    "jp_character": "この店は古いです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kono mise wa furui desu"
-    ],
-    "furigana": {
-      "2": "みせ",
-      "4": "ふる"
-    },
-    "meaning": "This shop is old",
-    "meaning_id": "Toko ini lama"
-  },
-  {
-    "jp_character": "この車は黒いです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kono kuruma wa kuroi desu"
-    ],
-    "furigana": {
-      "2": "くるま",
-      "4": "くろ"
-    },
-    "meaning": "This car is black",
-    "meaning_id": "Mobil ini hitam"
-  },
-  {
-    "jp_character": "その駅は古いです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "sono eki wa furui desu"
-    ],
-    "furigana": {
-      "2": "えき",
-      "4": "ふる"
-    },
-    "meaning": "That station is old",
-    "meaning_id": "Stasiun itu lama"
-  },
-  {
-    "jp_character": "その車は古いです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "sono kuruma wa furui desu"
-    ],
-    "furigana": {
-      "2": "くるま",
-      "4": "ふる"
-    },
-    "meaning": "That car is old",
-    "meaning_id": "Mobil itu lama"
-  },
-  {
     "jp_character": "その本は新しいです",
     "particles": [
       3
@@ -371,19 +343,33 @@ export const generatedSentences = [
     "meaning_id": "Buku itu baru"
   },
   {
-    "jp_character": "あの本は安いです",
+    "jp_character": "このかばんは古いです",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "kono kaban wa furui desu"
+    ],
+    "furigana": {
+      "6": "ふる"
+    },
+    "meaning": "This bag is old",
+    "meaning_id": "Tas ini lama"
+  },
+  {
+    "jp_character": "あの川は長いです",
     "particles": [
       3
     ],
     "romanji": [
-      "ano hon wa yasui desu"
+      "ano kawa wa nagai desu"
     ],
     "furigana": {
-      "2": "ほん",
-      "4": "やす"
+      "2": "かわ",
+      "4": "なが"
     },
-    "meaning": "That book over there is cheap",
-    "meaning_id": "Buku itu murah"
+    "meaning": "That river over there is long",
+    "meaning_id": "Sungai itu panjang"
   },
   {
     "jp_character": "そのテレビは小さいです",
@@ -400,107 +386,49 @@ export const generatedSentences = [
     "meaning_id": "TV itu kecil"
   },
   {
-    "jp_character": "この店は大きいです",
+    "jp_character": "この車は青いです",
     "particles": [
       3
     ],
     "romanji": [
-      "kono mise wa ookii desu"
-    ],
-    "furigana": {
-      "2": "みせ",
-      "4": "おお"
-    },
-    "meaning": "This shop is big",
-    "meaning_id": "Toko ini besar"
-  },
-  {
-    "jp_character": "その学校は大きいです",
-    "particles": [
-      4
-    ],
-    "romanji": [
-      "sono gakkou wa ookii desu"
-    ],
-    "furigana": {
-      "2": "がっ",
-      "3": "こう",
-      "5": "おお"
-    },
-    "meaning": "That school is big",
-    "meaning_id": "Sekolah itu besar"
-  },
-  {
-    "jp_character": "あのテレビは安いです",
-    "particles": [
-      5
-    ],
-    "romanji": [
-      "ano terebi wa yasui desu"
-    ],
-    "furigana": {
-      "6": "やす"
-    },
-    "meaning": "That TV over there is cheap",
-    "meaning_id": "TV itu murah"
-  },
-  {
-    "jp_character": "その川は小さいです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "sono kawa wa chiisai desu"
-    ],
-    "furigana": {
-      "2": "かわ",
-      "4": "ちい"
-    },
-    "meaning": "That river is small",
-    "meaning_id": "Sungai itu kecil"
-  },
-  {
-    "jp_character": "あの車は新しいです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "ano kuruma wa atarashii desu"
+      "kono kuruma wa aoi desu"
     ],
     "furigana": {
       "2": "くるま",
+      "4": "あお"
+    },
+    "meaning": "This car is blue",
+    "meaning_id": "Mobil ini biru"
+  },
+  {
+    "jp_character": "この山は大きいです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono yama wa ookii desu"
+    ],
+    "furigana": {
+      "2": "やま",
+      "4": "おお"
+    },
+    "meaning": "This mountain is big",
+    "meaning_id": "Gunung ini besar"
+  },
+  {
+    "jp_character": "あの駅は新しいです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "ano eki wa atarashii desu"
+    ],
+    "furigana": {
+      "2": "えき",
       "4": "あたら"
     },
-    "meaning": "That car over there is new",
-    "meaning_id": "Mobil itu baru"
-  },
-  {
-    "jp_character": "このかばんは安いです",
-    "particles": [
-      5
-    ],
-    "romanji": [
-      "kono kaban wa yasui desu"
-    ],
-    "furigana": {
-      "6": "やす"
-    },
-    "meaning": "This bag is cheap",
-    "meaning_id": "Tas ini murah"
-  },
-  {
-    "jp_character": "このかばんは古いです",
-    "particles": [
-      5
-    ],
-    "romanji": [
-      "kono kaban wa furui desu"
-    ],
-    "furigana": {
-      "6": "ふる"
-    },
-    "meaning": "This bag is old",
-    "meaning_id": "Tas ini lama"
+    "meaning": "That station over there is new",
+    "meaning_id": "Stasiun itu baru"
   },
   {
     "jp_character": "その車は白いです",
@@ -518,32 +446,19 @@ export const generatedSentences = [
     "meaning_id": "Mobil itu putih"
   },
   {
-    "jp_character": "このかばんは新しいです",
+    "jp_character": "あの本は安いです",
     "particles": [
-      5
+      3
     ],
     "romanji": [
-      "kono kaban wa atarashii desu"
+      "ano hon wa yasui desu"
     ],
     "furigana": {
-      "6": "あたら"
+      "2": "ほん",
+      "4": "やす"
     },
-    "meaning": "This bag is new",
-    "meaning_id": "Tas ini baru"
-  },
-  {
-    "jp_character": "このかばんは小さいです",
-    "particles": [
-      5
-    ],
-    "romanji": [
-      "kono kaban wa chiisai desu"
-    ],
-    "furigana": {
-      "6": "ちい"
-    },
-    "meaning": "This bag is small",
-    "meaning_id": "Tas ini kecil"
+    "meaning": "That book over there is cheap",
+    "meaning_id": "Buku itu murah"
   },
   {
     "jp_character": "このかばんは高いです",
@@ -560,18 +475,107 @@ export const generatedSentences = [
     "meaning_id": "Tas ini mahal"
   },
   {
-    "jp_character": "あのテレビは古いです",
+    "jp_character": "その駅は古いです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono eki wa furui desu"
+    ],
+    "furigana": {
+      "2": "えき",
+      "4": "ふる"
+    },
+    "meaning": "That station is old",
+    "meaning_id": "Stasiun itu lama"
+  },
+  {
+    "jp_character": "あのテレビは新しいです",
     "particles": [
       5
     ],
     "romanji": [
-      "ano terebi wa furui desu"
+      "ano terebi wa atarashii desu"
     ],
     "furigana": {
-      "6": "ふる"
+      "6": "あたら"
     },
-    "meaning": "That TV over there is old",
-    "meaning_id": "TV itu lama"
+    "meaning": "That TV over there is new",
+    "meaning_id": "TV itu baru"
+  },
+  {
+    "jp_character": "この店は大きいです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono mise wa ookii desu"
+    ],
+    "furigana": {
+      "2": "みせ",
+      "4": "おお"
+    },
+    "meaning": "This shop is big",
+    "meaning_id": "Toko ini besar"
+  },
+  {
+    "jp_character": "その川は小さいです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono kawa wa chiisai desu"
+    ],
+    "furigana": {
+      "2": "かわ",
+      "4": "ちい"
+    },
+    "meaning": "That river is small",
+    "meaning_id": "Sungai itu kecil"
+  },
+  {
+    "jp_character": "その車は黒いです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono kuruma wa kuroi desu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "くろ"
+    },
+    "meaning": "That car is black",
+    "meaning_id": "Mobil itu hitam"
+  },
+  {
+    "jp_character": "この山は高いです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono yama wa takai desu"
+    ],
+    "furigana": {
+      "2": "やま",
+      "4": "たか"
+    },
+    "meaning": "This mountain is high",
+    "meaning_id": "Gunung ini tinggi"
+  },
+  {
+    "jp_character": "あのテレビは安いです",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "ano terebi wa yasui desu"
+    ],
+    "furigana": {
+      "6": "やす"
+    },
+    "meaning": "That TV over there is cheap",
+    "meaning_id": "TV itu murah"
   },
   {
     "jp_character": "その学校は小さいです",
@@ -590,34 +594,19 @@ export const generatedSentences = [
     "meaning_id": "Sekolah itu kecil"
   },
   {
-    "jp_character": "この車は青いです",
+    "jp_character": "この店は古いです",
     "particles": [
       3
     ],
     "romanji": [
-      "kono kuruma wa aoi desu"
+      "kono mise wa furui desu"
     ],
     "furigana": {
-      "2": "くるま",
-      "4": "あお"
+      "2": "みせ",
+      "4": "ふる"
     },
-    "meaning": "This car is blue",
-    "meaning_id": "Mobil ini biru"
-  },
-  {
-    "jp_character": "この川は小さいです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kono kawa wa chiisai desu"
-    ],
-    "furigana": {
-      "2": "かわ",
-      "4": "ちい"
-    },
-    "meaning": "This river is small",
-    "meaning_id": "Sungai ini kecil"
+    "meaning": "This shop is old",
+    "meaning_id": "Toko ini lama"
   },
   {
     "jp_character": "あのかばんは高いです",
@@ -634,50 +623,65 @@ export const generatedSentences = [
     "meaning_id": "Tas itu mahal"
   },
   {
-    "jp_character": "その学校は古いです",
+    "jp_character": "この学校は新しいです",
     "particles": [
       4
     ],
     "romanji": [
-      "sono gakkou wa furui desu"
+      "kono gakkou wa atarashii desu"
     ],
     "furigana": {
       "2": "がっ",
       "3": "こう",
-      "5": "ふる"
+      "5": "あたら"
     },
-    "meaning": "That school is old",
-    "meaning_id": "Sekolah itu lama"
+    "meaning": "This school is new",
+    "meaning_id": "Sekolah ini baru"
   },
   {
-    "jp_character": "あの車は大きいです",
+    "jp_character": "その本は安いです",
     "particles": [
       3
     ],
     "romanji": [
-      "ano kuruma wa ookii desu"
+      "sono hon wa yasui desu"
+    ],
+    "furigana": {
+      "2": "ほん",
+      "4": "やす"
+    },
+    "meaning": "That book is cheap",
+    "meaning_id": "Buku itu murah"
+  },
+  {
+    "jp_character": "あの車は青いです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "ano kuruma wa aoi desu"
     ],
     "furigana": {
       "2": "くるま",
-      "4": "おお"
+      "4": "あお"
     },
-    "meaning": "That car over there is big",
-    "meaning_id": "Mobil itu besar"
+    "meaning": "That car over there is blue",
+    "meaning_id": "Mobil itu biru"
   },
   {
-    "jp_character": "この川は長いです",
+    "jp_character": "この川は大きいです",
     "particles": [
       3
     ],
     "romanji": [
-      "kono kawa wa nagai desu"
+      "kono kawa wa ookii desu"
     ],
     "furigana": {
       "2": "かわ",
-      "4": "なが"
+      "4": "おお"
     },
-    "meaning": "This river is long",
-    "meaning_id": "Sungai ini panjang"
+    "meaning": "This river is big",
+    "meaning_id": "Sungai ini besar"
   },
   {
     "jp_character": "今日は天気がいいです",
@@ -696,22 +700,6 @@ export const generatedSentences = [
     },
     "meaning": "The weather is good today",
     "meaning_id": "Cuaca hari ini bagus"
-  },
-  {
-    "jp_character": "きのうは天気がよかったです",
-    "particles": [
-      3,
-      6
-    ],
-    "romanji": [
-      "kinou wa tenki ga yokatta desu"
-    ],
-    "furigana": {
-      "4": "てん",
-      "5": "き"
-    },
-    "meaning": "The weather was good yesterday",
-    "meaning_id": "Kemarin cuacanya bagus"
   },
   {
     "jp_character": "きのうは雨でした",
@@ -740,6 +728,22 @@ export const generatedSentences = [
     },
     "meaning": "It will rain tomorrow",
     "meaning_id": "Besok hujan"
+  },
+  {
+    "jp_character": "きのうは天気がよかったです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "kinou wa tenki ga yokatta desu"
+    ],
+    "furigana": {
+      "4": "てん",
+      "5": "き"
+    },
+    "meaning": "The weather was good yesterday",
+    "meaning_id": "Kemarin cuacanya bagus"
   },
   {
     "jp_character": "学生は日本に帰ります",
@@ -780,76 +784,37 @@ export const generatedSentences = [
     "meaning_id": "Setiap hari Teman saya pergi ke sungai"
   },
   {
-    "jp_character": "母はきのう日本に来ました",
-    "particles": [
-      1,
-      7
-    ],
-    "romanji": [
-      "haha wa kinou nihon ni kimashita"
-    ],
-    "furigana": {
-      "0": "はは",
-      "5": "に",
-      "6": "ほん",
-      "8": "き"
-    },
-    "meaning": "My mother came to Japan yesterday",
-    "meaning_id": "Kemarin Ibu saya datang ke Jepang"
-  },
-  {
-    "jp_character": "友だちはきのううちに帰りました",
+    "jp_character": "わたしはあした店に来ます",
     "particles": [
       3,
-      9
-    ],
-    "romanji": [
-      "tomodachi wa kinou uchi ni kaerimashita"
-    ],
-    "furigana": {
-      "0": "とも",
-      "10": "かえ"
-    },
-    "meaning": "My friend returned home yesterday",
-    "meaning_id": "Kemarin Teman saya pulang ke rumah"
-  },
-  {
-    "jp_character": "父は毎日駅へ行きます",
-    "particles": [
-      1,
-      5
-    ],
-    "romanji": [
-      "chichi wa mainichi eki e ikimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "2": "まい",
-      "3": "にち",
-      "4": "えき",
-      "6": "い"
-    },
-    "meaning": "My father goes to the station every day",
-    "meaning_id": "Setiap hari Ayah saya pergi ke stasiun"
-  },
-  {
-    "jp_character": "先生はあした日本に来ます",
-    "particles": [
-      2,
       8
     ],
     "romanji": [
-      "sensei wa ashita nihon ni kimasu"
+      "watashi wa ashita mise ni kimasu"
+    ],
+    "furigana": {
+      "7": "みせ",
+      "9": "き"
+    },
+    "meaning": "I will come to the shop tomorrow",
+    "meaning_id": "Besok Saya datang ke toko"
+  },
+  {
+    "jp_character": "先生はきのうこうえんへ行きました",
+    "particles": [
+      2,
+      10
+    ],
+    "romanji": [
+      "sensei wa kinou kouen e ikimashita"
     ],
     "furigana": {
       "0": "せん",
       "1": "せい",
-      "6": "に",
-      "7": "ほん",
-      "9": "き"
+      "11": "い"
     },
-    "meaning": "The teacher will come to Japan tomorrow",
-    "meaning_id": "Besok Guru datang ke Jepang"
+    "meaning": "The teacher went to the park yesterday",
+    "meaning_id": "Kemarin Guru pergi ke taman"
   },
   {
     "jp_character": "母は学校へ行きます",
@@ -870,75 +835,6 @@ export const generatedSentences = [
     "meaning_id": "Ibu saya pergi ke sekolah"
   },
   {
-    "jp_character": "わたしはあした店に来ます",
-    "particles": [
-      3,
-      8
-    ],
-    "romanji": [
-      "watashi wa ashita mise ni kimasu"
-    ],
-    "furigana": {
-      "7": "みせ",
-      "9": "き"
-    },
-    "meaning": "I will come to the shop tomorrow",
-    "meaning_id": "Besok Saya datang ke toko"
-  },
-  {
-    "jp_character": "あなたはデパートへ行きます",
-    "particles": [
-      3,
-      8
-    ],
-    "romanji": [
-      "anata wa depaato e ikimasu"
-    ],
-    "furigana": {
-      "9": "い"
-    },
-    "meaning": "You go to the department store",
-    "meaning_id": "Anda pergi ke toko serba ada"
-  },
-  {
-    "jp_character": "学生はきのう川へ行きました",
-    "particles": [
-      2,
-      7
-    ],
-    "romanji": [
-      "gakusei wa kinou kawa e ikimashita"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "6": "かわ",
-      "8": "い"
-    },
-    "meaning": "The student went to the river yesterday",
-    "meaning_id": "Kemarin Pelajar pergi ke sungai"
-  },
-  {
-    "jp_character": "友だちは毎日学校へ行きます",
-    "particles": [
-      3,
-      8
-    ],
-    "romanji": [
-      "tomodachi wa mainichi gakkou e ikimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "4": "まい",
-      "5": "にち",
-      "6": "がっ",
-      "7": "こう",
-      "9": "い"
-    },
-    "meaning": "My friend goes to school every day",
-    "meaning_id": "Setiap hari Teman saya pergi ke sekolah"
-  },
-  {
     "jp_character": "あなたはうちに帰ります",
     "particles": [
       3,
@@ -952,143 +848,6 @@ export const generatedSentences = [
     },
     "meaning": "You return home",
     "meaning_id": "Anda pulang ke rumah"
-  },
-  {
-    "jp_character": "先生はきのうこうえんへ行きました",
-    "particles": [
-      2,
-      10
-    ],
-    "romanji": [
-      "sensei wa kinou kouen e ikimashita"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "11": "い"
-    },
-    "meaning": "The teacher went to the park yesterday",
-    "meaning_id": "Kemarin Guru pergi ke taman"
-  },
-  {
-    "jp_character": "先生は毎日スーパーへ行きます",
-    "particles": [
-      2,
-      9
-    ],
-    "romanji": [
-      "sensei wa mainichi suupaa e ikimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "3": "まい",
-      "4": "にち",
-      "10": "い"
-    },
-    "meaning": "The teacher goes to the supermarket every day",
-    "meaning_id": "Setiap hari Guru pergi ke supermarket"
-  },
-  {
-    "jp_character": "父は毎日日本へ行きます",
-    "particles": [
-      1,
-      6
-    ],
-    "romanji": [
-      "chichi wa mainichi nihon e ikimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "2": "まい",
-      "3": "にち",
-      "4": "に",
-      "5": "ほん",
-      "7": "い"
-    },
-    "meaning": "My father goes to Japan every day",
-    "meaning_id": "Setiap hari Ayah saya pergi ke Jepang"
-  },
-  {
-    "jp_character": "父はこうえんへ行きます",
-    "particles": [
-      1,
-      6
-    ],
-    "romanji": [
-      "chichi wa kouen e ikimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "7": "い"
-    },
-    "meaning": "My father goes to the park",
-    "meaning_id": "Ayah saya pergi ke taman"
-  },
-  {
-    "jp_character": "母はあしたこうえんへ行きます",
-    "particles": [
-      1,
-      9
-    ],
-    "romanji": [
-      "haha wa ashita kouen e ikimasu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "10": "い"
-    },
-    "meaning": "My mother will go to the park tomorrow",
-    "meaning_id": "Besok Ibu saya pergi ke taman"
-  },
-  {
-    "jp_character": "友だちはきのうデパートへ行きました",
-    "particles": [
-      3,
-      11
-    ],
-    "romanji": [
-      "tomodachi wa kinou depaato e ikimashita"
-    ],
-    "furigana": {
-      "0": "とも",
-      "12": "い"
-    },
-    "meaning": "My friend went to the department store yesterday",
-    "meaning_id": "Kemarin Teman saya pergi ke toko serba ada"
-  },
-  {
-    "jp_character": "父はきのうこうえんへ行きました",
-    "particles": [
-      1,
-      9
-    ],
-    "romanji": [
-      "chichi wa kinou kouen e ikimashita"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "10": "い"
-    },
-    "meaning": "My father went to the park yesterday",
-    "meaning_id": "Kemarin Ayah saya pergi ke taman"
-  },
-  {
-    "jp_character": "友だちはあした駅へ行きます",
-    "particles": [
-      3,
-      8
-    ],
-    "romanji": [
-      "tomodachi wa ashita eki e ikimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "7": "えき",
-      "9": "い"
-    },
-    "meaning": "My friend will go to the station tomorrow",
-    "meaning_id": "Besok Teman saya pergi ke stasiun"
   },
   {
     "jp_character": "父は駅に来ます",
@@ -1108,94 +867,71 @@ export const generatedSentences = [
     "meaning_id": "Ayah saya datang ke stasiun"
   },
   {
-    "jp_character": "友だちは毎日外国へ行きます",
+    "jp_character": "あなたはデパートへ行きます",
     "particles": [
       3,
       8
     ],
     "romanji": [
-      "tomodachi wa mainichi gaikoku e ikimasu"
+      "anata wa depaato e ikimasu"
     ],
     "furigana": {
-      "0": "とも",
-      "4": "まい",
-      "5": "にち",
-      "6": "がい",
-      "7": "こく",
       "9": "い"
     },
-    "meaning": "My friend goes to a foreign country every day",
-    "meaning_id": "Setiap hari Teman saya pergi ke luar negeri"
+    "meaning": "You go to the department store",
+    "meaning_id": "Anda pergi ke toko serba ada"
   },
   {
-    "jp_character": "わたしはきのう学校に来ました",
-    "particles": [
-      3,
-      9
-    ],
-    "romanji": [
-      "watashi wa kinou gakkou ni kimashita"
-    ],
-    "furigana": {
-      "7": "がっ",
-      "8": "こう",
-      "10": "き"
-    },
-    "meaning": "I came to school yesterday",
-    "meaning_id": "Kemarin Saya datang ke sekolah"
-  },
-  {
-    "jp_character": "わたしは川へ行きます",
-    "particles": [
-      3,
-      5
-    ],
-    "romanji": [
-      "watashi wa kawa e ikimasu"
-    ],
-    "furigana": {
-      "4": "かわ",
-      "6": "い"
-    },
-    "meaning": "I go to the river",
-    "meaning_id": "Saya pergi ke sungai"
-  },
-  {
-    "jp_character": "学生はあした日本へ行きます",
+    "jp_character": "先生はきのう外国に来ました",
     "particles": [
       2,
       8
     ],
     "romanji": [
-      "gakusei wa ashita nihon e ikimasu"
+      "sensei wa kinou gaikoku ni kimashita"
     ],
     "furigana": {
-      "0": "がく",
+      "0": "せん",
       "1": "せい",
-      "6": "に",
-      "7": "ほん",
-      "9": "い"
+      "6": "がい",
+      "7": "こく",
+      "9": "き"
     },
-    "meaning": "The student will go to Japan tomorrow",
-    "meaning_id": "Besok Pelajar pergi ke Jepang"
+    "meaning": "The teacher came to a foreign country yesterday",
+    "meaning_id": "Kemarin Guru datang ke luar negeri"
   },
   {
-    "jp_character": "母は毎日スーパーへ行きます",
+    "jp_character": "母は山へ行きます",
     "particles": [
       1,
-      8
+      3
     ],
     "romanji": [
-      "haha wa mainichi suupaa e ikimasu"
+      "haha wa yama e ikimasu"
     ],
     "furigana": {
       "0": "はは",
-      "2": "まい",
-      "3": "にち",
-      "9": "い"
+      "2": "やま",
+      "4": "い"
     },
-    "meaning": "My mother goes to the supermarket every day",
-    "meaning_id": "Setiap hari Ibu saya pergi ke supermarket"
+    "meaning": "My mother goes to the mountain",
+    "meaning_id": "Ibu saya pergi ke gunung"
+  },
+  {
+    "jp_character": "友だちはきのううちに帰りました",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "tomodachi wa kinou uchi ni kaerimashita"
+    ],
+    "furigana": {
+      "0": "とも",
+      "10": "かえ"
+    },
+    "meaning": "My friend returned home yesterday",
+    "meaning_id": "Kemarin Teman saya pulang ke rumah"
   },
   {
     "jp_character": "父は日本に帰ります",
@@ -1216,21 +952,73 @@ export const generatedSentences = [
     "meaning_id": "Ayah saya pulang ke Jepang"
   },
   {
-    "jp_character": "わたしは毎日デパートへ行きます",
+    "jp_character": "学生はスーパーへ行きます",
     "particles": [
-      3,
-      10
+      2,
+      7
     ],
     "romanji": [
-      "watashi wa mainichi depaato e ikimasu"
+      "gakusei wa suupaa e ikimasu"
     ],
     "furigana": {
-      "4": "まい",
-      "5": "にち",
-      "11": "い"
+      "0": "がく",
+      "1": "せい",
+      "8": "い"
     },
-    "meaning": "I go to the department store every day",
-    "meaning_id": "Setiap hari Saya pergi ke toko serba ada"
+    "meaning": "The student goes to the supermarket",
+    "meaning_id": "Pelajar pergi ke supermarket"
+  },
+  {
+    "jp_character": "わたしは外国に来ます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa gaikoku ni kimasu"
+    ],
+    "furigana": {
+      "4": "がい",
+      "5": "こく",
+      "7": "き"
+    },
+    "meaning": "I come to a foreign country",
+    "meaning_id": "Saya datang ke luar negeri"
+  },
+  {
+    "jp_character": "学生はきのう川へ行きました",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "gakusei wa kinou kawa e ikimashita"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "6": "かわ",
+      "8": "い"
+    },
+    "meaning": "The student went to the river yesterday",
+    "meaning_id": "Kemarin Pelajar pergi ke sungai"
+  },
+  {
+    "jp_character": "先生はこうえんに来ます",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "sensei wa kouen ni kimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "8": "き"
+    },
+    "meaning": "The teacher comes to the park",
+    "meaning_id": "Guru datang ke taman"
   },
   {
     "jp_character": "友だちはデパートへ行きます",
@@ -1249,37 +1037,204 @@ export const generatedSentences = [
     "meaning_id": "Teman saya pergi ke toko serba ada"
   },
   {
-    "jp_character": "母はきのうこうえんに来ました",
+    "jp_character": "母はうちに帰ります",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "haha wa uchi ni kaerimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "5": "かえ"
+    },
+    "meaning": "My mother returns home",
+    "meaning_id": "Ibu saya pulang ke rumah"
+  },
+  {
+    "jp_character": "あなたはきのうスーパーへ行きました",
+    "particles": [
+      3,
+      11
+    ],
+    "romanji": [
+      "anata wa kinou suupaa e ikimashita"
+    ],
+    "furigana": {
+      "12": "い"
+    },
+    "meaning": "You went to the supermarket yesterday",
+    "meaning_id": "Kemarin Anda pergi ke supermarket"
+  },
+  {
+    "jp_character": "わたしは駅に来ます",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "watashi wa eki ni kimasu"
+    ],
+    "furigana": {
+      "4": "えき",
+      "6": "き"
+    },
+    "meaning": "I come to the station",
+    "meaning_id": "Saya datang ke stasiun"
+  },
+  {
+    "jp_character": "父は山へ行きます",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "chichi wa yama e ikimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "やま",
+      "4": "い"
+    },
+    "meaning": "My father goes to the mountain",
+    "meaning_id": "Ayah saya pergi ke gunung"
+  },
+  {
+    "jp_character": "先生は学校に来ます",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa gakkou ni kimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "6": "き"
+    },
+    "meaning": "The teacher comes to school",
+    "meaning_id": "Guru datang ke sekolah"
+  },
+  {
+    "jp_character": "わたしは日本に帰ります",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa nihon ni kaerimasu"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "7": "かえ"
+    },
+    "meaning": "I return home to Japan",
+    "meaning_id": "Saya pulang ke Jepang"
+  },
+  {
+    "jp_character": "あなたは店へ行きます",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "anata wa mise e ikimasu"
+    ],
+    "furigana": {
+      "4": "みせ",
+      "6": "い"
+    },
+    "meaning": "You go to the shop",
+    "meaning_id": "Anda pergi ke toko"
+  },
+  {
+    "jp_character": "父はこうえんへ行きます",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "chichi wa kouen e ikimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "7": "い"
+    },
+    "meaning": "My father goes to the park",
+    "meaning_id": "Ayah saya pergi ke taman"
+  },
+  {
+    "jp_character": "友だちは外国に来ます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa gaikoku ni kimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "がい",
+      "5": "こく",
+      "7": "き"
+    },
+    "meaning": "My friend comes to a foreign country",
+    "meaning_id": "Teman saya datang ke luar negeri"
+  },
+  {
+    "jp_character": "母はきのうデパートへ行きました",
     "particles": [
       1,
       9
     ],
     "romanji": [
-      "haha wa kinou kouen ni kimashita"
+      "haha wa kinou depaato e ikimashita"
     ],
     "furigana": {
       "0": "はは",
-      "10": "き"
+      "10": "い"
     },
-    "meaning": "My mother came to the park yesterday",
-    "meaning_id": "Kemarin Ibu saya datang ke taman"
+    "meaning": "My mother went to the department store yesterday",
+    "meaning_id": "Kemarin Ibu saya pergi ke toko serba ada"
   },
   {
-    "jp_character": "学生はきのうこうえんへ行きました",
+    "jp_character": "学生はうちに帰ります",
     "particles": [
       2,
-      10
+      5
     ],
     "romanji": [
-      "gakusei wa kinou kouen e ikimashita"
+      "gakusei wa uchi ni kaerimasu"
     ],
     "furigana": {
       "0": "がく",
       "1": "せい",
-      "11": "い"
+      "6": "かえ"
     },
-    "meaning": "The student went to the park yesterday",
-    "meaning_id": "Kemarin Pelajar pergi ke taman"
+    "meaning": "The student returns home",
+    "meaning_id": "Pelajar pulang ke rumah"
+  },
+  {
+    "jp_character": "わたしはきのう学校に来ました",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa kinou gakkou ni kimashita"
+    ],
+    "furigana": {
+      "7": "がっ",
+      "8": "こう",
+      "10": "き"
+    },
+    "meaning": "I came to school yesterday",
+    "meaning_id": "Kemarin Saya datang ke sekolah"
   },
   {
     "jp_character": "母は川へ行きます",
@@ -1297,6 +1252,124 @@ export const generatedSentences = [
     },
     "meaning": "My mother goes to the river",
     "meaning_id": "Ibu saya pergi ke sungai"
+  },
+  {
+    "jp_character": "先生は駅に来ます",
+    "particles": [
+      2,
+      4
+    ],
+    "romanji": [
+      "sensei wa eki ni kimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "えき",
+      "5": "き"
+    },
+    "meaning": "The teacher comes to the station",
+    "meaning_id": "Guru datang ke stasiun"
+  },
+  {
+    "jp_character": "あなたはスーパーへ行きます",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "anata wa suupaa e ikimasu"
+    ],
+    "furigana": {
+      "9": "い"
+    },
+    "meaning": "You go to the supermarket",
+    "meaning_id": "Anda pergi ke supermarket"
+  },
+  {
+    "jp_character": "友だちは日本に帰ります",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa nihon ni kaerimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "に",
+      "5": "ほん",
+      "7": "かえ"
+    },
+    "meaning": "My friend returns home to Japan",
+    "meaning_id": "Teman saya pulang ke Jepang"
+  },
+  {
+    "jp_character": "学生はきのう山へ行きました",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "gakusei wa kinou yama e ikimashita"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "6": "やま",
+      "8": "い"
+    },
+    "meaning": "The student went to the mountain yesterday",
+    "meaning_id": "Kemarin Pelajar pergi ke gunung"
+  },
+  {
+    "jp_character": "父は店に来ます",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "chichi wa mise ni kimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "みせ",
+      "4": "き"
+    },
+    "meaning": "My father comes to the shop",
+    "meaning_id": "Ayah saya datang ke toko"
+  },
+  {
+    "jp_character": "わたしは川へ行きます",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "watashi wa kawa e ikimasu"
+    ],
+    "furigana": {
+      "4": "かわ",
+      "6": "い"
+    },
+    "meaning": "I go to the river",
+    "meaning_id": "Saya pergi ke sungai"
+  },
+  {
+    "jp_character": "友だちはうちに帰ります",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa uchi ni kaerimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "7": "かえ"
+    },
+    "meaning": "My friend returns home",
+    "meaning_id": "Teman saya pulang ke rumah"
   },
   {
     "jp_character": "先生はデパートへ行きます",
@@ -1333,23 +1406,191 @@ export const generatedSentences = [
     "meaning_id": "Anda datang ke luar negeri"
   },
   {
-    "jp_character": "先生は日本に来ます",
+    "jp_character": "母は日本に帰ります",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "haha wa nihon ni kaerimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "に",
+      "3": "ほん",
+      "5": "かえ"
+    },
+    "meaning": "My mother returns home to Japan",
+    "meaning_id": "Ibu saya pulang ke Jepang"
+  },
+  {
+    "jp_character": "父はきのうこうえんへ行きました",
+    "particles": [
+      1,
+      9
+    ],
+    "romanji": [
+      "chichi wa kinou kouen e ikimashita"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "10": "い"
+    },
+    "meaning": "My father went to the park yesterday",
+    "meaning_id": "Kemarin Ayah saya pergi ke taman"
+  },
+  {
+    "jp_character": "学生は学校へ行きます",
     "particles": [
       2,
       5
     ],
     "romanji": [
-      "sensei wa nihon ni kimasu"
+      "gakusei wa gakkou e ikimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "6": "い"
+    },
+    "meaning": "The student goes to school",
+    "meaning_id": "Pelajar pergi ke sekolah"
+  },
+  {
+    "jp_character": "あなたは駅に来ます",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "anata wa eki ni kimasu"
+    ],
+    "furigana": {
+      "4": "えき",
+      "6": "き"
+    },
+    "meaning": "You come to the station",
+    "meaning_id": "Anda datang ke stasiun"
+  },
+  {
+    "jp_character": "父はきのう店に来ました",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "chichi wa kinou mise ni kimashita"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "5": "みせ",
+      "7": "き"
+    },
+    "meaning": "My father came to the shop yesterday",
+    "meaning_id": "Kemarin Ayah saya datang ke toko"
+  },
+  {
+    "jp_character": "母はスーパーへ行きます",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "haha wa suupaa e ikimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "い"
+    },
+    "meaning": "My mother goes to the supermarket",
+    "meaning_id": "Ibu saya pergi ke supermarket"
+  },
+  {
+    "jp_character": "先生はうちに帰ります",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa uchi ni kaerimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "6": "かえ"
+    },
+    "meaning": "The teacher returns home",
+    "meaning_id": "Guru pulang ke rumah"
+  },
+  {
+    "jp_character": "わたしは山へ行きます",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "watashi wa yama e ikimasu"
+    ],
+    "furigana": {
+      "4": "やま",
+      "6": "い"
+    },
+    "meaning": "I go to the mountain",
+    "meaning_id": "Saya pergi ke gunung"
+  },
+  {
+    "jp_character": "学生はこうえんに来ます",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "gakusei wa kouen ni kimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "8": "き"
+    },
+    "meaning": "The student comes to the park",
+    "meaning_id": "Pelajar datang ke taman"
+  },
+  {
+    "jp_character": "友だちはきのうデパートへ行きました",
+    "particles": [
+      3,
+      11
+    ],
+    "romanji": [
+      "tomodachi wa kinou depaato e ikimashita"
+    ],
+    "furigana": {
+      "0": "とも",
+      "12": "い"
+    },
+    "meaning": "My friend went to the department store yesterday",
+    "meaning_id": "Kemarin Teman saya pergi ke toko serba ada"
+  },
+  {
+    "jp_character": "先生は日本に帰ります",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa nihon ni kaerimasu"
     ],
     "furigana": {
       "0": "せん",
       "1": "せい",
       "3": "に",
       "4": "ほん",
-      "6": "き"
+      "6": "かえ"
     },
-    "meaning": "The teacher comes to Japan",
-    "meaning_id": "Guru datang ke Jepang"
+    "meaning": "The teacher returns home to Japan",
+    "meaning_id": "Guru pulang ke Jepang"
   },
   {
     "jp_character": "友だちは駅へ行きます",
@@ -1369,201 +1610,23 @@ export const generatedSentences = [
     "meaning_id": "Teman saya pergi ke stasiun"
   },
   {
-    "jp_character": "父はあした駅へ行きます",
+    "jp_character": "学生は外国に来ます",
     "particles": [
-      1,
-      6
-    ],
-    "romanji": [
-      "chichi wa ashita eki e ikimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "5": "えき",
-      "7": "い"
-    },
-    "meaning": "My father will go to the station tomorrow",
-    "meaning_id": "Besok Ayah saya pergi ke stasiun"
-  },
-  {
-    "jp_character": "母は毎日川へ行きます",
-    "particles": [
-      1,
+      2,
       5
     ],
     "romanji": [
-      "haha wa mainichi kawa e ikimasu"
+      "gakusei wa gaikoku ni kimasu"
     ],
     "furigana": {
-      "0": "はは",
-      "2": "まい",
-      "3": "にち",
-      "4": "かわ",
-      "6": "い"
+      "0": "がく",
+      "1": "せい",
+      "3": "がい",
+      "4": "こく",
+      "6": "き"
     },
-    "meaning": "My mother goes to the river every day",
-    "meaning_id": "Setiap hari Ibu saya pergi ke sungai"
-  },
-  {
-    "jp_character": "友だちはきのう外国へ行きました",
-    "particles": [
-      3,
-      9
-    ],
-    "romanji": [
-      "tomodachi wa kinou gaikoku e ikimashita"
-    ],
-    "furigana": {
-      "0": "とも",
-      "7": "がい",
-      "8": "こく",
-      "10": "い"
-    },
-    "meaning": "My friend went to a foreign country yesterday",
-    "meaning_id": "Kemarin Teman saya pergi ke luar negeri"
-  },
-  {
-    "jp_character": "母は山へ行きます",
-    "particles": [
-      1,
-      3
-    ],
-    "romanji": [
-      "haha wa yama e ikimasu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "2": "やま",
-      "4": "い"
-    },
-    "meaning": "My mother goes to the mountain",
-    "meaning_id": "Ibu saya pergi ke gunung"
-  },
-  {
-    "jp_character": "あなたはきのう日本に来ました",
-    "particles": [
-      3,
-      9
-    ],
-    "romanji": [
-      "anata wa kinou nihon ni kimashita"
-    ],
-    "furigana": {
-      "7": "に",
-      "8": "ほん",
-      "10": "き"
-    },
-    "meaning": "You came to Japan yesterday",
-    "meaning_id": "Kemarin Anda datang ke Jepang"
-  },
-  {
-    "jp_character": "母はあした山へ行きます",
-    "particles": [
-      1,
-      6
-    ],
-    "romanji": [
-      "haha wa ashita yama e ikimasu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "5": "やま",
-      "7": "い"
-    },
-    "meaning": "My mother will go to the mountain tomorrow",
-    "meaning_id": "Besok Ibu saya pergi ke gunung"
-  },
-  {
-    "jp_character": "友だちは毎日駅へ行きます",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "tomodachi wa mainichi eki e ikimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "4": "まい",
-      "5": "にち",
-      "6": "えき",
-      "8": "い"
-    },
-    "meaning": "My friend goes to the station every day",
-    "meaning_id": "Setiap hari Teman saya pergi ke stasiun"
-  },
-  {
-    "jp_character": "あなたは毎日川へ行きます",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "anata wa mainichi kawa e ikimasu"
-    ],
-    "furigana": {
-      "4": "まい",
-      "5": "にち",
-      "6": "かわ",
-      "8": "い"
-    },
-    "meaning": "You go to the river every day",
-    "meaning_id": "Setiap hari Anda pergi ke sungai"
-  },
-  {
-    "jp_character": "友だちは外国に来ます",
-    "particles": [
-      3,
-      6
-    ],
-    "romanji": [
-      "tomodachi wa gaikoku ni kimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "4": "がい",
-      "5": "こく",
-      "7": "き"
-    },
-    "meaning": "My friend comes to a foreign country",
-    "meaning_id": "Teman saya datang ke luar negeri"
-  },
-  {
-    "jp_character": "母は日本へ行きます",
-    "particles": [
-      1,
-      4
-    ],
-    "romanji": [
-      "haha wa nihon e ikimasu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "2": "に",
-      "3": "ほん",
-      "5": "い"
-    },
-    "meaning": "My mother goes to Japan",
-    "meaning_id": "Ibu saya pergi ke Jepang"
-  },
-  {
-    "jp_character": "わたしは毎日外国へ行きます",
-    "particles": [
-      3,
-      8
-    ],
-    "romanji": [
-      "watashi wa mainichi gaikoku e ikimasu"
-    ],
-    "furigana": {
-      "4": "まい",
-      "5": "にち",
-      "6": "がい",
-      "7": "こく",
-      "9": "い"
-    },
-    "meaning": "I go to a foreign country every day",
-    "meaning_id": "Setiap hari Saya pergi ke luar negeri"
+    "meaning": "The student comes to a foreign country",
+    "meaning_id": "Pelajar datang ke luar negeri"
   },
   {
     "jp_character": "父は川へ行きます",
@@ -1583,70 +1646,103 @@ export const generatedSentences = [
     "meaning_id": "Ayah saya pergi ke sungai"
   },
   {
-    "jp_character": "あなたはきのうスーパーへ行きました",
+    "jp_character": "わたしは店に来ます",
     "particles": [
       3,
-      11
+      5
     ],
     "romanji": [
-      "anata wa kinou suupaa e ikimashita"
+      "watashi wa mise ni kimasu"
     ],
     "furigana": {
-      "12": "い"
+      "4": "みせ",
+      "6": "き"
     },
-    "meaning": "You went to the supermarket yesterday",
-    "meaning_id": "Kemarin Anda pergi ke supermarket"
+    "meaning": "I come to the shop",
+    "meaning_id": "Saya datang ke toko"
   },
   {
-    "jp_character": "わたしはきのう川へ行きました",
+    "jp_character": "あなたは日本に帰ります",
     "particles": [
       3,
-      8
+      6
     ],
     "romanji": [
-      "watashi wa kinou kawa e ikimashita"
+      "anata wa nihon ni kaerimasu"
     ],
     "furigana": {
-      "7": "かわ",
-      "9": "い"
+      "4": "に",
+      "5": "ほん",
+      "7": "かえ"
     },
-    "meaning": "I went to the river yesterday",
-    "meaning_id": "Kemarin Saya pergi ke sungai"
+    "meaning": "You return home to Japan",
+    "meaning_id": "Anda pulang ke Jepang"
   },
   {
-    "jp_character": "母はあした外国へ行きます",
+    "jp_character": "母はきのう山へ行きました",
     "particles": [
       1,
-      7
+      6
     ],
     "romanji": [
-      "haha wa ashita gaikoku e ikimasu"
+      "haha wa kinou yama e ikimashita"
     ],
     "furigana": {
       "0": "はは",
-      "5": "がい",
-      "6": "こく",
-      "8": "い"
+      "5": "やま",
+      "7": "い"
     },
-    "meaning": "My mother will go to a foreign country tomorrow",
-    "meaning_id": "Besok Ibu saya pergi ke luar negeri"
+    "meaning": "My mother went to the mountain yesterday",
+    "meaning_id": "Kemarin Ibu saya pergi ke gunung"
   },
   {
-    "jp_character": "学生はあしたこうえんに来ます",
+    "jp_character": "父はスーパーへ行きます",
     "particles": [
-      2,
-      10
+      1,
+      6
     ],
     "romanji": [
-      "gakusei wa ashita kouen ni kimasu"
+      "chichi wa suupaa e ikimasu"
     ],
     "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "11": "き"
+      "0": "ちち",
+      "7": "い"
     },
-    "meaning": "The student will come to the park tomorrow",
-    "meaning_id": "Besok Pelajar datang ke taman"
+    "meaning": "My father goes to the supermarket",
+    "meaning_id": "Ayah saya pergi ke supermarket"
+  },
+  {
+    "jp_character": "友だちは学校に来ます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa gakkou ni kimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "がっ",
+      "5": "こう",
+      "7": "き"
+    },
+    "meaning": "My friend comes to school",
+    "meaning_id": "Teman saya datang ke sekolah"
+  },
+  {
+    "jp_character": "わたしはうちに帰ります",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa uchi ni kaerimasu"
+    ],
+    "furigana": {
+      "7": "かえ"
+    },
+    "meaning": "I return home",
+    "meaning_id": "Saya pulang ke rumah"
   },
   {
     "jp_character": "先生は駅へ行きます",
@@ -1667,124 +1763,6 @@ export const generatedSentences = [
     "meaning_id": "Guru pergi ke stasiun"
   },
   {
-    "jp_character": "わたしは外国に来ます",
-    "particles": [
-      3,
-      6
-    ],
-    "romanji": [
-      "watashi wa gaikoku ni kimasu"
-    ],
-    "furigana": {
-      "4": "がい",
-      "5": "こく",
-      "7": "き"
-    },
-    "meaning": "I come to a foreign country",
-    "meaning_id": "Saya datang ke luar negeri"
-  },
-  {
-    "jp_character": "あなたはスーパーへ行きます",
-    "particles": [
-      3,
-      8
-    ],
-    "romanji": [
-      "anata wa suupaa e ikimasu"
-    ],
-    "furigana": {
-      "9": "い"
-    },
-    "meaning": "You go to the supermarket",
-    "meaning_id": "Anda pergi ke supermarket"
-  },
-  {
-    "jp_character": "学生はあしたこうえんへ行きます",
-    "particles": [
-      2,
-      10
-    ],
-    "romanji": [
-      "gakusei wa ashita kouen e ikimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "11": "い"
-    },
-    "meaning": "The student will go to the park tomorrow",
-    "meaning_id": "Besok Pelajar pergi ke taman"
-  },
-  {
-    "jp_character": "友だちはあしたスーパーへ行きます",
-    "particles": [
-      3,
-      11
-    ],
-    "romanji": [
-      "tomodachi wa ashita suupaa e ikimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "12": "い"
-    },
-    "meaning": "My friend will go to the supermarket tomorrow",
-    "meaning_id": "Besok Teman saya pergi ke supermarket"
-  },
-  {
-    "jp_character": "友だちはあした日本へ行きます",
-    "particles": [
-      3,
-      9
-    ],
-    "romanji": [
-      "tomodachi wa ashita nihon e ikimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "7": "に",
-      "8": "ほん",
-      "10": "い"
-    },
-    "meaning": "My friend will go to Japan tomorrow",
-    "meaning_id": "Besok Teman saya pergi ke Jepang"
-  },
-  {
-    "jp_character": "先生はこうえんに来ます",
-    "particles": [
-      2,
-      7
-    ],
-    "romanji": [
-      "sensei wa kouen ni kimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "8": "き"
-    },
-    "meaning": "The teacher comes to the park",
-    "meaning_id": "Guru datang ke taman"
-  },
-  {
-    "jp_character": "父は毎日デパートへ行きます",
-    "particles": [
-      1,
-      8
-    ],
-    "romanji": [
-      "chichi wa mainichi depaato e ikimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "2": "まい",
-      "3": "にち",
-      "9": "い"
-    },
-    "meaning": "My father goes to the department store every day",
-    "meaning_id": "Setiap hari Ayah saya pergi ke toko serba ada"
-  },
-  {
     "jp_character": "先週、わたしは本を読みました",
     "particles": [
       6,
@@ -1802,23 +1780,6 @@ export const generatedSentences = [
     },
     "meaning": "I read a book last week",
     "meaning_id": "Minggu lalu Saya membaca buku"
-  },
-  {
-    "jp_character": "きのう、父はざっしを読みました",
-    "particles": [
-      5,
-      9
-    ],
-    "romanji": [
-      "kinou chichi wa zasshi wo yomimashita",
-      "kinou chichi wa zasshi o yomimashita"
-    ],
-    "furigana": {
-      "4": "ちち",
-      "10": "よ"
-    },
-    "meaning": "My father read a magazine yesterday",
-    "meaning_id": "Kemarin Ayah saya membaca majalah"
   },
   {
     "jp_character": "今日、母はおんがくを聞きます",
@@ -1859,46 +1820,6 @@ export const generatedSentences = [
     "meaning_id": "Setiap hari Ayah saya makan roti"
   },
   {
-    "jp_character": "来週、あなたはごはんを食べます",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "raishuu anata wa gohan wo tabemasu",
-      "raishuu anata wa gohan o tabemasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "11": "た"
-    },
-    "meaning": "You will eat rice next week",
-    "meaning_id": "Minggu depan Anda makan nasi"
-  },
-  {
-    "jp_character": "毎日、学生は名前を書きます",
-    "particles": [
-      5,
-      8
-    ],
-    "romanji": [
-      "mainichi gakusei wa namae wo kakimasu",
-      "mainichi gakusei wa namae o kakimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "がく",
-      "4": "せい",
-      "6": "な",
-      "7": "まえ",
-      "9": "か"
-    },
-    "meaning": "The student writes my name every day",
-    "meaning_id": "Setiap hari Pelajar menulis nama"
-  },
-  {
     "jp_character": "きのう、学生はたまごを食べました",
     "particles": [
       6,
@@ -1917,60 +1838,6 @@ export const generatedSentences = [
     "meaning_id": "Kemarin Pelajar makan telur"
   },
   {
-    "jp_character": "先週、あなたはおちゃを飲みました",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "senshuu anata wa ocha wo nomimashita",
-      "senshuu anata wa ocha o nomimashita"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "しゅう",
-      "11": "の"
-    },
-    "meaning": "You drank tea last week",
-    "meaning_id": "Minggu lalu Anda minum teh"
-  },
-  {
-    "jp_character": "来週、あなたはたまごを食べます",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "raishuu anata wa tamago wo tabemasu",
-      "raishuu anata wa tamago o tabemasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "11": "た"
-    },
-    "meaning": "You will eat an egg next week",
-    "meaning_id": "Minggu depan Anda makan telur"
-  },
-  {
-    "jp_character": "きのう、男の子はテレビを見ました",
-    "particles": [
-      7,
-      11
-    ],
-    "romanji": [
-      "kinou otokonoko wa terebi wo mimashita",
-      "kinou otokonoko wa terebi o mimashita"
-    ],
-    "furigana": {
-      "4": "おとこ",
-      "6": "こ",
-      "12": "み"
-    },
-    "meaning": "The boy watched TV yesterday",
-    "meaning_id": "Kemarin Anak laki-laki menonton TV"
-  },
-  {
     "jp_character": "友だちはかんじを書きます",
     "particles": [
       3,
@@ -1986,398 +1853,6 @@ export const generatedSentences = [
     },
     "meaning": "My friend writes kanji",
     "meaning_id": "Teman saya menulis kanji"
-  },
-  {
-    "jp_character": "来週、友だちはざっしを読みます",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "raishuu tomodachi wa zasshi wo yomimasu",
-      "raishuu tomodachi wa zasshi o yomimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "とも",
-      "11": "よ"
-    },
-    "meaning": "My friend will read a magazine next week",
-    "meaning_id": "Minggu depan Teman saya membaca majalah"
-  },
-  {
-    "jp_character": "今週、わたしはパンを食べます",
-    "particles": [
-      6,
-      9
-    ],
-    "romanji": [
-      "konshuu watashi wa pan wo tabemasu",
-      "konshuu watashi wa pan o tabemasu"
-    ],
-    "furigana": {
-      "0": "こん",
-      "1": "しゅう",
-      "10": "た"
-    },
-    "meaning": "I eat bread this week",
-    "meaning_id": "Minggu ini Saya makan roti"
-  },
-  {
-    "jp_character": "毎日、友だちはりんごを食べます",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "mainichi tomodachi wa ringo wo tabemasu",
-      "mainichi tomodachi wa ringo o tabemasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "とも",
-      "11": "た"
-    },
-    "meaning": "My friend eats an apple every day",
-    "meaning_id": "Setiap hari Teman saya makan apel"
-  },
-  {
-    "jp_character": "先週、わたしはかんじを書きました",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "senshuu watashi wa kanji wo kakimashita",
-      "senshuu watashi wa kanji o kakimashita"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "しゅう",
-      "11": "か"
-    },
-    "meaning": "I wrote kanji last week",
-    "meaning_id": "Minggu lalu Saya menulis kanji"
-  },
-  {
-    "jp_character": "学生はてがみを書きます",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "gakusei wa tegami wo kakimasu",
-      "gakusei wa tegami o kakimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "7": "か"
-    },
-    "meaning": "The student writes a letter",
-    "meaning_id": "Pelajar menulis surat"
-  },
-  {
-    "jp_character": "来週、わたしはコーヒーを飲みます",
-    "particles": [
-      6,
-      11
-    ],
-    "romanji": [
-      "raishuu watashi wa koohii wo nomimasu",
-      "raishuu watashi wa koohii o nomimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "12": "の"
-    },
-    "meaning": "I will drink coffee next week",
-    "meaning_id": "Minggu depan Saya minum kopi"
-  },
-  {
-    "jp_character": "きのう、女の子はかんじを書きました",
-    "particles": [
-      7,
-      11
-    ],
-    "romanji": [
-      "kinou onnanoko wa kanji wo kakimashita",
-      "kinou onnanoko wa kanji o kakimashita"
-    ],
-    "furigana": {
-      "4": "おんな",
-      "6": "こ",
-      "12": "か"
-    },
-    "meaning": "The girl wrote kanji yesterday",
-    "meaning_id": "Kemarin Anak perempuan menulis kanji"
-  },
-  {
-    "jp_character": "今週、学生はごはんを食べます",
-    "particles": [
-      5,
-      9
-    ],
-    "romanji": [
-      "konshuu gakusei wa gohan wo tabemasu",
-      "konshuu gakusei wa gohan o tabemasu"
-    ],
-    "furigana": {
-      "0": "こん",
-      "1": "しゅう",
-      "3": "がく",
-      "4": "せい",
-      "10": "た"
-    },
-    "meaning": "The student eats rice this week",
-    "meaning_id": "Minggu ini Pelajar makan nasi"
-  },
-  {
-    "jp_character": "今週、学生はざっしを読みます",
-    "particles": [
-      5,
-      9
-    ],
-    "romanji": [
-      "konshuu gakusei wa zasshi wo yomimasu",
-      "konshuu gakusei wa zasshi o yomimasu"
-    ],
-    "furigana": {
-      "0": "こん",
-      "1": "しゅう",
-      "3": "がく",
-      "4": "せい",
-      "10": "よ"
-    },
-    "meaning": "The student reads a magazine this week",
-    "meaning_id": "Minggu ini Pelajar membaca majalah"
-  },
-  {
-    "jp_character": "毎日、男の子はあさごはんを食べます",
-    "particles": [
-      6,
-      12
-    ],
-    "romanji": [
-      "mainichi otokonoko wa asagohan wo tabemasu",
-      "mainichi otokonoko wa asagohan o tabemasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "おとこ",
-      "5": "こ",
-      "13": "た"
-    },
-    "meaning": "The boy eats breakfast every day",
-    "meaning_id": "Setiap hari Anak laki-laki makan sarapan"
-  },
-  {
-    "jp_character": "あなたはかんじを書きます",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "anata wa kanji wo kakimasu",
-      "anata wa kanji o kakimasu"
-    ],
-    "furigana": {
-      "8": "か"
-    },
-    "meaning": "You write kanji",
-    "meaning_id": "Anda menulis kanji"
-  },
-  {
-    "jp_character": "あなたは本を読みます",
-    "particles": [
-      3,
-      5
-    ],
-    "romanji": [
-      "anata wa hon wo yomimasu",
-      "anata wa hon o yomimasu"
-    ],
-    "furigana": {
-      "4": "ほん",
-      "6": "よ"
-    },
-    "meaning": "You read a book",
-    "meaning_id": "Anda membaca buku"
-  },
-  {
-    "jp_character": "今週、先生はひらがなを書きます",
-    "particles": [
-      5,
-      10
-    ],
-    "romanji": [
-      "konshuu sensei wa hiragana wo kakimasu",
-      "konshuu sensei wa hiragana o kakimasu"
-    ],
-    "furigana": {
-      "0": "こん",
-      "1": "しゅう",
-      "3": "せん",
-      "4": "せい",
-      "11": "か"
-    },
-    "meaning": "The teacher writes hiragana this week",
-    "meaning_id": "Minggu ini Guru menulis hiragana"
-  },
-  {
-    "jp_character": "きのう、父はおちゃを飲みました",
-    "particles": [
-      5,
-      9
-    ],
-    "romanji": [
-      "kinou chichi wa ocha wo nomimashita",
-      "kinou chichi wa ocha o nomimashita"
-    ],
-    "furigana": {
-      "4": "ちち",
-      "10": "の"
-    },
-    "meaning": "My father drank tea yesterday",
-    "meaning_id": "Kemarin Ayah saya minum teh"
-  },
-  {
-    "jp_character": "今日、学生はパンを食べます",
-    "particles": [
-      5,
-      8
-    ],
-    "romanji": [
-      "kyou gakusei wa pan wo tabemasu",
-      "kyou gakusei wa pan o tabemasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "がく",
-      "4": "せい",
-      "9": "た"
-    },
-    "meaning": "The student eats bread today",
-    "meaning_id": "Hari ini Pelajar makan roti"
-  },
-  {
-    "jp_character": "来週、あなたは本を読みます",
-    "particles": [
-      6,
-      8
-    ],
-    "romanji": [
-      "raishuu anata wa hon wo yomimasu",
-      "raishuu anata wa hon o yomimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "7": "ほん",
-      "9": "よ"
-    },
-    "meaning": "You will read a book next week",
-    "meaning_id": "Minggu depan Anda membaca buku"
-  },
-  {
-    "jp_character": "きのう、わたしはカタカナを書きました",
-    "particles": [
-      7,
-      12
-    ],
-    "romanji": [
-      "kinou watashi wa katakana wo kakimashita",
-      "kinou watashi wa katakana o kakimashita"
-    ],
-    "furigana": {
-      "13": "か"
-    },
-    "meaning": "I wrote katakana yesterday",
-    "meaning_id": "Kemarin Saya menulis katakana"
-  },
-  {
-    "jp_character": "今週、わたしはざっしを読みます",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "konshuu watashi wa zasshi wo yomimasu",
-      "konshuu watashi wa zasshi o yomimasu"
-    ],
-    "furigana": {
-      "0": "こん",
-      "1": "しゅう",
-      "11": "よ"
-    },
-    "meaning": "I read a magazine this week",
-    "meaning_id": "Minggu ini Saya membaca majalah"
-  },
-  {
-    "jp_character": "来週、父はかんじを書きます",
-    "particles": [
-      4,
-      8
-    ],
-    "romanji": [
-      "raishuu chichi wa kanji wo kakimasu",
-      "raishuu chichi wa kanji o kakimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "ちち",
-      "9": "か"
-    },
-    "meaning": "My father will write kanji next week",
-    "meaning_id": "Minggu depan Ayah saya menulis kanji"
-  },
-  {
-    "jp_character": "来週、男の子は名前を書きます",
-    "particles": [
-      6,
-      9
-    ],
-    "romanji": [
-      "raishuu otokonoko wa namae wo kakimasu",
-      "raishuu otokonoko wa namae o kakimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "おとこ",
-      "5": "こ",
-      "7": "な",
-      "8": "まえ",
-      "10": "か"
-    },
-    "meaning": "The boy will write my name next week",
-    "meaning_id": "Minggu depan Anak laki-laki menulis nama"
-  },
-  {
-    "jp_character": "毎日、学生はコーヒーを飲みます",
-    "particles": [
-      5,
-      10
-    ],
-    "romanji": [
-      "mainichi gakusei wa koohii wo nomimasu",
-      "mainichi gakusei wa koohii o nomimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "がく",
-      "4": "せい",
-      "11": "の"
-    },
-    "meaning": "The student drinks coffee every day",
-    "meaning_id": "Setiap hari Pelajar minum kopi"
   },
   {
     "jp_character": "来週、先生は新聞を読みます",
@@ -2402,114 +1877,725 @@ export const generatedSentences = [
     "meaning_id": "Minggu depan Guru membaca koran"
   },
   {
-    "jp_character": "今週、友だちははなを買います",
+    "jp_character": "今週、男の子はとけいを買います",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "konshuu otokonoko wa tokei wo kaimasu",
+      "konshuu otokonoko wa tokei o kaimasu"
+    ],
+    "furigana": {
+      "0": "こん",
+      "1": "しゅう",
+      "3": "おとこ",
+      "5": "こ",
+      "11": "か"
+    },
+    "meaning": "The boy buys a watch this week",
+    "meaning_id": "Minggu ini Anak laki-laki membeli jam"
+  },
+  {
+    "jp_character": "女の子はテレビを見ます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "onnanoko wa terebi wo mimasu",
+      "onnanoko wa terebi o mimasu"
+    ],
+    "furigana": {
+      "0": "おんな",
+      "2": "こ",
+      "8": "み"
+    },
+    "meaning": "The girl watches TV",
+    "meaning_id": "Anak perempuan menonton TV"
+  },
+  {
+    "jp_character": "あなたはおちゃを飲みます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata wa ocha wo nomimasu",
+      "anata wa ocha o nomimasu"
+    ],
+    "furigana": {
+      "8": "の"
+    },
+    "meaning": "You drink tea",
+    "meaning_id": "Anda minum teh"
+  },
+  {
+    "jp_character": "学生はてがみを書きます",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa tegami wo kakimasu",
+      "gakusei wa tegami o kakimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "か"
+    },
+    "meaning": "The student writes a letter",
+    "meaning_id": "Pelajar menulis surat"
+  },
+  {
+    "jp_character": "きのう、わたしはカタカナを書きました",
+    "particles": [
+      7,
+      12
+    ],
+    "romanji": [
+      "kinou watashi wa katakana wo kakimashita",
+      "kinou watashi wa katakana o kakimashita"
+    ],
+    "furigana": {
+      "13": "か"
+    },
+    "meaning": "I wrote katakana yesterday",
+    "meaning_id": "Kemarin Saya menulis katakana"
+  },
+  {
+    "jp_character": "先週、女の子ははなを買いました",
     "particles": [
       6,
       9
     ],
     "romanji": [
-      "konshuu tomodachi wa hana wo kaimasu",
-      "konshuu tomodachi wa hana o kaimasu"
+      "senshuu onnanoko wa hana wo kaimashita",
+      "senshuu onnanoko wa hana o kaimashita"
     ],
     "furigana": {
-      "0": "こん",
+      "0": "せん",
       "1": "しゅう",
-      "3": "とも",
+      "3": "おんな",
+      "5": "こ",
       "10": "か"
     },
-    "meaning": "My friend buys a flower this week",
-    "meaning_id": "Minggu ini Teman saya membeli bunga"
+    "meaning": "The girl bought a flower last week",
+    "meaning_id": "Minggu lalu Anak perempuan membeli bunga"
   },
   {
-    "jp_character": "母はてがみを書きます",
+    "jp_character": "あなたはざっしを読みます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata wa zasshi wo yomimasu",
+      "anata wa zasshi o yomimasu"
+    ],
+    "furigana": {
+      "8": "よ"
+    },
+    "meaning": "You read a magazine",
+    "meaning_id": "Anda membaca majalah"
+  },
+  {
+    "jp_character": "父はすしを食べます",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "chichi wa sushi wo tabemasu",
+      "chichi wa sushi o tabemasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "5": "た"
+    },
+    "meaning": "My father eats sushi",
+    "meaning_id": "Ayah saya makan sushi"
+  },
+  {
+    "jp_character": "先生は水を飲みます",
+    "particles": [
+      2,
+      4
+    ],
+    "romanji": [
+      "sensei wa mizu wo nomimasu",
+      "sensei wa mizu o nomimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "みず",
+      "5": "の"
+    },
+    "meaning": "The teacher drinks water",
+    "meaning_id": "Guru minum air"
+  },
+  {
+    "jp_character": "友だちはかばんを買います",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi wa kaban wo kaimasu",
+      "tomodachi wa kaban o kaimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "か"
+    },
+    "meaning": "My friend buys a bag",
+    "meaning_id": "Teman saya membeli tas"
+  },
+  {
+    "jp_character": "男の子はえいがを見ます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "otokonoko wa eiga wo mimasu",
+      "otokonoko wa eiga o mimasu"
+    ],
+    "furigana": {
+      "0": "おとこ",
+      "2": "こ",
+      "8": "み"
+    },
+    "meaning": "The boy watches a movie",
+    "meaning_id": "Anak laki-laki menonton film"
+  },
+  {
+    "jp_character": "きのう、母はぎゅうにゅうを飲みました",
+    "particles": [
+      5,
+      12
+    ],
+    "romanji": [
+      "kinou haha wa gyuunyuu wo nomimashita",
+      "kinou haha wa gyuunyuu o nomimashita"
+    ],
+    "furigana": {
+      "4": "はは",
+      "13": "の"
+    },
+    "meaning": "My mother drank milk yesterday",
+    "meaning_id": "Kemarin Ibu saya minum susu"
+  },
+  {
+    "jp_character": "女の子はりんごを食べます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "onnanoko wa ringo wo tabemasu",
+      "onnanoko wa ringo o tabemasu"
+    ],
+    "furigana": {
+      "0": "おんな",
+      "2": "こ",
+      "8": "た"
+    },
+    "meaning": "The girl eats an apple",
+    "meaning_id": "Anak perempuan makan apel"
+  },
+  {
+    "jp_character": "わたしは名前を書きます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa namae wo kakimasu",
+      "watashi wa namae o kakimasu"
+    ],
+    "furigana": {
+      "4": "な",
+      "5": "まえ",
+      "7": "か"
+    },
+    "meaning": "I write my name",
+    "meaning_id": "Saya menulis nama"
+  },
+  {
+    "jp_character": "母はおんがくを聞きます",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "haha wa ongaku wo kikimasu",
+      "haha wa ongaku o kikimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "き"
+    },
+    "meaning": "My mother listens to music",
+    "meaning_id": "Ibu saya mendengarkan musik"
+  },
+  {
+    "jp_character": "あなたはコーヒーを飲みます",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "anata wa koohii wo nomimasu",
+      "anata wa koohii o nomimasu"
+    ],
+    "furigana": {
+      "9": "の"
+    },
+    "meaning": "You drink coffee",
+    "meaning_id": "Anda minum kopi"
+  },
+  {
+    "jp_character": "先週、友だちはさかなを食べました",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "senshuu tomodachi wa sakana wo tabemashita",
+      "senshuu tomodachi wa sakana o tabemashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう",
+      "3": "とも",
+      "11": "た"
+    },
+    "meaning": "My friend ate fish last week",
+    "meaning_id": "Minggu lalu Teman saya makan ikan"
+  },
+  {
+    "jp_character": "男の子は新聞を読みます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "otokonoko wa shinbun wo yomimasu",
+      "otokonoko wa shinbun o yomimasu"
+    ],
+    "furigana": {
+      "0": "おとこ",
+      "2": "こ",
+      "4": "しん",
+      "5": "ぶん",
+      "7": "よ"
+    },
+    "meaning": "The boy reads the newspaper",
+    "meaning_id": "Anak laki-laki membaca koran"
+  },
+  {
+    "jp_character": "学生はラーメンを食べます",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "gakusei wa raamen wo tabemasu",
+      "gakusei wa raamen o tabemasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "8": "た"
+    },
+    "meaning": "The student eats ramen",
+    "meaning_id": "Pelajar makan ramen"
+  },
+  {
+    "jp_character": "先生はひらがなを書きます",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "sensei wa hiragana wo kakimasu",
+      "sensei wa hiragana o kakimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "8": "か"
+    },
+    "meaning": "The teacher writes hiragana",
+    "meaning_id": "Guru menulis hiragana"
+  },
+  {
+    "jp_character": "父ははなを買います",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "chichi wa hana wo kaimasu",
+      "chichi wa hana o kaimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "5": "か"
+    },
+    "meaning": "My father buys a flower",
+    "meaning_id": "Ayah saya membeli bunga"
+  },
+  {
+    "jp_character": "学生はテレビを見ます",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa terebi wo mimasu",
+      "gakusei wa terebi o mimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "み"
+    },
+    "meaning": "The student watches TV",
+    "meaning_id": "Pelajar menonton TV"
+  },
+  {
+    "jp_character": "あなたは本を読みます",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "anata wa hon wo yomimasu",
+      "anata wa hon o yomimasu"
+    ],
+    "furigana": {
+      "4": "ほん",
+      "6": "よ"
+    },
+    "meaning": "You read a book",
+    "meaning_id": "Anda membaca buku"
+  },
+  {
+    "jp_character": "きのう、父はえいがを見ました",
+    "particles": [
+      5,
+      9
+    ],
+    "romanji": [
+      "kinou chichi wa eiga wo mimashita",
+      "kinou chichi wa eiga o mimashita"
+    ],
+    "furigana": {
+      "4": "ちち",
+      "10": "み"
+    },
+    "meaning": "My father watched a movie yesterday",
+    "meaning_id": "Kemarin Ayah saya menonton film"
+  },
+  {
+    "jp_character": "母はとけいを買います",
     "particles": [
       1,
       5
     ],
     "romanji": [
-      "haha wa tegami wo kakimasu",
-      "haha wa tegami o kakimasu"
+      "haha wa tokei wo kaimasu",
+      "haha wa tokei o kaimasu"
     ],
     "furigana": {
       "0": "はは",
       "6": "か"
     },
-    "meaning": "My mother writes a letter",
-    "meaning_id": "Ibu saya menulis surat"
+    "meaning": "My mother buys a watch",
+    "meaning_id": "Ibu saya membeli jam"
   },
   {
-    "jp_character": "来週、母はとけいを買います",
+    "jp_character": "わたしはコーヒーを飲みます",
     "particles": [
-      4,
+      3,
       8
     ],
     "romanji": [
-      "raishuu haha wa tokei wo kaimasu",
-      "raishuu haha wa tokei o kaimasu"
+      "watashi wa koohii wo nomimasu",
+      "watashi wa koohii o nomimasu"
     ],
     "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "はは",
-      "9": "か"
+      "9": "の"
     },
-    "meaning": "My mother will buy a watch next week",
-    "meaning_id": "Minggu depan Ibu saya membeli jam"
+    "meaning": "I drink coffee",
+    "meaning_id": "Saya minum kopi"
   },
   {
-    "jp_character": "きのう、わたしはあさごはんを食べました",
+    "jp_character": "先生はにくを食べます",
     "particles": [
-      7,
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa niku wo tabemasu",
+      "sensei wa niku o tabemasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "6": "た"
+    },
+    "meaning": "The teacher eats meat",
+    "meaning_id": "Guru makan daging"
+  },
+  {
+    "jp_character": "友だちはおんがくを聞きます",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "tomodachi wa ongaku wo kikimasu",
+      "tomodachi wa ongaku o kikimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "9": "き"
+    },
+    "meaning": "My friend listens to music",
+    "meaning_id": "Teman saya mendengarkan musik"
+  },
+  {
+    "jp_character": "先週、男の子はぎゅうにゅうを飲みました",
+    "particles": [
+      6,
       13
     ],
     "romanji": [
-      "kinou watashi wa asagohan wo tabemashita",
-      "kinou watashi wa asagohan o tabemashita"
+      "senshuu otokonoko wa gyuunyuu wo nomimashita",
+      "senshuu otokonoko wa gyuunyuu o nomimashita"
     ],
     "furigana": {
-      "14": "た"
+      "0": "せん",
+      "1": "しゅう",
+      "3": "おとこ",
+      "5": "こ",
+      "14": "の"
     },
-    "meaning": "I ate breakfast yesterday",
-    "meaning_id": "Kemarin Saya makan sarapan"
+    "meaning": "The boy drank milk last week",
+    "meaning_id": "Minggu lalu Anak laki-laki minum susu"
   },
   {
-    "jp_character": "毎日、学生は水を飲みます",
+    "jp_character": "女の子はてがみを書きます",
     "particles": [
-      5,
+      3,
       7
     ],
     "romanji": [
-      "mainichi gakusei wa mizu wo nomimasu",
-      "mainichi gakusei wa mizu o nomimasu"
+      "onnanoko wa tegami wo kakimasu",
+      "onnanoko wa tegami o kakimasu"
     ],
     "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "がく",
-      "4": "せい",
-      "6": "みず",
-      "8": "の"
+      "0": "おんな",
+      "2": "こ",
+      "8": "か"
     },
-    "meaning": "The student drinks water every day",
-    "meaning_id": "Setiap hari Pelajar minum air"
+    "meaning": "The girl writes a letter",
+    "meaning_id": "Anak perempuan menulis surat"
   },
   {
-    "jp_character": "きのう、母は水を飲みました",
+    "jp_character": "あなたはあさごはんを食べます",
     "particles": [
-      5,
+      3,
+      9
+    ],
+    "romanji": [
+      "anata wa asagohan wo tabemasu",
+      "anata wa asagohan o tabemasu"
+    ],
+    "furigana": {
+      "10": "た"
+    },
+    "meaning": "You eat breakfast",
+    "meaning_id": "Anda makan sarapan"
+  },
+  {
+    "jp_character": "わたしはざっしを読みます",
+    "particles": [
+      3,
       7
     ],
     "romanji": [
-      "kinou haha wa mizu wo nomimashita",
-      "kinou haha wa mizu o nomimashita"
+      "watashi wa zasshi wo yomimasu",
+      "watashi wa zasshi o yomimasu"
     ],
     "furigana": {
-      "4": "はは",
-      "6": "みず",
+      "8": "よ"
+    },
+    "meaning": "I read a magazine",
+    "meaning_id": "Saya membaca majalah"
+  },
+  {
+    "jp_character": "友だちはおちゃを飲みます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi wa ocha wo nomimasu",
+      "tomodachi wa ocha o nomimasu"
+    ],
+    "furigana": {
+      "0": "とも",
       "8": "の"
     },
-    "meaning": "My mother drank water yesterday",
-    "meaning_id": "Kemarin Ibu saya minum air"
+    "meaning": "My friend drinks tea",
+    "meaning_id": "Teman saya minum teh"
+  },
+  {
+    "jp_character": "女の子はかばんを買います",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "onnanoko wa kaban wo kaimasu",
+      "onnanoko wa kaban o kaimasu"
+    ],
+    "furigana": {
+      "0": "おんな",
+      "2": "こ",
+      "8": "か"
+    },
+    "meaning": "The girl buys a bag",
+    "meaning_id": "Anak perempuan membeli tas"
+  },
+  {
+    "jp_character": "男の子はテレビを見ます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "otokonoko wa terebi wo mimasu",
+      "otokonoko wa terebi o mimasu"
+    ],
+    "furigana": {
+      "0": "おとこ",
+      "2": "こ",
+      "8": "み"
+    },
+    "meaning": "The boy watches TV",
+    "meaning_id": "Anak laki-laki menonton TV"
+  },
+  {
+    "jp_character": "きのう、先生はカタカナを書きました",
+    "particles": [
+      6,
+      11
+    ],
+    "romanji": [
+      "kinou sensei wa katakana wo kakimashita",
+      "kinou sensei wa katakana o kakimashita"
+    ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "12": "か"
+    },
+    "meaning": "The teacher wrote katakana yesterday",
+    "meaning_id": "Kemarin Guru menulis katakana"
+  },
+  {
+    "jp_character": "学生はかんじを書きます",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa kanji wo kakimasu",
+      "gakusei wa kanji o kakimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "か"
+    },
+    "meaning": "The student writes kanji",
+    "meaning_id": "Pelajar menulis kanji"
+  },
+  {
+    "jp_character": "母はごはんを食べます",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "haha wa gohan wo tabemasu",
+      "haha wa gohan o tabemasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "6": "た"
+    },
+    "meaning": "My mother eats rice",
+    "meaning_id": "Ibu saya makan nasi"
+  },
+  {
+    "jp_character": "父はおんがくを聞きます",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "chichi wa ongaku wo kikimasu",
+      "chichi wa ongaku o kikimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "7": "き"
+    },
+    "meaning": "My father listens to music",
+    "meaning_id": "Ayah saya mendengarkan musik"
+  },
+  {
+    "jp_character": "女の子はえいがを見ます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "onnanoko wa eiga wo mimasu",
+      "onnanoko wa eiga o mimasu"
+    ],
+    "furigana": {
+      "0": "おんな",
+      "2": "こ",
+      "8": "み"
+    },
+    "meaning": "The girl watches a movie",
+    "meaning_id": "Anak perempuan menonton film"
+  },
+  {
+    "jp_character": "わたしは水を飲みます",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "watashi wa mizu wo nomimasu",
+      "watashi wa mizu o nomimasu"
+    ],
+    "furigana": {
+      "4": "みず",
+      "6": "の"
+    },
+    "meaning": "I drink water",
+    "meaning_id": "Saya minum air"
   },
   {
     "jp_character": "先週、母は新聞を読みました",
@@ -2533,576 +2619,389 @@ export const generatedSentences = [
     "meaning_id": "Minggu lalu Ibu saya membaca koran"
   },
   {
-    "jp_character": "きのう、父はえいがを見ました",
+    "jp_character": "父は本を読みます",
     "particles": [
-      5,
-      9
+      1,
+      3
     ],
     "romanji": [
-      "kinou chichi wa eiga wo mimashita",
-      "kinou chichi wa eiga o mimashita"
+      "chichi wa hon wo yomimasu",
+      "chichi wa hon o yomimasu"
     ],
     "furigana": {
-      "4": "ちち",
-      "10": "み"
+      "0": "ちち",
+      "2": "ほん",
+      "4": "よ"
     },
-    "meaning": "My father watched a movie yesterday",
-    "meaning_id": "Kemarin Ayah saya menonton film"
+    "meaning": "My father reads a book",
+    "meaning_id": "Ayah saya membaca buku"
   },
   {
-    "jp_character": "毎日、学生はテレビを見ます",
+    "jp_character": "男の子ははなを買います",
     "particles": [
-      5,
-      9
+      3,
+      6
     ],
     "romanji": [
-      "mainichi gakusei wa terebi wo mimasu",
-      "mainichi gakusei wa terebi o mimasu"
+      "otokonoko wa hana wo kaimasu",
+      "otokonoko wa hana o kaimasu"
     ],
     "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "がく",
-      "4": "せい",
-      "10": "み"
+      "0": "おとこ",
+      "2": "こ",
+      "7": "か"
     },
-    "meaning": "The student watches TV every day",
-    "meaning_id": "Setiap hari Pelajar menonton TV"
+    "meaning": "The boy buys a flower",
+    "meaning_id": "Anak laki-laki membeli bunga"
   },
   {
-    "jp_character": "先週、友だちはさかなを食べました",
+    "jp_character": "学生は名前を書きます",
     "particles": [
-      6,
-      10
+      2,
+      5
     ],
     "romanji": [
-      "senshuu tomodachi wa sakana wo tabemashita",
-      "senshuu tomodachi wa sakana o tabemashita"
+      "gakusei wa namae wo kakimasu",
+      "gakusei wa namae o kakimasu"
     ],
     "furigana": {
-      "0": "せん",
-      "1": "しゅう",
-      "3": "とも",
-      "11": "た"
+      "0": "がく",
+      "1": "せい",
+      "3": "な",
+      "4": "まえ",
+      "6": "か"
     },
-    "meaning": "My friend ate fish last week",
-    "meaning_id": "Minggu lalu Teman saya makan ikan"
+    "meaning": "The student writes my name",
+    "meaning_id": "Pelajar menulis nama"
   },
   {
-    "jp_character": "来週、母はパンを食べます",
-    "particles": [
-      4,
-      7
-    ],
-    "romanji": [
-      "raishuu haha wa pan wo tabemasu",
-      "raishuu haha wa pan o tabemasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "はは",
-      "8": "た"
-    },
-    "meaning": "My mother will eat bread next week",
-    "meaning_id": "Minggu depan Ibu saya makan roti"
-  },
-  {
-    "jp_character": "今週、父は名前を書きます",
-    "particles": [
-      4,
-      7
-    ],
-    "romanji": [
-      "konshuu chichi wa namae wo kakimasu",
-      "konshuu chichi wa namae o kakimasu"
-    ],
-    "furigana": {
-      "0": "こん",
-      "1": "しゅう",
-      "3": "ちち",
-      "5": "な",
-      "6": "まえ",
-      "8": "か"
-    },
-    "meaning": "My father writes my name this week",
-    "meaning_id": "Minggu ini Ayah saya menulis nama"
-  },
-  {
-    "jp_character": "先週、女の子ははなを買いました",
-    "particles": [
-      6,
-      9
-    ],
-    "romanji": [
-      "senshuu onnanoko wa hana wo kaimashita",
-      "senshuu onnanoko wa hana o kaimashita"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "しゅう",
-      "3": "おんな",
-      "5": "こ",
-      "10": "か"
-    },
-    "meaning": "The girl bought a flower last week",
-    "meaning_id": "Minggu lalu Anak perempuan membeli bunga"
-  },
-  {
-    "jp_character": "今日、父はかんじを書きます",
-    "particles": [
-      4,
-      8
-    ],
-    "romanji": [
-      "kyou chichi wa kanji wo kakimasu",
-      "kyou chichi wa kanji o kakimasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "ちち",
-      "9": "か"
-    },
-    "meaning": "My father writes kanji today",
-    "meaning_id": "Hari ini Ayah saya menulis kanji"
-  },
-  {
-    "jp_character": "今日、学生はにくを食べます",
-    "particles": [
-      5,
-      8
-    ],
-    "romanji": [
-      "kyou gakusei wa niku wo tabemasu",
-      "kyou gakusei wa niku o tabemasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "がく",
-      "4": "せい",
-      "9": "た"
-    },
-    "meaning": "The student eats meat today",
-    "meaning_id": "Hari ini Pelajar makan daging"
-  },
-  {
-    "jp_character": "きのう、母はとけいを買いました",
-    "particles": [
-      5,
-      9
-    ],
-    "romanji": [
-      "kinou haha wa tokei wo kaimashita",
-      "kinou haha wa tokei o kaimashita"
-    ],
-    "furigana": {
-      "4": "はは",
-      "10": "か"
-    },
-    "meaning": "My mother bought a watch yesterday",
-    "meaning_id": "Kemarin Ibu saya membeli jam"
-  },
-  {
-    "jp_character": "先週、男の子はぎゅうにゅうを飲みました",
-    "particles": [
-      6,
-      13
-    ],
-    "romanji": [
-      "senshuu otokonoko wa gyuunyuu wo nomimashita",
-      "senshuu otokonoko wa gyuunyuu o nomimashita"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "しゅう",
-      "3": "おとこ",
-      "5": "こ",
-      "14": "の"
-    },
-    "meaning": "The boy drank milk last week",
-    "meaning_id": "Minggu lalu Anak laki-laki minum susu"
-  },
-  {
-    "jp_character": "来週、友だちはおちゃを飲みます",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "raishuu tomodachi wa ocha wo nomimasu",
-      "raishuu tomodachi wa ocha o nomimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "とも",
-      "11": "の"
-    },
-    "meaning": "My friend will drink tea next week",
-    "meaning_id": "Minggu depan Teman saya minum teh"
-  },
-  {
-    "jp_character": "来週、友だちはとけいを買います",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "raishuu tomodachi wa tokei wo kaimasu",
-      "raishuu tomodachi wa tokei o kaimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "とも",
-      "11": "か"
-    },
-    "meaning": "My friend will buy a watch next week",
-    "meaning_id": "Minggu depan Teman saya membeli jam"
-  },
-  {
-    "jp_character": "きのう、友だちは新聞を読みました",
-    "particles": [
-      7,
-      10
-    ],
-    "romanji": [
-      "kinou tomodachi wa shinbun wo yomimashita",
-      "kinou tomodachi wa shinbun o yomimashita"
-    ],
-    "furigana": {
-      "4": "とも",
-      "8": "しん",
-      "9": "ぶん",
-      "11": "よ"
-    },
-    "meaning": "My friend read the newspaper yesterday",
-    "meaning_id": "Kemarin Teman saya membaca koran"
-  },
-  {
-    "jp_character": "毎日、男の子はおちゃを飲みます",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "mainichi otokonoko wa ocha wo nomimasu",
-      "mainichi otokonoko wa ocha o nomimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "おとこ",
-      "5": "こ",
-      "11": "の"
-    },
-    "meaning": "The boy drinks tea every day",
-    "meaning_id": "Setiap hari Anak laki-laki minum teh"
-  },
-  {
-    "jp_character": "今週、女の子はてがみを書きます",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "konshuu onnanoko wa tegami wo kakimasu",
-      "konshuu onnanoko wa tegami o kakimasu"
-    ],
-    "furigana": {
-      "0": "こん",
-      "1": "しゅう",
-      "3": "おんな",
-      "5": "こ",
-      "11": "か"
-    },
-    "meaning": "The girl writes a letter this week",
-    "meaning_id": "Minggu ini Anak perempuan menulis surat"
-  },
-  {
-    "jp_character": "今日、母はかばんを買います",
-    "particles": [
-      4,
-      8
-    ],
-    "romanji": [
-      "kyou haha wa kaban wo kaimasu",
-      "kyou haha wa kaban o kaimasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "はは",
-      "9": "か"
-    },
-    "meaning": "My mother buys a bag today",
-    "meaning_id": "Hari ini Ibu saya membeli tas"
-  },
-  {
-    "jp_character": "来週、あなたはさかなを食べます",
-    "particles": [
-      6,
-      10
-    ],
-    "romanji": [
-      "raishuu anata wa sakana wo tabemasu",
-      "raishuu anata wa sakana o tabemasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "11": "た"
-    },
-    "meaning": "You will eat fish next week",
-    "meaning_id": "Minggu depan Anda makan ikan"
-  },
-  {
-    "jp_character": "きのう、男の子は本を読みました",
-    "particles": [
-      7,
-      9
-    ],
-    "romanji": [
-      "kinou otokonoko wa hon wo yomimashita",
-      "kinou otokonoko wa hon o yomimashita"
-    ],
-    "furigana": {
-      "4": "おとこ",
-      "6": "こ",
-      "8": "ほん",
-      "10": "よ"
-    },
-    "meaning": "The boy read a book yesterday",
-    "meaning_id": "Kemarin Anak laki-laki membaca buku"
-  },
-  {
-    "jp_character": "きのう、男の子はおんがくを聞きました",
-    "particles": [
-      7,
-      12
-    ],
-    "romanji": [
-      "kinou otokonoko wa ongaku wo kikimashita",
-      "kinou otokonoko wa ongaku o kikimashita"
-    ],
-    "furigana": {
-      "4": "おとこ",
-      "6": "こ",
-      "13": "き"
-    },
-    "meaning": "The boy listened to music yesterday",
-    "meaning_id": "Kemarin Anak laki-laki mendengarkan musik"
-  },
-  {
-    "jp_character": "きのう、先生はカタカナを書きました",
-    "particles": [
-      6,
-      11
-    ],
-    "romanji": [
-      "kinou sensei wa katakana wo kakimashita",
-      "kinou sensei wa katakana o kakimashita"
-    ],
-    "furigana": {
-      "4": "せん",
-      "5": "せい",
-      "12": "か"
-    },
-    "meaning": "The teacher wrote katakana yesterday",
-    "meaning_id": "Kemarin Guru menulis katakana"
-  },
-  {
-    "jp_character": "きのう、女の子はおちゃを飲みました",
-    "particles": [
-      7,
-      11
-    ],
-    "romanji": [
-      "kinou onnanoko wa ocha wo nomimashita",
-      "kinou onnanoko wa ocha o nomimashita"
-    ],
-    "furigana": {
-      "4": "おんな",
-      "6": "こ",
-      "12": "の"
-    },
-    "meaning": "The girl drank tea yesterday",
-    "meaning_id": "Kemarin Anak perempuan minum teh"
-  },
-  {
-    "jp_character": "今日、学生はとけいを買います",
-    "particles": [
-      5,
-      9
-    ],
-    "romanji": [
-      "kyou gakusei wa tokei wo kaimasu",
-      "kyou gakusei wa tokei o kaimasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "がく",
-      "4": "せい",
-      "10": "か"
-    },
-    "meaning": "The student buys a watch today",
-    "meaning_id": "Hari ini Pelajar membeli jam"
-  },
-  {
-    "jp_character": "あなたはざっしを読みます",
+    "jp_character": "あなたはさかなを食べます",
     "particles": [
       3,
       7
     ],
     "romanji": [
-      "anata wa zasshi wo yomimasu",
-      "anata wa zasshi o yomimasu"
+      "anata wa sakana wo tabemasu",
+      "anata wa sakana o tabemasu"
     ],
     "furigana": {
-      "8": "よ"
+      "8": "た"
     },
-    "meaning": "You read a magazine",
-    "meaning_id": "Anda membaca majalah"
+    "meaning": "You eat fish",
+    "meaning_id": "Anda makan ikan"
   },
   {
-    "jp_character": "毎日、父はおちゃを飲みます",
-    "particles": [
-      4,
-      8
-    ],
-    "romanji": [
-      "mainichi chichi wa ocha wo nomimasu",
-      "mainichi chichi wa ocha o nomimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "ちち",
-      "9": "の"
-    },
-    "meaning": "My father drinks tea every day",
-    "meaning_id": "Setiap hari Ayah saya minum teh"
-  },
-  {
-    "jp_character": "来週、友だちはラーメンを食べます",
+    "jp_character": "先週、友だちはとけいを買いました",
     "particles": [
       6,
-      11
+      10
     ],
     "romanji": [
-      "raishuu tomodachi wa raamen wo tabemasu",
-      "raishuu tomodachi wa raamen o tabemasu"
+      "senshuu tomodachi wa tokei wo kaimashita",
+      "senshuu tomodachi wa tokei o kaimashita"
     ],
     "furigana": {
-      "0": "らい",
+      "0": "せん",
       "1": "しゅう",
       "3": "とも",
-      "12": "た"
+      "11": "か"
     },
-    "meaning": "My friend will eat ramen next week",
-    "meaning_id": "Minggu depan Teman saya makan ramen"
+    "meaning": "My friend bought a watch last week",
+    "meaning_id": "Minggu lalu Teman saya membeli jam"
   },
   {
-    "jp_character": "来週、男の子はパンを食べます",
+    "jp_character": "きのう、先生はすしを食べました",
     "particles": [
       6,
       9
     ],
     "romanji": [
-      "raishuu otokonoko wa pan wo tabemasu",
-      "raishuu otokonoko wa pan o tabemasu"
+      "kinou sensei wa sushi wo tabemashita",
+      "kinou sensei wa sushi o tabemashita"
     ],
     "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "おとこ",
-      "5": "こ",
+      "4": "せん",
+      "5": "せい",
       "10": "た"
     },
-    "meaning": "The boy will eat bread next week",
-    "meaning_id": "Minggu depan Anak laki-laki makan roti"
+    "meaning": "The teacher ate sushi yesterday",
+    "meaning_id": "Kemarin Guru makan sushi"
   },
   {
-    "jp_character": "今週、先生はすしを食べます",
+    "jp_character": "父はぎゅうにゅうを飲みます",
     "particles": [
-      5,
+      1,
       8
     ],
     "romanji": [
-      "konshuu sensei wa sushi wo tabemasu",
-      "konshuu sensei wa sushi o tabemasu"
+      "chichi wa gyuunyuu wo nomimasu",
+      "chichi wa gyuunyuu o nomimasu"
     ],
     "furigana": {
-      "0": "こん",
-      "1": "しゅう",
-      "3": "せん",
-      "4": "せい",
-      "9": "た"
+      "0": "ちち",
+      "9": "の"
     },
-    "meaning": "The teacher eats sushi this week",
-    "meaning_id": "Minggu ini Guru makan sushi"
+    "meaning": "My father drinks milk",
+    "meaning_id": "Ayah saya minum susu"
   },
   {
-    "jp_character": "先週、父はあさごはんを食べました",
+    "jp_character": "友だちはざっしを読みます",
     "particles": [
-      4,
-      10
+      3,
+      7
     ],
     "romanji": [
-      "senshuu chichi wa asagohan wo tabemashita",
-      "senshuu chichi wa asagohan o tabemashita"
+      "tomodachi wa zasshi wo yomimasu",
+      "tomodachi wa zasshi o yomimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "よ"
+    },
+    "meaning": "My friend reads a magazine",
+    "meaning_id": "Teman saya membaca majalah"
+  },
+  {
+    "jp_character": "わたしはかばんを買います",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa kaban wo kaimasu",
+      "watashi wa kaban o kaimasu"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "I buy a bag",
+    "meaning_id": "Saya membeli tas"
+  },
+  {
+    "jp_character": "あなたはひらがなを書きます",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "anata wa hiragana wo kakimasu",
+      "anata wa hiragana o kakimasu"
+    ],
+    "furigana": {
+      "9": "か"
+    },
+    "meaning": "You write hiragana",
+    "meaning_id": "Anda menulis hiragana"
+  },
+  {
+    "jp_character": "先生はおんがくを聞きます",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "sensei wa ongaku wo kikimasu",
+      "sensei wa ongaku o kikimasu"
     ],
     "furigana": {
       "0": "せん",
-      "1": "しゅう",
-      "3": "ちち",
-      "11": "た"
+      "1": "せい",
+      "8": "き"
     },
-    "meaning": "My father ate breakfast last week",
-    "meaning_id": "Minggu lalu Ayah saya makan sarapan"
+    "meaning": "The teacher listens to music",
+    "meaning_id": "Guru mendengarkan musik"
   },
   {
-    "jp_character": "きのう、男の子は新聞を読みました",
+    "jp_character": "母はえいがを見ます",
     "particles": [
-      7,
-      10
+      1,
+      5
     ],
     "romanji": [
-      "kinou otokonoko wa shinbun wo yomimashita",
-      "kinou otokonoko wa shinbun o yomimashita"
+      "haha wa eiga wo mimasu",
+      "haha wa eiga o mimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "6": "み"
+    },
+    "meaning": "My mother watches a movie",
+    "meaning_id": "Ibu saya menonton film"
+  },
+  {
+    "jp_character": "学生はたまごを食べます",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa tamago wo tabemasu",
+      "gakusei wa tamago o tabemasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "た"
+    },
+    "meaning": "The student eats an egg",
+    "meaning_id": "Pelajar makan telur"
+  },
+  {
+    "jp_character": "女の子はおちゃを飲みます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "onnanoko wa ocha wo nomimasu",
+      "onnanoko wa ocha o nomimasu"
+    ],
+    "furigana": {
+      "0": "おんな",
+      "2": "こ",
+      "8": "の"
+    },
+    "meaning": "The girl drinks tea",
+    "meaning_id": "Anak perempuan minum teh"
+  },
+  {
+    "jp_character": "きのう、男の子はテレビを見ました",
+    "particles": [
+      7,
+      11
+    ],
+    "romanji": [
+      "kinou otokonoko wa terebi wo mimashita",
+      "kinou otokonoko wa terebi o mimashita"
     ],
     "furigana": {
       "4": "おとこ",
       "6": "こ",
-      "8": "しん",
-      "9": "ぶん",
-      "11": "よ"
+      "12": "み"
     },
-    "meaning": "The boy read the newspaper yesterday",
-    "meaning_id": "Kemarin Anak laki-laki membaca koran"
+    "meaning": "The boy watched TV yesterday",
+    "meaning_id": "Kemarin Anak laki-laki menonton TV"
   },
   {
-    "jp_character": "先週、学生はすしを食べました",
+    "jp_character": "先週、わたしはかんじを書きました",
     "particles": [
-      5,
-      8
+      6,
+      10
     ],
     "romanji": [
-      "senshuu gakusei wa sushi wo tabemashita",
-      "senshuu gakusei wa sushi o tabemashita"
+      "senshuu watashi wa kanji wo kakimashita",
+      "senshuu watashi wa kanji o kakimashita"
     ],
     "furigana": {
       "0": "せん",
       "1": "しゅう",
-      "3": "がく",
-      "4": "せい",
-      "9": "た"
+      "11": "か"
     },
-    "meaning": "The student ate sushi last week",
-    "meaning_id": "Minggu lalu Pelajar makan sushi"
+    "meaning": "I wrote kanji last week",
+    "meaning_id": "Minggu lalu Saya menulis kanji"
+  },
+  {
+    "jp_character": "母はてがみを書きます",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "haha wa tegami wo kakimasu",
+      "haha wa tegami o kakimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "6": "か"
+    },
+    "meaning": "My mother writes a letter",
+    "meaning_id": "Ibu saya menulis surat"
+  },
+  {
+    "jp_character": "あなたはりんごを食べます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata wa ringo wo tabemasu",
+      "anata wa ringo o tabemasu"
+    ],
+    "furigana": {
+      "8": "た"
+    },
+    "meaning": "You eat an apple",
+    "meaning_id": "Anda makan apel"
+  },
+  {
+    "jp_character": "学生はざっしを読みます",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa zasshi wo yomimasu",
+      "gakusei wa zasshi o yomimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "よ"
+    },
+    "meaning": "The student reads a magazine",
+    "meaning_id": "Pelajar membaca majalah"
+  },
+  {
+    "jp_character": "父はとけいを買います",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "chichi wa tokei wo kaimasu",
+      "chichi wa tokei o kaimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "6": "か"
+    },
+    "meaning": "My father buys a watch",
+    "meaning_id": "Ayah saya membeli jam"
+  },
+  {
+    "jp_character": "友だちはテレビを見ます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi wa terebi wo mimasu",
+      "tomodachi wa terebi o mimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "み"
+    },
+    "meaning": "My friend watches TV",
+    "meaning_id": "Teman saya menonton TV"
+  },
+  {
+    "jp_character": "女の子はコーヒーを飲みます",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "onnanoko wa koohii wo nomimasu",
+      "onnanoko wa koohii o nomimasu"
+    ],
+    "furigana": {
+      "0": "おんな",
+      "2": "こ",
+      "9": "の"
+    },
+    "meaning": "The girl drinks coffee",
+    "meaning_id": "Anak perempuan minum kopi"
   },
   {
     "jp_character": "あなたはうちでごはんを食べます",
@@ -3143,349 +3042,6 @@ export const generatedSentences = [
     "meaning_id": "Guru membeli air di toko"
   },
   {
-    "jp_character": "毎日、先生はうちでぎゅうにゅうを飲みます",
-    "particles": [
-      5,
-      8,
-      15
-    ],
-    "romanji": [
-      "mainichi sensei wa uchi de gyuunyuu wo nomimasu",
-      "mainichi sensei wa uchi de gyuunyuu o nomimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "せん",
-      "4": "せい",
-      "16": "の"
-    },
-    "meaning": "The teacher drinks milk at home every day",
-    "meaning_id": "Setiap hari Guru minum susu di rumah"
-  },
-  {
-    "jp_character": "毎日、学生は店で水を買います",
-    "particles": [
-      5,
-      7,
-      9
-    ],
-    "romanji": [
-      "mainichi gakusei wa mise de mizu wo kaimasu",
-      "mainichi gakusei wa mise de mizu o kaimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "がく",
-      "4": "せい",
-      "6": "みせ",
-      "8": "みず",
-      "10": "か"
-    },
-    "meaning": "The student buys water at the shop every day",
-    "meaning_id": "Setiap hari Pelajar membeli air di toko"
-  },
-  {
-    "jp_character": "来週、先生はデパートでパンを買います",
-    "particles": [
-      5,
-      10,
-      13
-    ],
-    "romanji": [
-      "raishuu sensei wa depaato de pan wo kaimasu",
-      "raishuu sensei wa depaato de pan o kaimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "せん",
-      "4": "せい",
-      "14": "か"
-    },
-    "meaning": "The teacher will buy bread at the department store next week",
-    "meaning_id": "Minggu depan Guru membeli roti di toko serba ada"
-  },
-  {
-    "jp_character": "わたしはうちでラーメンを食べます",
-    "particles": [
-      3,
-      6,
-      11
-    ],
-    "romanji": [
-      "watashi wa uchi de raamen wo tabemasu",
-      "watashi wa uchi de raamen o tabemasu"
-    ],
-    "furigana": {
-      "12": "た"
-    },
-    "meaning": "I eat ramen at home",
-    "meaning_id": "Saya makan ramen di rumah"
-  },
-  {
-    "jp_character": "毎日、先生はスーパーでパンを買います",
-    "particles": [
-      5,
-      10,
-      13
-    ],
-    "romanji": [
-      "mainichi sensei wa suupaa de pan wo kaimasu",
-      "mainichi sensei wa suupaa de pan o kaimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "せん",
-      "4": "せい",
-      "14": "か"
-    },
-    "meaning": "The teacher buys bread at the supermarket every day",
-    "meaning_id": "Setiap hari Guru membeli roti di supermarket"
-  },
-  {
-    "jp_character": "毎日、あなたはデパートで本を買います",
-    "particles": [
-      6,
-      11,
-      13
-    ],
-    "romanji": [
-      "mainichi anata wa depaato de hon wo kaimasu",
-      "mainichi anata wa depaato de hon o kaimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "12": "ほん",
-      "14": "か"
-    },
-    "meaning": "You buy a book at the department store every day",
-    "meaning_id": "Setiap hari Anda membeli buku di toko serba ada"
-  },
-  {
-    "jp_character": "母はうちでコーヒーを飲みます",
-    "particles": [
-      1,
-      4,
-      9
-    ],
-    "romanji": [
-      "haha wa uchi de koohii wo nomimasu",
-      "haha wa uchi de koohii o nomimasu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "10": "の"
-    },
-    "meaning": "My mother drinks coffee at home",
-    "meaning_id": "Ibu saya minum kopi di rumah"
-  },
-  {
-    "jp_character": "毎日、わたしは店で車を買います",
-    "particles": [
-      6,
-      8,
-      10
-    ],
-    "romanji": [
-      "mainichi watashi wa mise de kuruma wo kaimasu",
-      "mainichi watashi wa mise de kuruma o kaimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "7": "みせ",
-      "9": "くるま",
-      "11": "か"
-    },
-    "meaning": "I buy a car at the shop every day",
-    "meaning_id": "Setiap hari Saya membeli mobil di toko"
-  },
-  {
-    "jp_character": "来週、学生はデパートでテレビを買います",
-    "particles": [
-      5,
-      10,
-      14
-    ],
-    "romanji": [
-      "raishuu gakusei wa depaato de terebi wo kaimasu",
-      "raishuu gakusei wa depaato de terebi o kaimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "がく",
-      "4": "せい",
-      "15": "か"
-    },
-    "meaning": "The student will buy TV at the department store next week",
-    "meaning_id": "Minggu depan Pelajar membeli TV di toko serba ada"
-  },
-  {
-    "jp_character": "来週、母はうちでラーメンを食べます",
-    "particles": [
-      4,
-      7,
-      12
-    ],
-    "romanji": [
-      "raishuu haha wa uchi de raamen wo tabemasu",
-      "raishuu haha wa uchi de raamen o tabemasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "はは",
-      "13": "た"
-    },
-    "meaning": "My mother will eat ramen at home next week",
-    "meaning_id": "Minggu depan Ibu saya makan ramen di rumah"
-  },
-  {
-    "jp_character": "父は店でテレビを買います",
-    "particles": [
-      1,
-      3,
-      7
-    ],
-    "romanji": [
-      "chichi wa mise de terebi wo kaimasu",
-      "chichi wa mise de terebi o kaimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "2": "みせ",
-      "8": "か"
-    },
-    "meaning": "My father buys TV at the shop",
-    "meaning_id": "Ayah saya membeli TV di toko"
-  },
-  {
-    "jp_character": "来週、友だちはスーパーでパンを買います",
-    "particles": [
-      6,
-      11,
-      14
-    ],
-    "romanji": [
-      "raishuu tomodachi wa suupaa de pan wo kaimasu",
-      "raishuu tomodachi wa suupaa de pan o kaimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "とも",
-      "15": "か"
-    },
-    "meaning": "My friend will buy bread at the supermarket next week",
-    "meaning_id": "Minggu depan Teman saya membeli roti di supermarket"
-  },
-  {
-    "jp_character": "来週、わたしはうちでぎゅうにゅうを飲みます",
-    "particles": [
-      6,
-      9,
-      16
-    ],
-    "romanji": [
-      "raishuu watashi wa uchi de gyuunyuu wo nomimasu",
-      "raishuu watashi wa uchi de gyuunyuu o nomimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "17": "の"
-    },
-    "meaning": "I will drink milk at home next week",
-    "meaning_id": "Minggu depan Saya minum susu di rumah"
-  },
-  {
-    "jp_character": "きのう、父はうちで水を飲みました",
-    "particles": [
-      5,
-      8,
-      10
-    ],
-    "romanji": [
-      "kinou chichi wa uchi de mizu wo nomimashita",
-      "kinou chichi wa uchi de mizu o nomimashita"
-    ],
-    "furigana": {
-      "4": "ちち",
-      "9": "みず",
-      "11": "の"
-    },
-    "meaning": "My father drank water at home yesterday",
-    "meaning_id": "Kemarin Ayah saya minum air di rumah"
-  },
-  {
-    "jp_character": "来週、学生は店でラーメンを食べます",
-    "particles": [
-      5,
-      7,
-      12
-    ],
-    "romanji": [
-      "raishuu gakusei wa mise de raamen wo tabemasu",
-      "raishuu gakusei wa mise de raamen o tabemasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "がく",
-      "4": "せい",
-      "6": "みせ",
-      "13": "た"
-    },
-    "meaning": "The student will eat ramen at the shop next week",
-    "meaning_id": "Minggu depan Pelajar makan ramen di toko"
-  },
-  {
-    "jp_character": "来週、友だちはデパートで水を買います",
-    "particles": [
-      6,
-      11,
-      13
-    ],
-    "romanji": [
-      "raishuu tomodachi wa depaato de mizu wo kaimasu",
-      "raishuu tomodachi wa depaato de mizu o kaimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "とも",
-      "12": "みず",
-      "14": "か"
-    },
-    "meaning": "My friend will buy water at the department store next week",
-    "meaning_id": "Minggu depan Teman saya membeli air di toko serba ada"
-  },
-  {
-    "jp_character": "毎日、父はうちでりんごを食べます",
-    "particles": [
-      4,
-      7,
-      11
-    ],
-    "romanji": [
-      "mainichi chichi wa uchi de ringo wo tabemasu",
-      "mainichi chichi wa uchi de ringo o tabemasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "ちち",
-      "12": "た"
-    },
-    "meaning": "My father eats an apple at home every day",
-    "meaning_id": "Setiap hari Ayah saya makan apel di rumah"
-  },
-  {
     "jp_character": "きのう、学生はレストランでおちゃを飲みました",
     "particles": [
       6,
@@ -3503,199 +3059,6 @@ export const generatedSentences = [
     },
     "meaning": "The student drank tea at the restaurant yesterday",
     "meaning_id": "Kemarin Pelajar minum teh di restoran"
-  },
-  {
-    "jp_character": "毎日、先生はレストランでごはんを食べます",
-    "particles": [
-      5,
-      11,
-      15
-    ],
-    "romanji": [
-      "mainichi sensei wa resutoran de gohan wo tabemasu",
-      "mainichi sensei wa resutoran de gohan o tabemasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "せん",
-      "4": "せい",
-      "16": "た"
-    },
-    "meaning": "The teacher eats rice at the restaurant every day",
-    "meaning_id": "Setiap hari Guru makan nasi di restoran"
-  },
-  {
-    "jp_character": "来週、わたしはデパートではなを買います",
-    "particles": [
-      6,
-      11,
-      14
-    ],
-    "romanji": [
-      "raishuu watashi wa depaato de hana wo kaimasu",
-      "raishuu watashi wa depaato de hana o kaimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "15": "か"
-    },
-    "meaning": "I will buy a flower at the department store next week",
-    "meaning_id": "Minggu depan Saya membeli bunga di toko serba ada"
-  },
-  {
-    "jp_character": "あなたはうちですしを食べます",
-    "particles": [
-      3,
-      6,
-      9
-    ],
-    "romanji": [
-      "anata wa uchi de sushi wo tabemasu",
-      "anata wa uchi de sushi o tabemasu"
-    ],
-    "furigana": {
-      "10": "た"
-    },
-    "meaning": "You eat sushi at home",
-    "meaning_id": "Anda makan sushi di rumah"
-  },
-  {
-    "jp_character": "きのう、わたしはうちで新聞を読みました",
-    "particles": [
-      7,
-      10,
-      13
-    ],
-    "romanji": [
-      "kinou watashi wa uchi de shinbun wo yomimashita",
-      "kinou watashi wa uchi de shinbun o yomimashita"
-    ],
-    "furigana": {
-      "11": "しん",
-      "12": "ぶん",
-      "14": "よ"
-    },
-    "meaning": "I read the newspaper at home yesterday",
-    "meaning_id": "Kemarin Saya membaca koran di rumah"
-  },
-  {
-    "jp_character": "父はスーパーでにくを買います",
-    "particles": [
-      1,
-      6,
-      9
-    ],
-    "romanji": [
-      "chichi wa suupaa de niku wo kaimasu",
-      "chichi wa suupaa de niku o kaimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "10": "か"
-    },
-    "meaning": "My father buys meat at the supermarket",
-    "meaning_id": "Ayah saya membeli daging di supermarket"
-  },
-  {
-    "jp_character": "きのう、あなたはうちで水を飲みました",
-    "particles": [
-      7,
-      10,
-      12
-    ],
-    "romanji": [
-      "kinou anata wa uchi de mizu wo nomimashita",
-      "kinou anata wa uchi de mizu o nomimashita"
-    ],
-    "furigana": {
-      "11": "みず",
-      "13": "の"
-    },
-    "meaning": "You drank water at home yesterday",
-    "meaning_id": "Kemarin Anda minum air di rumah"
-  },
-  {
-    "jp_character": "きのう、先生はうちでりんごを食べました",
-    "particles": [
-      6,
-      9,
-      13
-    ],
-    "romanji": [
-      "kinou sensei wa uchi de ringo wo tabemashita",
-      "kinou sensei wa uchi de ringo o tabemashita"
-    ],
-    "furigana": {
-      "4": "せん",
-      "5": "せい",
-      "14": "た"
-    },
-    "meaning": "The teacher ate an apple at home yesterday",
-    "meaning_id": "Kemarin Guru makan apel di rumah"
-  },
-  {
-    "jp_character": "先生はスーパーでりんごを買います",
-    "particles": [
-      2,
-      7,
-      11
-    ],
-    "romanji": [
-      "sensei wa suupaa de ringo wo kaimasu",
-      "sensei wa suupaa de ringo o kaimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "12": "か"
-    },
-    "meaning": "The teacher buys an apple at the supermarket",
-    "meaning_id": "Guru membeli apel di supermarket"
-  },
-  {
-    "jp_character": "毎日、母はうちですしを食べます",
-    "particles": [
-      4,
-      7,
-      10
-    ],
-    "romanji": [
-      "mainichi haha wa uchi de sushi wo tabemasu",
-      "mainichi haha wa uchi de sushi o tabemasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "はは",
-      "11": "た"
-    },
-    "meaning": "My mother eats sushi at home every day",
-    "meaning_id": "Setiap hari Ibu saya makan sushi di rumah"
-  },
-  {
-    "jp_character": "来週、学生はうちで新聞を読みます",
-    "particles": [
-      5,
-      8,
-      11
-    ],
-    "romanji": [
-      "raishuu gakusei wa uchi de shinbun wo yomimasu",
-      "raishuu gakusei wa uchi de shinbun o yomimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "がく",
-      "4": "せい",
-      "9": "しん",
-      "10": "ぶん",
-      "12": "よ"
-    },
-    "meaning": "The student will read the newspaper at home next week",
-    "meaning_id": "Minggu depan Pelajar membaca koran di rumah"
   },
   {
     "jp_character": "母は学校でざっしを読みます",
@@ -3718,432 +3081,59 @@ export const generatedSentences = [
     "meaning_id": "Ibu saya membaca majalah di sekolah"
   },
   {
-    "jp_character": "父はデパートで水を買います",
-    "particles": [
-      1,
-      6,
-      8
-    ],
-    "romanji": [
-      "chichi wa depaato de mizu wo kaimasu",
-      "chichi wa depaato de mizu o kaimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "7": "みず",
-      "9": "か"
-    },
-    "meaning": "My father buys water at the department store",
-    "meaning_id": "Ayah saya membeli air di toko serba ada"
-  },
-  {
-    "jp_character": "毎日、友だちは店でごはんを食べます",
+    "jp_character": "来週、友だちはスーパーでパンを買います",
     "particles": [
       6,
-      8,
-      12
-    ],
-    "romanji": [
-      "mainichi tomodachi wa mise de gohan wo tabemasu",
-      "mainichi tomodachi wa mise de gohan o tabemasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "とも",
-      "7": "みせ",
-      "13": "た"
-    },
-    "meaning": "My friend eats rice at the shop every day",
-    "meaning_id": "Setiap hari Teman saya makan nasi di toko"
-  },
-  {
-    "jp_character": "来週、わたしはうちでコーヒーを飲みます",
-    "particles": [
-      6,
-      9,
-      14
-    ],
-    "romanji": [
-      "raishuu watashi wa uchi de koohii wo nomimasu",
-      "raishuu watashi wa uchi de koohii o nomimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "15": "の"
-    },
-    "meaning": "I will drink coffee at home next week",
-    "meaning_id": "Minggu depan Saya minum kopi di rumah"
-  },
-  {
-    "jp_character": "母はうちで水を飲みます",
-    "particles": [
-      1,
-      4,
-      6
-    ],
-    "romanji": [
-      "haha wa uchi de mizu wo nomimasu",
-      "haha wa uchi de mizu o nomimasu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "5": "みず",
-      "7": "の"
-    },
-    "meaning": "My mother drinks water at home",
-    "meaning_id": "Ibu saya minum air di rumah"
-  },
-  {
-    "jp_character": "来週、友だちはレストランでごはんを食べます",
-    "particles": [
-      6,
-      12,
-      16
-    ],
-    "romanji": [
-      "raishuu tomodachi wa resutoran de gohan wo tabemasu",
-      "raishuu tomodachi wa resutoran de gohan o tabemasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "とも",
-      "17": "た"
-    },
-    "meaning": "My friend will eat rice at the restaurant next week",
-    "meaning_id": "Minggu depan Teman saya makan nasi di restoran"
-  },
-  {
-    "jp_character": "父はうちですしを食べます",
-    "particles": [
-      1,
-      4,
-      7
-    ],
-    "romanji": [
-      "chichi wa uchi de sushi wo tabemasu",
-      "chichi wa uchi de sushi o tabemasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "8": "た"
-    },
-    "meaning": "My father eats sushi at home",
-    "meaning_id": "Ayah saya makan sushi di rumah"
-  },
-  {
-    "jp_character": "あなたはうちでパンを食べます",
-    "particles": [
-      3,
-      6,
-      9
-    ],
-    "romanji": [
-      "anata wa uchi de pan wo tabemasu",
-      "anata wa uchi de pan o tabemasu"
-    ],
-    "furigana": {
-      "10": "た"
-    },
-    "meaning": "You eat bread at home",
-    "meaning_id": "Anda makan roti di rumah"
-  },
-  {
-    "jp_character": "きのう、母はうちでざっしを読みました",
-    "particles": [
-      5,
-      8,
-      12
-    ],
-    "romanji": [
-      "kinou haha wa uchi de zasshi wo yomimashita",
-      "kinou haha wa uchi de zasshi o yomimashita"
-    ],
-    "furigana": {
-      "4": "はは",
-      "13": "よ"
-    },
-    "meaning": "My mother read a magazine at home yesterday",
-    "meaning_id": "Kemarin Ibu saya membaca majalah di rumah"
-  },
-  {
-    "jp_character": "きのう、母はうちでりんごを食べました",
-    "particles": [
-      5,
-      8,
-      12
-    ],
-    "romanji": [
-      "kinou haha wa uchi de ringo wo tabemashita",
-      "kinou haha wa uchi de ringo o tabemashita"
-    ],
-    "furigana": {
-      "4": "はは",
-      "13": "た"
-    },
-    "meaning": "My mother ate an apple at home yesterday",
-    "meaning_id": "Kemarin Ibu saya makan apel di rumah"
-  },
-  {
-    "jp_character": "毎日、学生は店で本を買います",
-    "particles": [
-      5,
-      7,
-      9
-    ],
-    "romanji": [
-      "mainichi gakusei wa mise de hon wo kaimasu",
-      "mainichi gakusei wa mise de hon o kaimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "がく",
-      "4": "せい",
-      "6": "みせ",
-      "8": "ほん",
-      "10": "か"
-    },
-    "meaning": "The student buys a book at the shop every day",
-    "meaning_id": "Setiap hari Pelajar membeli buku di toko"
-  },
-  {
-    "jp_character": "来週、学生はレストランですしを食べます",
-    "particles": [
-      5,
       11,
       14
     ],
     "romanji": [
-      "raishuu gakusei wa resutoran de sushi wo tabemasu",
-      "raishuu gakusei wa resutoran de sushi o tabemasu"
+      "raishuu tomodachi wa suupaa de pan wo kaimasu",
+      "raishuu tomodachi wa suupaa de pan o kaimasu"
     ],
     "furigana": {
       "0": "らい",
       "1": "しゅう",
-      "3": "がく",
-      "4": "せい",
-      "15": "た"
-    },
-    "meaning": "The student will eat sushi at the restaurant next week",
-    "meaning_id": "Minggu depan Pelajar makan sushi di restoran"
-  },
-  {
-    "jp_character": "毎日、友だちはスーパーでさかなを買います",
-    "particles": [
-      6,
-      11,
-      15
-    ],
-    "romanji": [
-      "mainichi tomodachi wa suupaa de sakana wo kaimasu",
-      "mainichi tomodachi wa suupaa de sakana o kaimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
       "3": "とも",
-      "16": "か"
+      "15": "か"
     },
-    "meaning": "My friend buys fish at the supermarket every day",
-    "meaning_id": "Setiap hari Teman saya membeli ikan di supermarket"
+    "meaning": "My friend will buy bread at the supermarket next week",
+    "meaning_id": "Minggu depan Teman saya membeli roti di supermarket"
   },
   {
-    "jp_character": "毎日、父はスーパーでにくを買います",
-    "particles": [
-      4,
-      9,
-      12
-    ],
-    "romanji": [
-      "mainichi chichi wa suupaa de niku wo kaimasu",
-      "mainichi chichi wa suupaa de niku o kaimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "ちち",
-      "13": "か"
-    },
-    "meaning": "My father buys meat at the supermarket every day",
-    "meaning_id": "Setiap hari Ayah saya membeli daging di supermarket"
-  },
-  {
-    "jp_character": "来週、あなたはうちでえいがを見ます",
-    "particles": [
-      6,
-      9,
-      13
-    ],
-    "romanji": [
-      "raishuu anata wa uchi de eiga wo mimasu",
-      "raishuu anata wa uchi de eiga o mimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "14": "み"
-    },
-    "meaning": "You will watch a movie at home next week",
-    "meaning_id": "Minggu depan Anda menonton film di rumah"
-  },
-  {
-    "jp_character": "先生は店で車を買います",
-    "particles": [
-      2,
-      4,
-      6
-    ],
-    "romanji": [
-      "sensei wa mise de kuruma wo kaimasu",
-      "sensei wa mise de kuruma o kaimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "3": "みせ",
-      "5": "くるま",
-      "7": "か"
-    },
-    "meaning": "The teacher buys a car at the shop",
-    "meaning_id": "Guru membeli mobil di toko"
-  },
-  {
-    "jp_character": "友だちはうちでおちゃを飲みます",
+    "jp_character": "わたしはうちでえいがを見ます",
     "particles": [
       3,
       6,
       10
     ],
     "romanji": [
-      "tomodachi wa uchi de ocha wo nomimasu",
-      "tomodachi wa uchi de ocha o nomimasu"
+      "watashi wa uchi de eiga wo mimasu",
+      "watashi wa uchi de eiga o mimasu"
     ],
     "furigana": {
-      "0": "とも",
-      "11": "の"
+      "11": "み"
     },
-    "meaning": "My friend drinks tea at home",
-    "meaning_id": "Teman saya minum teh di rumah"
+    "meaning": "I watch a movie at home",
+    "meaning_id": "Saya menonton film di rumah"
   },
   {
-    "jp_character": "きのう、先生はうちでテレビを見ました",
+    "jp_character": "父はレストランでコーヒーを飲みます",
     "particles": [
-      6,
-      9,
-      13
-    ],
-    "romanji": [
-      "kinou sensei wa uchi de terebi wo mimashita",
-      "kinou sensei wa uchi de terebi o mimashita"
-    ],
-    "furigana": {
-      "4": "せん",
-      "5": "せい",
-      "14": "み"
-    },
-    "meaning": "The teacher watched TV at home yesterday",
-    "meaning_id": "Kemarin Guru menonton TV di rumah"
-  },
-  {
-    "jp_character": "きのう、友だちは店でかばんを買いました",
-    "particles": [
+      1,
       7,
-      9,
-      13
-    ],
-    "romanji": [
-      "kinou tomodachi wa mise de kaban wo kaimashita",
-      "kinou tomodachi wa mise de kaban o kaimashita"
-    ],
-    "furigana": {
-      "4": "とも",
-      "8": "みせ",
-      "14": "か"
-    },
-    "meaning": "My friend bought a bag at the shop yesterday",
-    "meaning_id": "Kemarin Teman saya membeli tas di toko"
-  },
-  {
-    "jp_character": "毎日、先生はうちで新聞を読みます",
-    "particles": [
-      5,
-      8,
-      11
-    ],
-    "romanji": [
-      "mainichi sensei wa uchi de shinbun wo yomimasu",
-      "mainichi sensei wa uchi de shinbun o yomimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "せん",
-      "4": "せい",
-      "9": "しん",
-      "10": "ぶん",
-      "12": "よ"
-    },
-    "meaning": "The teacher reads the newspaper at home every day",
-    "meaning_id": "Setiap hari Guru membaca koran di rumah"
-  },
-  {
-    "jp_character": "毎日、父はデパートでパンを買います",
-    "particles": [
-      4,
-      9,
       12
     ],
     "romanji": [
-      "mainichi chichi wa depaato de pan wo kaimasu",
-      "mainichi chichi wa depaato de pan o kaimasu"
+      "chichi wa resutoran de koohii wo nomimasu",
+      "chichi wa resutoran de koohii o nomimasu"
     ],
     "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "ちち",
-      "13": "か"
+      "0": "ちち",
+      "13": "の"
     },
-    "meaning": "My father buys bread at the department store every day",
-    "meaning_id": "Setiap hari Ayah saya membeli roti di toko serba ada"
-  },
-  {
-    "jp_character": "きのう、学生はレストランですしを食べました",
-    "particles": [
-      6,
-      12,
-      15
-    ],
-    "romanji": [
-      "kinou gakusei wa resutoran de sushi wo tabemashita",
-      "kinou gakusei wa resutoran de sushi o tabemashita"
-    ],
-    "furigana": {
-      "4": "がく",
-      "5": "せい",
-      "16": "た"
-    },
-    "meaning": "The student ate sushi at the restaurant yesterday",
-    "meaning_id": "Kemarin Pelajar makan sushi di restoran"
-  },
-  {
-    "jp_character": "きのう、わたしはレストランでコーヒーを飲みました",
-    "particles": [
-      7,
-      13,
-      18
-    ],
-    "romanji": [
-      "kinou watashi wa resutoran de koohii wo nomimashita",
-      "kinou watashi wa resutoran de koohii o nomimashita"
-    ],
-    "furigana": {
-      "19": "の"
-    },
-    "meaning": "I drank coffee at the restaurant yesterday",
-    "meaning_id": "Kemarin Saya minum kopi di restoran"
+    "meaning": "My father drinks coffee at the restaurant",
+    "meaning_id": "Ayah saya minum kopi di restoran"
   },
   {
     "jp_character": "きのう、先生はデパートではなを買いました",
@@ -4165,238 +3155,248 @@ export const generatedSentences = [
     "meaning_id": "Kemarin Guru membeli bunga di toko serba ada"
   },
   {
-    "jp_character": "先生は店ではなを買います",
+    "jp_character": "毎日、あなたは店でラーメンを食べます",
     "particles": [
-      2,
-      4,
-      7
+      6,
+      8,
+      13
     ],
     "romanji": [
-      "sensei wa mise de hana wo kaimasu",
-      "sensei wa mise de hana o kaimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "3": "みせ",
-      "8": "か"
-    },
-    "meaning": "The teacher buys a flower at the shop",
-    "meaning_id": "Guru membeli bunga di toko"
-  },
-  {
-    "jp_character": "毎日、母はうちでラーメンを食べます",
-    "particles": [
-      4,
-      7,
-      12
-    ],
-    "romanji": [
-      "mainichi haha wa uchi de raamen wo tabemasu",
-      "mainichi haha wa uchi de raamen o tabemasu"
+      "mainichi anata wa mise de raamen wo tabemasu",
+      "mainichi anata wa mise de raamen o tabemasu"
     ],
     "furigana": {
       "0": "まい",
       "1": "にち",
-      "3": "はは",
-      "13": "た"
-    },
-    "meaning": "My mother eats ramen at home every day",
-    "meaning_id": "Setiap hari Ibu saya makan ramen di rumah"
-  },
-  {
-    "jp_character": "来週、わたしはうちでりんごを食べます",
-    "particles": [
-      6,
-      9,
-      13
-    ],
-    "romanji": [
-      "raishuu watashi wa uchi de ringo wo tabemasu",
-      "raishuu watashi wa uchi de ringo o tabemasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
+      "7": "みせ",
       "14": "た"
     },
-    "meaning": "I will eat an apple at home next week",
-    "meaning_id": "Minggu depan Saya makan apel di rumah"
+    "meaning": "You eat ramen at the shop every day",
+    "meaning_id": "Setiap hari Anda makan ramen di toko"
   },
   {
-    "jp_character": "きのう、先生はうちでコーヒーを飲みました",
+    "jp_character": "友だちはうちでおんがくを聞きます",
     "particles": [
+      3,
       6,
-      9,
+      11
+    ],
+    "romanji": [
+      "tomodachi wa uchi de ongaku wo kikimasu",
+      "tomodachi wa uchi de ongaku o kikimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "12": "き"
+    },
+    "meaning": "My friend listens to music at home",
+    "meaning_id": "Teman saya mendengarkan musik di rumah"
+  },
+  {
+    "jp_character": "わたしは学校で本を読みます",
+    "particles": [
+      3,
+      6,
+      8
+    ],
+    "romanji": [
+      "watashi wa gakkou de hon wo yomimasu",
+      "watashi wa gakkou de hon o yomimasu"
+    ],
+    "furigana": {
+      "4": "がっ",
+      "5": "こう",
+      "7": "ほん",
+      "9": "よ"
+    },
+    "meaning": "I read a book at school",
+    "meaning_id": "Saya membaca buku di sekolah"
+  },
+  {
+    "jp_character": "父はスーパーでにくを買います",
+    "particles": [
+      1,
+      6,
+      9
+    ],
+    "romanji": [
+      "chichi wa suupaa de niku wo kaimasu",
+      "chichi wa suupaa de niku o kaimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "10": "か"
+    },
+    "meaning": "My father buys meat at the supermarket",
+    "meaning_id": "Ayah saya membeli daging di supermarket"
+  },
+  {
+    "jp_character": "母はレストランでぎゅうにゅうを飲みます",
+    "particles": [
+      1,
+      7,
       14
     ],
     "romanji": [
-      "kinou sensei wa uchi de koohii wo nomimashita",
-      "kinou sensei wa uchi de koohii o nomimashita"
+      "haha wa resutoran de gyuunyuu wo nomimasu",
+      "haha wa resutoran de gyuunyuu o nomimasu"
     ],
     "furigana": {
-      "4": "せん",
-      "5": "せい",
+      "0": "はは",
       "15": "の"
     },
-    "meaning": "The teacher drank coffee at home yesterday",
-    "meaning_id": "Kemarin Guru minum kopi di rumah"
+    "meaning": "My mother drinks milk at the restaurant",
+    "meaning_id": "Ibu saya minum susu di restoran"
   },
   {
-    "jp_character": "きのう、先生はデパートでかばんを買いました",
+    "jp_character": "きのう、学生はデパートでテレビを買いました",
     "particles": [
       6,
       11,
       15
     ],
     "romanji": [
-      "kinou sensei wa depaato de kaban wo kaimashita",
-      "kinou sensei wa depaato de kaban o kaimashita"
+      "kinou gakusei wa depaato de terebi wo kaimashita",
+      "kinou gakusei wa depaato de terebi o kaimashita"
     ],
     "furigana": {
-      "4": "せん",
+      "4": "がく",
       "5": "せい",
       "16": "か"
     },
-    "meaning": "The teacher bought a bag at the department store yesterday",
-    "meaning_id": "Kemarin Guru membeli tas di toko serba ada"
+    "meaning": "The student bought TV at the department store yesterday",
+    "meaning_id": "Kemarin Pelajar membeli TV di toko serba ada"
   },
   {
-    "jp_character": "来週、わたしはデパートで水を買います",
+    "jp_character": "先生は学校で新聞を読みます",
     "particles": [
-      6,
-      11,
-      13
-    ],
-    "romanji": [
-      "raishuu watashi wa depaato de mizu wo kaimasu",
-      "raishuu watashi wa depaato de mizu o kaimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "12": "みず",
-      "14": "か"
-    },
-    "meaning": "I will buy water at the department store next week",
-    "meaning_id": "Minggu depan Saya membeli air di toko serba ada"
-  },
-  {
-    "jp_character": "きのう、母はうちでおんがくを聞きました",
-    "particles": [
+      2,
       5,
-      8,
-      13
+      8
     ],
     "romanji": [
-      "kinou haha wa uchi de ongaku wo kikimashita",
-      "kinou haha wa uchi de ongaku o kikimashita"
+      "sensei wa gakkou de shinbun wo yomimasu",
+      "sensei wa gakkou de shinbun o yomimasu"
     ],
     "furigana": {
-      "4": "はは",
-      "14": "き"
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "6": "しん",
+      "7": "ぶん",
+      "9": "よ"
     },
-    "meaning": "My mother listened to music at home yesterday",
-    "meaning_id": "Kemarin Ibu saya mendengarkan musik di rumah"
+    "meaning": "The teacher reads the newspaper at school",
+    "meaning_id": "Guru membaca koran di sekolah"
   },
   {
-    "jp_character": "わたしはうちでえいがを見ます",
+    "jp_character": "あなたはうちですしを食べます",
     "particles": [
       3,
-      6,
-      10
-    ],
-    "romanji": [
-      "watashi wa uchi de eiga wo mimasu",
-      "watashi wa uchi de eiga o mimasu"
-    ],
-    "furigana": {
-      "11": "み"
-    },
-    "meaning": "I watch a movie at home",
-    "meaning_id": "Saya menonton film di rumah"
-  },
-  {
-    "jp_character": "母はうちで新聞を読みます",
-    "particles": [
-      1,
-      4,
-      7
-    ],
-    "romanji": [
-      "haha wa uchi de shinbun wo yomimasu",
-      "haha wa uchi de shinbun o yomimasu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "5": "しん",
-      "6": "ぶん",
-      "8": "よ"
-    },
-    "meaning": "My mother reads the newspaper at home",
-    "meaning_id": "Ibu saya membaca koran di rumah"
-  },
-  {
-    "jp_character": "来週、学生はデパートでとけいを買います",
-    "particles": [
-      5,
-      10,
-      14
-    ],
-    "romanji": [
-      "raishuu gakusei wa depaato de tokei wo kaimasu",
-      "raishuu gakusei wa depaato de tokei o kaimasu"
-    ],
-    "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "がく",
-      "4": "せい",
-      "15": "か"
-    },
-    "meaning": "The student will buy a watch at the department store next week",
-    "meaning_id": "Minggu depan Pelajar membeli jam di toko serba ada"
-  },
-  {
-    "jp_character": "毎日、あなたはスーパーで水を買います",
-    "particles": [
-      6,
-      11,
-      13
-    ],
-    "romanji": [
-      "mainichi anata wa suupaa de mizu wo kaimasu",
-      "mainichi anata wa suupaa de mizu o kaimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "12": "みず",
-      "14": "か"
-    },
-    "meaning": "You buy water at the supermarket every day",
-    "meaning_id": "Setiap hari Anda membeli air di supermarket"
-  },
-  {
-    "jp_character": "来週、父は店でパンを買います",
-    "particles": [
-      4,
       6,
       9
     ],
     "romanji": [
-      "raishuu chichi wa mise de pan wo kaimasu",
-      "raishuu chichi wa mise de pan o kaimasu"
+      "anata wa uchi de sushi wo tabemasu",
+      "anata wa uchi de sushi o tabemasu"
     ],
     "furigana": {
-      "0": "らい",
-      "1": "しゅう",
-      "3": "ちち",
-      "5": "みせ",
-      "10": "か"
+      "10": "た"
     },
-    "meaning": "My father will buy bread at the shop next week",
-    "meaning_id": "Minggu depan Ayah saya membeli roti di toko"
+    "meaning": "You eat sushi at home",
+    "meaning_id": "Anda makan sushi di rumah"
+  },
+  {
+    "jp_character": "父はスーパーでさかなを買います",
+    "particles": [
+      1,
+      6,
+      10
+    ],
+    "romanji": [
+      "chichi wa suupaa de sakana wo kaimasu",
+      "chichi wa suupaa de sakana o kaimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "11": "か"
+    },
+    "meaning": "My father buys fish at the supermarket",
+    "meaning_id": "Ayah saya membeli ikan di supermarket"
+  },
+  {
+    "jp_character": "わたしはレストランでコーヒーを飲みます",
+    "particles": [
+      3,
+      9,
+      14
+    ],
+    "romanji": [
+      "watashi wa resutoran de koohii wo nomimasu",
+      "watashi wa resutoran de koohii o nomimasu"
+    ],
+    "furigana": {
+      "15": "の"
+    },
+    "meaning": "I drink coffee at the restaurant",
+    "meaning_id": "Saya minum kopi di restoran"
+  },
+  {
+    "jp_character": "きのう、学生は店でラーメンを食べました",
+    "particles": [
+      6,
+      8,
+      13
+    ],
+    "romanji": [
+      "kinou gakusei wa mise de raamen wo tabemashita",
+      "kinou gakusei wa mise de raamen o tabemashita"
+    ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい",
+      "7": "みせ",
+      "14": "た"
+    },
+    "meaning": "The student ate ramen at the shop yesterday",
+    "meaning_id": "Kemarin Pelajar makan ramen di toko"
+  },
+  {
+    "jp_character": "母はうちでテレビを見ます",
+    "particles": [
+      1,
+      4,
+      8
+    ],
+    "romanji": [
+      "haha wa uchi de terebi wo mimasu",
+      "haha wa uchi de terebi o mimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "9": "み"
+    },
+    "meaning": "My mother watches TV at home",
+    "meaning_id": "Ibu saya menonton TV di rumah"
+  },
+  {
+    "jp_character": "友だちはデパートでかばんを買います",
+    "particles": [
+      3,
+      8,
+      12
+    ],
+    "romanji": [
+      "tomodachi wa depaato de kaban wo kaimasu",
+      "tomodachi wa depaato de kaban o kaimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "13": "か"
+    },
+    "meaning": "My friend buys a bag at the department store",
+    "meaning_id": "Teman saya membeli tas di toko serba ada"
   },
   {
     "jp_character": "先生は学校でざっしを読みます",
@@ -4420,21 +3420,194 @@ export const generatedSentences = [
     "meaning_id": "Guru membaca majalah di sekolah"
   },
   {
-    "jp_character": "きのう、わたしはデパートでテレビを買いました",
+    "jp_character": "あなたは店でごはんを食べます",
     "particles": [
-      7,
-      12,
+      3,
+      5,
+      9
+    ],
+    "romanji": [
+      "anata wa mise de gohan wo tabemasu",
+      "anata wa mise de gohan o tabemasu"
+    ],
+    "furigana": {
+      "4": "みせ",
+      "10": "た"
+    },
+    "meaning": "You eat rice at the shop",
+    "meaning_id": "Anda makan nasi di toko"
+  },
+  {
+    "jp_character": "母はうちでおんがくを聞きます",
+    "particles": [
+      1,
+      4,
+      9
+    ],
+    "romanji": [
+      "haha wa uchi de ongaku wo kikimasu",
+      "haha wa uchi de ongaku o kikimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "10": "き"
+    },
+    "meaning": "My mother listens to music at home",
+    "meaning_id": "Ibu saya mendengarkan musik di rumah"
+  },
+  {
+    "jp_character": "わたしはレストランでぎゅうにゅうを飲みます",
+    "particles": [
+      3,
+      9,
       16
     ],
     "romanji": [
-      "kinou watashi wa depaato de terebi wo kaimashita",
-      "kinou watashi wa depaato de terebi o kaimashita"
+      "watashi wa resutoran de gyuunyuu wo nomimasu",
+      "watashi wa resutoran de gyuunyuu o nomimasu"
     ],
     "furigana": {
-      "17": "か"
+      "17": "の"
     },
-    "meaning": "I bought TV at the department store yesterday",
-    "meaning_id": "Kemarin Saya membeli TV di toko serba ada"
+    "meaning": "I drink milk at the restaurant",
+    "meaning_id": "Saya minum susu di restoran"
+  },
+  {
+    "jp_character": "父はスーパーでりんごを買います",
+    "particles": [
+      1,
+      6,
+      10
+    ],
+    "romanji": [
+      "chichi wa suupaa de ringo wo kaimasu",
+      "chichi wa suupaa de ringo o kaimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "11": "か"
+    },
+    "meaning": "My father buys an apple at the supermarket",
+    "meaning_id": "Ayah saya membeli apel di supermarket"
+  },
+  {
+    "jp_character": "友だちは学校で本を読みます",
+    "particles": [
+      3,
+      6,
+      8
+    ],
+    "romanji": [
+      "tomodachi wa gakkou de hon wo yomimasu",
+      "tomodachi wa gakkou de hon o yomimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "がっ",
+      "5": "こう",
+      "7": "ほん",
+      "9": "よ"
+    },
+    "meaning": "My friend reads a book at school",
+    "meaning_id": "Teman saya membaca buku di sekolah"
+  },
+  {
+    "jp_character": "学生はデパートでとけいを買います",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "gakusei wa depaato de tokei wo kaimasu",
+      "gakusei wa depaato de tokei o kaimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "12": "か"
+    },
+    "meaning": "The student buys a watch at the department store",
+    "meaning_id": "Pelajar membeli jam di toko serba ada"
+  },
+  {
+    "jp_character": "父は店でパンを食べます",
+    "particles": [
+      1,
+      3,
+      6
+    ],
+    "romanji": [
+      "chichi wa mise de pan wo tabemasu",
+      "chichi wa mise de pan o tabemasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "みせ",
+      "7": "た"
+    },
+    "meaning": "My father eats bread at the shop",
+    "meaning_id": "Ayah saya makan roti di toko"
+  },
+  {
+    "jp_character": "母はうちでえいがを見ます",
+    "particles": [
+      1,
+      4,
+      8
+    ],
+    "romanji": [
+      "haha wa uchi de eiga wo mimasu",
+      "haha wa uchi de eiga o mimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "9": "み"
+    },
+    "meaning": "My mother watches a movie at home",
+    "meaning_id": "Ibu saya menonton film di rumah"
+  },
+  {
+    "jp_character": "先生はレストランでおちゃを飲みます",
+    "particles": [
+      2,
+      8,
+      12
+    ],
+    "romanji": [
+      "sensei wa resutoran de ocha wo nomimasu",
+      "sensei wa resutoran de ocha o nomimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "13": "の"
+    },
+    "meaning": "The teacher drinks tea at the restaurant",
+    "meaning_id": "Guru minum teh di restoran"
+  },
+  {
+    "jp_character": "きのう、学生は学校で新聞を読みました",
+    "particles": [
+      6,
+      9,
+      12
+    ],
+    "romanji": [
+      "kinou gakusei wa gakkou de shinbun wo yomimashita",
+      "kinou gakusei wa gakkou de shinbun o yomimashita"
+    ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい",
+      "7": "がっ",
+      "8": "こう",
+      "10": "しん",
+      "11": "ぶん",
+      "13": "よ"
+    },
+    "meaning": "The student read the newspaper at school yesterday",
+    "meaning_id": "Kemarin Pelajar membaca koran di sekolah"
   },
   {
     "jp_character": "あなたはスーパーでたまごを買います",
@@ -4454,23 +3627,696 @@ export const generatedSentences = [
     "meaning_id": "Anda membeli telur di supermarket"
   },
   {
-    "jp_character": "先生はうちでざっしを読みます",
+    "jp_character": "わたしはうちでおんがくを聞きます",
+    "particles": [
+      3,
+      6,
+      11
+    ],
+    "romanji": [
+      "watashi wa uchi de ongaku wo kikimasu",
+      "watashi wa uchi de ongaku o kikimasu"
+    ],
+    "furigana": {
+      "12": "き"
+    },
+    "meaning": "I listen to music at home",
+    "meaning_id": "Saya mendengarkan musik di rumah"
+  },
+  {
+    "jp_character": "きのう、友だちはデパートでかばんを買いました",
+    "particles": [
+      7,
+      12,
+      16
+    ],
+    "romanji": [
+      "kinou tomodachi wa depaato de kaban wo kaimashita",
+      "kinou tomodachi wa depaato de kaban o kaimashita"
+    ],
+    "furigana": {
+      "4": "とも",
+      "17": "か"
+    },
+    "meaning": "My friend bought a bag at the department store yesterday",
+    "meaning_id": "Kemarin Teman saya membeli tas di toko serba ada"
+  },
+  {
+    "jp_character": "母はレストランですしを食べます",
+    "particles": [
+      1,
+      7,
+      10
+    ],
+    "romanji": [
+      "haha wa resutoran de sushi wo tabemasu",
+      "haha wa resutoran de sushi o tabemasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "11": "た"
+    },
+    "meaning": "My mother eats sushi at the restaurant",
+    "meaning_id": "Ibu saya makan sushi di restoran"
+  },
+  {
+    "jp_character": "先生は店で車を買います",
+    "particles": [
+      2,
+      4,
+      6
+    ],
+    "romanji": [
+      "sensei wa mise de kuruma wo kaimasu",
+      "sensei wa mise de kuruma o kaimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "みせ",
+      "5": "くるま",
+      "7": "か"
+    },
+    "meaning": "The teacher buys a car at the shop",
+    "meaning_id": "Guru membeli mobil di toko"
+  },
+  {
+    "jp_character": "学生は学校でざっしを読みます",
     "particles": [
       2,
       5,
       9
     ],
     "romanji": [
-      "sensei wa uchi de zasshi wo yomimasu",
-      "sensei wa uchi de zasshi o yomimasu"
+      "gakusei wa gakkou de zasshi wo yomimasu",
+      "gakusei wa gakkou de zasshi o yomimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "10": "よ"
+    },
+    "meaning": "The student reads a magazine at school",
+    "meaning_id": "Pelajar membaca majalah di sekolah"
+  },
+  {
+    "jp_character": "友だちはうちでテレビを見ます",
+    "particles": [
+      3,
+      6,
+      10
+    ],
+    "romanji": [
+      "tomodachi wa uchi de terebi wo mimasu",
+      "tomodachi wa uchi de terebi o mimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "11": "み"
+    },
+    "meaning": "My friend watches TV at home",
+    "meaning_id": "Teman saya menonton TV di rumah"
+  },
+  {
+    "jp_character": "父は店でラーメンを食べます",
+    "particles": [
+      1,
+      3,
+      8
+    ],
+    "romanji": [
+      "chichi wa mise de raamen wo tabemasu",
+      "chichi wa mise de raamen o tabemasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "みせ",
+      "9": "た"
+    },
+    "meaning": "My father eats ramen at the shop",
+    "meaning_id": "Ayah saya makan ramen di toko"
+  },
+  {
+    "jp_character": "あなたはレストランでおちゃを飲みます",
+    "particles": [
+      3,
+      9,
+      13
+    ],
+    "romanji": [
+      "anata wa resutoran de ocha wo nomimasu",
+      "anata wa resutoran de ocha o nomimasu"
+    ],
+    "furigana": {
+      "14": "の"
+    },
+    "meaning": "You drink tea at the restaurant",
+    "meaning_id": "Anda minum teh di restoran"
+  },
+  {
+    "jp_character": "わたしはデパートで水を買います",
+    "particles": [
+      3,
+      8,
+      10
+    ],
+    "romanji": [
+      "watashi wa depaato de mizu wo kaimasu",
+      "watashi wa depaato de mizu o kaimasu"
+    ],
+    "furigana": {
+      "9": "みず",
+      "11": "か"
+    },
+    "meaning": "I buy water at the department store",
+    "meaning_id": "Saya membeli air di toko serba ada"
+  },
+  {
+    "jp_character": "あなたは学校で本を読みます",
+    "particles": [
+      3,
+      6,
+      8
+    ],
+    "romanji": [
+      "anata wa gakkou de hon wo yomimasu",
+      "anata wa gakkou de hon o yomimasu"
+    ],
+    "furigana": {
+      "4": "がっ",
+      "5": "こう",
+      "7": "ほん",
+      "9": "よ"
+    },
+    "meaning": "You read a book at school",
+    "meaning_id": "Anda membaca buku di sekolah"
+  },
+  {
+    "jp_character": "きのう、先生はスーパーでにくを買いました",
+    "particles": [
+      6,
+      11,
+      14
+    ],
+    "romanji": [
+      "kinou sensei wa suupaa de niku wo kaimashita",
+      "kinou sensei wa suupaa de niku o kaimashita"
+    ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "15": "か"
+    },
+    "meaning": "The teacher bought meat at the supermarket yesterday",
+    "meaning_id": "Kemarin Guru membeli daging di supermarket"
+  },
+  {
+    "jp_character": "学生はうちでえいがを見ます",
+    "particles": [
+      2,
+      5,
+      9
+    ],
+    "romanji": [
+      "gakusei wa uchi de eiga wo mimasu",
+      "gakusei wa uchi de eiga o mimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "10": "み"
+    },
+    "meaning": "The student watches a movie at home",
+    "meaning_id": "Pelajar menonton film di rumah"
+  },
+  {
+    "jp_character": "友だちはレストランでコーヒーを飲みます",
+    "particles": [
+      3,
+      9,
+      14
+    ],
+    "romanji": [
+      "tomodachi wa resutoran de koohii wo nomimasu",
+      "tomodachi wa resutoran de koohii o nomimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "15": "の"
+    },
+    "meaning": "My friend drinks coffee at the restaurant",
+    "meaning_id": "Teman saya minum kopi di restoran"
+  },
+  {
+    "jp_character": "母は店でごはんを食べます",
+    "particles": [
+      1,
+      3,
+      7
+    ],
+    "romanji": [
+      "haha wa mise de gohan wo tabemasu",
+      "haha wa mise de gohan o tabemasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "みせ",
+      "8": "た"
+    },
+    "meaning": "My mother eats rice at the shop",
+    "meaning_id": "Ibu saya makan nasi di toko"
+  },
+  {
+    "jp_character": "父はうちでおんがくを聞きます",
+    "particles": [
+      1,
+      4,
+      9
+    ],
+    "romanji": [
+      "chichi wa uchi de ongaku wo kikimasu",
+      "chichi wa uchi de ongaku o kikimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "10": "き"
+    },
+    "meaning": "My father listens to music at home",
+    "meaning_id": "Ayah saya mendengarkan musik di rumah"
+  },
+  {
+    "jp_character": "わたしはスーパーでさかなを買います",
+    "particles": [
+      3,
+      8,
+      12
+    ],
+    "romanji": [
+      "watashi wa suupaa de sakana wo kaimasu",
+      "watashi wa suupaa de sakana o kaimasu"
+    ],
+    "furigana": {
+      "13": "か"
+    },
+    "meaning": "I buy fish at the supermarket",
+    "meaning_id": "Saya membeli ikan di supermarket"
+  },
+  {
+    "jp_character": "あなたは学校で新聞を読みます",
+    "particles": [
+      3,
+      6,
+      9
+    ],
+    "romanji": [
+      "anata wa gakkou de shinbun wo yomimasu",
+      "anata wa gakkou de shinbun o yomimasu"
+    ],
+    "furigana": {
+      "4": "がっ",
+      "5": "こう",
+      "7": "しん",
+      "8": "ぶん",
+      "10": "よ"
+    },
+    "meaning": "You read the newspaper at school",
+    "meaning_id": "Anda membaca koran di sekolah"
+  },
+  {
+    "jp_character": "きのう、友だちは店でパンを食べました",
+    "particles": [
+      7,
+      9,
+      12
+    ],
+    "romanji": [
+      "kinou tomodachi wa mise de pan wo tabemashita",
+      "kinou tomodachi wa mise de pan o tabemashita"
+    ],
+    "furigana": {
+      "4": "とも",
+      "8": "みせ",
+      "13": "た"
+    },
+    "meaning": "My friend ate bread at the shop yesterday",
+    "meaning_id": "Kemarin Teman saya makan roti di toko"
+  },
+  {
+    "jp_character": "先生はデパートではなを買います",
+    "particles": [
+      2,
+      7,
+      10
+    ],
+    "romanji": [
+      "sensei wa depaato de hana wo kaimasu",
+      "sensei wa depaato de hana o kaimasu"
     ],
     "furigana": {
       "0": "せん",
       "1": "せい",
-      "10": "よ"
+      "11": "か"
     },
-    "meaning": "The teacher reads a magazine at home",
-    "meaning_id": "Guru membaca majalah di rumah"
+    "meaning": "The teacher buys a flower at the department store",
+    "meaning_id": "Guru membeli bunga di toko serba ada"
+  },
+  {
+    "jp_character": "父はレストランでぎゅうにゅうを飲みます",
+    "particles": [
+      1,
+      7,
+      14
+    ],
+    "romanji": [
+      "chichi wa resutoran de gyuunyuu wo nomimasu",
+      "chichi wa resutoran de gyuunyuu o nomimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "15": "の"
+    },
+    "meaning": "My father drinks milk at the restaurant",
+    "meaning_id": "Ayah saya minum susu di restoran"
+  },
+  {
+    "jp_character": "学生はうちでテレビを見ます",
+    "particles": [
+      2,
+      5,
+      9
+    ],
+    "romanji": [
+      "gakusei wa uchi de terebi wo mimasu",
+      "gakusei wa uchi de terebi o mimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "10": "み"
+    },
+    "meaning": "The student watches TV at home",
+    "meaning_id": "Pelajar menonton TV di rumah"
+  },
+  {
+    "jp_character": "きのう、母はスーパーでりんごを買いました",
+    "particles": [
+      5,
+      10,
+      14
+    ],
+    "romanji": [
+      "kinou haha wa suupaa de ringo wo kaimashita",
+      "kinou haha wa suupaa de ringo o kaimashita"
+    ],
+    "furigana": {
+      "4": "はは",
+      "15": "か"
+    },
+    "meaning": "My mother bought an apple at the supermarket yesterday",
+    "meaning_id": "Kemarin Ibu saya membeli apel di supermarket"
+  },
+  {
+    "jp_character": "わたしは店でラーメンを食べます",
+    "particles": [
+      3,
+      5,
+      10
+    ],
+    "romanji": [
+      "watashi wa mise de raamen wo tabemasu",
+      "watashi wa mise de raamen o tabemasu"
+    ],
+    "furigana": {
+      "4": "みせ",
+      "11": "た"
+    },
+    "meaning": "I eat ramen at the shop",
+    "meaning_id": "Saya makan ramen di toko"
+  },
+  {
+    "jp_character": "母はデパートでとけいを買います",
+    "particles": [
+      1,
+      6,
+      10
+    ],
+    "romanji": [
+      "haha wa depaato de tokei wo kaimasu",
+      "haha wa depaato de tokei o kaimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "11": "か"
+    },
+    "meaning": "My mother buys a watch at the department store",
+    "meaning_id": "Ibu saya membeli jam di toko serba ada"
+  },
+  {
+    "jp_character": "先生は学校で本を読みます",
+    "particles": [
+      2,
+      5,
+      7
+    ],
+    "romanji": [
+      "sensei wa gakkou de hon wo yomimasu",
+      "sensei wa gakkou de hon o yomimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "6": "ほん",
+      "8": "よ"
+    },
+    "meaning": "The teacher reads a book at school",
+    "meaning_id": "Guru membaca buku di sekolah"
+  },
+  {
+    "jp_character": "あなたはうちでおんがくを聞きます",
+    "particles": [
+      3,
+      6,
+      11
+    ],
+    "romanji": [
+      "anata wa uchi de ongaku wo kikimasu",
+      "anata wa uchi de ongaku o kikimasu"
+    ],
+    "furigana": {
+      "12": "き"
+    },
+    "meaning": "You listen to music at home",
+    "meaning_id": "Anda mendengarkan musik di rumah"
+  },
+  {
+    "jp_character": "わたしはレストランですしを食べます",
+    "particles": [
+      3,
+      9,
+      12
+    ],
+    "romanji": [
+      "watashi wa resutoran de sushi wo tabemasu",
+      "watashi wa resutoran de sushi o tabemasu"
+    ],
+    "furigana": {
+      "13": "た"
+    },
+    "meaning": "I eat sushi at the restaurant",
+    "meaning_id": "Saya makan sushi di restoran"
+  },
+  {
+    "jp_character": "友だちはスーパーでたまごを買います",
+    "particles": [
+      3,
+      8,
+      12
+    ],
+    "romanji": [
+      "tomodachi wa suupaa de tamago wo kaimasu",
+      "tomodachi wa suupaa de tamago o kaimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "13": "か"
+    },
+    "meaning": "My friend buys an egg at the supermarket",
+    "meaning_id": "Teman saya membeli telur di supermarket"
+  },
+  {
+    "jp_character": "父は学校でざっしを読みます",
+    "particles": [
+      1,
+      4,
+      8
+    ],
+    "romanji": [
+      "chichi wa gakkou de zasshi wo yomimasu",
+      "chichi wa gakkou de zasshi o yomimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "がっ",
+      "3": "こう",
+      "9": "よ"
+    },
+    "meaning": "My father reads a magazine at school",
+    "meaning_id": "Ayah saya membaca majalah di sekolah"
+  },
+  {
+    "jp_character": "学生はレストランでぎゅうにゅうを飲みます",
+    "particles": [
+      2,
+      8,
+      15
+    ],
+    "romanji": [
+      "gakusei wa resutoran de gyuunyuu wo nomimasu",
+      "gakusei wa resutoran de gyuunyuu o nomimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "16": "の"
+    },
+    "meaning": "The student drinks milk at the restaurant",
+    "meaning_id": "Pelajar minum susu di restoran"
+  },
+  {
+    "jp_character": "あなたはうちでえいがを見ます",
+    "particles": [
+      3,
+      6,
+      10
+    ],
+    "romanji": [
+      "anata wa uchi de eiga wo mimasu",
+      "anata wa uchi de eiga o mimasu"
+    ],
+    "furigana": {
+      "11": "み"
+    },
+    "meaning": "You watch a movie at home",
+    "meaning_id": "Anda menonton film di rumah"
+  },
+  {
+    "jp_character": "友だちは店でごはんを食べます",
+    "particles": [
+      3,
+      5,
+      9
+    ],
+    "romanji": [
+      "tomodachi wa mise de gohan wo tabemasu",
+      "tomodachi wa mise de gohan o tabemasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "みせ",
+      "10": "た"
+    },
+    "meaning": "My friend eats rice at the shop",
+    "meaning_id": "Teman saya makan nasi di toko"
+  },
+  {
+    "jp_character": "父はデパートで水を買います",
+    "particles": [
+      1,
+      6,
+      8
+    ],
+    "romanji": [
+      "chichi wa depaato de mizu wo kaimasu",
+      "chichi wa depaato de mizu o kaimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "7": "みず",
+      "9": "か"
+    },
+    "meaning": "My father buys water at the department store",
+    "meaning_id": "Ayah saya membeli air di toko serba ada"
+  },
+  {
+    "jp_character": "先生はレストランでコーヒーを飲みます",
+    "particles": [
+      2,
+      8,
+      13
+    ],
+    "romanji": [
+      "sensei wa resutoran de koohii wo nomimasu",
+      "sensei wa resutoran de koohii o nomimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "14": "の"
+    },
+    "meaning": "The teacher drinks coffee at the restaurant",
+    "meaning_id": "Guru minum kopi di restoran"
+  },
+  {
+    "jp_character": "母は学校で新聞を読みます",
+    "particles": [
+      1,
+      4,
+      7
+    ],
+    "romanji": [
+      "haha wa gakkou de shinbun wo yomimasu",
+      "haha wa gakkou de shinbun o yomimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "がっ",
+      "3": "こう",
+      "5": "しん",
+      "6": "ぶん",
+      "8": "よ"
+    },
+    "meaning": "My mother reads the newspaper at school",
+    "meaning_id": "Ibu saya membaca koran di sekolah"
+  },
+  {
+    "jp_character": "学生はうちでおんがくを聞きます",
+    "particles": [
+      2,
+      5,
+      10
+    ],
+    "romanji": [
+      "gakusei wa uchi de ongaku wo kikimasu",
+      "gakusei wa uchi de ongaku o kikimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "11": "き"
+    },
+    "meaning": "The student listens to music at home",
+    "meaning_id": "Pelajar mendengarkan musik di rumah"
+  },
+  {
+    "jp_character": "きのう、わたしはスーパーでにくを買いました",
+    "particles": [
+      7,
+      12,
+      15
+    ],
+    "romanji": [
+      "kinou watashi wa suupaa de niku wo kaimashita",
+      "kinou watashi wa suupaa de niku o kaimashita"
+    ],
+    "furigana": {
+      "16": "か"
+    },
+    "meaning": "I bought meat at the supermarket yesterday",
+    "meaning_id": "Kemarin Saya membeli daging di supermarket"
   },
   {
     "jp_character": "こうえんにはながあります",
@@ -4500,33 +4346,6 @@ export const generatedSentences = [
     "meaning_id": "Di toko ada TV"
   },
   {
-    "jp_character": "こうえんに木があります",
-    "particles": [
-      4,
-      6
-    ],
-    "romanji": [
-      "kouen ni ki ga arimasu"
-    ],
-    "furigana": {
-      "5": "き"
-    },
-    "meaning": "There is a tree in the park",
-    "meaning_id": "Di taman ada pohon"
-  },
-  {
-    "jp_character": "デパートにはながあります",
-    "particles": [
-      4,
-      7
-    ],
-    "romanji": [
-      "depaato ni hana ga arimasu"
-    ],
-    "meaning": "There is a flower at the department store",
-    "meaning_id": "Di toko serba ada bunga"
-  },
-  {
     "jp_character": "スーパーにたまごがあります",
     "particles": [
       4,
@@ -4537,30 +4356,6 @@ export const generatedSentences = [
     ],
     "meaning": "There is an egg at the supermarket",
     "meaning_id": "Di supermarket ada telur"
-  },
-  {
-    "jp_character": "スーパーにさかながあります",
-    "particles": [
-      4,
-      8
-    ],
-    "romanji": [
-      "suupaa ni sakana ga arimasu"
-    ],
-    "meaning": "There is fish at the supermarket",
-    "meaning_id": "Di supermarket ada ikan"
-  },
-  {
-    "jp_character": "スーパーににくがあります",
-    "particles": [
-      4,
-      7
-    ],
-    "romanji": [
-      "suupaa ni niku ga arimasu"
-    ],
-    "meaning": "There is meat at the supermarket",
-    "meaning_id": "Di supermarket ada daging"
   },
   {
     "jp_character": "デパートに水があります",
@@ -4578,6 +4373,50 @@ export const generatedSentences = [
     "meaning_id": "Di toko serba ada air"
   },
   {
+    "jp_character": "日本に山があります",
+    "particles": [
+      2,
+      4
+    ],
+    "romanji": [
+      "nihon ni yama ga arimasu"
+    ],
+    "furigana": {
+      "0": "に",
+      "1": "ほん",
+      "3": "やま"
+    },
+    "meaning": "There is a mountain in Japan",
+    "meaning_id": "Di Jepang ada gunung"
+  },
+  {
+    "jp_character": "こうえんに木があります",
+    "particles": [
+      4,
+      6
+    ],
+    "romanji": [
+      "kouen ni ki ga arimasu"
+    ],
+    "furigana": {
+      "5": "き"
+    },
+    "meaning": "There is a tree in the park",
+    "meaning_id": "Di taman ada pohon"
+  },
+  {
+    "jp_character": "スーパーにさかながあります",
+    "particles": [
+      4,
+      8
+    ],
+    "romanji": [
+      "suupaa ni sakana ga arimasu"
+    ],
+    "meaning": "There is fish at the supermarket",
+    "meaning_id": "Di supermarket ada ikan"
+  },
+  {
     "jp_character": "店にパンがあります",
     "particles": [
       1,
@@ -4593,47 +4432,60 @@ export const generatedSentences = [
     "meaning_id": "Di toko ada roti"
   },
   {
-    "jp_character": "店に本があります",
+    "jp_character": "デパートに本があります",
     "particles": [
-      1,
-      3
+      4,
+      6
     ],
     "romanji": [
-      "mise ni hon ga arimasu"
+      "depaato ni hon ga arimasu"
     ],
     "furigana": {
-      "0": "みせ",
-      "2": "ほん"
+      "5": "ほん"
     },
-    "meaning": "There is a book at the shop",
-    "meaning_id": "Di toko ada buku"
+    "meaning": "There is a book at the department store",
+    "meaning_id": "Di toko serba ada buku"
   },
   {
-    "jp_character": "店にはながあります",
+    "jp_character": "日本に川があります",
     "particles": [
-      1,
+      2,
       4
     ],
     "romanji": [
-      "mise ni hana ga arimasu"
+      "nihon ni kawa ga arimasu"
     ],
     "furigana": {
-      "0": "みせ"
+      "0": "に",
+      "1": "ほん",
+      "3": "かわ"
     },
-    "meaning": "There is a flower at the shop",
-    "meaning_id": "Di toko ada bunga"
+    "meaning": "There is a river in Japan",
+    "meaning_id": "Di Jepang ada sungai"
   },
   {
-    "jp_character": "スーパーにりんごがあります",
+    "jp_character": "スーパーににくがあります",
     "particles": [
       4,
-      8
+      7
     ],
     "romanji": [
-      "suupaa ni ringo ga arimasu"
+      "suupaa ni niku ga arimasu"
     ],
-    "meaning": "There is an apple at the supermarket",
-    "meaning_id": "Di supermarket ada apel"
+    "meaning": "There is meat at the supermarket",
+    "meaning_id": "Di supermarket ada daging"
+  },
+  {
+    "jp_character": "デパートにはながあります",
+    "particles": [
+      4,
+      7
+    ],
+    "romanji": [
+      "depaato ni hana ga arimasu"
+    ],
+    "meaning": "There is a flower at the department store",
+    "meaning_id": "Di toko serba ada bunga"
   },
   {
     "jp_character": "店に友だちがいます",
@@ -4666,6 +4518,57 @@ export const generatedSentences = [
     },
     "meaning": "The teacher is at the department store",
     "meaning_id": "Guru ada di toko serba ada"
+  },
+  {
+    "jp_character": "学校に女の子がいます",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakkou ni onnanoko ga imasu"
+    ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "おんな",
+      "5": "こ"
+    },
+    "meaning": "The girl is at school",
+    "meaning_id": "Anak perempuan ada di sekolah"
+  },
+  {
+    "jp_character": "こうえんに学生がいます",
+    "particles": [
+      4,
+      7
+    ],
+    "romanji": [
+      "kouen ni gakusei ga imasu"
+    ],
+    "furigana": {
+      "5": "がく",
+      "6": "せい"
+    },
+    "meaning": "The student is in the park",
+    "meaning_id": "Pelajar ada di taman"
+  },
+  {
+    "jp_character": "駅に男の子がいます",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "eki ni otokonoko ga imasu"
+    ],
+    "furigana": {
+      "0": "えき",
+      "2": "おとこ",
+      "4": "こ"
+    },
+    "meaning": "The boy is at the station",
+    "meaning_id": "Anak laki-laki ada di stasiun"
   },
   {
     "jp_character": "店に女の子がいます",
@@ -4702,40 +4605,6 @@ export const generatedSentences = [
     "meaning_id": "Guru ada di stasiun"
   },
   {
-    "jp_character": "学校に女の子がいます",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "gakkou ni onnanoko ga imasu"
-    ],
-    "furigana": {
-      "0": "がっ",
-      "1": "こう",
-      "3": "おんな",
-      "5": "こ"
-    },
-    "meaning": "The girl is at school",
-    "meaning_id": "Anak perempuan ada di sekolah"
-  },
-  {
-    "jp_character": "こうえんに女の子がいます",
-    "particles": [
-      4,
-      8
-    ],
-    "romanji": [
-      "kouen ni onnanoko ga imasu"
-    ],
-    "furigana": {
-      "5": "おんな",
-      "7": "こ"
-    },
-    "meaning": "The girl is in the park",
-    "meaning_id": "Anak perempuan ada di taman"
-  },
-  {
     "jp_character": "デパートに学生がいます",
     "particles": [
       4,
@@ -4750,74 +4619,6 @@ export const generatedSentences = [
     },
     "meaning": "The student is at the department store",
     "meaning_id": "Pelajar ada di toko serba ada"
-  },
-  {
-    "jp_character": "こうえんに学生がいます",
-    "particles": [
-      4,
-      7
-    ],
-    "romanji": [
-      "kouen ni gakusei ga imasu"
-    ],
-    "furigana": {
-      "5": "がく",
-      "6": "せい"
-    },
-    "meaning": "The student is in the park",
-    "meaning_id": "Pelajar ada di taman"
-  },
-  {
-    "jp_character": "学校に先生がいます",
-    "particles": [
-      2,
-      5
-    ],
-    "romanji": [
-      "gakkou ni sensei ga imasu"
-    ],
-    "furigana": {
-      "0": "がっ",
-      "1": "こう",
-      "3": "せん",
-      "4": "せい"
-    },
-    "meaning": "The teacher is at school",
-    "meaning_id": "Guru ada di sekolah"
-  },
-  {
-    "jp_character": "学校に学生がいます",
-    "particles": [
-      2,
-      5
-    ],
-    "romanji": [
-      "gakkou ni gakusei ga imasu"
-    ],
-    "furigana": {
-      "0": "がっ",
-      "1": "こう",
-      "3": "がく",
-      "4": "せい"
-    },
-    "meaning": "The student is at school",
-    "meaning_id": "Pelajar ada di sekolah"
-  },
-  {
-    "jp_character": "デパートに男の子がいます",
-    "particles": [
-      4,
-      8
-    ],
-    "romanji": [
-      "depaato ni otokonoko ga imasu"
-    ],
-    "furigana": {
-      "5": "おとこ",
-      "7": "こ"
-    },
-    "meaning": "The boy is at the department store",
-    "meaning_id": "Anak laki-laki ada di toko serba ada"
   },
   {
     "jp_character": "学校に男の子がいます",
@@ -4838,52 +4639,102 @@ export const generatedSentences = [
     "meaning_id": "Anak laki-laki ada di sekolah"
   },
   {
-    "jp_character": "こうえんに先生がいます",
-    "particles": [
-      4,
-      7
-    ],
-    "romanji": [
-      "kouen ni sensei ga imasu"
-    ],
-    "furigana": {
-      "5": "せん",
-      "6": "せい"
-    },
-    "meaning": "The teacher is in the park",
-    "meaning_id": "Guru ada di taman"
-  },
-  {
-    "jp_character": "学校に友だちがいます",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "gakkou ni tomodachi ga imasu"
-    ],
-    "furigana": {
-      "0": "がっ",
-      "1": "こう",
-      "3": "とも"
-    },
-    "meaning": "My friend is at school",
-    "meaning_id": "Teman saya ada di sekolah"
-  },
-  {
-    "jp_character": "デパートに友だちがいます",
+    "jp_character": "こうえんに友だちがいます",
     "particles": [
       4,
       8
     ],
     "romanji": [
-      "depaato ni tomodachi ga imasu"
+      "kouen ni tomodachi ga imasu"
     ],
     "furigana": {
       "5": "とも"
     },
-    "meaning": "My friend is at the department store",
-    "meaning_id": "Teman saya ada di toko serba ada"
+    "meaning": "My friend is in the park",
+    "meaning_id": "Teman saya ada di taman"
+  },
+  {
+    "jp_character": "こうえんに女の子がいます",
+    "particles": [
+      4,
+      8
+    ],
+    "romanji": [
+      "kouen ni onnanoko ga imasu"
+    ],
+    "furigana": {
+      "5": "おんな",
+      "7": "こ"
+    },
+    "meaning": "The girl is in the park",
+    "meaning_id": "Anak perempuan ada di taman"
+  },
+  {
+    "jp_character": "学校に先生がいます",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "gakkou ni sensei ga imasu"
+    ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "せん",
+      "4": "せい"
+    },
+    "meaning": "The teacher is at school",
+    "meaning_id": "Guru ada di sekolah"
+  },
+  {
+    "jp_character": "デパートに男の子がいます",
+    "particles": [
+      4,
+      8
+    ],
+    "romanji": [
+      "depaato ni otokonoko ga imasu"
+    ],
+    "furigana": {
+      "5": "おとこ",
+      "7": "こ"
+    },
+    "meaning": "The boy is at the department store",
+    "meaning_id": "Anak laki-laki ada di toko serba ada"
+  },
+  {
+    "jp_character": "駅に友だちがいます",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "eki ni tomodachi ga imasu"
+    ],
+    "furigana": {
+      "0": "えき",
+      "2": "とも"
+    },
+    "meaning": "My friend is at the station",
+    "meaning_id": "Teman saya ada di stasiun"
+  },
+  {
+    "jp_character": "店に学生がいます",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "mise ni gakusei ga imasu"
+    ],
+    "furigana": {
+      "0": "みせ",
+      "2": "がく",
+      "3": "せい"
+    },
+    "meaning": "The student is at the shop",
+    "meaning_id": "Pelajar ada di toko"
   },
   {
     "jp_character": "いすはへやの中にあります",
@@ -4900,39 +4751,6 @@ export const generatedSentences = [
     },
     "meaning": "The chair is in the room",
     "meaning_id": "Kursi ada di dalam kamar"
-  },
-  {
-    "jp_character": "本はかばんの中にあります",
-    "particles": [
-      1,
-      5,
-      7
-    ],
-    "romanji": [
-      "hon wa kaban no naka ni arimasu"
-    ],
-    "furigana": {
-      "0": "ほん",
-      "6": "なか"
-    },
-    "meaning": "The book is inside the bag",
-    "meaning_id": "Buku ada di dalam tas"
-  },
-  {
-    "jp_character": "かばんはいすの下にあります",
-    "particles": [
-      3,
-      6,
-      8
-    ],
-    "romanji": [
-      "kaban wa isu no shita ni arimasu"
-    ],
-    "furigana": {
-      "7": "した"
-    },
-    "meaning": "The bag is under the chair",
-    "meaning_id": "Tas ada di bawah kursi"
   },
   {
     "jp_character": "本はつくえの上にあります",
@@ -4952,6 +4770,22 @@ export const generatedSentences = [
     "meaning_id": "Buku ada di atas meja"
   },
   {
+    "jp_character": "かばんはいすの下にあります",
+    "particles": [
+      3,
+      6,
+      8
+    ],
+    "romanji": [
+      "kaban wa isu no shita ni arimasu"
+    ],
+    "furigana": {
+      "7": "した"
+    },
+    "meaning": "The bag is under the chair",
+    "meaning_id": "Tas ada di bawah kursi"
+  },
+  {
     "jp_character": "とけいはかばんの中にあります",
     "particles": [
       3,
@@ -4966,38 +4800,6 @@ export const generatedSentences = [
     },
     "meaning": "The watch is inside the bag",
     "meaning_id": "Jam ada di dalam tas"
-  },
-  {
-    "jp_character": "テレビはへやの中にあります",
-    "particles": [
-      3,
-      6,
-      8
-    ],
-    "romanji": [
-      "terebi wa heya no naka ni arimasu"
-    ],
-    "furigana": {
-      "7": "なか"
-    },
-    "meaning": "The TV is in the room",
-    "meaning_id": "TV ada di dalam kamar"
-  },
-  {
-    "jp_character": "かばんはつくえの上にあります",
-    "particles": [
-      3,
-      7,
-      9
-    ],
-    "romanji": [
-      "kaban wa tsukue no ue ni arimasu"
-    ],
-    "furigana": {
-      "8": "うえ"
-    },
-    "meaning": "The bag is on the desk",
-    "meaning_id": "Tas ada di atas meja"
   },
   {
     "jp_character": "おかねはつくえの上にあります",
@@ -5016,6 +4818,22 @@ export const generatedSentences = [
     "meaning_id": "Uang ada di atas meja"
   },
   {
+    "jp_character": "テレビはへやの中にあります",
+    "particles": [
+      3,
+      6,
+      8
+    ],
+    "romanji": [
+      "terebi wa heya no naka ni arimasu"
+    ],
+    "furigana": {
+      "7": "なか"
+    },
+    "meaning": "The TV is in the room",
+    "meaning_id": "TV ada di dalam kamar"
+  },
+  {
     "jp_character": "とけいはつくえの上にあります",
     "particles": [
       3,
@@ -5032,6 +4850,23 @@ export const generatedSentences = [
     "meaning_id": "Jam ada di atas meja"
   },
   {
+    "jp_character": "本はかばんの中にあります",
+    "particles": [
+      1,
+      5,
+      7
+    ],
+    "romanji": [
+      "hon wa kaban no naka ni arimasu"
+    ],
+    "furigana": {
+      "0": "ほん",
+      "6": "なか"
+    },
+    "meaning": "The book is inside the bag",
+    "meaning_id": "Buku ada di dalam tas"
+  },
+  {
     "jp_character": "おかねはかばんの中にあります",
     "particles": [
       3,
@@ -5046,6 +4881,22 @@ export const generatedSentences = [
     },
     "meaning": "The money is inside the bag",
     "meaning_id": "Uang ada di dalam tas"
+  },
+  {
+    "jp_character": "かばんはつくえの上にあります",
+    "particles": [
+      3,
+      7,
+      9
+    ],
+    "romanji": [
+      "kaban wa tsukue no ue ni arimasu"
+    ],
+    "furigana": {
+      "8": "うえ"
+    },
+    "meaning": "The bag is on the desk",
+    "meaning_id": "Tas ada di atas meja"
   },
   {
     "jp_character": "学生はコーヒーがすきです",
@@ -5095,120 +4946,6 @@ export const generatedSentences = [
     "meaning_id": "Guru suka teh"
   },
   {
-    "jp_character": "父はコーヒーがすきです",
-    "particles": [
-      1,
-      6
-    ],
-    "romanji": [
-      "chichi wa koohii ga suki desu"
-    ],
-    "furigana": {
-      "0": "ちち"
-    },
-    "meaning": "My father likes coffee",
-    "meaning_id": "Ayah saya suka kopi"
-  },
-  {
-    "jp_character": "学生はりんごがすきです",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "gakusei wa ringo ga suki desu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい"
-    },
-    "meaning": "The student likes apples",
-    "meaning_id": "Pelajar suka apel"
-  },
-  {
-    "jp_character": "学生は日本がすきです",
-    "particles": [
-      2,
-      5
-    ],
-    "romanji": [
-      "gakusei wa nihon ga suki desu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "3": "に",
-      "4": "ほん"
-    },
-    "meaning": "The student likes Japan",
-    "meaning_id": "Pelajar suka Jepang"
-  },
-  {
-    "jp_character": "先生はおんがくがすきです",
-    "particles": [
-      2,
-      7
-    ],
-    "romanji": [
-      "sensei wa ongaku ga suki desu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい"
-    },
-    "meaning": "The teacher likes music",
-    "meaning_id": "Guru suka musik"
-  },
-  {
-    "jp_character": "母は日本がすきです",
-    "particles": [
-      1,
-      4
-    ],
-    "romanji": [
-      "haha wa nihon ga suki desu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "2": "に",
-      "3": "ほん"
-    },
-    "meaning": "My mother likes Japan",
-    "meaning_id": "Ibu saya suka Jepang"
-  },
-  {
-    "jp_character": "学生はおちゃがすきです",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "gakusei wa ocha ga suki desu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい"
-    },
-    "meaning": "The student likes tea",
-    "meaning_id": "Pelajar suka teh"
-  },
-  {
-    "jp_character": "先生はえいががすきです",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "sensei wa eiga ga suki desu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい"
-    },
-    "meaning": "The teacher likes movies",
-    "meaning_id": "Guru suka film"
-  },
-  {
     "jp_character": "友だちはえいががすきです",
     "particles": [
       3,
@@ -5222,22 +4959,6 @@ export const generatedSentences = [
     },
     "meaning": "My friend likes movies",
     "meaning_id": "Teman saya suka film"
-  },
-  {
-    "jp_character": "学生はおんがくがすきです",
-    "particles": [
-      2,
-      7
-    ],
-    "romanji": [
-      "gakusei wa ongaku ga suki desu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい"
-    },
-    "meaning": "The student likes music",
-    "meaning_id": "Pelajar suka musik"
   },
   {
     "jp_character": "わたしは日本がすきです",
@@ -5254,21 +4975,6 @@ export const generatedSentences = [
     },
     "meaning": "I like Japan",
     "meaning_id": "Saya suka Jepang"
-  },
-  {
-    "jp_character": "母はりんごがすきです",
-    "particles": [
-      1,
-      5
-    ],
-    "romanji": [
-      "haha wa ringo ga suki desu"
-    ],
-    "furigana": {
-      "0": "はは"
-    },
-    "meaning": "My mother likes apples",
-    "meaning_id": "Ibu saya suka apel"
   },
   {
     "jp_character": "父はりんごがすきです",
@@ -5301,16 +5007,96 @@ export const generatedSentences = [
     "meaning_id": "Ibu saya suka sushi"
   },
   {
-    "jp_character": "わたしはおんがくがすきです",
+    "jp_character": "父はコーヒーがすきです",
     "particles": [
-      3,
-      8
+      1,
+      6
     ],
     "romanji": [
-      "watashi wa ongaku ga suki desu"
+      "chichi wa koohii ga suki desu"
     ],
-    "meaning": "I like music",
-    "meaning_id": "Saya suka musik"
+    "furigana": {
+      "0": "ちち"
+    },
+    "meaning": "My father likes coffee",
+    "meaning_id": "Ayah saya suka kopi"
+  },
+  {
+    "jp_character": "学生はりんごがすきです",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa ringo ga suki desu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
+    "meaning": "The student likes apples",
+    "meaning_id": "Pelajar suka apel"
+  },
+  {
+    "jp_character": "先生はおんがくがすきです",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "sensei wa ongaku ga suki desu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
+    "meaning": "The teacher likes music",
+    "meaning_id": "Guru suka musik"
+  },
+  {
+    "jp_character": "わたしはおちゃがすきです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa ocha ga suki desu"
+    ],
+    "meaning": "I like tea",
+    "meaning_id": "Saya suka teh"
+  },
+  {
+    "jp_character": "友だちは日本がすきです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa nihon ga suki desu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "に",
+      "5": "ほん"
+    },
+    "meaning": "My friend likes Japan",
+    "meaning_id": "Teman saya suka Jepang"
+  },
+  {
+    "jp_character": "先生はえいががすきです",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "sensei wa eiga ga suki desu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
+    "meaning": "The teacher likes movies",
+    "meaning_id": "Guru suka film"
   },
   {
     "jp_character": "父はすしがすきです",
@@ -5326,6 +5112,66 @@ export const generatedSentences = [
     },
     "meaning": "My father likes sushi",
     "meaning_id": "Ayah saya suka sushi"
+  },
+  {
+    "jp_character": "学生は日本がすきです",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "gakusei wa nihon ga suki desu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん"
+    },
+    "meaning": "The student likes Japan",
+    "meaning_id": "Pelajar suka Jepang"
+  },
+  {
+    "jp_character": "母はりんごがすきです",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "haha wa ringo ga suki desu"
+    ],
+    "furigana": {
+      "0": "はは"
+    },
+    "meaning": "My mother likes apples",
+    "meaning_id": "Ibu saya suka apel"
+  },
+  {
+    "jp_character": "わたしはおんがくがすきです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa ongaku ga suki desu"
+    ],
+    "meaning": "I like music",
+    "meaning_id": "Saya suka musik"
+  },
+  {
+    "jp_character": "友だちはおちゃがすきです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi wa ocha ga suki desu"
+    ],
+    "furigana": {
+      "0": "とも"
+    },
+    "meaning": "My friend likes tea",
+    "meaning_id": "Teman saya suka teh"
   },
   {
     "jp_character": "わたしはコーヒーがすきです",
@@ -5356,31 +5202,19 @@ export const generatedSentences = [
     "meaning_id": "Pelajar suka sushi"
   },
   {
-    "jp_character": "わたしはおちゃがすきです",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "watashi wa ocha ga suki desu"
-    ],
-    "meaning": "I like tea",
-    "meaning_id": "Saya suka teh"
-  },
-  {
-    "jp_character": "母はコーヒーがすきです",
+    "jp_character": "母はえいががすきです",
     "particles": [
       1,
-      6
+      5
     ],
     "romanji": [
-      "haha wa koohii ga suki desu"
+      "haha wa eiga ga suki desu"
     ],
     "furigana": {
       "0": "はは"
     },
-    "meaning": "My mother likes coffee",
-    "meaning_id": "Ibu saya suka kopi"
+    "meaning": "My mother likes movies",
+    "meaning_id": "Ibu saya suka film"
   },
   {
     "jp_character": "先生は日本がすきです",
@@ -5401,35 +5235,50 @@ export const generatedSentences = [
     "meaning_id": "Guru suka Jepang"
   },
   {
-    "jp_character": "学生はえいががすきです",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "gakusei wa eiga ga suki desu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい"
-    },
-    "meaning": "The student likes movies",
-    "meaning_id": "Pelajar suka film"
-  },
-  {
-    "jp_character": "母はえいががすきです",
+    "jp_character": "父はえいががすきです",
     "particles": [
       1,
       5
     ],
     "romanji": [
-      "haha wa eiga ga suki desu"
+      "chichi wa eiga ga suki desu"
     ],
     "furigana": {
-      "0": "はは"
+      "0": "ちち"
     },
-    "meaning": "My mother likes movies",
-    "meaning_id": "Ibu saya suka film"
+    "meaning": "My father likes movies",
+    "meaning_id": "Ayah saya suka film"
+  },
+  {
+    "jp_character": "友だちはすしがすきです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa sushi ga suki desu"
+    ],
+    "furigana": {
+      "0": "とも"
+    },
+    "meaning": "My friend likes sushi",
+    "meaning_id": "Teman saya suka sushi"
+  },
+  {
+    "jp_character": "学生はおちゃがすきです",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa ocha ga suki desu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
+    "meaning": "The student likes tea",
+    "meaning_id": "Pelajar suka teh"
   },
   {
     "jp_character": "スーパーはどこですか",
@@ -5534,56 +5383,6 @@ export const generatedSentences = [
     "meaning_id": "Teman saya membaca bahasa Jepang"
   },
   {
-    "jp_character": "あなたはちゅうごくごを読みます",
-    "particles": [
-      3,
-      10
-    ],
-    "romanji": [
-      "anata wa chuugokugo wo yomimasu",
-      "anata wa chuugokugo o yomimasu"
-    ],
-    "furigana": {
-      "11": "よ"
-    },
-    "meaning": "You read Chinese",
-    "meaning_id": "Anda membaca bahasa Mandarin"
-  },
-  {
-    "jp_character": "友だちはちゅうごくごを書きます",
-    "particles": [
-      3,
-      10
-    ],
-    "romanji": [
-      "tomodachi wa chuugokugo wo kakimasu",
-      "tomodachi wa chuugokugo o kakimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "11": "か"
-    },
-    "meaning": "My friend writes Chinese",
-    "meaning_id": "Teman saya menulis bahasa Mandarin"
-  },
-  {
-    "jp_character": "友だちはえいごを書きます",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "tomodachi wa eigo wo kakimasu",
-      "tomodachi wa eigo o kakimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "8": "か"
-    },
-    "meaning": "My friend writes English",
-    "meaning_id": "Teman saya menulis bahasa Inggris"
-  },
-  {
     "jp_character": "学生はえいごを書きます",
     "particles": [
       2,
@@ -5634,159 +5433,6 @@ export const generatedSentences = [
     "meaning_id": "Saya berbicara bahasa Inggris"
   },
   {
-    "jp_character": "あなたはえいごを読みます",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "anata wa eigo wo yomimasu",
-      "anata wa eigo o yomimasu"
-    ],
-    "furigana": {
-      "8": "よ"
-    },
-    "meaning": "You read English",
-    "meaning_id": "Anda membaca bahasa Inggris"
-  },
-  {
-    "jp_character": "友だちはえいごを読みます",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "tomodachi wa eigo wo yomimasu",
-      "tomodachi wa eigo o yomimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "8": "よ"
-    },
-    "meaning": "My friend reads English",
-    "meaning_id": "Teman saya membaca bahasa Inggris"
-  },
-  {
-    "jp_character": "わたしはえいごを読みます",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "watashi wa eigo wo yomimasu",
-      "watashi wa eigo o yomimasu"
-    ],
-    "furigana": {
-      "8": "よ"
-    },
-    "meaning": "I read English",
-    "meaning_id": "Saya membaca bahasa Inggris"
-  },
-  {
-    "jp_character": "あなたはえいごを話します",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "anata wa eigo wo hanashimasu",
-      "anata wa eigo o hanashimasu"
-    ],
-    "furigana": {
-      "8": "はな"
-    },
-    "meaning": "You speak English",
-    "meaning_id": "Anda berbicara bahasa Inggris"
-  },
-  {
-    "jp_character": "学生はちゅうごくごを話します",
-    "particles": [
-      2,
-      9
-    ],
-    "romanji": [
-      "gakusei wa chuugokugo wo hanashimasu",
-      "gakusei wa chuugokugo o hanashimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "10": "はな"
-    },
-    "meaning": "The student speaks Chinese",
-    "meaning_id": "Pelajar berbicara bahasa Mandarin"
-  },
-  {
-    "jp_character": "学生はえいごを話します",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "gakusei wa eigo wo hanashimasu",
-      "gakusei wa eigo o hanashimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "7": "はな"
-    },
-    "meaning": "The student speaks English",
-    "meaning_id": "Pelajar berbicara bahasa Inggris"
-  },
-  {
-    "jp_character": "先生はちゅうごくごを話します",
-    "particles": [
-      2,
-      9
-    ],
-    "romanji": [
-      "sensei wa chuugokugo wo hanashimasu",
-      "sensei wa chuugokugo o hanashimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "10": "はな"
-    },
-    "meaning": "The teacher speaks Chinese",
-    "meaning_id": "Guru berbicara bahasa Mandarin"
-  },
-  {
-    "jp_character": "あなたはえいごを書きます",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "anata wa eigo wo kakimasu",
-      "anata wa eigo o kakimasu"
-    ],
-    "furigana": {
-      "8": "か"
-    },
-    "meaning": "You write English",
-    "meaning_id": "Anda menulis bahasa Inggris"
-  },
-  {
-    "jp_character": "先生はえいごを書きます",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "sensei wa eigo wo kakimasu",
-      "sensei wa eigo o kakimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "7": "か"
-    },
-    "meaning": "The teacher writes English",
-    "meaning_id": "Guru menulis bahasa Inggris"
-  },
-  {
     "jp_character": "先生は日本語を読みます",
     "particles": [
       2,
@@ -5808,56 +5454,110 @@ export const generatedSentences = [
     "meaning_id": "Guru membaca bahasa Jepang"
   },
   {
-    "jp_character": "わたしはちゅうごくごを書きます",
+    "jp_character": "友だちはちゅうごくごを書きます",
     "particles": [
       3,
       10
     ],
     "romanji": [
-      "watashi wa chuugokugo wo kakimasu",
-      "watashi wa chuugokugo o kakimasu"
-    ],
-    "furigana": {
-      "11": "か"
-    },
-    "meaning": "I write Chinese",
-    "meaning_id": "Saya menulis bahasa Mandarin"
-  },
-  {
-    "jp_character": "友だちはちゅうごくごを読みます",
-    "particles": [
-      3,
-      10
-    ],
-    "romanji": [
-      "tomodachi wa chuugokugo wo yomimasu",
-      "tomodachi wa chuugokugo o yomimasu"
+      "tomodachi wa chuugokugo wo kakimasu",
+      "tomodachi wa chuugokugo o kakimasu"
     ],
     "furigana": {
       "0": "とも",
-      "11": "よ"
+      "11": "か"
     },
-    "meaning": "My friend reads Chinese",
-    "meaning_id": "Teman saya membaca bahasa Mandarin"
+    "meaning": "My friend writes Chinese",
+    "meaning_id": "Teman saya menulis bahasa Mandarin"
   },
   {
-    "jp_character": "あなたは日本語を読みます",
+    "jp_character": "あなたはちゅうごくごを読みます",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "anata wa chuugokugo wo yomimasu",
+      "anata wa chuugokugo o yomimasu"
+    ],
+    "furigana": {
+      "11": "よ"
+    },
+    "meaning": "You read Chinese",
+    "meaning_id": "Anda membaca bahasa Mandarin"
+  },
+  {
+    "jp_character": "学生はえいごを話します",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa eigo wo hanashimasu",
+      "gakusei wa eigo o hanashimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "はな"
+    },
+    "meaning": "The student speaks English",
+    "meaning_id": "Pelajar berbicara bahasa Inggris"
+  },
+  {
+    "jp_character": "先生は日本語を書きます",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "sensei wa nihongo wo kakimasu",
+      "sensei wa nihongo o kakimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん",
+      "5": "ご",
+      "7": "か"
+    },
+    "meaning": "The teacher writes Japanese",
+    "meaning_id": "Guru menulis bahasa Jepang"
+  },
+  {
+    "jp_character": "わたしはえいごを読みます",
     "particles": [
       3,
       7
     ],
     "romanji": [
-      "anata wa nihongo wo yomimasu",
-      "anata wa nihongo o yomimasu"
+      "watashi wa eigo wo yomimasu",
+      "watashi wa eigo o yomimasu"
     ],
     "furigana": {
-      "4": "に",
-      "5": "ほん",
-      "6": "ご",
       "8": "よ"
     },
-    "meaning": "You read Japanese",
-    "meaning_id": "Anda membaca bahasa Jepang"
+    "meaning": "I read English",
+    "meaning_id": "Saya membaca bahasa Inggris"
+  },
+  {
+    "jp_character": "学生はちゅうごくごを話します",
+    "particles": [
+      2,
+      9
+    ],
+    "romanji": [
+      "gakusei wa chuugokugo wo hanashimasu",
+      "gakusei wa chuugokugo o hanashimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "10": "はな"
+    },
+    "meaning": "The student speaks Chinese",
+    "meaning_id": "Pelajar berbicara bahasa Mandarin"
   },
   {
     "jp_character": "友だちは日本語を書きます",
@@ -5880,6 +5580,183 @@ export const generatedSentences = [
     "meaning_id": "Teman saya menulis bahasa Jepang"
   },
   {
+    "jp_character": "あなたはえいごを読みます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata wa eigo wo yomimasu",
+      "anata wa eigo o yomimasu"
+    ],
+    "furigana": {
+      "8": "よ"
+    },
+    "meaning": "You read English",
+    "meaning_id": "Anda membaca bahasa Inggris"
+  },
+  {
+    "jp_character": "先生はちゅうごくごを話します",
+    "particles": [
+      2,
+      9
+    ],
+    "romanji": [
+      "sensei wa chuugokugo wo hanashimasu",
+      "sensei wa chuugokugo o hanashimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "10": "はな"
+    },
+    "meaning": "The teacher speaks Chinese",
+    "meaning_id": "Guru berbicara bahasa Mandarin"
+  },
+  {
+    "jp_character": "わたしは日本語を書きます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa nihongo wo kakimasu",
+      "watashi wa nihongo o kakimasu"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "6": "ご",
+      "8": "か"
+    },
+    "meaning": "I write Japanese",
+    "meaning_id": "Saya menulis bahasa Jepang"
+  },
+  {
+    "jp_character": "友だちはえいごを書きます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi wa eigo wo kakimasu",
+      "tomodachi wa eigo o kakimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "か"
+    },
+    "meaning": "My friend writes English",
+    "meaning_id": "Teman saya menulis bahasa Inggris"
+  },
+  {
+    "jp_character": "あなたは日本語を読みます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata wa nihongo wo yomimasu",
+      "anata wa nihongo o yomimasu"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "6": "ご",
+      "8": "よ"
+    },
+    "meaning": "You read Japanese",
+    "meaning_id": "Anda membaca bahasa Jepang"
+  },
+  {
+    "jp_character": "わたしはちゅうごくごを話します",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "watashi wa chuugokugo wo hanashimasu",
+      "watashi wa chuugokugo o hanashimasu"
+    ],
+    "furigana": {
+      "11": "はな"
+    },
+    "meaning": "I speak Chinese",
+    "meaning_id": "Saya berbicara bahasa Mandarin"
+  },
+  {
+    "jp_character": "先生はえいごを書きます",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "sensei wa eigo wo kakimasu",
+      "sensei wa eigo o kakimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "7": "か"
+    },
+    "meaning": "The teacher writes English",
+    "meaning_id": "Guru menulis bahasa Inggris"
+  },
+  {
+    "jp_character": "学生はちゅうごくごを読みます",
+    "particles": [
+      2,
+      9
+    ],
+    "romanji": [
+      "gakusei wa chuugokugo wo yomimasu",
+      "gakusei wa chuugokugo o yomimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "10": "よ"
+    },
+    "meaning": "The student reads Chinese",
+    "meaning_id": "Pelajar membaca bahasa Mandarin"
+  },
+  {
+    "jp_character": "わたしは日本語を話します",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa nihongo wo hanashimasu",
+      "watashi wa nihongo o hanashimasu"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "6": "ご",
+      "8": "はな"
+    },
+    "meaning": "I speak Japanese",
+    "meaning_id": "Saya berbicara bahasa Jepang"
+  },
+  {
+    "jp_character": "友だちはえいごを読みます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi wa eigo wo yomimasu",
+      "tomodachi wa eigo o yomimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "よ"
+    },
+    "meaning": "My friend reads English",
+    "meaning_id": "Teman saya membaca bahasa Inggris"
+  },
+  {
     "jp_character": "あなたはちゅうごくごを書きます",
     "particles": [
       3,
@@ -5896,32 +5773,14 @@ export const generatedSentences = [
     "meaning_id": "Anda menulis bahasa Mandarin"
   },
   {
-    "jp_character": "先生はちゅうごくごを書きます",
-    "particles": [
-      2,
-      9
-    ],
-    "romanji": [
-      "sensei wa chuugokugo wo kakimasu",
-      "sensei wa chuugokugo o kakimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "10": "か"
-    },
-    "meaning": "The teacher writes Chinese",
-    "meaning_id": "Guru menulis bahasa Mandarin"
-  },
-  {
-    "jp_character": "学生は日本語を書きます",
+    "jp_character": "学生は日本語を話します",
     "particles": [
       2,
       6
     ],
     "romanji": [
-      "gakusei wa nihongo wo kakimasu",
-      "gakusei wa nihongo o kakimasu"
+      "gakusei wa nihongo wo hanashimasu",
+      "gakusei wa nihongo o hanashimasu"
     ],
     "furigana": {
       "0": "がく",
@@ -5929,10 +5788,10 @@ export const generatedSentences = [
       "3": "に",
       "4": "ほん",
       "5": "ご",
-      "7": "か"
+      "7": "はな"
     },
-    "meaning": "The student writes Japanese",
-    "meaning_id": "Pelajar menulis bahasa Jepang"
+    "meaning": "The student speaks Japanese",
+    "meaning_id": "Pelajar berbicara bahasa Jepang"
   },
   {
     "jp_character": "学生は駅にいます",
@@ -5969,102 +5828,6 @@ export const generatedSentences = [
     "meaning_id": "Guru ada di rumah sekarang"
   },
   {
-    "jp_character": "母はうちにいます",
-    "particles": [
-      1,
-      4
-    ],
-    "romanji": [
-      "haha wa uchi ni imasu"
-    ],
-    "furigana": {
-      "0": "はは"
-    },
-    "meaning": "My mother is at home",
-    "meaning_id": "Ibu saya ada di rumah"
-  },
-  {
-    "jp_character": "学生は今うちにいます",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "gakusei wa ima uchi ni imasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "3": "いま"
-    },
-    "meaning": "The student is at home now",
-    "meaning_id": "Pelajar ada di rumah sekarang"
-  },
-  {
-    "jp_character": "父はうちにいます",
-    "particles": [
-      1,
-      4
-    ],
-    "romanji": [
-      "chichi wa uchi ni imasu"
-    ],
-    "furigana": {
-      "0": "ちち"
-    },
-    "meaning": "My father is at home",
-    "meaning_id": "Ayah saya ada di rumah"
-  },
-  {
-    "jp_character": "先生は今こうえんにいます",
-    "particles": [
-      2,
-      8
-    ],
-    "romanji": [
-      "sensei wa ima kouen ni imasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "3": "いま"
-    },
-    "meaning": "The teacher is in the park now",
-    "meaning_id": "Guru ada di taman sekarang"
-  },
-  {
-    "jp_character": "先生はうちにいます",
-    "particles": [
-      2,
-      5
-    ],
-    "romanji": [
-      "sensei wa uchi ni imasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい"
-    },
-    "meaning": "The teacher is at home",
-    "meaning_id": "Guru ada di rumah"
-  },
-  {
-    "jp_character": "友だちは今こうえんにいます",
-    "particles": [
-      3,
-      9
-    ],
-    "romanji": [
-      "tomodachi wa ima kouen ni imasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "4": "いま"
-    },
-    "meaning": "My friend is in the park now",
-    "meaning_id": "Teman saya ada di taman sekarang"
-  },
-  {
     "jp_character": "友だちはこうえんにいます",
     "particles": [
       3,
@@ -6080,56 +5843,52 @@ export const generatedSentences = [
     "meaning_id": "Teman saya ada di taman"
   },
   {
-    "jp_character": "学生は今店にいます",
-    "particles": [
-      2,
-      5
-    ],
-    "romanji": [
-      "gakusei wa ima mise ni imasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "3": "いま",
-      "4": "みせ"
-    },
-    "meaning": "The student is at the shop now",
-    "meaning_id": "Pelajar ada di toko sekarang"
-  },
-  {
-    "jp_character": "父は今こうえんにいます",
+    "jp_character": "母は学校にいます",
     "particles": [
       1,
-      7
+      4
     ],
     "romanji": [
-      "chichi wa ima kouen ni imasu"
+      "haha wa gakkou ni imasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "がっ",
+      "3": "こう"
+    },
+    "meaning": "My mother is at school",
+    "meaning_id": "Ibu saya ada di sekolah"
+  },
+  {
+    "jp_character": "父は店にいます",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "chichi wa mise ni imasu"
     ],
     "furigana": {
       "0": "ちち",
-      "2": "いま"
+      "2": "みせ"
     },
-    "meaning": "My father is in the park now",
-    "meaning_id": "Ayah saya ada di taman sekarang"
+    "meaning": "My father is at the shop",
+    "meaning_id": "Ayah saya ada di toko"
   },
   {
-    "jp_character": "学生は今駅にいます",
+    "jp_character": "母はうちにいます",
     "particles": [
-      2,
-      5
+      1,
+      4
     ],
     "romanji": [
-      "gakusei wa ima eki ni imasu"
+      "haha wa uchi ni imasu"
     ],
     "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "3": "いま",
-      "4": "えき"
+      "0": "はは"
     },
-    "meaning": "The student is at the station now",
-    "meaning_id": "Pelajar ada di stasiun sekarang"
+    "meaning": "My mother is at home",
+    "meaning_id": "Ibu saya ada di rumah"
   },
   {
     "jp_character": "学生は店にいます",
@@ -6147,24 +5906,6 @@ export const generatedSentences = [
     },
     "meaning": "The student is at the shop",
     "meaning_id": "Pelajar ada di toko"
-  },
-  {
-    "jp_character": "父は今学校にいます",
-    "particles": [
-      1,
-      5
-    ],
-    "romanji": [
-      "chichi wa ima gakkou ni imasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "2": "いま",
-      "3": "がっ",
-      "4": "こう"
-    },
-    "meaning": "My father is at school now",
-    "meaning_id": "Ayah saya ada di sekolah sekarang"
   },
   {
     "jp_character": "父はこうえんにいます",
@@ -6199,6 +5940,38 @@ export const generatedSentences = [
     "meaning_id": "Guru ada di stasiun"
   },
   {
+    "jp_character": "友だちは学校にいます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa gakkou ni imasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "がっ",
+      "5": "こう"
+    },
+    "meaning": "My friend is at school",
+    "meaning_id": "Teman saya ada di sekolah"
+  },
+  {
+    "jp_character": "父はうちにいます",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "chichi wa uchi ni imasu"
+    ],
+    "furigana": {
+      "0": "ちち"
+    },
+    "meaning": "My father is at home",
+    "meaning_id": "Ayah saya ada di rumah"
+  },
+  {
     "jp_character": "母はこうえんにいます",
     "particles": [
       1,
@@ -6214,54 +5987,137 @@ export const generatedSentences = [
     "meaning_id": "Ibu saya ada di taman"
   },
   {
-    "jp_character": "友だちは今うちにいます",
+    "jp_character": "友だちは店にいます",
     "particles": [
       3,
-      7
+      5
     ],
     "romanji": [
-      "tomodachi wa ima uchi ni imasu"
+      "tomodachi wa mise ni imasu"
     ],
     "furigana": {
       "0": "とも",
-      "4": "いま"
+      "4": "みせ"
     },
-    "meaning": "My friend is at home now",
-    "meaning_id": "Teman saya ada di rumah sekarang"
+    "meaning": "My friend is at the shop",
+    "meaning_id": "Teman saya ada di toko"
   },
   {
-    "jp_character": "学生は今こうえんにいます",
+    "jp_character": "先生は学校にいます",
     "particles": [
       2,
-      8
+      5
     ],
     "romanji": [
-      "gakusei wa ima kouen ni imasu"
+      "sensei wa gakkou ni imasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう"
+    },
+    "meaning": "The teacher is at school",
+    "meaning_id": "Guru ada di sekolah"
+  },
+  {
+    "jp_character": "学生は今駅にいます",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "gakusei wa ima eki ni imasu"
     ],
     "furigana": {
       "0": "がく",
       "1": "せい",
-      "3": "いま"
+      "3": "いま",
+      "4": "えき"
     },
-    "meaning": "The student is in the park now",
-    "meaning_id": "Pelajar ada di taman sekarang"
+    "meaning": "The student is at the station now",
+    "meaning_id": "Pelajar ada di stasiun sekarang"
   },
   {
-    "jp_character": "母は学校にいます",
+    "jp_character": "先生はうちにいます",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa uchi ni imasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
+    "meaning": "The teacher is at home",
+    "meaning_id": "Guru ada di rumah"
+  },
+  {
+    "jp_character": "母は店にいます",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "haha wa mise ni imasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "みせ"
+    },
+    "meaning": "My mother is at the shop",
+    "meaning_id": "Ibu saya ada di toko"
+  },
+  {
+    "jp_character": "学生はこうえんにいます",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "gakusei wa kouen ni imasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
+    "meaning": "The student is in the park",
+    "meaning_id": "Pelajar ada di taman"
+  },
+  {
+    "jp_character": "友だちは駅にいます",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "tomodachi wa eki ni imasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "えき"
+    },
+    "meaning": "My friend is at the station",
+    "meaning_id": "Teman saya ada di stasiun"
+  },
+  {
+    "jp_character": "父は学校にいます",
     "particles": [
       1,
       4
     ],
     "romanji": [
-      "haha wa gakkou ni imasu"
+      "chichi wa gakkou ni imasu"
     ],
     "furigana": {
-      "0": "はは",
+      "0": "ちち",
       "2": "がっ",
       "3": "こう"
     },
-    "meaning": "My mother is at school",
-    "meaning_id": "Ibu saya ada di sekolah"
+    "meaning": "My father is at school",
+    "meaning_id": "Ayah saya ada di sekolah"
   },
   {
     "jp_character": "今日、学生はデパートで友だちに会います",
@@ -6285,27 +6141,6 @@ export const generatedSentences = [
     "meaning_id": "Hari ini Pelajar bertemu teman di toko serba ada"
   },
   {
-    "jp_character": "今日、先生はデパートで友だちに会います",
-    "particles": [
-      5,
-      10,
-      14
-    ],
-    "romanji": [
-      "kyou sensei wa depaato de tomodachi ni aimasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "せん",
-      "4": "せい",
-      "11": "とも",
-      "15": "あ"
-    },
-    "meaning": "The teacher meets a friend at the department store today",
-    "meaning_id": "Hari ini Guru bertemu teman di toko serba ada"
-  },
-  {
     "jp_character": "きのう、先生は学校で友だちに会いました",
     "particles": [
       6,
@@ -6327,143 +6162,22 @@ export const generatedSentences = [
     "meaning_id": "Kemarin Guru bertemu teman di sekolah"
   },
   {
-    "jp_character": "きのう、先生は駅で友だちに会いました",
-    "particles": [
-      6,
-      8,
-      12
-    ],
-    "romanji": [
-      "kinou sensei wa eki de tomodachi ni aimashita"
-    ],
-    "furigana": {
-      "4": "せん",
-      "5": "せい",
-      "7": "えき",
-      "9": "とも",
-      "13": "あ"
-    },
-    "meaning": "The teacher met a friend at the station yesterday",
-    "meaning_id": "Kemarin Guru bertemu teman di stasiun"
-  },
-  {
-    "jp_character": "きのう、わたしはデパートで友だちに会いました",
-    "particles": [
-      7,
-      12,
-      16
-    ],
-    "romanji": [
-      "kinou watashi wa depaato de tomodachi ni aimashita"
-    ],
-    "furigana": {
-      "13": "とも",
-      "17": "あ"
-    },
-    "meaning": "I met a friend at the department store yesterday",
-    "meaning_id": "Kemarin Saya bertemu teman di toko serba ada"
-  },
-  {
-    "jp_character": "先生はデパートで友だちに会います",
-    "particles": [
-      2,
-      7,
-      11
-    ],
-    "romanji": [
-      "sensei wa depaato de tomodachi ni aimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "8": "とも",
-      "12": "あ"
-    },
-    "meaning": "The teacher meets a friend at the department store",
-    "meaning_id": "Guru bertemu teman di toko serba ada"
-  },
-  {
-    "jp_character": "わたしは学校で友だちに会います",
+    "jp_character": "わたしは駅で友だちに会います",
     "particles": [
       3,
-      6,
-      10
-    ],
-    "romanji": [
-      "watashi wa gakkou de tomodachi ni aimasu"
-    ],
-    "furigana": {
-      "4": "がっ",
-      "5": "こう",
-      "7": "とも",
-      "11": "あ"
-    },
-    "meaning": "I meets a friend at school",
-    "meaning_id": "Saya bertemu teman di sekolah"
-  },
-  {
-    "jp_character": "今日、先生はこうえんで友だちに会います",
-    "particles": [
       5,
-      10,
-      14
+      9
     ],
     "romanji": [
-      "kyou sensei wa kouen de tomodachi ni aimasu"
+      "watashi wa eki de tomodachi ni aimasu"
     ],
     "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "せん",
-      "4": "せい",
-      "11": "とも",
-      "15": "あ"
+      "4": "えき",
+      "6": "とも",
+      "10": "あ"
     },
-    "meaning": "The teacher meets a friend in the park today",
-    "meaning_id": "Hari ini Guru bertemu teman di taman"
-  },
-  {
-    "jp_character": "今日、先生は駅で友だちに会います",
-    "particles": [
-      5,
-      7,
-      11
-    ],
-    "romanji": [
-      "kyou sensei wa eki de tomodachi ni aimasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "せん",
-      "4": "せい",
-      "6": "えき",
-      "8": "とも",
-      "12": "あ"
-    },
-    "meaning": "The teacher meets a friend at the station today",
-    "meaning_id": "Hari ini Guru bertemu teman di stasiun"
-  },
-  {
-    "jp_character": "今日、わたしは学校で友だちに会います",
-    "particles": [
-      6,
-      9,
-      13
-    ],
-    "romanji": [
-      "kyou watashi wa gakkou de tomodachi ni aimasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "7": "がっ",
-      "8": "こう",
-      "10": "とも",
-      "14": "あ"
-    },
-    "meaning": "I meets a friend at school today",
-    "meaning_id": "Hari ini Saya bertemu teman di sekolah"
+    "meaning": "I meets a friend at the station",
+    "meaning_id": "Saya bertemu teman di stasiun"
   },
   {
     "jp_character": "先生はこうえんで友だちに会います",
@@ -6485,24 +6199,63 @@ export const generatedSentences = [
     "meaning_id": "Guru bertemu teman di taman"
   },
   {
-    "jp_character": "学生は駅で友だちに会います",
+    "jp_character": "きのう、学生は店で友だちに会いました",
     "particles": [
-      2,
-      4,
-      8
+      6,
+      8,
+      12
     ],
     "romanji": [
-      "gakusei wa eki de tomodachi ni aimasu"
+      "kinou gakusei wa mise de tomodachi ni aimashita"
     ],
     "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "3": "えき",
-      "5": "とも",
-      "9": "あ"
+      "4": "がく",
+      "5": "せい",
+      "7": "みせ",
+      "9": "とも",
+      "13": "あ"
     },
-    "meaning": "The student meets a friend at the station",
-    "meaning_id": "Pelajar bertemu teman di stasiun"
+    "meaning": "The student met a friend at the shop yesterday",
+    "meaning_id": "Kemarin Pelajar bertemu teman di toko"
+  },
+  {
+    "jp_character": "わたしは学校で友だちに会います",
+    "particles": [
+      3,
+      6,
+      10
+    ],
+    "romanji": [
+      "watashi wa gakkou de tomodachi ni aimasu"
+    ],
+    "furigana": {
+      "4": "がっ",
+      "5": "こう",
+      "7": "とも",
+      "11": "あ"
+    },
+    "meaning": "I meets a friend at school",
+    "meaning_id": "Saya bertemu teman di sekolah"
+  },
+  {
+    "jp_character": "きのう、先生は駅で友だちに会いました",
+    "particles": [
+      6,
+      8,
+      12
+    ],
+    "romanji": [
+      "kinou sensei wa eki de tomodachi ni aimashita"
+    ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "7": "えき",
+      "9": "とも",
+      "13": "あ"
+    },
+    "meaning": "The teacher met a friend at the station yesterday",
+    "meaning_id": "Kemarin Guru bertemu teman di stasiun"
   },
   {
     "jp_character": "わたしはデパートで友だちに会います",
@@ -6541,6 +6294,63 @@ export const generatedSentences = [
     "meaning_id": "Pelajar bertemu teman di taman"
   },
   {
+    "jp_character": "きのう、わたしは店で友だちに会いました",
+    "particles": [
+      7,
+      9,
+      13
+    ],
+    "romanji": [
+      "kinou watashi wa mise de tomodachi ni aimashita"
+    ],
+    "furigana": {
+      "8": "みせ",
+      "10": "とも",
+      "14": "あ"
+    },
+    "meaning": "I met a friend at the shop yesterday",
+    "meaning_id": "Kemarin Saya bertemu teman di toko"
+  },
+  {
+    "jp_character": "先生はデパートで友だちに会います",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "sensei wa depaato de tomodachi ni aimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "8": "とも",
+      "12": "あ"
+    },
+    "meaning": "The teacher meets a friend at the department store",
+    "meaning_id": "Guru bertemu teman di toko serba ada"
+  },
+  {
+    "jp_character": "学生は駅で友だちに会います",
+    "particles": [
+      2,
+      4,
+      8
+    ],
+    "romanji": [
+      "gakusei wa eki de tomodachi ni aimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "えき",
+      "5": "とも",
+      "9": "あ"
+    },
+    "meaning": "The student meets a friend at the station",
+    "meaning_id": "Pelajar bertemu teman di stasiun"
+  },
+  {
     "jp_character": "きのう、先生はこうえんで友だちに会いました",
     "particles": [
       6,
@@ -6558,6 +6368,47 @@ export const generatedSentences = [
     },
     "meaning": "The teacher met a friend in the park yesterday",
     "meaning_id": "Kemarin Guru bertemu teman di taman"
+  },
+  {
+    "jp_character": "学生は店で友だちに会います",
+    "particles": [
+      2,
+      4,
+      8
+    ],
+    "romanji": [
+      "gakusei wa mise de tomodachi ni aimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "みせ",
+      "5": "とも",
+      "9": "あ"
+    },
+    "meaning": "The student meets a friend at the shop",
+    "meaning_id": "Pelajar bertemu teman di toko"
+  },
+  {
+    "jp_character": "今日、わたしは学校で友だちに会います",
+    "particles": [
+      6,
+      9,
+      13
+    ],
+    "romanji": [
+      "kyou watashi wa gakkou de tomodachi ni aimasu"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "7": "がっ",
+      "8": "こう",
+      "10": "とも",
+      "14": "あ"
+    },
+    "meaning": "I meets a friend at school today",
+    "meaning_id": "Hari ini Saya bertemu teman di sekolah"
   },
   {
     "jp_character": "毎日、友だちはうちでべんきょうします",
@@ -6593,6 +6444,26 @@ export const generatedSentences = [
     "meaning_id": "Kemarin Guru belajar di kamar"
   },
   {
+    "jp_character": "学生は学校でカタカナをべんきょうします",
+    "particles": [
+      2,
+      5,
+      10
+    ],
+    "romanji": [
+      "gakusei wa gakkou de katakana wo benkyou shimasu",
+      "gakusei wa gakkou de katakana o benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう"
+    },
+    "meaning": "The student studies katakana at school",
+    "meaning_id": "Pelajar belajar katakana di sekolah"
+  },
+  {
     "jp_character": "きのう、わたしはへやでべんきょうしました",
     "particles": [
       7,
@@ -6603,6 +6474,84 @@ export const generatedSentences = [
     ],
     "meaning": "I studied in the room yesterday",
     "meaning_id": "Kemarin Saya belajar di kamar"
+  },
+  {
+    "jp_character": "わたしはうちでべんきょうします",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa uchi de benkyou shimasu"
+    ],
+    "meaning": "I studies at home",
+    "meaning_id": "Saya belajar di rumah"
+  },
+  {
+    "jp_character": "学生は学校でべんきょうします",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "gakusei wa gakkou de benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう"
+    },
+    "meaning": "The student studies at school",
+    "meaning_id": "Pelajar belajar di sekolah"
+  },
+  {
+    "jp_character": "きのう、友だちはへやでべんきょうしました",
+    "particles": [
+      7,
+      10
+    ],
+    "romanji": [
+      "kinou tomodachi wa heya de benkyou shimashita"
+    ],
+    "furigana": {
+      "4": "とも"
+    },
+    "meaning": "My friend studied in the room yesterday",
+    "meaning_id": "Kemarin Teman saya belajar di kamar"
+  },
+  {
+    "jp_character": "先生はうちでべんきょうします",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa uchi de benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
+    "meaning": "The teacher studies at home",
+    "meaning_id": "Guru belajar di rumah"
+  },
+  {
+    "jp_character": "友だちは学校でべんきょうします",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa gakkou de benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "がっ",
+      "5": "こう"
+    },
+    "meaning": "My friend studies at school",
+    "meaning_id": "Teman saya belajar di sekolah"
   },
   {
     "jp_character": "学生はへやでべんきょうします",
@@ -6633,6 +6582,148 @@ export const generatedSentences = [
     "meaning_id": "Kemarin Saya belajar di rumah"
   },
   {
+    "jp_character": "先生は学校でべんきょうします",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa gakkou de benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう"
+    },
+    "meaning": "The teacher studies at school",
+    "meaning_id": "Guru belajar di sekolah"
+  },
+  {
+    "jp_character": "きのう、友だちは学校でべんきょうしました",
+    "particles": [
+      7,
+      10
+    ],
+    "romanji": [
+      "kinou tomodachi wa gakkou de benkyou shimashita"
+    ],
+    "furigana": {
+      "4": "とも",
+      "8": "がっ",
+      "9": "こう"
+    },
+    "meaning": "My friend studied at school yesterday",
+    "meaning_id": "Kemarin Teman saya belajar di sekolah"
+  },
+  {
+    "jp_character": "わたしはへやでべんきょうします",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa heya de benkyou shimasu"
+    ],
+    "meaning": "I studies in the room",
+    "meaning_id": "Saya belajar di kamar"
+  },
+  {
+    "jp_character": "学生はうちでべんきょうします",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "gakusei wa uchi de benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
+    "meaning": "The student studies at home",
+    "meaning_id": "Pelajar belajar di rumah"
+  },
+  {
+    "jp_character": "きのう、先生はうちでべんきょうしました",
+    "particles": [
+      6,
+      9
+    ],
+    "romanji": [
+      "kinou sensei wa uchi de benkyou shimashita"
+    ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい"
+    },
+    "meaning": "The teacher studied at home yesterday",
+    "meaning_id": "Kemarin Guru belajar di rumah"
+  },
+  {
+    "jp_character": "わたしは学校でべんきょうします",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa gakkou de benkyou shimasu"
+    ],
+    "furigana": {
+      "4": "がっ",
+      "5": "こう"
+    },
+    "meaning": "I studies at school",
+    "meaning_id": "Saya belajar di sekolah"
+  },
+  {
+    "jp_character": "先生はへやでべんきょうします",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa heya de benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
+    "meaning": "The teacher studies in the room",
+    "meaning_id": "Guru belajar di kamar"
+  },
+  {
+    "jp_character": "きのう、学生はへやでべんきょうしました",
+    "particles": [
+      6,
+      9
+    ],
+    "romanji": [
+      "kinou gakusei wa heya de benkyou shimashita"
+    ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい"
+    },
+    "meaning": "The student studied in the room yesterday",
+    "meaning_id": "Kemarin Pelajar belajar di kamar"
+  },
+  {
+    "jp_character": "友だちはうちでべんきょうします",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa uchi de benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "とも"
+    },
+    "meaning": "My friend studies at home",
+    "meaning_id": "Teman saya belajar di rumah"
+  },
+  {
     "jp_character": "先生は学校でかんじをべんきょうします",
     "particles": [
       2,
@@ -6653,187 +6744,6 @@ export const generatedSentences = [
     "meaning_id": "Guru belajar kanji di sekolah"
   },
   {
-    "jp_character": "毎日、わたしは学校でべんきょうします",
-    "particles": [
-      6,
-      9
-    ],
-    "romanji": [
-      "mainichi watashi wa gakkou de benkyou shimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "7": "がっ",
-      "8": "こう"
-    },
-    "meaning": "I studies at school every day",
-    "meaning_id": "Setiap hari Saya belajar di sekolah"
-  },
-  {
-    "jp_character": "毎日、先生は学校でべんきょうします",
-    "particles": [
-      5,
-      8
-    ],
-    "romanji": [
-      "mainichi sensei wa gakkou de benkyou shimasu"
-    ],
-    "furigana": {
-      "0": "まい",
-      "1": "にち",
-      "3": "せん",
-      "4": "せい",
-      "6": "がっ",
-      "7": "こう"
-    },
-    "meaning": "The teacher studies at school every day",
-    "meaning_id": "Setiap hari Guru belajar di sekolah"
-  },
-  {
-    "jp_character": "友だちは学校でカタカナをべんきょうします",
-    "particles": [
-      3,
-      6,
-      11
-    ],
-    "romanji": [
-      "tomodachi wa gakkou de katakana wo benkyou shimasu",
-      "tomodachi wa gakkou de katakana o benkyou shimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "4": "がっ",
-      "5": "こう"
-    },
-    "meaning": "My friend studies katakana at school",
-    "meaning_id": "Teman saya belajar katakana di sekolah"
-  },
-  {
-    "jp_character": "きのう、友だちはへやでべんきょうしました",
-    "particles": [
-      7,
-      10
-    ],
-    "romanji": [
-      "kinou tomodachi wa heya de benkyou shimashita"
-    ],
-    "furigana": {
-      "4": "とも"
-    },
-    "meaning": "My friend studied in the room yesterday",
-    "meaning_id": "Kemarin Teman saya belajar di kamar"
-  },
-  {
-    "jp_character": "先生は学校でえいごをべんきょうします",
-    "particles": [
-      2,
-      5,
-      9
-    ],
-    "romanji": [
-      "sensei wa gakkou de eigo wo benkyou shimasu",
-      "sensei wa gakkou de eigo o benkyou shimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "3": "がっ",
-      "4": "こう"
-    },
-    "meaning": "The teacher studies English at school",
-    "meaning_id": "Guru belajar bahasa Inggris di sekolah"
-  },
-  {
-    "jp_character": "きのう、友だちは学校でべんきょうしました",
-    "particles": [
-      7,
-      10
-    ],
-    "romanji": [
-      "kinou tomodachi wa gakkou de benkyou shimashita"
-    ],
-    "furigana": {
-      "4": "とも",
-      "8": "がっ",
-      "9": "こう"
-    },
-    "meaning": "My friend studied at school yesterday",
-    "meaning_id": "Kemarin Teman saya belajar di sekolah"
-  },
-  {
-    "jp_character": "学生は学校でカタカナをべんきょうします",
-    "particles": [
-      2,
-      5,
-      10
-    ],
-    "romanji": [
-      "gakusei wa gakkou de katakana wo benkyou shimasu",
-      "gakusei wa gakkou de katakana o benkyou shimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "3": "がっ",
-      "4": "こう"
-    },
-    "meaning": "The student studies katakana at school",
-    "meaning_id": "Pelajar belajar katakana di sekolah"
-  },
-  {
-    "jp_character": "きのう、学生はへやでべんきょうしました",
-    "particles": [
-      6,
-      9
-    ],
-    "romanji": [
-      "kinou gakusei wa heya de benkyou shimashita"
-    ],
-    "furigana": {
-      "4": "がく",
-      "5": "せい"
-    },
-    "meaning": "The student studied in the room yesterday",
-    "meaning_id": "Kemarin Pelajar belajar di kamar"
-  },
-  {
-    "jp_character": "学生は学校でひらがなをべんきょうします",
-    "particles": [
-      2,
-      5,
-      10
-    ],
-    "romanji": [
-      "gakusei wa gakkou de hiragana wo benkyou shimasu",
-      "gakusei wa gakkou de hiragana o benkyou shimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "3": "がっ",
-      "4": "こう"
-    },
-    "meaning": "The student studies hiragana at school",
-    "meaning_id": "Pelajar belajar hiragana di sekolah"
-  },
-  {
-    "jp_character": "きのう、先生はうちでべんきょうしました",
-    "particles": [
-      6,
-      9
-    ],
-    "romanji": [
-      "kinou sensei wa uchi de benkyou shimashita"
-    ],
-    "furigana": {
-      "4": "せん",
-      "5": "せい"
-    },
-    "meaning": "The teacher studied at home yesterday",
-    "meaning_id": "Kemarin Guru belajar di rumah"
-  },
-  {
     "jp_character": "きのう、わたしは学校でべんきょうしました",
     "particles": [
       7,
@@ -6848,6 +6758,21 @@ export const generatedSentences = [
     },
     "meaning": "I studied at school yesterday",
     "meaning_id": "Kemarin Saya belajar di sekolah"
+  },
+  {
+    "jp_character": "友だちはへやでべんきょうします",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa heya de benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "とも"
+    },
+    "meaning": "My friend studies in the room",
+    "meaning_id": "Teman saya belajar di kamar"
   },
   {
     "jp_character": "きのう、学生はうちでべんきょうしました",
@@ -6866,121 +6791,22 @@ export const generatedSentences = [
     "meaning_id": "Kemarin Pelajar belajar di rumah"
   },
   {
-    "jp_character": "きのう、先生は学校でべんきょうしました",
+    "jp_character": "毎日、わたしは学校でべんきょうします",
     "particles": [
       6,
       9
     ],
     "romanji": [
-      "kinou sensei wa gakkou de benkyou shimashita"
-    ],
-    "furigana": {
-      "4": "せん",
-      "5": "せい",
-      "7": "がっ",
-      "8": "こう"
-    },
-    "meaning": "The teacher studied at school yesterday",
-    "meaning_id": "Kemarin Guru belajar di sekolah"
-  },
-  {
-    "jp_character": "わたしは学校で日本語をべんきょうします",
-    "particles": [
-      3,
-      6,
-      10
-    ],
-    "romanji": [
-      "watashi wa gakkou de nihongo wo benkyou shimasu",
-      "watashi wa gakkou de nihongo o benkyou shimasu"
-    ],
-    "furigana": {
-      "4": "がっ",
-      "5": "こう",
-      "7": "に",
-      "8": "ほん",
-      "9": "ご"
-    },
-    "meaning": "I studies Japanese at school",
-    "meaning_id": "Saya belajar bahasa Jepang di sekolah"
-  },
-  {
-    "jp_character": "先生は学校でひらがなをべんきょうします",
-    "particles": [
-      2,
-      5,
-      10
-    ],
-    "romanji": [
-      "sensei wa gakkou de hiragana wo benkyou shimasu",
-      "sensei wa gakkou de hiragana o benkyou shimasu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい",
-      "3": "がっ",
-      "4": "こう"
-    },
-    "meaning": "The teacher studies hiragana at school",
-    "meaning_id": "Guru belajar hiragana di sekolah"
-  },
-  {
-    "jp_character": "わたしはうちでべんきょうします",
-    "particles": [
-      3,
-      6
-    ],
-    "romanji": [
-      "watashi wa uchi de benkyou shimasu"
-    ],
-    "meaning": "I studies at home",
-    "meaning_id": "Saya belajar di rumah"
-  },
-  {
-    "jp_character": "毎日、わたしはへやでべんきょうします",
-    "particles": [
-      6,
-      9
-    ],
-    "romanji": [
-      "mainichi watashi wa heya de benkyou shimasu"
+      "mainichi watashi wa gakkou de benkyou shimasu"
     ],
     "furigana": {
       "0": "まい",
-      "1": "にち"
+      "1": "にち",
+      "7": "がっ",
+      "8": "こう"
     },
-    "meaning": "I studies in the room every day",
-    "meaning_id": "Setiap hari Saya belajar di kamar"
-  },
-  {
-    "jp_character": "わたしはへやでべんきょうします",
-    "particles": [
-      3,
-      6
-    ],
-    "romanji": [
-      "watashi wa heya de benkyou shimasu"
-    ],
-    "meaning": "I studies in the room",
-    "meaning_id": "Saya belajar di kamar"
-  },
-  {
-    "jp_character": "わたしは学校でえいごをべんきょうします",
-    "particles": [
-      3,
-      6,
-      10
-    ],
-    "romanji": [
-      "watashi wa gakkou de eigo wo benkyou shimasu",
-      "watashi wa gakkou de eigo o benkyou shimasu"
-    ],
-    "furigana": {
-      "4": "がっ",
-      "5": "こう"
-    },
-    "meaning": "I studies English at school",
-    "meaning_id": "Saya belajar bahasa Inggris di sekolah"
+    "meaning": "I studies at school every day",
+    "meaning_id": "Setiap hari Saya belajar di sekolah"
   },
   {
     "jp_character": "友だちのかばんは大きいです",
@@ -6999,72 +6825,6 @@ export const generatedSentences = [
     "meaning_id": "Tas teman saya besar"
   },
   {
-    "jp_character": "あなたの車は大きいです",
-    "particles": [
-      3,
-      5
-    ],
-    "romanji": [
-      "anata no kuruma wa ookii desu"
-    ],
-    "furigana": {
-      "4": "くるま",
-      "6": "おお"
-    },
-    "meaning": "Your car is big",
-    "meaning_id": "Mobil Anda besar"
-  },
-  {
-    "jp_character": "友だちの車は小さいです",
-    "particles": [
-      3,
-      5
-    ],
-    "romanji": [
-      "tomodachi no kuruma wa chiisai desu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "4": "くるま",
-      "6": "ちい"
-    },
-    "meaning": "My friend's car is small",
-    "meaning_id": "Mobil teman saya kecil"
-  },
-  {
-    "jp_character": "母の車は大きいです",
-    "particles": [
-      1,
-      3
-    ],
-    "romanji": [
-      "haha no kuruma wa ookii desu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "2": "くるま",
-      "4": "おお"
-    },
-    "meaning": "My mother's car is big",
-    "meaning_id": "Mobil ibu saya besar"
-  },
-  {
-    "jp_character": "友だちのかばんは新しいです",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "tomodachi no kaban wa atarashii desu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "8": "あたら"
-    },
-    "meaning": "My friend's bag is new",
-    "meaning_id": "Tas teman saya baru"
-  },
-  {
     "jp_character": "あなたのとけいは古いです",
     "particles": [
       3,
@@ -7078,6 +6838,71 @@ export const generatedSentences = [
     },
     "meaning": "Your watch is old",
     "meaning_id": "Jam Anda lama"
+  },
+  {
+    "jp_character": "父の車は新しいです",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "chichi no kuruma wa atarashii desu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "くるま",
+      "4": "あたら"
+    },
+    "meaning": "My father's car is new",
+    "meaning_id": "Mobil ayah saya baru"
+  },
+  {
+    "jp_character": "わたしのテレビは小さいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi no terebi wa chiisai desu"
+    ],
+    "furigana": {
+      "8": "ちい"
+    },
+    "meaning": "My TV is small",
+    "meaning_id": "TV saya kecil"
+  },
+  {
+    "jp_character": "母の車は高いです",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "haha no kuruma wa takai desu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "くるま",
+      "4": "たか"
+    },
+    "meaning": "My mother's car is expensive",
+    "meaning_id": "Mobil ibu saya mahal"
+  },
+  {
+    "jp_character": "あなたの本は新しいです",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "anata no hon wa atarashii desu"
+    ],
+    "furigana": {
+      "4": "ほん",
+      "6": "あたら"
+    },
+    "meaning": "Your book is new",
+    "meaning_id": "Buku Anda baru"
   },
   {
     "jp_character": "父のとけいは高いです",
@@ -7111,20 +6936,71 @@ export const generatedSentences = [
     "meaning_id": "Tas saya besar"
   },
   {
-    "jp_character": "あなたの本は新しいです",
+    "jp_character": "友だちの本は古いです",
     "particles": [
       3,
       5
     ],
     "romanji": [
-      "anata no hon wa atarashii desu"
+      "tomodachi no hon wa furui desu"
     ],
     "furigana": {
+      "0": "とも",
       "4": "ほん",
-      "6": "あたら"
+      "6": "ふる"
     },
-    "meaning": "Your book is new",
-    "meaning_id": "Buku Anda baru"
+    "meaning": "My friend's book is old",
+    "meaning_id": "Buku teman saya lama"
+  },
+  {
+    "jp_character": "母の車は白いです",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "haha no kuruma wa shiroi desu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "くるま",
+      "4": "しろ"
+    },
+    "meaning": "My mother's car is white",
+    "meaning_id": "Mobil ibu saya putih"
+  },
+  {
+    "jp_character": "友だちのテレビは小さいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi no terebi wa chiisai desu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "ちい"
+    },
+    "meaning": "My friend's TV is small",
+    "meaning_id": "TV teman saya kecil"
+  },
+  {
+    "jp_character": "父の車は黒いです",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "chichi no kuruma wa kuroi desu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "くるま",
+      "4": "くろ"
+    },
+    "meaning": "My father's car is black",
+    "meaning_id": "Mobil ayah saya hitam"
   },
   {
     "jp_character": "母のかばんは新しいです",
@@ -7143,85 +7019,35 @@ export const generatedSentences = [
     "meaning_id": "Tas ibu saya baru"
   },
   {
-    "jp_character": "父の車は新しいです",
-    "particles": [
-      1,
-      3
-    ],
-    "romanji": [
-      "chichi no kuruma wa atarashii desu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "2": "くるま",
-      "4": "あたら"
-    },
-    "meaning": "My father's car is new",
-    "meaning_id": "Mobil ayah saya baru"
-  },
-  {
-    "jp_character": "わたしのかばんは小さいです",
+    "jp_character": "あなたのとけいは高いです",
     "particles": [
       3,
       7
     ],
     "romanji": [
-      "watashi no kaban wa chiisai desu"
+      "anata no tokei wa takai desu"
     ],
     "furigana": {
-      "8": "ちい"
+      "8": "たか"
     },
-    "meaning": "My bag is small",
-    "meaning_id": "Tas saya kecil"
+    "meaning": "Your watch is expensive",
+    "meaning_id": "Jam Anda mahal"
   },
   {
-    "jp_character": "友だちのとけいは新しいです",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "tomodachi no tokei wa atarashii desu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "8": "あたら"
-    },
-    "meaning": "My friend's watch is new",
-    "meaning_id": "Jam teman saya baru"
-  },
-  {
-    "jp_character": "母の車は古いです",
-    "particles": [
-      1,
-      3
-    ],
-    "romanji": [
-      "haha no kuruma wa furui desu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "2": "くるま",
-      "4": "ふる"
-    },
-    "meaning": "My mother's car is old",
-    "meaning_id": "Mobil ibu saya lama"
-  },
-  {
-    "jp_character": "あなたの車は新しいです",
+    "jp_character": "わたしの本は古いです",
     "particles": [
       3,
       5
     ],
     "romanji": [
-      "anata no kuruma wa atarashii desu"
+      "watashi no hon wa furui desu"
     ],
     "furigana": {
-      "4": "くるま",
-      "6": "あたら"
+      "4": "ほん",
+      "6": "ふる"
     },
-    "meaning": "Your car is new",
-    "meaning_id": "Mobil Anda baru"
+    "meaning": "My book is old",
+    "meaning_id": "Buku saya lama"
   },
   {
     "jp_character": "友だちのテレビは大きいです",
@@ -7240,119 +7066,36 @@ export const generatedSentences = [
     "meaning_id": "TV teman saya besar"
   },
   {
-    "jp_character": "友だちの本は古いです",
-    "particles": [
-      3,
-      5
-    ],
-    "romanji": [
-      "tomodachi no hon wa furui desu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "4": "ほん",
-      "6": "ふる"
-    },
-    "meaning": "My friend's book is old",
-    "meaning_id": "Buku teman saya lama"
-  },
-  {
-    "jp_character": "母の車は高いです",
-    "particles": [
-      1,
-      3
-    ],
-    "romanji": [
-      "haha no kuruma wa takai desu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "2": "くるま",
-      "4": "たか"
-    },
-    "meaning": "My mother's car is expensive",
-    "meaning_id": "Mobil ibu saya mahal"
-  },
-  {
-    "jp_character": "わたしの車は白いです",
-    "particles": [
-      3,
-      5
-    ],
-    "romanji": [
-      "watashi no kuruma wa shiroi desu"
-    ],
-    "furigana": {
-      "4": "くるま",
-      "6": "しろ"
-    },
-    "meaning": "My car is white",
-    "meaning_id": "Mobil saya putih"
-  },
-  {
-    "jp_character": "友だちの車は新しいです",
-    "particles": [
-      3,
-      5
-    ],
-    "romanji": [
-      "tomodachi no kuruma wa atarashii desu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "4": "くるま",
-      "6": "あたら"
-    },
-    "meaning": "My friend's car is new",
-    "meaning_id": "Mobil teman saya baru"
-  },
-  {
-    "jp_character": "あなたのとけいは高いです",
+    "jp_character": "わたしのかばんは小さいです",
     "particles": [
       3,
       7
     ],
     "romanji": [
-      "anata no tokei wa takai desu"
+      "watashi no kaban wa chiisai desu"
     ],
     "furigana": {
-      "8": "たか"
+      "8": "ちい"
     },
-    "meaning": "Your watch is expensive",
-    "meaning_id": "Jam Anda mahal"
+    "meaning": "My bag is small",
+    "meaning_id": "Tas saya kecil"
   },
   {
-    "jp_character": "父の本は古いです",
+    "jp_character": "父の車は白いです",
     "particles": [
       1,
       3
     ],
     "romanji": [
-      "chichi no hon wa furui desu"
+      "chichi no kuruma wa shiroi desu"
     ],
     "furigana": {
       "0": "ちち",
-      "2": "ほん",
-      "4": "ふる"
+      "2": "くるま",
+      "4": "しろ"
     },
-    "meaning": "My father's book is old",
-    "meaning_id": "Buku ayah saya lama"
-  },
-  {
-    "jp_character": "父のテレビは新しいです",
-    "particles": [
-      1,
-      5
-    ],
-    "romanji": [
-      "chichi no terebi wa atarashii desu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "6": "あたら"
-    },
-    "meaning": "My father's TV is new",
-    "meaning_id": "TV ayah saya baru"
+    "meaning": "My father's car is white",
+    "meaning_id": "Mobil ayah saya putih"
   },
   {
     "jp_character": "母の本は古いです",
@@ -7372,6 +7115,53 @@ export const generatedSentences = [
     "meaning_id": "Buku ibu saya lama"
   },
   {
+    "jp_character": "あなたのとけいは新しいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata no tokei wa atarashii desu"
+    ],
+    "furigana": {
+      "8": "あたら"
+    },
+    "meaning": "Your watch is new",
+    "meaning_id": "Jam Anda baru"
+  },
+  {
+    "jp_character": "母のテレビは大きいです",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "haha no terebi wa ookii desu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "6": "おお"
+    },
+    "meaning": "My mother's TV is big",
+    "meaning_id": "TV ibu saya besar"
+  },
+  {
+    "jp_character": "わたしの車は黒いです",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "watashi no kuruma wa kuroi desu"
+    ],
+    "furigana": {
+      "4": "くるま",
+      "6": "くろ"
+    },
+    "meaning": "My car is black",
+    "meaning_id": "Mobil saya hitam"
+  },
+  {
     "jp_character": "父のかばんは小さいです",
     "particles": [
       1,
@@ -7388,20 +7178,68 @@ export const generatedSentences = [
     "meaning_id": "Tas ayah saya kecil"
   },
   {
-    "jp_character": "わたしの車は高いです",
+    "jp_character": "友だちのとけいは高いです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi no tokei wa takai desu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "たか"
+    },
+    "meaning": "My friend's watch is expensive",
+    "meaning_id": "Jam teman saya mahal"
+  },
+  {
+    "jp_character": "あなたのテレビは新しいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata no terebi wa atarashii desu"
+    ],
+    "furigana": {
+      "8": "あたら"
+    },
+    "meaning": "Your TV is new",
+    "meaning_id": "TV Anda baru"
+  },
+  {
+    "jp_character": "わたしの車は白いです",
     "particles": [
       3,
       5
     ],
     "romanji": [
-      "watashi no kuruma wa takai desu"
+      "watashi no kuruma wa shiroi desu"
     ],
     "furigana": {
       "4": "くるま",
-      "6": "たか"
+      "6": "しろ"
     },
-    "meaning": "My car is expensive",
-    "meaning_id": "Mobil saya mahal"
+    "meaning": "My car is white",
+    "meaning_id": "Mobil saya putih"
+  },
+  {
+    "jp_character": "父の本は古いです",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "chichi no hon wa furui desu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "ほん",
+      "4": "ふる"
+    },
+    "meaning": "My father's book is old",
+    "meaning_id": "Buku ayah saya lama"
   },
   {
     "jp_character": "あなたのかばんは大きいです",
@@ -7417,6 +7255,71 @@ export const generatedSentences = [
     },
     "meaning": "Your bag is big",
     "meaning_id": "Tas Anda besar"
+  },
+  {
+    "jp_character": "友だちの車は黒いです",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "tomodachi no kuruma wa kuroi desu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "くるま",
+      "6": "くろ"
+    },
+    "meaning": "My friend's car is black",
+    "meaning_id": "Mobil teman saya hitam"
+  },
+  {
+    "jp_character": "母のテレビは小さいです",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "haha no terebi wa chiisai desu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "6": "ちい"
+    },
+    "meaning": "My mother's TV is small",
+    "meaning_id": "TV ibu saya kecil"
+  },
+  {
+    "jp_character": "わたしのとけいは高いです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi no tokei wa takai desu"
+    ],
+    "furigana": {
+      "8": "たか"
+    },
+    "meaning": "My watch is expensive",
+    "meaning_id": "Jam saya mahal"
+  },
+  {
+    "jp_character": "父の本は新しいです",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "chichi no hon wa atarashii desu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "ほん",
+      "4": "あたら"
+    },
+    "meaning": "My father's book is new",
+    "meaning_id": "Buku ayah saya baru"
   },
   {
     "jp_character": "友だちのかばんは小さいです",
@@ -7435,114 +7338,36 @@ export const generatedSentences = [
     "meaning_id": "Tas teman saya kecil"
   },
   {
-    "jp_character": "母のとけいは新しいです",
-    "particles": [
-      1,
-      5
-    ],
-    "romanji": [
-      "haha no tokei wa atarashii desu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "6": "あたら"
-    },
-    "meaning": "My mother's watch is new",
-    "meaning_id": "Jam ibu saya baru"
-  },
-  {
-    "jp_character": "あなたの車は高いです",
-    "particles": [
-      3,
-      5
-    ],
-    "romanji": [
-      "anata no kuruma wa takai desu"
-    ],
-    "furigana": {
-      "4": "くるま",
-      "6": "たか"
-    },
-    "meaning": "Your car is expensive",
-    "meaning_id": "Mobil Anda mahal"
-  },
-  {
-    "jp_character": "わたしのテレビは小さいです",
+    "jp_character": "あなたのテレビは大きいです",
     "particles": [
       3,
       7
     ],
     "romanji": [
-      "watashi no terebi wa chiisai desu"
+      "anata no terebi wa ookii desu"
     ],
     "furigana": {
-      "8": "ちい"
+      "8": "おお"
     },
-    "meaning": "My TV is small",
-    "meaning_id": "TV saya kecil"
+    "meaning": "Your TV is big",
+    "meaning_id": "TV Anda besar"
   },
   {
-    "jp_character": "父の車は小さいです",
+    "jp_character": "母の車は黒いです",
     "particles": [
       1,
       3
     ],
     "romanji": [
-      "chichi no kuruma wa chiisai desu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "2": "くるま",
-      "4": "ちい"
-    },
-    "meaning": "My father's car is small",
-    "meaning_id": "Mobil ayah saya kecil"
-  },
-  {
-    "jp_character": "わたしのとけいは古いです",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "watashi no tokei wa furui desu"
-    ],
-    "furigana": {
-      "8": "ふる"
-    },
-    "meaning": "My watch is old",
-    "meaning_id": "Jam saya lama"
-  },
-  {
-    "jp_character": "あなたのとけいは新しいです",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "anata no tokei wa atarashii desu"
-    ],
-    "furigana": {
-      "8": "あたら"
-    },
-    "meaning": "Your watch is new",
-    "meaning_id": "Jam Anda baru"
-  },
-  {
-    "jp_character": "母のテレビは新しいです",
-    "particles": [
-      1,
-      5
-    ],
-    "romanji": [
-      "haha no terebi wa atarashii desu"
+      "haha no kuruma wa kuroi desu"
     ],
     "furigana": {
       "0": "はは",
-      "6": "あたら"
+      "2": "くるま",
+      "4": "くろ"
     },
-    "meaning": "My mother's TV is new",
-    "meaning_id": "TV ibu saya baru"
+    "meaning": "My mother's car is black",
+    "meaning_id": "Mobil ibu saya hitam"
   },
   {
     "jp_character": "あしたは日曜日です",
@@ -7577,22 +7402,6 @@ export const generatedSentences = [
     "meaning_id": "Kemarin hari Sabtu"
   },
   {
-    "jp_character": "あしたは土曜日です",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "ashita wa doyoubi desu"
-    ],
-    "furigana": {
-      "4": "ど",
-      "5": "よう",
-      "6": "び"
-    },
-    "meaning": "Tomorrow is Saturday",
-    "meaning_id": "Besok hari Sabtu"
-  },
-  {
     "jp_character": "今日は火曜日です",
     "particles": [
       2
@@ -7609,6 +7418,54 @@ export const generatedSentences = [
     },
     "meaning": "Today is Tuesday",
     "meaning_id": "Hari ini hari Selasa"
+  },
+  {
+    "jp_character": "きのうは水曜日でした",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kinou wa suiyoubi deshita"
+    ],
+    "furigana": {
+      "4": "すい",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Yesterday was Wednesday",
+    "meaning_id": "Kemarin hari Rabu"
+  },
+  {
+    "jp_character": "あしたは月曜日です",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "ashita wa getsuyoubi desu"
+    ],
+    "furigana": {
+      "4": "げつ",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Tomorrow is Monday",
+    "meaning_id": "Besok hari Senin"
+  },
+  {
+    "jp_character": "きのうは木曜日でした",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kinou wa mokuyoubi deshita"
+    ],
+    "furigana": {
+      "4": "もく",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Yesterday was Thursday",
+    "meaning_id": "Kemarin hari Kamis"
   },
   {
     "jp_character": "今日は日曜日です",
@@ -7629,6 +7486,38 @@ export const generatedSentences = [
     "meaning_id": "Hari ini hari Minggu"
   },
   {
+    "jp_character": "あしたは土曜日です",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "ashita wa doyoubi desu"
+    ],
+    "furigana": {
+      "4": "ど",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Tomorrow is Saturday",
+    "meaning_id": "Besok hari Sabtu"
+  },
+  {
+    "jp_character": "きのうは月曜日でした",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kinou wa getsuyoubi deshita"
+    ],
+    "furigana": {
+      "4": "げつ",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Yesterday was Monday",
+    "meaning_id": "Kemarin hari Senin"
+  },
+  {
     "jp_character": "今日は水曜日です",
     "particles": [
       2
@@ -7647,68 +7536,20 @@ export const generatedSentences = [
     "meaning_id": "Hari ini hari Rabu"
   },
   {
-    "jp_character": "あしたは水曜日です",
+    "jp_character": "きのうは火曜日でした",
     "particles": [
       3
     ],
     "romanji": [
-      "ashita wa suiyoubi desu"
+      "kinou wa kayoubi deshita"
     ],
     "furigana": {
-      "4": "すい",
+      "4": "か",
       "5": "よう",
       "6": "び"
     },
-    "meaning": "Tomorrow is Wednesday",
-    "meaning_id": "Besok hari Rabu"
-  },
-  {
-    "jp_character": "きのうは水曜日でした",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kinou wa suiyoubi deshita"
-    ],
-    "furigana": {
-      "4": "すい",
-      "5": "よう",
-      "6": "び"
-    },
-    "meaning": "Yesterday was Wednesday",
-    "meaning_id": "Kemarin hari Rabu"
-  },
-  {
-    "jp_character": "きのうは木曜日でした",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kinou wa mokuyoubi deshita"
-    ],
-    "furigana": {
-      "4": "もく",
-      "5": "よう",
-      "6": "び"
-    },
-    "meaning": "Yesterday was Thursday",
-    "meaning_id": "Kemarin hari Kamis"
-  },
-  {
-    "jp_character": "あしたは月曜日です",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "ashita wa getsuyoubi desu"
-    ],
-    "furigana": {
-      "4": "げつ",
-      "5": "よう",
-      "6": "び"
-    },
-    "meaning": "Tomorrow is Monday",
-    "meaning_id": "Besok hari Senin"
+    "meaning": "Yesterday was Tuesday",
+    "meaning_id": "Kemarin hari Selasa"
   },
   {
     "jp_character": "あしたは木曜日です",
@@ -7725,22 +7566,6 @@ export const generatedSentences = [
     },
     "meaning": "Tomorrow is Thursday",
     "meaning_id": "Besok hari Kamis"
-  },
-  {
-    "jp_character": "きのうは月曜日でした",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kinou wa getsuyoubi deshita"
-    ],
-    "furigana": {
-      "4": "げつ",
-      "5": "よう",
-      "6": "び"
-    },
-    "meaning": "Yesterday was Monday",
-    "meaning_id": "Kemarin hari Senin"
   },
   {
     "jp_character": "きのうは日曜日でした",
@@ -7777,22 +7602,20 @@ export const generatedSentences = [
     "meaning_id": "Hari ini hari Kamis"
   },
   {
-    "jp_character": "今日は土曜日です",
+    "jp_character": "あしたは水曜日です",
     "particles": [
-      2
+      3
     ],
     "romanji": [
-      "kyou wa doyoubi desu"
+      "ashita wa suiyoubi desu"
     ],
     "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "ど",
-      "4": "よう",
-      "5": "び"
+      "4": "すい",
+      "5": "よう",
+      "6": "び"
     },
-    "meaning": "Today is Saturday",
-    "meaning_id": "Hari ini hari Sabtu"
+    "meaning": "Tomorrow is Wednesday",
+    "meaning_id": "Besok hari Rabu"
   },
   {
     "jp_character": "わたしは毎日六時に学校へ行きます",
@@ -7886,50 +7709,6 @@ export const generatedSentences = [
     "meaning_id": "Setiap hari saya pergi ke sekolah jam lima"
   },
   {
-    "jp_character": "わたしは毎日七時に学校へ行きます",
-    "particles": [
-      3,
-      8,
-      11
-    ],
-    "romanji": [
-      "watashi wa mainichi shichiji ni gakkou e ikimasu"
-    ],
-    "furigana": {
-      "4": "まい",
-      "5": "にち",
-      "6": "しち",
-      "7": "じ",
-      "9": "がっ",
-      "10": "こう",
-      "12": "い"
-    },
-    "meaning": "I go to school at seven o'clock every day",
-    "meaning_id": "Setiap hari saya pergi ke sekolah jam tujuh"
-  },
-  {
-    "jp_character": "わたしは毎日三時に学校へ行きます",
-    "particles": [
-      3,
-      8,
-      11
-    ],
-    "romanji": [
-      "watashi wa mainichi sanji ni gakkou e ikimasu"
-    ],
-    "furigana": {
-      "4": "まい",
-      "5": "にち",
-      "6": "さん",
-      "7": "じ",
-      "9": "がっ",
-      "10": "こう",
-      "12": "い"
-    },
-    "meaning": "I go to school at three o'clock every day",
-    "meaning_id": "Setiap hari saya pergi ke sekolah jam tiga"
-  },
-  {
     "jp_character": "友だちは毎日二時に学校へ行きます",
     "particles": [
       3,
@@ -7951,6 +7730,30 @@ export const generatedSentences = [
     },
     "meaning": "My friend goes to school at two o'clock every day",
     "meaning_id": "Setiap hari teman saya pergi ke sekolah jam dua"
+  },
+  {
+    "jp_character": "学生は毎日三時に学校へ行きます",
+    "particles": [
+      2,
+      7,
+      10
+    ],
+    "romanji": [
+      "gakusei wa mainichi sanji ni gakkou e ikimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "まい",
+      "4": "にち",
+      "5": "さん",
+      "6": "じ",
+      "8": "がっ",
+      "9": "こう",
+      "11": "い"
+    },
+    "meaning": "The student goes to school at three o'clock every day",
+    "meaning_id": "Setiap hari pelajar pergi ke sekolah jam tiga"
   },
   {
     "jp_character": "友だちは毎日十時に学校へ行きます",
@@ -7998,6 +7801,52 @@ export const generatedSentences = [
     "meaning_id": "Setiap hari saya pergi ke sekolah jam satu"
   },
   {
+    "jp_character": "学生は毎日四時に学校へ行きます",
+    "particles": [
+      2,
+      7,
+      10
+    ],
+    "romanji": [
+      "gakusei wa mainichi yoji ni gakkou e ikimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "まい",
+      "4": "にち",
+      "5": "よ",
+      "6": "じ",
+      "8": "がっ",
+      "9": "こう",
+      "11": "い"
+    },
+    "meaning": "The student goes to school at four o'clock every day",
+    "meaning_id": "Setiap hari pelajar pergi ke sekolah jam empat"
+  },
+  {
+    "jp_character": "わたしは毎日八時に学校へ行きます",
+    "particles": [
+      3,
+      8,
+      11
+    ],
+    "romanji": [
+      "watashi wa mainichi hachiji ni gakkou e ikimasu"
+    ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "はち",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
+    "meaning": "I go to school at eight o'clock every day",
+    "meaning_id": "Setiap hari saya pergi ke sekolah jam delapan"
+  },
+  {
     "jp_character": "友だちは毎日三時に学校へ行きます",
     "particles": [
       3,
@@ -8021,70 +7870,50 @@ export const generatedSentences = [
     "meaning_id": "Setiap hari teman saya pergi ke sekolah jam tiga"
   },
   {
-    "jp_character": "わたしは毎日四時に学校へ行きます",
+    "jp_character": "学生は毎日六時に学校へ行きます",
     "particles": [
-      3,
-      8,
-      11
+      2,
+      7,
+      10
     ],
     "romanji": [
-      "watashi wa mainichi yoji ni gakkou e ikimasu"
+      "gakusei wa mainichi rokuji ni gakkou e ikimasu"
     ],
     "furigana": {
-      "4": "まい",
-      "5": "にち",
-      "6": "よ",
-      "7": "じ",
-      "9": "がっ",
-      "10": "こう",
-      "12": "い"
+      "0": "がく",
+      "1": "せい",
+      "3": "まい",
+      "4": "にち",
+      "5": "ろく",
+      "6": "じ",
+      "8": "がっ",
+      "9": "こう",
+      "11": "い"
     },
-    "meaning": "I go to school at four o'clock every day",
-    "meaning_id": "Setiap hari saya pergi ke sekolah jam empat"
+    "meaning": "The student goes to school at six o'clock every day",
+    "meaning_id": "Setiap hari pelajar pergi ke sekolah jam enam"
   },
   {
-    "jp_character": "わたしは毎日十時に学校へ行きます",
+    "jp_character": "わたしは毎日七時に学校へ行きます",
     "particles": [
       3,
       8,
       11
     ],
     "romanji": [
-      "watashi wa mainichi juuji ni gakkou e ikimasu"
+      "watashi wa mainichi shichiji ni gakkou e ikimasu"
     ],
     "furigana": {
       "4": "まい",
       "5": "にち",
-      "6": "じゅう",
+      "6": "しち",
       "7": "じ",
       "9": "がっ",
       "10": "こう",
       "12": "い"
     },
-    "meaning": "I go to school at ten o'clock every day",
-    "meaning_id": "Setiap hari saya pergi ke sekolah jam sepuluh"
-  },
-  {
-    "jp_character": "わたしは毎日八時に学校へ行きます",
-    "particles": [
-      3,
-      8,
-      11
-    ],
-    "romanji": [
-      "watashi wa mainichi hachiji ni gakkou e ikimasu"
-    ],
-    "furigana": {
-      "4": "まい",
-      "5": "にち",
-      "6": "はち",
-      "7": "じ",
-      "9": "がっ",
-      "10": "こう",
-      "12": "い"
-    },
-    "meaning": "I go to school at eight o'clock every day",
-    "meaning_id": "Setiap hari saya pergi ke sekolah jam delapan"
+    "meaning": "I go to school at seven o'clock every day",
+    "meaning_id": "Setiap hari saya pergi ke sekolah jam tujuh"
   },
   {
     "jp_character": "友だちは毎日四時に学校へ行きます",
@@ -8110,28 +7939,28 @@ export const generatedSentences = [
     "meaning_id": "Setiap hari teman saya pergi ke sekolah jam empat"
   },
   {
-    "jp_character": "学生は毎日六時に学校へ行きます",
+    "jp_character": "学生は毎日二時に学校へ行きます",
     "particles": [
       2,
       7,
       10
     ],
     "romanji": [
-      "gakusei wa mainichi rokuji ni gakkou e ikimasu"
+      "gakusei wa mainichi niji ni gakkou e ikimasu"
     ],
     "furigana": {
       "0": "がく",
       "1": "せい",
       "3": "まい",
       "4": "にち",
-      "5": "ろく",
+      "5": "に",
       "6": "じ",
       "8": "がっ",
       "9": "こう",
       "11": "い"
     },
-    "meaning": "The student goes to school at six o'clock every day",
-    "meaning_id": "Setiap hari pelajar pergi ke sekolah jam enam"
+    "meaning": "The student goes to school at two o'clock every day",
+    "meaning_id": "Setiap hari pelajar pergi ke sekolah jam dua"
   },
   {
     "jp_character": "わたしはうちで休みます",
@@ -8164,6 +7993,22 @@ export const generatedSentences = [
     },
     "meaning": "The student rests in the room",
     "meaning_id": "Pelajar beristirahat di kamar"
+  },
+  {
+    "jp_character": "母はこうえんで休みます",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "haha wa kouen de yasumimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "やす"
+    },
+    "meaning": "My mother rests in the park",
+    "meaning_id": "Ibu saya beristirahat di taman"
   },
   {
     "jp_character": "父はへやで休みます",
@@ -8199,38 +8044,6 @@ export const generatedSentences = [
     "meaning_id": "Pelajar beristirahat di taman"
   },
   {
-    "jp_character": "学生はうちで休みます",
-    "particles": [
-      2,
-      5
-    ],
-    "romanji": [
-      "gakusei wa uchi de yasumimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "6": "やす"
-    },
-    "meaning": "The student rests at home",
-    "meaning_id": "Pelajar beristirahat di rumah"
-  },
-  {
-    "jp_character": "わたしはへやで休みます",
-    "particles": [
-      3,
-      6
-    ],
-    "romanji": [
-      "watashi wa heya de yasumimasu"
-    ],
-    "furigana": {
-      "7": "やす"
-    },
-    "meaning": "I rest in the room",
-    "meaning_id": "Saya beristirahat di kamar"
-  },
-  {
     "jp_character": "母はうちで休みます",
     "particles": [
       1,
@@ -8247,20 +8060,19 @@ export const generatedSentences = [
     "meaning_id": "Ibu saya beristirahat di rumah"
   },
   {
-    "jp_character": "母はこうえんで休みます",
+    "jp_character": "わたしはへやで休みます",
     "particles": [
-      1,
+      3,
       6
     ],
     "romanji": [
-      "haha wa kouen de yasumimasu"
+      "watashi wa heya de yasumimasu"
     ],
     "furigana": {
-      "0": "はは",
       "7": "やす"
     },
-    "meaning": "My mother rests in the park",
-    "meaning_id": "Ibu saya beristirahat di taman"
+    "meaning": "I rest in the room",
+    "meaning_id": "Saya beristirahat di kamar"
   },
   {
     "jp_character": "父はうちで休みます",
@@ -8294,6 +8106,23 @@ export const generatedSentences = [
     "meaning_id": "Saya beristirahat di taman"
   },
   {
+    "jp_character": "学生はうちで休みます",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "gakusei wa uchi de yasumimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "6": "やす"
+    },
+    "meaning": "The student rests at home",
+    "meaning_id": "Pelajar beristirahat di rumah"
+  },
+  {
     "jp_character": "あなたはごご四時にねます",
     "particles": [
       3,
@@ -8310,20 +8139,20 @@ export const generatedSentences = [
     "meaning_id": "Anda tidur jam empat malam"
   },
   {
-    "jp_character": "あなたはごご八時にねます",
+    "jp_character": "わたしはごぜん九時におきます",
     "particles": [
       3,
-      8
+      9
     ],
     "romanji": [
-      "anata wa gogo hachiji ni nemasu"
+      "watashi wa gozen kuji ni okimasu"
     ],
     "furigana": {
-      "6": "はち",
-      "7": "じ"
+      "7": "く",
+      "8": "じ"
     },
-    "meaning": "You sleep at eight p.m.",
-    "meaning_id": "Anda tidur jam delapan malam"
+    "meaning": "I wake up at nine a.m.",
+    "meaning_id": "Saya bangun jam sembilan pagi"
   },
   {
     "jp_character": "母は毎日八時にねます",
@@ -8345,23 +8174,20 @@ export const generatedSentences = [
     "meaning_id": "Setiap hari ibu saya tidur jam delapan"
   },
   {
-    "jp_character": "父は毎日八時にねます",
+    "jp_character": "かれはまいあさ三時におきます",
     "particles": [
-      1,
-      6
+      2,
+      9
     ],
     "romanji": [
-      "chichi wa mainichi hachiji ni nemasu"
+      "kare wa maiasa sanji ni okimasu"
     ],
     "furigana": {
-      "0": "ちち",
-      "2": "まい",
-      "3": "にち",
-      "4": "はち",
-      "5": "じ"
+      "7": "さん",
+      "8": "じ"
     },
-    "meaning": "My father sleeps at eight o'clock every day",
-    "meaning_id": "Setiap hari ayah saya tidur jam delapan"
+    "meaning": "He wakes up at three o'clock every morning",
+    "meaning_id": "Setiap pagi dia (laki-laki) bangun jam tiga"
   },
   {
     "jp_character": "友だちはごぜん二時にねます",
@@ -8381,54 +8207,291 @@ export const generatedSentences = [
     "meaning_id": "Teman saya tidur jam dua pagi"
   },
   {
-    "jp_character": "わたしはごぜん九時におきます",
+    "jp_character": "かのじょはまいあさ六時におきます",
+    "particles": [
+      4,
+      11
+    ],
+    "romanji": [
+      "kanojo wa maiasa rokuji ni okimasu"
+    ],
+    "furigana": {
+      "9": "ろく",
+      "10": "じ"
+    },
+    "meaning": "She wakes up at six o'clock every morning",
+    "meaning_id": "Setiap pagi dia (perempuan) bangun jam enam"
+  },
+  {
+    "jp_character": "父はごご七時にねます",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "chichi wa gogo shichiji ni nemasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "4": "しち",
+      "5": "じ"
+    },
+    "meaning": "My father sleeps at seven p.m.",
+    "meaning_id": "Ayah saya tidur jam tujuh malam"
+  },
+  {
+    "jp_character": "わたしは毎日一時におきます",
     "particles": [
       3,
-      9
+      8
     ],
     "romanji": [
-      "watashi wa gozen kuji ni okimasu"
+      "watashi wa mainichi ichiji ni okimasu"
     ],
     "furigana": {
-      "7": "く",
-      "8": "じ"
+      "4": "まい",
+      "5": "にち",
+      "6": "いち",
+      "7": "じ"
     },
-    "meaning": "I wake up at nine a.m.",
-    "meaning_id": "Saya bangun jam sembilan pagi"
+    "meaning": "I wake up at one o'clock every day",
+    "meaning_id": "Setiap hari saya bangun jam satu"
   },
   {
-    "jp_character": "かれはまいあさ三時におきます",
+    "jp_character": "かのじょはごぜん十時にねます",
     "particles": [
-      2,
-      9
+      4,
+      10
     ],
     "romanji": [
-      "kare wa maiasa sanji ni okimasu"
+      "kanojo wa gozen juuji ni nemasu"
     ],
     "furigana": {
-      "7": "さん",
-      "8": "じ"
+      "8": "じゅう",
+      "9": "じ"
     },
-    "meaning": "He wakes up at three o'clock every morning",
-    "meaning_id": "Setiap pagi dia (laki-laki) bangun jam tiga"
+    "meaning": "She sleeps at ten a.m.",
+    "meaning_id": "Dia (perempuan) tidur jam sepuluh pagi"
   },
   {
-    "jp_character": "かれは毎日八時にねます",
+    "jp_character": "あなたはまいあさ五時におきます",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "anata wa maiasa goji ni okimasu"
+    ],
+    "furigana": {
+      "8": "ご",
+      "9": "じ"
+    },
+    "meaning": "You wake up at five o'clock every morning",
+    "meaning_id": "Setiap pagi anda bangun jam lima"
+  },
+  {
+    "jp_character": "父は毎日八時にねます",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "chichi wa mainichi hachiji ni nemasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "まい",
+      "3": "にち",
+      "4": "はち",
+      "5": "じ"
+    },
+    "meaning": "My father sleeps at eight o'clock every day",
+    "meaning_id": "Setiap hari ayah saya tidur jam delapan"
+  },
+  {
+    "jp_character": "かれはごご六時におきます",
     "particles": [
       2,
       7
     ],
     "romanji": [
-      "kare wa mainichi hachiji ni nemasu"
+      "kare wa gogo rokuji ni okimasu"
+    ],
+    "furigana": {
+      "5": "ろく",
+      "6": "じ"
+    },
+    "meaning": "He wakes up at six p.m.",
+    "meaning_id": "Dia (laki-laki) bangun jam enam malam"
+  },
+  {
+    "jp_character": "友だちはごぜん十時にねます",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "tomodachi wa gozen juuji ni nemasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "7": "じゅう",
+      "8": "じ"
+    },
+    "meaning": "My friend sleeps at ten a.m.",
+    "meaning_id": "Teman saya tidur jam sepuluh pagi"
+  },
+  {
+    "jp_character": "母はまいあさ三時におきます",
+    "particles": [
+      1,
+      8
+    ],
+    "romanji": [
+      "haha wa maiasa sanji ni okimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "6": "さん",
+      "7": "じ"
+    },
+    "meaning": "My mother wakes up at three o'clock every morning",
+    "meaning_id": "Setiap pagi ibu saya bangun jam tiga"
+  },
+  {
+    "jp_character": "かれは毎日二時にねます",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "kare wa mainichi niji ni nemasu"
     ],
     "furigana": {
       "3": "まい",
       "4": "にち",
-      "5": "はち",
+      "5": "に",
       "6": "じ"
     },
-    "meaning": "He sleeps at eight o'clock every day",
-    "meaning_id": "Setiap hari dia (laki-laki) tidur jam delapan"
+    "meaning": "He sleeps at two o'clock every day",
+    "meaning_id": "Setiap hari dia (laki-laki) tidur jam dua"
+  },
+  {
+    "jp_character": "あなたはごご九時におきます",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "anata wa gogo kuji ni okimasu"
+    ],
+    "furigana": {
+      "6": "く",
+      "7": "じ"
+    },
+    "meaning": "You wake up at nine p.m.",
+    "meaning_id": "Anda bangun jam sembilan malam"
+  },
+  {
+    "jp_character": "わたしはまいあさ五時にねます",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "watashi wa maiasa goji ni nemasu"
+    ],
+    "furigana": {
+      "8": "ご",
+      "9": "じ"
+    },
+    "meaning": "I sleep at five o'clock every morning",
+    "meaning_id": "Setiap pagi saya tidur jam lima"
+  },
+  {
+    "jp_character": "かのじょは毎日七時におきます",
+    "particles": [
+      4,
+      9
+    ],
+    "romanji": [
+      "kanojo wa mainichi shichiji ni okimasu"
+    ],
+    "furigana": {
+      "5": "まい",
+      "6": "にち",
+      "7": "しち",
+      "8": "じ"
+    },
+    "meaning": "She wakes up at seven o'clock every day",
+    "meaning_id": "Setiap hari dia (perempuan) bangun jam tujuh"
+  },
+  {
+    "jp_character": "母はごご一時にねます",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "haha wa gogo ichiji ni nemasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "4": "いち",
+      "5": "じ"
+    },
+    "meaning": "My mother sleeps at one p.m.",
+    "meaning_id": "Ibu saya tidur jam satu malam"
+  },
+  {
+    "jp_character": "友だちはごぜん四時におきます",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "tomodachi wa gozen yoji ni okimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "7": "よ",
+      "8": "じ"
+    },
+    "meaning": "My friend wakes up at four a.m.",
+    "meaning_id": "Teman saya bangun jam empat pagi"
+  },
+  {
+    "jp_character": "父はごぜん二時におきます",
+    "particles": [
+      1,
+      7
+    ],
+    "romanji": [
+      "chichi wa gozen niji ni okimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "5": "に",
+      "6": "じ"
+    },
+    "meaning": "My father wakes up at two a.m.",
+    "meaning_id": "Ayah saya bangun jam dua pagi"
+  },
+  {
+    "jp_character": "あなたはごご八時にねます",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "anata wa gogo hachiji ni nemasu"
+    ],
+    "furigana": {
+      "6": "はち",
+      "7": "じ"
+    },
+    "meaning": "You sleep at eight p.m.",
+    "meaning_id": "Anda tidur jam delapan malam"
   },
   {
     "jp_character": "友だちは毎日六時におきます",
@@ -8450,253 +8513,20 @@ export const generatedSentences = [
     "meaning_id": "Setiap hari teman saya bangun jam enam"
   },
   {
-    "jp_character": "かのじょはごぜん十時にねます",
-    "particles": [
-      4,
-      10
-    ],
-    "romanji": [
-      "kanojo wa gozen juuji ni nemasu"
-    ],
-    "furigana": {
-      "8": "じゅう",
-      "9": "じ"
-    },
-    "meaning": "She sleeps at ten a.m.",
-    "meaning_id": "Dia (perempuan) tidur jam sepuluh pagi"
-  },
-  {
-    "jp_character": "父はごぜん二時におきます",
-    "particles": [
-      1,
-      7
-    ],
-    "romanji": [
-      "chichi wa gozen niji ni okimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "5": "に",
-      "6": "じ"
-    },
-    "meaning": "My father wakes up at two a.m.",
-    "meaning_id": "Ayah saya bangun jam dua pagi"
-  },
-  {
-    "jp_character": "かれは毎日二時にねます",
-    "particles": [
-      2,
-      7
-    ],
-    "romanji": [
-      "kare wa mainichi niji ni nemasu"
-    ],
-    "furigana": {
-      "3": "まい",
-      "4": "にち",
-      "5": "に",
-      "6": "じ"
-    },
-    "meaning": "He sleeps at two o'clock every day",
-    "meaning_id": "Setiap hari dia (laki-laki) tidur jam dua"
-  },
-  {
-    "jp_character": "わたしはまいあさ五時にねます",
+    "jp_character": "わたしはまいあさ一時にねます",
     "particles": [
       3,
       10
     ],
     "romanji": [
-      "watashi wa maiasa goji ni nemasu"
-    ],
-    "furigana": {
-      "8": "ご",
-      "9": "じ"
-    },
-    "meaning": "I sleep at five o'clock every morning",
-    "meaning_id": "Setiap pagi saya tidur jam lima"
-  },
-  {
-    "jp_character": "母はまいあさ六時にねます",
-    "particles": [
-      1,
-      8
-    ],
-    "romanji": [
-      "haha wa maiasa rokuji ni nemasu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "6": "ろく",
-      "7": "じ"
-    },
-    "meaning": "My mother sleeps at six o'clock every morning",
-    "meaning_id": "Setiap pagi ibu saya tidur jam enam"
-  },
-  {
-    "jp_character": "かのじょはまいあさ六時におきます",
-    "particles": [
-      4,
-      11
-    ],
-    "romanji": [
-      "kanojo wa maiasa rokuji ni okimasu"
-    ],
-    "furigana": {
-      "9": "ろく",
-      "10": "じ"
-    },
-    "meaning": "She wakes up at six o'clock every morning",
-    "meaning_id": "Setiap pagi dia (perempuan) bangun jam enam"
-  },
-  {
-    "jp_character": "かのじょはごご一時にねます",
-    "particles": [
-      4,
-      9
-    ],
-    "romanji": [
-      "kanojo wa gogo ichiji ni nemasu"
-    ],
-    "furigana": {
-      "7": "いち",
-      "8": "じ"
-    },
-    "meaning": "She sleeps at one p.m.",
-    "meaning_id": "Dia (perempuan) tidur jam satu malam"
-  },
-  {
-    "jp_character": "あなたはまいあさ一時にねます",
-    "particles": [
-      3,
-      10
-    ],
-    "romanji": [
-      "anata wa maiasa ichiji ni nemasu"
+      "watashi wa maiasa ichiji ni nemasu"
     ],
     "furigana": {
       "8": "いち",
       "9": "じ"
     },
-    "meaning": "You sleep at one o'clock every morning",
-    "meaning_id": "Setiap pagi anda tidur jam satu"
-  },
-  {
-    "jp_character": "母はごぜん八時にねます",
-    "particles": [
-      1,
-      7
-    ],
-    "romanji": [
-      "haha wa gozen hachiji ni nemasu"
-    ],
-    "furigana": {
-      "0": "はは",
-      "5": "はち",
-      "6": "じ"
-    },
-    "meaning": "My mother sleeps at eight a.m.",
-    "meaning_id": "Ibu saya tidur jam delapan pagi"
-  },
-  {
-    "jp_character": "わたしは毎日三時におきます",
-    "particles": [
-      3,
-      8
-    ],
-    "romanji": [
-      "watashi wa mainichi sanji ni okimasu"
-    ],
-    "furigana": {
-      "4": "まい",
-      "5": "にち",
-      "6": "さん",
-      "7": "じ"
-    },
-    "meaning": "I wake up at three o'clock every day",
-    "meaning_id": "Setiap hari saya bangun jam tiga"
-  },
-  {
-    "jp_character": "父はごぜん五時にねます",
-    "particles": [
-      1,
-      7
-    ],
-    "romanji": [
-      "chichi wa gozen goji ni nemasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "5": "ご",
-      "6": "じ"
-    },
-    "meaning": "My father sleeps at five a.m.",
-    "meaning_id": "Ayah saya tidur jam lima pagi"
-  },
-  {
-    "jp_character": "あなたはまいあさ二時にねます",
-    "particles": [
-      3,
-      10
-    ],
-    "romanji": [
-      "anata wa maiasa niji ni nemasu"
-    ],
-    "furigana": {
-      "8": "に",
-      "9": "じ"
-    },
-    "meaning": "You sleep at two o'clock every morning",
-    "meaning_id": "Setiap pagi anda tidur jam dua"
-  },
-  {
-    "jp_character": "かれはごご八時にねます",
-    "particles": [
-      2,
-      7
-    ],
-    "romanji": [
-      "kare wa gogo hachiji ni nemasu"
-    ],
-    "furigana": {
-      "5": "はち",
-      "6": "じ"
-    },
-    "meaning": "He sleeps at eight p.m.",
-    "meaning_id": "Dia (laki-laki) tidur jam delapan malam"
-  },
-  {
-    "jp_character": "あなたはごぜん一時にねます",
-    "particles": [
-      3,
-      9
-    ],
-    "romanji": [
-      "anata wa gozen ichiji ni nemasu"
-    ],
-    "furigana": {
-      "7": "いち",
-      "8": "じ"
-    },
-    "meaning": "You sleep at one a.m.",
-    "meaning_id": "Anda tidur jam satu pagi"
-  },
-  {
-    "jp_character": "友だちはごぜん六時にねます",
-    "particles": [
-      3,
-      9
-    ],
-    "romanji": [
-      "tomodachi wa gozen rokuji ni nemasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "7": "ろく",
-      "8": "じ"
-    },
-    "meaning": "My friend sleeps at six a.m.",
-    "meaning_id": "Teman saya tidur jam enam pagi"
+    "meaning": "I sleep at one o'clock every morning",
+    "meaning_id": "Setiap pagi saya tidur jam satu"
   },
   {
     "jp_character": "かのじょはかおをあらいます",
@@ -8741,78 +8571,20 @@ export const generatedSentences = [
     "meaning_id": "Ibu saya membuat sup miso"
   },
   {
-    "jp_character": "かのじょはみそしるをつくります",
+    "jp_character": "わたしは手をあらいます",
     "particles": [
-      4,
-      9
-    ],
-    "romanji": [
-      "kanojo wa misoshiru wo tsukurimasu",
-      "kanojo wa misoshiru o tsukurimasu"
-    ],
-    "meaning": "She makes miso soup",
-    "meaning_id": "Dia (perempuan) membuat sup miso"
-  },
-  {
-    "jp_character": "父はごはんをつくります",
-    "particles": [
-      1,
+      3,
       5
     ],
     "romanji": [
-      "chichi wa gohan wo tsukurimasu",
-      "chichi wa gohan o tsukurimasu"
+      "watashi wa te wo araimasu",
+      "watashi wa te o araimasu"
     ],
     "furigana": {
-      "0": "ちち"
+      "4": "て"
     },
-    "meaning": "My father makes rice",
-    "meaning_id": "Ayah saya membuat nasi"
-  },
-  {
-    "jp_character": "母はパンをつくります",
-    "particles": [
-      1,
-      4
-    ],
-    "romanji": [
-      "haha wa pan wo tsukurimasu",
-      "haha wa pan o tsukurimasu"
-    ],
-    "furigana": {
-      "0": "はは"
-    },
-    "meaning": "My mother makes bread",
-    "meaning_id": "Ibu saya membuat roti"
-  },
-  {
-    "jp_character": "母はごはんをつくります",
-    "particles": [
-      1,
-      5
-    ],
-    "romanji": [
-      "haha wa gohan wo tsukurimasu",
-      "haha wa gohan o tsukurimasu"
-    ],
-    "furigana": {
-      "0": "はは"
-    },
-    "meaning": "My mother makes rice",
-    "meaning_id": "Ibu saya membuat nasi"
-  },
-  {
-    "jp_character": "かのじょはくちをあらいます",
-    "particles": [
-      4,
-      7
-    ],
-    "romanji": [
-      "kanojo wa kuchi wo araimasu",
-      "kanojo wa kuchi o araimasu"
-    ],
-    "meaning": "She washes her mouth",
-    "meaning_id": "Dia (perempuan) mencuci mulut"
+    "meaning": "I wash my hands",
+    "meaning_id": "Saya mencuci tangan"
   },
   {
     "jp_character": "父はおかしをつくります",
@@ -8831,6 +8603,119 @@ export const generatedSentences = [
     "meaning_id": "Ayah saya membuat camilan"
   },
   {
+    "jp_character": "かれはくちをあらいます",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "kare wa kuchi wo araimasu",
+      "kare wa kuchi o araimasu"
+    ],
+    "meaning": "He washes his mouth",
+    "meaning_id": "Dia (laki-laki) mencuci mulut"
+  },
+  {
+    "jp_character": "母はパンをつくります",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "haha wa pan wo tsukurimasu",
+      "haha wa pan o tsukurimasu"
+    ],
+    "furigana": {
+      "0": "はは"
+    },
+    "meaning": "My mother makes bread",
+    "meaning_id": "Ibu saya membuat roti"
+  },
+  {
+    "jp_character": "かのじょはくちをあらいます",
+    "particles": [
+      4,
+      7
+    ],
+    "romanji": [
+      "kanojo wa kuchi wo araimasu",
+      "kanojo wa kuchi o araimasu"
+    ],
+    "meaning": "She washes her mouth",
+    "meaning_id": "Dia (perempuan) mencuci mulut"
+  },
+  {
+    "jp_character": "あなたはケーキをつくります",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata wa keeki wo tsukurimasu",
+      "anata wa keeki o tsukurimasu"
+    ],
+    "meaning": "You make cake",
+    "meaning_id": "Anda membuat kue"
+  },
+  {
+    "jp_character": "わたしはかおをあらいます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa kao wo araimasu",
+      "watashi wa kao o araimasu"
+    ],
+    "meaning": "I wash my face",
+    "meaning_id": "Saya mencuci wajah"
+  },
+  {
+    "jp_character": "父はごはんをつくります",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "chichi wa gohan wo tsukurimasu",
+      "chichi wa gohan o tsukurimasu"
+    ],
+    "furigana": {
+      "0": "ちち"
+    },
+    "meaning": "My father makes rice",
+    "meaning_id": "Ayah saya membuat nasi"
+  },
+  {
+    "jp_character": "かれは手をあらいます",
+    "particles": [
+      2,
+      4
+    ],
+    "romanji": [
+      "kare wa te wo araimasu",
+      "kare wa te o araimasu"
+    ],
+    "furigana": {
+      "3": "て"
+    },
+    "meaning": "He washes his hands",
+    "meaning_id": "Dia (laki-laki) mencuci tangan"
+  },
+  {
+    "jp_character": "かのじょはみそしるをつくります",
+    "particles": [
+      4,
+      9
+    ],
+    "romanji": [
+      "kanojo wa misoshiru wo tsukurimasu",
+      "kanojo wa misoshiru o tsukurimasu"
+    ],
+    "meaning": "She makes miso soup",
+    "meaning_id": "Dia (perempuan) membuat sup miso"
+  },
+  {
     "jp_character": "あなたはかおをあらいます",
     "particles": [
       3,
@@ -8842,90 +8727,6 @@ export const generatedSentences = [
     ],
     "meaning": "You wash your face",
     "meaning_id": "Anda mencuci wajah"
-  },
-  {
-    "jp_character": "かのじょはパンをつくります",
-    "particles": [
-      4,
-      7
-    ],
-    "romanji": [
-      "kanojo wa pan wo tsukurimasu",
-      "kanojo wa pan o tsukurimasu"
-    ],
-    "meaning": "She makes bread",
-    "meaning_id": "Dia (perempuan) membuat roti"
-  },
-  {
-    "jp_character": "あなたはおかしをつくります",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "anata wa okashi wo tsukurimasu",
-      "anata wa okashi o tsukurimasu"
-    ],
-    "meaning": "You make sweets",
-    "meaning_id": "Anda membuat camilan"
-  },
-  {
-    "jp_character": "わたしは手をあらいます",
-    "particles": [
-      3,
-      5
-    ],
-    "romanji": [
-      "watashi wa te wo araimasu",
-      "watashi wa te o araimasu"
-    ],
-    "furigana": {
-      "4": "て"
-    },
-    "meaning": "I wash my hands",
-    "meaning_id": "Saya mencuci tangan"
-  },
-  {
-    "jp_character": "あなたは手をあらいます",
-    "particles": [
-      3,
-      5
-    ],
-    "romanji": [
-      "anata wa te wo araimasu",
-      "anata wa te o araimasu"
-    ],
-    "furigana": {
-      "4": "て"
-    },
-    "meaning": "You wash your hands",
-    "meaning_id": "Anda mencuci tangan"
-  },
-  {
-    "jp_character": "あなたはみそしるをつくります",
-    "particles": [
-      3,
-      8
-    ],
-    "romanji": [
-      "anata wa misoshiru wo tsukurimasu",
-      "anata wa misoshiru o tsukurimasu"
-    ],
-    "meaning": "You make miso soup",
-    "meaning_id": "Anda membuat sup miso"
-  },
-  {
-    "jp_character": "かれはみそしるをつくります",
-    "particles": [
-      2,
-      7
-    ],
-    "romanji": [
-      "kare wa misoshiru wo tsukurimasu",
-      "kare wa misoshiru o tsukurimasu"
-    ],
-    "meaning": "He makes miso soup",
-    "meaning_id": "Dia (laki-laki) membuat sup miso"
   },
   {
     "jp_character": "父はパンをつくります",
@@ -8958,6 +8759,32 @@ export const generatedSentences = [
     },
     "meaning": "My mother makes sweets",
     "meaning_id": "Ibu saya membuat camilan"
+  },
+  {
+    "jp_character": "わたしはくちをあらいます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa kuchi wo araimasu",
+      "watashi wa kuchi o araimasu"
+    ],
+    "meaning": "I wash my mouth",
+    "meaning_id": "Saya mencuci mulut"
+  },
+  {
+    "jp_character": "かれはケーキをつくります",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "kare wa keeki wo tsukurimasu",
+      "kare wa keeki o tsukurimasu"
+    ],
+    "meaning": "He makes cake",
+    "meaning_id": "Dia (laki-laki) membuat kue"
   },
   {
     "jp_character": "学生はバスでコンビニへ行きます",
@@ -8996,6 +8823,128 @@ export const generatedSentences = [
     "meaning_id": "Saya pergi ke bank naik kereta"
   },
   {
+    "jp_character": "父は車でびょういんへ行きます",
+    "particles": [
+      1,
+      3,
+      9
+    ],
+    "romanji": [
+      "chichi wa kuruma de byouin e ikimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "くるま",
+      "10": "い"
+    },
+    "meaning": "My father goes to the hospital by car",
+    "meaning_id": "Ayah saya pergi ke rumah sakit naik mobil"
+  },
+  {
+    "jp_character": "かのじょはちかてつで学校へ行きます",
+    "particles": [
+      4,
+      9,
+      12
+    ],
+    "romanji": [
+      "kanojo wa chikatetsu de gakkou e ikimasu"
+    ],
+    "furigana": {
+      "10": "がっ",
+      "11": "こう",
+      "13": "い"
+    },
+    "meaning": "She goes to school by subway",
+    "meaning_id": "Dia (perempuan) pergi ke sekolah naik kereta bawah tanah"
+  },
+  {
+    "jp_character": "かれはじてんしゃで大学へ行きます",
+    "particles": [
+      2,
+      8,
+      11
+    ],
+    "romanji": [
+      "kare wa jitensha de daigaku e ikimasu"
+    ],
+    "furigana": {
+      "9": "だい",
+      "10": "がく",
+      "12": "い"
+    },
+    "meaning": "He goes to the university by bicycle",
+    "meaning_id": "Dia (laki-laki) pergi ke universitas naik sepeda"
+  },
+  {
+    "jp_character": "友だちはふねでこうえんへ行きます",
+    "particles": [
+      3,
+      6,
+      11
+    ],
+    "romanji": [
+      "tomodachi wa fune de kouen e ikimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "12": "い"
+    },
+    "meaning": "My friend goes to the park by ship",
+    "meaning_id": "Teman saya pergi ke taman naik kapal"
+  },
+  {
+    "jp_character": "母はひこうきでスーパーへ行きます",
+    "particles": [
+      1,
+      6,
+      11
+    ],
+    "romanji": [
+      "haha wa hikouki de suupaa e ikimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "12": "い"
+    },
+    "meaning": "My mother goes to the supermarket by plane",
+    "meaning_id": "Ibu saya pergi ke supermarket naik pesawat"
+  },
+  {
+    "jp_character": "先生はタクシーでデパートへ行きます",
+    "particles": [
+      2,
+      7,
+      12
+    ],
+    "romanji": [
+      "sensei wa takushii de depaato e ikimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "13": "い"
+    },
+    "meaning": "The teacher goes to the department store by taxi",
+    "meaning_id": "Guru pergi ke toko serba ada naik taksi"
+  },
+  {
+    "jp_character": "あなたはじてんしゃでうちへ行きます",
+    "particles": [
+      3,
+      9,
+      12
+    ],
+    "romanji": [
+      "anata wa jitensha de uchi e ikimasu"
+    ],
+    "furigana": {
+      "13": "い"
+    },
+    "meaning": "You go home by bicycle",
+    "meaning_id": "Anda pergi ke rumah naik sepeda"
+  },
+  {
     "jp_character": "かれは電車で店へ行きます",
     "particles": [
       2,
@@ -9015,24 +8964,6 @@ export const generatedSentences = [
     "meaning_id": "Dia (laki-laki) pergi ke toko naik kereta"
   },
   {
-    "jp_character": "父は車でびょういんへ行きます",
-    "particles": [
-      1,
-      3,
-      9
-    ],
-    "romanji": [
-      "chichi wa kuruma de byouin e ikimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "2": "くるま",
-      "10": "い"
-    },
-    "meaning": "My father goes to the hospital by car",
-    "meaning_id": "Ayah saya pergi ke rumah sakit naik mobil"
-  },
-  {
     "jp_character": "父はふねでくうこうへ行きます",
     "particles": [
       1,
@@ -9048,24 +8979,6 @@ export const generatedSentences = [
     },
     "meaning": "My father goes to the airport by ship",
     "meaning_id": "Ayah saya pergi ke bandara naik kapal"
-  },
-  {
-    "jp_character": "かのじょはちかてつで学校へ行きます",
-    "particles": [
-      4,
-      9,
-      12
-    ],
-    "romanji": [
-      "kanojo wa chikatetsu de gakkou e ikimasu"
-    ],
-    "furigana": {
-      "10": "がっ",
-      "11": "こう",
-      "13": "い"
-    },
-    "meaning": "She goes to school by subway",
-    "meaning_id": "Dia (perempuan) pergi ke sekolah naik kereta bawah tanah"
   },
   {
     "jp_character": "先生は車で駅へ行きます",
@@ -9088,22 +9001,107 @@ export const generatedSentences = [
     "meaning_id": "Guru pergi ke stasiun naik mobil"
   },
   {
-    "jp_character": "かれはじてんしゃで大学へ行きます",
+    "jp_character": "わたしはちかてつでくうこうへ行きます",
+    "particles": [
+      3,
+      8,
+      13
+    ],
+    "romanji": [
+      "watashi wa chikatetsu de kuukou e ikimasu"
+    ],
+    "furigana": {
+      "14": "い"
+    },
+    "meaning": "I go to the airport by subway",
+    "meaning_id": "Saya pergi ke bandara naik kereta bawah tanah"
+  },
+  {
+    "jp_character": "学生はひこうきでコンビニへ行きます",
     "particles": [
       2,
+      7,
+      12
+    ],
+    "romanji": [
+      "gakusei wa hikouki de konbini e ikimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "13": "い"
+    },
+    "meaning": "The student goes to the convenience store by plane",
+    "meaning_id": "Pelajar pergi ke minimarket naik pesawat"
+  },
+  {
+    "jp_character": "友だちはバスで駅へ行きます",
+    "particles": [
+      3,
+      6,
+      8
+    ],
+    "romanji": [
+      "tomodachi wa basu de eki e ikimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "7": "えき",
+      "9": "い"
+    },
+    "meaning": "My friend goes to the station by bus",
+    "meaning_id": "Teman saya pergi ke stasiun naik bus"
+  },
+  {
+    "jp_character": "あなたはタクシーで大学へ行きます",
+    "particles": [
+      3,
       8,
       11
     ],
     "romanji": [
-      "kare wa jitensha de daigaku e ikimasu"
+      "anata wa takushii de daigaku e ikimasu"
     ],
     "furigana": {
       "9": "だい",
       "10": "がく",
       "12": "い"
     },
-    "meaning": "He goes to the university by bicycle",
-    "meaning_id": "Dia (laki-laki) pergi ke universitas naik sepeda"
+    "meaning": "You go to the university by taxi",
+    "meaning_id": "Anda pergi ke universitas naik taksi"
+  },
+  {
+    "jp_character": "かのじょはちかてつでデパートへ行きます",
+    "particles": [
+      4,
+      9,
+      14
+    ],
+    "romanji": [
+      "kanojo wa chikatetsu de depaato e ikimasu"
+    ],
+    "furigana": {
+      "15": "い"
+    },
+    "meaning": "She goes to the department store by subway",
+    "meaning_id": "Dia (perempuan) pergi ke toko serba ada naik kereta bawah tanah"
+  },
+  {
+    "jp_character": "母はふねでスーパーへ行きます",
+    "particles": [
+      1,
+      4,
+      9
+    ],
+    "romanji": [
+      "haha wa fune de suupaa e ikimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "10": "い"
+    },
+    "meaning": "My mother goes to the supermarket by ship",
+    "meaning_id": "Ibu saya pergi ke supermarket naik kapal"
   },
   {
     "jp_character": "父は電車で店へ行きます",
@@ -9126,58 +9124,6 @@ export const generatedSentences = [
     "meaning_id": "Ayah saya pergi ke toko naik kereta"
   },
   {
-    "jp_character": "学生はふねでくうこうへ行きます",
-    "particles": [
-      2,
-      5,
-      10
-    ],
-    "romanji": [
-      "gakusei wa fune de kuukou e ikimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "11": "い"
-    },
-    "meaning": "The student goes to the airport by ship",
-    "meaning_id": "Pelajar pergi ke bandara naik kapal"
-  },
-  {
-    "jp_character": "わたしはちかてつでくうこうへ行きます",
-    "particles": [
-      3,
-      8,
-      13
-    ],
-    "romanji": [
-      "watashi wa chikatetsu de kuukou e ikimasu"
-    ],
-    "furigana": {
-      "14": "い"
-    },
-    "meaning": "I go to the airport by subway",
-    "meaning_id": "Saya pergi ke bandara naik kereta bawah tanah"
-  },
-  {
-    "jp_character": "父はじてんしゃで店へ行きます",
-    "particles": [
-      1,
-      7,
-      9
-    ],
-    "romanji": [
-      "chichi wa jitensha de mise e ikimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "8": "みせ",
-      "10": "い"
-    },
-    "meaning": "My father goes to the shop by bicycle",
-    "meaning_id": "Ayah saya pergi ke toko naik sepeda"
-  },
-  {
     "jp_character": "わたしはひこうきでうちへ行きます",
     "particles": [
       3,
@@ -9192,93 +9138,6 @@ export const generatedSentences = [
     },
     "meaning": "I go home by plane",
     "meaning_id": "Saya pergi ke rumah naik pesawat"
-  },
-  {
-    "jp_character": "かのじょはちかてつでデパートへ行きます",
-    "particles": [
-      4,
-      9,
-      14
-    ],
-    "romanji": [
-      "kanojo wa chikatetsu de depaato e ikimasu"
-    ],
-    "furigana": {
-      "15": "い"
-    },
-    "meaning": "She goes to the department store by subway",
-    "meaning_id": "Dia (perempuan) pergi ke toko serba ada naik kereta bawah tanah"
-  },
-  {
-    "jp_character": "わたしはひこうきで大学へ行きます",
-    "particles": [
-      3,
-      8,
-      11
-    ],
-    "romanji": [
-      "watashi wa hikouki de daigaku e ikimasu"
-    ],
-    "furigana": {
-      "9": "だい",
-      "10": "がく",
-      "12": "い"
-    },
-    "meaning": "I go to the university by plane",
-    "meaning_id": "Saya pergi ke universitas naik pesawat"
-  },
-  {
-    "jp_character": "かれは車でうちへ行きます",
-    "particles": [
-      2,
-      4,
-      7
-    ],
-    "romanji": [
-      "kare wa kuruma de uchi e ikimasu"
-    ],
-    "furigana": {
-      "3": "くるま",
-      "8": "い"
-    },
-    "meaning": "He goes home by car",
-    "meaning_id": "Dia (laki-laki) pergi ke rumah naik mobil"
-  },
-  {
-    "jp_character": "父は車でこうえんへ行きます",
-    "particles": [
-      1,
-      3,
-      8
-    ],
-    "romanji": [
-      "chichi wa kuruma de kouen e ikimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "2": "くるま",
-      "9": "い"
-    },
-    "meaning": "My father goes to the park by car",
-    "meaning_id": "Ayah saya pergi ke taman naik mobil"
-  },
-  {
-    "jp_character": "学生はひこうきでコンビニへ行きます",
-    "particles": [
-      2,
-      7,
-      12
-    ],
-    "romanji": [
-      "gakusei wa hikouki de konbini e ikimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "13": "い"
-    },
-    "meaning": "The student goes to the convenience store by plane",
-    "meaning_id": "Pelajar pergi ke minimarket naik pesawat"
   },
   {
     "jp_character": "かのじょはじてんしゃで学校へ行きます",
@@ -9299,14 +9158,102 @@ export const generatedSentences = [
     "meaning_id": "Dia (perempuan) pergi ke sekolah naik sepeda"
   },
   {
-    "jp_character": "わたしは電車で大学へ行きます",
+    "jp_character": "先生はタクシーでびょういんへ行きます",
+    "particles": [
+      2,
+      7,
+      13
+    ],
+    "romanji": [
+      "sensei wa takushii de byouin e ikimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "14": "い"
+    },
+    "meaning": "The teacher goes to the hospital by taxi",
+    "meaning_id": "Guru pergi ke rumah sakit naik taksi"
+  },
+  {
+    "jp_character": "かれはバスでぎんこうへ行きます",
+    "particles": [
+      2,
+      5,
+      10
+    ],
+    "romanji": [
+      "kare wa basu de ginkou e ikimasu"
+    ],
+    "furigana": {
+      "11": "い"
+    },
+    "meaning": "He goes to the bank by bus",
+    "meaning_id": "Dia (laki-laki) pergi ke bank naik bus"
+  },
+  {
+    "jp_character": "学生は車でこうえんへ行きます",
+    "particles": [
+      2,
+      4,
+      9
+    ],
+    "romanji": [
+      "gakusei wa kuruma de kouen e ikimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "くるま",
+      "10": "い"
+    },
+    "meaning": "The student goes to the park by car",
+    "meaning_id": "Pelajar pergi ke taman naik mobil"
+  },
+  {
+    "jp_character": "母はちかてつで駅へ行きます",
+    "particles": [
+      1,
+      6,
+      8
+    ],
+    "romanji": [
+      "haha wa chikatetsu de eki e ikimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "えき",
+      "9": "い"
+    },
+    "meaning": "My mother goes to the station by subway",
+    "meaning_id": "Ibu saya pergi ke stasiun naik kereta bawah tanah"
+  },
+  {
+    "jp_character": "友だちはじてんしゃでぎんこうへ行きます",
+    "particles": [
+      3,
+      9,
+      14
+    ],
+    "romanji": [
+      "tomodachi wa jitensha de ginkou e ikimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "15": "い"
+    },
+    "meaning": "My friend goes to the bank by bicycle",
+    "meaning_id": "Teman saya pergi ke bank naik sepeda"
+  },
+  {
+    "jp_character": "あなたは電車で大学へ行きます",
     "particles": [
       3,
       6,
       9
     ],
     "romanji": [
-      "watashi wa densha de daigaku e ikimasu"
+      "anata wa densha de daigaku e ikimasu"
     ],
     "furigana": {
       "4": "でん",
@@ -9315,184 +9262,63 @@ export const generatedSentences = [
       "8": "がく",
       "10": "い"
     },
-    "meaning": "I go to the university by train",
-    "meaning_id": "Saya pergi ke universitas naik kereta"
+    "meaning": "You go to the university by train",
+    "meaning_id": "Anda pergi ke universitas naik kereta"
   },
   {
-    "jp_character": "学生はじてんしゃで大学へ行きます",
-    "particles": [
-      2,
-      8,
-      11
-    ],
-    "romanji": [
-      "gakusei wa jitensha de daigaku e ikimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "9": "だい",
-      "10": "がく",
-      "12": "い"
-    },
-    "meaning": "The student goes to the university by bicycle",
-    "meaning_id": "Pelajar pergi ke universitas naik sepeda"
-  },
-  {
-    "jp_character": "かのじょはふねで駅へ行きます",
-    "particles": [
-      4,
-      7,
-      9
-    ],
-    "romanji": [
-      "kanojo wa fune de eki e ikimasu"
-    ],
-    "furigana": {
-      "8": "えき",
-      "10": "い"
-    },
-    "meaning": "She goes to the station by ship",
-    "meaning_id": "Dia (perempuan) pergi ke stasiun naik kapal"
-  },
-  {
-    "jp_character": "かのじょはちかてつでうちへ行きます",
-    "particles": [
-      4,
-      9,
-      12
-    ],
-    "romanji": [
-      "kanojo wa chikatetsu de uchi e ikimasu"
-    ],
-    "furigana": {
-      "13": "い"
-    },
-    "meaning": "She goes home by subway",
-    "meaning_id": "Dia (perempuan) pergi ke rumah naik kereta bawah tanah"
-  },
-  {
-    "jp_character": "友だちはふねでこうえんへ行きます",
-    "particles": [
-      3,
-      6,
-      11
-    ],
-    "romanji": [
-      "tomodachi wa fune de kouen e ikimasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "12": "い"
-    },
-    "meaning": "My friend goes to the park by ship",
-    "meaning_id": "Teman saya pergi ke taman naik kapal"
-  },
-  {
-    "jp_character": "父はタクシーでくうこうへ行きます",
-    "particles": [
-      1,
-      6,
-      11
-    ],
-    "romanji": [
-      "chichi wa takushii de kuukou e ikimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "12": "い"
-    },
-    "meaning": "My father goes to the airport by taxi",
-    "meaning_id": "Ayah saya pergi ke bandara naik taksi"
-  },
-  {
-    "jp_character": "かのじょはふねでびょういんへ行きます",
-    "particles": [
-      4,
-      7,
-      13
-    ],
-    "romanji": [
-      "kanojo wa fune de byouin e ikimasu"
-    ],
-    "furigana": {
-      "14": "い"
-    },
-    "meaning": "She goes to the hospital by ship",
-    "meaning_id": "Dia (perempuan) pergi ke rumah sakit naik kapal"
-  },
-  {
-    "jp_character": "父は電車でコンビニへ行きます",
-    "particles": [
-      1,
-      4,
-      9
-    ],
-    "romanji": [
-      "chichi wa densha de konbini e ikimasu"
-    ],
-    "furigana": {
-      "0": "ちち",
-      "2": "でん",
-      "3": "しゃ",
-      "10": "い"
-    },
-    "meaning": "My father goes to the convenience store by train",
-    "meaning_id": "Ayah saya pergi ke minimarket naik kereta"
-  },
-  {
-    "jp_character": "わたしはじてんしゃで学校へ行きます",
-    "particles": [
-      3,
-      9,
-      12
-    ],
-    "romanji": [
-      "watashi wa jitensha de gakkou e ikimasu"
-    ],
-    "furigana": {
-      "10": "がっ",
-      "11": "こう",
-      "13": "い"
-    },
-    "meaning": "I go to school by bicycle",
-    "meaning_id": "Saya pergi ke sekolah naik sepeda"
-  },
-  {
-    "jp_character": "学生はバスでくうこうへ行きます",
+    "jp_character": "学生はふねでくうこうへ行きます",
     "particles": [
       2,
       5,
       10
     ],
     "romanji": [
-      "gakusei wa basu de kuukou e ikimasu"
+      "gakusei wa fune de kuukou e ikimasu"
     ],
     "furigana": {
       "0": "がく",
       "1": "せい",
       "11": "い"
     },
-    "meaning": "The student goes to the airport by bus",
-    "meaning_id": "Pelajar pergi ke bandara naik bus"
+    "meaning": "The student goes to the airport by ship",
+    "meaning_id": "Pelajar pergi ke bandara naik kapal"
   },
   {
-    "jp_character": "父は車でくうこうへ行きます",
+    "jp_character": "かれは車でうちへ行きます",
     "particles": [
-      1,
-      3,
-      8
+      2,
+      4,
+      7
     ],
     "romanji": [
-      "chichi wa kuruma de kuukou e ikimasu"
+      "kare wa kuruma de uchi e ikimasu"
     ],
     "furigana": {
-      "0": "ちち",
-      "2": "くるま",
-      "9": "い"
+      "3": "くるま",
+      "8": "い"
     },
-    "meaning": "My father goes to the airport by car",
-    "meaning_id": "Ayah saya pergi ke bandara naik mobil"
+    "meaning": "He goes home by car",
+    "meaning_id": "Dia (laki-laki) pergi ke rumah naik mobil"
+  },
+  {
+    "jp_character": "先生はタクシーで学校へ行きます",
+    "particles": [
+      2,
+      7,
+      10
+    ],
+    "romanji": [
+      "sensei wa takushii de gakkou e ikimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "8": "がっ",
+      "9": "こう",
+      "11": "い"
+    },
+    "meaning": "The teacher goes to school by taxi",
+    "meaning_id": "Guru pergi ke sekolah naik taksi"
   },
   {
     "jp_character": "今日、かれは店でやきとりを食べます",
@@ -9515,47 +9341,6 @@ export const generatedSentences = [
     "meaning_id": "Hari ini Dia (laki-laki) makan sate ayam di toko"
   },
   {
-    "jp_character": "今日、友だちはレストランでたこやきを食べます",
-    "particles": [
-      6,
-      12,
-      17
-    ],
-    "romanji": [
-      "kyou tomodachi wa resutoran de takoyaki wo tabemasu",
-      "kyou tomodachi wa resutoran de takoyaki o tabemasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "とも",
-      "18": "た"
-    },
-    "meaning": "My friend eats takoyaki at the restaurant today",
-    "meaning_id": "Hari ini Teman saya makan takoyaki di restoran"
-  },
-  {
-    "jp_character": "今日、先生はこうえんでラムネを飲みます",
-    "particles": [
-      5,
-      10,
-      14
-    ],
-    "romanji": [
-      "kyou sensei wa kouen de ramune wo nomimasu",
-      "kyou sensei wa kouen de ramune o nomimasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "せん",
-      "4": "せい",
-      "15": "の"
-    },
-    "meaning": "The teacher drinks Ramune soda in the park today",
-    "meaning_id": "Hari ini Guru minum Ramune di taman"
-  },
-  {
     "jp_character": "父はスーパーでジュースを飲みます",
     "particles": [
       1,
@@ -9572,45 +9357,6 @@ export const generatedSentences = [
     },
     "meaning": "My father drinks juice at the supermarket",
     "meaning_id": "Ayah saya minum jus di supermarket"
-  },
-  {
-    "jp_character": "かのじょは店でパンを食べます",
-    "particles": [
-      4,
-      6,
-      9
-    ],
-    "romanji": [
-      "kanojo wa mise de pan wo tabemasu",
-      "kanojo wa mise de pan o tabemasu"
-    ],
-    "furigana": {
-      "5": "みせ",
-      "10": "た"
-    },
-    "meaning": "She eats bread at the shop",
-    "meaning_id": "Dia (perempuan) makan roti di toko"
-  },
-  {
-    "jp_character": "今日、かれは学校でみそしるを食べます",
-    "particles": [
-      5,
-      8,
-      13
-    ],
-    "romanji": [
-      "kyou kare wa gakkou de misoshiru wo tabemasu",
-      "kyou kare wa gakkou de misoshiru o tabemasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "6": "がっ",
-      "7": "こう",
-      "14": "た"
-    },
-    "meaning": "He eats miso soup at school today",
-    "meaning_id": "Hari ini Dia (laki-laki) makan sup miso di sekolah"
   },
   {
     "jp_character": "友だちはうちでやきそばを食べます",
@@ -9631,173 +9377,21 @@ export const generatedSentences = [
     "meaning_id": "Teman saya makan mi goreng di rumah"
   },
   {
-    "jp_character": "今日、かれはこうえんでパンを食べます",
-    "particles": [
-      5,
-      10,
-      13
-    ],
-    "romanji": [
-      "kyou kare wa kouen de pan wo tabemasu",
-      "kyou kare wa kouen de pan o tabemasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "14": "た"
-    },
-    "meaning": "He eats bread in the park today",
-    "meaning_id": "Hari ini Dia (laki-laki) makan roti di taman"
-  },
-  {
-    "jp_character": "かれはスーパーでてんぷらを食べます",
-    "particles": [
-      2,
-      7,
-      12
-    ],
-    "romanji": [
-      "kare wa suupaa de tenpura wo tabemasu",
-      "kare wa suupaa de tenpura o tabemasu"
-    ],
-    "furigana": {
-      "13": "た"
-    },
-    "meaning": "He eats tempura at the supermarket",
-    "meaning_id": "Dia (laki-laki) makan tempura di supermarket"
-  },
-  {
-    "jp_character": "かのじょは学校でケーキを食べます",
+    "jp_character": "かのじょはこうえんでラムネを飲みます",
     "particles": [
       4,
-      7,
-      11
-    ],
-    "romanji": [
-      "kanojo wa gakkou de keeki wo tabemasu",
-      "kanojo wa gakkou de keeki o tabemasu"
-    ],
-    "furigana": {
-      "5": "がっ",
-      "6": "こう",
-      "12": "た"
-    },
-    "meaning": "She eats cake at school",
-    "meaning_id": "Dia (perempuan) makan kue di sekolah"
-  },
-  {
-    "jp_character": "今日、かれはレストランでサラダを食べます",
-    "particles": [
-      5,
-      11,
-      15
-    ],
-    "romanji": [
-      "kyou kare wa resutoran de sarada wo tabemasu",
-      "kyou kare wa resutoran de sarada o tabemasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "16": "た"
-    },
-    "meaning": "He eats salad at the restaurant today",
-    "meaning_id": "Hari ini Dia (laki-laki) makan salad di restoran"
-  },
-  {
-    "jp_character": "今日、友だちは店でラムネを飲みます",
-    "particles": [
-      6,
-      8,
-      12
-    ],
-    "romanji": [
-      "kyou tomodachi wa mise de ramune wo nomimasu",
-      "kyou tomodachi wa mise de ramune o nomimasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "とも",
-      "7": "みせ",
-      "13": "の"
-    },
-    "meaning": "My friend drinks Ramune soda at the shop today",
-    "meaning_id": "Hari ini Teman saya minum Ramune di toko"
-  },
-  {
-    "jp_character": "かれはコンビニでラムネを飲みます",
-    "particles": [
-      2,
-      7,
-      11
-    ],
-    "romanji": [
-      "kare wa konbini de ramune wo nomimasu",
-      "kare wa konbini de ramune o nomimasu"
-    ],
-    "furigana": {
-      "12": "の"
-    },
-    "meaning": "He drinks Ramune soda at the convenience store",
-    "meaning_id": "Dia (laki-laki) minum Ramune di minimarket"
-  },
-  {
-    "jp_character": "今日、かのじょは学校でジュースを飲みます",
-    "particles": [
-      7,
-      10,
-      15
-    ],
-    "romanji": [
-      "kyou kanojo wa gakkou de juusu wo nomimasu",
-      "kyou kanojo wa gakkou de juusu o nomimasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "8": "がっ",
-      "9": "こう",
-      "16": "の"
-    },
-    "meaning": "She drinks juice at school today",
-    "meaning_id": "Hari ini Dia (perempuan) minum jus di sekolah"
-  },
-  {
-    "jp_character": "友だちはコンビニでたこやきを食べます",
-    "particles": [
-      3,
-      8,
-      13
-    ],
-    "romanji": [
-      "tomodachi wa konbini de takoyaki wo tabemasu",
-      "tomodachi wa konbini de takoyaki o tabemasu"
-    ],
-    "furigana": {
-      "0": "とも",
-      "14": "た"
-    },
-    "meaning": "My friend eats takoyaki at the convenience store",
-    "meaning_id": "Teman saya makan takoyaki di minimarket"
-  },
-  {
-    "jp_character": "友だちはレストランでサラダを食べます",
-    "particles": [
-      3,
       9,
       13
     ],
     "romanji": [
-      "tomodachi wa resutoran de sarada wo tabemasu",
-      "tomodachi wa resutoran de sarada o tabemasu"
+      "kanojo wa kouen de ramune wo nomimasu",
+      "kanojo wa kouen de ramune o nomimasu"
     ],
     "furigana": {
-      "0": "とも",
-      "14": "た"
+      "14": "の"
     },
-    "meaning": "My friend eats salad at the restaurant",
-    "meaning_id": "Teman saya makan salad di restoran"
+    "meaning": "She drinks Ramune soda in the park",
+    "meaning_id": "Dia (perempuan) minum Ramune di taman"
   },
   {
     "jp_character": "先生は学校でカレーライスを食べます",
@@ -9821,41 +9415,130 @@ export const generatedSentences = [
     "meaning_id": "Guru makan nasi kari di sekolah"
   },
   {
-    "jp_character": "先生はこうえんでおにぎりを食べます",
+    "jp_character": "学生はコンビニでてんぷらを食べます",
     "particles": [
       2,
       7,
       12
     ],
     "romanji": [
-      "sensei wa kouen de onigiri wo tabemasu",
-      "sensei wa kouen de onigiri o tabemasu"
+      "gakusei wa konbini de tenpura wo tabemasu",
+      "gakusei wa konbini de tenpura o tabemasu"
     ],
     "furigana": {
-      "0": "せん",
+      "0": "がく",
       "1": "せい",
       "13": "た"
     },
-    "meaning": "The teacher eats onigiri in the park",
-    "meaning_id": "Guru makan nasi kepal di taman"
+    "meaning": "The student eats tempura at the convenience store",
+    "meaning_id": "Pelajar makan tempura di minimarket"
   },
   {
-    "jp_character": "友だちはうちでカレーライスを食べます",
+    "jp_character": "母はレストランでラムネを飲みます",
+    "particles": [
+      1,
+      7,
+      11
+    ],
+    "romanji": [
+      "haha wa resutoran de ramune wo nomimasu",
+      "haha wa resutoran de ramune o nomimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "12": "の"
+    },
+    "meaning": "My mother drinks Ramune soda at the restaurant",
+    "meaning_id": "Ibu saya minum Ramune di restoran"
+  },
+  {
+    "jp_character": "わたしは学校でうどんを食べます",
     "particles": [
       3,
       6,
+      10
+    ],
+    "romanji": [
+      "watashi wa gakkou de udon wo tabemasu",
+      "watashi wa gakkou de udon o tabemasu"
+    ],
+    "furigana": {
+      "4": "がっ",
+      "5": "こう",
+      "11": "た"
+    },
+    "meaning": "I eat udon at school",
+    "meaning_id": "Saya makan mi udon di sekolah"
+  },
+  {
+    "jp_character": "あなたはこうえんでジュースを飲みます",
+    "particles": [
+      3,
+      8,
       13
     ],
     "romanji": [
-      "tomodachi wa uchi de karee raisu wo tabemasu",
-      "tomodachi wa uchi de karee raisu o tabemasu"
+      "anata wa kouen de juusu wo nomimasu",
+      "anata wa kouen de juusu o nomimasu"
+    ],
+    "furigana": {
+      "14": "の"
+    },
+    "meaning": "You drink juice in the park",
+    "meaning_id": "Anda minum jus di taman"
+  },
+  {
+    "jp_character": "かのじょは店でパンを食べます",
+    "particles": [
+      4,
+      6,
+      9
+    ],
+    "romanji": [
+      "kanojo wa mise de pan wo tabemasu",
+      "kanojo wa mise de pan o tabemasu"
+    ],
+    "furigana": {
+      "5": "みせ",
+      "10": "た"
+    },
+    "meaning": "She eats bread at the shop",
+    "meaning_id": "Dia (perempuan) makan roti di toko"
+  },
+  {
+    "jp_character": "かれはコンビニでラムネを飲みます",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "kare wa konbini de ramune wo nomimasu",
+      "kare wa konbini de ramune o nomimasu"
+    ],
+    "furigana": {
+      "12": "の"
+    },
+    "meaning": "He drinks Ramune soda at the convenience store",
+    "meaning_id": "Dia (laki-laki) minum Ramune di minimarket"
+  },
+  {
+    "jp_character": "友だちはレストランでサラダを食べます",
+    "particles": [
+      3,
+      9,
+      13
+    ],
+    "romanji": [
+      "tomodachi wa resutoran de sarada wo tabemasu",
+      "tomodachi wa resutoran de sarada o tabemasu"
     ],
     "furigana": {
       "0": "とも",
       "14": "た"
     },
-    "meaning": "My friend eats curry rice at home",
-    "meaning_id": "Teman saya makan nasi kari di rumah"
+    "meaning": "My friend eats salad at the restaurant",
+    "meaning_id": "Teman saya makan salad di restoran"
   },
   {
     "jp_character": "学生はスーパーでケーキを食べます",
@@ -9877,127 +9560,241 @@ export const generatedSentences = [
     "meaning_id": "Pelajar makan kue di supermarket"
   },
   {
-    "jp_character": "今日、かれはこうえんでおにぎりを食べます",
+    "jp_character": "父はうちでジュースを飲みます",
     "particles": [
-      5,
-      10,
-      15
+      1,
+      4,
+      9
     ],
     "romanji": [
-      "kyou kare wa kouen de onigiri wo tabemasu",
-      "kyou kare wa kouen de onigiri o tabemasu"
+      "chichi wa uchi de juusu wo nomimasu",
+      "chichi wa uchi de juusu o nomimasu"
     ],
     "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "16": "た"
+      "0": "ちち",
+      "10": "の"
     },
-    "meaning": "He eats onigiri in the park today",
-    "meaning_id": "Hari ini Dia (laki-laki) makan nasi kepal di taman"
+    "meaning": "My father drinks juice at home",
+    "meaning_id": "Ayah saya minum jus di rumah"
   },
   {
-    "jp_character": "今日、先生は店でみそしるを食べます",
+    "jp_character": "先生はこうえんでおにぎりを食べます",
     "particles": [
-      5,
+      2,
       7,
       12
     ],
     "romanji": [
-      "kyou sensei wa mise de misoshiru wo tabemasu",
-      "kyou sensei wa mise de misoshiru o tabemasu"
+      "sensei wa kouen de onigiri wo tabemasu",
+      "sensei wa kouen de onigiri o tabemasu"
     ],
     "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "せん",
-      "4": "せい",
-      "6": "みせ",
+      "0": "せん",
+      "1": "せい",
       "13": "た"
     },
-    "meaning": "The teacher eats miso soup at the shop today",
-    "meaning_id": "Hari ini Guru makan sup miso di toko"
+    "meaning": "The teacher eats onigiri in the park",
+    "meaning_id": "Guru makan nasi kepal di taman"
   },
   {
-    "jp_character": "今日、父は店でケーキを食べます",
+    "jp_character": "母は店でみそしるを食べます",
     "particles": [
+      1,
+      3,
+      8
+    ],
+    "romanji": [
+      "haha wa mise de misoshiru wo tabemasu",
+      "haha wa mise de misoshiru o tabemasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "みせ",
+      "9": "た"
+    },
+    "meaning": "My mother eats miso soup at the shop",
+    "meaning_id": "Ibu saya makan sup miso di toko"
+  },
+  {
+    "jp_character": "わたしはスーパーでジュースを飲みます",
+    "particles": [
+      3,
+      8,
+      13
+    ],
+    "romanji": [
+      "watashi wa suupaa de juusu wo nomimasu",
+      "watashi wa suupaa de juusu o nomimasu"
+    ],
+    "furigana": {
+      "14": "の"
+    },
+    "meaning": "I drink juice at the supermarket",
+    "meaning_id": "Saya minum jus di supermarket"
+  },
+  {
+    "jp_character": "あなたはコンビニでおかしを食べます",
+    "particles": [
+      3,
+      8,
+      12
+    ],
+    "romanji": [
+      "anata wa konbini de okashi wo tabemasu",
+      "anata wa konbini de okashi o tabemasu"
+    ],
+    "furigana": {
+      "13": "た"
+    },
+    "meaning": "You eat sweets at the convenience store",
+    "meaning_id": "Anda makan camilan di minimarket"
+  },
+  {
+    "jp_character": "かれはレストランでラムネを飲みます",
+    "particles": [
+      2,
+      8,
+      12
+    ],
+    "romanji": [
+      "kare wa resutoran de ramune wo nomimasu",
+      "kare wa resutoran de ramune o nomimasu"
+    ],
+    "furigana": {
+      "13": "の"
+    },
+    "meaning": "He drinks Ramune soda at the restaurant",
+    "meaning_id": "Dia (laki-laki) minum Ramune di restoran"
+  },
+  {
+    "jp_character": "父は学校でそばを食べます",
+    "particles": [
+      1,
       4,
+      7
+    ],
+    "romanji": [
+      "chichi wa gakkou de soba wo tabemasu",
+      "chichi wa gakkou de soba o tabemasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "がっ",
+      "3": "こう",
+      "8": "た"
+    },
+    "meaning": "My father eats soba at school",
+    "meaning_id": "Ayah saya makan mi soba di sekolah"
+  },
+  {
+    "jp_character": "友だちはうちでたこやきを食べます",
+    "particles": [
+      3,
       6,
-      10
-    ],
-    "romanji": [
-      "kyou chichi wa mise de keeki wo tabemasu",
-      "kyou chichi wa mise de keeki o tabemasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "ちち",
-      "5": "みせ",
-      "11": "た"
-    },
-    "meaning": "My father eats cake at the shop today",
-    "meaning_id": "Hari ini Ayah saya makan kue di toko"
-  },
-  {
-    "jp_character": "今日、かのじょは店でやきとりを食べます",
-    "particles": [
-      7,
-      9,
-      14
-    ],
-    "romanji": [
-      "kyou kanojo wa mise de yakitori wo tabemasu",
-      "kyou kanojo wa mise de yakitori o tabemasu"
-    ],
-    "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "8": "みせ",
-      "15": "た"
-    },
-    "meaning": "She eats grilled chicken at the shop today",
-    "meaning_id": "Hari ini Dia (perempuan) makan sate ayam di toko"
-  },
-  {
-    "jp_character": "今日、父は学校でおかしを食べます",
-    "particles": [
-      4,
-      7,
       11
     ],
     "romanji": [
-      "kyou chichi wa gakkou de okashi wo tabemasu",
-      "kyou chichi wa gakkou de okashi o tabemasu"
+      "tomodachi wa uchi de takoyaki wo tabemasu",
+      "tomodachi wa uchi de takoyaki o tabemasu"
     ],
     "furigana": {
-      "0": "きょ",
-      "1": "う",
-      "3": "ちち",
-      "5": "がっ",
-      "6": "こう",
+      "0": "とも",
       "12": "た"
     },
-    "meaning": "My father eats sweets at school today",
-    "meaning_id": "Hari ini Ayah saya makan camilan di sekolah"
+    "meaning": "My friend eats takoyaki at home",
+    "meaning_id": "Teman saya makan takoyaki di rumah"
   },
   {
-    "jp_character": "学生はうちでおかしを食べます",
+    "jp_character": "学生は学校でジュースを飲みます",
     "particles": [
       2,
       5,
-      9
+      10
     ],
     "romanji": [
-      "gakusei wa uchi de okashi wo tabemasu",
-      "gakusei wa uchi de okashi o tabemasu"
+      "gakusei wa gakkou de juusu wo nomimasu",
+      "gakusei wa gakkou de juusu o nomimasu"
     ],
     "furigana": {
       "0": "がく",
       "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "11": "の"
+    },
+    "meaning": "The student drinks juice at school",
+    "meaning_id": "Pelajar minum jus di sekolah"
+  },
+  {
+    "jp_character": "先生はこうえんでラムネを飲みます",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "sensei wa kouen de ramune wo nomimasu",
+      "sensei wa kouen de ramune o nomimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "12": "の"
+    },
+    "meaning": "The teacher drinks Ramune soda in the park",
+    "meaning_id": "Guru minum Ramune di taman"
+  },
+  {
+    "jp_character": "かのじょはレストランでパンを食べます",
+    "particles": [
+      4,
+      10,
+      13
+    ],
+    "romanji": [
+      "kanojo wa resutoran de pan wo tabemasu",
+      "kanojo wa resutoran de pan o tabemasu"
+    ],
+    "furigana": {
+      "14": "た"
+    },
+    "meaning": "She eats bread at the restaurant",
+    "meaning_id": "Dia (perempuan) makan roti di restoran"
+  },
+  {
+    "jp_character": "母はスーパーでそばを食べます",
+    "particles": [
+      1,
+      6,
+      9
+    ],
+    "romanji": [
+      "haha wa suupaa de soba wo tabemasu",
+      "haha wa suupaa de soba o tabemasu"
+    ],
+    "furigana": {
+      "0": "はは",
       "10": "た"
     },
-    "meaning": "The student eats sweets at home",
-    "meaning_id": "Pelajar makan camilan di rumah"
+    "meaning": "My mother eats soba at the supermarket",
+    "meaning_id": "Ibu saya makan mi soba di supermarket"
+  },
+  {
+    "jp_character": "あなたはうちでラムネを飲みます",
+    "particles": [
+      3,
+      6,
+      10
+    ],
+    "romanji": [
+      "anata wa uchi de ramune wo nomimasu",
+      "anata wa uchi de ramune o nomimasu"
+    ],
+    "furigana": {
+      "11": "の"
+    },
+    "meaning": "You drink Ramune soda at home",
+    "meaning_id": "Anda minum Ramune di rumah"
   },
   {
     "jp_character": "ラーメンをおねがいします",
@@ -10164,62 +9961,44 @@ export const generatedSentences = [
     "meaning_id": "Pelajar belajar di universitas dari jam satu sampai jam tiga"
   },
   {
-    "jp_character": "あなたは八時から六時までうちでべんきょうします",
+    "jp_character": "あなたは九時から五時まで学校でべんきょうします",
     "particles": [
       3,
       14
     ],
     "romanji": [
-      "anata wa hachiji kara rokuji made uchi de benkyou shimasu"
+      "anata wa kuji kara goji made gakkou de benkyou shimasu"
     ],
     "furigana": {
-      "4": "はち",
-      "5": "じ",
-      "8": "ろく",
-      "9": "じ"
-    },
-    "meaning": "You study at home from eight o'clock to six o'clock",
-    "meaning_id": "Anda belajar di rumah dari jam delapan sampai jam enam"
-  },
-  {
-    "jp_character": "わたしは三時から五時まで大学でべんきょうします",
-    "particles": [
-      3,
-      14
-    ],
-    "romanji": [
-      "watashi wa sanji kara goji made daigaku de benkyou shimasu"
-    ],
-    "furigana": {
-      "4": "さん",
+      "4": "く",
       "5": "じ",
       "8": "ご",
       "9": "じ",
-      "12": "だい",
-      "13": "がく"
+      "12": "がっ",
+      "13": "こう"
     },
-    "meaning": "I study at the university from three o'clock to five o'clock",
-    "meaning_id": "Saya belajar di universitas dari jam tiga sampai jam lima"
+    "meaning": "You study at school from nine o'clock to five o'clock",
+    "meaning_id": "Anda belajar di sekolah dari jam sembilan sampai jam lima"
   },
   {
-    "jp_character": "あなたは三時から五時まで大学でべんきょうします",
+    "jp_character": "わたしは二時から四時まで学校でべんきょうします",
     "particles": [
       3,
       14
     ],
     "romanji": [
-      "anata wa sanji kara goji made daigaku de benkyou shimasu"
+      "watashi wa niji kara yoji made gakkou de benkyou shimasu"
     ],
     "furigana": {
-      "4": "さん",
+      "4": "に",
       "5": "じ",
-      "8": "ご",
+      "8": "よ",
       "9": "じ",
-      "12": "だい",
-      "13": "がく"
+      "12": "がっ",
+      "13": "こう"
     },
-    "meaning": "You study at the university from three o'clock to five o'clock",
-    "meaning_id": "Anda belajar di universitas dari jam tiga sampai jam lima"
+    "meaning": "I study at school from two o'clock to four o'clock",
+    "meaning_id": "Saya belajar di sekolah dari jam dua sampai jam empat"
   },
   {
     "jp_character": "友だちは七時から四時までうちでべんきょうします",
@@ -10261,45 +10040,24 @@ export const generatedSentences = [
     "meaning_id": "Saya belajar di universitas dari jam sepuluh sampai jam delapan"
   },
   {
-    "jp_character": "友だちは九時から五時まで大学でべんきょうします",
+    "jp_character": "あなたは三時から五時まで大学でべんきょうします",
     "particles": [
       3,
       14
     ],
     "romanji": [
-      "tomodachi wa kuji kara goji made daigaku de benkyou shimasu"
+      "anata wa sanji kara goji made daigaku de benkyou shimasu"
     ],
     "furigana": {
-      "0": "とも",
-      "4": "く",
+      "4": "さん",
       "5": "じ",
       "8": "ご",
       "9": "じ",
       "12": "だい",
       "13": "がく"
     },
-    "meaning": "My friend studies at the university from nine o'clock to five o'clock",
-    "meaning_id": "Teman saya belajar di universitas dari jam sembilan sampai jam lima"
-  },
-  {
-    "jp_character": "あなたは九時から五時まで大学でべんきょうします",
-    "particles": [
-      3,
-      14
-    ],
-    "romanji": [
-      "anata wa kuji kara goji made daigaku de benkyou shimasu"
-    ],
-    "furigana": {
-      "4": "く",
-      "5": "じ",
-      "8": "ご",
-      "9": "じ",
-      "12": "だい",
-      "13": "がく"
-    },
-    "meaning": "You study at the university from nine o'clock to five o'clock",
-    "meaning_id": "Anda belajar di universitas dari jam sembilan sampai jam lima"
+    "meaning": "You study at the university from three o'clock to five o'clock",
+    "meaning_id": "Anda belajar di universitas dari jam tiga sampai jam lima"
   },
   {
     "jp_character": "学生は二時から四時までうちでべんきょうします",
@@ -10322,26 +10080,6 @@ export const generatedSentences = [
     "meaning_id": "Pelajar belajar di rumah dari jam dua sampai jam empat"
   },
   {
-    "jp_character": "わたしは一時から三時まで大学でべんきょうします",
-    "particles": [
-      3,
-      14
-    ],
-    "romanji": [
-      "watashi wa ichiji kara sanji made daigaku de benkyou shimasu"
-    ],
-    "furigana": {
-      "4": "いち",
-      "5": "じ",
-      "8": "さん",
-      "9": "じ",
-      "12": "だい",
-      "13": "がく"
-    },
-    "meaning": "I study at the university from one o'clock to three o'clock",
-    "meaning_id": "Saya belajar di universitas dari jam satu sampai jam tiga"
-  },
-  {
     "jp_character": "あなたは十時から八時まで学校でべんきょうします",
     "particles": [
       3,
@@ -10362,44 +10100,106 @@ export const generatedSentences = [
     "meaning_id": "Anda belajar di sekolah dari jam sepuluh sampai jam delapan"
   },
   {
-    "jp_character": "あなたは九時から五時まで学校でべんきょうします",
+    "jp_character": "友だちは九時から五時まで大学でべんきょうします",
     "particles": [
       3,
       14
     ],
     "romanji": [
-      "anata wa kuji kara goji made gakkou de benkyou shimasu"
+      "tomodachi wa kuji kara goji made daigaku de benkyou shimasu"
     ],
     "furigana": {
+      "0": "とも",
       "4": "く",
       "5": "じ",
       "8": "ご",
       "9": "じ",
-      "12": "がっ",
-      "13": "こう"
+      "12": "だい",
+      "13": "がく"
     },
-    "meaning": "You study at school from nine o'clock to five o'clock",
-    "meaning_id": "Anda belajar di sekolah dari jam sembilan sampai jam lima"
+    "meaning": "My friend studies at the university from nine o'clock to five o'clock",
+    "meaning_id": "Teman saya belajar di universitas dari jam sembilan sampai jam lima"
   },
   {
-    "jp_character": "わたしは三時から五時まで学校でべんきょうします",
+    "jp_character": "学生は一時から三時まで学校でべんきょうします",
+    "particles": [
+      2,
+      13
+    ],
+    "romanji": [
+      "gakusei wa ichiji kara sanji made gakkou de benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "いち",
+      "4": "じ",
+      "7": "さん",
+      "8": "じ",
+      "11": "がっ",
+      "12": "こう"
+    },
+    "meaning": "The student studies at school from one o'clock to three o'clock",
+    "meaning_id": "Pelajar belajar di sekolah dari jam satu sampai jam tiga"
+  },
+  {
+    "jp_character": "わたしは八時から六時までうちでべんきょうします",
     "particles": [
       3,
       14
     ],
     "romanji": [
-      "watashi wa sanji kara goji made gakkou de benkyou shimasu"
+      "watashi wa hachiji kara rokuji made uchi de benkyou shimasu"
     ],
     "furigana": {
-      "4": "さん",
+      "4": "はち",
       "5": "じ",
-      "8": "ご",
+      "8": "ろく",
+      "9": "じ"
+    },
+    "meaning": "I study at home from eight o'clock to six o'clock",
+    "meaning_id": "Saya belajar di rumah dari jam delapan sampai jam enam"
+  },
+  {
+    "jp_character": "友だちは七時から四時まで大学でべんきょうします",
+    "particles": [
+      3,
+      14
+    ],
+    "romanji": [
+      "tomodachi wa shichiji kara yoji made daigaku de benkyou shimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "しち",
+      "5": "じ",
+      "8": "よ",
+      "9": "じ",
+      "12": "だい",
+      "13": "がく"
+    },
+    "meaning": "My friend studies at the university from seven o'clock to four o'clock",
+    "meaning_id": "Teman saya belajar di universitas dari jam tujuh sampai jam empat"
+  },
+  {
+    "jp_character": "わたしは一時から三時まで学校でべんきょうします",
+    "particles": [
+      3,
+      14
+    ],
+    "romanji": [
+      "watashi wa ichiji kara sanji made gakkou de benkyou shimasu"
+    ],
+    "furigana": {
+      "4": "いち",
+      "5": "じ",
+      "8": "さん",
       "9": "じ",
       "12": "がっ",
       "13": "こう"
     },
-    "meaning": "I study at school from three o'clock to five o'clock",
-    "meaning_id": "Saya belajar di sekolah dari jam tiga sampai jam lima"
+    "meaning": "I study at school from one o'clock to three o'clock",
+    "meaning_id": "Saya belajar di sekolah dari jam satu sampai jam tiga"
   },
   {
     "jp_character": "友だちはテニスがすきです",
@@ -10417,18 +10217,6 @@ export const generatedSentences = [
     "meaning_id": "Teman saya suka tenis"
   },
   {
-    "jp_character": "かれはアニメがすきです",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "kare wa anime ga suki desu"
-    ],
-    "meaning": "He likes anime",
-    "meaning_id": "Dia (laki-laki) suka anime"
-  },
-  {
     "jp_character": "母はまんががきらいです",
     "particles": [
       1,
@@ -10444,16 +10232,16 @@ export const generatedSentences = [
     "meaning_id": "Ibu saya benci manga"
   },
   {
-    "jp_character": "かれはカラオケがすきです",
+    "jp_character": "かれはアニメがすきです",
     "particles": [
       2,
-      7
+      6
     ],
     "romanji": [
-      "kare wa karaoke ga suki desu"
+      "kare wa anime ga suki desu"
     ],
-    "meaning": "He likes karaoke",
-    "meaning_id": "Dia (laki-laki) suka karaoke"
+    "meaning": "He likes anime",
+    "meaning_id": "Dia (laki-laki) suka anime"
   },
   {
     "jp_character": "学生ははれがきらいです",
@@ -10472,45 +10260,6 @@ export const generatedSentences = [
     "meaning_id": "Pelajar benci cuaca cerah"
   },
   {
-    "jp_character": "わたしははれがすきです",
-    "particles": [
-      3,
-      6
-    ],
-    "romanji": [
-      "watashi wa hare ga suki desu"
-    ],
-    "meaning": "I like sunny weather",
-    "meaning_id": "Saya suka cuaca cerah"
-  },
-  {
-    "jp_character": "わたしはテニスがすきです",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "watashi wa tenisu ga suki desu"
-    ],
-    "meaning": "I like tennis",
-    "meaning_id": "Saya suka tenis"
-  },
-  {
-    "jp_character": "友だちははれがすきです",
-    "particles": [
-      3,
-      6
-    ],
-    "romanji": [
-      "tomodachi wa hare ga suki desu"
-    ],
-    "furigana": {
-      "0": "とも"
-    },
-    "meaning": "My friend likes sunny weather",
-    "meaning_id": "Teman saya suka cuaca cerah"
-  },
-  {
     "jp_character": "かのじょはくもりがきらいです",
     "particles": [
       4,
@@ -10521,48 +10270,6 @@ export const generatedSentences = [
     ],
     "meaning": "She hates cloudy weather",
     "meaning_id": "Dia (perempuan) benci cuaca berawan"
-  },
-  {
-    "jp_character": "父はおかしがきらいです",
-    "particles": [
-      1,
-      5
-    ],
-    "romanji": [
-      "chichi wa okashi ga kirai desu"
-    ],
-    "furigana": {
-      "0": "ちち"
-    },
-    "meaning": "My father hates sweets",
-    "meaning_id": "Ayah saya benci camilan"
-  },
-  {
-    "jp_character": "かのじょはやきゅうがすきです",
-    "particles": [
-      4,
-      9
-    ],
-    "romanji": [
-      "kanojo wa yakyuu ga suki desu"
-    ],
-    "meaning": "She likes baseball",
-    "meaning_id": "Dia (perempuan) suka bisbol"
-  },
-  {
-    "jp_character": "父はまんががきらいです",
-    "particles": [
-      1,
-      5
-    ],
-    "romanji": [
-      "chichi wa manga ga kirai desu"
-    ],
-    "furigana": {
-      "0": "ちち"
-    },
-    "meaning": "My father hates manga",
-    "meaning_id": "Ayah saya benci manga"
   },
   {
     "jp_character": "先生はあめがすきです",
@@ -10581,6 +10288,21 @@ export const generatedSentences = [
     "meaning_id": "Guru suka hujan"
   },
   {
+    "jp_character": "父はおかしがきらいです",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "chichi wa okashi ga kirai desu"
+    ],
+    "furigana": {
+      "0": "ちち"
+    },
+    "meaning": "My father hates sweets",
+    "meaning_id": "Ayah saya benci camilan"
+  },
+  {
     "jp_character": "わたしはカラオケがすきです",
     "particles": [
       3,
@@ -10593,19 +10315,31 @@ export const generatedSentences = [
     "meaning_id": "Saya suka karaoke"
   },
   {
-    "jp_character": "父はアニメがすきです",
+    "jp_character": "かのじょはやきゅうがすきです",
     "particles": [
-      1,
-      5
+      4,
+      9
     ],
     "romanji": [
-      "chichi wa anime ga suki desu"
+      "kanojo wa yakyuu ga suki desu"
+    ],
+    "meaning": "She likes baseball",
+    "meaning_id": "Dia (perempuan) suka bisbol"
+  },
+  {
+    "jp_character": "父はサッカーがきらいです",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "chichi wa sakkaa ga kirai desu"
     ],
     "furigana": {
       "0": "ちち"
     },
-    "meaning": "My father likes anime",
-    "meaning_id": "Ayah saya suka anime"
+    "meaning": "My father hates soccer",
+    "meaning_id": "Ayah saya benci sepak bola"
   },
   {
     "jp_character": "わたしはゆきがすきです",
@@ -10620,60 +10354,133 @@ export const generatedSentences = [
     "meaning_id": "Saya suka salju"
   },
   {
-    "jp_character": "先生はテニスがすきです",
+    "jp_character": "母はすいえいがきらいです",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "haha wa suiei ga kirai desu"
+    ],
+    "furigana": {
+      "0": "はは"
+    },
+    "meaning": "My mother hates swimming",
+    "meaning_id": "Ibu saya benci renang"
+  },
+  {
+    "jp_character": "かれはケーキがすきです",
     "particles": [
       2,
       6
     ],
     "romanji": [
-      "sensei wa tenisu ga suki desu"
+      "kare wa keeki ga suki desu"
     ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい"
-    },
-    "meaning": "The teacher likes tennis",
-    "meaning_id": "Guru suka tenis"
+    "meaning": "He likes cake",
+    "meaning_id": "Dia (laki-laki) suka kue"
   },
   {
-    "jp_character": "わたしはテニスがきらいです",
-    "particles": [
-      3,
-      7
-    ],
-    "romanji": [
-      "watashi wa tenisu ga kirai desu"
-    ],
-    "meaning": "I hate tennis",
-    "meaning_id": "Saya benci tenis"
-  },
-  {
-    "jp_character": "わたしはサッカーがすきです",
-    "particles": [
-      3,
-      8
-    ],
-    "romanji": [
-      "watashi wa sakkaa ga suki desu"
-    ],
-    "meaning": "I like soccer",
-    "meaning_id": "Saya suka sepak bola"
-  },
-  {
-    "jp_character": "学生はカラオケがきらいです",
+    "jp_character": "学生はスポーツがきらいです",
     "particles": [
       2,
       7
     ],
     "romanji": [
-      "gakusei wa karaoke ga kirai desu"
+      "gakusei wa supootsu ga kirai desu"
     ],
     "furigana": {
       "0": "がく",
       "1": "せい"
     },
-    "meaning": "The student hates karaoke",
-    "meaning_id": "Pelajar benci karaoke"
+    "meaning": "The student hates sports",
+    "meaning_id": "Pelajar benci olahraga"
+  },
+  {
+    "jp_character": "友だちははれがすきです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa hare ga suki desu"
+    ],
+    "furigana": {
+      "0": "とも"
+    },
+    "meaning": "My friend likes sunny weather",
+    "meaning_id": "Teman saya suka cuaca cerah"
+  },
+  {
+    "jp_character": "先生はゆきがきらいです",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa yuki ga kirai desu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
+    "meaning": "The teacher hates snow",
+    "meaning_id": "Guru benci salju"
+  },
+  {
+    "jp_character": "かれはカラオケがすきです",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "kare wa karaoke ga suki desu"
+    ],
+    "meaning": "He likes karaoke",
+    "meaning_id": "Dia (laki-laki) suka karaoke"
+  },
+  {
+    "jp_character": "父はまんががきらいです",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "chichi wa manga ga kirai desu"
+    ],
+    "furigana": {
+      "0": "ちち"
+    },
+    "meaning": "My father hates manga",
+    "meaning_id": "Ayah saya benci manga"
+  },
+  {
+    "jp_character": "わたしはテニスがすきです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa tenisu ga suki desu"
+    ],
+    "meaning": "I like tennis",
+    "meaning_id": "Saya suka tenis"
+  },
+  {
+    "jp_character": "学生はくもりがきらいです",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa kumori ga kirai desu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
+    "meaning": "The student hates cloudy weather",
+    "meaning_id": "Pelajar benci cuaca berawan"
   },
   {
     "jp_character": "きょうはさむいです",
@@ -10687,6 +10494,39 @@ export const generatedSentences = [
     "meaning_id": "Hari ini dingin"
   },
   {
+    "jp_character": "きのうはさむかったです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kinou wa samukatta desu"
+    ],
+    "meaning": "It was cold yesterday",
+    "meaning_id": "Kemarin dingin"
+  },
+  {
+    "jp_character": "あきはすずしいです",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "aki wa suzushii desu"
+    ],
+    "meaning": "Autumn is cool",
+    "meaning_id": "Musim gugur itu sejuk"
+  },
+  {
+    "jp_character": "なつはあついです",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "natsu wa atsui desu"
+    ],
+    "meaning": "Summer is hot",
+    "meaning_id": "Musim panas itu panas"
+  },
+  {
     "jp_character": "ふゆはさむいです",
     "particles": [
       2
@@ -10696,6 +10536,17 @@ export const generatedSentences = [
     ],
     "meaning": "Winter is cold",
     "meaning_id": "Musim dingin itu dingin"
+  },
+  {
+    "jp_character": "きのうはあつかったです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kinou wa atsukatta desu"
+    ],
+    "meaning": "It was hot yesterday",
+    "meaning_id": "Kemarin panas"
   },
   {
     "jp_character": "きょうはすずしいです",
@@ -10729,50 +10580,6 @@ export const generatedSentences = [
     ],
     "meaning": "It is hot today",
     "meaning_id": "Hari ini panas"
-  },
-  {
-    "jp_character": "きのうはさむかったです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kinou wa samukatta desu"
-    ],
-    "meaning": "It was cold yesterday",
-    "meaning_id": "Kemarin dingin"
-  },
-  {
-    "jp_character": "きのうはあつかったです",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kinou wa atsukatta desu"
-    ],
-    "meaning": "It was hot yesterday",
-    "meaning_id": "Kemarin panas"
-  },
-  {
-    "jp_character": "あきはすずしいです",
-    "particles": [
-      2
-    ],
-    "romanji": [
-      "aki wa suzushii desu"
-    ],
-    "meaning": "Autumn is cool",
-    "meaning_id": "Musim gugur itu sejuk"
-  },
-  {
-    "jp_character": "なつはあついです",
-    "particles": [
-      2
-    ],
-    "romanji": [
-      "natsu wa atsui desu"
-    ],
-    "meaning": "Summer is hot",
-    "meaning_id": "Musim panas itu panas"
   },
   {
     "jp_character": "こどもが一人います",
@@ -10820,21 +10627,6 @@ export const generatedSentences = [
     "meaning_id": "Saya punya tujuh adik perempuan"
   },
   {
-    "jp_character": "いもうとが九人います",
-    "particles": [
-      4
-    ],
-    "romanji": [
-      "imouto ga kyuunin imasu"
-    ],
-    "furigana": {
-      "5": "きゅう",
-      "6": "にん"
-    },
-    "meaning": "I have nine younger sisters",
-    "meaning_id": "Saya punya sembilan adik perempuan"
-  },
-  {
     "jp_character": "かぞくが八人います",
     "particles": [
       3
@@ -10848,126 +10640,6 @@ export const generatedSentences = [
     },
     "meaning": "There are eight people in my family",
     "meaning_id": "Ada delapan orang di keluarga saya"
-  },
-  {
-    "jp_character": "こどもが六人います",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kodomo ga rokunin imasu"
-    ],
-    "furigana": {
-      "4": "ろく",
-      "5": "にん"
-    },
-    "meaning": "I have six children",
-    "meaning_id": "Saya punya enam anak"
-  },
-  {
-    "jp_character": "いもうとが六人います",
-    "particles": [
-      4
-    ],
-    "romanji": [
-      "imouto ga rokunin imasu"
-    ],
-    "furigana": {
-      "5": "ろく",
-      "6": "にん"
-    },
-    "meaning": "I have six younger sisters",
-    "meaning_id": "Saya punya enam adik perempuan"
-  },
-  {
-    "jp_character": "かぞくが十人います",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kazoku ga juunin imasu"
-    ],
-    "furigana": {
-      "4": "じゅう",
-      "5": "にん"
-    },
-    "meaning": "There are ten people in my family",
-    "meaning_id": "Ada sepuluh orang di keluarga saya"
-  },
-  {
-    "jp_character": "こどもが四人います",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kodomo ga yonin imasu"
-    ],
-    "furigana": {
-      "4": "よ",
-      "5": "にん"
-    },
-    "meaning": "I have four children",
-    "meaning_id": "Saya punya empat anak"
-  },
-  {
-    "jp_character": "あにが七人います",
-    "particles": [
-      2
-    ],
-    "romanji": [
-      "ani ga shichinin imasu"
-    ],
-    "furigana": {
-      "3": "しち",
-      "4": "にん"
-    },
-    "meaning": "I have seven older brothers",
-    "meaning_id": "Saya punya tujuh kakak laki-laki"
-  },
-  {
-    "jp_character": "こどもが五人います",
-    "particles": [
-      3
-    ],
-    "romanji": [
-      "kodomo ga gonin imasu"
-    ],
-    "furigana": {
-      "4": "ご",
-      "5": "にん"
-    },
-    "meaning": "I have five children",
-    "meaning_id": "Saya punya lima anak"
-  },
-  {
-    "jp_character": "おとうとが七人います",
-    "particles": [
-      4
-    ],
-    "romanji": [
-      "otouto ga shichinin imasu"
-    ],
-    "furigana": {
-      "5": "しち",
-      "6": "にん"
-    },
-    "meaning": "I have seven younger brothers",
-    "meaning_id": "Saya punya tujuh adik laki-laki"
-  },
-  {
-    "jp_character": "いもうとが三人います",
-    "particles": [
-      4
-    ],
-    "romanji": [
-      "imouto ga sannin imasu"
-    ],
-    "furigana": {
-      "5": "さん",
-      "6": "にん"
-    },
-    "meaning": "I have three younger sisters",
-    "meaning_id": "Saya punya tiga adik perempuan"
   },
   {
     "jp_character": "おとうとが四人います",
@@ -10985,19 +10657,154 @@ export const generatedSentences = [
     "meaning_id": "Saya punya empat adik laki-laki"
   },
   {
-    "jp_character": "こどもが八人います",
+    "jp_character": "あねが二人います",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "ane ga futari imasu"
+    ],
+    "furigana": {
+      "3": "ふた",
+      "4": "り"
+    },
+    "meaning": "I have two older sisters",
+    "meaning_id": "Saya punya dua kakak perempuan"
+  },
+  {
+    "jp_character": "いもうとが九人います",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "imouto ga kyuunin imasu"
+    ],
+    "furigana": {
+      "5": "きゅう",
+      "6": "にん"
+    },
+    "meaning": "I have nine younger sisters",
+    "meaning_id": "Saya punya sembilan adik perempuan"
+  },
+  {
+    "jp_character": "かぞくが十人います",
     "particles": [
       3
     ],
     "romanji": [
-      "kodomo ga hachinin imasu"
+      "kazoku ga juunin imasu"
     ],
     "furigana": {
-      "4": "はち",
+      "4": "じゅう",
       "5": "にん"
     },
-    "meaning": "I have eight children",
-    "meaning_id": "Saya punya delapan anak"
+    "meaning": "There are ten people in my family",
+    "meaning_id": "Ada sepuluh orang di keluarga saya"
+  },
+  {
+    "jp_character": "こどもが五人います",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kodomo ga gonin imasu"
+    ],
+    "furigana": {
+      "4": "ご",
+      "5": "にん"
+    },
+    "meaning": "I have five children",
+    "meaning_id": "Saya punya lima anak"
+  },
+  {
+    "jp_character": "おとうとが三人います",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "otouto ga sannin imasu"
+    ],
+    "furigana": {
+      "5": "さん",
+      "6": "にん"
+    },
+    "meaning": "I have three younger brothers",
+    "meaning_id": "Saya punya tiga adik laki-laki"
+  },
+  {
+    "jp_character": "あにが七人います",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "ani ga shichinin imasu"
+    ],
+    "furigana": {
+      "3": "しち",
+      "4": "にん"
+    },
+    "meaning": "I have seven older brothers",
+    "meaning_id": "Saya punya tujuh kakak laki-laki"
+  },
+  {
+    "jp_character": "あねが六人います",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "ane ga rokunin imasu"
+    ],
+    "furigana": {
+      "3": "ろく",
+      "4": "にん"
+    },
+    "meaning": "I have six older sisters",
+    "meaning_id": "Saya punya enam kakak perempuan"
+  },
+  {
+    "jp_character": "こどもが四人います",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kodomo ga yonin imasu"
+    ],
+    "furigana": {
+      "4": "よ",
+      "5": "にん"
+    },
+    "meaning": "I have four children",
+    "meaning_id": "Saya punya empat anak"
+  },
+  {
+    "jp_character": "いもうとが三人います",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "imouto ga sannin imasu"
+    ],
+    "furigana": {
+      "5": "さん",
+      "6": "にん"
+    },
+    "meaning": "I have three younger sisters",
+    "meaning_id": "Saya punya tiga adik perempuan"
+  },
+  {
+    "jp_character": "あにが九人います",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "ani ga kyuunin imasu"
+    ],
+    "furigana": {
+      "3": "きゅう",
+      "4": "にん"
+    },
+    "meaning": "I have nine older brothers",
+    "meaning_id": "Saya punya sembilan kakak laki-laki"
   },
   {
     "jp_character": "そのペンは五百円です",
@@ -11031,22 +10838,6 @@ export const generatedSentences = [
     "meaning_id": "Buku catatan ini seribu yen"
   },
   {
-    "jp_character": "そのノートは三百円です",
-    "particles": [
-      5
-    ],
-    "romanji": [
-      "sono nooto wa sanbyaku en desu"
-    ],
-    "furigana": {
-      "6": "さん",
-      "7": "びゃく",
-      "8": "えん"
-    },
-    "meaning": "That notebook is 300 yen",
-    "meaning_id": "Buku catatan itu tiga ratus yen"
-  },
-  {
     "jp_character": "あの本は百円です",
     "particles": [
       3
@@ -11061,6 +10852,54 @@ export const generatedSentences = [
     },
     "meaning": "That book over there is 100 yen",
     "meaning_id": "Buku itu seratus yen"
+  },
+  {
+    "jp_character": "あのおにぎりは二百円です",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "ano onigiri wa nihyaku en desu"
+    ],
+    "furigana": {
+      "7": "に",
+      "8": "ひゃく",
+      "9": "えん"
+    },
+    "meaning": "That onigiri over there is 200 yen",
+    "meaning_id": "Nasi kepal itu dua ratus yen"
+  },
+  {
+    "jp_character": "そのかさは三百円です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "sono kasa wa sanbyaku en desu"
+    ],
+    "furigana": {
+      "5": "さん",
+      "6": "びゃく",
+      "7": "えん"
+    },
+    "meaning": "That umbrella is 300 yen",
+    "meaning_id": "Payung itu tiga ratus yen"
+  },
+  {
+    "jp_character": "このケーキは二百円です",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "kono keeki wa nihyaku en desu"
+    ],
+    "furigana": {
+      "6": "に",
+      "7": "ひゃく",
+      "8": "えん"
+    },
+    "meaning": "This cake is 200 yen",
+    "meaning_id": "Kue ini dua ratus yen"
   },
   {
     "jp_character": "あのジュースは千円です",
@@ -11078,20 +10917,36 @@ export const generatedSentences = [
     "meaning_id": "Jus itu seribu yen"
   },
   {
-    "jp_character": "あのおにぎりは二百円です",
+    "jp_character": "そのパンは三百円です",
     "particles": [
-      6
+      4
     ],
     "romanji": [
-      "ano onigiri wa nihyaku en desu"
+      "sono pan wa sanbyaku en desu"
     ],
     "furigana": {
-      "7": "に",
-      "8": "ひゃく",
-      "9": "えん"
+      "5": "さん",
+      "6": "びゃく",
+      "7": "えん"
     },
-    "meaning": "That onigiri over there is 200 yen",
-    "meaning_id": "Nasi kepal itu dua ratus yen"
+    "meaning": "That bread is 300 yen",
+    "meaning_id": "Roti itu tiga ratus yen"
+  },
+  {
+    "jp_character": "このりんごは五百円です",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "kono ringo wa gohyaku en desu"
+    ],
+    "furigana": {
+      "6": "ご",
+      "7": "ひゃく",
+      "8": "えん"
+    },
+    "meaning": "This apple is 500 yen",
+    "meaning_id": "Apel ini lima ratus yen"
   },
   {
     "jp_character": "あのノートは百円です",
@@ -11124,37 +10979,6 @@ export const generatedSentences = [
     "meaning_id": "Nasi kepal itu seribu yen"
   },
   {
-    "jp_character": "そのパンは千円です",
-    "particles": [
-      4
-    ],
-    "romanji": [
-      "sono pan wa sen en desu"
-    ],
-    "furigana": {
-      "5": "せん",
-      "6": "えん"
-    },
-    "meaning": "That bread is 1,000 yen",
-    "meaning_id": "Roti itu seribu yen"
-  },
-  {
-    "jp_character": "そのノートは二百円です",
-    "particles": [
-      5
-    ],
-    "romanji": [
-      "sono nooto wa nihyaku en desu"
-    ],
-    "furigana": {
-      "6": "に",
-      "7": "ひゃく",
-      "8": "えん"
-    },
-    "meaning": "That notebook is 200 yen",
-    "meaning_id": "Buku catatan itu dua ratus yen"
-  },
-  {
     "jp_character": "このペンは三百円です",
     "particles": [
       4
@@ -11171,52 +10995,6 @@ export const generatedSentences = [
     "meaning_id": "Pulpen ini tiga ratus yen"
   },
   {
-    "jp_character": "あのおにぎりは千円です",
-    "particles": [
-      6
-    ],
-    "romanji": [
-      "ano onigiri wa sen en desu"
-    ],
-    "furigana": {
-      "7": "せん",
-      "8": "えん"
-    },
-    "meaning": "That onigiri over there is 1,000 yen",
-    "meaning_id": "Nasi kepal itu seribu yen"
-  },
-  {
-    "jp_character": "そのおにぎりは二百円です",
-    "particles": [
-      6
-    ],
-    "romanji": [
-      "sono onigiri wa nihyaku en desu"
-    ],
-    "furigana": {
-      "7": "に",
-      "8": "ひゃく",
-      "9": "えん"
-    },
-    "meaning": "That onigiri is 200 yen",
-    "meaning_id": "Nasi kepal itu dua ratus yen"
-  },
-  {
-    "jp_character": "そのケーキは千円です",
-    "particles": [
-      5
-    ],
-    "romanji": [
-      "sono keeki wa sen en desu"
-    ],
-    "furigana": {
-      "6": "せん",
-      "7": "えん"
-    },
-    "meaning": "That cake is 1,000 yen",
-    "meaning_id": "Kue itu seribu yen"
-  },
-  {
     "jp_character": "あのパンは百円です",
     "particles": [
       4
@@ -11230,6 +11008,38 @@ export const generatedSentences = [
     },
     "meaning": "That bread over there is 100 yen",
     "meaning_id": "Roti itu seratus yen"
+  },
+  {
+    "jp_character": "そのかさは五百円です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "sono kasa wa gohyaku en desu"
+    ],
+    "furigana": {
+      "5": "ご",
+      "6": "ひゃく",
+      "7": "えん"
+    },
+    "meaning": "That umbrella is 500 yen",
+    "meaning_id": "Payung itu lima ratus yen"
+  },
+  {
+    "jp_character": "このりんごは二百円です",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "kono ringo wa nihyaku en desu"
+    ],
+    "furigana": {
+      "6": "に",
+      "7": "ひゃく",
+      "8": "えん"
+    },
+    "meaning": "This apple is 200 yen",
+    "meaning_id": "Apel ini dua ratus yen"
   },
   {
     "jp_character": "先生はしゃしんがじょうずです",
@@ -11260,6 +11070,76 @@ export const generatedSentences = [
     "meaning_id": "Saya pandai sepak bola"
   },
   {
+    "jp_character": "かれはやきゅうがじょうずです",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "kare wa yakyuu ga jouzu desu"
+    ],
+    "meaning": "He is good at baseball",
+    "meaning_id": "Dia (laki-laki) pandai bisbol"
+  },
+  {
+    "jp_character": "学生はえいごがじょうずです",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa eigo ga jouzu desu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
+    "meaning": "The student is good at English",
+    "meaning_id": "Pelajar pandai bahasa Inggris"
+  },
+  {
+    "jp_character": "かのじょはりょうりがじょうずです",
+    "particles": [
+      4,
+      9
+    ],
+    "romanji": [
+      "kanojo wa ryouri ga jouzu desu"
+    ],
+    "meaning": "She is good at cooking",
+    "meaning_id": "Dia (perempuan) pandai memasak"
+  },
+  {
+    "jp_character": "友だちは日本語がじょうずです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi wa nihongo ga jouzu desu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "に",
+      "5": "ほん",
+      "6": "ご"
+    },
+    "meaning": "My friend is good at Japanese",
+    "meaning_id": "Teman saya pandai bahasa Jepang"
+  },
+  {
+    "jp_character": "あなたはやきゅうがじょうずです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "anata wa yakyuu ga jouzu desu"
+    ],
+    "meaning": "You am good at baseball",
+    "meaning_id": "Anda pandai bisbol"
+  },
+  {
     "jp_character": "先生はりょうりがじょうずです",
     "particles": [
       2,
@@ -11274,49 +11154,6 @@ export const generatedSentences = [
     },
     "meaning": "The teacher is good at cooking",
     "meaning_id": "Guru pandai memasak"
-  },
-  {
-    "jp_character": "先生はサッカーがじょうずです",
-    "particles": [
-      2,
-      7
-    ],
-    "romanji": [
-      "sensei wa sakkaa ga jouzu desu"
-    ],
-    "furigana": {
-      "0": "せん",
-      "1": "せい"
-    },
-    "meaning": "The teacher is good at soccer",
-    "meaning_id": "Guru pandai sepak bola"
-  },
-  {
-    "jp_character": "かれはやきゅうがじょうずです",
-    "particles": [
-      2,
-      7
-    ],
-    "romanji": [
-      "kare wa yakyuu ga jouzu desu"
-    ],
-    "meaning": "He is good at baseball",
-    "meaning_id": "Dia (laki-laki) pandai bisbol"
-  },
-  {
-    "jp_character": "友だちはやきゅうがじょうずです",
-    "particles": [
-      3,
-      8
-    ],
-    "romanji": [
-      "tomodachi wa yakyuu ga jouzu desu"
-    ],
-    "furigana": {
-      "0": "とも"
-    },
-    "meaning": "My friend is good at baseball",
-    "meaning_id": "Teman saya pandai bisbol"
   },
   {
     "jp_character": "友だちはしゃしんがじょうずです",
@@ -11334,48 +11171,16 @@ export const generatedSentences = [
     "meaning_id": "Teman saya pandai foto"
   },
   {
-    "jp_character": "学生はやきゅうがじょうずです",
+    "jp_character": "あなたはサッカーがじょうずです",
     "particles": [
-      2,
-      7
+      3,
+      8
     ],
     "romanji": [
-      "gakusei wa yakyuu ga jouzu desu"
+      "anata wa sakkaa ga jouzu desu"
     ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい"
-    },
-    "meaning": "The student is good at baseball",
-    "meaning_id": "Pelajar pandai bisbol"
-  },
-  {
-    "jp_character": "かれはりょうりがじょうずです",
-    "particles": [
-      2,
-      7
-    ],
-    "romanji": [
-      "kare wa ryouri ga jouzu desu"
-    ],
-    "meaning": "He is good at cooking",
-    "meaning_id": "Dia (laki-laki) pandai memasak"
-  },
-  {
-    "jp_character": "学生はえいごがじょうずです",
-    "particles": [
-      2,
-      6
-    ],
-    "romanji": [
-      "gakusei wa eigo ga jouzu desu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい"
-    },
-    "meaning": "The student is good at English",
-    "meaning_id": "Pelajar pandai bahasa Inggris"
+    "meaning": "You am good at soccer",
+    "meaning_id": "Anda pandai sepak bola"
   },
   {
     "jp_character": "あなたはまいにちにべんきょうをします",
@@ -11423,18 +11228,32 @@ export const generatedSentences = [
     "meaning_id": "Saya PR sore"
   },
   {
-    "jp_character": "あなたはしゅうまつにりょこうをします",
+    "jp_character": "かのじょはあしたにスポーツをします",
     "particles": [
-      3,
-      9,
-      14
+      4,
+      8,
+      13
     ],
     "romanji": [
-      "anata wa shuumatsu ni ryokou wo shimasu",
-      "anata wa shuumatsu ni ryokou o shimasu"
+      "kanojo wa ashita ni supootsu wo shimasu",
+      "kanojo wa ashita ni supootsu o shimasu"
     ],
-    "meaning": "You do travel on weekends",
-    "meaning_id": "Anda wisata di akhir pekan"
+    "meaning": "She does sports tomorrow",
+    "meaning_id": "Dia (perempuan) olahraga besok"
+  },
+  {
+    "jp_character": "かれはきょうにりょうりをします",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "kare wa kyou ni ryouri wo shimasu",
+      "kare wa kyou ni ryouri o shimasu"
+    ],
+    "meaning": "He does cooking today",
+    "meaning_id": "Dia (laki-laki) memasak hari ini"
   },
   {
     "jp_character": "母はまいにちにりょこうをします",
@@ -11454,94 +11273,39 @@ export const generatedSentences = [
     "meaning_id": "Ibu saya wisata setiap hari"
   },
   {
-    "jp_character": "母はまいにちにかいものをします",
+    "jp_character": "学生はしゅうまつにしゃしんをします",
     "particles": [
-      1,
-      6,
-      11
+      2,
+      8,
+      13
     ],
     "romanji": [
-      "haha wa mainichi ni kaimono wo shimasu",
-      "haha wa mainichi ni kaimono o shimasu"
+      "gakusei wa shuumatsu ni shashin wo shimasu",
+      "gakusei wa shuumatsu ni shashin o shimasu"
     ],
     "furigana": {
-      "0": "はは"
+      "0": "がく",
+      "1": "せい"
     },
-    "meaning": "My mother does shopping every day",
-    "meaning_id": "Ibu saya belanja setiap hari"
+    "meaning": "The student does photography on weekends",
+    "meaning_id": "Pelajar foto di akhir pekan"
   },
   {
-    "jp_character": "かのじょはあしたにスポーツをします",
-    "particles": [
-      4,
-      8,
-      13
-    ],
-    "romanji": [
-      "kanojo wa ashita ni supootsu wo shimasu",
-      "kanojo wa ashita ni supootsu o shimasu"
-    ],
-    "meaning": "She does sports tomorrow",
-    "meaning_id": "Dia (perempuan) olahraga besok"
-  },
-  {
-    "jp_character": "友だちはまいにちにスポーツをします",
+    "jp_character": "友だちはあしたにかいものをします",
     "particles": [
       3,
-      8,
-      13
+      7,
+      12
     ],
     "romanji": [
-      "tomodachi wa mainichi ni supootsu wo shimasu",
-      "tomodachi wa mainichi ni supootsu o shimasu"
+      "tomodachi wa ashita ni kaimono wo shimasu",
+      "tomodachi wa ashita ni kaimono o shimasu"
     ],
     "furigana": {
       "0": "とも"
     },
-    "meaning": "My friend does sports every day",
-    "meaning_id": "Teman saya olahraga setiap hari"
-  },
-  {
-    "jp_character": "かれはまいにちにスポーツをします",
-    "particles": [
-      2,
-      7,
-      12
-    ],
-    "romanji": [
-      "kare wa mainichi ni supootsu wo shimasu",
-      "kare wa mainichi ni supootsu o shimasu"
-    ],
-    "meaning": "He does sports every day",
-    "meaning_id": "Dia (laki-laki) olahraga setiap hari"
-  },
-  {
-    "jp_character": "かれはきょうにりょうりをします",
-    "particles": [
-      2,
-      6,
-      11
-    ],
-    "romanji": [
-      "kare wa kyou ni ryouri wo shimasu",
-      "kare wa kyou ni ryouri o shimasu"
-    ],
-    "meaning": "He does cooking today",
-    "meaning_id": "Dia (laki-laki) memasak hari ini"
-  },
-  {
-    "jp_character": "かれはまいにちにかいものをします",
-    "particles": [
-      2,
-      7,
-      12
-    ],
-    "romanji": [
-      "kare wa mainichi ni kaimono wo shimasu",
-      "kare wa mainichi ni kaimono o shimasu"
-    ],
-    "meaning": "He does shopping every day",
-    "meaning_id": "Dia (laki-laki) belanja setiap hari"
+    "meaning": "My friend does shopping tomorrow",
+    "meaning_id": "Teman saya belanja besok"
   },
   {
     "jp_character": "学生はきょうにりょこうをします",
@@ -11562,22 +11326,35 @@ export const generatedSentences = [
     "meaning_id": "Pelajar wisata hari ini"
   },
   {
-    "jp_character": "学生はまいにちにしゅくだいをします",
+    "jp_character": "かのじょはごごにべんきょうをします",
     "particles": [
-      2,
+      4,
       7,
       13
     ],
     "romanji": [
-      "gakusei wa mainichi ni shukudai wo shimasu",
-      "gakusei wa mainichi ni shukudai o shimasu"
+      "kanojo wa gogo ni benkyou wo shimasu",
+      "kanojo wa gogo ni benkyou o shimasu"
+    ],
+    "meaning": "She does studying in the afternoon",
+    "meaning_id": "Dia (perempuan) belajar sore"
+  },
+  {
+    "jp_character": "友だちはまいにちにスポーツをします",
+    "particles": [
+      3,
+      8,
+      13
+    ],
+    "romanji": [
+      "tomodachi wa mainichi ni supootsu wo shimasu",
+      "tomodachi wa mainichi ni supootsu o shimasu"
     ],
     "furigana": {
-      "0": "がく",
-      "1": "せい"
+      "0": "とも"
     },
-    "meaning": "The student does homework every day",
-    "meaning_id": "Pelajar PR setiap hari"
+    "meaning": "My friend does sports every day",
+    "meaning_id": "Teman saya olahraga setiap hari"
   },
   {
     "jp_character": "わたしはしゅうまつにりょうりをします",
@@ -11594,49 +11371,49 @@ export const generatedSentences = [
     "meaning_id": "Saya memasak di akhir pekan"
   },
   {
-    "jp_character": "あなたはあしたにべんきょうをします",
+    "jp_character": "母はきょうにしゅくだいをします",
     "particles": [
-      3,
-      7,
-      13
+      1,
+      5,
+      11
     ],
     "romanji": [
-      "anata wa ashita ni benkyou wo shimasu",
-      "anata wa ashita ni benkyou o shimasu"
+      "haha wa kyou ni shukudai wo shimasu",
+      "haha wa kyou ni shukudai o shimasu"
     ],
-    "meaning": "You do studying tomorrow",
-    "meaning_id": "Anda belajar besok"
+    "furigana": {
+      "0": "はは"
+    },
+    "meaning": "My mother does homework today",
+    "meaning_id": "Ibu saya PR hari ini"
   },
   {
-    "jp_character": "かれはきょうにスポーツをします",
+    "jp_character": "かれはあしたにしゃしんをします",
     "particles": [
       2,
       6,
       11
     ],
     "romanji": [
-      "kare wa kyou ni supootsu wo shimasu",
-      "kare wa kyou ni supootsu o shimasu"
+      "kare wa ashita ni shashin wo shimasu",
+      "kare wa ashita ni shashin o shimasu"
     ],
-    "meaning": "He does sports today",
-    "meaning_id": "Dia (laki-laki) olahraga hari ini"
+    "meaning": "He does photography tomorrow",
+    "meaning_id": "Dia (laki-laki) foto besok"
   },
   {
-    "jp_character": "母はまいにちにりょうりをします",
+    "jp_character": "あなたはごごにべんきょうをします",
     "particles": [
-      1,
+      3,
       6,
-      11
+      12
     ],
     "romanji": [
-      "haha wa mainichi ni ryouri wo shimasu",
-      "haha wa mainichi ni ryouri o shimasu"
+      "anata wa gogo ni benkyou wo shimasu",
+      "anata wa gogo ni benkyou o shimasu"
     ],
-    "furigana": {
-      "0": "はは"
-    },
-    "meaning": "My mother does cooking every day",
-    "meaning_id": "Ibu saya memasak setiap hari"
+    "meaning": "You do studying in the afternoon",
+    "meaning_id": "Anda belajar sore"
   },
   {
     "jp_character": "父はあしたにりょうりをします",
@@ -11654,6 +11431,37 @@ export const generatedSentences = [
     },
     "meaning": "My father does cooking tomorrow",
     "meaning_id": "Ayah saya memasak besok"
+  },
+  {
+    "jp_character": "あなたはしゅうまつにりょこうをします",
+    "particles": [
+      3,
+      9,
+      14
+    ],
+    "romanji": [
+      "anata wa shuumatsu ni ryokou wo shimasu",
+      "anata wa shuumatsu ni ryokou o shimasu"
+    ],
+    "meaning": "You do travel on weekends",
+    "meaning_id": "Anda wisata di akhir pekan"
+  },
+  {
+    "jp_character": "母はまいにちにかいものをします",
+    "particles": [
+      1,
+      6,
+      11
+    ],
+    "romanji": [
+      "haha wa mainichi ni kaimono wo shimasu",
+      "haha wa mainichi ni kaimono o shimasu"
+    ],
+    "furigana": {
+      "0": "はは"
+    },
+    "meaning": "My mother does shopping every day",
+    "meaning_id": "Ibu saya belanja setiap hari"
   },
   {
     "jp_character": "わたしはともだちといっしょに学校へ行きます",
@@ -11674,22 +11482,6 @@ export const generatedSentences = [
     "meaning_id": "Saya pergi ke sekolah bersama teman"
   },
   {
-    "jp_character": "かれはともだちといっしょにコンビニへ行きます",
-    "particles": [
-      2,
-      7,
-      17
-    ],
-    "romanji": [
-      "kare wa tomodachi to issho ni konbini e ikimasu"
-    ],
-    "furigana": {
-      "18": "い"
-    },
-    "meaning": "He goes to the convenience store with a friend",
-    "meaning_id": "Dia (laki-laki) pergi ke minimarket bersama teman"
-  },
-  {
     "jp_character": "あなたはははといっしょに店へ行きます",
     "particles": [
       3,
@@ -11705,105 +11497,6 @@ export const generatedSentences = [
     },
     "meaning": "You go to the shop with my mother",
     "meaning_id": "Anda pergi ke toko bersama ibu"
-  },
-  {
-    "jp_character": "かれはははといっしょにコンビニへ行きます",
-    "particles": [
-      2,
-      5,
-      15
-    ],
-    "romanji": [
-      "kare wa haha to issho ni konbini e ikimasu"
-    ],
-    "furigana": {
-      "16": "い"
-    },
-    "meaning": "He goes to the convenience store with my mother",
-    "meaning_id": "Dia (laki-laki) pergi ke minimarket bersama ibu"
-  },
-  {
-    "jp_character": "学生はははといっしょにコンビニへ行きます",
-    "particles": [
-      2,
-      5,
-      15
-    ],
-    "romanji": [
-      "gakusei wa haha to issho ni konbini e ikimasu"
-    ],
-    "furigana": {
-      "0": "がく",
-      "1": "せい",
-      "16": "い"
-    },
-    "meaning": "The student goes to the convenience store with my mother",
-    "meaning_id": "Pelajar pergi ke minimarket bersama ibu"
-  },
-  {
-    "jp_character": "かのじょはちちといっしょに店へ行きます",
-    "particles": [
-      4,
-      7,
-      14
-    ],
-    "romanji": [
-      "kanojo wa chichi to issho ni mise e ikimasu"
-    ],
-    "furigana": {
-      "13": "みせ",
-      "15": "い"
-    },
-    "meaning": "She goes to the shop with my father",
-    "meaning_id": "Dia (perempuan) pergi ke toko bersama ayah"
-  },
-  {
-    "jp_character": "わたしはははといっしょにコンビニへ行きます",
-    "particles": [
-      3,
-      6,
-      16
-    ],
-    "romanji": [
-      "watashi wa haha to issho ni konbini e ikimasu"
-    ],
-    "furigana": {
-      "17": "い"
-    },
-    "meaning": "I go to the convenience store with my mother",
-    "meaning_id": "Saya pergi ke minimarket bersama ibu"
-  },
-  {
-    "jp_character": "かのじょはともだちといっしょにスーパーへ行きます",
-    "particles": [
-      4,
-      9,
-      19
-    ],
-    "romanji": [
-      "kanojo wa tomodachi to issho ni suupaa e ikimasu"
-    ],
-    "furigana": {
-      "20": "い"
-    },
-    "meaning": "She goes to the supermarket with a friend",
-    "meaning_id": "Dia (perempuan) pergi ke supermarket bersama teman"
-  },
-  {
-    "jp_character": "わたしはちちといっしょにデパートへ行きます",
-    "particles": [
-      3,
-      6,
-      16
-    ],
-    "romanji": [
-      "watashi wa chichi to issho ni depaato e ikimasu"
-    ],
-    "furigana": {
-      "17": "い"
-    },
-    "meaning": "I go to the department store with my father",
-    "meaning_id": "Saya pergi ke toko serba ada bersama ayah"
   },
   {
     "jp_character": "学生はちちといっしょにくうこうへ行きます",
@@ -11824,37 +11517,152 @@ export const generatedSentences = [
     "meaning_id": "Pelajar pergi ke bandara bersama ayah"
   },
   {
-    "jp_character": "わたしはともだちといっしょに駅へ行きます",
+    "jp_character": "かれはともだちといっしょにコンビニへ行きます",
     "particles": [
-      3,
-      8,
-      15
+      2,
+      7,
+      17
     ],
     "romanji": [
-      "watashi wa tomodachi to issho ni eki e ikimasu"
+      "kare wa tomodachi to issho ni konbini e ikimasu"
     ],
     "furigana": {
-      "14": "えき",
-      "16": "い"
+      "18": "い"
     },
-    "meaning": "I go to the station with a friend",
-    "meaning_id": "Saya pergi ke stasiun bersama teman"
+    "meaning": "He goes to the convenience store with a friend",
+    "meaning_id": "Dia (laki-laki) pergi ke minimarket bersama teman"
   },
   {
-    "jp_character": "あなたはちちといっしょにコンビニへ行きます",
+    "jp_character": "かのじょはちちといっしょにスーパーへ行きます",
+    "particles": [
+      4,
+      7,
+      17
+    ],
+    "romanji": [
+      "kanojo wa chichi to issho ni suupaa e ikimasu"
+    ],
+    "furigana": {
+      "18": "い"
+    },
+    "meaning": "She goes to the supermarket with my father",
+    "meaning_id": "Dia (perempuan) pergi ke supermarket bersama ayah"
+  },
+  {
+    "jp_character": "学生はははといっしょに駅へ行きます",
+    "particles": [
+      2,
+      5,
+      12
+    ],
+    "romanji": [
+      "gakusei wa haha to issho ni eki e ikimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "11": "えき",
+      "13": "い"
+    },
+    "meaning": "The student goes to the station with my mother",
+    "meaning_id": "Pelajar pergi ke stasiun bersama ibu"
+  },
+  {
+    "jp_character": "わたしはちちといっしょにデパートへ行きます",
     "particles": [
       3,
       6,
       16
     ],
     "romanji": [
-      "anata wa chichi to issho ni konbini e ikimasu"
+      "watashi wa chichi to issho ni depaato e ikimasu"
     ],
     "furigana": {
       "17": "い"
     },
-    "meaning": "You go to the convenience store with my father",
-    "meaning_id": "Anda pergi ke minimarket bersama ayah"
+    "meaning": "I go to the department store with my father",
+    "meaning_id": "Saya pergi ke toko serba ada bersama ayah"
+  },
+  {
+    "jp_character": "かのじょはともだちといっしょにこうえんへ行きます",
+    "particles": [
+      4,
+      9,
+      19
+    ],
+    "romanji": [
+      "kanojo wa tomodachi to issho ni kouen e ikimasu"
+    ],
+    "furigana": {
+      "20": "い"
+    },
+    "meaning": "She goes to the park with a friend",
+    "meaning_id": "Dia (perempuan) pergi ke taman bersama teman"
+  },
+  {
+    "jp_character": "かれはははといっしょにコンビニへ行きます",
+    "particles": [
+      2,
+      5,
+      15
+    ],
+    "romanji": [
+      "kare wa haha to issho ni konbini e ikimasu"
+    ],
+    "furigana": {
+      "16": "い"
+    },
+    "meaning": "He goes to the convenience store with my mother",
+    "meaning_id": "Dia (laki-laki) pergi ke minimarket bersama ibu"
+  },
+  {
+    "jp_character": "あなたはともだちといっしょにデパートへ行きます",
+    "particles": [
+      3,
+      8,
+      18
+    ],
+    "romanji": [
+      "anata wa tomodachi to issho ni depaato e ikimasu"
+    ],
+    "furigana": {
+      "19": "い"
+    },
+    "meaning": "You go to the department store with a friend",
+    "meaning_id": "Anda pergi ke toko serba ada bersama teman"
+  },
+  {
+    "jp_character": "かのじょはちちといっしょに店へ行きます",
+    "particles": [
+      4,
+      7,
+      14
+    ],
+    "romanji": [
+      "kanojo wa chichi to issho ni mise e ikimasu"
+    ],
+    "furigana": {
+      "13": "みせ",
+      "15": "い"
+    },
+    "meaning": "She goes to the shop with my father",
+    "meaning_id": "Dia (perempuan) pergi ke toko bersama ayah"
+  },
+  {
+    "jp_character": "わたしはははといっしょにくうこうへ行きます",
+    "particles": [
+      3,
+      6,
+      16
+    ],
+    "romanji": [
+      "watashi wa haha to issho ni kuukou e ikimasu"
+    ],
+    "furigana": {
+      "17": "い"
+    },
+    "meaning": "I go to the airport with my mother",
+    "meaning_id": "Saya pergi ke bandara bersama ibu"
   },
   {
     "jp_character": "スーパーは人が多いです",
@@ -11871,22 +11679,6 @@ export const generatedSentences = [
     },
     "meaning": "The supermarket is crowded",
     "meaning_id": "Supermarket ramai"
-  },
-  {
-    "jp_character": "こうえんは人が多いです",
-    "particles": [
-      4,
-      6
-    ],
-    "romanji": [
-      "kouen wa hito ga ooi desu"
-    ],
-    "furigana": {
-      "5": "ひと",
-      "7": "おお"
-    },
-    "meaning": "The park is crowded",
-    "meaning_id": "Taman ramai"
   },
   {
     "jp_character": "駅は人が少ないです",
@@ -11906,6 +11698,38 @@ export const generatedSentences = [
     "meaning_id": "Stasiun sepi"
   },
   {
+    "jp_character": "こうえんは人が多いです",
+    "particles": [
+      4,
+      6
+    ],
+    "romanji": [
+      "kouen wa hito ga ooi desu"
+    ],
+    "furigana": {
+      "5": "ひと",
+      "7": "おお"
+    },
+    "meaning": "The park is crowded",
+    "meaning_id": "Taman ramai"
+  },
+  {
+    "jp_character": "コンビニは人が少ないです",
+    "particles": [
+      4,
+      6
+    ],
+    "romanji": [
+      "konbini wa hito ga sukunai desu"
+    ],
+    "furigana": {
+      "5": "ひと",
+      "7": "すく"
+    },
+    "meaning": "The convenience store is quiet",
+    "meaning_id": "Minimarket sepi"
+  },
+  {
     "jp_character": "デパートは人が多いです",
     "particles": [
       4,
@@ -11920,6 +11744,57 @@ export const generatedSentences = [
     },
     "meaning": "The department store is crowded",
     "meaning_id": "Toko serba ada ramai"
+  },
+  {
+    "jp_character": "学校は人が少ないです",
+    "particles": [
+      2,
+      4
+    ],
+    "romanji": [
+      "gakkou wa hito ga sukunai desu"
+    ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "ひと",
+      "5": "すく"
+    },
+    "meaning": "The school is quiet",
+    "meaning_id": "Sekolah sepi"
+  },
+  {
+    "jp_character": "店は人が多いです",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "mise wa hito ga ooi desu"
+    ],
+    "furigana": {
+      "0": "みせ",
+      "2": "ひと",
+      "4": "おお"
+    },
+    "meaning": "The shop is crowded",
+    "meaning_id": "Toko ramai"
+  },
+  {
+    "jp_character": "こうえんは人が少ないです",
+    "particles": [
+      4,
+      6
+    ],
+    "romanji": [
+      "kouen wa hito ga sukunai desu"
+    ],
+    "furigana": {
+      "5": "ひと",
+      "7": "すく"
+    },
+    "meaning": "The park is quiet",
+    "meaning_id": "Taman sepi"
   },
   {
     "jp_character": "学校は人が多いです",
@@ -11940,22 +11815,6 @@ export const generatedSentences = [
     "meaning_id": "Sekolah ramai"
   },
   {
-    "jp_character": "こうえんは人が少ないです",
-    "particles": [
-      4,
-      6
-    ],
-    "romanji": [
-      "kouen wa hito ga sukunai desu"
-    ],
-    "furigana": {
-      "5": "ひと",
-      "7": "すく"
-    },
-    "meaning": "The park is quiet",
-    "meaning_id": "Taman sepi"
-  },
-  {
     "jp_character": "スーパーは人が少ないです",
     "particles": [
       4,
@@ -11972,55 +11831,6 @@ export const generatedSentences = [
     "meaning_id": "Supermarket sepi"
   },
   {
-    "jp_character": "コンビニは人が多いです",
-    "particles": [
-      4,
-      6
-    ],
-    "romanji": [
-      "konbini wa hito ga ooi desu"
-    ],
-    "furigana": {
-      "5": "ひと",
-      "7": "おお"
-    },
-    "meaning": "The convenience store is crowded",
-    "meaning_id": "Minimarket ramai"
-  },
-  {
-    "jp_character": "コンビニは人が少ないです",
-    "particles": [
-      4,
-      6
-    ],
-    "romanji": [
-      "konbini wa hito ga sukunai desu"
-    ],
-    "furigana": {
-      "5": "ひと",
-      "7": "すく"
-    },
-    "meaning": "The convenience store is quiet",
-    "meaning_id": "Minimarket sepi"
-  },
-  {
-    "jp_character": "駅は人が多いです",
-    "particles": [
-      1,
-      3
-    ],
-    "romanji": [
-      "eki wa hito ga ooi desu"
-    ],
-    "furigana": {
-      "0": "えき",
-      "2": "ひと",
-      "4": "おお"
-    },
-    "meaning": "The station is crowded",
-    "meaning_id": "Stasiun ramai"
-  },
-  {
     "jp_character": "えきのまえにスーパーがあります",
     "particles": [
       2,
@@ -12034,17 +11844,43 @@ export const generatedSentences = [
     "meaning_id": "Ada supermarket di depan stasiun"
   },
   {
-    "jp_character": "うちのちかくにえきがあります",
+    "jp_character": "みせのひだりにびょういんがあります",
     "particles": [
       2,
       6,
-      9
+      12
     ],
     "romanji": [
-      "uchi no chikaku ni eki ga arimasu"
+      "mise no hidari ni byouin ga arimasu"
     ],
-    "meaning": "There is a station near the house",
-    "meaning_id": "Ada stasiun dekat rumah"
+    "meaning": "There is a hospital to the left of the shop",
+    "meaning_id": "Ada rumah sakit di sebelah kiri toko"
+  },
+  {
+    "jp_character": "がっこうのうしろにこうえんがあります",
+    "particles": [
+      4,
+      8,
+      13
+    ],
+    "romanji": [
+      "gakkou no ushiro ni kouen ga arimasu"
+    ],
+    "meaning": "There is a park behind the school",
+    "meaning_id": "Ada taman di belakang sekolah"
+  },
+  {
+    "jp_character": "うちのちかくにコンビニがあります",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "uchi no chikaku ni konbini ga arimasu"
+    ],
+    "meaning": "There is a convenience store near the house",
+    "meaning_id": "Ada minimarket dekat rumah"
   },
   {
     "jp_character": "スーパーのまえにバスていがあります",
@@ -12060,17 +11896,30 @@ export const generatedSentences = [
     "meaning_id": "Ada halte bus di depan supermarket"
   },
   {
-    "jp_character": "うちのまえにこうえんがあります",
+    "jp_character": "みせのひだりにぎんこうがあります",
     "particles": [
       2,
-      5,
-      10
+      6,
+      11
     ],
     "romanji": [
-      "uchi no mae ni kouen ga arimasu"
+      "mise no hidari ni ginkou ga arimasu"
     ],
-    "meaning": "There is a park in front of the house",
-    "meaning_id": "Ada taman di depan rumah"
+    "meaning": "There is a bank to the left of the shop",
+    "meaning_id": "Ada bank di sebelah kiri toko"
+  },
+  {
+    "jp_character": "うちのちかくにえきがあります",
+    "particles": [
+      2,
+      6,
+      9
+    ],
+    "romanji": [
+      "uchi no chikaku ni eki ga arimasu"
+    ],
+    "meaning": "There is a station near the house",
+    "meaning_id": "Ada stasiun dekat rumah"
   },
   {
     "jp_character": "こうえんのまえにおてらがあります",
@@ -12084,6 +11933,19 @@ export const generatedSentences = [
     ],
     "meaning": "There is a temple in front of the park",
     "meaning_id": "Ada kuil di depan taman"
+  },
+  {
+    "jp_character": "みせのみぎにスーパーがあります",
+    "particles": [
+      2,
+      5,
+      10
+    ],
+    "romanji": [
+      "mise no migi ni suupaa ga arimasu"
+    ],
+    "meaning": "There is a supermarket to the right of the shop",
+    "meaning_id": "Ada supermarket di sebelah kanan toko"
   },
   {
     "jp_character": "こうえんのまえにじんじゃがあります",
@@ -12112,19 +11974,6 @@ export const generatedSentences = [
     "meaning_id": "Ada minimarket di depan rumah"
   },
   {
-    "jp_character": "みせのひだりにびょういんがあります",
-    "particles": [
-      2,
-      6,
-      12
-    ],
-    "romanji": [
-      "mise no hidari ni byouin ga arimasu"
-    ],
-    "meaning": "There is a hospital to the left of the shop",
-    "meaning_id": "Ada rumah sakit di sebelah kiri toko"
-  },
-  {
     "jp_character": "えきのまえにコンビニがあります",
     "particles": [
       2,
@@ -12138,55 +11987,16 @@ export const generatedSentences = [
     "meaning_id": "Ada minimarket di depan stasiun"
   },
   {
-    "jp_character": "がっこうのうしろにこうえんがあります",
-    "particles": [
-      4,
-      8,
-      13
-    ],
-    "romanji": [
-      "gakkou no ushiro ni kouen ga arimasu"
-    ],
-    "meaning": "There is a park behind the school",
-    "meaning_id": "Ada taman di belakang sekolah"
-  },
-  {
-    "jp_character": "みせのひだりにぎんこうがあります",
-    "particles": [
-      2,
-      6,
-      11
-    ],
-    "romanji": [
-      "mise no hidari ni ginkou ga arimasu"
-    ],
-    "meaning": "There is a bank to the left of the shop",
-    "meaning_id": "Ada bank di sebelah kiri toko"
-  },
-  {
-    "jp_character": "みせのみぎにスーパーがあります",
+    "jp_character": "うちのまえにこうえんがあります",
     "particles": [
       2,
       5,
       10
     ],
     "romanji": [
-      "mise no migi ni suupaa ga arimasu"
+      "uchi no mae ni kouen ga arimasu"
     ],
-    "meaning": "There is a supermarket to the right of the shop",
-    "meaning_id": "Ada supermarket di sebelah kanan toko"
-  },
-  {
-    "jp_character": "うちのちかくにコンビニがあります",
-    "particles": [
-      2,
-      6,
-      11
-    ],
-    "romanji": [
-      "uchi no chikaku ni konbini ga arimasu"
-    ],
-    "meaning": "There is a convenience store near the house",
-    "meaning_id": "Ada minimarket dekat rumah"
+    "meaning": "There is a park in front of the house",
+    "meaning_id": "Ada taman di depan rumah"
   },
 ];

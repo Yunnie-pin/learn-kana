@@ -443,7 +443,59 @@ html.in-game-scroll-lock body {
   font-size: 1.3em;
 }
 
-/* Sentence help, second step: the romaji of the word being typed */
+/* Sentence exercises: what to do, and the meaning when it is needed */
+.in-game-sentence-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+  max-width: 95vw;
+  text-align: center;
+  font-size: min(3.5vh, 5vw);
+}
+
+.in-game-sentence-prompt-instruction {
+  opacity: 0.6;
+  font-size: 0.75em;
+}
+
+.in-game-sentence-prompt-meaning {
+  font-weight: bold;
+}
+
+/* Particle exercise: the hidden particle */
+.in-game-kana-character .in-game-sentence-blank {
+  color: #ff9a3c;
+  border-bottom: 0.06em solid currentColor;
+  margin: 0 0.05em;
+}
+
+/* Arrange exercise: the shuffled words */
+.in-game-kana-character .in-game-sentence-chip {
+  display: inline-block;
+  margin: 0 0.12em;
+  padding: 0 0.12em;
+  border-bottom: 0.05em solid #ff9a3c80;
+  transition: opacity 0.15s;
+}
+
+.in-game-kana-character .in-game-sentence-chip.is-used {
+  opacity: 0.3;
+}
+
+/* Listening exercise: the sentence is hidden behind a button that replays it */
+.in-game-sentence-listen {
+  display: inline-flex;
+  padding: 0.15em;
+  border: none;
+  border-radius: 50%;
+  background: #ff9a3c26;
+  color: inherit;
+  font-size: 0.6em;
+  vertical-align: middle;
+}
+
+/* Sentence help, last step: the word being typed or what the particle does */
 .in-game-sentence-hint {
   font-size: min(4vh, 6vw);
 }

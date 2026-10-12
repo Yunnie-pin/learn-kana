@@ -255,3 +255,56 @@ export function createSentenceMatcher(sentence) {
     },
   };
 }
+
+// Builds one question of the sentence practice for the chosen exercise:
+//  - type / listen: the whole sentence is typed
+//  - particle: one particle is hidden and only that particle is typed;
+//    blank = { start, end, text } (characters of the hidden particle)
+//  - arrange: the words are shown shuffled and the sentence is typed in the
+//    right order; order = word indices in the order they are shown
+// Falls back to "type" when the sentence can't be used for the exercise.
+export function createSentenceQuestion(sentence, exercise = 'type', random = Math.random) {
+  const matcher = createSentenceMatcher(sentence);
+  const segments = matcher.segments;
+
+  if (exercise === 'particle' && segments) {
+    const characters = [...sentence.jp_character];
+    const particles = sentence.particles || [];
+    const candidates = segments
+      .map(({ start, end }, index) => {
+        let textEnd = end;
+        while (textEnd > start && PUNCTUATION.test(characters[textEnd - 1])) textEnd--;
+        return { start, end: textEnd, word: matcher.words[index] };
+      })
+      .filter(({ start, end }) => end > start &&
+        Array.from({ length: end - start }, (_, offset) => start + offset).every(index => particles.includes(index)));
+    if (candidates.length) {
+      const blank = candidates[Math.floor(random() * candidates.length)];
+      const text = characters.slice(blank.start, blank.end).join('');
+      return {
+        exercise,
+        blank: { start: blank.start, end: blank.end, text },
+        matcher: createSentenceMatcher({
+          jp_character: text,
+          romanji: [blank.word],
+          particles: [...text].map((_, index) => index),
+        }),
+      };
+    }
+  }
+
+  if (exercise === 'arrange' && segments && segments.length > 1) {
+    const order = segments.map((_, index) => index);
+    // Shuffle until the words are out of order (always possible with 2+ words)
+    do {
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+    } while (order.every((wordIndex, index) => wordIndex === index));
+    return { exercise, order, matcher };
+  }
+
+  if (exercise === 'listen') return { exercise, matcher };
+  return { exercise: 'type', matcher };
+}

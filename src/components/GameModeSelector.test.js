@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import GameModeSelector from './GameModeSelector';
 
 /*
@@ -33,5 +33,38 @@ describe('kanji readings option', () => {
 
     fireEvent.click(readingsOption());
     expect(localStorage.getItem('game-mode-kanji-readings')).toBe('false');
+  });
+});
+
+describe('sentence options', () => {
+  const radio = (name) => screen.getByRole('radio', { name });
+
+  test('are only shown for sentence practice', () => {
+    localStorage.setItem('game-mode-practice', 'words');
+    render(<GameModeSelector kanjiSelected={true} />);
+    expect(screen.queryByRole('radiogroup', { name: 'Exercise' })).toBeNull();
+
+    fireEvent.click(radio('Sentences'));
+    expect(screen.getByRole('radiogroup', { name: 'Exercise' })).toBeInTheDocument();
+    expect(screen.getByRole('radiogroup', { name: 'Sentence length' })).toBeInTheDocument();
+    expect(screen.getByRole('radiogroup', { name: 'Pattern' })).toBeInTheDocument();
+  });
+
+  test('are saved for the game', () => {
+    localStorage.setItem('game-mode-practice', 'long');
+    render(<GameModeSelector kanjiSelected={true} />);
+
+    fireEvent.click(radio('Particles'));
+    fireEvent.click(radio('Long'));
+    fireEvent.click(radio('〜ます'));
+    expect(localStorage.getItem('game-mode-sentence-exercise')).toBe('particle');
+    expect(localStorage.getItem('game-mode-sentence-level')).toBe('hard');
+    expect(localStorage.getItem('game-mode-sentence-pattern')).toBe('verb');
+  });
+
+  test('listening is disabled when the browser cannot speak', () => {
+    localStorage.setItem('game-mode-practice', 'long');
+    render(<GameModeSelector kanjiSelected={true} />);
+    expect(radio('Listen')).toBeDisabled();
   });
 });

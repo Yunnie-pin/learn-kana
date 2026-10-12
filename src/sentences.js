@@ -466,3 +466,54 @@ export function getReadableSentences(selectedGroupTitles) {
     })
   );
 }
+
+// ---------- Sentence practice options (chosen in the menu) ----------
+
+// How long a sentence is: easy up to 5 words, medium 6, hard 7 or more
+export function sentenceLevel(sentence) {
+  const words = String(sentence.romanji[0]).split(' ').length;
+  if (words <= 5) return 'easy';
+  if (words === 6) return 'medium';
+  return 'hard';
+}
+
+// The grammar pattern a sentence practices, from how it ends
+export function sentencePattern(sentence) {
+  const jp = sentence.jp_character;
+  if (/か$/.test(jp)) return 'question';
+  if (/(あります|います|ありました|いました)$/.test(jp)) return 'exist';
+  if (/(ます|ました)$/.test(jp)) return 'verb';
+  return 'desu';
+}
+
+export const SENTENCE_LEVELS = ['all', 'easy', 'medium', 'hard'];
+export const SENTENCE_PATTERNS = ['all', 'desu', 'verb', 'exist', 'question'];
+// type: read and type the sentence; listen: type what is heard; particle:
+// type the missing particle; arrange: put the shuffled words in order
+export const SENTENCE_EXERCISES = ['type', 'listen', 'particle', 'arrange'];
+
+function storedOption(key, allowed) {
+  let value = null;
+  try {
+    value = localStorage.getItem(key);
+  } catch (error) { }
+  return allowed.includes(value) ? value : allowed[0];
+}
+
+export function getSentenceOptions() {
+  return {
+    level: storedOption('game-mode-sentence-level', SENTENCE_LEVELS),
+    pattern: storedOption('game-mode-sentence-pattern', SENTENCE_PATTERNS),
+    exercise: storedOption('game-mode-sentence-exercise', SENTENCE_EXERCISES),
+  };
+}
+
+// The sentences offered with the selected groups and the sentence options
+// of the menu (the particle exercise needs a sentence with a particle)
+export function getPracticeSentences(selectedGroupTitles, options = getSentenceOptions()) {
+  return getReadableSentences(selectedGroupTitles).filter(sentence =>
+    (options.level === 'all' || sentenceLevel(sentence) === options.level) &&
+    (options.pattern === 'all' || sentencePattern(sentence) === options.pattern) &&
+    (options.exercise !== 'particle' || (sentence.particles || []).length > 0)
+  );
+}

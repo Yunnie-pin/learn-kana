@@ -1228,6 +1228,32 @@ const shuffle = (list, seed) => {
   return copy;
 };
 
+// Orders a template's candidates so that each next sentence repeats as few
+// words of the ones before it as possible: without this, sentences that only
+// differ by one word (その駅は小さいです / その車は小さいです) end up side by
+// side. Ties keep the shuffled order, so the result stays deterministic.
+const varied = (list) => {
+  const remaining = [...list];
+  const used = new Map();
+  const repeats = (entry) => entry.ro.split(' ').reduce((total, word) => total + (used.get(word) || 0), 0);
+  const ordered = [];
+  while (remaining.length) {
+    let bestIndex = 0;
+    let bestRepeats = Infinity;
+    remaining.forEach((entry, index) => {
+      const count = repeats(entry);
+      if (count < bestRepeats) {
+        bestRepeats = count;
+        bestIndex = index;
+      }
+    });
+    const [entry] = remaining.splice(bestIndex, 1);
+    entry.ro.split(' ').forEach(word => used.set(word, (used.get(word) || 0) + 1));
+    ordered.push(entry);
+  }
+  return ordered;
+};
+
 // How many sentences to keep per template, to reach ~500 in total
 const quotas = {
   'この/その/あの + noun + は + adjective': 45,
@@ -1309,7 +1335,7 @@ for (const [run, readings] of Object.entries(furiganaByKanjiRun)) {
 
 for (const [name, candidates] of templates) {
   const quota = quotas[name] ?? 10;
-  const picked = shuffle(candidates, name.length * 7919 + candidates.length);
+  const picked = varied(shuffle(candidates, name.length * 7919 + candidates.length));
   let taken = 0;
   for (const entry of picked) {
     if (taken >= quota) break;

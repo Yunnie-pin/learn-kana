@@ -3,15 +3,15 @@ import {  useState, useEffect, useRef, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toHiragana } from 'wanakana';
 import { kanaCharacters } from '../kanaCharacters.js'
-import { getReadableSentences } from '../sentences.js'
+import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
 import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
 import { getListForPractice } from '../practiceList.js'
 import { findKanaForAnswer, getSimilarKana, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
 import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
-import { createSentenceMatcher } from '../sentenceMatching.js'
-import { sentenceBreakdown } from '../sentenceGlossary.js'
+import { createSentenceQuestion } from '../sentenceMatching.js'
+import { particleRoleOf, sentenceBreakdown } from '../sentenceGlossary.js'
 import Icon from './Icon.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
@@ -90,7 +90,9 @@ function normalizeAnswer(answer) {
     .replace(/[\s-]/g, '');
 }
 
-async function selectNextCharacter(charactersToShow) {
+// previous: the character shown right before, never shown twice in a row
+// when there is anything else to show
+async function selectNextCharacter(charactersToShow, previous = null) {
   let userStats = JSON.parse(localStorage.getItem('userStats')) || {};
   let weightedCharacters = [];
   const baseWeight = 50;
@@ -133,9 +135,15 @@ async function selectNextCharacter(charactersToShow) {
       const totalAttempts = recentRightGuesses + recentWrongGuesses + recentAskForHelpCounter;
 
       if (totalAttempts > 0) {
+        // Sentences take longer and get more edits the longer they are: compare
+        // them per 10 typed letters, so long sentences aren't picked just for
+        // being long
+        const lengthFactor = character.type === 'long'
+          ? 10 / Math.max(1, String([].concat(character.romanji)[0] || '').replace(/ /g, '').length)
+          : 1;
         errorRate = (recentWrongGuesses + recentAskForHelpCounter) / totalAttempts;
-        avgResponseTime = recentRightGuesses > 0 ? recentResponseTimeSum / recentRightGuesses : 0;
-        avgEditCount = recentRightGuesses > 0 ? recentEditCount / recentRightGuesses : 0;
+        avgResponseTime = recentRightGuesses > 0 ? recentResponseTimeSum / recentRightGuesses * lengthFactor : 0;
+        avgEditCount = recentRightGuesses > 0 ? recentEditCount / recentRightGuesses * lengthFactor : 0;
         wrongSubmissionRate = totalAttempts > 0 ? recentWrongSubmissions / totalAttempts : 0;
         hasData = true;
       }
@@ -238,6 +246,9 @@ async function selectNextCharacter(charactersToShow) {
     }
 
     weight = Math.max(5, weight); // Ensure minimum weight
+    if (previous !== null && metric.character.jp_character === previous && charactersToShow.length > 1) {
+      weight = 0;
+    }
     weightedCharacters.push({ ...metric.character, weight });
   }
 
@@ -256,7 +267,7 @@ async function selectNextCharacter(charactersToShow) {
 
   for (const char of weightedCharacters) {
     accumulatedWeight += char.weight;
-    if (randomNum <= accumulatedWeight) {
+    if (char.weight > 0 && randomNum <= accumulatedWeight) {
       return char;
     }
   }
@@ -285,15 +296,27 @@ export default function InGameCharacterShowAndInput() {
   // reading), revealed in small print above the kanji when the player asks for help
   const [onScreenFurigana, setOnScreenFurigana] = useState({});
   const [furiganaVisible, setFuriganaVisible] = useState(false);
+  // Sentence practice exercise chosen in the menu: type, listen, particle or
+  // arrange (listening needs speech, so it falls back to typing without it)
+  const sentenceExercise = useMemo(() => {
+    const { exercise } = getSentenceOptions();
+    return exercise === 'listen' && !isSpeechSupported() ? 'type' : exercise;
+  }, []);
+  // The shown sentence question (see createSentenceQuestion in sentenceMatching.js)
+  const [sentenceQuestion, setSentenceQuestion] = useState({ exercise: 'type' });
   // Sentence practice: checks the typed sentence word by word (see sentenceMatching.js)
   const sentenceMatcherRef = useRef(null);
+  const sentenceQuestionRef = useRef({ exercise: 'type' });
   // Words of the shown sentence already typed, to mark them in the sentence
   const [sentenceWordsDone, setSentenceWordsDone] = useState(0);
   const sentenceWordsDoneRef = useRef(0);
-  // Help in sentence practice comes in steps: the furigana first, then the
-  // romaji of the word being typed (index of that word, null when not asked)
-  const [sentenceHintWord, setSentenceHintWord] = useState(null);
-  const sentenceHelpRef = useRef({ furigana: false, hintWord: null });
+  // Listening: the sentence text stays hidden until help or a correct answer
+  const [sentenceTextVisible, setSentenceTextVisible] = useState(false);
+  const [sentenceAnswered, setSentenceAnswered] = useState(false);
+  // Help in sentence practice comes in steps (see handleUserAskForHelp); the
+  // last step is a hint shown under the sentence, once per word
+  const [sentenceHint, setSentenceHint] = useState(null);
+  const sentenceHelpRef = useRef({ step: 0, hintWord: null });
   const [onScreenKanjiUsage, setOnScreenKanjiUsage] = useState(null);
   const [isKanjiUsageQuestion, setIsKanjiUsageQuestion] = useState(false);
   const [onScreenSolution, setSolution] = useState('');
@@ -454,7 +477,7 @@ export default function InGameCharacterShowAndInput() {
   // hiragana / katakana / kanji groups are shown, and the meaning is
   // revealed once the sentence is completed.
   function getListOfSentences(charGroups) {
-    return getReadableSentences(charGroups).map(sentence => ({
+    return getPracticeSentences(charGroups).map(sentence => ({
       "jp_character": sentence.jp_character,
       "romanji": sentence.romanji,
       "particles": sentence.particles || [],
@@ -723,7 +746,7 @@ export default function InGameCharacterShowAndInput() {
     // Get and show the current Kana using the weighted selection logic
     let pickedElement = isSrsPractice
       ? srsQueueRef.current?.shift()
-      : await selectNextCharacter(charactersToShow);
+      : await selectNextCharacter(charactersToShow, inGameKanaOnScreen || null);
 
     if (!pickedElement) {
       if (isSrsPractice) {
@@ -801,11 +824,22 @@ export default function InGameCharacterShowAndInput() {
         : {}
     );
     setFuriganaVisible(false);
-    sentenceMatcherRef.current = pickedElement.type === 'long' ? createSentenceMatcher(pickedElement) : null;
+    const question = pickedElement.type === 'long'
+      ? createSentenceQuestion(pickedElement, sentenceExercise)
+      : { exercise: 'type', matcher: null };
+    sentenceQuestionRef.current = question;
+    setSentenceQuestion(question);
+    sentenceMatcherRef.current = question.matcher;
     sentenceWordsDoneRef.current = 0;
     setSentenceWordsDone(0);
-    sentenceHelpRef.current = { furigana: false, hintWord: null };
-    setSentenceHintWord(null);
+    sentenceHelpRef.current = { step: 0, hintWord: null };
+    setSentenceHint(null);
+    setSentenceTextVisible(false);
+    setSentenceAnswered(false);
+    // Listening: the sentence is read out as soon as it is shown
+    if (pickedElement.type === 'long' && question.exercise === 'listen') {
+      speak(pickedElement.jp_character);
+    }
     const charTextElement = document.querySelector("#in-game-kana-character>p");
     if (charTextElement) {
       const displayLength = [...questionCharacter].length;
@@ -1190,6 +1224,11 @@ export default function InGameCharacterShowAndInput() {
       //  Make that known and pass to the next character
       if (isCorrect) {
         questionAnsweredRef.current = true;
+        if (sentenceMatcher) {
+          // The whole sentence is shown with its meaning, without the hint
+          setSentenceAnswered(true);
+          setSentenceHint(null);
+        }
         updateCurrentGameStats("correct");
         speakCorrectAnswer();
         if (isSrsPractice && currentCharacterTypeRef.current === 'kanji' && !srsFailedRef.current) {
@@ -1451,14 +1490,14 @@ export default function InGameCharacterShowAndInput() {
   }
 
   // Sentence practice: remembers how many words are typed, and drops the
-  // romaji hint once its word is typed
+  // word hint once its word is typed
   function updateSentenceWordsDone(wordsDone) {
     sentenceWordsDoneRef.current = wordsDone;
     setSentenceWordsDone(wordsDone);
     const help = sentenceHelpRef.current;
     if (help.hintWord !== null && wordsDone > help.hintWord) {
       help.hintWord = null;
-      setSentenceHintWord(null);
+      setSentenceHint(null);
     }
   }
 
@@ -1486,25 +1525,42 @@ export default function InGameCharacterShowAndInput() {
     if (!hintsEnabled) {
       return;
     }
-    // Sentence questions give help in steps instead of the whole romaji:
-    // first small furigana above the kanji, then the romaji of the word being
-    // typed (once per word). Refs, since the keyboard handler is set up once.
+    // Sentence questions give help in steps instead of the whole romaji
+    // (refs, since the keyboard handler is set up once):
+    //   type / arrange: furigana, then the romaji of the word being typed
+    //   listen: the sentence text, furigana, then the word being typed
+    //   particle: furigana, then what the missing particle does
+    // Every step counts as asking for help; the word hint once per word.
     if (currentCharacterTypeRef.current === 'long') {
       if (questionAnsweredRef.current) return;
       const help = sentenceHelpRef.current;
-      if (!help.furigana) {
-        help.furigana = true;
-        updateCurrentGameStats('askForHelp')
-        setFuriganaVisible(true)
-        return;
-      }
-      const wordIndex = sentenceWordsDoneRef.current;
-      const words = sentenceMatcherRef.current ? sentenceMatcherRef.current.words : [];
-      if (help.hintWord !== wordIndex && wordIndex < words.length) {
+      const question = sentenceQuestionRef.current;
+      const steps = {
+        listen: ['text', 'furigana', 'word'],
+        particle: ['furigana', 'role'],
+      }[question.exercise] || ['furigana', 'word'];
+      const step = steps[Math.min(help.step, steps.length - 1)];
+      if (step === 'word') {
+        const wordIndex = sentenceWordsDoneRef.current;
+        const matcher = sentenceMatcherRef.current;
+        const words = matcher ? matcher.words : [];
+        if (help.hintWord === wordIndex || wordIndex >= words.length) return;
         help.hintWord = wordIndex;
-        updateCurrentGameStats('askForHelp')
-        setSentenceHintWord(wordIndex)
+        let hint = words[wordIndex];
+        // Arrange: also say which of the shown words comes next
+        if (question.exercise === 'arrange' && matcher.segments) {
+          const { start, end } = matcher.segments[wordIndex];
+          hint = `${[...inGameKanaOnScreen].slice(start, end).join('').replace(/[、。]/g, '')} · ${hint}`;
+        }
+        setSentenceHint(hint);
+      } else {
+        if (help.step >= steps.length) return;
+        if (step === 'text') setSentenceTextVisible(true);
+        if (step === 'furigana') setFuriganaVisible(true);
+        if (step === 'role') setSentenceHint(particleRoleOf(question.blank.text, language));
       }
+      help.step++;
+      updateCurrentGameStats('askForHelp');
       return;
     }
     if (document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
@@ -1689,10 +1745,94 @@ export default function InGameCharacterShowAndInput() {
 
   // Sentence practice: characters of the words already typed, and the word
   // breakdown shown with the meaning
+  const sentenceExerciseShown = onScreenCharacterType === 'long' ? sentenceQuestion.exercise : 'type';
   const sentenceSegments = onScreenCharacterType === 'long' ? sentenceMatcherRef.current?.segments : null;
-  const sentenceTypedEnd = sentenceSegments && sentenceWordsDone > 0
+  // Only reading and listening dim the typed words in the sentence itself
+  const sentenceTypedEnd = (sentenceExerciseShown === 'type' || sentenceExerciseShown === 'listen') &&
+    sentenceSegments && sentenceWordsDone > 0
     ? sentenceSegments[Math.min(sentenceWordsDone, sentenceSegments.length) - 1].end
     : 0;
+
+  // Characters start..end of the sentence: particles in their own color, the
+  // words typed so far dimmed, and furigana above the kanji when asked for
+  function renderSentenceCharacters(start, end) {
+    return [...onScreenKana].slice(start, end).map((character, offset) => {
+      const index = start + offset;
+      const className = [
+        onScreenParticles.includes(index) ? 'in-game-particle' : '',
+        index < sentenceTypedEnd ? 'in-game-sentence-typed' : '',
+      ].filter(Boolean).join(' ');
+      const body = className
+        ? <span className={className}>{character}</span>
+        : character;
+      return furiganaVisible && onScreenFurigana[index]
+        ? <ruby key={`furigana-${index}`}>{body}<rt>{onScreenFurigana[index]}</rt></ruby>
+        : <React.Fragment key={`long-char-${index}`}>{body}</React.Fragment>;
+    });
+  }
+
+  // The question shown for the sentence exercise
+  function renderSentence() {
+    const length = [...onScreenKana].length;
+    if (sentenceAnswered || sentenceExerciseShown === 'type') {
+      return renderSentenceCharacters(0, length);
+    }
+    if (sentenceExerciseShown === 'listen') {
+      if (sentenceTextVisible) return renderSentenceCharacters(0, length);
+      return (
+        <button
+          type='button'
+          className='in-game-sentence-listen'
+          title={t('sentenceListen')}
+          aria-label={t('sentenceListen')}
+          onClick={(event) => {
+            event.stopPropagation();
+            speak(onScreenKana);
+          }}
+        >
+          <Icon name='volume' />
+        </button>
+      );
+    }
+    if (sentenceExerciseShown === 'particle' && sentenceQuestion.blank) {
+      const { start, end } = sentenceQuestion.blank;
+      return [
+        ...renderSentenceCharacters(0, start),
+        <span key='blank' className='in-game-sentence-blank'>{'？'.repeat(end - start)}</span>,
+        ...renderSentenceCharacters(end, length),
+      ];
+    }
+    if (sentenceExerciseShown === 'arrange' && sentenceSegments && sentenceQuestion.order) {
+      // The words in shuffled order; the ones already typed are dimmed
+      return sentenceQuestion.order.map(wordIndex => {
+        const { start, end } = sentenceSegments[wordIndex];
+        let textEnd = end;
+        while (textEnd > start && /[、。]/.test([...onScreenKana][textEnd - 1])) textEnd--;
+        return (
+          <span
+            key={`word-${wordIndex}`}
+            className={'in-game-sentence-chip' + (wordIndex < sentenceWordsDone ? ' is-used' : '')}
+          >
+            {renderSentenceCharacters(start, textEnd)}
+          </span>
+        );
+      });
+    }
+    return renderSentenceCharacters(0, length);
+  }
+
+  // Exercises other than reading say what to do; particles and arranging
+  // also need the meaning of the sentence
+  const sentencePrompt = onScreenCharacterType === 'long' && sentenceExerciseShown !== 'type' ? (
+    <div className='in-game-sentence-prompt'>
+      <span className='in-game-sentence-prompt-instruction'>
+        {t({ listen: 'sentencePromptListen', particle: 'sentencePromptParticle', arrange: 'sentencePromptArrange' }[sentenceExerciseShown])}
+      </span>
+      {sentenceExerciseShown !== 'listen' && onScreenWordMeaning && (
+        <span className='in-game-sentence-prompt-meaning'>{onScreenWordMeaning}</span>
+      )}
+    </div>
+  ) : null;
   const sentenceWords = onScreenCharacterType === 'long'
     ? sentenceBreakdown({
         jp_character: onScreenKana,
@@ -1708,7 +1848,7 @@ export default function InGameCharacterShowAndInput() {
         <div className='in-game-score-group'>
           <div className='in-game-score' id='in-game-score'>
             {isProblematicsMode && <Icon name='target' className='icon-leading' />}
-            {isProblematicsMode ? t('gameScoreProblematics') : t('gameScoreKanas')}{onScreenScore}
+            {isProblematicsMode ? t('gameScoreProblematics') : t(practiceMode === 'long' ? 'gameScoreSentences' : 'gameScoreKanas')}{onScreenScore}
             {kanaGoal !== null && <span className='in-game-score-goal'> / {kanaGoal}</span>}
           </div>
           {streak >= 3 && <div className='in-game-streak' title={t('gameStreakTitle')}><Icon name='flame' className='icon-flame icon-leading' />{streak}</div>}
@@ -1778,7 +1918,7 @@ export default function InGameCharacterShowAndInput() {
                 </div>
               </div>
             </div>
-          ) : <div
+          ) : <>{sentencePrompt}<div
             id='in-game-kana-character'
             onClick={onClickChangeFontToDefault}
             className={`in-game-kana-character${isMacOS && localStorage.getItem("game-mode-random-fonts") !== "true" ? ' font-forceDefault' : ''}`}
@@ -1842,23 +1982,10 @@ export default function InGameCharacterShowAndInput() {
                   </span>
                 ) : character)
                 : onScreenCharacterType === 'long'
-                  ? [...onScreenKana].map((character, index) => {
-                    // Particles get their own color, and the words typed so far are dimmed
-                    const className = [
-                      onScreenParticles.includes(index) ? 'in-game-particle' : '',
-                      index < sentenceTypedEnd ? 'in-game-sentence-typed' : '',
-                    ].filter(Boolean).join(' ');
-                    const body = className
-                      ? <span className={className}>{character}</span>
-                      : character;
-                    // Help in sentence mode shows small furigana above the kanji
-                    return furiganaVisible && onScreenFurigana[index]
-                      ? <ruby key={`furigana-${index}`}>{body}<rt>{onScreenFurigana[index]}</rt></ruby>
-                      : <React.Fragment key={`long-char-${index}`}>{body}</React.Fragment>;
-                  })
+                  ? renderSentence()
                   : onScreenKana}
             </p>
-          </div>}
+          </div></>}
           <div id='in-game-solution' className='in-game-solution hidden-element'>
             <span id='in-game-solution-romanji-one'  className='in-game-solution-romanji-one'>{onScreenSolution[0]}</span>
             <br></br>
@@ -1922,10 +2049,10 @@ export default function InGameCharacterShowAndInput() {
             {onScreenCharacterType !== 'long' &&
               (Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution)}
           </div>
-          {/* Second step of sentence help: the romaji of the word being typed */}
-          {onScreenCharacterType === 'long' && sentenceHintWord !== null && sentenceMatcherRef.current?.words[sentenceHintWord] && (
+          {/* Last step of sentence help: the word being typed, or what the missing particle does */}
+          {onScreenCharacterType === 'long' && sentenceHint && (
             <div id='in-game-sentence-hint' className='in-game-solution in-game-sentence-hint'>
-              {sentenceMatcherRef.current.words[sentenceHintWord]}
+              {sentenceHint}
             </div>
           )}
           {onScreenKanjiUsage && (

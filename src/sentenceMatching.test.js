@@ -1,6 +1,6 @@
 import { toHiragana } from 'wanakana';
 import { sentences } from './sentences.js';
-import { alignWords, createSentenceMatcher, normalizeTypedAnswer, wordSpellings } from './sentenceMatching.js';
+import { alignWords, createSentenceMatcher, createSentenceQuestion, normalizeTypedAnswer, wordSpellings } from './sentenceMatching.js';
 
 const sentence = (jp) => sentences.find(entry => entry.jp_character === jp);
 
@@ -105,4 +105,45 @@ describe('checking a typed sentence', () => {
 
 test('normalizing keeps track of where every typed character ends', () => {
   expect(normalizeTypedAnswer('Wa ta-shi')).toEqual({ text: 'watashi', rawEnd: [1, 3, 4, 6, 7, 8, 9] });
+});
+
+describe('sentence questions', () => {
+  const entry = sentence('わたしの父は毎日、新聞を読みます');
+
+  test('particle: hides one particle and only that particle is typed', () => {
+    // random() = 0.99 picks the last particle, を
+    const question = createSentenceQuestion(entry, 'particle', () => 0.99);
+    expect(question.exercise).toBe('particle');
+    expect(question.blank).toEqual({ start: 11, end: 12, text: 'を' });
+    expect(question.matcher.check('wo').correct).toBe(true);
+    expect(question.matcher.check('o').correct).toBe(true);
+    expect(question.matcher.check('wa').onTrack).toBe(false);
+
+    const first = createSentenceQuestion(entry, 'particle', () => 0);
+    expect(first.blank.text).toBe('の');
+    expect(first.matcher.check('no').correct).toBe(true);
+  });
+
+  test('particle: は can be typed as wa or ha', () => {
+    const question = createSentenceQuestion(entry, 'particle', () => 0.4);
+    expect(question.blank.text).toBe('は');
+    expect(question.matcher.check('wa').correct).toBe(true);
+    expect(question.matcher.check('ha').correct).toBe(true);
+  });
+
+  test('arrange: the words are always shown out of order', () => {
+    // random() = 0 would keep a shuffle in place: it must still change the order
+    let calls = 0;
+    const question = createSentenceQuestion(entry, 'arrange', () => (calls++ < 50 ? 0.999 : 0));
+    expect(question.exercise).toBe('arrange');
+    expect([...question.order].sort((a, b) => a - b)).toEqual([0, 1, 2, 3, 4, 5, 6, 7]);
+    expect(question.order).not.toEqual([0, 1, 2, 3, 4, 5, 6, 7]);
+    expect(question.matcher.check(entry.romanji[0]).correct).toBe(true);
+  });
+
+  test('a sentence without particles falls back to typing it', () => {
+    const plain = { jp_character: 'おはよう', romanji: ['ohayou'], particles: [] };
+    expect(createSentenceQuestion(plain, 'particle').exercise).toBe('type');
+    expect(createSentenceQuestion(plain, 'listen').exercise).toBe('listen');
+  });
 });

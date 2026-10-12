@@ -3,6 +3,7 @@ import CheckMark from './CheckMark';
 import Icon from './Icon';
 import { useLanguage } from '../i18n';
 import { isSpeechSupported, SOUND_SETTING_KEY } from '../speech';
+import { getSentenceOptions } from '../sentences';
 
 // A row of mutually exclusive practice or answer modes.
 function SegmentedControl(props) {
@@ -67,6 +68,19 @@ export default function GameModeSelector(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [practice, answerBy]);
+
+  // Sentence practice: length, grammar pattern and kind of exercise
+  const [sentenceOptions, setSentenceOptions] = useState(getSentenceOptions);
+  const changeSentenceOption = (key, value) => setSentenceOptions(current => ({ ...current, [key]: value }));
+  React.useEffect(() => {
+    localStorage.setItem('game-mode-sentence-level', sentenceOptions.level);
+    localStorage.setItem('game-mode-sentence-pattern', sentenceOptions.pattern);
+    localStorage.setItem('game-mode-sentence-exercise', sentenceOptions.exercise);
+    if (props.onChange) {
+      props.onChange();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sentenceOptions]);
 
   const handlePracticeChange = (value) => {
     setPractice(value);
@@ -160,6 +174,47 @@ export default function GameModeSelector(props) {
             { value: "touch", label: t('answerMultipleChoice'), icon: 'grid', disabled: ['words', 'mixed', 'long'].includes(practice), disabledReason: t('answerMultipleChoiceDisabled') },
           ]}
         />
+        {practice === 'long' && (
+          <>
+            <SegmentedControl
+              className='sentence-exercise-row'
+              label={t('sentenceExerciseLabel')}
+              value={sentenceOptions.exercise}
+              onChange={(value) => changeSentenceOption('exercise', value)}
+              options={[
+                { value: 'type', label: t('sentenceExerciseType'), icon: 'keyboard' },
+                { value: 'listen', label: t('sentenceExerciseListen'), icon: 'volume', disabled: !isSpeechSupported(), disabledReason: t('sentenceExerciseListenDisabled') },
+                { value: 'particle', label: t('sentenceExerciseParticle'), icon: 'target' },
+                { value: 'arrange', label: t('sentenceExerciseArrange'), icon: 'shuffle' },
+              ]}
+            />
+            <SegmentedControl
+              className='sentence-level-row'
+              label={t('sentenceLevelLabel')}
+              value={sentenceOptions.level}
+              onChange={(value) => changeSentenceOption('level', value)}
+              options={[
+                { value: 'all', label: t('sentenceAll') },
+                { value: 'easy', label: t('sentenceLevelEasy') },
+                { value: 'medium', label: t('sentenceLevelMedium') },
+                { value: 'hard', label: t('sentenceLevelHard') },
+              ]}
+            />
+            <SegmentedControl
+              className='sentence-pattern-row'
+              label={t('sentencePatternLabel')}
+              value={sentenceOptions.pattern}
+              onChange={(value) => changeSentenceOption('pattern', value)}
+              options={[
+                { value: 'all', label: t('sentenceAll') },
+                { value: 'desu', label: '〜です' },
+                { value: 'verb', label: '〜ます' },
+                { value: 'exist', label: 'あります' },
+                { value: 'question', label: '〜か' },
+              ]}
+            />
+          </>
+        )}
       </div>
       <div className='game-mode-selector-button-group'>
         <CheckMark characterText={<><Icon name='lightbulb' className='icon-leading' />{t('optionHints')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-hints" default="true"/>

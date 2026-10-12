@@ -41,13 +41,20 @@ const solution = () => document.querySelector('#in-game-solution');
 const nextButton = () => document.querySelector('#in-game-next-button');
 const score = () => document.getElementById('in-game-score');
 const sentenceStats = (sentence) => (JSON.parse(localStorage.getItem('userStats')) || {})[sentence];
+// The sentence as shown, without the furigana help adds above the kanji
+const sentenceWithoutFurigana = () => {
+  const copy = document.querySelector('#in-game-kana-character > p').cloneNode(true);
+  copy.querySelectorAll('rt').forEach(rt => rt.remove());
+  return copy.textContent;
+};
 
 function pressKeys(...keys) {
   keys.forEach(key => fireEvent.keyDown(window, { key }));
 }
 
-async function renderLongPractice(checkedKanas = ALL_GROUP_TITLES) {
+async function renderLongPractice(checkedKanas = ALL_GROUP_TITLES, { exercise = 'type' } = {}) {
   localStorage.setItem('checkedKanas', JSON.stringify(checkedKanas));
+  localStorage.setItem('game-mode-sentence-exercise', exercise);
   localStorage.setItem('game-mode-practice', 'long');
   localStorage.setItem('game-mode-word', 'false');
   localStorage.setItem('game-mode-touch', 'false');
@@ -363,4 +370,129 @@ describe('long practice (real sentences)', () => {
 
     await tapNextButton();
   });
+});
+
+/*
+ * The other sentence exercises, all with これは水です (the only sentence the
+ * これは水です selection can show): listening, the missing particle and
+ * arranging the shuffled words.
+ */
+describe('sentence exercises', () => {
+  const ONE_SENTENCE = ['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')];
+  const prompt = () => document.querySelector('.in-game-sentence-prompt');
+  const hint = () => document.querySelector('#in-game-sentence-hint');
+
+  test('particle: the particle is hidden and only it is typed', async () => {
+    await renderLongPractice(ONE_SENTENCE, { exercise: 'particle' });
+
+    expect(displayedSentence()).toBe('これ？水です');
+    expect(prompt()).toHaveTextContent('Type the missing particle');
+    expect(prompt()).toHaveTextContent(sentenceEntry('これは水です').meaning);
+
+    // Help: furigana first, then what the particle does (never the answer)
+    pressKeys('?');
+    expect(document.querySelector('#in-game-kana-character rt')).toHaveTextContent('みず');
+    pressKeys('?');
+    expect(hint()).toHaveTextContent('topic');
+
+    pressKeys('h', 'a');
+    expect(cursorGroup()).toHaveClass('answer-correct');
+    expect(score()).toHaveTextContent('1');
+    // The answered sentence is shown whole, with its breakdown
+    expect(sentenceWithoutFurigana()).toBe('これは水です');
+    expect(hint()).toBeNull();
+    expect(solution().querySelectorAll('.sentence-breakdown-word')).toHaveLength(4);
+
+    await tapNextButton();
+  });
+
+  test('arrange: the words are shown out of order and typed in order', async () => {
+    await renderLongPractice(ONE_SENTENCE, { exercise: 'arrange' });
+    const chips = () => [...document.querySelectorAll('.in-game-sentence-chip')];
+    const usedChips = () => chips().filter(chip => chip.classList.contains('is-used')).map(chip => chip.textContent);
+
+    expect(chips().map(chip => chip.textContent).sort()).toEqual(['これ', 'です', 'は', '水'].sort());
+    expect(displayedSentence()).not.toBe('これは水です');
+    expect(prompt()).toHaveTextContent('Put the words in order');
+
+    pressKeys(...'korewa'.split(''));
+    expect(usedChips().sort()).toEqual(['これ', 'は'].sort());
+
+    // Help: furigana, then the next word with its romaji
+    pressKeys('?', '?');
+    expect(hint()).toHaveTextContent('水 · mizu');
+
+    pressKeys(...'mizudesu'.split(''));
+    expect(cursorGroup()).toHaveClass('answer-correct');
+    expect(sentenceWithoutFurigana()).toBe('これは水です');
+
+    await tapNextButton();
+  });
+
+  describe('listen', () => {
+    let spoken;
+    beforeEach(() => {
+      spoken = [];
+      window.SpeechSynthesisUtterance = function SpeechSynthesisUtterance(text) { this.text = text; };
+      window.speechSynthesis = {
+        speak: (utterance) => spoken.push(utterance.text),
+        cancel: () => {},
+        getVoices: () => [],
+      };
+    });
+    afterEach(() => {
+      delete window.SpeechSynthesisUtterance;
+      delete window.speechSynthesis;
+    });
+
+    test('the sentence is read out and hidden until help or a correct answer', async () => {
+      await renderLongPractice(ONE_SENTENCE, { exercise: 'listen' });
+
+      expect(spoken).toEqual(['これは水です']);
+      expect(displayedSentence()).toBe('');
+      expect(prompt()).toHaveTextContent('Type what you hear');
+      // The meaning would give the sentence away
+      expect(prompt()).not.toHaveTextContent(sentenceEntry('これは水です').meaning);
+
+      // The replay button reads it again
+      fireEvent.click(document.querySelector('.in-game-sentence-listen'));
+      expect(spoken).toHaveLength(2);
+
+      // Help: the text first
+      pressKeys('?');
+      expect(displayedSentence()).toBe('これは水です');
+      expect(document.querySelector('#in-game-kana-character rt')).toBeNull();
+      pressKeys('?');
+      expect(document.querySelector('#in-game-kana-character rt')).toHaveTextContent('みず');
+
+      pressKeys(...'korewamizudesu'.split(''));
+      expect(cursorGroup()).toHaveClass('answer-correct');
+
+      await tapNextButton();
+    });
+
+    test('falls back to reading when the browser cannot speak', async () => {
+      delete window.SpeechSynthesisUtterance;
+      delete window.speechSynthesis;
+      await renderLongPractice(ONE_SENTENCE, { exercise: 'listen' });
+
+      expect(displayedSentence()).toBe('これは水です');
+      expect(prompt()).toBeNull();
+    });
+  });
+});
+
+test('never shows the same sentence twice in a row', async () => {
+  // Only これは水です and それはなんですか can be read with these groups, so
+  // the game has to alternate between them
+  await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', 'な', 'わ', kanjiGroupOf('水')]);
+  let previous = displayedSentence();
+  expect(['これは水です', 'それはなんですか']).toContain(previous);
+  for (let round = 0; round < 10; round++) {
+    pressKeys(...typedAnswerOf(sentenceEntry(previous)).split(''));
+    await tapNextButton();
+    const shown = displayedSentence();
+    expect(shown).not.toBe(previous);
+    previous = shown;
+  }
 });
