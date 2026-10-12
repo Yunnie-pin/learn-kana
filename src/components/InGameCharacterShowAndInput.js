@@ -9,7 +9,9 @@ import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswe
 import { getListForPractice } from '../practiceList.js'
 import { findKanaForAnswer, getSimilarKana, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
-import { speakIfEnabled } from '../speech.js'
+import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
+import { createSentenceMatcher } from '../sentenceMatching.js'
+import { sentenceBreakdown } from '../sentenceGlossary.js'
 import Icon from './Icon.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
@@ -264,7 +266,7 @@ async function selectNextCharacter(charactersToShow) {
 }
 
 export default function InGameCharacterShowAndInput() {
-  const { t, meaningOf } = useLanguage();
+  const { t, meaningOf, language } = useLanguage();
   const isMacOS = /Mac/i.test(navigator.userAgentData?.platform || navigator.platform);
 
   /*
@@ -283,6 +285,15 @@ export default function InGameCharacterShowAndInput() {
   // reading), revealed in small print above the kanji when the player asks for help
   const [onScreenFurigana, setOnScreenFurigana] = useState({});
   const [furiganaVisible, setFuriganaVisible] = useState(false);
+  // Sentence practice: checks the typed sentence word by word (see sentenceMatching.js)
+  const sentenceMatcherRef = useRef(null);
+  // Words of the shown sentence already typed, to mark them in the sentence
+  const [sentenceWordsDone, setSentenceWordsDone] = useState(0);
+  const sentenceWordsDoneRef = useRef(0);
+  // Help in sentence practice comes in steps: the furigana first, then the
+  // romaji of the word being typed (index of that word, null when not asked)
+  const [sentenceHintWord, setSentenceHintWord] = useState(null);
+  const sentenceHelpRef = useRef({ furigana: false, hintWord: null });
   const [onScreenKanjiUsage, setOnScreenKanjiUsage] = useState(null);
   const [isKanjiUsageQuestion, setIsKanjiUsageQuestion] = useState(false);
   const [onScreenSolution, setSolution] = useState('');
@@ -790,6 +801,11 @@ export default function InGameCharacterShowAndInput() {
         : {}
     );
     setFuriganaVisible(false);
+    sentenceMatcherRef.current = pickedElement.type === 'long' ? createSentenceMatcher(pickedElement) : null;
+    sentenceWordsDoneRef.current = 0;
+    setSentenceWordsDone(0);
+    sentenceHelpRef.current = { furigana: false, hintWord: null };
+    setSentenceHintWord(null);
     const charTextElement = document.querySelector("#in-game-kana-character>p");
     if (charTextElement) {
       const displayLength = [...questionCharacter].length;
@@ -1113,17 +1129,34 @@ export default function InGameCharacterShowAndInput() {
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const InGameUserCurrentAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
       const typedAnswer = normalizeAnswer(InGameUserCurrentAnswer);
-      if (!typedAnswer || questionAnsweredRef.current) return;
+      if (questionAnsweredRef.current) return;
+      const sentenceMatcher = currentCharacterTypeRef.current === 'long' ? sentenceMatcherRef.current : null;
+      if (!typedAnswer) {
+        if (sentenceMatcher) updateSentenceWordsDone(0);
+        return;
+      }
 
       const isKanaInput = currentCharacterTypeRef.current === 'kanji' &&
         /[\u3040-\u30ff]/.test(InGameUserCurrentAnswer);
       if (isKanaInput && !isSubmission) return;
 
       const answerGroup = document.querySelector('#in-game-text-input-cursor-group');
-      const isCorrect = inGameAnswerListRef.current.includes(typedAnswer);
-      const isOnTrack = isSubmission
-        ? isCorrect
-        : inGameAnswerListRef.current.some(answer => answer.startsWith(typedAnswer));
+      let isCorrect;
+      let isOnTrack;
+      if (sentenceMatcher) {
+        // Sentences accept other spellings (si, kyoo, ha...) and kana, and
+        // know which words are typed and where the first mistake is
+        const result = sentenceMatcher.check(InGameUserCurrentAnswer);
+        isCorrect = result.correct;
+        isOnTrack = result.onTrack;
+        updateSentenceWordsDone(result.wordsDone);
+        markTypedMistake(isOnTrack || !hintsEnabled ? Infinity : result.validLength);
+      } else {
+        isCorrect = inGameAnswerListRef.current.includes(typedAnswer);
+        isOnTrack = isSubmission
+          ? isCorrect
+          : inGameAnswerListRef.current.some(answer => answer.startsWith(typedAnswer));
+      }
       if (!isOnTrack) {
         setStreak(0);
       }
@@ -1417,16 +1450,60 @@ export default function InGameCharacterShowAndInput() {
     speakIfEnabled(inGameKanaOnScreen);
   }
 
+  // Sentence practice: remembers how many words are typed, and drops the
+  // romaji hint once its word is typed
+  function updateSentenceWordsDone(wordsDone) {
+    sentenceWordsDoneRef.current = wordsDone;
+    setSentenceWordsDone(wordsDone);
+    const help = sentenceHelpRef.current;
+    if (help.hintWord !== null && wordsDone > help.hintWord) {
+      help.hintWord = null;
+      setSentenceHintWord(null);
+    }
+  }
+
+  // Sentence practice: shows the typed text from its first mistake on in its
+  // own color (validLength = how much of the typed text is right)
+  function markTypedMistake(validLength) {
+    let remaining = validLength;
+    for (const selector of ['#in-game-text-input-before-cursor', '#in-game-text-input-after-cursor']) {
+      const element = document.querySelector(selector);
+      if (!element) continue;
+      const text = element.textContent;
+      const valid = Math.max(0, Math.min(text.length, remaining));
+      remaining -= text.length;
+      element.textContent = text.slice(0, valid);
+      if (valid < text.length) {
+        const mistake = document.createElement('span');
+        mistake.className = 'in-game-typed-mistake';
+        mistake.textContent = text.slice(valid);
+        element.appendChild(mistake);
+      }
+    }
+  }
+
   function handleUserAskForHelp() {
     if (!hintsEnabled) {
       return;
     }
-    // Sentence questions reveal small furigana above the kanji instead of
-    // showing the romaji reading.
+    // Sentence questions give help in steps instead of the whole romaji:
+    // first small furigana above the kanji, then the romaji of the word being
+    // typed (once per word). Refs, since the keyboard handler is set up once.
     if (currentCharacterTypeRef.current === 'long') {
-      if (!furiganaVisible) {
+      if (questionAnsweredRef.current) return;
+      const help = sentenceHelpRef.current;
+      if (!help.furigana) {
+        help.furigana = true;
         updateCurrentGameStats('askForHelp')
         setFuriganaVisible(true)
+        return;
+      }
+      const wordIndex = sentenceWordsDoneRef.current;
+      const words = sentenceMatcherRef.current ? sentenceMatcherRef.current.words : [];
+      if (help.hintWord !== wordIndex && wordIndex < words.length) {
+        help.hintWord = wordIndex;
+        updateCurrentGameStats('askForHelp')
+        setSentenceHintWord(wordIndex)
       }
       return;
     }
@@ -1610,6 +1687,21 @@ export default function InGameCharacterShowAndInput() {
     </div>
   );
 
+  // Sentence practice: characters of the words already typed, and the word
+  // breakdown shown with the meaning
+  const sentenceSegments = onScreenCharacterType === 'long' ? sentenceMatcherRef.current?.segments : null;
+  const sentenceTypedEnd = sentenceSegments && sentenceWordsDone > 0
+    ? sentenceSegments[Math.min(sentenceWordsDone, sentenceSegments.length) - 1].end
+    : 0;
+  const sentenceWords = onScreenCharacterType === 'long'
+    ? sentenceBreakdown({
+        jp_character: onScreenKana,
+        particles: onScreenParticles,
+        furigana: onScreenFurigana,
+        romanji: onScreenSolution,
+      }, language)
+    : [];
+
   return (
     <>
       <div className="in-game-top-var">
@@ -1751,8 +1843,13 @@ export default function InGameCharacterShowAndInput() {
                 ) : character)
                 : onScreenCharacterType === 'long'
                   ? [...onScreenKana].map((character, index) => {
-                    const body = onScreenParticles.includes(index)
-                      ? <span className='in-game-particle'>{character}</span>
+                    // Particles get their own color, and the words typed so far are dimmed
+                    const className = [
+                      onScreenParticles.includes(index) ? 'in-game-particle' : '',
+                      index < sentenceTypedEnd ? 'in-game-sentence-typed' : '',
+                    ].filter(Boolean).join(' ');
+                    const body = className
+                      ? <span className={className}>{character}</span>
                       : character;
                     // Help in sentence mode shows small furigana above the kanji
                     return furiganaVisible && onScreenFurigana[index]
@@ -1777,6 +1874,33 @@ export default function InGameCharacterShowAndInput() {
                 {onScreenWordMeaning}
               </>
             ) : null}
+            {/* Sentences: every word with its romaji and meaning, and what each particle does */}
+            {onScreenCharacterType === 'long' && sentenceWords.length > 0 && (
+              <span className='sentence-breakdown'>
+                {sentenceWords.map((word, index) => (
+                  <span key={`word-${index}`} className={'sentence-breakdown-word' + (word.particle ? ' is-particle' : '')}>
+                    <span className='sentence-breakdown-jp'>{word.text}</span>
+                    <span className='sentence-breakdown-romaji'>{word.romaji}</span>
+                    <span className='sentence-breakdown-meaning'>{word.meaning}</span>
+                  </span>
+                ))}
+                {isSpeechSupported() && (
+                  <button
+                    type='button'
+                    className='sentence-breakdown-listen'
+                    title={t('sentenceListen')}
+                    aria-label={t('sentenceListen')}
+                    onClick={(event) => {
+                      // A tap on the meaning moves on: listening must not
+                      event.stopPropagation();
+                      speak(onScreenKana);
+                    }}
+                  >
+                    <Icon name='volume' />
+                  </button>
+                )}
+              </span>
+            )}
             {onScreenCharacterType === 'kanji' &&
               !isKanjiUsageQuestion &&
               localStorage.getItem('game-mode-kanji-readings') === 'true' &&
@@ -1798,6 +1922,12 @@ export default function InGameCharacterShowAndInput() {
             {onScreenCharacterType !== 'long' &&
               (Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution)}
           </div>
+          {/* Second step of sentence help: the romaji of the word being typed */}
+          {onScreenCharacterType === 'long' && sentenceHintWord !== null && sentenceMatcherRef.current?.words[sentenceHintWord] && (
+            <div id='in-game-sentence-hint' className='in-game-solution in-game-sentence-hint'>
+              {sentenceMatcherRef.current.words[sentenceHintWord]}
+            </div>
+          )}
           {onScreenKanjiUsage && (
             <div id='in-game-kanji-usage' className='in-game-solution in-game-kanji-usage hidden-element'>
               {!isKanjiUsageQuestion && <span className='kanji-usage-word'>{onScreenKanjiUsage.word}</span>}

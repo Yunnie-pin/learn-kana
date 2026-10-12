@@ -269,6 +269,86 @@ describe('long practice (real sentences)', () => {
     expect(beforeCursor().textContent).toBe('');
   });
 
+  test('accepts other spellings of the sentence (Kunrei-shiki, は typed as ha)', async () => {
+    // これは水です is the only sentence this selection can show
+    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+
+    pressKeys(...'korehamizudesu'.split(''));
+    expect(cursorGroup()).toHaveClass('answer-correct');
+    expect(score()).toHaveTextContent('1');
+
+    await tapNextButton();
+  });
+
+  test('marks only the text from the first mistake on as wrong', async () => {
+    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+
+    pressKeys(...'kore wa mx'.split(''));
+    expect(cursorGroup()).toHaveClass('answer-wrong');
+    expect(beforeCursor().textContent).toBe('kore wa mx');
+    expect(beforeCursor().querySelector('.in-game-typed-mistake')).toHaveTextContent('x');
+
+    // Fixing the mistake removes the mark
+    pressKeys('Backspace');
+    expect(cursorGroup()).not.toHaveClass('answer-wrong');
+    expect(beforeCursor().querySelector('.in-game-typed-mistake')).toBeNull();
+    expect(beforeCursor().textContent).toBe('kore wa m');
+  });
+
+  test('dims the words of the sentence that are already typed', async () => {
+    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    const typedCharacters = () => [...document.querySelectorAll('#in-game-kana-character .in-game-sentence-typed')]
+      .map(element => element.textContent).join('');
+
+    expect(typedCharacters()).toBe('');
+    pressKeys(...'kore'.split(''));
+    expect(typedCharacters()).toBe('これ');
+    pressKeys(...'wa'.split(''));
+    expect(typedCharacters()).toBe('これは');
+    pressKeys('Backspace');
+    expect(typedCharacters()).toBe('これ');
+  });
+
+  test('help comes in steps: furigana, then the romaji of the word being typed', async () => {
+    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+    const hint = () => document.querySelector('#in-game-sentence-hint');
+
+    pressKeys('?');
+    expect(document.querySelector('#in-game-kana-character rt')).toHaveTextContent('みず');
+    expect(hint()).toBeNull();
+
+    pressKeys(...'korewa'.split(''), '?');
+    expect(hint()).toHaveTextContent('mizu');
+    // Asking again for the same word costs nothing more
+    pressKeys('?');
+    expect(sentenceStats('これは水です').currentGameStats.askForHelpCounter).toBe(2);
+
+    // The hint goes away once its word is typed
+    pressKeys(...'mizu'.split(''));
+    expect(hint()).toBeNull();
+  });
+
+  test('shows every word of the sentence with its meaning after a correct answer', async () => {
+    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+
+    pressKeys(...'korewamizudesu'.split(''));
+    const words = [...solution().querySelectorAll('.sentence-breakdown-word')].map(word => [
+      word.querySelector('.sentence-breakdown-jp').textContent,
+      word.querySelector('.sentence-breakdown-romaji').textContent,
+      word.classList.contains('is-particle'),
+    ]);
+    expect(words).toEqual([
+      ['これ', 'kore', false],
+      ['は', 'wa', true],
+      ['水', 'mizu', false],
+      ['です', 'desu', false],
+    ]);
+    expect(solution().querySelector('.sentence-breakdown-word.is-particle .sentence-breakdown-meaning'))
+      .toHaveTextContent('topic');
+
+    await tapNextButton();
+  });
+
   test('a mobile keyboard adding a space after a correct sentence does not count it again', async () => {
     await renderLongPractice();
 

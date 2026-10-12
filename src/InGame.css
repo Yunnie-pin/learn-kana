@@ -356,6 +356,17 @@ html.in-game-scroll-lock body {
   color: #445760;
 }
 
+/* Sentence words already typed are dimmed, so the next word is easy to find */
+.in-game-kana-character .in-game-sentence-typed {
+  opacity: 0.4;
+  transition: opacity 0.15s;
+}
+
+/* ...but the whole sentence shows normally once it is answered */
+.in-game-kana-character.answer-correct .in-game-sentence-typed {
+  opacity: 1;
+}
+
 .in-game-kana-character>p.kanji-reading-question-prompt {
   white-space: nowrap;
   padding-inline: 0.38em;
@@ -383,6 +394,58 @@ html.in-game-scroll-lock body {
 
 .in-game-solution-separator {
   opacity: 0.5;
+}
+
+/* Sentences: the words of the sentence with their romaji and meaning */
+.sentence-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.4em 0.9em;
+  margin-top: 0.5em;
+  font-size: 0.4em;
+  line-height: 1.3;
+}
+
+.sentence-breakdown-word {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 9em;
+}
+
+.sentence-breakdown-jp {
+  font-size: 1.5em;
+}
+
+.sentence-breakdown-romaji {
+  font-weight: bold;
+}
+
+.sentence-breakdown-meaning {
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+.sentence-breakdown-word.is-particle .sentence-breakdown-jp {
+  color: #000000;
+}
+
+.sentence-breakdown-listen {
+  align-self: center;
+  display: inline-flex;
+  padding: 0.4em;
+  border: none;
+  border-radius: 50%;
+  background: #ff9a3c26;
+  color: inherit;
+  font-size: 1.3em;
+}
+
+/* Sentence help, second step: the romaji of the word being typed */
+.in-game-sentence-hint {
+  font-size: min(4vh, 6vw);
 }
 
 .kanji-answer-readings {
@@ -573,6 +636,24 @@ html.in-game-scroll-lock body {
 #in-game-text-input-cursor-group.answer-wrong {
   color: #ff6b6b;
   border-bottom-color: #ff6b6b80;
+}
+
+/* Sentences: only the text from the first mistake on is shown as wrong */
+#in-game-text-input-cursor-group.answer-wrong:has(.in-game-typed-mistake) {
+  color: #ff9a3c;
+}
+
+/* Stays inline after the right part: the float and padding of the input
+   spans (#in-game-text-input-cursor-group span) would move it to the front */
+#in-game-text-input-cursor-group span.in-game-typed-mistake {
+  float: none;
+  padding: 0;
+}
+
+.in-game-typed-mistake {
+  color: #ff6b6b;
+  text-decoration: underline wavy;
+  text-decoration-thickness: 2px;
 }
 
 #in-game-text-input-cursor-group.answer-correct {
