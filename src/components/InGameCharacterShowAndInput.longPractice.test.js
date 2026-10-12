@@ -9,8 +9,8 @@ import { kanaCharacters } from '../kanaCharacters.js';
  * Tests for the "long" practice mode: real beginner sentences (e.g. わたしは学生です)
  * that have to be typed as a single romaji answer. Only sentences readable with
  * the selected hiragana / katakana / kanji groups are shown. The romaji is
- * never displayed for sentences: asking for help reveals small furigana above
- * the kanji, and a correct answer reveals the meaning of the sentence.
+ * never given away as help: asking for help reveals small furigana above the
+ * kanji, and a correct answer reveals the romaji and the meaning of the sentence.
  *
  * The sentence is picked at random, so instead of pinning one the tests read
  * the displayed sentence and look up its data (romaji + meaning) in
@@ -104,10 +104,10 @@ describe('long practice (real sentences)', () => {
     expect(score()).toHaveTextContent('1');
     expect(sentenceStats(sentence).currentGameStats.rightGuesses).toBe(1);
 
-    // The meaning is revealed, without the romaji reading
+    // The romaji (shown once, above) and the meaning are revealed
     expect(solution()).not.toHaveClass('hidden-element');
+    expect(solution().querySelector('#in-game-solution-romanji-one')).toHaveTextContent(entry.romanji[0]);
     expect(solution().querySelector('.in-game-solution-romanji')).toBeNull();
-    expect(solution()).not.toHaveTextContent(entry.romanji[0]);
     expect(solution()).toHaveTextContent(entry.meaning);
 
     // Auto next is off, so the Next button starts a new sentence
@@ -240,6 +240,47 @@ describe('long practice (real sentences)', () => {
     expect(score()).toHaveTextContent('1');
 
     // Start the next sentence so the game drops its Enter / tap listeners
+    await tapNextButton();
+  });
+
+  test('keys pressed after a correct sentence do not count it again', async () => {
+    await renderLongPractice();
+
+    const sentence = displayedSentence();
+    const answer = typedAnswerOf(sentenceEntry(sentence));
+    pressKeys(...answer.split(''));
+    expect(score()).toHaveTextContent('1');
+
+    // A space, Shift, arrows, a stray letter and Backspace while the meaning is shown
+    pressKeys(' ', 'Shift', 'ArrowLeft', 'ArrowRight', 'x', 'Backspace');
+    expect(beforeCursor().textContent).toBe(answer);
+    expect(cursorGroup()).toHaveClass('answer-correct');
+    expect(cursorGroup()).not.toHaveClass('answer-wrong');
+    expect(score()).toHaveTextContent('1');
+    expect(sentenceStats(sentence).currentGameStats).toMatchObject({ rightGuesses: 1, wrongSubmissions: 0 });
+
+    // One Enter shows exactly one new sentence
+    await act(async () => {
+      fireEvent.keyDown(document, { key: 'Enter' });
+    });
+    const shownSentences = Object.values(JSON.parse(localStorage.getItem('userStats')))
+      .reduce((total, stats) => total + stats.totalTimesShown, 0);
+    expect(shownSentences).toBe(2);
+    expect(beforeCursor().textContent).toBe('');
+  });
+
+  test('a mobile keyboard adding a space after a correct sentence does not count it again', async () => {
+    await renderLongPractice();
+
+    const answer = typedAnswerOf(sentenceEntry(displayedSentence()));
+    const hiddenInput = document.querySelector('#in-game-text-input');
+    fireEvent.input(hiddenInput, { target: { value: answer } });
+    expect(score()).toHaveTextContent('1');
+
+    fireEvent.input(hiddenInput, { target: { value: answer + ' ' } });
+    expect(score()).toHaveTextContent('1');
+    expect(hiddenInput.value).toBe(answer);
+
     await tapNextButton();
   });
 });

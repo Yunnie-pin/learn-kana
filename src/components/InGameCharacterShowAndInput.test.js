@@ -8,15 +8,23 @@ import { kanaCharacters } from '../kanaCharacters.js';
  * Tests for the "words" practice mode: the long typing exercise where a whole
  * word (e.g. アイス = "aisu") has to be typed key by key instead of one kana.
  *
- * The game only shows words whose kana groups are all selected. アイス is the
- * only word built from the groups ア and サ, so selecting exactly those two
- * groups pins the word that is shown and keeps every expectation deterministic.
+ * The game only shows words whose kana groups are all selected. Selecting
+ * exactly the groups of a word that no other word can be built from pins the
+ * word that is shown and keeps every expectation deterministic. The word is
+ * looked up instead of hardcoded, so adding words to the list never breaks it
+ * (アイス stopped being one when ソース was added).
  */
-const WORD = Object.values(kanaCharacters.words).find(word => word.jp_character === 'アイス');
+const groupsOf = (word) => [...word.katakana_groups, ...word.hiragana_groups];
+const allWords = Object.values(kanaCharacters.words);
+const WORD = allWords.find(word => {
+  const groups = groupsOf(word);
+  return [...word.jp_character].length > 1 &&
+    allWords.filter(other => groupsOf(other).every(group => groups.includes(group))).length === 1;
+});
 const WORD_JP = WORD.jp_character;
 const WORD_ROMANJI = WORD.romanji[0];
 const WORD_MEANING = WORD.meaning;
-const WORD_GROUPS = [...WORD.katakana_groups, ...WORD.hiragana_groups];
+const WORD_GROUPS = groupsOf(WORD);
 
 // The game reads and writes its answer through direct DOM access, so the tests
 // query the same elements the players see.

@@ -273,7 +273,7 @@ export default function GameMenu() {
       </div>
       <aside className='game-menu-side'>
         <div className='game-mode-selector'>
-          <GameModeSelector onChange={refreshSummary} />
+          <GameModeSelector onChange={refreshSummary} kanjiSelected={kanjiGroupCount > 0} />
         </div>
         <div className='game-menu-start-bar'>
           <button className='neoButton stats-button-floating' onClick={() => { setStatsFocusSection(null); setShowStatsModal(true); }} title={t('menuStats')}>

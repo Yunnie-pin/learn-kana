@@ -10,19 +10,21 @@ export default function CheckMark(props) {
     if(localStorage.getItem(props.id) === null) {
         localStorage.setItem(props.id, initValue);
     }
-    document.getElementById(props.id).checked = (localStorage.getItem(props.id) === "true"); // Cool trick, huh?
+    // A disabled option is shown as off, but the saved choice is kept for when it is enabled again
+    document.getElementById(props.id).checked = !props.disabled && (localStorage.getItem(props.id) === "true"); // Cool trick, huh?
   })
 
   const handleCheckMarked = (e) => {
     // Mark the checkbox as checked
     localStorage.setItem(props.id, e.target.checked);
   }
-  
+
   return (
-    <label className="character-checkbox-element" key={props.id}>
+    <label className="character-checkbox-element" key={props.id} title={props.disabled ? props.disabledReason : undefined}>
         <input type="checkbox"
-            id={props.id} 
+            id={props.id}
             className={"character-checkbox-input " + props.class}
+            disabled={props.disabled}
             onChange={handleCheckMarked} />
         <div className="character-checkbox-content toggle-content">
             <span className="toggle-switch" aria-hidden="true"></span>

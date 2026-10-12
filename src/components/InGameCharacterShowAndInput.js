@@ -298,6 +298,10 @@ export default function InGameCharacterShowAndInput() {
   const hasStartedInitialCharacterRef = useRef(false);
   const currentCharacterTypeRef = useRef(null);
   const waitingForKanjiNextRef = useRef(false);
+  // Set once the shown question is answered correctly, until the next one is
+  // shown: keys pressed in between (a space, Shift, Gboard's auto space...)
+  // must not count the same answer again
+  const questionAnsweredRef = useRef(false);
   const kanjiAutoAdvanceTimeoutRef = useRef(null);
   const inGameAnswerListRef = useRef([]);
   const srsQueueRef = useRef(null);
@@ -726,6 +730,7 @@ export default function InGameCharacterShowAndInput() {
 
     inGameKanaOnScreen = pickedElement.jp_character;
     currentCharacterTypeRef.current = pickedElement.type;
+    questionAnsweredRef.current = false;
     srsFailedRef.current = false;
     confusionRecordedRef.current = false;
     srsCurrentCardRef.current = isSrsPractice ? pickedElement : null;
@@ -988,6 +993,11 @@ export default function InGameCharacterShowAndInput() {
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const previousAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
+      // Already answered: keep the correct answer shown as it is
+      if (questionAnsweredRef.current) {
+        e.target.value = previousAnswer;
+        return;
+      }
       let newAnswer = e.target.value;
 
       if (newAnswer.includes('?')) {
@@ -1015,6 +1025,16 @@ export default function InGameCharacterShowAndInput() {
         if (e.key === 'Enter') {
           e.preventDefault();
           advanceToNextKanji();
+        }
+        return;
+      }
+      // Already answered: only leaving the game still works, Enter / Next
+      // are handled by the listeners set up for the correct answer
+      if (questionAnsweredRef.current) {
+        if (e.key === 'Escape') {
+          setUserGameScoreWindowVisible(true);
+        } else if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete') {
+          e.preventDefault();
         }
         return;
       }
@@ -1093,7 +1113,7 @@ export default function InGameCharacterShowAndInput() {
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
       const InGameUserCurrentAnswer = InGameTextInput.textContent + InGameTextInputAfterCursor.textContent;
       const typedAnswer = normalizeAnswer(InGameUserCurrentAnswer);
-      if (!typedAnswer) return;
+      if (!typedAnswer || questionAnsweredRef.current) return;
 
       const isKanaInput = currentCharacterTypeRef.current === 'kanji' &&
         /[\u3040-\u30ff]/.test(InGameUserCurrentAnswer);
@@ -1136,6 +1156,7 @@ export default function InGameCharacterShowAndInput() {
       if (timeoutInProgress) return;
       //  Make that known and pass to the next character
       if (isCorrect) {
+        questionAnsweredRef.current = true;
         updateCurrentGameStats("correct");
         speakCorrectAnswer();
         if (isSrsPractice && currentCharacterTypeRef.current === 'kanji' && !srsFailedRef.current) {

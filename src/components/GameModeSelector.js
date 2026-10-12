@@ -166,7 +166,7 @@ export default function GameModeSelector(props) {
         <CheckMark characterText={<><Icon name='pen' className='icon-leading' />{t('optionHandwrittenFonts')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-random-fonts"/>
         <CheckMark characterText={<><Icon name='skip-forward' className='icon-leading' />{t('optionAutoNext')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-auto-next" default="true"/>
         {isSpeechSupported() && <CheckMark characterText={<><Icon name='volume' className='icon-leading' />{t('optionSound')}</>} class="game-mode-selector-button-group-row-2" id={SOUND_SETTING_KEY}/>}
-        <CheckMark characterText={<><Icon name='languages' className='icon-leading' />{t('kanjiReadingsOption')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-kanji-readings"/>
+        <CheckMark characterText={<><Icon name='languages' className='icon-leading' />{t('kanjiReadingsOption')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-kanji-readings" disabled={!props.kanjiSelected} disabledReason={t('kanjiReadingsDisabled')}/>
       </div>
     </div>
   )

@@ -1722,6 +1722,16 @@ Toggle switch (game options)
   transform: translateX(1em);
 }
 
+/* Same look as a disabled segmented option */
+.character-checkbox-element:has(.character-checkbox-input:disabled) {
+  cursor: not-allowed;
+}
+
+.character-checkbox-input:disabled ~ .toggle-content {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
 /*
 ######
 Phones
