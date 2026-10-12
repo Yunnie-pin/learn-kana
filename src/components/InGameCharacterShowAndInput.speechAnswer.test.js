@@ -103,8 +103,9 @@ describe('answering sentences by voice', () => {
   test('the mic listens, previews the heard sentence in romaji and answers with it', async () => {
     await renderLongPractice();
 
-    // The mic lives in the answer field (in its right corner, by the styles)
-    expect(cursorGroup().querySelector('#in-game-speech-button')).not.toBeNull();
+    // The mic sits right after the answer field, below its line (by the styles)
+    expect(cursorGroup().querySelector('#in-game-speech-button')).toBeNull();
+    expect(document.querySelector('.in-game-answer-field')).toContainElement(micButton());
     expect(micButton()).toHaveAttribute('aria-label', 'Answer with your voice');
     expect(micButton()).toHaveAttribute('aria-pressed', 'false');
 

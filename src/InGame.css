@@ -495,39 +495,59 @@ html.in-game-scroll-lock body {
   vertical-align: middle;
 }
 
-/* Sentence practice: the mic button turns speech into the answer. It sits in
-   the right corner of the answer area, whose font is huge, hence the small
-   font-size */
+/* Sentence practice: the mic button turns speech into the answer. It sits
+   beside the answer field, past the right end of its line, and the font of
+   the field it belongs to is huge, hence the small font-size. A square with
+   an outline holds a dark round backing and the mic, so it reads as a voice
+   button on any theme */
 .in-game-speech-button {
-  position: absolute;
-  right: 0.04em;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 0.12em;
-  border: none;
-  border-radius: 50%;
-  background: #ff9a3c26;
-  color: inherit;
-  font-size: 0.3em;
+  flex: none;
+  /* Beside the field, past the right end of its line */
+  margin-left: 0.4em;
+  padding: 0.5em;
+  border: 0.05em solid #61503f;
+  border-radius: 0.1em;
+  background: transparent;
+  color: #61503f;
+  font-size: 0.5em;
   cursor: var(--cursor-pointer, pointer);
+}
+
+/* The dark circle behind the mic; the icon is positioned on top of it */
+.in-game-speech-button::before {
+  content: '';
+  position: absolute;
+  inset: 0.21em;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.in-game-speech-button .icon {
+  position: relative;
+  font-size: 0.72em;
 }
 
 /* While listening the button pulses red, so it is clear the mic is on */
 .in-game-speech-button.is-listening {
-  background: #ff6b6b33;
+  border-color: #ff6b6b;
   color: #ff6b6b;
   animation: in-game-mic-pulse 1.1s ease-in-out infinite;
 }
 
+.in-game-speech-button.is-listening::before {
+  background: rgba(255, 107, 107, 0.22);
+}
+
 @keyframes in-game-mic-pulse {
   0%, 100% {
-    transform: translateY(-50%) scale(1);
+    transform: scale(1);
     opacity: 1;
   }
   50% {
-    transform: translateY(-50%) scale(1.15);
+    transform: scale(1.15);
     opacity: 0.6;
   }
 }
@@ -704,23 +724,34 @@ html.in-game-scroll-lock body {
   font-size: 15vw;
 }
 
+/* The answer field, plus in the sentence practice the mic button beside it:
+   the wrapper sizes and spaces the two, while the field itself hides
+   everything outside its box (overflow) */
+.in-game-answer-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: min(90vw, 900px);
+  flex: none;
+  font-size: min(13vh, 11vw);
+  margin-bottom: 1.5vh;
+}
+
 #in-game-text-input-cursor-group {
   display: flex;
   justify-content: center;
   font-family: courier;
   font-size: min(13vh, 11vw);
   background: transparent;
-  width: min(90vw, 900px);
+  /* Fills the wrapper, leaving the room the mic button takes beside it */
+  flex: 1 1 0;
+  min-width: 0;
   color: #ff9a3c;
   padding: 5px;
   overflow: hidden;
   height: min(14vh, 12vw);
-  flex: none;
-  /* Anchors the mic button in the right corner of the answer field */
-  position: relative;
   /* Subtle line so the answer field is visible while empty */
   border-bottom: 2px solid #ff9a3c40;
-  margin-bottom: 1.5vh;
   transition: color 0.15s, border-color 0.15s;
 }
 

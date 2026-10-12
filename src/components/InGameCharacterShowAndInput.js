@@ -1408,9 +1408,14 @@ export default function InGameCharacterShowAndInput() {
       if (!textWidth) {
         return;
       }
-      // clientWidth includes the 5px padding on both sides; the cursor is
-      // 3px wide with -6px of margins, plus a small safety margin
-      const availableWidth = cursorGroup.clientWidth - 14;
+      // clientWidth includes the padding of the field on both sides: only the
+      // text area counts when shrinking the answer to fit.
+      // The cursor is 3px wide with -6px of margins, plus a small safety margin
+      const groupStyles = window.getComputedStyle(cursorGroup);
+      const contentWidth = cursorGroup.clientWidth -
+        (parseFloat(groupStyles.paddingLeft) || 0) -
+        (parseFloat(groupStyles.paddingRight) || 0);
+      const availableWidth = contentWidth - 4;
       if (availableWidth <= 0 || textWidth <= availableWidth) {
         return;
       }
@@ -1849,7 +1854,15 @@ export default function InGameCharacterShowAndInput() {
     // Make answer input via keyboard
   } else if (!isSrsPractice) {
     inGameInputElement = <>
-      <div id='in-game-text-input-cursor-group'>
+      <div className='in-game-answer-field'>
+        <div id='in-game-text-input-cursor-group'>
+          <span id='in-game-text-input-before-cursor'></span>
+          <div id='in-game-text-input-cursor'></div>
+          <span id='in-game-text-input-after-cursor'></span>
+          <span id='in-game-text-input-placeholder'>
+            {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
+          </span>
+        </div>
         {speechAnswerEnabled && (
           <button
             type='button'
@@ -1863,12 +1876,6 @@ export default function InGameCharacterShowAndInput() {
             <Icon name='mic' />
           </button>
         )}
-        <span id='in-game-text-input-before-cursor'></span>
-        <div id='in-game-text-input-cursor'></div>
-        <span id='in-game-text-input-after-cursor'></span>
-        <span id='in-game-text-input-placeholder'>
-          {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
-        </span>
       </div>
       <input
         type="text"
