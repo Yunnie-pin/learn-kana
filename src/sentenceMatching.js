@@ -1,4 +1,5 @@
-import { isKana, toRomaji } from 'wanakana';
+import { isKana, toHiragana, toRomaji } from 'wanakana';
+import { kanjiReadings } from './kanjiReadings.js';
 
 /* Answer checking for the "sentences" practice mode.
  *
@@ -307,4 +308,163 @@ export function createSentenceQuestion(sentence, exercise = 'type', random = Mat
 
   if (exercise === 'listen') return { exercise, matcher };
   return { exercise: 'type', matcher };
+}
+
+/* Spoken answers (the mic button of the sentence practice).
+ *
+ * The recognizer returns Japanese text (kanji and kana), so a spoken answer
+ * is judged as it sounds instead of as romaji: the sentence said as it is
+ * written, and the sentence read with its furigana, are both accepted.
+ */
+
+// The reading of every kanji of the sentence, as kana (水 -> みず)
+function furiganaReadings(sentence) {
+  const furigana = sentence.furigana || {};
+  const readings = {};
+  [...sentence.jp_character].forEach((character, index) => {
+    if (furigana[index] && !readings[character]) readings[character] = furigana[index];
+  });
+  return readings;
+}
+
+// The reading of a kanji the sentence does not use, as kana: the kun'yomi of
+// the dictionary (the reading a sentence usually uses), otherwise the on'yomi
+function dictionaryReading(character) {
+  const readings = kanjiReadings[character];
+  const reading = readings?.kunyomi?.[0] || readings?.onyomi?.[0];
+  return reading ? toHiragana(reading) : '';
+}
+
+// Sounds the recognizer may write in more than one way: the particles は, へ
+// and を are often written as they are spoken
+const SOUND_ALIKE = { 'は': ['わ'], 'わ': ['は'], 'へ': ['え'], 'え': ['へ'], 'を': ['お'], 'お': ['を'] };
+
+// The speech as a list of units: one kana each (katakana becomes hiragana,
+// punctuation is dropped, a space is kept and marks where the speech paused).
+// A run of kanji the sentence or the dictionary can read is already its kana
+// (水 -> み, ず); a run nothing can read stays a run of kanji.
+function speechUnits(sentence, transcript) {
+  const readings = furiganaReadings(sentence);
+  const text = toHiragana(String(transcript ?? '')).replace(/[、。！？!?・,.]/g, '');
+  const units = [];
+  let run = '';
+  const flush = () => {
+    if (!run) return;
+    const kana = [...run].map(character => readings[character] || dictionaryReading(character));
+    if (kana.every(Boolean)) kana.forEach(reading => [...reading].forEach(character => units.push(character)));
+    else units.push({ kanji: run });
+    run = '';
+  };
+  for (const character of text) {
+    if (/[\u3400-\u9fff]/.test(character)) run += character;
+    else {
+      flush();
+      units.push(character);
+    }
+  }
+  flush();
+  return units;
+}
+
+// What the speech covers of the sentence: how much of the reading of the
+// sentence the speech follows from its start, kana by kana (particles heard
+// as they sound, は as わ), and which units were used. A run of kanji that
+// cannot be read still covers the reading of the word of the sentence the
+// kana around it line up with - the recognizer may write 公園 for こうえん -
+// the run picks the length that reaches as far as the rest of the speech fits.
+function speechCoverage(sentence, transcript) {
+  const characterKana = characterReadings(sentence);
+  const reading = toHiragana(characterKana.join(''));
+  const offsets = [0];
+  for (const value of characterKana) offsets.push(offsets[offsets.length - 1] + value.length);
+  const words = String(Array.isArray(sentence.romanji) ? sentence.romanji[0] : sentence.romanji ?? '')
+    .split(/\s+/).filter(Boolean);
+  const segments = words.length ? alignWords(sentence, words) : null;
+  // A run of kanji covers the reading up to the end of the word it sits in
+  const endOfWord = (position) => {
+    if (segments) {
+      for (const { start, end } of segments) {
+        if (offsets[start] <= position && position < offsets[end]) return offsets[end];
+      }
+    }
+    return reading.length;
+  };
+
+  const units = speechUnits(sentence, transcript);
+  const seen = new Set(['0:0']);
+  const pending = [[0, 0]];
+  let used = 0;
+  let matched = 0;
+  while (pending.length) {
+    const [unit, position] = pending.pop();
+    if (position > matched || (position === matched && unit > used)) {
+      matched = position;
+      used = unit;
+    }
+    if (unit >= units.length) continue;
+    const push = (nextUnit, nextPosition) => {
+      const key = nextUnit + ':' + nextPosition;
+      if (!seen.has(key)) {
+        seen.add(key);
+        pending.push([nextUnit, nextPosition]);
+      }
+    };
+    const value = units[unit];
+    if (typeof value !== 'string') {
+      const end = endOfWord(position);
+      for (let length = value.kanji.length; position + length <= end; length++) push(unit + 1, position + length);
+    } else if (value === ' ') {
+      push(unit + 1, position);
+    } else {
+      const target = reading[position];
+      if (target !== undefined && (value === target || (SOUND_ALIKE[target] || []).includes(value))) {
+        push(unit + 1, position + 1);
+      }
+    }
+  }
+  return { matched, used, units, reading, words, segments, offsets };
+}
+
+// Whether one spoken transcript is the sentence: all of the sentence was said
+// (particles as they sound), with nothing else heard around it
+export function matchesSpokenAnswer(sentence, transcript) {
+  const { matched, used, units, reading } = speechCoverage(sentence, transcript);
+  return units.length > 0 && matched === reading.length && used === units.length;
+}
+
+// Whether one spoken transcript could still become the sentence: everything
+// heard so far fits the beginning of the sentence. Speech that no longer fits
+// was mispronounced.
+export function isSpokenAnswerPrefix(sentence, transcript) {
+  const { used, units } = speechCoverage(sentence, transcript);
+  return units.length > 0 && used === units.length;
+}
+
+// The spoken transcript as romaji, so a sentence the recognizer did not get
+// right can still be corrected by hand. The words of the sentence the speech
+// follows are written the way the answer is stored, separated by spaces
+// ("kore wa mizu desu"); everything else is turned into romaji as it was
+// heard. Kanji that cannot be read are left out: the preview is romaji only.
+export function transcriptToRomaji(sentence, transcript) {
+  const { matched, used, units, reading, words, segments, offsets } = speechCoverage(sentence, transcript);
+  const pieces = [];
+  let covered = 0;
+  if (segments) {
+    for (let index = 0; index < words.length && covered < matched; index++) {
+      const { start, end } = segments[index];
+      const wordKana = reading.slice(offsets[start], offsets[end]);
+      if (covered + wordKana.length <= matched) {
+        pieces.push(words[index]);
+        covered += wordKana.length;
+      } else {
+        pieces.push(toRomaji(wordKana.slice(0, matched - covered)).replace(/'/g, ''));
+        covered = matched;
+      }
+    }
+  }
+  // Everything heard beyond the sentence, romaji as it was heard
+  const rest = units.slice(used).filter(unit => typeof unit === 'string').join('');
+  if (rest) pieces.push(toRomaji(rest).replace(/'/g, ''));
+  return pieces.filter(piece => piece !== '')
+    .join(' ').replace(/[\u3400-\u9fff]/g, '').replace(/\s+/g, ' ').trim();
 }

@@ -495,6 +495,43 @@ html.in-game-scroll-lock body {
   vertical-align: middle;
 }
 
+/* Sentence practice: the mic button turns speech into the answer. It sits in
+   the right corner of the answer area, whose font is huge, hence the small
+   font-size */
+.in-game-speech-button {
+  position: absolute;
+  right: 0.04em;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.12em;
+  border: none;
+  border-radius: 50%;
+  background: #ff9a3c26;
+  color: inherit;
+  font-size: 0.3em;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+/* While listening the button pulses red, so it is clear the mic is on */
+.in-game-speech-button.is-listening {
+  background: #ff6b6b33;
+  color: #ff6b6b;
+  animation: in-game-mic-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes in-game-mic-pulse {
+  0%, 100% {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50%) scale(1.15);
+    opacity: 0.6;
+  }
+}
+
 /* Sentence help, last step: the word being typed or what the particle does */
 .in-game-sentence-hint {
   font-size: min(4vh, 6vw);
@@ -679,6 +716,8 @@ html.in-game-scroll-lock body {
   overflow: hidden;
   height: min(14vh, 12vw);
   flex: none;
+  /* Anchors the mic button in the right corner of the answer field */
+  position: relative;
   /* Subtle line so the answer field is visible while empty */
   border-bottom: 2px solid #ff9a3c40;
   margin-bottom: 1.5vh;

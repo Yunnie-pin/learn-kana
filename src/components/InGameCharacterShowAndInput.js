@@ -9,8 +9,8 @@ import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswe
 import { getListForPractice } from '../practiceList.js'
 import { findKanaForAnswer, getSimilarKana, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
-import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
-import { createSentenceQuestion } from '../sentenceMatching.js'
+import { isRecognitionSupported, isSpeechSupported, speak, speakIfEnabled, startListening } from '../speech.js'
+import { createSentenceQuestion, isSpokenAnswerPrefix, matchesSpokenAnswer, transcriptToRomaji } from '../sentenceMatching.js'
 import { particleRoleOf, sentenceBreakdown } from '../sentenceGlossary.js'
 import Icon from './Icon.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
@@ -317,6 +317,14 @@ export default function InGameCharacterShowAndInput() {
   // last step is a hint shown under the sentence, once per word
   const [sentenceHint, setSentenceHint] = useState(null);
   const sentenceHelpRef = useRef({ step: 0, hintWord: null });
+  // Speech answering: the mic button listens to the sentence being read out
+  // loud and turns what it hears into the answer (see onClickSpeechButton)
+  const [sentenceListening, setSentenceListening] = useState(false);
+  const speechRecognitionRef = useRef(null);
+  // What has been heard so far: the parts the recognizer is sure about (with
+  // their alternatives), the part it is still guessing, and the text last
+  // shown in the answer input (so typing is never overwritten)
+  const speechHeardRef = useRef({ finals: [], interim: '', preview: null });
   const [onScreenKanjiUsage, setOnScreenKanjiUsage] = useState(null);
   const [isKanjiUsageQuestion, setIsKanjiUsageQuestion] = useState(false);
   const [onScreenSolution, setSolution] = useState('');
@@ -722,6 +730,8 @@ export default function InGameCharacterShowAndInput() {
   // Function gets called at the beginning and every time the kana changes
   async function showNewCharacter() {
     setSrsCardRevealed(false);
+    // The next question is never answered with the mic left on from the last one
+    stopSentenceListening();
 
     // Check if the user already answered its kana limits. If so, show stats.
     const gameScoreElement = document.getElementById("in-game-score");
@@ -1328,6 +1338,12 @@ export default function InGameCharacterShowAndInput() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Leaving the game stops the microphone of the answer-by-speech button
+  useEffect(() => () => {
+    speechRecognitionRef.current?.stop();
+    speechRecognitionRef.current = null;
+  }, []);
+
   // Keep the game screen the size of the visible area, so the on-screen keyboard
   // never covers the answer (needed for iOS, which ignores interactive-widget)
   React.useEffect(() => {
@@ -1569,6 +1585,130 @@ export default function InGameCharacterShowAndInput() {
     }
   }
 
+  // Sentence practice, speech answering (the mic button): the sentence of the
+  // question being shown, used to judge what the recognizer heard
+  function spokenSentenceNow() {
+    // The words of the sentence, so the romaji of the speech preview writes
+    // them the way the answer is stored ("kore wa mizu desu")
+    const words = sentenceQuestionRef.current?.matcher?.words;
+    return {
+      jp_character: onScreenKana,
+      furigana: onScreenFurigana,
+      particles: onScreenParticles,
+      romanji: words && words.length ? [words.join(' ')] : [],
+    };
+  }
+
+  function stopSentenceListening() {
+    speechRecognitionRef.current?.stop();
+    speechRecognitionRef.current = null;
+    speechHeardRef.current = { finals: [], interim: '', preview: null };
+    setSentenceListening(false);
+  }
+
+  // Everything heard so far as one piece of text: every finalized part is its
+  // own word, so a pause the recognizer closed a part on shows as a space
+  function heardSpeech() {
+    const heard = speechHeardRef.current;
+    const parts = heard.finals.join(' ');
+    return heard.interim ? (parts ? parts + ' ' + heard.interim : heard.interim) : parts;
+  }
+
+  // Puts text into the answer input the same way typing it would, so the
+  // normal checking, mistake marking and stats run on spoken answers too
+  function submitSpokenText(text) {
+    const hiddenInput = document.querySelector('#in-game-text-input');
+    if (!hiddenInput) return;
+    const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+    const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
+    // The input event reads the previous answer from these, so start empty
+    if (beforeCursor) beforeCursor.textContent = '';
+    if (afterCursor) {
+      afterCursor.textContent = '';
+      afterCursor.style.visibility = 'hidden';
+    }
+    hiddenInput.value = text;
+    hiddenInput.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
+  // While listening, what has been heard is shown in the answer input as
+  // romaji, like a typed answer; text the player typed themselves is never
+  // overwritten. Returns whether this preview is the one on screen, so only
+  // it decides the red flag of a mispronunciation
+  function previewSpokenText(text) {
+    const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+    const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
+    if (!beforeCursor || !afterCursor) return false;
+    const heard = speechHeardRef.current;
+    const current = beforeCursor.textContent + afterCursor.textContent;
+    if (current !== '' && current !== heard.preview) return false;
+    heard.preview = text;
+    beforeCursor.textContent = text;
+    afterCursor.textContent = '';
+    afterCursor.style.visibility = 'hidden';
+    const hiddenInput = document.querySelector('#in-game-text-input');
+    if (hiddenInput) hiddenInput.value = text;
+    return true;
+  }
+
+  function onClickSpeechButton(event) {
+    // Tapping the mic must not focus the hidden input (no mobile keyboard)
+    event.stopPropagation();
+    if (speechRecognitionRef.current) {
+      // Stopping by hand: what was heard stays in the input, so a sentence
+      // the recognizer got wrong can still be corrected by hand
+      const sentence = spokenSentenceNow();
+      const heard = heardSpeech();
+      const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+      const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
+      const current = (beforeCursor?.textContent || '') + (afterCursor?.textContent || '');
+      const shownBySpeech = speechHeardRef.current.preview !== null && current === speechHeardRef.current.preview;
+      stopSentenceListening();
+      if (heard && shownBySpeech && !questionAnsweredRef.current) {
+        submitSpokenText(transcriptToRomaji(sentence, heard));
+      }
+      return;
+    }
+    if (questionAnsweredRef.current) return;
+    const sentence = spokenSentenceNow();
+    const recognition = startListening({
+      onTranscript({ finals, interim }) {
+        const heard = speechHeardRef.current;
+        for (const alternatives of finals) {
+          if (alternatives[0]) heard.finals.push(alternatives[0]);
+        }
+        heard.interim = interim || '';
+        if (questionAnsweredRef.current || scoreWindowVisibleRef.current) return;
+        const text = heardSpeech();
+        if (!text) return;
+        // Turned into romaji so it reads like the answer being typed
+        const shown = previewSpokenText(transcriptToRomaji(sentence, text));
+        // The whole sentence in one go is counted right away, even while
+        // the recognizer is still listening
+        if (matchesSpokenAnswer(sentence, text)) {
+          const words = sentenceQuestionRef.current?.matcher?.words;
+          stopSentenceListening();
+          if (words && words.length) submitSpokenText(words.join(' '));
+          return;
+        }
+        // A mispronunciation still shows, but in red like a wrong typed
+        // answer: what was heard no longer fits the sentence being read
+        if (shown) {
+          document.querySelector('#in-game-text-input-cursor-group')?.classList.toggle('answer-wrong', hintsEnabled && !isSpokenAnswerPrefix(sentence, text));
+        }
+      },
+      onError(error) {
+        stopSentenceListening();
+        if (error === 'not-allowed' || error === 'service-not-allowed' || error === 'audio-capture') {
+          setSentenceHint(t('sentenceSpeakDenied'));
+        }
+      },
+    });
+    if (!recognition) return;
+    speechRecognitionRef.current = recognition;
+    setSentenceListening(true);
+  }
+
   /*
   ########################
   # Touch input handlers #
@@ -1645,6 +1785,7 @@ export default function InGameCharacterShowAndInput() {
   }
 
   function onClickExitButton(event) {
+    stopSentenceListening();
     setUserGameScoreWindowVisible(true);
   }
 
@@ -1671,6 +1812,14 @@ export default function InGameCharacterShowAndInput() {
   # Decide wether to use touch or keyboard for answers #
   ######################################################
   */
+
+  // Speech answering: sentences that are read or listened to can be answered
+  // by voice, when the browser can listen and while unanswered
+  const speechAnswerEnabled = onScreenCharacterType === 'long' &&
+    !useTouchAnswers &&
+    !sentenceAnswered &&
+    (sentenceQuestion.exercise === 'type' || sentenceQuestion.exercise === 'listen') &&
+    isRecognitionSupported();
 
   // Make answer input via touch buttons
   let inGameInputElement = <></>
@@ -1701,6 +1850,19 @@ export default function InGameCharacterShowAndInput() {
   } else if (!isSrsPractice) {
     inGameInputElement = <>
       <div id='in-game-text-input-cursor-group'>
+        {speechAnswerEnabled && (
+          <button
+            type='button'
+            id='in-game-speech-button'
+            className={'in-game-speech-button' + (sentenceListening ? ' is-listening' : '')}
+            title={t(sentenceListening ? 'sentenceSpeakStop' : 'sentenceSpeak')}
+            aria-label={t(sentenceListening ? 'sentenceSpeakStop' : 'sentenceSpeak')}
+            aria-pressed={sentenceListening}
+            onClick={onClickSpeechButton}
+          >
+            <Icon name='mic' />
+          </button>
+        )}
         <span id='in-game-text-input-before-cursor'></span>
         <div id='in-game-text-input-cursor'></div>
         <span id='in-game-text-input-after-cursor'></span>
