@@ -990,6 +990,11 @@ export default function InGameCharacterShowAndInput() {
   # Text input handlers #
   #######################
   */
+  // How much of the typed sentence was right when it was last checked: kept so
+  // the marking of the first mistake survives a move of the caret (a tap on
+  // the typed answer)
+  const typedMistakeFromRef = useRef(null);
+
   // Timer countdown effect
   React.useEffect(() => {
     const gameMode = JSON.parse(localStorage.getItem("gameMode"));
@@ -1033,8 +1038,15 @@ export default function InGameCharacterShowAndInput() {
     function syncHiddenInput() {
       const hiddenInput = document.querySelector('#in-game-text-input');
       if (!hiddenInput) return;
-      hiddenInput.value = document.querySelector('#in-game-text-input-before-cursor').textContent +
+      const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+      hiddenInput.value = beforeCursor.textContent +
         document.querySelector('#in-game-text-input-after-cursor').textContent;
+      // The caret the player sees (and moved) is the one that counts: keep the
+      // input's own caret on it, so mobile keyboards edit where it sits
+      try {
+        const caret = beforeCursor.textContent.length;
+        hiddenInput.setSelectionRange(caret, caret);
+      } catch (error) { }
     }
 
     function clearAnswerInput() {
@@ -1066,9 +1078,14 @@ export default function InGameCharacterShowAndInput() {
         handleUserAskForHelp();
       }
 
-      InGameTextInput.textContent = newAnswer;
-      InGameTextInputAfterCursor.textContent = '';
-      InGameTextInputAfterCursor.style.visibility = "hidden";
+      // A mobile keyboard edits at its own caret, which is kept on the
+      // visible caret: the text in front of it goes into its own part, the
+      // rest stays behind the caret instead of disappearing
+      const caret = Math.max(0, Math.min(newAnswer.length,
+        typeof e.target.selectionStart === 'number' ? e.target.selectionStart : newAnswer.length));
+      InGameTextInput.textContent = newAnswer.slice(0, caret);
+      InGameTextInputAfterCursor.textContent = newAnswer.slice(caret);
+      InGameTextInputAfterCursor.style.visibility = newAnswer.length > caret ? "visible" : "hidden";
       document.querySelector('#in-game-text-input-cursor-group').classList.remove('answer-wrong');
 
       if (newAnswer.length < previousAnswer.length) {
@@ -1168,6 +1185,63 @@ export default function InGameCharacterShowAndInput() {
       checkAnswer();
     }
 
+    // A tap / click on the typed answer puts the caret where the tap landed,
+    // like in a real text field: a sentence can then be fixed in the middle
+    // instead of only at its end (mobile keyboards have no arrow keys)
+    function handleCursorPlacement(e) {
+      if (scoreWindowVisibleRef.current || waitingForKanjiNextRef.current || questionAnsweredRef.current) return;
+      const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+      const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
+      if (!beforeCursor || !afterCursor) return;
+      // The text position the browser sees under the tapped point, when it can
+      // tell us (no layout in jsdom, so there this stays untouched)
+      let node = null;
+      let offset = 0;
+      if (document.caretRangeFromPoint) {
+        const caretRange = document.caretRangeFromPoint(e.clientX, e.clientY);
+        if (!caretRange) return;
+        node = caretRange.startContainer;
+        offset = caretRange.startOffset;
+      } else if (document.caretPositionFromPoint) {
+        const caretPosition = document.caretPositionFromPoint(e.clientX, e.clientY);
+        if (!caretPosition) return;
+        node = caretPosition.offsetNode;
+        offset = caretPosition.offset;
+      } else {
+        return;
+      }
+      if (!node || node.nodeType !== Node.TEXT_NODE) return;
+
+      // How much text stands in front of the tapped position inside a part
+      const textIndexWithin = (container) => {
+        let index = 0;
+        const textNodes = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+        let textNode;
+        while ((textNode = textNodes.nextNode())) {
+          if (textNode === node) return index + offset;
+          index += textNode.textContent.length;
+        }
+        return null;
+      };
+      let caret = beforeCursor.contains(node) ? textIndexWithin(beforeCursor) : null;
+      if (caret === null && afterCursor.contains(node)) {
+        const afterIndex = textIndexWithin(afterCursor);
+        if (afterIndex !== null) caret = beforeCursor.textContent.length + afterIndex;
+      }
+      if (caret === null || caret === beforeCursor.textContent.length) return;
+
+      // Move the caret: everything in front of it goes into the first span,
+      // everything behind it into the second one
+      const answer = beforeCursor.textContent + afterCursor.textContent;
+      beforeCursor.textContent = answer.slice(0, caret);
+      afterCursor.textContent = answer.slice(caret);
+      afterCursor.style.visibility = afterCursor.textContent ? 'visible' : 'hidden';
+      // The red mark of the first mistake would be dropped by the move: put it
+      // back where it was
+      markTypedMistake(typedMistakeFromRef.current ?? Infinity);
+      syncHiddenInput();
+    }
+
     function checkAnswer(isSubmission = false) {
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
@@ -1194,7 +1268,8 @@ export default function InGameCharacterShowAndInput() {
         isCorrect = result.correct;
         isOnTrack = result.onTrack;
         updateSentenceWordsDone(result.wordsDone);
-        markTypedMistake(isOnTrack || !hintsEnabled ? Infinity : result.validLength);
+        typedMistakeFromRef.current = isOnTrack || !hintsEnabled ? Infinity : result.validLength;
+        markTypedMistake(typedMistakeFromRef.current);
       } else {
         isCorrect = inGameAnswerListRef.current.includes(typedAnswer);
         isOnTrack = isSubmission
@@ -1330,9 +1405,14 @@ export default function InGameCharacterShowAndInput() {
 
       window.addEventListener('keydown', handleKeyDown);
       hiddenInput.addEventListener('input', handleInput);
+      // Tapping the typed answer aims the caret there, so the caret can be
+      // moved on touch screens too, where the keyboard has no arrow keys
+      const cursorGroup = document.querySelector('#in-game-text-input-cursor-group');
+      if (cursorGroup) cursorGroup.addEventListener('click', handleCursorPlacement);
       return () => {
         window.removeEventListener("keydown", handleKeyDown);
         hiddenInput.removeEventListener('input', handleInput);
+        if (cursorGroup) cursorGroup.removeEventListener('click', handleCursorPlacement);
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1633,6 +1713,10 @@ export default function InGameCharacterShowAndInput() {
       afterCursor.style.visibility = 'hidden';
     }
     hiddenInput.value = text;
+    // The whole spoken answer arrives at the end of the field
+    try {
+      hiddenInput.setSelectionRange(text.length, text.length);
+    } catch (error) { }
     hiddenInput.dispatchEvent(new Event('input', { bubbles: true }));
   }
 
@@ -1652,7 +1736,13 @@ export default function InGameCharacterShowAndInput() {
     afterCursor.textContent = '';
     afterCursor.style.visibility = 'hidden';
     const hiddenInput = document.querySelector('#in-game-text-input');
-    if (hiddenInput) hiddenInput.value = text;
+    if (hiddenInput) {
+      hiddenInput.value = text;
+      // The preview is written whole: the caret sits at its end
+      try {
+        hiddenInput.setSelectionRange(text.length, text.length);
+      } catch (error) { }
+    }
     return true;
   }
 

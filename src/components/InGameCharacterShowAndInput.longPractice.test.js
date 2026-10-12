@@ -302,6 +302,39 @@ describe('long practice (real sentences)', () => {
     expect(beforeCursor().textContent).toBe('kore wa m');
   });
 
+  test('tapping the typed answer moves the caret so a mistake in the middle can be fixed', async () => {
+    // これは水です is the only sentence this selection can show
+    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+
+    // The sentence typed with a typo in its middle: mizo instead of mizu
+    pressKeys(...'korewamizodesu'.split(''));
+    expect(cursorGroup()).toHaveClass('answer-wrong');
+    expect(beforeCursor().textContent).toBe('korewamizodesu');
+
+    // Tapping after the wrong "o" aims the caret there: the browser reports
+    // the text position under the tapped point, like in a real text field
+    const wrongPart = beforeCursor().querySelector('.in-game-typed-mistake');
+    document.caretRangeFromPoint = () => ({ startContainer: wrongPart.firstChild, startOffset: 1 });
+    fireEvent.click(cursorGroup());
+    delete document.caretRangeFromPoint;
+
+    // The caret now sits in the middle: the rest follows it in its own part,
+    // and the mistake stays marked red
+    expect(beforeCursor().textContent).toBe('korewamizo');
+    expect(document.querySelector('#in-game-text-input-after-cursor')).toHaveTextContent('desu');
+    expect(beforeCursor().querySelector('.in-game-typed-mistake')).toHaveTextContent('o');
+
+    // Backspace removes the "o" in the middle, then "u" completes the word
+    pressKeys('Backspace');
+    expect(beforeCursor().textContent).toBe('korewamiz');
+    pressKeys('u');
+    expect(cursorGroup()).toHaveClass('answer-correct');
+    expect(score()).toHaveTextContent('1');
+
+    // Start the next sentence so the game drops its Enter / tap listeners
+    await tapNextButton();
+  });
+
   test('dims the words of the sentence that are already typed', async () => {
     await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
     const typedCharacters = () => [...document.querySelectorAll('#in-game-kana-character .in-game-sentence-typed')]

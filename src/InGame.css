@@ -747,6 +747,8 @@ html.in-game-scroll-lock body {
   flex: 1 1 0;
   min-width: 0;
   color: #ff9a3c;
+  /* Reads as a text field: the caret can be put into the text by a tap */
+  cursor: text;
   padding: 5px;
   overflow: hidden;
   height: min(14vh, 12vw);
