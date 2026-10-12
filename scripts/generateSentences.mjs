@@ -1208,6 +1208,399 @@ templates.push(['seasons and temperature', [
   templates.push(['nearby: [place] の [side] に [thing] が あります', out]);
 }
 
+// ---------- Question templates ----------
+// The patterns above asked as questions (か at the end), so the "question"
+// sentence pattern of the menu always has material to practice. The question
+// words (だれ / なん / なんじ) are written in kana, and every sentence still
+// only uses characters taught in kanaCharacters.js.
+
+// Q1. [demo] [person] は だれですか (e.g. この人はだれですか)
+{
+  const demos = [
+    { jp: 'この', ro: 'kono', en: 'this', id: 'ini' },
+    { jp: 'その', ro: 'sono', en: 'that', id: 'itu' },
+    { jp: 'あの', ro: 'ano', en: 'that', id: 'itu di sana', there: true },
+  ];
+  const people = [
+    { jp: '人', ro: 'hito', en: 'person', id: 'orang' },
+    { jp: '学生', ro: 'gakusei', en: 'student', id: 'pelajar' },
+    { jp: '先生', ro: 'sensei', en: 'teacher', id: 'guru' },
+    { jp: '男の子', ro: 'otokonoko', en: 'boy', id: 'anak laki-laki' },
+    { jp: '女の子', ro: 'onnanoko', en: 'girl', id: 'anak perempuan' },
+    { jp: '男の人', ro: 'otoko no hito', en: 'man', id: 'pria' },
+    { jp: '女の人', ro: 'onna no hito', en: 'woman', id: 'wanita' },
+  ];
+  const out = [];
+  for (const demo of demos) {
+    for (const who of people) {
+      const { jp, particles } = seg(demo.jp, who.jp, P('は'), 'だれです', P('か'));
+      out.push({
+        jp,
+        particles,
+        ro: `${demo.ro} ${who.ro} wa dare desu ka`,
+        en: `Who is ${demo.en} ${who.en}${demo.there ? ' over there' : ''}?`,
+        id: `Siapa ${who.id} ${demo.id}?`,
+      });
+    }
+  }
+  templates.push(['question: [demo] [person] は だれですか', out]);
+}
+
+// Q2. [demo] は なんの [item] ですか (e.g. それはなんの音楽ですか)
+{
+  const demos = [
+    { jp: 'これ', ro: 'kore', en: 'this', id: 'ini' },
+    { jp: 'それ', ro: 'sore', en: 'that', id: 'itu' },
+    { jp: 'あれ', ro: 'are', en: 'that', id: 'itu di sana', there: true },
+  ];
+  const out = [];
+  for (const demo of demos) {
+    for (const item of [hon, kuruma, ongaku, ocha, eiga]) {
+      const { jp, particles } = seg(demo.jp, P('は'), 'なん', P('の'), item.jp, 'です', P('か'));
+      out.push({
+        jp,
+        particles,
+        ro: `${demo.ro} wa nan no ${item.ro} desu ka`,
+        en: `What kind of ${item.en.replace(/^(a|an|the) /, '')} is ${demo.en}${demo.there ? ' over there' : ''}?`,
+        id: `${demo.id === 'ini' ? 'Ini' : 'Itu'} ${item.id} apa?`,
+      });
+    }
+  }
+  templates.push(['question: [demo] は なんの [item] ですか', out]);
+}
+
+// Q3. 今、[hour]ですか / 今、[hour]半ですか (e.g. 今、二時ですか)
+{
+  const halfHours = hours.slice(0, 9).map((hour, index) => ({
+    jp: `${hour.jp}半`,
+    ro: `${hour.ro} han`,
+    en: `half past ${hour.en.replace(" o'clock", '')}`,
+    id: `jam setengah ${hours[index + 1].id.replace('jam ', '')}`,
+  }));
+  const out = [];
+  for (const hour of [...hours, ...halfHours]) {
+    const { jp, particles } = seg('今、', hour.jp, 'です', P('か'));
+    out.push({
+      jp,
+      particles,
+      ro: `ima ${hour.ro} desu ka`,
+      en: `Is it ${hour.en} now?`,
+      id: `Sekarang ${hour.id}?`,
+    });
+  }
+  templates.push(['question: 今、[hour]ですか', out]);
+}
+
+// Q4. [demo] [noun] は [adjective] ですか (e.g. この店は安いですか)
+{
+  const demos = [
+    { jp: 'この', ro: 'kono', en: 'this', id: 'ini' },
+    { jp: 'その', ro: 'sono', en: 'that', id: 'itu' },
+    { jp: 'あの', ro: 'ano', en: 'that', id: 'itu', there: true },
+  ];
+  const nouns = [
+    { item: hon, adjs: [atarashii, furui, takai, yasui] },
+    { item: kuruma, adjs: [atarashii, furui, takai, yasui, ookii, chiisai, shiroi, kuroi, aoi] },
+    { item: obj('店', 'mise', 'shop', 'toko'), adjs: [atarashii, furui, ookii, chiisai, yasui] },
+    { item: mountain, adjs: [takai, ookii] },
+    { item: river, adjs: [nagai, ookii, chiisai] },
+    { item: school, adjs: [atarashii, furui, ookii, chiisai] },
+    { item: station, adjs: [atarashii, furui, ookii, chiisai] },
+    { item: kaban, adjs: [atarashii, furui, ookii, chiisai, takai, yasui] },
+    { item: terebi, adjs: [atarashii, furui, ookii, chiisai, takai, yasui] },
+  ];
+  const out = [];
+  for (const demo of demos) {
+    for (const { item, adjs } of nouns) {
+      for (const a of adjs) {
+        const useAlt = item === mountain && a === takai;
+        const { jp, particles } = seg(demo.jp, item.jp, P('は'), a.jp, 'です', P('か'));
+        out.push({
+          jp,
+          particles,
+          ro: `${demo.ro} ${item.ro} wa ${a.ro} desu ka`,
+          en: `Is ${demo.en} ${(item.en ?? item.enNoun).replace(/^(a|an|the) /, '')}${demo.there ? ' over there' : ''} ${useAlt ? a.enAlt : a.en}?`,
+          id: `Apakah ${item.id ?? item.idNoun} ${demo.id} ${useAlt ? a.idAlt : a.id}?`,
+        });
+      }
+    }
+  }
+  templates.push(['question: [demo] [noun] は [adjective] ですか', out]);
+}
+
+// Q5. [time] [person] は [object] を [verb]ますか (e.g. あなたはコーヒーを飲みますか)
+{
+  const pairs = [
+    [mizu, drink], [ocha, drink], [coffee, drink], [milk, drink],
+    [gohan, eat], [asagohan, eat], [pan, eat], [fish, eat], [meat, eat], [egg, eat], [ramen, eat], [sushi, eat], [apple, eat],
+    [hon, readV], [shinbun, readV], [zasshi, readV],
+    [tegami, writeV], [kanjiObj, writeV], [hiraganaObj, writeV], [katakanaObj, writeV],
+    [terebi, watchV], [eiga, watchV],
+    [kaban, buy], [tokei, buy], [hana, buy],
+    [ongaku, listen],
+  ];
+  const out = [];
+  for (const p of [anata, gakusei, sensei, tomodachi, chichi, haha, otokonoko, onnanoko, kare, kanojo]) {
+    for (const [item, v] of pairs) {
+      for (const t of [noTime, mainichi, kinou, ashita]) {
+        const past = t.tense === 'past';
+        const future = t.tense === 'future';
+        const { jp, particles } = seg(t.jp ? t.jp + '、' : '', p.jp, P('は'), item.jp, P('を'), past ? v.jpPast : v.jp, P('か'));
+        out.push({
+          jp,
+          particles,
+          ro: `${t.ro ? t.ro + ' ' : ''}${p.ro} wa ${item.ro} wo ${past ? v.roPast : v.ro} ka`,
+          en: `${past ? 'Did' : future ? 'Will' : p.third ? 'Does' : 'Do'} ${p.en} ${past || future ? v.en : p.third ? v.en3 : v.en} ${item.en}${trailing(t.en.toLowerCase())}?`,
+          id: `Apakah ${t.id ? t.id.toLowerCase() + ' ' : ''}${p.id.toLowerCase()} ${v.id} ${item.id}?`,
+        });
+      }
+    }
+  }
+  templates.push(['question: [time] [person] は [object] を [verb]ますか', out]);
+}
+
+// Q6. [person] は [place] へ 行きますか (e.g. あなたはあした学校へ行きますか)
+{
+  const out = [];
+  for (const p of [anata, gakusei, sensei, tomodachi, chichi, haha, kare, kanojo]) {
+    for (const pl of [school, station, shop, japan, park, departmentStore, supermarket, mountain]) {
+      for (const t of [noTime, ashita, kinou]) {
+        const past = t.tense === 'past';
+        const future = t.tense === 'future';
+        const { jp, particles } = seg(t.jp ? t.jp + '、' : '', p.jp, P('は'), pl.jp, P('へ'), past ? '行きました' : '行きます', P('か'));
+        out.push({
+          jp,
+          particles,
+          ro: `${t.ro ? t.ro + ' ' : ''}${p.ro} wa ${pl.ro} e ${past ? 'ikimashita' : 'ikimasu'} ka`,
+          en: `${past ? 'Did' : future ? 'Will' : p.third ? 'Does' : 'Do'} ${p.en} go ${pl.enTo}${trailing(t.en.toLowerCase())}?`,
+          id: past
+            ? `Apakah kemarin ${p.id.toLowerCase()} pergi ${pl.idTo}?`
+            : future
+              ? `Apakah ${p.id.toLowerCase()} akan pergi ${pl.idTo} besok?`
+              : `Apakah ${p.id.toLowerCase()} pergi ${pl.idTo}?`,
+        });
+      }
+    }
+  }
+  templates.push(['question: [person] は [place] へ 行きますか', out]);
+}
+
+// Q7. [person] は [place] に いますか (e.g. 学生は今店にいますか)
+{
+  const out = [];
+  for (const p of [anata, gakusei, sensei, tomodachi, kare, kanojo]) {
+    for (const pl of [school, station, shop, home, park]) {
+      for (const withNow of [false, true]) {
+        const { jp, particles } = seg(p.jp, P('は'), withNow ? '今' : '', pl.jp, P('に'), 'います', P('か'));
+        out.push({
+          jp,
+          particles,
+          ro: `${p.ro} wa ${withNow ? 'ima ' : ''}${pl.ro} ni imasu ka`,
+          en: `${p.third ? 'Is' : 'Are'} ${p.en} ${pl.enAt}${withNow ? ' now' : ''}?`,
+          id: `Apakah ${p.id.toLowerCase()} ada di ${pl.idAt.replace('di ', '')}${withNow ? ' sekarang' : ''}?`,
+        });
+      }
+    }
+  }
+  templates.push(['question: [person] は [place] に いますか', out]);
+}
+
+// Q8. [place] に [thing] が ありますか (e.g. 店にパンがありますか)
+{
+  const combos = [
+    [shop, [pan, mizu, hon, obj('テレビ', 'terebi', 'a TV', 'TV'), hana]],
+    [departmentStore, [pan, mizu, hon, obj('テレビ', 'terebi', 'a TV', 'TV'), hana]],
+    [supermarket, [pan, mizu, fish, meat, egg, apple]],
+    [japan, [obj('山', 'yama', 'a mountain', 'gunung'), obj('川', 'kawa', 'a river', 'sungai')]],
+    [park, [hana, ki]],
+  ];
+  const out = [];
+  for (const [pl, items] of combos) {
+    for (const item of items) {
+      const { jp, particles } = seg(pl.jp, P('に'), item.jp, P('が'), 'あります', P('か'));
+      out.push({
+        jp,
+        particles,
+        ro: `${pl.ro} ni ${item.ro} ga arimasu ka`,
+        en: `Is there ${item.en} ${pl.enAt}?`,
+        id: `Apakah ada ${item.id} ${pl.idAt}?`,
+      });
+    }
+  }
+  templates.push(['question: [place] に [thing] が ありますか', out]);
+}
+
+// Q9. [person] は [thing] が すきですか (e.g. あなたはコーヒーがすきですか)
+{
+  // "Do you like apples?" reads better than "Do you like an apple?"
+  const likeItem = (en) => {
+    if (!/^an? /.test(en)) return en;
+    const bare = en.replace(/^an? /, '');
+    return bare.endsWith('y') ? `${bare.slice(0, -1)}ies` : `${bare}${/(s|ch|sh|x)$/.test(bare) ? 'es' : 's'}`;
+  };
+  const out = [];
+  for (const p of [anata, gakusei, sensei, tomodachi, chichi, haha, kare, kanojo]) {
+    for (const item of [coffee, ocha, sushi, apple, ongaku, eiga, obj('日本', 'nihon', 'Japan', 'Jepang')]) {
+      const { jp, particles } = seg(p.jp, P('は'), item.jp, P('が'), 'すきです', P('か'));
+      out.push({
+        jp,
+        particles,
+        ro: `${p.ro} wa ${item.ro} ga suki desu ka`,
+        en: `${p.third ? 'Does' : 'Do'} ${p.en} like ${likeItem(item.en)}?`,
+        id: `Apakah ${p.id.toLowerCase()} suka ${item.id}?`,
+      });
+    }
+  }
+  templates.push(['question: [person] は [thing] が すきですか', out]);
+}
+
+// Q10. [person] は [language] を 話します / 読みます / 書きますか
+{
+  const languages = [
+    obj('日本語', 'nihongo', 'Japanese', 'bahasa Jepang'),
+    obj('えいご', 'eigo', 'English', 'bahasa Inggris'),
+    obj('ちゅうごくご', 'chuugokugo', 'Chinese', 'bahasa Mandarin'),
+  ];
+  const out = [];
+  for (const p of [anata, gakusei, sensei, tomodachi, kare, kanojo]) {
+    for (const lang of languages) {
+      for (const v of [speak, readV, writeV]) {
+        const { jp, particles } = seg(p.jp, P('は'), lang.jp, P('を'), v.jp, P('か'));
+        out.push({
+          jp,
+          particles,
+          ro: `${p.ro} wa ${lang.ro} wo ${v.ro} ka`,
+          en: `${p.third ? 'Does' : 'Do'} ${p.en} ${p.third ? v.en3 : v.en} ${lang.en}?`,
+          id: `Apakah ${p.id.toLowerCase()} ${v.id} ${lang.id}?`,
+        });
+      }
+    }
+  }
+  templates.push(['question: [person] は [language] を [verb]ますか', out]);
+}
+
+// Q11. [time] は [day] ですか (e.g. あしたは水曜日ですか / きのうは日曜日でしたか)
+{
+  const out = [];
+  for (const day of days) {
+    const today = seg('今日', P('は'), day.jp, 'です', P('か'));
+    out.push({
+      jp: today.jp,
+      particles: today.particles,
+      ro: `kyou wa ${day.ro} desu ka`,
+      en: `Is today ${day.en}?`,
+      id: `Apakah hari ini hari ${day.id}?`,
+    });
+    const tomorrow = seg('あした', P('は'), day.jp, 'です', P('か'));
+    out.push({
+      jp: tomorrow.jp,
+      particles: tomorrow.particles,
+      ro: `ashita wa ${day.ro} desu ka`,
+      en: `Is tomorrow ${day.en}?`,
+      id: `Apakah besok hari ${day.id}?`,
+    });
+    const yesterday = seg('きのう', P('は'), day.jp, 'でした', P('か'));
+    out.push({
+      jp: yesterday.jp,
+      particles: yesterday.particles,
+      ro: `kinou wa ${day.ro} deshita ka`,
+      en: `Was yesterday ${day.en}?`,
+      id: `Apakah kemarin hari ${day.id}?`,
+    });
+  }
+  templates.push(['question: [time] は [day] ですか', out]);
+}
+
+// Q12. [person] は [place] で [object] を [verb]ますか (e.g. あなたはうちでごはんを食べますか)
+{
+  const combos = [
+    [shop, [mizu, hon, kaban, tokei, hana, pan, terebi, kuruma], buy],
+    [departmentStore, [mizu, hon, kaban, tokei, hana, pan, terebi], buy],
+    [supermarket, [mizu, pan, fish, meat, egg, apple], buy],
+    [home, [gohan, pan, ramen, sushi, apple], eat],
+    [shop, [gohan, pan, ramen], eat],
+    [restaurant, [gohan, ramen, sushi], eat],
+    [home, [mizu, ocha, coffee, milk], drink],
+    [restaurant, [ocha, coffee, milk], drink],
+    [home, [terebi, eiga], watchV],
+    [school, [hon, shinbun, zasshi], readV],
+    [home, [hon, shinbun, zasshi], readV],
+    [home, [ongaku], listen],
+  ];
+  const out = [];
+  for (const p of [anata, gakusei, sensei, tomodachi, chichi, haha, kare, kanojo]) {
+    for (const [pl, items, v] of combos) {
+      for (const item of items) {
+        const { jp, particles } = seg(p.jp, P('は'), pl.jp, P('で'), item.jp, P('を'), v.jp, P('か'));
+        out.push({
+          jp,
+          particles,
+          ro: `${p.ro} wa ${pl.ro} de ${item.ro} wo ${v.ro} ka`,
+          en: `${p.third ? 'Does' : 'Do'} ${p.en} ${p.third ? v.en3 : v.en} ${item.en} ${pl.enAt}?`,
+          id: `Apakah ${p.id.toLowerCase()} ${v.id} ${item.id} di ${pl.idAt.replace('di ', '')}?`,
+        });
+      }
+    }
+  }
+  templates.push(['question: [person] は [place] で [object] を [verb]ますか', out]);
+}
+
+// Q13. [person] は なんじに [verb]ますか / まいあさ [hour] に おきますか
+{
+  const out = [];
+  for (const p of [anata, gakusei, sensei, tomodachi, chichi, haha, kare, kanojo]) {
+    for (const [v, vEn] of [[okiru, 'wake up'], [neru, 'go to sleep']]) {
+      const at = seg(p.jp, P('は'), 'なんじ', P('に'), v.jp, P('か'));
+      out.push({
+        jp: at.jp,
+        particles: at.particles,
+        ro: `${p.ro} wa nanji ni ${v.ro} ka`,
+        en: `What time ${p.third ? 'does' : 'do'} ${p.en} ${vEn}?`,
+        id: `Jam berapa ${p.id.toLowerCase()} ${v.id}?`,
+      });
+    }
+    for (const hour of hours.slice(4, 10)) {
+      const morning = seg(p.jp, P('は'), 'まいあさ', hour.jp, P('に'), 'おきます', P('か'));
+      out.push({
+        jp: morning.jp,
+        particles: morning.particles,
+        ro: `${p.ro} wa maiasa ${hour.ro} ni okimasu ka`,
+        en: `${p.third ? 'Does' : 'Do'} ${p.en} wake up at ${hour.en.replace(" o'clock", '')} every morning?`,
+        id: `Apakah ${p.id.toLowerCase()} bangun ${hour.id} setiap pagi?`,
+      });
+    }
+    for (const hour of hours.slice(7, 10)) {
+      const evening = seg(p.jp, P('は'), 'ごご', hour.jp, P('に'), 'ねます', P('か'));
+      out.push({
+        jp: evening.jp,
+        particles: evening.particles,
+        ro: `${p.ro} wa gogo ${hour.ro} ni nemasu ka`,
+        en: `${p.third ? 'Does' : 'Do'} ${p.en} go to sleep at ${hour.en.replace(" o'clock", '')} p.m.?`,
+        id: `Apakah ${p.id.toLowerCase()} tidur ${hour.id} malam?`,
+      });
+    }
+  }
+  templates.push(['question: [person] は なんじに おきます / ねます か', out]);
+}
+
+// Q14. いっしょに [place] へ 行きませんか (e.g. あした、いっしょにこうえんへ行きませんか)
+{
+  const out = [];
+  for (const pl of [park, station, shop, departmentStore, supermarket, mountain, river, ginkou, daigaku, kuukou]) {
+    for (const t of [noTime, ashita]) {
+      const { jp, particles } = seg(t.jp ? t.jp + '、' : '', 'いっしょに', pl.jp, P('へ'), '行きません', P('か'));
+      out.push({
+        jp,
+        particles,
+        ro: `${t.ro ? t.ro + ' ' : ''}issho ni ${pl.ro} e ikimasen ka`,
+        en: `Won't you go ${pl.enTo} together${trailing(t.en.toLowerCase())}?`,
+        id: t.id ? `${t.id} mau pergi ${pl.idTo} bersama-sama?` : `Mau pergi ${pl.idTo} bersama-sama?`,
+      });
+    }
+  }
+  templates.push(['question: いっしょに [place] へ 行きませんか', out]);
+}
+
 // ---------- Sampling ----------
 // Deterministic shuffle so the output file is stable between runs
 function mulberry32(seed) {
@@ -1254,7 +1647,8 @@ const varied = (list) => {
   return ordered;
 };
 
-// How many sentences to keep per template, to reach ~500 in total
+// How many sentences to keep per template, to reach roughly 870 in total
+// (~150 of them questions)
 const quotas = {
   'この/その/あの + noun + は + adjective': 45,
   'weather': 4,
@@ -1291,6 +1685,22 @@ const quotas = {
   'together: [person] は [companion] と いっしょに [place] へ 行きます': 12,
   'crowded: [place] は 人 が 多い / 少ない です': 10,
   'nearby: [place] の [side] に [thing] が あります': 13,
+  // Question templates (か at the end): 150 questions in total that practice
+  // the patterns above in their asking form
+  'question: [demo] [person] は だれですか': 10,
+  'question: [demo] は なんの [item] ですか': 8,
+  'question: 今、[hour]ですか': 8,
+  'question: [demo] [noun] は [adjective] ですか': 18,
+  'question: [time] [person] は [object] を [verb]ますか': 25,
+  'question: [person] は [place] へ 行きますか': 14,
+  'question: [person] は [place] に いますか': 9,
+  'question: [place] に [thing] が ありますか': 10,
+  'question: [person] は [thing] が すきですか': 11,
+  'question: [person] は [language] を [verb]ますか': 6,
+  'question: [time] は [day] ですか': 9,
+  'question: [person] は [place] で [object] を [verb]ますか': 11,
+  'question: [person] は なんじに おきます / ねます か': 6,
+  'question: いっしょに [place] へ 行きませんか': 5,
 };
 
 // ---------- Validation + assembly ----------

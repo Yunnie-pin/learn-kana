@@ -19,6 +19,9 @@ const sentenceWords = {
   'しました': ['did', 'melakukan (lampau)'],
   'から': ['from', 'dari'],
   'まで': ['until', 'sampai'],
+  // の between two nouns (男の人). A particle-marked の is explained by the
+  // particleRoles above instead
+  'の': ['"of": connects two nouns', '"milik": menghubungkan dua kata benda'],
   // pointing and question words
   'あれ': ['that (over there)', 'itu (di sana)'],
   'なん': ['what', 'apa'],
@@ -104,6 +107,7 @@ const sentenceWords = {
   '会いました': ['met', 'bertemu (lampau)'],
   '行きます': ['go', 'pergi'],
   '行きました': ['went', 'pergi (lampau)'],
+  '行きません': ["don't / won't go", 'tidak / maukah ... pergi'],
   '来ます': ['come', 'datang'],
   '来ました': ['came', 'datang (lampau)'],
   '帰ります': ['go home', 'pulang'],

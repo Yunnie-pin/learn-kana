@@ -11999,4 +11999,2540 @@ export const generatedSentences = [
     "meaning": "There is a park in front of the house",
     "meaning_id": "Ada taman di depan rumah"
   },
+  {
+    "jp_character": "この女の子はだれですか",
+    "particles": [
+      5,
+      10
+    ],
+    "romanji": [
+      "kono onnanoko wa dare desu ka"
+    ],
+    "furigana": {
+      "2": "おんな",
+      "4": "こ"
+    },
+    "meaning": "Who is this girl?",
+    "meaning_id": "Siapa anak perempuan ini?"
+  },
+  {
+    "jp_character": "あの男の子はだれですか",
+    "particles": [
+      5,
+      10
+    ],
+    "romanji": [
+      "ano otokonoko wa dare desu ka"
+    ],
+    "furigana": {
+      "2": "おとこ",
+      "4": "こ"
+    },
+    "meaning": "Who is that boy over there?",
+    "meaning_id": "Siapa anak laki-laki itu di sana?"
+  },
+  {
+    "jp_character": "その男の人はだれですか",
+    "particles": [
+      5,
+      10
+    ],
+    "romanji": [
+      "sono otoko no hito wa dare desu ka"
+    ],
+    "furigana": {
+      "2": "おとこ",
+      "4": "ひと"
+    },
+    "meaning": "Who is that man?",
+    "meaning_id": "Siapa pria itu?"
+  },
+  {
+    "jp_character": "その先生はだれですか",
+    "particles": [
+      4,
+      9
+    ],
+    "romanji": [
+      "sono sensei wa dare desu ka"
+    ],
+    "furigana": {
+      "2": "せん",
+      "3": "せい"
+    },
+    "meaning": "Who is that teacher?",
+    "meaning_id": "Siapa guru itu?"
+  },
+  {
+    "jp_character": "この学生はだれですか",
+    "particles": [
+      4,
+      9
+    ],
+    "romanji": [
+      "kono gakusei wa dare desu ka"
+    ],
+    "furigana": {
+      "2": "がく",
+      "3": "せい"
+    },
+    "meaning": "Who is this student?",
+    "meaning_id": "Siapa pelajar ini?"
+  },
+  {
+    "jp_character": "あの人はだれですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "ano hito wa dare desu ka"
+    ],
+    "furigana": {
+      "2": "ひと"
+    },
+    "meaning": "Who is that person over there?",
+    "meaning_id": "Siapa orang itu di sana?"
+  },
+  {
+    "jp_character": "その女の子はだれですか",
+    "particles": [
+      5,
+      10
+    ],
+    "romanji": [
+      "sono onnanoko wa dare desu ka"
+    ],
+    "furigana": {
+      "2": "おんな",
+      "4": "こ"
+    },
+    "meaning": "Who is that girl?",
+    "meaning_id": "Siapa anak perempuan itu?"
+  },
+  {
+    "jp_character": "この男の子はだれですか",
+    "particles": [
+      5,
+      10
+    ],
+    "romanji": [
+      "kono otokonoko wa dare desu ka"
+    ],
+    "furigana": {
+      "2": "おとこ",
+      "4": "こ"
+    },
+    "meaning": "Who is this boy?",
+    "meaning_id": "Siapa anak laki-laki ini?"
+  },
+  {
+    "jp_character": "あの学生はだれですか",
+    "particles": [
+      4,
+      9
+    ],
+    "romanji": [
+      "ano gakusei wa dare desu ka"
+    ],
+    "furigana": {
+      "2": "がく",
+      "3": "せい"
+    },
+    "meaning": "Who is that student over there?",
+    "meaning_id": "Siapa pelajar itu di sana?"
+  },
+  {
+    "jp_character": "この先生はだれですか",
+    "particles": [
+      4,
+      9
+    ],
+    "romanji": [
+      "kono sensei wa dare desu ka"
+    ],
+    "furigana": {
+      "2": "せん",
+      "3": "せい"
+    },
+    "meaning": "Who is this teacher?",
+    "meaning_id": "Siapa guru ini?"
+  },
+  {
+    "jp_character": "それはなんのおんがくですか",
+    "particles": [
+      2,
+      5,
+      12
+    ],
+    "romanji": [
+      "sore wa nan no ongaku desu ka"
+    ],
+    "meaning": "What kind of music is that?",
+    "meaning_id": "Itu musik apa?"
+  },
+  {
+    "jp_character": "あれはなんのえいがですか",
+    "particles": [
+      2,
+      5,
+      11
+    ],
+    "romanji": [
+      "are wa nan no eiga desu ka"
+    ],
+    "meaning": "What kind of movie is that over there?",
+    "meaning_id": "Itu film apa?"
+  },
+  {
+    "jp_character": "それはなんの車ですか",
+    "particles": [
+      2,
+      5,
+      9
+    ],
+    "romanji": [
+      "sore wa nan no kuruma desu ka"
+    ],
+    "furigana": {
+      "6": "くるま"
+    },
+    "meaning": "What kind of car is that?",
+    "meaning_id": "Itu mobil apa?"
+  },
+  {
+    "jp_character": "これはなんのおちゃですか",
+    "particles": [
+      2,
+      5,
+      11
+    ],
+    "romanji": [
+      "kore wa nan no ocha desu ka"
+    ],
+    "meaning": "What kind of tea is this?",
+    "meaning_id": "Ini teh apa?"
+  },
+  {
+    "jp_character": "あれはなんのおんがくですか",
+    "particles": [
+      2,
+      5,
+      12
+    ],
+    "romanji": [
+      "are wa nan no ongaku desu ka"
+    ],
+    "meaning": "What kind of music is that over there?",
+    "meaning_id": "Itu musik apa?"
+  },
+  {
+    "jp_character": "それはなんのえいがですか",
+    "particles": [
+      2,
+      5,
+      11
+    ],
+    "romanji": [
+      "sore wa nan no eiga desu ka"
+    ],
+    "meaning": "What kind of movie is that?",
+    "meaning_id": "Itu film apa?"
+  },
+  {
+    "jp_character": "これはなんの車ですか",
+    "particles": [
+      2,
+      5,
+      9
+    ],
+    "romanji": [
+      "kore wa nan no kuruma desu ka"
+    ],
+    "furigana": {
+      "6": "くるま"
+    },
+    "meaning": "What kind of car is this?",
+    "meaning_id": "Ini mobil apa?"
+  },
+  {
+    "jp_character": "あれはなんの本ですか",
+    "particles": [
+      2,
+      5,
+      9
+    ],
+    "romanji": [
+      "are wa nan no hon desu ka"
+    ],
+    "furigana": {
+      "6": "ほん"
+    },
+    "meaning": "What kind of book is that over there?",
+    "meaning_id": "Itu buku apa?"
+  },
+  {
+    "jp_character": "今、四時半ですか",
+    "particles": [
+      7
+    ],
+    "romanji": [
+      "ima yoji han desu ka"
+    ],
+    "furigana": {
+      "0": "いま",
+      "2": "よ",
+      "3": "じ",
+      "4": "はん"
+    },
+    "meaning": "Is it half past four now?",
+    "meaning_id": "Sekarang jam setengah lima?"
+  },
+  {
+    "jp_character": "今、二時ですか",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "ima niji desu ka"
+    ],
+    "furigana": {
+      "0": "いま",
+      "2": "に",
+      "3": "じ"
+    },
+    "meaning": "Is it two o'clock now?",
+    "meaning_id": "Sekarang jam dua?"
+  },
+  {
+    "jp_character": "今、九時ですか",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "ima kuji desu ka"
+    ],
+    "furigana": {
+      "0": "いま",
+      "2": "く",
+      "3": "じ"
+    },
+    "meaning": "Is it nine o'clock now?",
+    "meaning_id": "Sekarang jam sembilan?"
+  },
+  {
+    "jp_character": "今、七時ですか",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "ima shichiji desu ka"
+    ],
+    "furigana": {
+      "0": "いま",
+      "2": "しち",
+      "3": "じ"
+    },
+    "meaning": "Is it seven o'clock now?",
+    "meaning_id": "Sekarang jam tujuh?"
+  },
+  {
+    "jp_character": "今、八時ですか",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "ima hachiji desu ka"
+    ],
+    "furigana": {
+      "0": "いま",
+      "2": "はち",
+      "3": "じ"
+    },
+    "meaning": "Is it eight o'clock now?",
+    "meaning_id": "Sekarang jam delapan?"
+  },
+  {
+    "jp_character": "今、六時ですか",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "ima rokuji desu ka"
+    ],
+    "furigana": {
+      "0": "いま",
+      "2": "ろく",
+      "3": "じ"
+    },
+    "meaning": "Is it six o'clock now?",
+    "meaning_id": "Sekarang jam enam?"
+  },
+  {
+    "jp_character": "今、十時ですか",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "ima juuji desu ka"
+    ],
+    "furigana": {
+      "0": "いま",
+      "2": "じゅう",
+      "3": "じ"
+    },
+    "meaning": "Is it ten o'clock now?",
+    "meaning_id": "Sekarang jam sepuluh?"
+  },
+  {
+    "jp_character": "今、三時ですか",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "ima sanji desu ka"
+    ],
+    "furigana": {
+      "0": "いま",
+      "2": "さん",
+      "3": "じ"
+    },
+    "meaning": "Is it three o'clock now?",
+    "meaning_id": "Sekarang jam tiga?"
+  },
+  {
+    "jp_character": "あのかばんは小さいですか",
+    "particles": [
+      5,
+      11
+    ],
+    "romanji": [
+      "ano kaban wa chiisai desu ka"
+    ],
+    "furigana": {
+      "6": "ちい"
+    },
+    "meaning": "Is that bag over there small?",
+    "meaning_id": "Apakah tas itu kecil?"
+  },
+  {
+    "jp_character": "この店は新しいですか",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "kono mise wa atarashii desu ka"
+    ],
+    "furigana": {
+      "2": "みせ",
+      "4": "あたら"
+    },
+    "meaning": "Is this shop new?",
+    "meaning_id": "Apakah toko ini baru?"
+  },
+  {
+    "jp_character": "その山は高いですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "sono yama wa takai desu ka"
+    ],
+    "furigana": {
+      "2": "やま",
+      "4": "たか"
+    },
+    "meaning": "Is that mountain high?",
+    "meaning_id": "Apakah gunung itu tinggi?"
+  },
+  {
+    "jp_character": "この車は安いですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "kono kuruma wa yasui desu ka"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "やす"
+    },
+    "meaning": "Is this car cheap?",
+    "meaning_id": "Apakah mobil ini murah?"
+  },
+  {
+    "jp_character": "あの駅は古いですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "ano eki wa furui desu ka"
+    ],
+    "furigana": {
+      "2": "えき",
+      "4": "ふる"
+    },
+    "meaning": "Is that station over there old?",
+    "meaning_id": "Apakah stasiun itu lama?"
+  },
+  {
+    "jp_character": "その川は長いですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "sono kawa wa nagai desu ka"
+    ],
+    "furigana": {
+      "2": "かわ",
+      "4": "なが"
+    },
+    "meaning": "Is that river long?",
+    "meaning_id": "Apakah sungai itu panjang?"
+  },
+  {
+    "jp_character": "あのテレビは大きいですか",
+    "particles": [
+      5,
+      11
+    ],
+    "romanji": [
+      "ano terebi wa ookii desu ka"
+    ],
+    "furigana": {
+      "6": "おお"
+    },
+    "meaning": "Is that TV over there big?",
+    "meaning_id": "Apakah TV itu besar?"
+  },
+  {
+    "jp_character": "この本は安いですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "kono hon wa yasui desu ka"
+    ],
+    "furigana": {
+      "2": "ほん",
+      "4": "やす"
+    },
+    "meaning": "Is this book cheap?",
+    "meaning_id": "Apakah buku ini murah?"
+  },
+  {
+    "jp_character": "その学校は新しいですか",
+    "particles": [
+      4,
+      10
+    ],
+    "romanji": [
+      "sono gakkou wa atarashii desu ka"
+    ],
+    "furigana": {
+      "2": "がっ",
+      "3": "こう",
+      "5": "あたら"
+    },
+    "meaning": "Is that school new?",
+    "meaning_id": "Apakah sekolah itu baru?"
+  },
+  {
+    "jp_character": "あの車は黒いですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "ano kuruma wa kuroi desu ka"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "くろ"
+    },
+    "meaning": "Is that car over there black?",
+    "meaning_id": "Apakah mobil itu hitam?"
+  },
+  {
+    "jp_character": "その店は大きいですか",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "sono mise wa ookii desu ka"
+    ],
+    "furigana": {
+      "2": "みせ",
+      "4": "おお"
+    },
+    "meaning": "Is that shop big?",
+    "meaning_id": "Apakah toko itu besar?"
+  },
+  {
+    "jp_character": "この本は高いですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "kono hon wa takai desu ka"
+    ],
+    "furigana": {
+      "2": "ほん",
+      "4": "たか"
+    },
+    "meaning": "Is this book expensive?",
+    "meaning_id": "Apakah buku ini mahal?"
+  },
+  {
+    "jp_character": "そのかばんは古いですか",
+    "particles": [
+      5,
+      10
+    ],
+    "romanji": [
+      "sono kaban wa furui desu ka"
+    ],
+    "furigana": {
+      "6": "ふる"
+    },
+    "meaning": "Is that bag old?",
+    "meaning_id": "Apakah tas itu lama?"
+  },
+  {
+    "jp_character": "あの川は長いですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "ano kawa wa nagai desu ka"
+    ],
+    "furigana": {
+      "2": "かわ",
+      "4": "なが"
+    },
+    "meaning": "Is that river over there long?",
+    "meaning_id": "Apakah sungai itu panjang?"
+  },
+  {
+    "jp_character": "この学校は小さいですか",
+    "particles": [
+      4,
+      10
+    ],
+    "romanji": [
+      "kono gakkou wa chiisai desu ka"
+    ],
+    "furigana": {
+      "2": "がっ",
+      "3": "こう",
+      "5": "ちい"
+    },
+    "meaning": "Is this school small?",
+    "meaning_id": "Apakah sekolah ini kecil?"
+  },
+  {
+    "jp_character": "その車は青いですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "sono kuruma wa aoi desu ka"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "あお"
+    },
+    "meaning": "Is that car blue?",
+    "meaning_id": "Apakah mobil itu biru?"
+  },
+  {
+    "jp_character": "この駅は大きいですか",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "kono eki wa ookii desu ka"
+    ],
+    "furigana": {
+      "2": "えき",
+      "4": "おお"
+    },
+    "meaning": "Is this station big?",
+    "meaning_id": "Apakah stasiun ini besar?"
+  },
+  {
+    "jp_character": "あの山は高いですか",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "ano yama wa takai desu ka"
+    ],
+    "furigana": {
+      "2": "やま",
+      "4": "たか"
+    },
+    "meaning": "Is that mountain over there high?",
+    "meaning_id": "Apakah gunung itu tinggi?"
+  },
+  {
+    "jp_character": "きのう、先生はにくを食べましたか",
+    "particles": [
+      6,
+      9,
+      15
+    ],
+    "romanji": [
+      "kinou sensei wa niku wo tabemashita ka",
+      "kinou sensei wa niku o tabemashita ka"
+    ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "10": "た"
+    },
+    "meaning": "Did the teacher eat meat yesterday?",
+    "meaning_id": "Apakah kemarin guru makan daging?"
+  },
+  {
+    "jp_character": "女の子は新聞を読みますか",
+    "particles": [
+      3,
+      6,
+      11
+    ],
+    "romanji": [
+      "onnanoko wa shinbun wo yomimasu ka",
+      "onnanoko wa shinbun o yomimasu ka"
+    ],
+    "furigana": {
+      "0": "おんな",
+      "2": "こ",
+      "4": "しん",
+      "5": "ぶん",
+      "7": "よ"
+    },
+    "meaning": "Does the girl reads the newspaper?",
+    "meaning_id": "Apakah anak perempuan membaca koran?"
+  },
+  {
+    "jp_character": "あなたはすしを食べますか",
+    "particles": [
+      3,
+      6,
+      11
+    ],
+    "romanji": [
+      "anata wa sushi wo tabemasu ka",
+      "anata wa sushi o tabemasu ka"
+    ],
+    "furigana": {
+      "7": "た"
+    },
+    "meaning": "Do You eat sushi?",
+    "meaning_id": "Apakah anda makan sushi?"
+  },
+  {
+    "jp_character": "学生はコーヒーを飲みますか",
+    "particles": [
+      2,
+      7,
+      12
+    ],
+    "romanji": [
+      "gakusei wa koohii wo nomimasu ka",
+      "gakusei wa koohii o nomimasu ka"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "8": "の"
+    },
+    "meaning": "Does the student drinks coffee?",
+    "meaning_id": "Apakah pelajar minum kopi?"
+  },
+  {
+    "jp_character": "あした、かれはおんがくを聞きますか",
+    "particles": [
+      6,
+      11,
+      16
+    ],
+    "romanji": [
+      "ashita kare wa ongaku wo kikimasu ka",
+      "ashita kare wa ongaku o kikimasu ka"
+    ],
+    "furigana": {
+      "12": "き"
+    },
+    "meaning": "Will he listen to music tomorrow?",
+    "meaning_id": "Apakah besok dia (laki-laki) mendengarkan musik?"
+  },
+  {
+    "jp_character": "毎日、男の子ははなを買いますか",
+    "particles": [
+      6,
+      9,
+      14
+    ],
+    "romanji": [
+      "mainichi otokonoko wa hana wo kaimasu ka",
+      "mainichi otokonoko wa hana o kaimasu ka"
+    ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "おとこ",
+      "5": "こ",
+      "10": "か"
+    },
+    "meaning": "Does the boy buys a flower every day?",
+    "meaning_id": "Apakah setiap hari anak laki-laki membeli bunga?"
+  },
+  {
+    "jp_character": "母はカタカナを書きますか",
+    "particles": [
+      1,
+      6,
+      11
+    ],
+    "romanji": [
+      "haha wa katakana wo kakimasu ka",
+      "haha wa katakana o kakimasu ka"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "か"
+    },
+    "meaning": "Does my mother writes katakana?",
+    "meaning_id": "Apakah ibu saya menulis katakana?"
+  },
+  {
+    "jp_character": "友だちはえいがを見ますか",
+    "particles": [
+      3,
+      7,
+      11
+    ],
+    "romanji": [
+      "tomodachi wa eiga wo mimasu ka",
+      "tomodachi wa eiga o mimasu ka"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "み"
+    },
+    "meaning": "Does my friend watches a movie?",
+    "meaning_id": "Apakah teman saya menonton film?"
+  },
+  {
+    "jp_character": "きのう、かのじょはかんじを書きましたか",
+    "particles": [
+      8,
+      12,
+      18
+    ],
+    "romanji": [
+      "kinou kanojo wa kanji wo kakimashita ka",
+      "kinou kanojo wa kanji o kakimashita ka"
+    ],
+    "furigana": {
+      "13": "か"
+    },
+    "meaning": "Did she write kanji yesterday?",
+    "meaning_id": "Apakah kemarin dia (perempuan) menulis kanji?"
+  },
+  {
+    "jp_character": "父はごはんを食べますか",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "chichi wa gohan wo tabemasu ka",
+      "chichi wa gohan o tabemasu ka"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "6": "た"
+    },
+    "meaning": "Does my father eats rice?",
+    "meaning_id": "Apakah ayah saya makan nasi?"
+  },
+  {
+    "jp_character": "あなたはてがみを書きますか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "anata wa tegami wo kakimasu ka",
+      "anata wa tegami o kakimasu ka"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "Do You write a letter?",
+    "meaning_id": "Apakah anda menulis surat?"
+  },
+  {
+    "jp_character": "母は水を飲みますか",
+    "particles": [
+      1,
+      3,
+      8
+    ],
+    "romanji": [
+      "haha wa mizu wo nomimasu ka",
+      "haha wa mizu o nomimasu ka"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "みず",
+      "4": "の"
+    },
+    "meaning": "Does my mother drinks water?",
+    "meaning_id": "Apakah ibu saya minum air?"
+  },
+  {
+    "jp_character": "父はざっしを読みますか",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "chichi wa zasshi wo yomimasu ka",
+      "chichi wa zasshi o yomimasu ka"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "6": "よ"
+    },
+    "meaning": "Does my father reads a magazine?",
+    "meaning_id": "Apakah ayah saya membaca majalah?"
+  },
+  {
+    "jp_character": "かれはとけいを買いますか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "kare wa tokei wo kaimasu ka",
+      "kare wa tokei o kaimasu ka"
+    ],
+    "furigana": {
+      "7": "か"
+    },
+    "meaning": "Does he buys a watch?",
+    "meaning_id": "Apakah dia (laki-laki) membeli jam?"
+  },
+  {
+    "jp_character": "友だちはテレビを見ますか",
+    "particles": [
+      3,
+      7,
+      11
+    ],
+    "romanji": [
+      "tomodachi wa terebi wo mimasu ka",
+      "tomodachi wa terebi o mimasu ka"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "み"
+    },
+    "meaning": "Does my friend watches TV?",
+    "meaning_id": "Apakah teman saya menonton TV?"
+  },
+  {
+    "jp_character": "女の子はおんがくを聞きますか",
+    "particles": [
+      3,
+      8,
+      13
+    ],
+    "romanji": [
+      "onnanoko wa ongaku wo kikimasu ka",
+      "onnanoko wa ongaku o kikimasu ka"
+    ],
+    "furigana": {
+      "0": "おんな",
+      "2": "こ",
+      "9": "き"
+    },
+    "meaning": "Does the girl listens to music?",
+    "meaning_id": "Apakah anak perempuan mendengarkan musik?"
+  },
+  {
+    "jp_character": "きのう、学生はおちゃを飲みましたか",
+    "particles": [
+      6,
+      10,
+      16
+    ],
+    "romanji": [
+      "kinou gakusei wa ocha wo nomimashita ka",
+      "kinou gakusei wa ocha o nomimashita ka"
+    ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい",
+      "11": "の"
+    },
+    "meaning": "Did the student drink tea yesterday?",
+    "meaning_id": "Apakah kemarin pelajar minum teh?"
+  },
+  {
+    "jp_character": "先生はさかなを食べますか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "sensei wa sakana wo tabemasu ka",
+      "sensei wa sakana o tabemasu ka"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "7": "た"
+    },
+    "meaning": "Does the teacher eats fish?",
+    "meaning_id": "Apakah guru makan ikan?"
+  },
+  {
+    "jp_character": "男の子は本を読みますか",
+    "particles": [
+      3,
+      5,
+      10
+    ],
+    "romanji": [
+      "otokonoko wa hon wo yomimasu ka",
+      "otokonoko wa hon o yomimasu ka"
+    ],
+    "furigana": {
+      "0": "おとこ",
+      "2": "こ",
+      "4": "ほん",
+      "6": "よ"
+    },
+    "meaning": "Does the boy reads a book?",
+    "meaning_id": "Apakah anak laki-laki membaca buku?"
+  },
+  {
+    "jp_character": "かのじょはひらがなを書きますか",
+    "particles": [
+      4,
+      9,
+      14
+    ],
+    "romanji": [
+      "kanojo wa hiragana wo kakimasu ka",
+      "kanojo wa hiragana o kakimasu ka"
+    ],
+    "furigana": {
+      "10": "か"
+    },
+    "meaning": "Does she writes hiragana?",
+    "meaning_id": "Apakah dia (perempuan) menulis hiragana?"
+  },
+  {
+    "jp_character": "先生はぎゅうにゅうを飲みますか",
+    "particles": [
+      2,
+      9,
+      14
+    ],
+    "romanji": [
+      "sensei wa gyuunyuu wo nomimasu ka",
+      "sensei wa gyuunyuu o nomimasu ka"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "10": "の"
+    },
+    "meaning": "Does the teacher drinks milk?",
+    "meaning_id": "Apakah guru minum susu?"
+  },
+  {
+    "jp_character": "女の子はかばんを買いますか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "onnanoko wa kaban wo kaimasu ka",
+      "onnanoko wa kaban o kaimasu ka"
+    ],
+    "furigana": {
+      "0": "おんな",
+      "2": "こ",
+      "8": "か"
+    },
+    "meaning": "Does the girl buys a bag?",
+    "meaning_id": "Apakah anak perempuan membeli tas?"
+  },
+  {
+    "jp_character": "かれはパンを食べますか",
+    "particles": [
+      2,
+      5,
+      10
+    ],
+    "romanji": [
+      "kare wa pan wo tabemasu ka",
+      "kare wa pan o tabemasu ka"
+    ],
+    "furigana": {
+      "6": "た"
+    },
+    "meaning": "Does he eats bread?",
+    "meaning_id": "Apakah dia (laki-laki) makan roti?"
+  },
+  {
+    "jp_character": "学生はえいがを見ますか",
+    "particles": [
+      2,
+      6,
+      10
+    ],
+    "romanji": [
+      "gakusei wa eiga wo mimasu ka",
+      "gakusei wa eiga o mimasu ka"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "み"
+    },
+    "meaning": "Does the student watches a movie?",
+    "meaning_id": "Apakah pelajar menonton film?"
+  },
+  {
+    "jp_character": "きのう、あなたは本を読みましたか",
+    "particles": [
+      7,
+      9,
+      15
+    ],
+    "romanji": [
+      "kinou anata wa hon wo yomimashita ka",
+      "kinou anata wa hon o yomimashita ka"
+    ],
+    "furigana": {
+      "8": "ほん",
+      "10": "よ"
+    },
+    "meaning": "Did You read a book yesterday?",
+    "meaning_id": "Apakah kemarin anda membaca buku?"
+  },
+  {
+    "jp_character": "あした、かのじょは学校へ行きますか",
+    "particles": [
+      8,
+      11,
+      16
+    ],
+    "romanji": [
+      "ashita kanojo wa gakkou e ikimasu ka"
+    ],
+    "furigana": {
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
+    "meaning": "Will she go to school tomorrow?",
+    "meaning_id": "Apakah dia (perempuan) akan pergi ke sekolah besok?"
+  },
+  {
+    "jp_character": "きのう、学生は山へ行きましたか",
+    "particles": [
+      6,
+      8,
+      14
+    ],
+    "romanji": [
+      "kinou gakusei wa yama e ikimashita ka"
+    ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい",
+      "7": "やま",
+      "9": "い"
+    },
+    "meaning": "Did the student go to the mountain yesterday?",
+    "meaning_id": "Apakah kemarin pelajar pergi ke gunung?"
+  },
+  {
+    "jp_character": "母はこうえんへ行きますか",
+    "particles": [
+      1,
+      6,
+      11
+    ],
+    "romanji": [
+      "haha wa kouen e ikimasu ka"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "い"
+    },
+    "meaning": "Does my mother go to the park?",
+    "meaning_id": "Apakah ibu saya pergi ke taman?"
+  },
+  {
+    "jp_character": "きのう、先生は駅へ行きましたか",
+    "particles": [
+      6,
+      8,
+      14
+    ],
+    "romanji": [
+      "kinou sensei wa eki e ikimashita ka"
+    ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "7": "えき",
+      "9": "い"
+    },
+    "meaning": "Did the teacher go to the station yesterday?",
+    "meaning_id": "Apakah kemarin guru pergi ke stasiun?"
+  },
+  {
+    "jp_character": "あなたは日本へ行きますか",
+    "particles": [
+      3,
+      6,
+      11
+    ],
+    "romanji": [
+      "anata wa nihon e ikimasu ka"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "7": "い"
+    },
+    "meaning": "Do You go to Japan?",
+    "meaning_id": "Apakah anda pergi ke Jepang?"
+  },
+  {
+    "jp_character": "かれは店へ行きますか",
+    "particles": [
+      2,
+      4,
+      9
+    ],
+    "romanji": [
+      "kare wa mise e ikimasu ka"
+    ],
+    "furigana": {
+      "3": "みせ",
+      "5": "い"
+    },
+    "meaning": "Does he go to the shop?",
+    "meaning_id": "Apakah dia (laki-laki) pergi ke toko?"
+  },
+  {
+    "jp_character": "きのう、友だちはデパートへ行きましたか",
+    "particles": [
+      7,
+      12,
+      18
+    ],
+    "romanji": [
+      "kinou tomodachi wa depaato e ikimashita ka"
+    ],
+    "furigana": {
+      "4": "とも",
+      "13": "い"
+    },
+    "meaning": "Did my friend go to the department store yesterday?",
+    "meaning_id": "Apakah kemarin teman saya pergi ke toko serba ada?"
+  },
+  {
+    "jp_character": "父はスーパーへ行きますか",
+    "particles": [
+      1,
+      6,
+      11
+    ],
+    "romanji": [
+      "chichi wa suupaa e ikimasu ka"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "7": "い"
+    },
+    "meaning": "Does my father go to the supermarket?",
+    "meaning_id": "Apakah ayah saya pergi ke supermarket?"
+  },
+  {
+    "jp_character": "学生はデパートへ行きますか",
+    "particles": [
+      2,
+      7,
+      12
+    ],
+    "romanji": [
+      "gakusei wa depaato e ikimasu ka"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "8": "い"
+    },
+    "meaning": "Does the student go to the department store?",
+    "meaning_id": "Apakah pelajar pergi ke toko serba ada?"
+  },
+  {
+    "jp_character": "きのう、かのじょはスーパーへ行きましたか",
+    "particles": [
+      8,
+      13,
+      19
+    ],
+    "romanji": [
+      "kinou kanojo wa suupaa e ikimashita ka"
+    ],
+    "furigana": {
+      "14": "い"
+    },
+    "meaning": "Did she go to the supermarket yesterday?",
+    "meaning_id": "Apakah kemarin dia (perempuan) pergi ke supermarket?"
+  },
+  {
+    "jp_character": "先生は学校へ行きますか",
+    "particles": [
+      2,
+      5,
+      10
+    ],
+    "romanji": [
+      "sensei wa gakkou e ikimasu ka"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "6": "い"
+    },
+    "meaning": "Does the teacher go to school?",
+    "meaning_id": "Apakah guru pergi ke sekolah?"
+  },
+  {
+    "jp_character": "かれは駅へ行きますか",
+    "particles": [
+      2,
+      4,
+      9
+    ],
+    "romanji": [
+      "kare wa eki e ikimasu ka"
+    ],
+    "furigana": {
+      "3": "えき",
+      "5": "い"
+    },
+    "meaning": "Does he go to the station?",
+    "meaning_id": "Apakah dia (laki-laki) pergi ke stasiun?"
+  },
+  {
+    "jp_character": "きのう、母は日本へ行きましたか",
+    "particles": [
+      5,
+      8,
+      14
+    ],
+    "romanji": [
+      "kinou haha wa nihon e ikimashita ka"
+    ],
+    "furigana": {
+      "4": "はは",
+      "6": "に",
+      "7": "ほん",
+      "9": "い"
+    },
+    "meaning": "Did my mother go to Japan yesterday?",
+    "meaning_id": "Apakah kemarin ibu saya pergi ke Jepang?"
+  },
+  {
+    "jp_character": "父は山へ行きますか",
+    "particles": [
+      1,
+      3,
+      8
+    ],
+    "romanji": [
+      "chichi wa yama e ikimasu ka"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "やま",
+      "4": "い"
+    },
+    "meaning": "Does my father go to the mountain?",
+    "meaning_id": "Apakah ayah saya pergi ke gunung?"
+  },
+  {
+    "jp_character": "友だちは今学校にいますか",
+    "particles": [
+      3,
+      7,
+      11
+    ],
+    "romanji": [
+      "tomodachi wa ima gakkou ni imasu ka"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "いま",
+      "5": "がっ",
+      "6": "こう"
+    },
+    "meaning": "Is my friend at school now?",
+    "meaning_id": "Apakah teman saya ada di sekolah sekarang?"
+  },
+  {
+    "jp_character": "かれは駅にいますか",
+    "particles": [
+      2,
+      4,
+      8
+    ],
+    "romanji": [
+      "kare wa eki ni imasu ka"
+    ],
+    "furigana": {
+      "3": "えき"
+    },
+    "meaning": "Is he at the station?",
+    "meaning_id": "Apakah dia (laki-laki) ada di stasiun?"
+  },
+  {
+    "jp_character": "あなたはこうえんにいますか",
+    "particles": [
+      3,
+      8,
+      12
+    ],
+    "romanji": [
+      "anata wa kouen ni imasu ka"
+    ],
+    "meaning": "Are You in the park?",
+    "meaning_id": "Apakah anda ada di taman?"
+  },
+  {
+    "jp_character": "学生は店にいますか",
+    "particles": [
+      2,
+      4,
+      8
+    ],
+    "romanji": [
+      "gakusei wa mise ni imasu ka"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "みせ"
+    },
+    "meaning": "Is the student at the shop?",
+    "meaning_id": "Apakah pelajar ada di toko?"
+  },
+  {
+    "jp_character": "かのじょはうちにいますか",
+    "particles": [
+      4,
+      7,
+      11
+    ],
+    "romanji": [
+      "kanojo wa uchi ni imasu ka"
+    ],
+    "meaning": "Is she at home?",
+    "meaning_id": "Apakah dia (perempuan) ada di rumah?"
+  },
+  {
+    "jp_character": "先生はこうえんにいますか",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "sensei wa kouen ni imasu ka"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
+    "meaning": "Is the teacher in the park?",
+    "meaning_id": "Apakah guru ada di taman?"
+  },
+  {
+    "jp_character": "友だちは学校にいますか",
+    "particles": [
+      3,
+      6,
+      10
+    ],
+    "romanji": [
+      "tomodachi wa gakkou ni imasu ka"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "がっ",
+      "5": "こう"
+    },
+    "meaning": "Is my friend at school?",
+    "meaning_id": "Apakah teman saya ada di sekolah?"
+  },
+  {
+    "jp_character": "あなたは店にいますか",
+    "particles": [
+      3,
+      5,
+      9
+    ],
+    "romanji": [
+      "anata wa mise ni imasu ka"
+    ],
+    "furigana": {
+      "4": "みせ"
+    },
+    "meaning": "Are You at the shop?",
+    "meaning_id": "Apakah anda ada di toko?"
+  },
+  {
+    "jp_character": "学生は駅にいますか",
+    "particles": [
+      2,
+      4,
+      8
+    ],
+    "romanji": [
+      "gakusei wa eki ni imasu ka"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "えき"
+    },
+    "meaning": "Is the student at the station?",
+    "meaning_id": "Apakah pelajar ada di stasiun?"
+  },
+  {
+    "jp_character": "スーパーにたまごがありますか",
+    "particles": [
+      4,
+      8,
+      13
+    ],
+    "romanji": [
+      "suupaa ni tamago ga arimasu ka"
+    ],
+    "meaning": "Is there an egg at the supermarket?",
+    "meaning_id": "Apakah ada telur di supermarket?"
+  },
+  {
+    "jp_character": "こうえんにはながありますか",
+    "particles": [
+      4,
+      7,
+      12
+    ],
+    "romanji": [
+      "kouen ni hana ga arimasu ka"
+    ],
+    "meaning": "Is there a flower in the park?",
+    "meaning_id": "Apakah ada bunga di taman?"
+  },
+  {
+    "jp_character": "デパートに水がありますか",
+    "particles": [
+      4,
+      6,
+      11
+    ],
+    "romanji": [
+      "depaato ni mizu ga arimasu ka"
+    ],
+    "furigana": {
+      "5": "みず"
+    },
+    "meaning": "Is there water at the department store?",
+    "meaning_id": "Apakah ada air di toko serba ada?"
+  },
+  {
+    "jp_character": "店に本がありますか",
+    "particles": [
+      1,
+      3,
+      8
+    ],
+    "romanji": [
+      "mise ni hon ga arimasu ka"
+    ],
+    "furigana": {
+      "0": "みせ",
+      "2": "ほん"
+    },
+    "meaning": "Is there a book at the shop?",
+    "meaning_id": "Apakah ada buku di toko?"
+  },
+  {
+    "jp_character": "日本に山がありますか",
+    "particles": [
+      2,
+      4,
+      9
+    ],
+    "romanji": [
+      "nihon ni yama ga arimasu ka"
+    ],
+    "furigana": {
+      "0": "に",
+      "1": "ほん",
+      "3": "やま"
+    },
+    "meaning": "Is there a mountain in Japan?",
+    "meaning_id": "Apakah ada gunung di Jepang?"
+  },
+  {
+    "jp_character": "こうえんに木がありますか",
+    "particles": [
+      4,
+      6,
+      11
+    ],
+    "romanji": [
+      "kouen ni ki ga arimasu ka"
+    ],
+    "furigana": {
+      "5": "き"
+    },
+    "meaning": "Is there a tree in the park?",
+    "meaning_id": "Apakah ada pohon di taman?"
+  },
+  {
+    "jp_character": "スーパーにさかながありますか",
+    "particles": [
+      4,
+      8,
+      13
+    ],
+    "romanji": [
+      "suupaa ni sakana ga arimasu ka"
+    ],
+    "meaning": "Is there fish at the supermarket?",
+    "meaning_id": "Apakah ada ikan di supermarket?"
+  },
+  {
+    "jp_character": "デパートにパンがありますか",
+    "particles": [
+      4,
+      7,
+      12
+    ],
+    "romanji": [
+      "depaato ni pan ga arimasu ka"
+    ],
+    "meaning": "Is there bread at the department store?",
+    "meaning_id": "Apakah ada roti di toko serba ada?"
+  },
+  {
+    "jp_character": "店にテレビがありますか",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "mise ni terebi ga arimasu ka"
+    ],
+    "furigana": {
+      "0": "みせ"
+    },
+    "meaning": "Is there a TV at the shop?",
+    "meaning_id": "Apakah ada TV di toko?"
+  },
+  {
+    "jp_character": "日本に川がありますか",
+    "particles": [
+      2,
+      4,
+      9
+    ],
+    "romanji": [
+      "nihon ni kawa ga arimasu ka"
+    ],
+    "furigana": {
+      "0": "に",
+      "1": "ほん",
+      "3": "かわ"
+    },
+    "meaning": "Is there a river in Japan?",
+    "meaning_id": "Apakah ada sungai di Jepang?"
+  },
+  {
+    "jp_character": "かれはおちゃがすきですか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "kare wa ocha ga suki desu ka"
+    ],
+    "meaning": "Does he like tea?",
+    "meaning_id": "Apakah dia (laki-laki) suka teh?"
+  },
+  {
+    "jp_character": "あなたは日本がすきですか",
+    "particles": [
+      3,
+      6,
+      11
+    ],
+    "romanji": [
+      "anata wa nihon ga suki desu ka"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん"
+    },
+    "meaning": "Do You like Japan?",
+    "meaning_id": "Apakah anda suka Jepang?"
+  },
+  {
+    "jp_character": "父はすしがすきですか",
+    "particles": [
+      1,
+      4,
+      9
+    ],
+    "romanji": [
+      "chichi wa sushi ga suki desu ka"
+    ],
+    "furigana": {
+      "0": "ちち"
+    },
+    "meaning": "Does my father like sushi?",
+    "meaning_id": "Apakah ayah saya suka sushi?"
+  },
+  {
+    "jp_character": "母はりんごがすきですか",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "haha wa ringo ga suki desu ka"
+    ],
+    "furigana": {
+      "0": "はは"
+    },
+    "meaning": "Does my mother like apples?",
+    "meaning_id": "Apakah ibu saya suka apel?"
+  },
+  {
+    "jp_character": "かのじょはコーヒーがすきですか",
+    "particles": [
+      4,
+      9,
+      14
+    ],
+    "romanji": [
+      "kanojo wa koohii ga suki desu ka"
+    ],
+    "meaning": "Does she like coffee?",
+    "meaning_id": "Apakah dia (perempuan) suka kopi?"
+  },
+  {
+    "jp_character": "先生はえいががすきですか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "sensei wa eiga ga suki desu ka"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
+    "meaning": "Does the teacher like movies?",
+    "meaning_id": "Apakah guru suka film?"
+  },
+  {
+    "jp_character": "友だちはおんがくがすきですか",
+    "particles": [
+      3,
+      8,
+      13
+    ],
+    "romanji": [
+      "tomodachi wa ongaku ga suki desu ka"
+    ],
+    "furigana": {
+      "0": "とも"
+    },
+    "meaning": "Does my friend like music?",
+    "meaning_id": "Apakah teman saya suka musik?"
+  },
+  {
+    "jp_character": "学生はおちゃがすきですか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "gakusei wa ocha ga suki desu ka"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
+    "meaning": "Does the student like tea?",
+    "meaning_id": "Apakah pelajar suka teh?"
+  },
+  {
+    "jp_character": "かれはりんごがすきですか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "kare wa ringo ga suki desu ka"
+    ],
+    "meaning": "Does he like apples?",
+    "meaning_id": "Apakah dia (laki-laki) suka apel?"
+  },
+  {
+    "jp_character": "あなたはえいががすきですか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "anata wa eiga ga suki desu ka"
+    ],
+    "meaning": "Do You like movies?",
+    "meaning_id": "Apakah anda suka film?"
+  },
+  {
+    "jp_character": "父はおんがくがすきですか",
+    "particles": [
+      1,
+      6,
+      11
+    ],
+    "romanji": [
+      "chichi wa ongaku ga suki desu ka"
+    ],
+    "furigana": {
+      "0": "ちち"
+    },
+    "meaning": "Does my father like music?",
+    "meaning_id": "Apakah ayah saya suka musik?"
+  },
+  {
+    "jp_character": "あなたは日本語を読みますか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "anata wa nihongo wo yomimasu ka",
+      "anata wa nihongo o yomimasu ka"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "6": "ご",
+      "8": "よ"
+    },
+    "meaning": "Do You read Japanese?",
+    "meaning_id": "Apakah anda membaca bahasa Jepang?"
+  },
+  {
+    "jp_character": "かのじょはえいごを書きますか",
+    "particles": [
+      4,
+      8,
+      13
+    ],
+    "romanji": [
+      "kanojo wa eigo wo kakimasu ka",
+      "kanojo wa eigo o kakimasu ka"
+    ],
+    "furigana": {
+      "9": "か"
+    },
+    "meaning": "Does she writes English?",
+    "meaning_id": "Apakah dia (perempuan) menulis bahasa Inggris?"
+  },
+  {
+    "jp_character": "学生はちゅうごくごを話しますか",
+    "particles": [
+      2,
+      9,
+      14
+    ],
+    "romanji": [
+      "gakusei wa chuugokugo wo hanashimasu ka",
+      "gakusei wa chuugokugo o hanashimasu ka"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "10": "はな"
+    },
+    "meaning": "Does the student speaks Chinese?",
+    "meaning_id": "Apakah pelajar berbicara bahasa Mandarin?"
+  },
+  {
+    "jp_character": "友だちはえいごを書きますか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "tomodachi wa eigo wo kakimasu ka",
+      "tomodachi wa eigo o kakimasu ka"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "か"
+    },
+    "meaning": "Does my friend writes English?",
+    "meaning_id": "Apakah teman saya menulis bahasa Inggris?"
+  },
+  {
+    "jp_character": "先生は日本語を読みますか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "sensei wa nihongo wo yomimasu ka",
+      "sensei wa nihongo o yomimasu ka"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん",
+      "5": "ご",
+      "7": "よ"
+    },
+    "meaning": "Does the teacher reads Japanese?",
+    "meaning_id": "Apakah guru membaca bahasa Jepang?"
+  },
+  {
+    "jp_character": "かれはちゅうごくごを話しますか",
+    "particles": [
+      2,
+      9,
+      14
+    ],
+    "romanji": [
+      "kare wa chuugokugo wo hanashimasu ka",
+      "kare wa chuugokugo o hanashimasu ka"
+    ],
+    "furigana": {
+      "10": "はな"
+    },
+    "meaning": "Does he speaks Chinese?",
+    "meaning_id": "Apakah dia (laki-laki) berbicara bahasa Mandarin?"
+  },
+  {
+    "jp_character": "きのうは日曜日でしたか",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "kinou wa nichiyoubi deshita ka"
+    ],
+    "furigana": {
+      "4": "にち",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Was yesterday Sunday?",
+    "meaning_id": "Apakah kemarin hari Minggu?"
+  },
+  {
+    "jp_character": "今日は土曜日ですか",
+    "particles": [
+      2,
+      8
+    ],
+    "romanji": [
+      "kyou wa doyoubi desu ka"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "ど",
+      "4": "よう",
+      "5": "び"
+    },
+    "meaning": "Is today Saturday?",
+    "meaning_id": "Apakah hari ini hari Sabtu?"
+  },
+  {
+    "jp_character": "あしたは木曜日ですか",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "ashita wa mokuyoubi desu ka"
+    ],
+    "furigana": {
+      "4": "もく",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Is tomorrow Thursday?",
+    "meaning_id": "Apakah besok hari Kamis?"
+  },
+  {
+    "jp_character": "きのうは火曜日でしたか",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "kinou wa kayoubi deshita ka"
+    ],
+    "furigana": {
+      "4": "か",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Was yesterday Tuesday?",
+    "meaning_id": "Apakah kemarin hari Selasa?"
+  },
+  {
+    "jp_character": "今日は水曜日ですか",
+    "particles": [
+      2,
+      8
+    ],
+    "romanji": [
+      "kyou wa suiyoubi desu ka"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "すい",
+      "4": "よう",
+      "5": "び"
+    },
+    "meaning": "Is today Wednesday?",
+    "meaning_id": "Apakah hari ini hari Rabu?"
+  },
+  {
+    "jp_character": "あしたは月曜日ですか",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "ashita wa getsuyoubi desu ka"
+    ],
+    "furigana": {
+      "4": "げつ",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Is tomorrow Monday?",
+    "meaning_id": "Apakah besok hari Senin?"
+  },
+  {
+    "jp_character": "きのうは水曜日でしたか",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "kinou wa suiyoubi deshita ka"
+    ],
+    "furigana": {
+      "4": "すい",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Was yesterday Wednesday?",
+    "meaning_id": "Apakah kemarin hari Rabu?"
+  },
+  {
+    "jp_character": "今日は火曜日ですか",
+    "particles": [
+      2,
+      8
+    ],
+    "romanji": [
+      "kyou wa kayoubi desu ka"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "か",
+      "4": "よう",
+      "5": "び"
+    },
+    "meaning": "Is today Tuesday?",
+    "meaning_id": "Apakah hari ini hari Selasa?"
+  },
+  {
+    "jp_character": "きのうは月曜日でしたか",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "kinou wa getsuyoubi deshita ka"
+    ],
+    "furigana": {
+      "4": "げつ",
+      "5": "よう",
+      "6": "び"
+    },
+    "meaning": "Was yesterday Monday?",
+    "meaning_id": "Apakah kemarin hari Senin?"
+  },
+  {
+    "jp_character": "友だちはレストランでラーメンを食べますか",
+    "particles": [
+      3,
+      9,
+      14,
+      19
+    ],
+    "romanji": [
+      "tomodachi wa resutoran de raamen wo tabemasu ka",
+      "tomodachi wa resutoran de raamen o tabemasu ka"
+    ],
+    "furigana": {
+      "0": "とも",
+      "15": "た"
+    },
+    "meaning": "Does my friend eats ramen at the restaurant?",
+    "meaning_id": "Apakah teman saya makan ramen di restoran?"
+  },
+  {
+    "jp_character": "父は学校でざっしを読みますか",
+    "particles": [
+      1,
+      4,
+      8,
+      13
+    ],
+    "romanji": [
+      "chichi wa gakkou de zasshi wo yomimasu ka",
+      "chichi wa gakkou de zasshi o yomimasu ka"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "がっ",
+      "3": "こう",
+      "9": "よ"
+    },
+    "meaning": "Does my father reads a magazine at school?",
+    "meaning_id": "Apakah ayah saya membaca majalah di sekolah?"
+  },
+  {
+    "jp_character": "母はデパートで本を買いますか",
+    "particles": [
+      1,
+      6,
+      8,
+      13
+    ],
+    "romanji": [
+      "haha wa depaato de hon wo kaimasu ka",
+      "haha wa depaato de hon o kaimasu ka"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "ほん",
+      "9": "か"
+    },
+    "meaning": "Does my mother buys a book at the department store?",
+    "meaning_id": "Apakah ibu saya membeli buku di toko serba ada?"
+  },
+  {
+    "jp_character": "かのじょはうちでぎゅうにゅうを飲みますか",
+    "particles": [
+      4,
+      7,
+      14,
+      19
+    ],
+    "romanji": [
+      "kanojo wa uchi de gyuunyuu wo nomimasu ka",
+      "kanojo wa uchi de gyuunyuu o nomimasu ka"
+    ],
+    "furigana": {
+      "15": "の"
+    },
+    "meaning": "Does she drinks milk at home?",
+    "meaning_id": "Apakah dia (perempuan) minum susu di rumah?"
+  },
+  {
+    "jp_character": "かれは店でテレビを買いますか",
+    "particles": [
+      2,
+      4,
+      8,
+      13
+    ],
+    "romanji": [
+      "kare wa mise de terebi wo kaimasu ka",
+      "kare wa mise de terebi o kaimasu ka"
+    ],
+    "furigana": {
+      "3": "みせ",
+      "9": "か"
+    },
+    "meaning": "Does he buys TV at the shop?",
+    "meaning_id": "Apakah dia (laki-laki) membeli TV di toko?"
+  },
+  {
+    "jp_character": "先生はうちでえいがを見ますか",
+    "particles": [
+      2,
+      5,
+      9,
+      13
+    ],
+    "romanji": [
+      "sensei wa uchi de eiga wo mimasu ka",
+      "sensei wa uchi de eiga o mimasu ka"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "10": "み"
+    },
+    "meaning": "Does the teacher watches a movie at home?",
+    "meaning_id": "Apakah guru menonton film di rumah?"
+  },
+  {
+    "jp_character": "あなたはレストランですしを食べますか",
+    "particles": [
+      3,
+      9,
+      12,
+      17
+    ],
+    "romanji": [
+      "anata wa resutoran de sushi wo tabemasu ka",
+      "anata wa resutoran de sushi o tabemasu ka"
+    ],
+    "furigana": {
+      "13": "た"
+    },
+    "meaning": "Do You eat sushi at the restaurant?",
+    "meaning_id": "Apakah anda makan sushi di restoran?"
+  },
+  {
+    "jp_character": "学生はスーパーで水を買いますか",
+    "particles": [
+      2,
+      7,
+      9,
+      14
+    ],
+    "romanji": [
+      "gakusei wa suupaa de mizu wo kaimasu ka",
+      "gakusei wa suupaa de mizu o kaimasu ka"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "8": "みず",
+      "10": "か"
+    },
+    "meaning": "Does the student buys water at the supermarket?",
+    "meaning_id": "Apakah pelajar membeli air di supermarket?"
+  },
+  {
+    "jp_character": "母は学校で新聞を読みますか",
+    "particles": [
+      1,
+      4,
+      7,
+      12
+    ],
+    "romanji": [
+      "haha wa gakkou de shinbun wo yomimasu ka",
+      "haha wa gakkou de shinbun o yomimasu ka"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "がっ",
+      "3": "こう",
+      "5": "しん",
+      "6": "ぶん",
+      "8": "よ"
+    },
+    "meaning": "Does my mother reads the newspaper at school?",
+    "meaning_id": "Apakah ibu saya membaca koran di sekolah?"
+  },
+  {
+    "jp_character": "先生はうちでおんがくを聞きますか",
+    "particles": [
+      2,
+      5,
+      10,
+      15
+    ],
+    "romanji": [
+      "sensei wa uchi de ongaku wo kikimasu ka",
+      "sensei wa uchi de ongaku o kikimasu ka"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "11": "き"
+    },
+    "meaning": "Does the teacher listens to music at home?",
+    "meaning_id": "Apakah guru mendengarkan musik di rumah?"
+  },
+  {
+    "jp_character": "父はレストランでコーヒーを飲みますか",
+    "particles": [
+      1,
+      7,
+      12,
+      17
+    ],
+    "romanji": [
+      "chichi wa resutoran de koohii wo nomimasu ka",
+      "chichi wa resutoran de koohii o nomimasu ka"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "13": "の"
+    },
+    "meaning": "Does my father drinks coffee at the restaurant?",
+    "meaning_id": "Apakah ayah saya minum kopi di restoran?"
+  },
+  {
+    "jp_character": "父はまいあさ九時におきますか",
+    "particles": [
+      1,
+      8,
+      13
+    ],
+    "romanji": [
+      "chichi wa maiasa kuji ni okimasu ka"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "6": "く",
+      "7": "じ"
+    },
+    "meaning": "Does my father wake up at nine every morning?",
+    "meaning_id": "Apakah ayah saya bangun jam sembilan setiap pagi?"
+  },
+  {
+    "jp_character": "かれはなんじにねますか",
+    "particles": [
+      2,
+      6,
+      10
+    ],
+    "romanji": [
+      "kare wa nanji ni nemasu ka"
+    ],
+    "meaning": "What time does he go to sleep?",
+    "meaning_id": "Jam berapa dia (laki-laki) tidur?"
+  },
+  {
+    "jp_character": "かのじょはごご八時にねますか",
+    "particles": [
+      4,
+      9,
+      13
+    ],
+    "romanji": [
+      "kanojo wa gogo hachiji ni nemasu ka"
+    ],
+    "furigana": {
+      "7": "はち",
+      "8": "じ"
+    },
+    "meaning": "Does she go to sleep at eight p.m.?",
+    "meaning_id": "Apakah dia (perempuan) tidur jam delapan malam?"
+  },
+  {
+    "jp_character": "友だちはなんじにおきますか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "tomodachi wa nanji ni okimasu ka"
+    ],
+    "furigana": {
+      "0": "とも"
+    },
+    "meaning": "What time does my friend wake up?",
+    "meaning_id": "Jam berapa teman saya bangun?"
+  },
+  {
+    "jp_character": "先生はまいあさ五時におきますか",
+    "particles": [
+      2,
+      9,
+      14
+    ],
+    "romanji": [
+      "sensei wa maiasa goji ni okimasu ka"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "7": "ご",
+      "8": "じ"
+    },
+    "meaning": "Does the teacher wake up at five every morning?",
+    "meaning_id": "Apakah guru bangun jam lima setiap pagi?"
+  },
+  {
+    "jp_character": "母はごご十時にねますか",
+    "particles": [
+      1,
+      6,
+      10
+    ],
+    "romanji": [
+      "haha wa gogo juuji ni nemasu ka"
+    ],
+    "furigana": {
+      "0": "はは",
+      "4": "じゅう",
+      "5": "じ"
+    },
+    "meaning": "Does my mother go to sleep at ten p.m.?",
+    "meaning_id": "Apakah ibu saya tidur jam sepuluh malam?"
+  },
+  {
+    "jp_character": "あした、いっしょにスーパーへ行きませんか",
+    "particles": [
+      13,
+      19
+    ],
+    "romanji": [
+      "ashita issho ni suupaa e ikimasen ka"
+    ],
+    "furigana": {
+      "14": "い"
+    },
+    "meaning": "Won't you go to the supermarket together tomorrow?",
+    "meaning_id": "Besok mau pergi ke supermarket bersama-sama?"
+  },
+  {
+    "jp_character": "いっしょに駅へ行きませんか",
+    "particles": [
+      6,
+      12
+    ],
+    "romanji": [
+      "issho ni eki e ikimasen ka"
+    ],
+    "furigana": {
+      "5": "えき",
+      "7": "い"
+    },
+    "meaning": "Won't you go to the station together?",
+    "meaning_id": "Mau pergi ke stasiun bersama-sama?"
+  },
+  {
+    "jp_character": "いっしょに大学へ行きませんか",
+    "particles": [
+      7,
+      13
+    ],
+    "romanji": [
+      "issho ni daigaku e ikimasen ka"
+    ],
+    "furigana": {
+      "5": "だい",
+      "6": "がく",
+      "8": "い"
+    },
+    "meaning": "Won't you go to the university together?",
+    "meaning_id": "Mau pergi ke universitas bersama-sama?"
+  },
+  {
+    "jp_character": "いっしょに山へ行きませんか",
+    "particles": [
+      6,
+      12
+    ],
+    "romanji": [
+      "issho ni yama e ikimasen ka"
+    ],
+    "furigana": {
+      "5": "やま",
+      "7": "い"
+    },
+    "meaning": "Won't you go to the mountain together?",
+    "meaning_id": "Mau pergi ke gunung bersama-sama?"
+  },
+  {
+    "jp_character": "いっしょにデパートへ行きませんか",
+    "particles": [
+      9,
+      15
+    ],
+    "romanji": [
+      "issho ni depaato e ikimasen ka"
+    ],
+    "furigana": {
+      "10": "い"
+    },
+    "meaning": "Won't you go to the department store together?",
+    "meaning_id": "Mau pergi ke toko serba ada bersama-sama?"
+  },
 ];
