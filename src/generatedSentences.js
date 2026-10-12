@@ -4,7 +4,9 @@
  * kanaCharacters.js, and each one carries its romaji (word-spaced) plus
  * English and Indonesian meanings. "particles" lists the character indices
  * of the particles (は, を, に...) so the game can show them in a different
- * color.
+ * color. "furigana" maps the character index of every kanji to its kana
+ * reading, shown in small print above the kanji when the player asks for
+ * help; sentences without kanji have no furigana field.
  *
  * The "sentences" practice mode only offers the sentences the player can
  * read with the groups selected in the menu (see getReadableSentences in
@@ -19,6 +21,10 @@ export const generatedSentences = [
     "romanji": [
       "sono eki wa chiisai desu"
     ],
+    "furigana": {
+      "2": "えき",
+      "4": "ちい"
+    },
     "meaning": "That station is small",
     "meaning_id": "Stasiun itu kecil"
   },
@@ -30,6 +36,10 @@ export const generatedSentences = [
     "romanji": [
       "sono kuruma wa chiisai desu"
     ],
+    "furigana": {
+      "2": "くるま",
+      "4": "ちい"
+    },
     "meaning": "That car is small",
     "meaning_id": "Mobil itu kecil"
   },
@@ -41,6 +51,10 @@ export const generatedSentences = [
     "romanji": [
       "sono kawa wa nagai desu"
     ],
+    "furigana": {
+      "2": "かわ",
+      "4": "なが"
+    },
     "meaning": "That river is long",
     "meaning_id": "Sungai itu panjang"
   },
@@ -52,6 +66,10 @@ export const generatedSentences = [
     "romanji": [
       "ano mise wa ookii desu"
     ],
+    "furigana": {
+      "2": "みせ",
+      "4": "おお"
+    },
     "meaning": "That shop over there is big",
     "meaning_id": "Toko itu besar"
   },
@@ -63,6 +81,10 @@ export const generatedSentences = [
     "romanji": [
       "ano mise wa chiisai desu"
     ],
+    "furigana": {
+      "2": "みせ",
+      "4": "ちい"
+    },
     "meaning": "That shop over there is small",
     "meaning_id": "Toko itu kecil"
   },
@@ -74,6 +96,10 @@ export const generatedSentences = [
     "romanji": [
       "sono kuruma wa aoi desu"
     ],
+    "furigana": {
+      "2": "くるま",
+      "4": "あお"
+    },
     "meaning": "That car is blue",
     "meaning_id": "Mobil itu biru"
   },
@@ -85,6 +111,9 @@ export const generatedSentences = [
     "romanji": [
       "ano terebi wa chiisai desu"
     ],
+    "furigana": {
+      "6": "ちい"
+    },
     "meaning": "That TV over there is small",
     "meaning_id": "TV itu kecil"
   },
@@ -96,6 +125,10 @@ export const generatedSentences = [
     "romanji": [
       "kono hon wa furui desu"
     ],
+    "furigana": {
+      "2": "ほん",
+      "4": "ふる"
+    },
     "meaning": "This book is old",
     "meaning_id": "Buku ini lama"
   },
@@ -107,6 +140,9 @@ export const generatedSentences = [
     "romanji": [
       "sono kaban wa takai desu"
     ],
+    "furigana": {
+      "6": "たか"
+    },
     "meaning": "That bag is expensive",
     "meaning_id": "Tas itu mahal"
   },
@@ -118,6 +154,10 @@ export const generatedSentences = [
     "romanji": [
       "ano kuruma wa chiisai desu"
     ],
+    "furigana": {
+      "2": "くるま",
+      "4": "ちい"
+    },
     "meaning": "That car over there is small",
     "meaning_id": "Mobil itu kecil"
   },
@@ -129,6 +169,11 @@ export const generatedSentences = [
     "romanji": [
       "kono gakkou wa ookii desu"
     ],
+    "furigana": {
+      "2": "がっ",
+      "3": "こう",
+      "5": "おお"
+    },
     "meaning": "This school is big",
     "meaning_id": "Sekolah ini besar"
   },
@@ -140,6 +185,10 @@ export const generatedSentences = [
     "romanji": [
       "sono eki wa atarashii desu"
     ],
+    "furigana": {
+      "2": "えき",
+      "4": "あたら"
+    },
     "meaning": "That station is new",
     "meaning_id": "Stasiun itu baru"
   },
@@ -151,6 +200,9 @@ export const generatedSentences = [
     "romanji": [
       "kono terebi wa yasui desu"
     ],
+    "furigana": {
+      "6": "やす"
+    },
     "meaning": "This TV is cheap",
     "meaning_id": "TV ini murah"
   },
@@ -162,6 +214,10 @@ export const generatedSentences = [
     "romanji": [
       "ano hon wa furui desu"
     ],
+    "furigana": {
+      "2": "ほん",
+      "4": "ふる"
+    },
     "meaning": "That book over there is old",
     "meaning_id": "Buku itu lama"
   },
@@ -173,6 +229,9 @@ export const generatedSentences = [
     "romanji": [
       "sono kaban wa ookii desu"
     ],
+    "furigana": {
+      "6": "おお"
+    },
     "meaning": "That bag is big",
     "meaning_id": "Tas itu besar"
   },
@@ -184,6 +243,10 @@ export const generatedSentences = [
     "romanji": [
       "ano mise wa yasui desu"
     ],
+    "furigana": {
+      "2": "みせ",
+      "4": "やす"
+    },
     "meaning": "That shop over there is cheap",
     "meaning_id": "Toko itu murah"
   },
@@ -195,6 +258,11 @@ export const generatedSentences = [
     "romanji": [
       "ano gakkou wa furui desu"
     ],
+    "furigana": {
+      "2": "がっ",
+      "3": "こう",
+      "5": "ふる"
+    },
     "meaning": "That school over there is old",
     "meaning_id": "Sekolah itu lama"
   },
@@ -206,6 +274,9 @@ export const generatedSentences = [
     "romanji": [
       "ano terebi wa atarashii desu"
     ],
+    "furigana": {
+      "6": "あたら"
+    },
     "meaning": "That TV over there is new",
     "meaning_id": "TV itu baru"
   },
@@ -217,6 +288,10 @@ export const generatedSentences = [
     "romanji": [
       "kono kuruma wa shiroi desu"
     ],
+    "furigana": {
+      "2": "くるま",
+      "4": "しろ"
+    },
     "meaning": "This car is white",
     "meaning_id": "Mobil ini putih"
   },
@@ -228,6 +303,10 @@ export const generatedSentences = [
     "romanji": [
       "kono mise wa furui desu"
     ],
+    "furigana": {
+      "2": "みせ",
+      "4": "ふる"
+    },
     "meaning": "This shop is old",
     "meaning_id": "Toko ini lama"
   },
@@ -239,6 +318,10 @@ export const generatedSentences = [
     "romanji": [
       "kono kuruma wa kuroi desu"
     ],
+    "furigana": {
+      "2": "くるま",
+      "4": "くろ"
+    },
     "meaning": "This car is black",
     "meaning_id": "Mobil ini hitam"
   },
@@ -250,6 +333,10 @@ export const generatedSentences = [
     "romanji": [
       "sono eki wa furui desu"
     ],
+    "furigana": {
+      "2": "えき",
+      "4": "ふる"
+    },
     "meaning": "That station is old",
     "meaning_id": "Stasiun itu lama"
   },
@@ -261,6 +348,10 @@ export const generatedSentences = [
     "romanji": [
       "sono kuruma wa furui desu"
     ],
+    "furigana": {
+      "2": "くるま",
+      "4": "ふる"
+    },
     "meaning": "That car is old",
     "meaning_id": "Mobil itu lama"
   },
@@ -272,6 +363,10 @@ export const generatedSentences = [
     "romanji": [
       "sono hon wa atarashii desu"
     ],
+    "furigana": {
+      "2": "ほん",
+      "4": "あたら"
+    },
     "meaning": "That book is new",
     "meaning_id": "Buku itu baru"
   },
@@ -283,6 +378,10 @@ export const generatedSentences = [
     "romanji": [
       "ano hon wa yasui desu"
     ],
+    "furigana": {
+      "2": "ほん",
+      "4": "やす"
+    },
     "meaning": "That book over there is cheap",
     "meaning_id": "Buku itu murah"
   },
@@ -294,6 +393,9 @@ export const generatedSentences = [
     "romanji": [
       "sono terebi wa chiisai desu"
     ],
+    "furigana": {
+      "6": "ちい"
+    },
     "meaning": "That TV is small",
     "meaning_id": "TV itu kecil"
   },
@@ -305,6 +407,10 @@ export const generatedSentences = [
     "romanji": [
       "kono mise wa ookii desu"
     ],
+    "furigana": {
+      "2": "みせ",
+      "4": "おお"
+    },
     "meaning": "This shop is big",
     "meaning_id": "Toko ini besar"
   },
@@ -316,6 +422,11 @@ export const generatedSentences = [
     "romanji": [
       "sono gakkou wa ookii desu"
     ],
+    "furigana": {
+      "2": "がっ",
+      "3": "こう",
+      "5": "おお"
+    },
     "meaning": "That school is big",
     "meaning_id": "Sekolah itu besar"
   },
@@ -327,6 +438,9 @@ export const generatedSentences = [
     "romanji": [
       "ano terebi wa yasui desu"
     ],
+    "furigana": {
+      "6": "やす"
+    },
     "meaning": "That TV over there is cheap",
     "meaning_id": "TV itu murah"
   },
@@ -338,6 +452,10 @@ export const generatedSentences = [
     "romanji": [
       "sono kawa wa chiisai desu"
     ],
+    "furigana": {
+      "2": "かわ",
+      "4": "ちい"
+    },
     "meaning": "That river is small",
     "meaning_id": "Sungai itu kecil"
   },
@@ -349,6 +467,10 @@ export const generatedSentences = [
     "romanji": [
       "ano kuruma wa atarashii desu"
     ],
+    "furigana": {
+      "2": "くるま",
+      "4": "あたら"
+    },
     "meaning": "That car over there is new",
     "meaning_id": "Mobil itu baru"
   },
@@ -360,6 +482,9 @@ export const generatedSentences = [
     "romanji": [
       "kono kaban wa yasui desu"
     ],
+    "furigana": {
+      "6": "やす"
+    },
     "meaning": "This bag is cheap",
     "meaning_id": "Tas ini murah"
   },
@@ -371,6 +496,9 @@ export const generatedSentences = [
     "romanji": [
       "kono kaban wa furui desu"
     ],
+    "furigana": {
+      "6": "ふる"
+    },
     "meaning": "This bag is old",
     "meaning_id": "Tas ini lama"
   },
@@ -382,6 +510,10 @@ export const generatedSentences = [
     "romanji": [
       "sono kuruma wa shiroi desu"
     ],
+    "furigana": {
+      "2": "くるま",
+      "4": "しろ"
+    },
     "meaning": "That car is white",
     "meaning_id": "Mobil itu putih"
   },
@@ -393,6 +525,9 @@ export const generatedSentences = [
     "romanji": [
       "kono kaban wa atarashii desu"
     ],
+    "furigana": {
+      "6": "あたら"
+    },
     "meaning": "This bag is new",
     "meaning_id": "Tas ini baru"
   },
@@ -404,6 +539,9 @@ export const generatedSentences = [
     "romanji": [
       "kono kaban wa chiisai desu"
     ],
+    "furigana": {
+      "6": "ちい"
+    },
     "meaning": "This bag is small",
     "meaning_id": "Tas ini kecil"
   },
@@ -415,6 +553,9 @@ export const generatedSentences = [
     "romanji": [
       "kono kaban wa takai desu"
     ],
+    "furigana": {
+      "6": "たか"
+    },
     "meaning": "This bag is expensive",
     "meaning_id": "Tas ini mahal"
   },
@@ -426,6 +567,9 @@ export const generatedSentences = [
     "romanji": [
       "ano terebi wa furui desu"
     ],
+    "furigana": {
+      "6": "ふる"
+    },
     "meaning": "That TV over there is old",
     "meaning_id": "TV itu lama"
   },
@@ -437,6 +581,11 @@ export const generatedSentences = [
     "romanji": [
       "sono gakkou wa chiisai desu"
     ],
+    "furigana": {
+      "2": "がっ",
+      "3": "こう",
+      "5": "ちい"
+    },
     "meaning": "That school is small",
     "meaning_id": "Sekolah itu kecil"
   },
@@ -448,6 +597,10 @@ export const generatedSentences = [
     "romanji": [
       "kono kuruma wa aoi desu"
     ],
+    "furigana": {
+      "2": "くるま",
+      "4": "あお"
+    },
     "meaning": "This car is blue",
     "meaning_id": "Mobil ini biru"
   },
@@ -459,6 +612,10 @@ export const generatedSentences = [
     "romanji": [
       "kono kawa wa chiisai desu"
     ],
+    "furigana": {
+      "2": "かわ",
+      "4": "ちい"
+    },
     "meaning": "This river is small",
     "meaning_id": "Sungai ini kecil"
   },
@@ -470,6 +627,9 @@ export const generatedSentences = [
     "romanji": [
       "ano kaban wa takai desu"
     ],
+    "furigana": {
+      "6": "たか"
+    },
     "meaning": "That bag over there is expensive",
     "meaning_id": "Tas itu mahal"
   },
@@ -481,6 +641,11 @@ export const generatedSentences = [
     "romanji": [
       "sono gakkou wa furui desu"
     ],
+    "furigana": {
+      "2": "がっ",
+      "3": "こう",
+      "5": "ふる"
+    },
     "meaning": "That school is old",
     "meaning_id": "Sekolah itu lama"
   },
@@ -492,6 +657,10 @@ export const generatedSentences = [
     "romanji": [
       "ano kuruma wa ookii desu"
     ],
+    "furigana": {
+      "2": "くるま",
+      "4": "おお"
+    },
     "meaning": "That car over there is big",
     "meaning_id": "Mobil itu besar"
   },
@@ -503,6 +672,10 @@ export const generatedSentences = [
     "romanji": [
       "kono kawa wa nagai desu"
     ],
+    "furigana": {
+      "2": "かわ",
+      "4": "なが"
+    },
     "meaning": "This river is long",
     "meaning_id": "Sungai ini panjang"
   },
@@ -515,6 +688,12 @@ export const generatedSentences = [
     "romanji": [
       "kyou wa tenki ga ii desu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "てん",
+      "4": "き"
+    },
     "meaning": "The weather is good today",
     "meaning_id": "Cuaca hari ini bagus"
   },
@@ -527,6 +706,10 @@ export const generatedSentences = [
     "romanji": [
       "kinou wa tenki ga yokatta desu"
     ],
+    "furigana": {
+      "4": "てん",
+      "5": "き"
+    },
     "meaning": "The weather was good yesterday",
     "meaning_id": "Kemarin cuacanya bagus"
   },
@@ -538,6 +721,9 @@ export const generatedSentences = [
     "romanji": [
       "kinou wa ame deshita"
     ],
+    "furigana": {
+      "4": "あめ"
+    },
     "meaning": "It rained yesterday",
     "meaning_id": "Kemarin hujan"
   },
@@ -549,6 +735,9 @@ export const generatedSentences = [
     "romanji": [
       "ashita wa ame desu"
     ],
+    "furigana": {
+      "4": "あめ"
+    },
     "meaning": "It will rain tomorrow",
     "meaning_id": "Besok hujan"
   },
@@ -561,6 +750,13 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa nihon ni kaerimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん",
+      "6": "かえ"
+    },
     "meaning": "The student returns home to Japan",
     "meaning_id": "Pelajar pulang ke Jepang"
   },
@@ -573,6 +769,13 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa mainichi kawa e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "まい",
+      "5": "にち",
+      "6": "かわ",
+      "8": "い"
+    },
     "meaning": "My friend goes to the river every day",
     "meaning_id": "Setiap hari Teman saya pergi ke sungai"
   },
@@ -585,6 +788,12 @@ export const generatedSentences = [
     "romanji": [
       "haha wa kinou nihon ni kimashita"
     ],
+    "furigana": {
+      "0": "はは",
+      "5": "に",
+      "6": "ほん",
+      "8": "き"
+    },
     "meaning": "My mother came to Japan yesterday",
     "meaning_id": "Kemarin Ibu saya datang ke Jepang"
   },
@@ -597,6 +806,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa kinou uchi ni kaerimashita"
     ],
+    "furigana": {
+      "0": "とも",
+      "10": "かえ"
+    },
     "meaning": "My friend returned home yesterday",
     "meaning_id": "Kemarin Teman saya pulang ke rumah"
   },
@@ -609,6 +822,13 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa mainichi eki e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "まい",
+      "3": "にち",
+      "4": "えき",
+      "6": "い"
+    },
     "meaning": "My father goes to the station every day",
     "meaning_id": "Setiap hari Ayah saya pergi ke stasiun"
   },
@@ -621,6 +841,13 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa ashita nihon ni kimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "6": "に",
+      "7": "ほん",
+      "9": "き"
+    },
     "meaning": "The teacher will come to Japan tomorrow",
     "meaning_id": "Besok Guru datang ke Jepang"
   },
@@ -633,6 +860,12 @@ export const generatedSentences = [
     "romanji": [
       "haha wa gakkou e ikimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "がっ",
+      "3": "こう",
+      "5": "い"
+    },
     "meaning": "My mother goes to school",
     "meaning_id": "Ibu saya pergi ke sekolah"
   },
@@ -645,6 +878,10 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa ashita mise ni kimasu"
     ],
+    "furigana": {
+      "7": "みせ",
+      "9": "き"
+    },
     "meaning": "I will come to the shop tomorrow",
     "meaning_id": "Besok Saya datang ke toko"
   },
@@ -657,6 +894,9 @@ export const generatedSentences = [
     "romanji": [
       "anata wa depaato e ikimasu"
     ],
+    "furigana": {
+      "9": "い"
+    },
     "meaning": "You go to the department store",
     "meaning_id": "Anda pergi ke toko serba ada"
   },
@@ -669,6 +909,12 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa kinou kawa e ikimashita"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "6": "かわ",
+      "8": "い"
+    },
     "meaning": "The student went to the river yesterday",
     "meaning_id": "Kemarin Pelajar pergi ke sungai"
   },
@@ -681,6 +927,14 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa mainichi gakkou e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "まい",
+      "5": "にち",
+      "6": "がっ",
+      "7": "こう",
+      "9": "い"
+    },
     "meaning": "My friend goes to school every day",
     "meaning_id": "Setiap hari Teman saya pergi ke sekolah"
   },
@@ -693,6 +947,9 @@ export const generatedSentences = [
     "romanji": [
       "anata wa uchi ni kaerimasu"
     ],
+    "furigana": {
+      "7": "かえ"
+    },
     "meaning": "You return home",
     "meaning_id": "Anda pulang ke rumah"
   },
@@ -705,6 +962,11 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa kinou kouen e ikimashita"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "11": "い"
+    },
     "meaning": "The teacher went to the park yesterday",
     "meaning_id": "Kemarin Guru pergi ke taman"
   },
@@ -717,6 +979,13 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa mainichi suupaa e ikimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "まい",
+      "4": "にち",
+      "10": "い"
+    },
     "meaning": "The teacher goes to the supermarket every day",
     "meaning_id": "Setiap hari Guru pergi ke supermarket"
   },
@@ -729,6 +998,14 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa mainichi nihon e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "まい",
+      "3": "にち",
+      "4": "に",
+      "5": "ほん",
+      "7": "い"
+    },
     "meaning": "My father goes to Japan every day",
     "meaning_id": "Setiap hari Ayah saya pergi ke Jepang"
   },
@@ -741,6 +1018,10 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa kouen e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "7": "い"
+    },
     "meaning": "My father goes to the park",
     "meaning_id": "Ayah saya pergi ke taman"
   },
@@ -753,6 +1034,10 @@ export const generatedSentences = [
     "romanji": [
       "haha wa ashita kouen e ikimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "10": "い"
+    },
     "meaning": "My mother will go to the park tomorrow",
     "meaning_id": "Besok Ibu saya pergi ke taman"
   },
@@ -765,6 +1050,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa kinou depaato e ikimashita"
     ],
+    "furigana": {
+      "0": "とも",
+      "12": "い"
+    },
     "meaning": "My friend went to the department store yesterday",
     "meaning_id": "Kemarin Teman saya pergi ke toko serba ada"
   },
@@ -777,6 +1066,10 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa kinou kouen e ikimashita"
     ],
+    "furigana": {
+      "0": "ちち",
+      "10": "い"
+    },
     "meaning": "My father went to the park yesterday",
     "meaning_id": "Kemarin Ayah saya pergi ke taman"
   },
@@ -789,6 +1082,11 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa ashita eki e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "7": "えき",
+      "9": "い"
+    },
     "meaning": "My friend will go to the station tomorrow",
     "meaning_id": "Besok Teman saya pergi ke stasiun"
   },
@@ -801,6 +1099,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa eki ni kimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "えき",
+      "4": "き"
+    },
     "meaning": "My father comes to the station",
     "meaning_id": "Ayah saya datang ke stasiun"
   },
@@ -813,6 +1116,14 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa mainichi gaikoku e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "まい",
+      "5": "にち",
+      "6": "がい",
+      "7": "こく",
+      "9": "い"
+    },
     "meaning": "My friend goes to a foreign country every day",
     "meaning_id": "Setiap hari Teman saya pergi ke luar negeri"
   },
@@ -825,6 +1136,11 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa kinou gakkou ni kimashita"
     ],
+    "furigana": {
+      "7": "がっ",
+      "8": "こう",
+      "10": "き"
+    },
     "meaning": "I came to school yesterday",
     "meaning_id": "Kemarin Saya datang ke sekolah"
   },
@@ -837,6 +1153,10 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa kawa e ikimasu"
     ],
+    "furigana": {
+      "4": "かわ",
+      "6": "い"
+    },
     "meaning": "I go to the river",
     "meaning_id": "Saya pergi ke sungai"
   },
@@ -849,6 +1169,13 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ashita nihon e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "6": "に",
+      "7": "ほん",
+      "9": "い"
+    },
     "meaning": "The student will go to Japan tomorrow",
     "meaning_id": "Besok Pelajar pergi ke Jepang"
   },
@@ -861,6 +1188,12 @@ export const generatedSentences = [
     "romanji": [
       "haha wa mainichi suupaa e ikimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "まい",
+      "3": "にち",
+      "9": "い"
+    },
     "meaning": "My mother goes to the supermarket every day",
     "meaning_id": "Setiap hari Ibu saya pergi ke supermarket"
   },
@@ -873,6 +1206,12 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa nihon ni kaerimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "に",
+      "3": "ほん",
+      "5": "かえ"
+    },
     "meaning": "My father returns home to Japan",
     "meaning_id": "Ayah saya pulang ke Jepang"
   },
@@ -885,6 +1224,11 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi depaato e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "11": "い"
+    },
     "meaning": "I go to the department store every day",
     "meaning_id": "Setiap hari Saya pergi ke toko serba ada"
   },
@@ -897,6 +1241,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa depaato e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "9": "い"
+    },
     "meaning": "My friend goes to the department store",
     "meaning_id": "Teman saya pergi ke toko serba ada"
   },
@@ -909,6 +1257,10 @@ export const generatedSentences = [
     "romanji": [
       "haha wa kinou kouen ni kimashita"
     ],
+    "furigana": {
+      "0": "はは",
+      "10": "き"
+    },
     "meaning": "My mother came to the park yesterday",
     "meaning_id": "Kemarin Ibu saya datang ke taman"
   },
@@ -921,6 +1273,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa kinou kouen e ikimashita"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "11": "い"
+    },
     "meaning": "The student went to the park yesterday",
     "meaning_id": "Kemarin Pelajar pergi ke taman"
   },
@@ -933,6 +1290,11 @@ export const generatedSentences = [
     "romanji": [
       "haha wa kawa e ikimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "かわ",
+      "4": "い"
+    },
     "meaning": "My mother goes to the river",
     "meaning_id": "Ibu saya pergi ke sungai"
   },
@@ -945,6 +1307,11 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa depaato e ikimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "8": "い"
+    },
     "meaning": "The teacher goes to the department store",
     "meaning_id": "Guru pergi ke toko serba ada"
   },
@@ -957,6 +1324,11 @@ export const generatedSentences = [
     "romanji": [
       "anata wa gaikoku ni kimasu"
     ],
+    "furigana": {
+      "4": "がい",
+      "5": "こく",
+      "7": "き"
+    },
     "meaning": "You come to a foreign country",
     "meaning_id": "Anda datang ke luar negeri"
   },
@@ -969,6 +1341,13 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa nihon ni kimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん",
+      "6": "き"
+    },
     "meaning": "The teacher comes to Japan",
     "meaning_id": "Guru datang ke Jepang"
   },
@@ -981,6 +1360,11 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa eki e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "えき",
+      "6": "い"
+    },
     "meaning": "My friend goes to the station",
     "meaning_id": "Teman saya pergi ke stasiun"
   },
@@ -993,6 +1377,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa ashita eki e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "5": "えき",
+      "7": "い"
+    },
     "meaning": "My father will go to the station tomorrow",
     "meaning_id": "Besok Ayah saya pergi ke stasiun"
   },
@@ -1005,6 +1394,13 @@ export const generatedSentences = [
     "romanji": [
       "haha wa mainichi kawa e ikimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "まい",
+      "3": "にち",
+      "4": "かわ",
+      "6": "い"
+    },
     "meaning": "My mother goes to the river every day",
     "meaning_id": "Setiap hari Ibu saya pergi ke sungai"
   },
@@ -1017,6 +1413,12 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa kinou gaikoku e ikimashita"
     ],
+    "furigana": {
+      "0": "とも",
+      "7": "がい",
+      "8": "こく",
+      "10": "い"
+    },
     "meaning": "My friend went to a foreign country yesterday",
     "meaning_id": "Kemarin Teman saya pergi ke luar negeri"
   },
@@ -1029,6 +1431,11 @@ export const generatedSentences = [
     "romanji": [
       "haha wa yama e ikimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "やま",
+      "4": "い"
+    },
     "meaning": "My mother goes to the mountain",
     "meaning_id": "Ibu saya pergi ke gunung"
   },
@@ -1041,6 +1448,11 @@ export const generatedSentences = [
     "romanji": [
       "anata wa kinou nihon ni kimashita"
     ],
+    "furigana": {
+      "7": "に",
+      "8": "ほん",
+      "10": "き"
+    },
     "meaning": "You came to Japan yesterday",
     "meaning_id": "Kemarin Anda datang ke Jepang"
   },
@@ -1053,6 +1465,11 @@ export const generatedSentences = [
     "romanji": [
       "haha wa ashita yama e ikimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "5": "やま",
+      "7": "い"
+    },
     "meaning": "My mother will go to the mountain tomorrow",
     "meaning_id": "Besok Ibu saya pergi ke gunung"
   },
@@ -1065,6 +1482,13 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa mainichi eki e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "まい",
+      "5": "にち",
+      "6": "えき",
+      "8": "い"
+    },
     "meaning": "My friend goes to the station every day",
     "meaning_id": "Setiap hari Teman saya pergi ke stasiun"
   },
@@ -1077,6 +1501,12 @@ export const generatedSentences = [
     "romanji": [
       "anata wa mainichi kawa e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "かわ",
+      "8": "い"
+    },
     "meaning": "You go to the river every day",
     "meaning_id": "Setiap hari Anda pergi ke sungai"
   },
@@ -1089,6 +1519,12 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa gaikoku ni kimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "がい",
+      "5": "こく",
+      "7": "き"
+    },
     "meaning": "My friend comes to a foreign country",
     "meaning_id": "Teman saya datang ke luar negeri"
   },
@@ -1101,6 +1537,12 @@ export const generatedSentences = [
     "romanji": [
       "haha wa nihon e ikimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "に",
+      "3": "ほん",
+      "5": "い"
+    },
     "meaning": "My mother goes to Japan",
     "meaning_id": "Ibu saya pergi ke Jepang"
   },
@@ -1113,6 +1555,13 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi gaikoku e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "がい",
+      "7": "こく",
+      "9": "い"
+    },
     "meaning": "I go to a foreign country every day",
     "meaning_id": "Setiap hari Saya pergi ke luar negeri"
   },
@@ -1125,6 +1574,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa kawa e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "かわ",
+      "4": "い"
+    },
     "meaning": "My father goes to the river",
     "meaning_id": "Ayah saya pergi ke sungai"
   },
@@ -1137,6 +1591,9 @@ export const generatedSentences = [
     "romanji": [
       "anata wa kinou suupaa e ikimashita"
     ],
+    "furigana": {
+      "12": "い"
+    },
     "meaning": "You went to the supermarket yesterday",
     "meaning_id": "Kemarin Anda pergi ke supermarket"
   },
@@ -1149,6 +1606,10 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa kinou kawa e ikimashita"
     ],
+    "furigana": {
+      "7": "かわ",
+      "9": "い"
+    },
     "meaning": "I went to the river yesterday",
     "meaning_id": "Kemarin Saya pergi ke sungai"
   },
@@ -1161,6 +1622,12 @@ export const generatedSentences = [
     "romanji": [
       "haha wa ashita gaikoku e ikimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "5": "がい",
+      "6": "こく",
+      "8": "い"
+    },
     "meaning": "My mother will go to a foreign country tomorrow",
     "meaning_id": "Besok Ibu saya pergi ke luar negeri"
   },
@@ -1173,6 +1640,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ashita kouen ni kimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "11": "き"
+    },
     "meaning": "The student will come to the park tomorrow",
     "meaning_id": "Besok Pelajar datang ke taman"
   },
@@ -1185,6 +1657,12 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa eki e ikimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "えき",
+      "5": "い"
+    },
     "meaning": "The teacher goes to the station",
     "meaning_id": "Guru pergi ke stasiun"
   },
@@ -1197,6 +1675,11 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa gaikoku ni kimasu"
     ],
+    "furigana": {
+      "4": "がい",
+      "5": "こく",
+      "7": "き"
+    },
     "meaning": "I come to a foreign country",
     "meaning_id": "Saya datang ke luar negeri"
   },
@@ -1209,6 +1692,9 @@ export const generatedSentences = [
     "romanji": [
       "anata wa suupaa e ikimasu"
     ],
+    "furigana": {
+      "9": "い"
+    },
     "meaning": "You go to the supermarket",
     "meaning_id": "Anda pergi ke supermarket"
   },
@@ -1221,6 +1707,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ashita kouen e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "11": "い"
+    },
     "meaning": "The student will go to the park tomorrow",
     "meaning_id": "Besok Pelajar pergi ke taman"
   },
@@ -1233,6 +1724,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa ashita suupaa e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "12": "い"
+    },
     "meaning": "My friend will go to the supermarket tomorrow",
     "meaning_id": "Besok Teman saya pergi ke supermarket"
   },
@@ -1245,6 +1740,12 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa ashita nihon e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "7": "に",
+      "8": "ほん",
+      "10": "い"
+    },
     "meaning": "My friend will go to Japan tomorrow",
     "meaning_id": "Besok Teman saya pergi ke Jepang"
   },
@@ -1257,6 +1758,11 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa kouen ni kimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "8": "き"
+    },
     "meaning": "The teacher comes to the park",
     "meaning_id": "Guru datang ke taman"
   },
@@ -1269,6 +1775,12 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa mainichi depaato e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "まい",
+      "3": "にち",
+      "9": "い"
+    },
     "meaning": "My father goes to the department store every day",
     "meaning_id": "Setiap hari Ayah saya pergi ke toko serba ada"
   },
@@ -1282,6 +1794,12 @@ export const generatedSentences = [
       "senshuu watashi wa hon wo yomimashita",
       "senshuu watashi wa hon o yomimashita"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう",
+      "7": "ほん",
+      "9": "よ"
+    },
     "meaning": "I read a book last week",
     "meaning_id": "Minggu lalu Saya membaca buku"
   },
@@ -1295,6 +1813,10 @@ export const generatedSentences = [
       "kinou chichi wa zasshi wo yomimashita",
       "kinou chichi wa zasshi o yomimashita"
     ],
+    "furigana": {
+      "4": "ちち",
+      "10": "よ"
+    },
     "meaning": "My father read a magazine yesterday",
     "meaning_id": "Kemarin Ayah saya membaca majalah"
   },
@@ -1308,6 +1830,12 @@ export const generatedSentences = [
       "kyou haha wa ongaku wo kikimasu",
       "kyou haha wa ongaku o kikimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "はは",
+      "10": "き"
+    },
     "meaning": "My mother listens to music today",
     "meaning_id": "Hari ini Ibu saya mendengarkan musik"
   },
@@ -1321,6 +1849,12 @@ export const generatedSentences = [
       "mainichi chichi wa pan wo tabemasu",
       "mainichi chichi wa pan o tabemasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "ちち",
+      "8": "た"
+    },
     "meaning": "My father eats bread every day",
     "meaning_id": "Setiap hari Ayah saya makan roti"
   },
@@ -1334,6 +1868,11 @@ export const generatedSentences = [
       "raishuu anata wa gohan wo tabemasu",
       "raishuu anata wa gohan o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "11": "た"
+    },
     "meaning": "You will eat rice next week",
     "meaning_id": "Minggu depan Anda makan nasi"
   },
@@ -1347,6 +1886,15 @@ export const generatedSentences = [
       "mainichi gakusei wa namae wo kakimasu",
       "mainichi gakusei wa namae o kakimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "がく",
+      "4": "せい",
+      "6": "な",
+      "7": "まえ",
+      "9": "か"
+    },
     "meaning": "The student writes my name every day",
     "meaning_id": "Setiap hari Pelajar menulis nama"
   },
@@ -1360,6 +1908,11 @@ export const generatedSentences = [
       "kinou gakusei wa tamago wo tabemashita",
       "kinou gakusei wa tamago o tabemashita"
     ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい",
+      "11": "た"
+    },
     "meaning": "The student ate an egg yesterday",
     "meaning_id": "Kemarin Pelajar makan telur"
   },
@@ -1373,6 +1926,11 @@ export const generatedSentences = [
       "senshuu anata wa ocha wo nomimashita",
       "senshuu anata wa ocha o nomimashita"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう",
+      "11": "の"
+    },
     "meaning": "You drank tea last week",
     "meaning_id": "Minggu lalu Anda minum teh"
   },
@@ -1386,6 +1944,11 @@ export const generatedSentences = [
       "raishuu anata wa tamago wo tabemasu",
       "raishuu anata wa tamago o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "11": "た"
+    },
     "meaning": "You will eat an egg next week",
     "meaning_id": "Minggu depan Anda makan telur"
   },
@@ -1399,6 +1962,11 @@ export const generatedSentences = [
       "kinou otokonoko wa terebi wo mimashita",
       "kinou otokonoko wa terebi o mimashita"
     ],
+    "furigana": {
+      "4": "おとこ",
+      "6": "こ",
+      "12": "み"
+    },
     "meaning": "The boy watched TV yesterday",
     "meaning_id": "Kemarin Anak laki-laki menonton TV"
   },
@@ -1412,6 +1980,10 @@ export const generatedSentences = [
       "tomodachi wa kanji wo kakimasu",
       "tomodachi wa kanji o kakimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "8": "か"
+    },
     "meaning": "My friend writes kanji",
     "meaning_id": "Teman saya menulis kanji"
   },
@@ -1425,6 +1997,12 @@ export const generatedSentences = [
       "raishuu tomodachi wa zasshi wo yomimasu",
       "raishuu tomodachi wa zasshi o yomimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "とも",
+      "11": "よ"
+    },
     "meaning": "My friend will read a magazine next week",
     "meaning_id": "Minggu depan Teman saya membaca majalah"
   },
@@ -1438,6 +2016,11 @@ export const generatedSentences = [
       "konshuu watashi wa pan wo tabemasu",
       "konshuu watashi wa pan o tabemasu"
     ],
+    "furigana": {
+      "0": "こん",
+      "1": "しゅう",
+      "10": "た"
+    },
     "meaning": "I eat bread this week",
     "meaning_id": "Minggu ini Saya makan roti"
   },
@@ -1451,6 +2034,12 @@ export const generatedSentences = [
       "mainichi tomodachi wa ringo wo tabemasu",
       "mainichi tomodachi wa ringo o tabemasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "とも",
+      "11": "た"
+    },
     "meaning": "My friend eats an apple every day",
     "meaning_id": "Setiap hari Teman saya makan apel"
   },
@@ -1464,6 +2053,11 @@ export const generatedSentences = [
       "senshuu watashi wa kanji wo kakimashita",
       "senshuu watashi wa kanji o kakimashita"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう",
+      "11": "か"
+    },
     "meaning": "I wrote kanji last week",
     "meaning_id": "Minggu lalu Saya menulis kanji"
   },
@@ -1477,6 +2071,11 @@ export const generatedSentences = [
       "gakusei wa tegami wo kakimasu",
       "gakusei wa tegami o kakimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "か"
+    },
     "meaning": "The student writes a letter",
     "meaning_id": "Pelajar menulis surat"
   },
@@ -1490,6 +2089,11 @@ export const generatedSentences = [
       "raishuu watashi wa koohii wo nomimasu",
       "raishuu watashi wa koohii o nomimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "12": "の"
+    },
     "meaning": "I will drink coffee next week",
     "meaning_id": "Minggu depan Saya minum kopi"
   },
@@ -1503,6 +2107,11 @@ export const generatedSentences = [
       "kinou onnanoko wa kanji wo kakimashita",
       "kinou onnanoko wa kanji o kakimashita"
     ],
+    "furigana": {
+      "4": "おんな",
+      "6": "こ",
+      "12": "か"
+    },
     "meaning": "The girl wrote kanji yesterday",
     "meaning_id": "Kemarin Anak perempuan menulis kanji"
   },
@@ -1516,6 +2125,13 @@ export const generatedSentences = [
       "konshuu gakusei wa gohan wo tabemasu",
       "konshuu gakusei wa gohan o tabemasu"
     ],
+    "furigana": {
+      "0": "こん",
+      "1": "しゅう",
+      "3": "がく",
+      "4": "せい",
+      "10": "た"
+    },
     "meaning": "The student eats rice this week",
     "meaning_id": "Minggu ini Pelajar makan nasi"
   },
@@ -1529,6 +2145,13 @@ export const generatedSentences = [
       "konshuu gakusei wa zasshi wo yomimasu",
       "konshuu gakusei wa zasshi o yomimasu"
     ],
+    "furigana": {
+      "0": "こん",
+      "1": "しゅう",
+      "3": "がく",
+      "4": "せい",
+      "10": "よ"
+    },
     "meaning": "The student reads a magazine this week",
     "meaning_id": "Minggu ini Pelajar membaca majalah"
   },
@@ -1542,6 +2165,13 @@ export const generatedSentences = [
       "mainichi otokonoko wa asagohan wo tabemasu",
       "mainichi otokonoko wa asagohan o tabemasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "おとこ",
+      "5": "こ",
+      "13": "た"
+    },
     "meaning": "The boy eats breakfast every day",
     "meaning_id": "Setiap hari Anak laki-laki makan sarapan"
   },
@@ -1555,6 +2185,9 @@ export const generatedSentences = [
       "anata wa kanji wo kakimasu",
       "anata wa kanji o kakimasu"
     ],
+    "furigana": {
+      "8": "か"
+    },
     "meaning": "You write kanji",
     "meaning_id": "Anda menulis kanji"
   },
@@ -1568,6 +2201,10 @@ export const generatedSentences = [
       "anata wa hon wo yomimasu",
       "anata wa hon o yomimasu"
     ],
+    "furigana": {
+      "4": "ほん",
+      "6": "よ"
+    },
     "meaning": "You read a book",
     "meaning_id": "Anda membaca buku"
   },
@@ -1581,6 +2218,13 @@ export const generatedSentences = [
       "konshuu sensei wa hiragana wo kakimasu",
       "konshuu sensei wa hiragana o kakimasu"
     ],
+    "furigana": {
+      "0": "こん",
+      "1": "しゅう",
+      "3": "せん",
+      "4": "せい",
+      "11": "か"
+    },
     "meaning": "The teacher writes hiragana this week",
     "meaning_id": "Minggu ini Guru menulis hiragana"
   },
@@ -1594,6 +2238,10 @@ export const generatedSentences = [
       "kinou chichi wa ocha wo nomimashita",
       "kinou chichi wa ocha o nomimashita"
     ],
+    "furigana": {
+      "4": "ちち",
+      "10": "の"
+    },
     "meaning": "My father drank tea yesterday",
     "meaning_id": "Kemarin Ayah saya minum teh"
   },
@@ -1607,6 +2255,13 @@ export const generatedSentences = [
       "kyou gakusei wa pan wo tabemasu",
       "kyou gakusei wa pan o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "がく",
+      "4": "せい",
+      "9": "た"
+    },
     "meaning": "The student eats bread today",
     "meaning_id": "Hari ini Pelajar makan roti"
   },
@@ -1620,6 +2275,12 @@ export const generatedSentences = [
       "raishuu anata wa hon wo yomimasu",
       "raishuu anata wa hon o yomimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "7": "ほん",
+      "9": "よ"
+    },
     "meaning": "You will read a book next week",
     "meaning_id": "Minggu depan Anda membaca buku"
   },
@@ -1633,6 +2294,9 @@ export const generatedSentences = [
       "kinou watashi wa katakana wo kakimashita",
       "kinou watashi wa katakana o kakimashita"
     ],
+    "furigana": {
+      "13": "か"
+    },
     "meaning": "I wrote katakana yesterday",
     "meaning_id": "Kemarin Saya menulis katakana"
   },
@@ -1646,6 +2310,11 @@ export const generatedSentences = [
       "konshuu watashi wa zasshi wo yomimasu",
       "konshuu watashi wa zasshi o yomimasu"
     ],
+    "furigana": {
+      "0": "こん",
+      "1": "しゅう",
+      "11": "よ"
+    },
     "meaning": "I read a magazine this week",
     "meaning_id": "Minggu ini Saya membaca majalah"
   },
@@ -1659,6 +2328,12 @@ export const generatedSentences = [
       "raishuu chichi wa kanji wo kakimasu",
       "raishuu chichi wa kanji o kakimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "ちち",
+      "9": "か"
+    },
     "meaning": "My father will write kanji next week",
     "meaning_id": "Minggu depan Ayah saya menulis kanji"
   },
@@ -1672,6 +2347,15 @@ export const generatedSentences = [
       "raishuu otokonoko wa namae wo kakimasu",
       "raishuu otokonoko wa namae o kakimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "おとこ",
+      "5": "こ",
+      "7": "な",
+      "8": "まえ",
+      "10": "か"
+    },
     "meaning": "The boy will write my name next week",
     "meaning_id": "Minggu depan Anak laki-laki menulis nama"
   },
@@ -1685,6 +2369,13 @@ export const generatedSentences = [
       "mainichi gakusei wa koohii wo nomimasu",
       "mainichi gakusei wa koohii o nomimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "がく",
+      "4": "せい",
+      "11": "の"
+    },
     "meaning": "The student drinks coffee every day",
     "meaning_id": "Setiap hari Pelajar minum kopi"
   },
@@ -1698,6 +2389,15 @@ export const generatedSentences = [
       "raishuu sensei wa shinbun wo yomimasu",
       "raishuu sensei wa shinbun o yomimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "せん",
+      "4": "せい",
+      "6": "しん",
+      "7": "ぶん",
+      "9": "よ"
+    },
     "meaning": "The teacher will read the newspaper next week",
     "meaning_id": "Minggu depan Guru membaca koran"
   },
@@ -1711,6 +2411,12 @@ export const generatedSentences = [
       "konshuu tomodachi wa hana wo kaimasu",
       "konshuu tomodachi wa hana o kaimasu"
     ],
+    "furigana": {
+      "0": "こん",
+      "1": "しゅう",
+      "3": "とも",
+      "10": "か"
+    },
     "meaning": "My friend buys a flower this week",
     "meaning_id": "Minggu ini Teman saya membeli bunga"
   },
@@ -1724,6 +2430,10 @@ export const generatedSentences = [
       "haha wa tegami wo kakimasu",
       "haha wa tegami o kakimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "6": "か"
+    },
     "meaning": "My mother writes a letter",
     "meaning_id": "Ibu saya menulis surat"
   },
@@ -1737,6 +2447,12 @@ export const generatedSentences = [
       "raishuu haha wa tokei wo kaimasu",
       "raishuu haha wa tokei o kaimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "はは",
+      "9": "か"
+    },
     "meaning": "My mother will buy a watch next week",
     "meaning_id": "Minggu depan Ibu saya membeli jam"
   },
@@ -1750,6 +2466,9 @@ export const generatedSentences = [
       "kinou watashi wa asagohan wo tabemashita",
       "kinou watashi wa asagohan o tabemashita"
     ],
+    "furigana": {
+      "14": "た"
+    },
     "meaning": "I ate breakfast yesterday",
     "meaning_id": "Kemarin Saya makan sarapan"
   },
@@ -1763,6 +2482,14 @@ export const generatedSentences = [
       "mainichi gakusei wa mizu wo nomimasu",
       "mainichi gakusei wa mizu o nomimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "がく",
+      "4": "せい",
+      "6": "みず",
+      "8": "の"
+    },
     "meaning": "The student drinks water every day",
     "meaning_id": "Setiap hari Pelajar minum air"
   },
@@ -1776,6 +2503,11 @@ export const generatedSentences = [
       "kinou haha wa mizu wo nomimashita",
       "kinou haha wa mizu o nomimashita"
     ],
+    "furigana": {
+      "4": "はは",
+      "6": "みず",
+      "8": "の"
+    },
     "meaning": "My mother drank water yesterday",
     "meaning_id": "Kemarin Ibu saya minum air"
   },
@@ -1789,6 +2521,14 @@ export const generatedSentences = [
       "senshuu haha wa shinbun wo yomimashita",
       "senshuu haha wa shinbun o yomimashita"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう",
+      "3": "はは",
+      "5": "しん",
+      "6": "ぶん",
+      "8": "よ"
+    },
     "meaning": "My mother read the newspaper last week",
     "meaning_id": "Minggu lalu Ibu saya membaca koran"
   },
@@ -1802,6 +2542,10 @@ export const generatedSentences = [
       "kinou chichi wa eiga wo mimashita",
       "kinou chichi wa eiga o mimashita"
     ],
+    "furigana": {
+      "4": "ちち",
+      "10": "み"
+    },
     "meaning": "My father watched a movie yesterday",
     "meaning_id": "Kemarin Ayah saya menonton film"
   },
@@ -1815,6 +2559,13 @@ export const generatedSentences = [
       "mainichi gakusei wa terebi wo mimasu",
       "mainichi gakusei wa terebi o mimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "がく",
+      "4": "せい",
+      "10": "み"
+    },
     "meaning": "The student watches TV every day",
     "meaning_id": "Setiap hari Pelajar menonton TV"
   },
@@ -1828,6 +2579,12 @@ export const generatedSentences = [
       "senshuu tomodachi wa sakana wo tabemashita",
       "senshuu tomodachi wa sakana o tabemashita"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう",
+      "3": "とも",
+      "11": "た"
+    },
     "meaning": "My friend ate fish last week",
     "meaning_id": "Minggu lalu Teman saya makan ikan"
   },
@@ -1841,6 +2598,12 @@ export const generatedSentences = [
       "raishuu haha wa pan wo tabemasu",
       "raishuu haha wa pan o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "はは",
+      "8": "た"
+    },
     "meaning": "My mother will eat bread next week",
     "meaning_id": "Minggu depan Ibu saya makan roti"
   },
@@ -1854,6 +2617,14 @@ export const generatedSentences = [
       "konshuu chichi wa namae wo kakimasu",
       "konshuu chichi wa namae o kakimasu"
     ],
+    "furigana": {
+      "0": "こん",
+      "1": "しゅう",
+      "3": "ちち",
+      "5": "な",
+      "6": "まえ",
+      "8": "か"
+    },
     "meaning": "My father writes my name this week",
     "meaning_id": "Minggu ini Ayah saya menulis nama"
   },
@@ -1867,6 +2638,13 @@ export const generatedSentences = [
       "senshuu onnanoko wa hana wo kaimashita",
       "senshuu onnanoko wa hana o kaimashita"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう",
+      "3": "おんな",
+      "5": "こ",
+      "10": "か"
+    },
     "meaning": "The girl bought a flower last week",
     "meaning_id": "Minggu lalu Anak perempuan membeli bunga"
   },
@@ -1880,6 +2658,12 @@ export const generatedSentences = [
       "kyou chichi wa kanji wo kakimasu",
       "kyou chichi wa kanji o kakimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "ちち",
+      "9": "か"
+    },
     "meaning": "My father writes kanji today",
     "meaning_id": "Hari ini Ayah saya menulis kanji"
   },
@@ -1893,6 +2677,13 @@ export const generatedSentences = [
       "kyou gakusei wa niku wo tabemasu",
       "kyou gakusei wa niku o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "がく",
+      "4": "せい",
+      "9": "た"
+    },
     "meaning": "The student eats meat today",
     "meaning_id": "Hari ini Pelajar makan daging"
   },
@@ -1906,6 +2697,10 @@ export const generatedSentences = [
       "kinou haha wa tokei wo kaimashita",
       "kinou haha wa tokei o kaimashita"
     ],
+    "furigana": {
+      "4": "はは",
+      "10": "か"
+    },
     "meaning": "My mother bought a watch yesterday",
     "meaning_id": "Kemarin Ibu saya membeli jam"
   },
@@ -1919,6 +2714,13 @@ export const generatedSentences = [
       "senshuu otokonoko wa gyuunyuu wo nomimashita",
       "senshuu otokonoko wa gyuunyuu o nomimashita"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう",
+      "3": "おとこ",
+      "5": "こ",
+      "14": "の"
+    },
     "meaning": "The boy drank milk last week",
     "meaning_id": "Minggu lalu Anak laki-laki minum susu"
   },
@@ -1932,6 +2734,12 @@ export const generatedSentences = [
       "raishuu tomodachi wa ocha wo nomimasu",
       "raishuu tomodachi wa ocha o nomimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "とも",
+      "11": "の"
+    },
     "meaning": "My friend will drink tea next week",
     "meaning_id": "Minggu depan Teman saya minum teh"
   },
@@ -1945,6 +2753,12 @@ export const generatedSentences = [
       "raishuu tomodachi wa tokei wo kaimasu",
       "raishuu tomodachi wa tokei o kaimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "とも",
+      "11": "か"
+    },
     "meaning": "My friend will buy a watch next week",
     "meaning_id": "Minggu depan Teman saya membeli jam"
   },
@@ -1958,6 +2772,12 @@ export const generatedSentences = [
       "kinou tomodachi wa shinbun wo yomimashita",
       "kinou tomodachi wa shinbun o yomimashita"
     ],
+    "furigana": {
+      "4": "とも",
+      "8": "しん",
+      "9": "ぶん",
+      "11": "よ"
+    },
     "meaning": "My friend read the newspaper yesterday",
     "meaning_id": "Kemarin Teman saya membaca koran"
   },
@@ -1971,6 +2791,13 @@ export const generatedSentences = [
       "mainichi otokonoko wa ocha wo nomimasu",
       "mainichi otokonoko wa ocha o nomimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "おとこ",
+      "5": "こ",
+      "11": "の"
+    },
     "meaning": "The boy drinks tea every day",
     "meaning_id": "Setiap hari Anak laki-laki minum teh"
   },
@@ -1984,6 +2811,13 @@ export const generatedSentences = [
       "konshuu onnanoko wa tegami wo kakimasu",
       "konshuu onnanoko wa tegami o kakimasu"
     ],
+    "furigana": {
+      "0": "こん",
+      "1": "しゅう",
+      "3": "おんな",
+      "5": "こ",
+      "11": "か"
+    },
     "meaning": "The girl writes a letter this week",
     "meaning_id": "Minggu ini Anak perempuan menulis surat"
   },
@@ -1997,6 +2831,12 @@ export const generatedSentences = [
       "kyou haha wa kaban wo kaimasu",
       "kyou haha wa kaban o kaimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "はは",
+      "9": "か"
+    },
     "meaning": "My mother buys a bag today",
     "meaning_id": "Hari ini Ibu saya membeli tas"
   },
@@ -2010,6 +2850,11 @@ export const generatedSentences = [
       "raishuu anata wa sakana wo tabemasu",
       "raishuu anata wa sakana o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "11": "た"
+    },
     "meaning": "You will eat fish next week",
     "meaning_id": "Minggu depan Anda makan ikan"
   },
@@ -2023,6 +2868,12 @@ export const generatedSentences = [
       "kinou otokonoko wa hon wo yomimashita",
       "kinou otokonoko wa hon o yomimashita"
     ],
+    "furigana": {
+      "4": "おとこ",
+      "6": "こ",
+      "8": "ほん",
+      "10": "よ"
+    },
     "meaning": "The boy read a book yesterday",
     "meaning_id": "Kemarin Anak laki-laki membaca buku"
   },
@@ -2036,6 +2887,11 @@ export const generatedSentences = [
       "kinou otokonoko wa ongaku wo kikimashita",
       "kinou otokonoko wa ongaku o kikimashita"
     ],
+    "furigana": {
+      "4": "おとこ",
+      "6": "こ",
+      "13": "き"
+    },
     "meaning": "The boy listened to music yesterday",
     "meaning_id": "Kemarin Anak laki-laki mendengarkan musik"
   },
@@ -2049,6 +2905,11 @@ export const generatedSentences = [
       "kinou sensei wa katakana wo kakimashita",
       "kinou sensei wa katakana o kakimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "12": "か"
+    },
     "meaning": "The teacher wrote katakana yesterday",
     "meaning_id": "Kemarin Guru menulis katakana"
   },
@@ -2062,6 +2923,11 @@ export const generatedSentences = [
       "kinou onnanoko wa ocha wo nomimashita",
       "kinou onnanoko wa ocha o nomimashita"
     ],
+    "furigana": {
+      "4": "おんな",
+      "6": "こ",
+      "12": "の"
+    },
     "meaning": "The girl drank tea yesterday",
     "meaning_id": "Kemarin Anak perempuan minum teh"
   },
@@ -2075,6 +2941,13 @@ export const generatedSentences = [
       "kyou gakusei wa tokei wo kaimasu",
       "kyou gakusei wa tokei o kaimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "がく",
+      "4": "せい",
+      "10": "か"
+    },
     "meaning": "The student buys a watch today",
     "meaning_id": "Hari ini Pelajar membeli jam"
   },
@@ -2088,6 +2961,9 @@ export const generatedSentences = [
       "anata wa zasshi wo yomimasu",
       "anata wa zasshi o yomimasu"
     ],
+    "furigana": {
+      "8": "よ"
+    },
     "meaning": "You read a magazine",
     "meaning_id": "Anda membaca majalah"
   },
@@ -2101,6 +2977,12 @@ export const generatedSentences = [
       "mainichi chichi wa ocha wo nomimasu",
       "mainichi chichi wa ocha o nomimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "ちち",
+      "9": "の"
+    },
     "meaning": "My father drinks tea every day",
     "meaning_id": "Setiap hari Ayah saya minum teh"
   },
@@ -2114,6 +2996,12 @@ export const generatedSentences = [
       "raishuu tomodachi wa raamen wo tabemasu",
       "raishuu tomodachi wa raamen o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "とも",
+      "12": "た"
+    },
     "meaning": "My friend will eat ramen next week",
     "meaning_id": "Minggu depan Teman saya makan ramen"
   },
@@ -2127,6 +3015,13 @@ export const generatedSentences = [
       "raishuu otokonoko wa pan wo tabemasu",
       "raishuu otokonoko wa pan o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "おとこ",
+      "5": "こ",
+      "10": "た"
+    },
     "meaning": "The boy will eat bread next week",
     "meaning_id": "Minggu depan Anak laki-laki makan roti"
   },
@@ -2140,6 +3035,13 @@ export const generatedSentences = [
       "konshuu sensei wa sushi wo tabemasu",
       "konshuu sensei wa sushi o tabemasu"
     ],
+    "furigana": {
+      "0": "こん",
+      "1": "しゅう",
+      "3": "せん",
+      "4": "せい",
+      "9": "た"
+    },
     "meaning": "The teacher eats sushi this week",
     "meaning_id": "Minggu ini Guru makan sushi"
   },
@@ -2153,6 +3055,12 @@ export const generatedSentences = [
       "senshuu chichi wa asagohan wo tabemashita",
       "senshuu chichi wa asagohan o tabemashita"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう",
+      "3": "ちち",
+      "11": "た"
+    },
     "meaning": "My father ate breakfast last week",
     "meaning_id": "Minggu lalu Ayah saya makan sarapan"
   },
@@ -2166,6 +3074,13 @@ export const generatedSentences = [
       "kinou otokonoko wa shinbun wo yomimashita",
       "kinou otokonoko wa shinbun o yomimashita"
     ],
+    "furigana": {
+      "4": "おとこ",
+      "6": "こ",
+      "8": "しん",
+      "9": "ぶん",
+      "11": "よ"
+    },
     "meaning": "The boy read the newspaper yesterday",
     "meaning_id": "Kemarin Anak laki-laki membaca koran"
   },
@@ -2179,6 +3094,13 @@ export const generatedSentences = [
       "senshuu gakusei wa sushi wo tabemashita",
       "senshuu gakusei wa sushi o tabemashita"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう",
+      "3": "がく",
+      "4": "せい",
+      "9": "た"
+    },
     "meaning": "The student ate sushi last week",
     "meaning_id": "Minggu lalu Pelajar makan sushi"
   },
@@ -2193,6 +3115,9 @@ export const generatedSentences = [
       "anata wa uchi de gohan wo tabemasu",
       "anata wa uchi de gohan o tabemasu"
     ],
+    "furigana": {
+      "11": "た"
+    },
     "meaning": "You eat rice at home",
     "meaning_id": "Anda makan nasi di rumah"
   },
@@ -2207,6 +3132,13 @@ export const generatedSentences = [
       "sensei wa mise de mizu wo kaimasu",
       "sensei wa mise de mizu o kaimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "みせ",
+      "5": "みず",
+      "7": "か"
+    },
     "meaning": "The teacher buys water at the shop",
     "meaning_id": "Guru membeli air di toko"
   },
@@ -2221,6 +3153,13 @@ export const generatedSentences = [
       "mainichi sensei wa uchi de gyuunyuu wo nomimasu",
       "mainichi sensei wa uchi de gyuunyuu o nomimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "せん",
+      "4": "せい",
+      "16": "の"
+    },
     "meaning": "The teacher drinks milk at home every day",
     "meaning_id": "Setiap hari Guru minum susu di rumah"
   },
@@ -2235,6 +3174,15 @@ export const generatedSentences = [
       "mainichi gakusei wa mise de mizu wo kaimasu",
       "mainichi gakusei wa mise de mizu o kaimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "がく",
+      "4": "せい",
+      "6": "みせ",
+      "8": "みず",
+      "10": "か"
+    },
     "meaning": "The student buys water at the shop every day",
     "meaning_id": "Setiap hari Pelajar membeli air di toko"
   },
@@ -2249,6 +3197,13 @@ export const generatedSentences = [
       "raishuu sensei wa depaato de pan wo kaimasu",
       "raishuu sensei wa depaato de pan o kaimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "せん",
+      "4": "せい",
+      "14": "か"
+    },
     "meaning": "The teacher will buy bread at the department store next week",
     "meaning_id": "Minggu depan Guru membeli roti di toko serba ada"
   },
@@ -2263,6 +3218,9 @@ export const generatedSentences = [
       "watashi wa uchi de raamen wo tabemasu",
       "watashi wa uchi de raamen o tabemasu"
     ],
+    "furigana": {
+      "12": "た"
+    },
     "meaning": "I eat ramen at home",
     "meaning_id": "Saya makan ramen di rumah"
   },
@@ -2277,6 +3235,13 @@ export const generatedSentences = [
       "mainichi sensei wa suupaa de pan wo kaimasu",
       "mainichi sensei wa suupaa de pan o kaimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "せん",
+      "4": "せい",
+      "14": "か"
+    },
     "meaning": "The teacher buys bread at the supermarket every day",
     "meaning_id": "Setiap hari Guru membeli roti di supermarket"
   },
@@ -2291,6 +3256,12 @@ export const generatedSentences = [
       "mainichi anata wa depaato de hon wo kaimasu",
       "mainichi anata wa depaato de hon o kaimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "12": "ほん",
+      "14": "か"
+    },
     "meaning": "You buy a book at the department store every day",
     "meaning_id": "Setiap hari Anda membeli buku di toko serba ada"
   },
@@ -2305,6 +3276,10 @@ export const generatedSentences = [
       "haha wa uchi de koohii wo nomimasu",
       "haha wa uchi de koohii o nomimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "10": "の"
+    },
     "meaning": "My mother drinks coffee at home",
     "meaning_id": "Ibu saya minum kopi di rumah"
   },
@@ -2319,6 +3294,13 @@ export const generatedSentences = [
       "mainichi watashi wa mise de kuruma wo kaimasu",
       "mainichi watashi wa mise de kuruma o kaimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "7": "みせ",
+      "9": "くるま",
+      "11": "か"
+    },
     "meaning": "I buy a car at the shop every day",
     "meaning_id": "Setiap hari Saya membeli mobil di toko"
   },
@@ -2333,6 +3315,13 @@ export const generatedSentences = [
       "raishuu gakusei wa depaato de terebi wo kaimasu",
       "raishuu gakusei wa depaato de terebi o kaimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "がく",
+      "4": "せい",
+      "15": "か"
+    },
     "meaning": "The student will buy TV at the department store next week",
     "meaning_id": "Minggu depan Pelajar membeli TV di toko serba ada"
   },
@@ -2347,6 +3336,12 @@ export const generatedSentences = [
       "raishuu haha wa uchi de raamen wo tabemasu",
       "raishuu haha wa uchi de raamen o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "はは",
+      "13": "た"
+    },
     "meaning": "My mother will eat ramen at home next week",
     "meaning_id": "Minggu depan Ibu saya makan ramen di rumah"
   },
@@ -2361,6 +3356,11 @@ export const generatedSentences = [
       "chichi wa mise de terebi wo kaimasu",
       "chichi wa mise de terebi o kaimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "みせ",
+      "8": "か"
+    },
     "meaning": "My father buys TV at the shop",
     "meaning_id": "Ayah saya membeli TV di toko"
   },
@@ -2375,6 +3375,12 @@ export const generatedSentences = [
       "raishuu tomodachi wa suupaa de pan wo kaimasu",
       "raishuu tomodachi wa suupaa de pan o kaimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "とも",
+      "15": "か"
+    },
     "meaning": "My friend will buy bread at the supermarket next week",
     "meaning_id": "Minggu depan Teman saya membeli roti di supermarket"
   },
@@ -2389,6 +3395,11 @@ export const generatedSentences = [
       "raishuu watashi wa uchi de gyuunyuu wo nomimasu",
       "raishuu watashi wa uchi de gyuunyuu o nomimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "17": "の"
+    },
     "meaning": "I will drink milk at home next week",
     "meaning_id": "Minggu depan Saya minum susu di rumah"
   },
@@ -2403,6 +3414,11 @@ export const generatedSentences = [
       "kinou chichi wa uchi de mizu wo nomimashita",
       "kinou chichi wa uchi de mizu o nomimashita"
     ],
+    "furigana": {
+      "4": "ちち",
+      "9": "みず",
+      "11": "の"
+    },
     "meaning": "My father drank water at home yesterday",
     "meaning_id": "Kemarin Ayah saya minum air di rumah"
   },
@@ -2417,6 +3433,14 @@ export const generatedSentences = [
       "raishuu gakusei wa mise de raamen wo tabemasu",
       "raishuu gakusei wa mise de raamen o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "がく",
+      "4": "せい",
+      "6": "みせ",
+      "13": "た"
+    },
     "meaning": "The student will eat ramen at the shop next week",
     "meaning_id": "Minggu depan Pelajar makan ramen di toko"
   },
@@ -2431,6 +3455,13 @@ export const generatedSentences = [
       "raishuu tomodachi wa depaato de mizu wo kaimasu",
       "raishuu tomodachi wa depaato de mizu o kaimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "とも",
+      "12": "みず",
+      "14": "か"
+    },
     "meaning": "My friend will buy water at the department store next week",
     "meaning_id": "Minggu depan Teman saya membeli air di toko serba ada"
   },
@@ -2445,6 +3476,12 @@ export const generatedSentences = [
       "mainichi chichi wa uchi de ringo wo tabemasu",
       "mainichi chichi wa uchi de ringo o tabemasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "ちち",
+      "12": "た"
+    },
     "meaning": "My father eats an apple at home every day",
     "meaning_id": "Setiap hari Ayah saya makan apel di rumah"
   },
@@ -2459,6 +3496,11 @@ export const generatedSentences = [
       "kinou gakusei wa resutoran de ocha wo nomimashita",
       "kinou gakusei wa resutoran de ocha o nomimashita"
     ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい",
+      "17": "の"
+    },
     "meaning": "The student drank tea at the restaurant yesterday",
     "meaning_id": "Kemarin Pelajar minum teh di restoran"
   },
@@ -2473,6 +3515,13 @@ export const generatedSentences = [
       "mainichi sensei wa resutoran de gohan wo tabemasu",
       "mainichi sensei wa resutoran de gohan o tabemasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "せん",
+      "4": "せい",
+      "16": "た"
+    },
     "meaning": "The teacher eats rice at the restaurant every day",
     "meaning_id": "Setiap hari Guru makan nasi di restoran"
   },
@@ -2487,6 +3536,11 @@ export const generatedSentences = [
       "raishuu watashi wa depaato de hana wo kaimasu",
       "raishuu watashi wa depaato de hana o kaimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "15": "か"
+    },
     "meaning": "I will buy a flower at the department store next week",
     "meaning_id": "Minggu depan Saya membeli bunga di toko serba ada"
   },
@@ -2501,6 +3555,9 @@ export const generatedSentences = [
       "anata wa uchi de sushi wo tabemasu",
       "anata wa uchi de sushi o tabemasu"
     ],
+    "furigana": {
+      "10": "た"
+    },
     "meaning": "You eat sushi at home",
     "meaning_id": "Anda makan sushi di rumah"
   },
@@ -2515,6 +3572,11 @@ export const generatedSentences = [
       "kinou watashi wa uchi de shinbun wo yomimashita",
       "kinou watashi wa uchi de shinbun o yomimashita"
     ],
+    "furigana": {
+      "11": "しん",
+      "12": "ぶん",
+      "14": "よ"
+    },
     "meaning": "I read the newspaper at home yesterday",
     "meaning_id": "Kemarin Saya membaca koran di rumah"
   },
@@ -2529,6 +3591,10 @@ export const generatedSentences = [
       "chichi wa suupaa de niku wo kaimasu",
       "chichi wa suupaa de niku o kaimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "10": "か"
+    },
     "meaning": "My father buys meat at the supermarket",
     "meaning_id": "Ayah saya membeli daging di supermarket"
   },
@@ -2543,6 +3609,10 @@ export const generatedSentences = [
       "kinou anata wa uchi de mizu wo nomimashita",
       "kinou anata wa uchi de mizu o nomimashita"
     ],
+    "furigana": {
+      "11": "みず",
+      "13": "の"
+    },
     "meaning": "You drank water at home yesterday",
     "meaning_id": "Kemarin Anda minum air di rumah"
   },
@@ -2557,6 +3627,11 @@ export const generatedSentences = [
       "kinou sensei wa uchi de ringo wo tabemashita",
       "kinou sensei wa uchi de ringo o tabemashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "14": "た"
+    },
     "meaning": "The teacher ate an apple at home yesterday",
     "meaning_id": "Kemarin Guru makan apel di rumah"
   },
@@ -2571,6 +3646,11 @@ export const generatedSentences = [
       "sensei wa suupaa de ringo wo kaimasu",
       "sensei wa suupaa de ringo o kaimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "12": "か"
+    },
     "meaning": "The teacher buys an apple at the supermarket",
     "meaning_id": "Guru membeli apel di supermarket"
   },
@@ -2585,6 +3665,12 @@ export const generatedSentences = [
       "mainichi haha wa uchi de sushi wo tabemasu",
       "mainichi haha wa uchi de sushi o tabemasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "はは",
+      "11": "た"
+    },
     "meaning": "My mother eats sushi at home every day",
     "meaning_id": "Setiap hari Ibu saya makan sushi di rumah"
   },
@@ -2599,6 +3685,15 @@ export const generatedSentences = [
       "raishuu gakusei wa uchi de shinbun wo yomimasu",
       "raishuu gakusei wa uchi de shinbun o yomimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "がく",
+      "4": "せい",
+      "9": "しん",
+      "10": "ぶん",
+      "12": "よ"
+    },
     "meaning": "The student will read the newspaper at home next week",
     "meaning_id": "Minggu depan Pelajar membaca koran di rumah"
   },
@@ -2613,6 +3708,12 @@ export const generatedSentences = [
       "haha wa gakkou de zasshi wo yomimasu",
       "haha wa gakkou de zasshi o yomimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "がっ",
+      "3": "こう",
+      "9": "よ"
+    },
     "meaning": "My mother reads a magazine at school",
     "meaning_id": "Ibu saya membaca majalah di sekolah"
   },
@@ -2627,6 +3728,11 @@ export const generatedSentences = [
       "chichi wa depaato de mizu wo kaimasu",
       "chichi wa depaato de mizu o kaimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "7": "みず",
+      "9": "か"
+    },
     "meaning": "My father buys water at the department store",
     "meaning_id": "Ayah saya membeli air di toko serba ada"
   },
@@ -2641,6 +3747,13 @@ export const generatedSentences = [
       "mainichi tomodachi wa mise de gohan wo tabemasu",
       "mainichi tomodachi wa mise de gohan o tabemasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "とも",
+      "7": "みせ",
+      "13": "た"
+    },
     "meaning": "My friend eats rice at the shop every day",
     "meaning_id": "Setiap hari Teman saya makan nasi di toko"
   },
@@ -2655,6 +3768,11 @@ export const generatedSentences = [
       "raishuu watashi wa uchi de koohii wo nomimasu",
       "raishuu watashi wa uchi de koohii o nomimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "15": "の"
+    },
     "meaning": "I will drink coffee at home next week",
     "meaning_id": "Minggu depan Saya minum kopi di rumah"
   },
@@ -2669,6 +3787,11 @@ export const generatedSentences = [
       "haha wa uchi de mizu wo nomimasu",
       "haha wa uchi de mizu o nomimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "5": "みず",
+      "7": "の"
+    },
     "meaning": "My mother drinks water at home",
     "meaning_id": "Ibu saya minum air di rumah"
   },
@@ -2683,6 +3806,12 @@ export const generatedSentences = [
       "raishuu tomodachi wa resutoran de gohan wo tabemasu",
       "raishuu tomodachi wa resutoran de gohan o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "とも",
+      "17": "た"
+    },
     "meaning": "My friend will eat rice at the restaurant next week",
     "meaning_id": "Minggu depan Teman saya makan nasi di restoran"
   },
@@ -2697,6 +3826,10 @@ export const generatedSentences = [
       "chichi wa uchi de sushi wo tabemasu",
       "chichi wa uchi de sushi o tabemasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "8": "た"
+    },
     "meaning": "My father eats sushi at home",
     "meaning_id": "Ayah saya makan sushi di rumah"
   },
@@ -2711,6 +3844,9 @@ export const generatedSentences = [
       "anata wa uchi de pan wo tabemasu",
       "anata wa uchi de pan o tabemasu"
     ],
+    "furigana": {
+      "10": "た"
+    },
     "meaning": "You eat bread at home",
     "meaning_id": "Anda makan roti di rumah"
   },
@@ -2725,6 +3861,10 @@ export const generatedSentences = [
       "kinou haha wa uchi de zasshi wo yomimashita",
       "kinou haha wa uchi de zasshi o yomimashita"
     ],
+    "furigana": {
+      "4": "はは",
+      "13": "よ"
+    },
     "meaning": "My mother read a magazine at home yesterday",
     "meaning_id": "Kemarin Ibu saya membaca majalah di rumah"
   },
@@ -2739,6 +3879,10 @@ export const generatedSentences = [
       "kinou haha wa uchi de ringo wo tabemashita",
       "kinou haha wa uchi de ringo o tabemashita"
     ],
+    "furigana": {
+      "4": "はは",
+      "13": "た"
+    },
     "meaning": "My mother ate an apple at home yesterday",
     "meaning_id": "Kemarin Ibu saya makan apel di rumah"
   },
@@ -2753,6 +3897,15 @@ export const generatedSentences = [
       "mainichi gakusei wa mise de hon wo kaimasu",
       "mainichi gakusei wa mise de hon o kaimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "がく",
+      "4": "せい",
+      "6": "みせ",
+      "8": "ほん",
+      "10": "か"
+    },
     "meaning": "The student buys a book at the shop every day",
     "meaning_id": "Setiap hari Pelajar membeli buku di toko"
   },
@@ -2767,6 +3920,13 @@ export const generatedSentences = [
       "raishuu gakusei wa resutoran de sushi wo tabemasu",
       "raishuu gakusei wa resutoran de sushi o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "がく",
+      "4": "せい",
+      "15": "た"
+    },
     "meaning": "The student will eat sushi at the restaurant next week",
     "meaning_id": "Minggu depan Pelajar makan sushi di restoran"
   },
@@ -2781,6 +3941,12 @@ export const generatedSentences = [
       "mainichi tomodachi wa suupaa de sakana wo kaimasu",
       "mainichi tomodachi wa suupaa de sakana o kaimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "とも",
+      "16": "か"
+    },
     "meaning": "My friend buys fish at the supermarket every day",
     "meaning_id": "Setiap hari Teman saya membeli ikan di supermarket"
   },
@@ -2795,6 +3961,12 @@ export const generatedSentences = [
       "mainichi chichi wa suupaa de niku wo kaimasu",
       "mainichi chichi wa suupaa de niku o kaimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "ちち",
+      "13": "か"
+    },
     "meaning": "My father buys meat at the supermarket every day",
     "meaning_id": "Setiap hari Ayah saya membeli daging di supermarket"
   },
@@ -2809,6 +3981,11 @@ export const generatedSentences = [
       "raishuu anata wa uchi de eiga wo mimasu",
       "raishuu anata wa uchi de eiga o mimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "14": "み"
+    },
     "meaning": "You will watch a movie at home next week",
     "meaning_id": "Minggu depan Anda menonton film di rumah"
   },
@@ -2823,6 +4000,13 @@ export const generatedSentences = [
       "sensei wa mise de kuruma wo kaimasu",
       "sensei wa mise de kuruma o kaimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "みせ",
+      "5": "くるま",
+      "7": "か"
+    },
     "meaning": "The teacher buys a car at the shop",
     "meaning_id": "Guru membeli mobil di toko"
   },
@@ -2837,6 +4021,10 @@ export const generatedSentences = [
       "tomodachi wa uchi de ocha wo nomimasu",
       "tomodachi wa uchi de ocha o nomimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "11": "の"
+    },
     "meaning": "My friend drinks tea at home",
     "meaning_id": "Teman saya minum teh di rumah"
   },
@@ -2851,6 +4039,11 @@ export const generatedSentences = [
       "kinou sensei wa uchi de terebi wo mimashita",
       "kinou sensei wa uchi de terebi o mimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "14": "み"
+    },
     "meaning": "The teacher watched TV at home yesterday",
     "meaning_id": "Kemarin Guru menonton TV di rumah"
   },
@@ -2865,6 +4058,11 @@ export const generatedSentences = [
       "kinou tomodachi wa mise de kaban wo kaimashita",
       "kinou tomodachi wa mise de kaban o kaimashita"
     ],
+    "furigana": {
+      "4": "とも",
+      "8": "みせ",
+      "14": "か"
+    },
     "meaning": "My friend bought a bag at the shop yesterday",
     "meaning_id": "Kemarin Teman saya membeli tas di toko"
   },
@@ -2879,6 +4077,15 @@ export const generatedSentences = [
       "mainichi sensei wa uchi de shinbun wo yomimasu",
       "mainichi sensei wa uchi de shinbun o yomimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "せん",
+      "4": "せい",
+      "9": "しん",
+      "10": "ぶん",
+      "12": "よ"
+    },
     "meaning": "The teacher reads the newspaper at home every day",
     "meaning_id": "Setiap hari Guru membaca koran di rumah"
   },
@@ -2893,6 +4100,12 @@ export const generatedSentences = [
       "mainichi chichi wa depaato de pan wo kaimasu",
       "mainichi chichi wa depaato de pan o kaimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "ちち",
+      "13": "か"
+    },
     "meaning": "My father buys bread at the department store every day",
     "meaning_id": "Setiap hari Ayah saya membeli roti di toko serba ada"
   },
@@ -2907,6 +4120,11 @@ export const generatedSentences = [
       "kinou gakusei wa resutoran de sushi wo tabemashita",
       "kinou gakusei wa resutoran de sushi o tabemashita"
     ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい",
+      "16": "た"
+    },
     "meaning": "The student ate sushi at the restaurant yesterday",
     "meaning_id": "Kemarin Pelajar makan sushi di restoran"
   },
@@ -2921,6 +4139,9 @@ export const generatedSentences = [
       "kinou watashi wa resutoran de koohii wo nomimashita",
       "kinou watashi wa resutoran de koohii o nomimashita"
     ],
+    "furigana": {
+      "19": "の"
+    },
     "meaning": "I drank coffee at the restaurant yesterday",
     "meaning_id": "Kemarin Saya minum kopi di restoran"
   },
@@ -2935,6 +4156,11 @@ export const generatedSentences = [
       "kinou sensei wa depaato de hana wo kaimashita",
       "kinou sensei wa depaato de hana o kaimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "15": "か"
+    },
     "meaning": "The teacher bought a flower at the department store yesterday",
     "meaning_id": "Kemarin Guru membeli bunga di toko serba ada"
   },
@@ -2949,6 +4175,12 @@ export const generatedSentences = [
       "sensei wa mise de hana wo kaimasu",
       "sensei wa mise de hana o kaimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "みせ",
+      "8": "か"
+    },
     "meaning": "The teacher buys a flower at the shop",
     "meaning_id": "Guru membeli bunga di toko"
   },
@@ -2963,6 +4195,12 @@ export const generatedSentences = [
       "mainichi haha wa uchi de raamen wo tabemasu",
       "mainichi haha wa uchi de raamen o tabemasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "はは",
+      "13": "た"
+    },
     "meaning": "My mother eats ramen at home every day",
     "meaning_id": "Setiap hari Ibu saya makan ramen di rumah"
   },
@@ -2977,6 +4215,11 @@ export const generatedSentences = [
       "raishuu watashi wa uchi de ringo wo tabemasu",
       "raishuu watashi wa uchi de ringo o tabemasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "14": "た"
+    },
     "meaning": "I will eat an apple at home next week",
     "meaning_id": "Minggu depan Saya makan apel di rumah"
   },
@@ -2991,6 +4234,11 @@ export const generatedSentences = [
       "kinou sensei wa uchi de koohii wo nomimashita",
       "kinou sensei wa uchi de koohii o nomimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "15": "の"
+    },
     "meaning": "The teacher drank coffee at home yesterday",
     "meaning_id": "Kemarin Guru minum kopi di rumah"
   },
@@ -3005,6 +4253,11 @@ export const generatedSentences = [
       "kinou sensei wa depaato de kaban wo kaimashita",
       "kinou sensei wa depaato de kaban o kaimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "16": "か"
+    },
     "meaning": "The teacher bought a bag at the department store yesterday",
     "meaning_id": "Kemarin Guru membeli tas di toko serba ada"
   },
@@ -3019,6 +4272,12 @@ export const generatedSentences = [
       "raishuu watashi wa depaato de mizu wo kaimasu",
       "raishuu watashi wa depaato de mizu o kaimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "12": "みず",
+      "14": "か"
+    },
     "meaning": "I will buy water at the department store next week",
     "meaning_id": "Minggu depan Saya membeli air di toko serba ada"
   },
@@ -3033,6 +4292,10 @@ export const generatedSentences = [
       "kinou haha wa uchi de ongaku wo kikimashita",
       "kinou haha wa uchi de ongaku o kikimashita"
     ],
+    "furigana": {
+      "4": "はは",
+      "14": "き"
+    },
     "meaning": "My mother listened to music at home yesterday",
     "meaning_id": "Kemarin Ibu saya mendengarkan musik di rumah"
   },
@@ -3047,6 +4310,9 @@ export const generatedSentences = [
       "watashi wa uchi de eiga wo mimasu",
       "watashi wa uchi de eiga o mimasu"
     ],
+    "furigana": {
+      "11": "み"
+    },
     "meaning": "I watch a movie at home",
     "meaning_id": "Saya menonton film di rumah"
   },
@@ -3061,6 +4327,12 @@ export const generatedSentences = [
       "haha wa uchi de shinbun wo yomimasu",
       "haha wa uchi de shinbun o yomimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "5": "しん",
+      "6": "ぶん",
+      "8": "よ"
+    },
     "meaning": "My mother reads the newspaper at home",
     "meaning_id": "Ibu saya membaca koran di rumah"
   },
@@ -3075,6 +4347,13 @@ export const generatedSentences = [
       "raishuu gakusei wa depaato de tokei wo kaimasu",
       "raishuu gakusei wa depaato de tokei o kaimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "がく",
+      "4": "せい",
+      "15": "か"
+    },
     "meaning": "The student will buy a watch at the department store next week",
     "meaning_id": "Minggu depan Pelajar membeli jam di toko serba ada"
   },
@@ -3089,6 +4368,12 @@ export const generatedSentences = [
       "mainichi anata wa suupaa de mizu wo kaimasu",
       "mainichi anata wa suupaa de mizu o kaimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "12": "みず",
+      "14": "か"
+    },
     "meaning": "You buy water at the supermarket every day",
     "meaning_id": "Setiap hari Anda membeli air di supermarket"
   },
@@ -3103,6 +4388,13 @@ export const generatedSentences = [
       "raishuu chichi wa mise de pan wo kaimasu",
       "raishuu chichi wa mise de pan o kaimasu"
     ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "ちち",
+      "5": "みせ",
+      "10": "か"
+    },
     "meaning": "My father will buy bread at the shop next week",
     "meaning_id": "Minggu depan Ayah saya membeli roti di toko"
   },
@@ -3117,6 +4409,13 @@ export const generatedSentences = [
       "sensei wa gakkou de zasshi wo yomimasu",
       "sensei wa gakkou de zasshi o yomimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "10": "よ"
+    },
     "meaning": "The teacher reads a magazine at school",
     "meaning_id": "Guru membaca majalah di sekolah"
   },
@@ -3131,6 +4430,9 @@ export const generatedSentences = [
       "kinou watashi wa depaato de terebi wo kaimashita",
       "kinou watashi wa depaato de terebi o kaimashita"
     ],
+    "furigana": {
+      "17": "か"
+    },
     "meaning": "I bought TV at the department store yesterday",
     "meaning_id": "Kemarin Saya membeli TV di toko serba ada"
   },
@@ -3145,6 +4447,9 @@ export const generatedSentences = [
       "anata wa suupaa de tamago wo kaimasu",
       "anata wa suupaa de tamago o kaimasu"
     ],
+    "furigana": {
+      "13": "か"
+    },
     "meaning": "You buy an egg at the supermarket",
     "meaning_id": "Anda membeli telur di supermarket"
   },
@@ -3159,6 +4464,11 @@ export const generatedSentences = [
       "sensei wa uchi de zasshi wo yomimasu",
       "sensei wa uchi de zasshi o yomimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "10": "よ"
+    },
     "meaning": "The teacher reads a magazine at home",
     "meaning_id": "Guru membaca majalah di rumah"
   },
@@ -3183,6 +4493,9 @@ export const generatedSentences = [
     "romanji": [
       "mise ni terebi ga arimasu"
     ],
+    "furigana": {
+      "0": "みせ"
+    },
     "meaning": "There is a TV at the shop",
     "meaning_id": "Di toko ada TV"
   },
@@ -3195,6 +4508,9 @@ export const generatedSentences = [
     "romanji": [
       "kouen ni ki ga arimasu"
     ],
+    "furigana": {
+      "5": "き"
+    },
     "meaning": "There is a tree in the park",
     "meaning_id": "Di taman ada pohon"
   },
@@ -3255,6 +4571,9 @@ export const generatedSentences = [
     "romanji": [
       "depaato ni mizu ga arimasu"
     ],
+    "furigana": {
+      "5": "みず"
+    },
     "meaning": "There is water at the department store",
     "meaning_id": "Di toko serba ada air"
   },
@@ -3267,6 +4586,9 @@ export const generatedSentences = [
     "romanji": [
       "mise ni pan ga arimasu"
     ],
+    "furigana": {
+      "0": "みせ"
+    },
     "meaning": "There is bread at the shop",
     "meaning_id": "Di toko ada roti"
   },
@@ -3279,6 +4601,10 @@ export const generatedSentences = [
     "romanji": [
       "mise ni hon ga arimasu"
     ],
+    "furigana": {
+      "0": "みせ",
+      "2": "ほん"
+    },
     "meaning": "There is a book at the shop",
     "meaning_id": "Di toko ada buku"
   },
@@ -3291,6 +4617,9 @@ export const generatedSentences = [
     "romanji": [
       "mise ni hana ga arimasu"
     ],
+    "furigana": {
+      "0": "みせ"
+    },
     "meaning": "There is a flower at the shop",
     "meaning_id": "Di toko ada bunga"
   },
@@ -3315,6 +4644,10 @@ export const generatedSentences = [
     "romanji": [
       "mise ni tomodachi ga imasu"
     ],
+    "furigana": {
+      "0": "みせ",
+      "2": "とも"
+    },
     "meaning": "My friend is at the shop",
     "meaning_id": "Teman saya ada di toko"
   },
@@ -3327,6 +4660,10 @@ export const generatedSentences = [
     "romanji": [
       "depaato ni sensei ga imasu"
     ],
+    "furigana": {
+      "5": "せん",
+      "6": "せい"
+    },
     "meaning": "The teacher is at the department store",
     "meaning_id": "Guru ada di toko serba ada"
   },
@@ -3339,6 +4676,11 @@ export const generatedSentences = [
     "romanji": [
       "mise ni onnanoko ga imasu"
     ],
+    "furigana": {
+      "0": "みせ",
+      "2": "おんな",
+      "4": "こ"
+    },
     "meaning": "The girl is at the shop",
     "meaning_id": "Anak perempuan ada di toko"
   },
@@ -3351,6 +4693,11 @@ export const generatedSentences = [
     "romanji": [
       "eki ni sensei ga imasu"
     ],
+    "furigana": {
+      "0": "えき",
+      "2": "せん",
+      "3": "せい"
+    },
     "meaning": "The teacher is at the station",
     "meaning_id": "Guru ada di stasiun"
   },
@@ -3363,6 +4710,12 @@ export const generatedSentences = [
     "romanji": [
       "gakkou ni onnanoko ga imasu"
     ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "おんな",
+      "5": "こ"
+    },
     "meaning": "The girl is at school",
     "meaning_id": "Anak perempuan ada di sekolah"
   },
@@ -3375,6 +4728,10 @@ export const generatedSentences = [
     "romanji": [
       "kouen ni onnanoko ga imasu"
     ],
+    "furigana": {
+      "5": "おんな",
+      "7": "こ"
+    },
     "meaning": "The girl is in the park",
     "meaning_id": "Anak perempuan ada di taman"
   },
@@ -3387,6 +4744,10 @@ export const generatedSentences = [
     "romanji": [
       "depaato ni gakusei ga imasu"
     ],
+    "furigana": {
+      "5": "がく",
+      "6": "せい"
+    },
     "meaning": "The student is at the department store",
     "meaning_id": "Pelajar ada di toko serba ada"
   },
@@ -3399,6 +4760,10 @@ export const generatedSentences = [
     "romanji": [
       "kouen ni gakusei ga imasu"
     ],
+    "furigana": {
+      "5": "がく",
+      "6": "せい"
+    },
     "meaning": "The student is in the park",
     "meaning_id": "Pelajar ada di taman"
   },
@@ -3411,6 +4776,12 @@ export const generatedSentences = [
     "romanji": [
       "gakkou ni sensei ga imasu"
     ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "せん",
+      "4": "せい"
+    },
     "meaning": "The teacher is at school",
     "meaning_id": "Guru ada di sekolah"
   },
@@ -3423,6 +4794,12 @@ export const generatedSentences = [
     "romanji": [
       "gakkou ni gakusei ga imasu"
     ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "がく",
+      "4": "せい"
+    },
     "meaning": "The student is at school",
     "meaning_id": "Pelajar ada di sekolah"
   },
@@ -3435,6 +4812,10 @@ export const generatedSentences = [
     "romanji": [
       "depaato ni otokonoko ga imasu"
     ],
+    "furigana": {
+      "5": "おとこ",
+      "7": "こ"
+    },
     "meaning": "The boy is at the department store",
     "meaning_id": "Anak laki-laki ada di toko serba ada"
   },
@@ -3447,6 +4828,12 @@ export const generatedSentences = [
     "romanji": [
       "gakkou ni otokonoko ga imasu"
     ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "おとこ",
+      "5": "こ"
+    },
     "meaning": "The boy is at school",
     "meaning_id": "Anak laki-laki ada di sekolah"
   },
@@ -3459,6 +4846,10 @@ export const generatedSentences = [
     "romanji": [
       "kouen ni sensei ga imasu"
     ],
+    "furigana": {
+      "5": "せん",
+      "6": "せい"
+    },
     "meaning": "The teacher is in the park",
     "meaning_id": "Guru ada di taman"
   },
@@ -3471,6 +4862,11 @@ export const generatedSentences = [
     "romanji": [
       "gakkou ni tomodachi ga imasu"
     ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "とも"
+    },
     "meaning": "My friend is at school",
     "meaning_id": "Teman saya ada di sekolah"
   },
@@ -3483,6 +4879,9 @@ export const generatedSentences = [
     "romanji": [
       "depaato ni tomodachi ga imasu"
     ],
+    "furigana": {
+      "5": "とも"
+    },
     "meaning": "My friend is at the department store",
     "meaning_id": "Teman saya ada di toko serba ada"
   },
@@ -3496,6 +4895,9 @@ export const generatedSentences = [
     "romanji": [
       "isu wa heya no naka ni arimasu"
     ],
+    "furigana": {
+      "6": "なか"
+    },
     "meaning": "The chair is in the room",
     "meaning_id": "Kursi ada di dalam kamar"
   },
@@ -3509,6 +4911,10 @@ export const generatedSentences = [
     "romanji": [
       "hon wa kaban no naka ni arimasu"
     ],
+    "furigana": {
+      "0": "ほん",
+      "6": "なか"
+    },
     "meaning": "The book is inside the bag",
     "meaning_id": "Buku ada di dalam tas"
   },
@@ -3522,6 +4928,9 @@ export const generatedSentences = [
     "romanji": [
       "kaban wa isu no shita ni arimasu"
     ],
+    "furigana": {
+      "7": "した"
+    },
     "meaning": "The bag is under the chair",
     "meaning_id": "Tas ada di bawah kursi"
   },
@@ -3535,6 +4944,10 @@ export const generatedSentences = [
     "romanji": [
       "hon wa tsukue no ue ni arimasu"
     ],
+    "furigana": {
+      "0": "ほん",
+      "6": "うえ"
+    },
     "meaning": "The book is on the desk",
     "meaning_id": "Buku ada di atas meja"
   },
@@ -3548,6 +4961,9 @@ export const generatedSentences = [
     "romanji": [
       "tokei wa kaban no naka ni arimasu"
     ],
+    "furigana": {
+      "8": "なか"
+    },
     "meaning": "The watch is inside the bag",
     "meaning_id": "Jam ada di dalam tas"
   },
@@ -3561,6 +4977,9 @@ export const generatedSentences = [
     "romanji": [
       "terebi wa heya no naka ni arimasu"
     ],
+    "furigana": {
+      "7": "なか"
+    },
     "meaning": "The TV is in the room",
     "meaning_id": "TV ada di dalam kamar"
   },
@@ -3574,6 +4993,9 @@ export const generatedSentences = [
     "romanji": [
       "kaban wa tsukue no ue ni arimasu"
     ],
+    "furigana": {
+      "8": "うえ"
+    },
     "meaning": "The bag is on the desk",
     "meaning_id": "Tas ada di atas meja"
   },
@@ -3587,6 +5009,9 @@ export const generatedSentences = [
     "romanji": [
       "okane wa tsukue no ue ni arimasu"
     ],
+    "furigana": {
+      "8": "うえ"
+    },
     "meaning": "The money is on the desk",
     "meaning_id": "Uang ada di atas meja"
   },
@@ -3600,6 +5025,9 @@ export const generatedSentences = [
     "romanji": [
       "tokei wa tsukue no ue ni arimasu"
     ],
+    "furigana": {
+      "8": "うえ"
+    },
     "meaning": "The watch is on the desk",
     "meaning_id": "Jam ada di atas meja"
   },
@@ -3613,6 +5041,9 @@ export const generatedSentences = [
     "romanji": [
       "okane wa kaban no naka ni arimasu"
     ],
+    "furigana": {
+      "8": "なか"
+    },
     "meaning": "The money is inside the bag",
     "meaning_id": "Uang ada di dalam tas"
   },
@@ -3625,6 +5056,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa koohii ga suki desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student likes coffee",
     "meaning_id": "Pelajar suka kopi"
   },
@@ -3637,6 +5072,9 @@ export const generatedSentences = [
     "romanji": [
       "haha wa ongaku ga suki desu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother likes music",
     "meaning_id": "Ibu saya suka musik"
   },
@@ -3649,6 +5087,10 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa ocha ga suki desu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
     "meaning": "The teacher likes tea",
     "meaning_id": "Guru suka teh"
   },
@@ -3661,6 +5103,9 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa koohii ga suki desu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father likes coffee",
     "meaning_id": "Ayah saya suka kopi"
   },
@@ -3673,6 +5118,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ringo ga suki desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student likes apples",
     "meaning_id": "Pelajar suka apel"
   },
@@ -3685,6 +5134,12 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa nihon ga suki desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん"
+    },
     "meaning": "The student likes Japan",
     "meaning_id": "Pelajar suka Jepang"
   },
@@ -3697,6 +5152,10 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa ongaku ga suki desu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
     "meaning": "The teacher likes music",
     "meaning_id": "Guru suka musik"
   },
@@ -3709,6 +5168,11 @@ export const generatedSentences = [
     "romanji": [
       "haha wa nihon ga suki desu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "に",
+      "3": "ほん"
+    },
     "meaning": "My mother likes Japan",
     "meaning_id": "Ibu saya suka Jepang"
   },
@@ -3721,6 +5185,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ocha ga suki desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student likes tea",
     "meaning_id": "Pelajar suka teh"
   },
@@ -3733,6 +5201,10 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa eiga ga suki desu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
     "meaning": "The teacher likes movies",
     "meaning_id": "Guru suka film"
   },
@@ -3745,6 +5217,9 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa eiga ga suki desu"
     ],
+    "furigana": {
+      "0": "とも"
+    },
     "meaning": "My friend likes movies",
     "meaning_id": "Teman saya suka film"
   },
@@ -3757,6 +5232,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ongaku ga suki desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student likes music",
     "meaning_id": "Pelajar suka musik"
   },
@@ -3769,6 +5248,10 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa nihon ga suki desu"
     ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん"
+    },
     "meaning": "I like Japan",
     "meaning_id": "Saya suka Jepang"
   },
@@ -3781,6 +5264,9 @@ export const generatedSentences = [
     "romanji": [
       "haha wa ringo ga suki desu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother likes apples",
     "meaning_id": "Ibu saya suka apel"
   },
@@ -3793,6 +5279,9 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa ringo ga suki desu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father likes apples",
     "meaning_id": "Ayah saya suka apel"
   },
@@ -3805,6 +5294,9 @@ export const generatedSentences = [
     "romanji": [
       "haha wa sushi ga suki desu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother likes sushi",
     "meaning_id": "Ibu saya suka sushi"
   },
@@ -3829,6 +5321,9 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa sushi ga suki desu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father likes sushi",
     "meaning_id": "Ayah saya suka sushi"
   },
@@ -3853,6 +5348,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa sushi ga suki desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student likes sushi",
     "meaning_id": "Pelajar suka sushi"
   },
@@ -3877,6 +5376,9 @@ export const generatedSentences = [
     "romanji": [
       "haha wa koohii ga suki desu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother likes coffee",
     "meaning_id": "Ibu saya suka kopi"
   },
@@ -3889,6 +5391,12 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa nihon ga suki desu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん"
+    },
     "meaning": "The teacher likes Japan",
     "meaning_id": "Guru suka Jepang"
   },
@@ -3901,6 +5409,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa eiga ga suki desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student likes movies",
     "meaning_id": "Pelajar suka film"
   },
@@ -3913,6 +5425,9 @@ export const generatedSentences = [
     "romanji": [
       "haha wa eiga ga suki desu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother likes movies",
     "meaning_id": "Ibu saya suka film"
   },
@@ -3937,6 +5452,9 @@ export const generatedSentences = [
     "romanji": [
       "mise wa doko desu ka"
     ],
+    "furigana": {
+      "0": "みせ"
+    },
     "meaning": "Where is the shop?",
     "meaning_id": "Toko di mana?"
   },
@@ -3961,6 +5479,10 @@ export const generatedSentences = [
     "romanji": [
       "gakkou wa doko desu ka"
     ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう"
+    },
     "meaning": "Where is the school?",
     "meaning_id": "Sekolah di mana?"
   },
@@ -3973,6 +5495,9 @@ export const generatedSentences = [
     "romanji": [
       "eki wa doko desu ka"
     ],
+    "furigana": {
+      "0": "えき"
+    },
     "meaning": "Where is the station?",
     "meaning_id": "Stasiun di mana?"
   },
@@ -3998,6 +5523,13 @@ export const generatedSentences = [
       "tomodachi wa nihongo wo yomimasu",
       "tomodachi wa nihongo o yomimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "に",
+      "5": "ほん",
+      "6": "ご",
+      "8": "よ"
+    },
     "meaning": "My friend reads Japanese",
     "meaning_id": "Teman saya membaca bahasa Jepang"
   },
@@ -4011,6 +5543,9 @@ export const generatedSentences = [
       "anata wa chuugokugo wo yomimasu",
       "anata wa chuugokugo o yomimasu"
     ],
+    "furigana": {
+      "11": "よ"
+    },
     "meaning": "You read Chinese",
     "meaning_id": "Anda membaca bahasa Mandarin"
   },
@@ -4024,6 +5559,10 @@ export const generatedSentences = [
       "tomodachi wa chuugokugo wo kakimasu",
       "tomodachi wa chuugokugo o kakimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "11": "か"
+    },
     "meaning": "My friend writes Chinese",
     "meaning_id": "Teman saya menulis bahasa Mandarin"
   },
@@ -4037,6 +5576,10 @@ export const generatedSentences = [
       "tomodachi wa eigo wo kakimasu",
       "tomodachi wa eigo o kakimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "8": "か"
+    },
     "meaning": "My friend writes English",
     "meaning_id": "Teman saya menulis bahasa Inggris"
   },
@@ -4050,6 +5593,11 @@ export const generatedSentences = [
       "gakusei wa eigo wo kakimasu",
       "gakusei wa eigo o kakimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "か"
+    },
     "meaning": "The student writes English",
     "meaning_id": "Pelajar menulis bahasa Inggris"
   },
@@ -4063,6 +5611,9 @@ export const generatedSentences = [
       "anata wa chuugokugo wo hanashimasu",
       "anata wa chuugokugo o hanashimasu"
     ],
+    "furigana": {
+      "11": "はな"
+    },
     "meaning": "You speak Chinese",
     "meaning_id": "Anda berbicara bahasa Mandarin"
   },
@@ -4076,6 +5627,9 @@ export const generatedSentences = [
       "watashi wa eigo wo hanashimasu",
       "watashi wa eigo o hanashimasu"
     ],
+    "furigana": {
+      "8": "はな"
+    },
     "meaning": "I speak English",
     "meaning_id": "Saya berbicara bahasa Inggris"
   },
@@ -4089,6 +5643,9 @@ export const generatedSentences = [
       "anata wa eigo wo yomimasu",
       "anata wa eigo o yomimasu"
     ],
+    "furigana": {
+      "8": "よ"
+    },
     "meaning": "You read English",
     "meaning_id": "Anda membaca bahasa Inggris"
   },
@@ -4102,6 +5659,10 @@ export const generatedSentences = [
       "tomodachi wa eigo wo yomimasu",
       "tomodachi wa eigo o yomimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "8": "よ"
+    },
     "meaning": "My friend reads English",
     "meaning_id": "Teman saya membaca bahasa Inggris"
   },
@@ -4115,6 +5676,9 @@ export const generatedSentences = [
       "watashi wa eigo wo yomimasu",
       "watashi wa eigo o yomimasu"
     ],
+    "furigana": {
+      "8": "よ"
+    },
     "meaning": "I read English",
     "meaning_id": "Saya membaca bahasa Inggris"
   },
@@ -4128,6 +5692,9 @@ export const generatedSentences = [
       "anata wa eigo wo hanashimasu",
       "anata wa eigo o hanashimasu"
     ],
+    "furigana": {
+      "8": "はな"
+    },
     "meaning": "You speak English",
     "meaning_id": "Anda berbicara bahasa Inggris"
   },
@@ -4141,6 +5708,11 @@ export const generatedSentences = [
       "gakusei wa chuugokugo wo hanashimasu",
       "gakusei wa chuugokugo o hanashimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "10": "はな"
+    },
     "meaning": "The student speaks Chinese",
     "meaning_id": "Pelajar berbicara bahasa Mandarin"
   },
@@ -4154,6 +5726,11 @@ export const generatedSentences = [
       "gakusei wa eigo wo hanashimasu",
       "gakusei wa eigo o hanashimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "はな"
+    },
     "meaning": "The student speaks English",
     "meaning_id": "Pelajar berbicara bahasa Inggris"
   },
@@ -4167,6 +5744,11 @@ export const generatedSentences = [
       "sensei wa chuugokugo wo hanashimasu",
       "sensei wa chuugokugo o hanashimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "10": "はな"
+    },
     "meaning": "The teacher speaks Chinese",
     "meaning_id": "Guru berbicara bahasa Mandarin"
   },
@@ -4180,6 +5762,9 @@ export const generatedSentences = [
       "anata wa eigo wo kakimasu",
       "anata wa eigo o kakimasu"
     ],
+    "furigana": {
+      "8": "か"
+    },
     "meaning": "You write English",
     "meaning_id": "Anda menulis bahasa Inggris"
   },
@@ -4193,6 +5778,11 @@ export const generatedSentences = [
       "sensei wa eigo wo kakimasu",
       "sensei wa eigo o kakimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "7": "か"
+    },
     "meaning": "The teacher writes English",
     "meaning_id": "Guru menulis bahasa Inggris"
   },
@@ -4206,6 +5796,14 @@ export const generatedSentences = [
       "sensei wa nihongo wo yomimasu",
       "sensei wa nihongo o yomimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん",
+      "5": "ご",
+      "7": "よ"
+    },
     "meaning": "The teacher reads Japanese",
     "meaning_id": "Guru membaca bahasa Jepang"
   },
@@ -4219,6 +5817,9 @@ export const generatedSentences = [
       "watashi wa chuugokugo wo kakimasu",
       "watashi wa chuugokugo o kakimasu"
     ],
+    "furigana": {
+      "11": "か"
+    },
     "meaning": "I write Chinese",
     "meaning_id": "Saya menulis bahasa Mandarin"
   },
@@ -4232,6 +5833,10 @@ export const generatedSentences = [
       "tomodachi wa chuugokugo wo yomimasu",
       "tomodachi wa chuugokugo o yomimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "11": "よ"
+    },
     "meaning": "My friend reads Chinese",
     "meaning_id": "Teman saya membaca bahasa Mandarin"
   },
@@ -4245,6 +5850,12 @@ export const generatedSentences = [
       "anata wa nihongo wo yomimasu",
       "anata wa nihongo o yomimasu"
     ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "6": "ご",
+      "8": "よ"
+    },
     "meaning": "You read Japanese",
     "meaning_id": "Anda membaca bahasa Jepang"
   },
@@ -4258,6 +5869,13 @@ export const generatedSentences = [
       "tomodachi wa nihongo wo kakimasu",
       "tomodachi wa nihongo o kakimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "に",
+      "5": "ほん",
+      "6": "ご",
+      "8": "か"
+    },
     "meaning": "My friend writes Japanese",
     "meaning_id": "Teman saya menulis bahasa Jepang"
   },
@@ -4271,6 +5889,9 @@ export const generatedSentences = [
       "anata wa chuugokugo wo kakimasu",
       "anata wa chuugokugo o kakimasu"
     ],
+    "furigana": {
+      "11": "か"
+    },
     "meaning": "You write Chinese",
     "meaning_id": "Anda menulis bahasa Mandarin"
   },
@@ -4284,6 +5905,11 @@ export const generatedSentences = [
       "sensei wa chuugokugo wo kakimasu",
       "sensei wa chuugokugo o kakimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "10": "か"
+    },
     "meaning": "The teacher writes Chinese",
     "meaning_id": "Guru menulis bahasa Mandarin"
   },
@@ -4297,6 +5923,14 @@ export const generatedSentences = [
       "gakusei wa nihongo wo kakimasu",
       "gakusei wa nihongo o kakimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん",
+      "5": "ご",
+      "7": "か"
+    },
     "meaning": "The student writes Japanese",
     "meaning_id": "Pelajar menulis bahasa Jepang"
   },
@@ -4309,6 +5943,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa eki ni imasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "えき"
+    },
     "meaning": "The student is at the station",
     "meaning_id": "Pelajar ada di stasiun"
   },
@@ -4321,6 +5960,11 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa ima uchi ni imasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "いま"
+    },
     "meaning": "The teacher is at home now",
     "meaning_id": "Guru ada di rumah sekarang"
   },
@@ -4333,6 +5977,9 @@ export const generatedSentences = [
     "romanji": [
       "haha wa uchi ni imasu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother is at home",
     "meaning_id": "Ibu saya ada di rumah"
   },
@@ -4345,6 +5992,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ima uchi ni imasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "いま"
+    },
     "meaning": "The student is at home now",
     "meaning_id": "Pelajar ada di rumah sekarang"
   },
@@ -4357,6 +6009,9 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa uchi ni imasu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father is at home",
     "meaning_id": "Ayah saya ada di rumah"
   },
@@ -4369,6 +6024,11 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa ima kouen ni imasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "いま"
+    },
     "meaning": "The teacher is in the park now",
     "meaning_id": "Guru ada di taman sekarang"
   },
@@ -4381,6 +6041,10 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa uchi ni imasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
     "meaning": "The teacher is at home",
     "meaning_id": "Guru ada di rumah"
   },
@@ -4393,6 +6057,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa ima kouen ni imasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "いま"
+    },
     "meaning": "My friend is in the park now",
     "meaning_id": "Teman saya ada di taman sekarang"
   },
@@ -4405,6 +6073,9 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa kouen ni imasu"
     ],
+    "furigana": {
+      "0": "とも"
+    },
     "meaning": "My friend is in the park",
     "meaning_id": "Teman saya ada di taman"
   },
@@ -4417,6 +6088,12 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ima mise ni imasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "いま",
+      "4": "みせ"
+    },
     "meaning": "The student is at the shop now",
     "meaning_id": "Pelajar ada di toko sekarang"
   },
@@ -4429,6 +6106,10 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa ima kouen ni imasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "いま"
+    },
     "meaning": "My father is in the park now",
     "meaning_id": "Ayah saya ada di taman sekarang"
   },
@@ -4441,6 +6122,12 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ima eki ni imasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "いま",
+      "4": "えき"
+    },
     "meaning": "The student is at the station now",
     "meaning_id": "Pelajar ada di stasiun sekarang"
   },
@@ -4453,6 +6140,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa mise ni imasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "みせ"
+    },
     "meaning": "The student is at the shop",
     "meaning_id": "Pelajar ada di toko"
   },
@@ -4465,6 +6157,12 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa ima gakkou ni imasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "いま",
+      "3": "がっ",
+      "4": "こう"
+    },
     "meaning": "My father is at school now",
     "meaning_id": "Ayah saya ada di sekolah sekarang"
   },
@@ -4477,6 +6175,9 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa kouen ni imasu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father is in the park",
     "meaning_id": "Ayah saya ada di taman"
   },
@@ -4489,6 +6190,11 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa eki ni imasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "えき"
+    },
     "meaning": "The teacher is at the station",
     "meaning_id": "Guru ada di stasiun"
   },
@@ -4501,6 +6207,9 @@ export const generatedSentences = [
     "romanji": [
       "haha wa kouen ni imasu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother is in the park",
     "meaning_id": "Ibu saya ada di taman"
   },
@@ -4513,6 +6222,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa ima uchi ni imasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "いま"
+    },
     "meaning": "My friend is at home now",
     "meaning_id": "Teman saya ada di rumah sekarang"
   },
@@ -4525,6 +6238,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ima kouen ni imasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "いま"
+    },
     "meaning": "The student is in the park now",
     "meaning_id": "Pelajar ada di taman sekarang"
   },
@@ -4537,6 +6255,11 @@ export const generatedSentences = [
     "romanji": [
       "haha wa gakkou ni imasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "がっ",
+      "3": "こう"
+    },
     "meaning": "My mother is at school",
     "meaning_id": "Ibu saya ada di sekolah"
   },
@@ -4550,6 +6273,14 @@ export const generatedSentences = [
     "romanji": [
       "kyou gakusei wa depaato de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "がく",
+      "4": "せい",
+      "11": "とも",
+      "15": "あ"
+    },
     "meaning": "The student meets a friend at the department store today",
     "meaning_id": "Hari ini Pelajar bertemu teman di toko serba ada"
   },
@@ -4563,6 +6294,14 @@ export const generatedSentences = [
     "romanji": [
       "kyou sensei wa depaato de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "せん",
+      "4": "せい",
+      "11": "とも",
+      "15": "あ"
+    },
     "meaning": "The teacher meets a friend at the department store today",
     "meaning_id": "Hari ini Guru bertemu teman di toko serba ada"
   },
@@ -4576,6 +6315,14 @@ export const generatedSentences = [
     "romanji": [
       "kinou sensei wa gakkou de tomodachi ni aimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "7": "がっ",
+      "8": "こう",
+      "10": "とも",
+      "14": "あ"
+    },
     "meaning": "The teacher met a friend at school yesterday",
     "meaning_id": "Kemarin Guru bertemu teman di sekolah"
   },
@@ -4589,6 +6336,13 @@ export const generatedSentences = [
     "romanji": [
       "kinou sensei wa eki de tomodachi ni aimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "7": "えき",
+      "9": "とも",
+      "13": "あ"
+    },
     "meaning": "The teacher met a friend at the station yesterday",
     "meaning_id": "Kemarin Guru bertemu teman di stasiun"
   },
@@ -4602,6 +6356,10 @@ export const generatedSentences = [
     "romanji": [
       "kinou watashi wa depaato de tomodachi ni aimashita"
     ],
+    "furigana": {
+      "13": "とも",
+      "17": "あ"
+    },
     "meaning": "I met a friend at the department store yesterday",
     "meaning_id": "Kemarin Saya bertemu teman di toko serba ada"
   },
@@ -4615,6 +6373,12 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa depaato de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "8": "とも",
+      "12": "あ"
+    },
     "meaning": "The teacher meets a friend at the department store",
     "meaning_id": "Guru bertemu teman di toko serba ada"
   },
@@ -4628,6 +6392,12 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa gakkou de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "4": "がっ",
+      "5": "こう",
+      "7": "とも",
+      "11": "あ"
+    },
     "meaning": "I meets a friend at school",
     "meaning_id": "Saya bertemu teman di sekolah"
   },
@@ -4641,6 +6411,14 @@ export const generatedSentences = [
     "romanji": [
       "kyou sensei wa kouen de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "せん",
+      "4": "せい",
+      "11": "とも",
+      "15": "あ"
+    },
     "meaning": "The teacher meets a friend in the park today",
     "meaning_id": "Hari ini Guru bertemu teman di taman"
   },
@@ -4654,6 +6432,15 @@ export const generatedSentences = [
     "romanji": [
       "kyou sensei wa eki de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "せん",
+      "4": "せい",
+      "6": "えき",
+      "8": "とも",
+      "12": "あ"
+    },
     "meaning": "The teacher meets a friend at the station today",
     "meaning_id": "Hari ini Guru bertemu teman di stasiun"
   },
@@ -4667,6 +6454,14 @@ export const generatedSentences = [
     "romanji": [
       "kyou watashi wa gakkou de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "7": "がっ",
+      "8": "こう",
+      "10": "とも",
+      "14": "あ"
+    },
     "meaning": "I meets a friend at school today",
     "meaning_id": "Hari ini Saya bertemu teman di sekolah"
   },
@@ -4680,6 +6475,12 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa kouen de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "8": "とも",
+      "12": "あ"
+    },
     "meaning": "The teacher meets a friend in the park",
     "meaning_id": "Guru bertemu teman di taman"
   },
@@ -4693,6 +6494,13 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa eki de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "えき",
+      "5": "とも",
+      "9": "あ"
+    },
     "meaning": "The student meets a friend at the station",
     "meaning_id": "Pelajar bertemu teman di stasiun"
   },
@@ -4706,6 +6514,10 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa depaato de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "9": "とも",
+      "13": "あ"
+    },
     "meaning": "I meets a friend at the department store",
     "meaning_id": "Saya bertemu teman di toko serba ada"
   },
@@ -4719,6 +6531,12 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa kouen de tomodachi ni aimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "8": "とも",
+      "12": "あ"
+    },
     "meaning": "The student meets a friend in the park",
     "meaning_id": "Pelajar bertemu teman di taman"
   },
@@ -4732,6 +6550,12 @@ export const generatedSentences = [
     "romanji": [
       "kinou sensei wa kouen de tomodachi ni aimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "12": "とも",
+      "16": "あ"
+    },
     "meaning": "The teacher met a friend in the park yesterday",
     "meaning_id": "Kemarin Guru bertemu teman di taman"
   },
@@ -4744,6 +6568,11 @@ export const generatedSentences = [
     "romanji": [
       "mainichi tomodachi wa uchi de benkyou shimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "とも"
+    },
     "meaning": "My friend studies at home every day",
     "meaning_id": "Setiap hari Teman saya belajar di rumah"
   },
@@ -4756,6 +6585,10 @@ export const generatedSentences = [
     "romanji": [
       "kinou sensei wa heya de benkyou shimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい"
+    },
     "meaning": "The teacher studied in the room yesterday",
     "meaning_id": "Kemarin Guru belajar di kamar"
   },
@@ -4780,6 +6613,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa heya de benkyou shimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student studies in the room",
     "meaning_id": "Pelajar belajar di kamar"
   },
@@ -4806,6 +6643,12 @@ export const generatedSentences = [
       "sensei wa gakkou de kanji wo benkyou shimasu",
       "sensei wa gakkou de kanji o benkyou shimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう"
+    },
     "meaning": "The teacher studies kanji at school",
     "meaning_id": "Guru belajar kanji di sekolah"
   },
@@ -4818,6 +6661,12 @@ export const generatedSentences = [
     "romanji": [
       "mainichi watashi wa gakkou de benkyou shimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "7": "がっ",
+      "8": "こう"
+    },
     "meaning": "I studies at school every day",
     "meaning_id": "Setiap hari Saya belajar di sekolah"
   },
@@ -4830,6 +6679,14 @@ export const generatedSentences = [
     "romanji": [
       "mainichi sensei wa gakkou de benkyou shimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "せん",
+      "4": "せい",
+      "6": "がっ",
+      "7": "こう"
+    },
     "meaning": "The teacher studies at school every day",
     "meaning_id": "Setiap hari Guru belajar di sekolah"
   },
@@ -4844,6 +6701,11 @@ export const generatedSentences = [
       "tomodachi wa gakkou de katakana wo benkyou shimasu",
       "tomodachi wa gakkou de katakana o benkyou shimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "がっ",
+      "5": "こう"
+    },
     "meaning": "My friend studies katakana at school",
     "meaning_id": "Teman saya belajar katakana di sekolah"
   },
@@ -4856,6 +6718,9 @@ export const generatedSentences = [
     "romanji": [
       "kinou tomodachi wa heya de benkyou shimashita"
     ],
+    "furigana": {
+      "4": "とも"
+    },
     "meaning": "My friend studied in the room yesterday",
     "meaning_id": "Kemarin Teman saya belajar di kamar"
   },
@@ -4870,6 +6735,12 @@ export const generatedSentences = [
       "sensei wa gakkou de eigo wo benkyou shimasu",
       "sensei wa gakkou de eigo o benkyou shimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう"
+    },
     "meaning": "The teacher studies English at school",
     "meaning_id": "Guru belajar bahasa Inggris di sekolah"
   },
@@ -4882,6 +6753,11 @@ export const generatedSentences = [
     "romanji": [
       "kinou tomodachi wa gakkou de benkyou shimashita"
     ],
+    "furigana": {
+      "4": "とも",
+      "8": "がっ",
+      "9": "こう"
+    },
     "meaning": "My friend studied at school yesterday",
     "meaning_id": "Kemarin Teman saya belajar di sekolah"
   },
@@ -4896,6 +6772,12 @@ export const generatedSentences = [
       "gakusei wa gakkou de katakana wo benkyou shimasu",
       "gakusei wa gakkou de katakana o benkyou shimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう"
+    },
     "meaning": "The student studies katakana at school",
     "meaning_id": "Pelajar belajar katakana di sekolah"
   },
@@ -4908,6 +6790,10 @@ export const generatedSentences = [
     "romanji": [
       "kinou gakusei wa heya de benkyou shimashita"
     ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい"
+    },
     "meaning": "The student studied in the room yesterday",
     "meaning_id": "Kemarin Pelajar belajar di kamar"
   },
@@ -4922,6 +6808,12 @@ export const generatedSentences = [
       "gakusei wa gakkou de hiragana wo benkyou shimasu",
       "gakusei wa gakkou de hiragana o benkyou shimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう"
+    },
     "meaning": "The student studies hiragana at school",
     "meaning_id": "Pelajar belajar hiragana di sekolah"
   },
@@ -4934,6 +6826,10 @@ export const generatedSentences = [
     "romanji": [
       "kinou sensei wa uchi de benkyou shimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい"
+    },
     "meaning": "The teacher studied at home yesterday",
     "meaning_id": "Kemarin Guru belajar di rumah"
   },
@@ -4946,6 +6842,10 @@ export const generatedSentences = [
     "romanji": [
       "kinou watashi wa gakkou de benkyou shimashita"
     ],
+    "furigana": {
+      "8": "がっ",
+      "9": "こう"
+    },
     "meaning": "I studied at school yesterday",
     "meaning_id": "Kemarin Saya belajar di sekolah"
   },
@@ -4958,6 +6858,10 @@ export const generatedSentences = [
     "romanji": [
       "kinou gakusei wa uchi de benkyou shimashita"
     ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい"
+    },
     "meaning": "The student studied at home yesterday",
     "meaning_id": "Kemarin Pelajar belajar di rumah"
   },
@@ -4970,6 +6874,12 @@ export const generatedSentences = [
     "romanji": [
       "kinou sensei wa gakkou de benkyou shimashita"
     ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "7": "がっ",
+      "8": "こう"
+    },
     "meaning": "The teacher studied at school yesterday",
     "meaning_id": "Kemarin Guru belajar di sekolah"
   },
@@ -4984,6 +6894,13 @@ export const generatedSentences = [
       "watashi wa gakkou de nihongo wo benkyou shimasu",
       "watashi wa gakkou de nihongo o benkyou shimasu"
     ],
+    "furigana": {
+      "4": "がっ",
+      "5": "こう",
+      "7": "に",
+      "8": "ほん",
+      "9": "ご"
+    },
     "meaning": "I studies Japanese at school",
     "meaning_id": "Saya belajar bahasa Jepang di sekolah"
   },
@@ -4998,6 +6915,12 @@ export const generatedSentences = [
       "sensei wa gakkou de hiragana wo benkyou shimasu",
       "sensei wa gakkou de hiragana o benkyou shimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう"
+    },
     "meaning": "The teacher studies hiragana at school",
     "meaning_id": "Guru belajar hiragana di sekolah"
   },
@@ -5022,6 +6945,10 @@ export const generatedSentences = [
     "romanji": [
       "mainichi watashi wa heya de benkyou shimasu"
     ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち"
+    },
     "meaning": "I studies in the room every day",
     "meaning_id": "Setiap hari Saya belajar di kamar"
   },
@@ -5048,6 +6975,10 @@ export const generatedSentences = [
       "watashi wa gakkou de eigo wo benkyou shimasu",
       "watashi wa gakkou de eigo o benkyou shimasu"
     ],
+    "furigana": {
+      "4": "がっ",
+      "5": "こう"
+    },
     "meaning": "I studies English at school",
     "meaning_id": "Saya belajar bahasa Inggris di sekolah"
   },
@@ -5060,6 +6991,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi no kaban wa ookii desu"
     ],
+    "furigana": {
+      "0": "とも",
+      "8": "おお"
+    },
     "meaning": "My friend's bag is big",
     "meaning_id": "Tas teman saya besar"
   },
@@ -5072,6 +7007,10 @@ export const generatedSentences = [
     "romanji": [
       "anata no kuruma wa ookii desu"
     ],
+    "furigana": {
+      "4": "くるま",
+      "6": "おお"
+    },
     "meaning": "Your car is big",
     "meaning_id": "Mobil Anda besar"
   },
@@ -5084,6 +7023,11 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi no kuruma wa chiisai desu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "くるま",
+      "6": "ちい"
+    },
     "meaning": "My friend's car is small",
     "meaning_id": "Mobil teman saya kecil"
   },
@@ -5096,6 +7040,11 @@ export const generatedSentences = [
     "romanji": [
       "haha no kuruma wa ookii desu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "くるま",
+      "4": "おお"
+    },
     "meaning": "My mother's car is big",
     "meaning_id": "Mobil ibu saya besar"
   },
@@ -5108,6 +7057,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi no kaban wa atarashii desu"
     ],
+    "furigana": {
+      "0": "とも",
+      "8": "あたら"
+    },
     "meaning": "My friend's bag is new",
     "meaning_id": "Tas teman saya baru"
   },
@@ -5120,6 +7073,9 @@ export const generatedSentences = [
     "romanji": [
       "anata no tokei wa furui desu"
     ],
+    "furigana": {
+      "8": "ふる"
+    },
     "meaning": "Your watch is old",
     "meaning_id": "Jam Anda lama"
   },
@@ -5132,6 +7088,10 @@ export const generatedSentences = [
     "romanji": [
       "chichi no tokei wa takai desu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "6": "たか"
+    },
     "meaning": "My father's watch is expensive",
     "meaning_id": "Jam ayah saya mahal"
   },
@@ -5144,6 +7104,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi no kaban wa ookii desu"
     ],
+    "furigana": {
+      "8": "おお"
+    },
     "meaning": "My bag is big",
     "meaning_id": "Tas saya besar"
   },
@@ -5156,6 +7119,10 @@ export const generatedSentences = [
     "romanji": [
       "anata no hon wa atarashii desu"
     ],
+    "furigana": {
+      "4": "ほん",
+      "6": "あたら"
+    },
     "meaning": "Your book is new",
     "meaning_id": "Buku Anda baru"
   },
@@ -5168,6 +7135,10 @@ export const generatedSentences = [
     "romanji": [
       "haha no kaban wa atarashii desu"
     ],
+    "furigana": {
+      "0": "はは",
+      "6": "あたら"
+    },
     "meaning": "My mother's bag is new",
     "meaning_id": "Tas ibu saya baru"
   },
@@ -5180,6 +7151,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi no kuruma wa atarashii desu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "くるま",
+      "4": "あたら"
+    },
     "meaning": "My father's car is new",
     "meaning_id": "Mobil ayah saya baru"
   },
@@ -5192,6 +7168,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi no kaban wa chiisai desu"
     ],
+    "furigana": {
+      "8": "ちい"
+    },
     "meaning": "My bag is small",
     "meaning_id": "Tas saya kecil"
   },
@@ -5204,6 +7183,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi no tokei wa atarashii desu"
     ],
+    "furigana": {
+      "0": "とも",
+      "8": "あたら"
+    },
     "meaning": "My friend's watch is new",
     "meaning_id": "Jam teman saya baru"
   },
@@ -5216,6 +7199,11 @@ export const generatedSentences = [
     "romanji": [
       "haha no kuruma wa furui desu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "くるま",
+      "4": "ふる"
+    },
     "meaning": "My mother's car is old",
     "meaning_id": "Mobil ibu saya lama"
   },
@@ -5228,6 +7216,10 @@ export const generatedSentences = [
     "romanji": [
       "anata no kuruma wa atarashii desu"
     ],
+    "furigana": {
+      "4": "くるま",
+      "6": "あたら"
+    },
     "meaning": "Your car is new",
     "meaning_id": "Mobil Anda baru"
   },
@@ -5240,6 +7232,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi no terebi wa ookii desu"
     ],
+    "furigana": {
+      "0": "とも",
+      "8": "おお"
+    },
     "meaning": "My friend's TV is big",
     "meaning_id": "TV teman saya besar"
   },
@@ -5252,6 +7248,11 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi no hon wa furui desu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "ほん",
+      "6": "ふる"
+    },
     "meaning": "My friend's book is old",
     "meaning_id": "Buku teman saya lama"
   },
@@ -5264,6 +7265,11 @@ export const generatedSentences = [
     "romanji": [
       "haha no kuruma wa takai desu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "くるま",
+      "4": "たか"
+    },
     "meaning": "My mother's car is expensive",
     "meaning_id": "Mobil ibu saya mahal"
   },
@@ -5276,6 +7282,10 @@ export const generatedSentences = [
     "romanji": [
       "watashi no kuruma wa shiroi desu"
     ],
+    "furigana": {
+      "4": "くるま",
+      "6": "しろ"
+    },
     "meaning": "My car is white",
     "meaning_id": "Mobil saya putih"
   },
@@ -5288,6 +7298,11 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi no kuruma wa atarashii desu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "くるま",
+      "6": "あたら"
+    },
     "meaning": "My friend's car is new",
     "meaning_id": "Mobil teman saya baru"
   },
@@ -5300,6 +7315,9 @@ export const generatedSentences = [
     "romanji": [
       "anata no tokei wa takai desu"
     ],
+    "furigana": {
+      "8": "たか"
+    },
     "meaning": "Your watch is expensive",
     "meaning_id": "Jam Anda mahal"
   },
@@ -5312,6 +7330,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi no hon wa furui desu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "ほん",
+      "4": "ふる"
+    },
     "meaning": "My father's book is old",
     "meaning_id": "Buku ayah saya lama"
   },
@@ -5324,6 +7347,10 @@ export const generatedSentences = [
     "romanji": [
       "chichi no terebi wa atarashii desu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "6": "あたら"
+    },
     "meaning": "My father's TV is new",
     "meaning_id": "TV ayah saya baru"
   },
@@ -5336,6 +7363,11 @@ export const generatedSentences = [
     "romanji": [
       "haha no hon wa furui desu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "ほん",
+      "4": "ふる"
+    },
     "meaning": "My mother's book is old",
     "meaning_id": "Buku ibu saya lama"
   },
@@ -5348,6 +7380,10 @@ export const generatedSentences = [
     "romanji": [
       "chichi no kaban wa chiisai desu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "6": "ちい"
+    },
     "meaning": "My father's bag is small",
     "meaning_id": "Tas ayah saya kecil"
   },
@@ -5360,6 +7396,10 @@ export const generatedSentences = [
     "romanji": [
       "watashi no kuruma wa takai desu"
     ],
+    "furigana": {
+      "4": "くるま",
+      "6": "たか"
+    },
     "meaning": "My car is expensive",
     "meaning_id": "Mobil saya mahal"
   },
@@ -5372,6 +7412,9 @@ export const generatedSentences = [
     "romanji": [
       "anata no kaban wa ookii desu"
     ],
+    "furigana": {
+      "8": "おお"
+    },
     "meaning": "Your bag is big",
     "meaning_id": "Tas Anda besar"
   },
@@ -5384,6 +7427,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi no kaban wa chiisai desu"
     ],
+    "furigana": {
+      "0": "とも",
+      "8": "ちい"
+    },
     "meaning": "My friend's bag is small",
     "meaning_id": "Tas teman saya kecil"
   },
@@ -5396,6 +7443,10 @@ export const generatedSentences = [
     "romanji": [
       "haha no tokei wa atarashii desu"
     ],
+    "furigana": {
+      "0": "はは",
+      "6": "あたら"
+    },
     "meaning": "My mother's watch is new",
     "meaning_id": "Jam ibu saya baru"
   },
@@ -5408,6 +7459,10 @@ export const generatedSentences = [
     "romanji": [
       "anata no kuruma wa takai desu"
     ],
+    "furigana": {
+      "4": "くるま",
+      "6": "たか"
+    },
     "meaning": "Your car is expensive",
     "meaning_id": "Mobil Anda mahal"
   },
@@ -5420,6 +7475,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi no terebi wa chiisai desu"
     ],
+    "furigana": {
+      "8": "ちい"
+    },
     "meaning": "My TV is small",
     "meaning_id": "TV saya kecil"
   },
@@ -5432,6 +7490,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi no kuruma wa chiisai desu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "くるま",
+      "4": "ちい"
+    },
     "meaning": "My father's car is small",
     "meaning_id": "Mobil ayah saya kecil"
   },
@@ -5444,6 +7507,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi no tokei wa furui desu"
     ],
+    "furigana": {
+      "8": "ふる"
+    },
     "meaning": "My watch is old",
     "meaning_id": "Jam saya lama"
   },
@@ -5456,6 +7522,9 @@ export const generatedSentences = [
     "romanji": [
       "anata no tokei wa atarashii desu"
     ],
+    "furigana": {
+      "8": "あたら"
+    },
     "meaning": "Your watch is new",
     "meaning_id": "Jam Anda baru"
   },
@@ -5468,6 +7537,10 @@ export const generatedSentences = [
     "romanji": [
       "haha no terebi wa atarashii desu"
     ],
+    "furigana": {
+      "0": "はは",
+      "6": "あたら"
+    },
     "meaning": "My mother's TV is new",
     "meaning_id": "TV ibu saya baru"
   },
@@ -5479,6 +7552,11 @@ export const generatedSentences = [
     "romanji": [
       "ashita wa nichiyoubi desu"
     ],
+    "furigana": {
+      "4": "にち",
+      "5": "よう",
+      "6": "び"
+    },
     "meaning": "Tomorrow is Sunday",
     "meaning_id": "Besok hari Minggu"
   },
@@ -5490,6 +7568,11 @@ export const generatedSentences = [
     "romanji": [
       "kinou wa doyoubi deshita"
     ],
+    "furigana": {
+      "4": "ど",
+      "5": "よう",
+      "6": "び"
+    },
     "meaning": "Yesterday was Saturday",
     "meaning_id": "Kemarin hari Sabtu"
   },
@@ -5501,6 +7584,11 @@ export const generatedSentences = [
     "romanji": [
       "ashita wa doyoubi desu"
     ],
+    "furigana": {
+      "4": "ど",
+      "5": "よう",
+      "6": "び"
+    },
     "meaning": "Tomorrow is Saturday",
     "meaning_id": "Besok hari Sabtu"
   },
@@ -5512,6 +7600,13 @@ export const generatedSentences = [
     "romanji": [
       "kyou wa kayoubi desu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "か",
+      "4": "よう",
+      "5": "び"
+    },
     "meaning": "Today is Tuesday",
     "meaning_id": "Hari ini hari Selasa"
   },
@@ -5523,6 +7618,13 @@ export const generatedSentences = [
     "romanji": [
       "kyou wa nichiyoubi desu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "にち",
+      "4": "よう",
+      "5": "び"
+    },
     "meaning": "Today is Sunday",
     "meaning_id": "Hari ini hari Minggu"
   },
@@ -5534,6 +7636,13 @@ export const generatedSentences = [
     "romanji": [
       "kyou wa suiyoubi desu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "すい",
+      "4": "よう",
+      "5": "び"
+    },
     "meaning": "Today is Wednesday",
     "meaning_id": "Hari ini hari Rabu"
   },
@@ -5545,6 +7654,11 @@ export const generatedSentences = [
     "romanji": [
       "ashita wa suiyoubi desu"
     ],
+    "furigana": {
+      "4": "すい",
+      "5": "よう",
+      "6": "び"
+    },
     "meaning": "Tomorrow is Wednesday",
     "meaning_id": "Besok hari Rabu"
   },
@@ -5556,6 +7670,11 @@ export const generatedSentences = [
     "romanji": [
       "kinou wa suiyoubi deshita"
     ],
+    "furigana": {
+      "4": "すい",
+      "5": "よう",
+      "6": "び"
+    },
     "meaning": "Yesterday was Wednesday",
     "meaning_id": "Kemarin hari Rabu"
   },
@@ -5567,6 +7686,11 @@ export const generatedSentences = [
     "romanji": [
       "kinou wa mokuyoubi deshita"
     ],
+    "furigana": {
+      "4": "もく",
+      "5": "よう",
+      "6": "び"
+    },
     "meaning": "Yesterday was Thursday",
     "meaning_id": "Kemarin hari Kamis"
   },
@@ -5578,6 +7702,11 @@ export const generatedSentences = [
     "romanji": [
       "ashita wa getsuyoubi desu"
     ],
+    "furigana": {
+      "4": "げつ",
+      "5": "よう",
+      "6": "び"
+    },
     "meaning": "Tomorrow is Monday",
     "meaning_id": "Besok hari Senin"
   },
@@ -5589,6 +7718,11 @@ export const generatedSentences = [
     "romanji": [
       "ashita wa mokuyoubi desu"
     ],
+    "furigana": {
+      "4": "もく",
+      "5": "よう",
+      "6": "び"
+    },
     "meaning": "Tomorrow is Thursday",
     "meaning_id": "Besok hari Kamis"
   },
@@ -5600,6 +7734,11 @@ export const generatedSentences = [
     "romanji": [
       "kinou wa getsuyoubi deshita"
     ],
+    "furigana": {
+      "4": "げつ",
+      "5": "よう",
+      "6": "び"
+    },
     "meaning": "Yesterday was Monday",
     "meaning_id": "Kemarin hari Senin"
   },
@@ -5611,6 +7750,11 @@ export const generatedSentences = [
     "romanji": [
       "kinou wa nichiyoubi deshita"
     ],
+    "furigana": {
+      "4": "にち",
+      "5": "よう",
+      "6": "び"
+    },
     "meaning": "Yesterday was Sunday",
     "meaning_id": "Kemarin hari Minggu"
   },
@@ -5622,6 +7766,13 @@ export const generatedSentences = [
     "romanji": [
       "kyou wa mokuyoubi desu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "もく",
+      "4": "よう",
+      "5": "び"
+    },
     "meaning": "Today is Thursday",
     "meaning_id": "Hari ini hari Kamis"
   },
@@ -5633,6 +7784,13 @@ export const generatedSentences = [
     "romanji": [
       "kyou wa doyoubi desu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "ど",
+      "4": "よう",
+      "5": "び"
+    },
     "meaning": "Today is Saturday",
     "meaning_id": "Hari ini hari Sabtu"
   },
@@ -5646,6 +7804,15 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi rokuji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "ろく",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "I go to school at six o'clock every day",
     "meaning_id": "Setiap hari saya pergi ke sekolah jam enam"
   },
@@ -5659,6 +7826,17 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa mainichi kuji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "まい",
+      "4": "にち",
+      "5": "く",
+      "6": "じ",
+      "8": "がっ",
+      "9": "こう",
+      "11": "い"
+    },
     "meaning": "The student goes to school at nine o'clock every day",
     "meaning_id": "Setiap hari pelajar pergi ke sekolah jam sembilan"
   },
@@ -5672,6 +7850,16 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa mainichi shichiji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "まい",
+      "5": "にち",
+      "6": "しち",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "My friend goes to school at seven o'clock every day",
     "meaning_id": "Setiap hari teman saya pergi ke sekolah jam tujuh"
   },
@@ -5685,6 +7873,15 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi goji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "ご",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "I go to school at five o'clock every day",
     "meaning_id": "Setiap hari saya pergi ke sekolah jam lima"
   },
@@ -5698,6 +7895,15 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi shichiji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "しち",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "I go to school at seven o'clock every day",
     "meaning_id": "Setiap hari saya pergi ke sekolah jam tujuh"
   },
@@ -5711,6 +7917,15 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi sanji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "さん",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "I go to school at three o'clock every day",
     "meaning_id": "Setiap hari saya pergi ke sekolah jam tiga"
   },
@@ -5724,6 +7939,16 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa mainichi niji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "まい",
+      "5": "にち",
+      "6": "に",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "My friend goes to school at two o'clock every day",
     "meaning_id": "Setiap hari teman saya pergi ke sekolah jam dua"
   },
@@ -5737,6 +7962,16 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa mainichi juuji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "まい",
+      "5": "にち",
+      "6": "じゅう",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "My friend goes to school at ten o'clock every day",
     "meaning_id": "Setiap hari teman saya pergi ke sekolah jam sepuluh"
   },
@@ -5750,6 +7985,15 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi ichiji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "いち",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "I go to school at one o'clock every day",
     "meaning_id": "Setiap hari saya pergi ke sekolah jam satu"
   },
@@ -5763,6 +8007,16 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa mainichi sanji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "まい",
+      "5": "にち",
+      "6": "さん",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "My friend goes to school at three o'clock every day",
     "meaning_id": "Setiap hari teman saya pergi ke sekolah jam tiga"
   },
@@ -5776,6 +8030,15 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi yoji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "よ",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "I go to school at four o'clock every day",
     "meaning_id": "Setiap hari saya pergi ke sekolah jam empat"
   },
@@ -5789,6 +8052,15 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi juuji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "じゅう",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "I go to school at ten o'clock every day",
     "meaning_id": "Setiap hari saya pergi ke sekolah jam sepuluh"
   },
@@ -5802,6 +8074,15 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi hachiji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "はち",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "I go to school at eight o'clock every day",
     "meaning_id": "Setiap hari saya pergi ke sekolah jam delapan"
   },
@@ -5815,6 +8096,16 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa mainichi yoji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "まい",
+      "5": "にち",
+      "6": "よ",
+      "7": "じ",
+      "9": "がっ",
+      "10": "こう",
+      "12": "い"
+    },
     "meaning": "My friend goes to school at four o'clock every day",
     "meaning_id": "Setiap hari teman saya pergi ke sekolah jam empat"
   },
@@ -5828,6 +8119,17 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa mainichi rokuji ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "まい",
+      "4": "にち",
+      "5": "ろく",
+      "6": "じ",
+      "8": "がっ",
+      "9": "こう",
+      "11": "い"
+    },
     "meaning": "The student goes to school at six o'clock every day",
     "meaning_id": "Setiap hari pelajar pergi ke sekolah jam enam"
   },
@@ -5840,6 +8142,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa uchi de yasumimasu"
     ],
+    "furigana": {
+      "7": "やす"
+    },
     "meaning": "I rest at home",
     "meaning_id": "Saya beristirahat di rumah"
   },
@@ -5852,6 +8157,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa heya de yasumimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "6": "やす"
+    },
     "meaning": "The student rests in the room",
     "meaning_id": "Pelajar beristirahat di kamar"
   },
@@ -5864,6 +8174,10 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa heya de yasumimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "5": "やす"
+    },
     "meaning": "My father rests in the room",
     "meaning_id": "Ayah saya beristirahat di kamar"
   },
@@ -5876,6 +8190,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa kouen de yasumimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "8": "やす"
+    },
     "meaning": "The student rests in the park",
     "meaning_id": "Pelajar beristirahat di taman"
   },
@@ -5888,6 +8207,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa uchi de yasumimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "6": "やす"
+    },
     "meaning": "The student rests at home",
     "meaning_id": "Pelajar beristirahat di rumah"
   },
@@ -5900,6 +8224,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa heya de yasumimasu"
     ],
+    "furigana": {
+      "7": "やす"
+    },
     "meaning": "I rest in the room",
     "meaning_id": "Saya beristirahat di kamar"
   },
@@ -5912,6 +8239,10 @@ export const generatedSentences = [
     "romanji": [
       "haha wa uchi de yasumimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "5": "やす"
+    },
     "meaning": "My mother rests at home",
     "meaning_id": "Ibu saya beristirahat di rumah"
   },
@@ -5924,6 +8255,10 @@ export const generatedSentences = [
     "romanji": [
       "haha wa kouen de yasumimasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "7": "やす"
+    },
     "meaning": "My mother rests in the park",
     "meaning_id": "Ibu saya beristirahat di taman"
   },
@@ -5936,6 +8271,10 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa uchi de yasumimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "5": "やす"
+    },
     "meaning": "My father rests at home",
     "meaning_id": "Ayah saya beristirahat di rumah"
   },
@@ -5948,6 +8287,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa kouen de yasumimasu"
     ],
+    "furigana": {
+      "9": "やす"
+    },
     "meaning": "I rest in the park",
     "meaning_id": "Saya beristirahat di taman"
   },
@@ -5960,6 +8302,10 @@ export const generatedSentences = [
     "romanji": [
       "anata wa gogo yoji ni nemasu"
     ],
+    "furigana": {
+      "6": "よ",
+      "7": "じ"
+    },
     "meaning": "You sleep at four p.m.",
     "meaning_id": "Anda tidur jam empat malam"
   },
@@ -5972,6 +8318,10 @@ export const generatedSentences = [
     "romanji": [
       "anata wa gogo hachiji ni nemasu"
     ],
+    "furigana": {
+      "6": "はち",
+      "7": "じ"
+    },
     "meaning": "You sleep at eight p.m.",
     "meaning_id": "Anda tidur jam delapan malam"
   },
@@ -5984,6 +8334,13 @@ export const generatedSentences = [
     "romanji": [
       "haha wa mainichi hachiji ni nemasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "2": "まい",
+      "3": "にち",
+      "4": "はち",
+      "5": "じ"
+    },
     "meaning": "My mother sleeps at eight o'clock every day",
     "meaning_id": "Setiap hari ibu saya tidur jam delapan"
   },
@@ -5996,6 +8353,13 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa mainichi hachiji ni nemasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "まい",
+      "3": "にち",
+      "4": "はち",
+      "5": "じ"
+    },
     "meaning": "My father sleeps at eight o'clock every day",
     "meaning_id": "Setiap hari ayah saya tidur jam delapan"
   },
@@ -6008,6 +8372,11 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa gozen niji ni nemasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "7": "に",
+      "8": "じ"
+    },
     "meaning": "My friend sleeps at two a.m.",
     "meaning_id": "Teman saya tidur jam dua pagi"
   },
@@ -6020,6 +8389,10 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa gozen kuji ni okimasu"
     ],
+    "furigana": {
+      "7": "く",
+      "8": "じ"
+    },
     "meaning": "I wake up at nine a.m.",
     "meaning_id": "Saya bangun jam sembilan pagi"
   },
@@ -6032,6 +8405,10 @@ export const generatedSentences = [
     "romanji": [
       "kare wa maiasa sanji ni okimasu"
     ],
+    "furigana": {
+      "7": "さん",
+      "8": "じ"
+    },
     "meaning": "He wakes up at three o'clock every morning",
     "meaning_id": "Setiap pagi dia (laki-laki) bangun jam tiga"
   },
@@ -6044,6 +8421,12 @@ export const generatedSentences = [
     "romanji": [
       "kare wa mainichi hachiji ni nemasu"
     ],
+    "furigana": {
+      "3": "まい",
+      "4": "にち",
+      "5": "はち",
+      "6": "じ"
+    },
     "meaning": "He sleeps at eight o'clock every day",
     "meaning_id": "Setiap hari dia (laki-laki) tidur jam delapan"
   },
@@ -6056,6 +8439,13 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa mainichi rokuji ni okimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "まい",
+      "5": "にち",
+      "6": "ろく",
+      "7": "じ"
+    },
     "meaning": "My friend wakes up at six o'clock every day",
     "meaning_id": "Setiap hari teman saya bangun jam enam"
   },
@@ -6068,6 +8458,10 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa gozen juuji ni nemasu"
     ],
+    "furigana": {
+      "8": "じゅう",
+      "9": "じ"
+    },
     "meaning": "She sleeps at ten a.m.",
     "meaning_id": "Dia (perempuan) tidur jam sepuluh pagi"
   },
@@ -6080,6 +8474,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa gozen niji ni okimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "5": "に",
+      "6": "じ"
+    },
     "meaning": "My father wakes up at two a.m.",
     "meaning_id": "Ayah saya bangun jam dua pagi"
   },
@@ -6092,6 +8491,12 @@ export const generatedSentences = [
     "romanji": [
       "kare wa mainichi niji ni nemasu"
     ],
+    "furigana": {
+      "3": "まい",
+      "4": "にち",
+      "5": "に",
+      "6": "じ"
+    },
     "meaning": "He sleeps at two o'clock every day",
     "meaning_id": "Setiap hari dia (laki-laki) tidur jam dua"
   },
@@ -6104,6 +8509,10 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa maiasa goji ni nemasu"
     ],
+    "furigana": {
+      "8": "ご",
+      "9": "じ"
+    },
     "meaning": "I sleep at five o'clock every morning",
     "meaning_id": "Setiap pagi saya tidur jam lima"
   },
@@ -6116,6 +8525,11 @@ export const generatedSentences = [
     "romanji": [
       "haha wa maiasa rokuji ni nemasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "6": "ろく",
+      "7": "じ"
+    },
     "meaning": "My mother sleeps at six o'clock every morning",
     "meaning_id": "Setiap pagi ibu saya tidur jam enam"
   },
@@ -6128,6 +8542,10 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa maiasa rokuji ni okimasu"
     ],
+    "furigana": {
+      "9": "ろく",
+      "10": "じ"
+    },
     "meaning": "She wakes up at six o'clock every morning",
     "meaning_id": "Setiap pagi dia (perempuan) bangun jam enam"
   },
@@ -6140,6 +8558,10 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa gogo ichiji ni nemasu"
     ],
+    "furigana": {
+      "7": "いち",
+      "8": "じ"
+    },
     "meaning": "She sleeps at one p.m.",
     "meaning_id": "Dia (perempuan) tidur jam satu malam"
   },
@@ -6152,6 +8574,10 @@ export const generatedSentences = [
     "romanji": [
       "anata wa maiasa ichiji ni nemasu"
     ],
+    "furigana": {
+      "8": "いち",
+      "9": "じ"
+    },
     "meaning": "You sleep at one o'clock every morning",
     "meaning_id": "Setiap pagi anda tidur jam satu"
   },
@@ -6164,6 +8590,11 @@ export const generatedSentences = [
     "romanji": [
       "haha wa gozen hachiji ni nemasu"
     ],
+    "furigana": {
+      "0": "はは",
+      "5": "はち",
+      "6": "じ"
+    },
     "meaning": "My mother sleeps at eight a.m.",
     "meaning_id": "Ibu saya tidur jam delapan pagi"
   },
@@ -6176,6 +8607,12 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa mainichi sanji ni okimasu"
     ],
+    "furigana": {
+      "4": "まい",
+      "5": "にち",
+      "6": "さん",
+      "7": "じ"
+    },
     "meaning": "I wake up at three o'clock every day",
     "meaning_id": "Setiap hari saya bangun jam tiga"
   },
@@ -6188,6 +8625,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa gozen goji ni nemasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "5": "ご",
+      "6": "じ"
+    },
     "meaning": "My father sleeps at five a.m.",
     "meaning_id": "Ayah saya tidur jam lima pagi"
   },
@@ -6200,6 +8642,10 @@ export const generatedSentences = [
     "romanji": [
       "anata wa maiasa niji ni nemasu"
     ],
+    "furigana": {
+      "8": "に",
+      "9": "じ"
+    },
     "meaning": "You sleep at two o'clock every morning",
     "meaning_id": "Setiap pagi anda tidur jam dua"
   },
@@ -6212,6 +8658,10 @@ export const generatedSentences = [
     "romanji": [
       "kare wa gogo hachiji ni nemasu"
     ],
+    "furigana": {
+      "5": "はち",
+      "6": "じ"
+    },
     "meaning": "He sleeps at eight p.m.",
     "meaning_id": "Dia (laki-laki) tidur jam delapan malam"
   },
@@ -6224,6 +8674,10 @@ export const generatedSentences = [
     "romanji": [
       "anata wa gozen ichiji ni nemasu"
     ],
+    "furigana": {
+      "7": "いち",
+      "8": "じ"
+    },
     "meaning": "You sleep at one a.m.",
     "meaning_id": "Anda tidur jam satu pagi"
   },
@@ -6236,6 +8690,11 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa gozen rokuji ni nemasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "7": "ろく",
+      "8": "じ"
+    },
     "meaning": "My friend sleeps at six a.m.",
     "meaning_id": "Teman saya tidur jam enam pagi"
   },
@@ -6275,6 +8734,9 @@ export const generatedSentences = [
       "haha wa misoshiru wo tsukurimasu",
       "haha wa misoshiru o tsukurimasu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother makes miso soup",
     "meaning_id": "Ibu saya membuat sup miso"
   },
@@ -6301,6 +8763,9 @@ export const generatedSentences = [
       "chichi wa gohan wo tsukurimasu",
       "chichi wa gohan o tsukurimasu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father makes rice",
     "meaning_id": "Ayah saya membuat nasi"
   },
@@ -6314,6 +8779,9 @@ export const generatedSentences = [
       "haha wa pan wo tsukurimasu",
       "haha wa pan o tsukurimasu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother makes bread",
     "meaning_id": "Ibu saya membuat roti"
   },
@@ -6327,6 +8795,9 @@ export const generatedSentences = [
       "haha wa gohan wo tsukurimasu",
       "haha wa gohan o tsukurimasu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother makes rice",
     "meaning_id": "Ibu saya membuat nasi"
   },
@@ -6353,6 +8824,9 @@ export const generatedSentences = [
       "chichi wa okashi wo tsukurimasu",
       "chichi wa okashi o tsukurimasu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father makes sweets",
     "meaning_id": "Ayah saya membuat camilan"
   },
@@ -6405,6 +8879,9 @@ export const generatedSentences = [
       "watashi wa te wo araimasu",
       "watashi wa te o araimasu"
     ],
+    "furigana": {
+      "4": "て"
+    },
     "meaning": "I wash my hands",
     "meaning_id": "Saya mencuci tangan"
   },
@@ -6418,6 +8895,9 @@ export const generatedSentences = [
       "anata wa te wo araimasu",
       "anata wa te o araimasu"
     ],
+    "furigana": {
+      "4": "て"
+    },
     "meaning": "You wash your hands",
     "meaning_id": "Anda mencuci tangan"
   },
@@ -6457,6 +8937,9 @@ export const generatedSentences = [
       "chichi wa pan wo tsukurimasu",
       "chichi wa pan o tsukurimasu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father makes bread",
     "meaning_id": "Ayah saya membuat roti"
   },
@@ -6470,6 +8953,9 @@ export const generatedSentences = [
       "haha wa okashi wo tsukurimasu",
       "haha wa okashi o tsukurimasu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother makes sweets",
     "meaning_id": "Ibu saya membuat camilan"
   },
@@ -6483,6 +8969,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa basu de konbini e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "11": "い"
+    },
     "meaning": "The student goes to the convenience store by bus",
     "meaning_id": "Pelajar pergi ke minimarket naik bus"
   },
@@ -6496,6 +8987,11 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa densha de ginkou e ikimasu"
     ],
+    "furigana": {
+      "4": "でん",
+      "5": "しゃ",
+      "12": "い"
+    },
     "meaning": "I go to the bank by train",
     "meaning_id": "Saya pergi ke bank naik kereta"
   },
@@ -6509,6 +9005,12 @@ export const generatedSentences = [
     "romanji": [
       "kare wa densha de mise e ikimasu"
     ],
+    "furigana": {
+      "3": "でん",
+      "4": "しゃ",
+      "6": "みせ",
+      "8": "い"
+    },
     "meaning": "He goes to the shop by train",
     "meaning_id": "Dia (laki-laki) pergi ke toko naik kereta"
   },
@@ -6522,6 +9024,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa kuruma de byouin e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "くるま",
+      "10": "い"
+    },
     "meaning": "My father goes to the hospital by car",
     "meaning_id": "Ayah saya pergi ke rumah sakit naik mobil"
   },
@@ -6535,6 +9042,10 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa fune de kuukou e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "10": "い"
+    },
     "meaning": "My father goes to the airport by ship",
     "meaning_id": "Ayah saya pergi ke bandara naik kapal"
   },
@@ -6548,6 +9059,11 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa chikatetsu de gakkou e ikimasu"
     ],
+    "furigana": {
+      "10": "がっ",
+      "11": "こう",
+      "13": "い"
+    },
     "meaning": "She goes to school by subway",
     "meaning_id": "Dia (perempuan) pergi ke sekolah naik kereta bawah tanah"
   },
@@ -6561,6 +9077,13 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa kuruma de eki e ikimasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "くるま",
+      "5": "えき",
+      "7": "い"
+    },
     "meaning": "The teacher goes to the station by car",
     "meaning_id": "Guru pergi ke stasiun naik mobil"
   },
@@ -6574,6 +9097,11 @@ export const generatedSentences = [
     "romanji": [
       "kare wa jitensha de daigaku e ikimasu"
     ],
+    "furigana": {
+      "9": "だい",
+      "10": "がく",
+      "12": "い"
+    },
     "meaning": "He goes to the university by bicycle",
     "meaning_id": "Dia (laki-laki) pergi ke universitas naik sepeda"
   },
@@ -6587,6 +9115,13 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa densha de mise e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "でん",
+      "3": "しゃ",
+      "5": "みせ",
+      "7": "い"
+    },
     "meaning": "My father goes to the shop by train",
     "meaning_id": "Ayah saya pergi ke toko naik kereta"
   },
@@ -6600,6 +9135,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa fune de kuukou e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "11": "い"
+    },
     "meaning": "The student goes to the airport by ship",
     "meaning_id": "Pelajar pergi ke bandara naik kapal"
   },
@@ -6613,6 +9153,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa chikatetsu de kuukou e ikimasu"
     ],
+    "furigana": {
+      "14": "い"
+    },
     "meaning": "I go to the airport by subway",
     "meaning_id": "Saya pergi ke bandara naik kereta bawah tanah"
   },
@@ -6626,6 +9169,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa jitensha de mise e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "8": "みせ",
+      "10": "い"
+    },
     "meaning": "My father goes to the shop by bicycle",
     "meaning_id": "Ayah saya pergi ke toko naik sepeda"
   },
@@ -6639,6 +9187,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa hikouki de uchi e ikimasu"
     ],
+    "furigana": {
+      "12": "い"
+    },
     "meaning": "I go home by plane",
     "meaning_id": "Saya pergi ke rumah naik pesawat"
   },
@@ -6652,6 +9203,9 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa chikatetsu de depaato e ikimasu"
     ],
+    "furigana": {
+      "15": "い"
+    },
     "meaning": "She goes to the department store by subway",
     "meaning_id": "Dia (perempuan) pergi ke toko serba ada naik kereta bawah tanah"
   },
@@ -6665,6 +9219,11 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa hikouki de daigaku e ikimasu"
     ],
+    "furigana": {
+      "9": "だい",
+      "10": "がく",
+      "12": "い"
+    },
     "meaning": "I go to the university by plane",
     "meaning_id": "Saya pergi ke universitas naik pesawat"
   },
@@ -6678,6 +9237,10 @@ export const generatedSentences = [
     "romanji": [
       "kare wa kuruma de uchi e ikimasu"
     ],
+    "furigana": {
+      "3": "くるま",
+      "8": "い"
+    },
     "meaning": "He goes home by car",
     "meaning_id": "Dia (laki-laki) pergi ke rumah naik mobil"
   },
@@ -6691,6 +9254,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa kuruma de kouen e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "くるま",
+      "9": "い"
+    },
     "meaning": "My father goes to the park by car",
     "meaning_id": "Ayah saya pergi ke taman naik mobil"
   },
@@ -6704,6 +9272,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa hikouki de konbini e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "13": "い"
+    },
     "meaning": "The student goes to the convenience store by plane",
     "meaning_id": "Pelajar pergi ke minimarket naik pesawat"
   },
@@ -6717,6 +9290,11 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa jitensha de gakkou e ikimasu"
     ],
+    "furigana": {
+      "11": "がっ",
+      "12": "こう",
+      "14": "い"
+    },
     "meaning": "She goes to school by bicycle",
     "meaning_id": "Dia (perempuan) pergi ke sekolah naik sepeda"
   },
@@ -6730,6 +9308,13 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa densha de daigaku e ikimasu"
     ],
+    "furigana": {
+      "4": "でん",
+      "5": "しゃ",
+      "7": "だい",
+      "8": "がく",
+      "10": "い"
+    },
     "meaning": "I go to the university by train",
     "meaning_id": "Saya pergi ke universitas naik kereta"
   },
@@ -6743,6 +9328,13 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa jitensha de daigaku e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "9": "だい",
+      "10": "がく",
+      "12": "い"
+    },
     "meaning": "The student goes to the university by bicycle",
     "meaning_id": "Pelajar pergi ke universitas naik sepeda"
   },
@@ -6756,6 +9348,10 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa fune de eki e ikimasu"
     ],
+    "furigana": {
+      "8": "えき",
+      "10": "い"
+    },
     "meaning": "She goes to the station by ship",
     "meaning_id": "Dia (perempuan) pergi ke stasiun naik kapal"
   },
@@ -6769,6 +9365,9 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa chikatetsu de uchi e ikimasu"
     ],
+    "furigana": {
+      "13": "い"
+    },
     "meaning": "She goes home by subway",
     "meaning_id": "Dia (perempuan) pergi ke rumah naik kereta bawah tanah"
   },
@@ -6782,6 +9381,10 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa fune de kouen e ikimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "12": "い"
+    },
     "meaning": "My friend goes to the park by ship",
     "meaning_id": "Teman saya pergi ke taman naik kapal"
   },
@@ -6795,6 +9398,10 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa takushii de kuukou e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "12": "い"
+    },
     "meaning": "My father goes to the airport by taxi",
     "meaning_id": "Ayah saya pergi ke bandara naik taksi"
   },
@@ -6808,6 +9415,9 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa fune de byouin e ikimasu"
     ],
+    "furigana": {
+      "14": "い"
+    },
     "meaning": "She goes to the hospital by ship",
     "meaning_id": "Dia (perempuan) pergi ke rumah sakit naik kapal"
   },
@@ -6821,6 +9431,12 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa densha de konbini e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "でん",
+      "3": "しゃ",
+      "10": "い"
+    },
     "meaning": "My father goes to the convenience store by train",
     "meaning_id": "Ayah saya pergi ke minimarket naik kereta"
   },
@@ -6834,6 +9450,11 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa jitensha de gakkou e ikimasu"
     ],
+    "furigana": {
+      "10": "がっ",
+      "11": "こう",
+      "13": "い"
+    },
     "meaning": "I go to school by bicycle",
     "meaning_id": "Saya pergi ke sekolah naik sepeda"
   },
@@ -6847,6 +9468,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa basu de kuukou e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "11": "い"
+    },
     "meaning": "The student goes to the airport by bus",
     "meaning_id": "Pelajar pergi ke bandara naik bus"
   },
@@ -6860,6 +9486,11 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa kuruma de kuukou e ikimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "2": "くるま",
+      "9": "い"
+    },
     "meaning": "My father goes to the airport by car",
     "meaning_id": "Ayah saya pergi ke bandara naik mobil"
   },
@@ -6874,6 +9505,12 @@ export const generatedSentences = [
       "kyou kare wa mise de yakitori wo tabemasu",
       "kyou kare wa mise de yakitori o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "6": "みせ",
+      "13": "た"
+    },
     "meaning": "He eats grilled chicken at the shop today",
     "meaning_id": "Hari ini Dia (laki-laki) makan sate ayam di toko"
   },
@@ -6888,6 +9525,12 @@ export const generatedSentences = [
       "kyou tomodachi wa resutoran de takoyaki wo tabemasu",
       "kyou tomodachi wa resutoran de takoyaki o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "とも",
+      "18": "た"
+    },
     "meaning": "My friend eats takoyaki at the restaurant today",
     "meaning_id": "Hari ini Teman saya makan takoyaki di restoran"
   },
@@ -6902,6 +9545,13 @@ export const generatedSentences = [
       "kyou sensei wa kouen de ramune wo nomimasu",
       "kyou sensei wa kouen de ramune o nomimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "せん",
+      "4": "せい",
+      "15": "の"
+    },
     "meaning": "The teacher drinks Ramune soda in the park today",
     "meaning_id": "Hari ini Guru minum Ramune di taman"
   },
@@ -6916,6 +9566,10 @@ export const generatedSentences = [
       "chichi wa suupaa de juusu wo nomimasu",
       "chichi wa suupaa de juusu o nomimasu"
     ],
+    "furigana": {
+      "0": "ちち",
+      "12": "の"
+    },
     "meaning": "My father drinks juice at the supermarket",
     "meaning_id": "Ayah saya minum jus di supermarket"
   },
@@ -6930,6 +9584,10 @@ export const generatedSentences = [
       "kanojo wa mise de pan wo tabemasu",
       "kanojo wa mise de pan o tabemasu"
     ],
+    "furigana": {
+      "5": "みせ",
+      "10": "た"
+    },
     "meaning": "She eats bread at the shop",
     "meaning_id": "Dia (perempuan) makan roti di toko"
   },
@@ -6944,6 +9602,13 @@ export const generatedSentences = [
       "kyou kare wa gakkou de misoshiru wo tabemasu",
       "kyou kare wa gakkou de misoshiru o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "6": "がっ",
+      "7": "こう",
+      "14": "た"
+    },
     "meaning": "He eats miso soup at school today",
     "meaning_id": "Hari ini Dia (laki-laki) makan sup miso di sekolah"
   },
@@ -6958,6 +9623,10 @@ export const generatedSentences = [
       "tomodachi wa uchi de yakisoba wo tabemasu",
       "tomodachi wa uchi de yakisoba o tabemasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "12": "た"
+    },
     "meaning": "My friend eats fried noodles at home",
     "meaning_id": "Teman saya makan mi goreng di rumah"
   },
@@ -6972,6 +9641,11 @@ export const generatedSentences = [
       "kyou kare wa kouen de pan wo tabemasu",
       "kyou kare wa kouen de pan o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "14": "た"
+    },
     "meaning": "He eats bread in the park today",
     "meaning_id": "Hari ini Dia (laki-laki) makan roti di taman"
   },
@@ -6986,6 +9660,9 @@ export const generatedSentences = [
       "kare wa suupaa de tenpura wo tabemasu",
       "kare wa suupaa de tenpura o tabemasu"
     ],
+    "furigana": {
+      "13": "た"
+    },
     "meaning": "He eats tempura at the supermarket",
     "meaning_id": "Dia (laki-laki) makan tempura di supermarket"
   },
@@ -7000,6 +9677,11 @@ export const generatedSentences = [
       "kanojo wa gakkou de keeki wo tabemasu",
       "kanojo wa gakkou de keeki o tabemasu"
     ],
+    "furigana": {
+      "5": "がっ",
+      "6": "こう",
+      "12": "た"
+    },
     "meaning": "She eats cake at school",
     "meaning_id": "Dia (perempuan) makan kue di sekolah"
   },
@@ -7014,6 +9696,11 @@ export const generatedSentences = [
       "kyou kare wa resutoran de sarada wo tabemasu",
       "kyou kare wa resutoran de sarada o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "16": "た"
+    },
     "meaning": "He eats salad at the restaurant today",
     "meaning_id": "Hari ini Dia (laki-laki) makan salad di restoran"
   },
@@ -7028,6 +9715,13 @@ export const generatedSentences = [
       "kyou tomodachi wa mise de ramune wo nomimasu",
       "kyou tomodachi wa mise de ramune o nomimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "とも",
+      "7": "みせ",
+      "13": "の"
+    },
     "meaning": "My friend drinks Ramune soda at the shop today",
     "meaning_id": "Hari ini Teman saya minum Ramune di toko"
   },
@@ -7042,6 +9736,9 @@ export const generatedSentences = [
       "kare wa konbini de ramune wo nomimasu",
       "kare wa konbini de ramune o nomimasu"
     ],
+    "furigana": {
+      "12": "の"
+    },
     "meaning": "He drinks Ramune soda at the convenience store",
     "meaning_id": "Dia (laki-laki) minum Ramune di minimarket"
   },
@@ -7056,6 +9753,13 @@ export const generatedSentences = [
       "kyou kanojo wa gakkou de juusu wo nomimasu",
       "kyou kanojo wa gakkou de juusu o nomimasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "8": "がっ",
+      "9": "こう",
+      "16": "の"
+    },
     "meaning": "She drinks juice at school today",
     "meaning_id": "Hari ini Dia (perempuan) minum jus di sekolah"
   },
@@ -7070,6 +9774,10 @@ export const generatedSentences = [
       "tomodachi wa konbini de takoyaki wo tabemasu",
       "tomodachi wa konbini de takoyaki o tabemasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "14": "た"
+    },
     "meaning": "My friend eats takoyaki at the convenience store",
     "meaning_id": "Teman saya makan takoyaki di minimarket"
   },
@@ -7084,6 +9792,10 @@ export const generatedSentences = [
       "tomodachi wa resutoran de sarada wo tabemasu",
       "tomodachi wa resutoran de sarada o tabemasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "14": "た"
+    },
     "meaning": "My friend eats salad at the restaurant",
     "meaning_id": "Teman saya makan salad di restoran"
   },
@@ -7098,6 +9810,13 @@ export const generatedSentences = [
       "sensei wa gakkou de karee raisu wo tabemasu",
       "sensei wa gakkou de karee raisu o tabemasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "13": "た"
+    },
     "meaning": "The teacher eats curry rice at school",
     "meaning_id": "Guru makan nasi kari di sekolah"
   },
@@ -7112,6 +9831,11 @@ export const generatedSentences = [
       "sensei wa kouen de onigiri wo tabemasu",
       "sensei wa kouen de onigiri o tabemasu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "13": "た"
+    },
     "meaning": "The teacher eats onigiri in the park",
     "meaning_id": "Guru makan nasi kepal di taman"
   },
@@ -7126,6 +9850,10 @@ export const generatedSentences = [
       "tomodachi wa uchi de karee raisu wo tabemasu",
       "tomodachi wa uchi de karee raisu o tabemasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "14": "た"
+    },
     "meaning": "My friend eats curry rice at home",
     "meaning_id": "Teman saya makan nasi kari di rumah"
   },
@@ -7140,6 +9868,11 @@ export const generatedSentences = [
       "gakusei wa suupaa de keeki wo tabemasu",
       "gakusei wa suupaa de keeki o tabemasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "12": "た"
+    },
     "meaning": "The student eats cake at the supermarket",
     "meaning_id": "Pelajar makan kue di supermarket"
   },
@@ -7154,6 +9887,11 @@ export const generatedSentences = [
       "kyou kare wa kouen de onigiri wo tabemasu",
       "kyou kare wa kouen de onigiri o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "16": "た"
+    },
     "meaning": "He eats onigiri in the park today",
     "meaning_id": "Hari ini Dia (laki-laki) makan nasi kepal di taman"
   },
@@ -7168,6 +9906,14 @@ export const generatedSentences = [
       "kyou sensei wa mise de misoshiru wo tabemasu",
       "kyou sensei wa mise de misoshiru o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "せん",
+      "4": "せい",
+      "6": "みせ",
+      "13": "た"
+    },
     "meaning": "The teacher eats miso soup at the shop today",
     "meaning_id": "Hari ini Guru makan sup miso di toko"
   },
@@ -7182,6 +9928,13 @@ export const generatedSentences = [
       "kyou chichi wa mise de keeki wo tabemasu",
       "kyou chichi wa mise de keeki o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "ちち",
+      "5": "みせ",
+      "11": "た"
+    },
     "meaning": "My father eats cake at the shop today",
     "meaning_id": "Hari ini Ayah saya makan kue di toko"
   },
@@ -7196,6 +9949,12 @@ export const generatedSentences = [
       "kyou kanojo wa mise de yakitori wo tabemasu",
       "kyou kanojo wa mise de yakitori o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "8": "みせ",
+      "15": "た"
+    },
     "meaning": "She eats grilled chicken at the shop today",
     "meaning_id": "Hari ini Dia (perempuan) makan sate ayam di toko"
   },
@@ -7210,6 +9969,14 @@ export const generatedSentences = [
       "kyou chichi wa gakkou de okashi wo tabemasu",
       "kyou chichi wa gakkou de okashi o tabemasu"
     ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "ちち",
+      "5": "がっ",
+      "6": "こう",
+      "12": "た"
+    },
     "meaning": "My father eats sweets at school today",
     "meaning_id": "Hari ini Ayah saya makan camilan di sekolah"
   },
@@ -7224,6 +9991,11 @@ export const generatedSentences = [
       "gakusei wa uchi de okashi wo tabemasu",
       "gakusei wa uchi de okashi o tabemasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "10": "た"
+    },
     "meaning": "The student eats sweets at home",
     "meaning_id": "Pelajar makan camilan di rumah"
   },
@@ -7344,6 +10116,9 @@ export const generatedSentences = [
       "mizu wo onegaishimasu",
       "mizu o onegaishimasu"
     ],
+    "furigana": {
+      "0": "みず"
+    },
     "meaning": "Water, please",
     "meaning_id": "Saya minta air"
   },
@@ -7356,6 +10131,13 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa hachiji kara rokuji made uchi de benkyou shimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "はち",
+      "5": "じ",
+      "8": "ろく",
+      "9": "じ"
+    },
     "meaning": "My friend studies at home from eight o'clock to six o'clock",
     "meaning_id": "Teman saya belajar di rumah dari jam delapan sampai jam enam"
   },
@@ -7368,6 +10150,16 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa ichiji kara sanji made daigaku de benkyou shimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "いち",
+      "4": "じ",
+      "7": "さん",
+      "8": "じ",
+      "11": "だい",
+      "12": "がく"
+    },
     "meaning": "The student studies at the university from one o'clock to three o'clock",
     "meaning_id": "Pelajar belajar di universitas dari jam satu sampai jam tiga"
   },
@@ -7380,6 +10172,12 @@ export const generatedSentences = [
     "romanji": [
       "anata wa hachiji kara rokuji made uchi de benkyou shimasu"
     ],
+    "furigana": {
+      "4": "はち",
+      "5": "じ",
+      "8": "ろく",
+      "9": "じ"
+    },
     "meaning": "You study at home from eight o'clock to six o'clock",
     "meaning_id": "Anda belajar di rumah dari jam delapan sampai jam enam"
   },
@@ -7392,6 +10190,14 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa sanji kara goji made daigaku de benkyou shimasu"
     ],
+    "furigana": {
+      "4": "さん",
+      "5": "じ",
+      "8": "ご",
+      "9": "じ",
+      "12": "だい",
+      "13": "がく"
+    },
     "meaning": "I study at the university from three o'clock to five o'clock",
     "meaning_id": "Saya belajar di universitas dari jam tiga sampai jam lima"
   },
@@ -7404,6 +10210,14 @@ export const generatedSentences = [
     "romanji": [
       "anata wa sanji kara goji made daigaku de benkyou shimasu"
     ],
+    "furigana": {
+      "4": "さん",
+      "5": "じ",
+      "8": "ご",
+      "9": "じ",
+      "12": "だい",
+      "13": "がく"
+    },
     "meaning": "You study at the university from three o'clock to five o'clock",
     "meaning_id": "Anda belajar di universitas dari jam tiga sampai jam lima"
   },
@@ -7416,6 +10230,13 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa shichiji kara yoji made uchi de benkyou shimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "しち",
+      "5": "じ",
+      "8": "よ",
+      "9": "じ"
+    },
     "meaning": "My friend studies at home from seven o'clock to four o'clock",
     "meaning_id": "Teman saya belajar di rumah dari jam tujuh sampai jam empat"
   },
@@ -7428,6 +10249,14 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa juuji kara hachiji made daigaku de benkyou shimasu"
     ],
+    "furigana": {
+      "4": "じゅう",
+      "5": "じ",
+      "8": "はち",
+      "9": "じ",
+      "12": "だい",
+      "13": "がく"
+    },
     "meaning": "I study at the university from ten o'clock to eight o'clock",
     "meaning_id": "Saya belajar di universitas dari jam sepuluh sampai jam delapan"
   },
@@ -7440,6 +10269,15 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa kuji kara goji made daigaku de benkyou shimasu"
     ],
+    "furigana": {
+      "0": "とも",
+      "4": "く",
+      "5": "じ",
+      "8": "ご",
+      "9": "じ",
+      "12": "だい",
+      "13": "がく"
+    },
     "meaning": "My friend studies at the university from nine o'clock to five o'clock",
     "meaning_id": "Teman saya belajar di universitas dari jam sembilan sampai jam lima"
   },
@@ -7452,6 +10290,14 @@ export const generatedSentences = [
     "romanji": [
       "anata wa kuji kara goji made daigaku de benkyou shimasu"
     ],
+    "furigana": {
+      "4": "く",
+      "5": "じ",
+      "8": "ご",
+      "9": "じ",
+      "12": "だい",
+      "13": "がく"
+    },
     "meaning": "You study at the university from nine o'clock to five o'clock",
     "meaning_id": "Anda belajar di universitas dari jam sembilan sampai jam lima"
   },
@@ -7464,6 +10310,14 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa niji kara yoji made uchi de benkyou shimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "に",
+      "4": "じ",
+      "7": "よ",
+      "8": "じ"
+    },
     "meaning": "The student studies at home from two o'clock to four o'clock",
     "meaning_id": "Pelajar belajar di rumah dari jam dua sampai jam empat"
   },
@@ -7476,6 +10330,14 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa ichiji kara sanji made daigaku de benkyou shimasu"
     ],
+    "furigana": {
+      "4": "いち",
+      "5": "じ",
+      "8": "さん",
+      "9": "じ",
+      "12": "だい",
+      "13": "がく"
+    },
     "meaning": "I study at the university from one o'clock to three o'clock",
     "meaning_id": "Saya belajar di universitas dari jam satu sampai jam tiga"
   },
@@ -7488,6 +10350,14 @@ export const generatedSentences = [
     "romanji": [
       "anata wa juuji kara hachiji made gakkou de benkyou shimasu"
     ],
+    "furigana": {
+      "4": "じゅう",
+      "5": "じ",
+      "8": "はち",
+      "9": "じ",
+      "12": "がっ",
+      "13": "こう"
+    },
     "meaning": "You study at school from ten o'clock to eight o'clock",
     "meaning_id": "Anda belajar di sekolah dari jam sepuluh sampai jam delapan"
   },
@@ -7500,6 +10370,14 @@ export const generatedSentences = [
     "romanji": [
       "anata wa kuji kara goji made gakkou de benkyou shimasu"
     ],
+    "furigana": {
+      "4": "く",
+      "5": "じ",
+      "8": "ご",
+      "9": "じ",
+      "12": "がっ",
+      "13": "こう"
+    },
     "meaning": "You study at school from nine o'clock to five o'clock",
     "meaning_id": "Anda belajar di sekolah dari jam sembilan sampai jam lima"
   },
@@ -7512,6 +10390,14 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa sanji kara goji made gakkou de benkyou shimasu"
     ],
+    "furigana": {
+      "4": "さん",
+      "5": "じ",
+      "8": "ご",
+      "9": "じ",
+      "12": "がっ",
+      "13": "こう"
+    },
     "meaning": "I study at school from three o'clock to five o'clock",
     "meaning_id": "Saya belajar di sekolah dari jam tiga sampai jam lima"
   },
@@ -7524,6 +10410,9 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa tenisu ga suki desu"
     ],
+    "furigana": {
+      "0": "とも"
+    },
     "meaning": "My friend likes tennis",
     "meaning_id": "Teman saya suka tenis"
   },
@@ -7548,6 +10437,9 @@ export const generatedSentences = [
     "romanji": [
       "haha wa manga ga kirai desu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother hates manga",
     "meaning_id": "Ibu saya benci manga"
   },
@@ -7572,6 +10464,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa hare ga kirai desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student hates sunny weather",
     "meaning_id": "Pelajar benci cuaca cerah"
   },
@@ -7608,6 +10504,9 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa hare ga suki desu"
     ],
+    "furigana": {
+      "0": "とも"
+    },
     "meaning": "My friend likes sunny weather",
     "meaning_id": "Teman saya suka cuaca cerah"
   },
@@ -7632,6 +10531,9 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa okashi ga kirai desu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father hates sweets",
     "meaning_id": "Ayah saya benci camilan"
   },
@@ -7656,6 +10558,9 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa manga ga kirai desu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father hates manga",
     "meaning_id": "Ayah saya benci manga"
   },
@@ -7668,6 +10573,10 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa ame ga suki desu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
     "meaning": "The teacher likes rain",
     "meaning_id": "Guru suka hujan"
   },
@@ -7692,6 +10601,9 @@ export const generatedSentences = [
     "romanji": [
       "chichi wa anime ga suki desu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father likes anime",
     "meaning_id": "Ayah saya suka anime"
   },
@@ -7716,6 +10628,10 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa tenisu ga suki desu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
     "meaning": "The teacher likes tennis",
     "meaning_id": "Guru suka tenis"
   },
@@ -7752,6 +10668,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa karaoke ga kirai desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student hates karaoke",
     "meaning_id": "Pelajar benci karaoke"
   },
@@ -7862,6 +10782,10 @@ export const generatedSentences = [
     "romanji": [
       "kodomo ga hitori imasu"
     ],
+    "furigana": {
+      "4": "ひと",
+      "5": "り"
+    },
     "meaning": "I have one child",
     "meaning_id": "Saya punya satu anak"
   },
@@ -7873,6 +10797,10 @@ export const generatedSentences = [
     "romanji": [
       "ani ga rokunin imasu"
     ],
+    "furigana": {
+      "3": "ろく",
+      "4": "にん"
+    },
     "meaning": "I have six older brothers",
     "meaning_id": "Saya punya enam kakak laki-laki"
   },
@@ -7884,6 +10812,10 @@ export const generatedSentences = [
     "romanji": [
       "imouto ga shichinin imasu"
     ],
+    "furigana": {
+      "5": "しち",
+      "6": "にん"
+    },
     "meaning": "I have seven younger sisters",
     "meaning_id": "Saya punya tujuh adik perempuan"
   },
@@ -7895,6 +10827,10 @@ export const generatedSentences = [
     "romanji": [
       "imouto ga kyuunin imasu"
     ],
+    "furigana": {
+      "5": "きゅう",
+      "6": "にん"
+    },
     "meaning": "I have nine younger sisters",
     "meaning_id": "Saya punya sembilan adik perempuan"
   },
@@ -7906,6 +10842,10 @@ export const generatedSentences = [
     "romanji": [
       "kazoku ga hachinin imasu"
     ],
+    "furigana": {
+      "4": "はち",
+      "5": "にん"
+    },
     "meaning": "There are eight people in my family",
     "meaning_id": "Ada delapan orang di keluarga saya"
   },
@@ -7917,6 +10857,10 @@ export const generatedSentences = [
     "romanji": [
       "kodomo ga rokunin imasu"
     ],
+    "furigana": {
+      "4": "ろく",
+      "5": "にん"
+    },
     "meaning": "I have six children",
     "meaning_id": "Saya punya enam anak"
   },
@@ -7928,6 +10872,10 @@ export const generatedSentences = [
     "romanji": [
       "imouto ga rokunin imasu"
     ],
+    "furigana": {
+      "5": "ろく",
+      "6": "にん"
+    },
     "meaning": "I have six younger sisters",
     "meaning_id": "Saya punya enam adik perempuan"
   },
@@ -7939,6 +10887,10 @@ export const generatedSentences = [
     "romanji": [
       "kazoku ga juunin imasu"
     ],
+    "furigana": {
+      "4": "じゅう",
+      "5": "にん"
+    },
     "meaning": "There are ten people in my family",
     "meaning_id": "Ada sepuluh orang di keluarga saya"
   },
@@ -7950,6 +10902,10 @@ export const generatedSentences = [
     "romanji": [
       "kodomo ga yonin imasu"
     ],
+    "furigana": {
+      "4": "よ",
+      "5": "にん"
+    },
     "meaning": "I have four children",
     "meaning_id": "Saya punya empat anak"
   },
@@ -7961,6 +10917,10 @@ export const generatedSentences = [
     "romanji": [
       "ani ga shichinin imasu"
     ],
+    "furigana": {
+      "3": "しち",
+      "4": "にん"
+    },
     "meaning": "I have seven older brothers",
     "meaning_id": "Saya punya tujuh kakak laki-laki"
   },
@@ -7972,6 +10932,10 @@ export const generatedSentences = [
     "romanji": [
       "kodomo ga gonin imasu"
     ],
+    "furigana": {
+      "4": "ご",
+      "5": "にん"
+    },
     "meaning": "I have five children",
     "meaning_id": "Saya punya lima anak"
   },
@@ -7983,6 +10947,10 @@ export const generatedSentences = [
     "romanji": [
       "otouto ga shichinin imasu"
     ],
+    "furigana": {
+      "5": "しち",
+      "6": "にん"
+    },
     "meaning": "I have seven younger brothers",
     "meaning_id": "Saya punya tujuh adik laki-laki"
   },
@@ -7994,6 +10962,10 @@ export const generatedSentences = [
     "romanji": [
       "imouto ga sannin imasu"
     ],
+    "furigana": {
+      "5": "さん",
+      "6": "にん"
+    },
     "meaning": "I have three younger sisters",
     "meaning_id": "Saya punya tiga adik perempuan"
   },
@@ -8005,6 +10977,10 @@ export const generatedSentences = [
     "romanji": [
       "otouto ga yonin imasu"
     ],
+    "furigana": {
+      "5": "よ",
+      "6": "にん"
+    },
     "meaning": "I have four younger brothers",
     "meaning_id": "Saya punya empat adik laki-laki"
   },
@@ -8016,6 +10992,10 @@ export const generatedSentences = [
     "romanji": [
       "kodomo ga hachinin imasu"
     ],
+    "furigana": {
+      "4": "はち",
+      "5": "にん"
+    },
     "meaning": "I have eight children",
     "meaning_id": "Saya punya delapan anak"
   },
@@ -8027,6 +11007,11 @@ export const generatedSentences = [
     "romanji": [
       "sono pen wa gohyaku en desu"
     ],
+    "furigana": {
+      "5": "ご",
+      "6": "ひゃく",
+      "7": "えん"
+    },
     "meaning": "That pen is 500 yen",
     "meaning_id": "Pulpen itu lima ratus yen"
   },
@@ -8038,6 +11023,10 @@ export const generatedSentences = [
     "romanji": [
       "kono nooto wa sen en desu"
     ],
+    "furigana": {
+      "6": "せん",
+      "7": "えん"
+    },
     "meaning": "This notebook is 1,000 yen",
     "meaning_id": "Buku catatan ini seribu yen"
   },
@@ -8049,6 +11038,11 @@ export const generatedSentences = [
     "romanji": [
       "sono nooto wa sanbyaku en desu"
     ],
+    "furigana": {
+      "6": "さん",
+      "7": "びゃく",
+      "8": "えん"
+    },
     "meaning": "That notebook is 300 yen",
     "meaning_id": "Buku catatan itu tiga ratus yen"
   },
@@ -8060,6 +11054,11 @@ export const generatedSentences = [
     "romanji": [
       "ano hon wa hyaku en desu"
     ],
+    "furigana": {
+      "2": "ほん",
+      "4": "ひゃく",
+      "5": "えん"
+    },
     "meaning": "That book over there is 100 yen",
     "meaning_id": "Buku itu seratus yen"
   },
@@ -8071,6 +11070,10 @@ export const generatedSentences = [
     "romanji": [
       "ano juusu wa sen en desu"
     ],
+    "furigana": {
+      "7": "せん",
+      "8": "えん"
+    },
     "meaning": "That juice over there is 1,000 yen",
     "meaning_id": "Jus itu seribu yen"
   },
@@ -8082,6 +11085,11 @@ export const generatedSentences = [
     "romanji": [
       "ano onigiri wa nihyaku en desu"
     ],
+    "furigana": {
+      "7": "に",
+      "8": "ひゃく",
+      "9": "えん"
+    },
     "meaning": "That onigiri over there is 200 yen",
     "meaning_id": "Nasi kepal itu dua ratus yen"
   },
@@ -8093,6 +11101,10 @@ export const generatedSentences = [
     "romanji": [
       "ano nooto wa hyaku en desu"
     ],
+    "furigana": {
+      "6": "ひゃく",
+      "7": "えん"
+    },
     "meaning": "That notebook over there is 100 yen",
     "meaning_id": "Buku catatan itu seratus yen"
   },
@@ -8104,6 +11116,10 @@ export const generatedSentences = [
     "romanji": [
       "sono onigiri wa sen en desu"
     ],
+    "furigana": {
+      "7": "せん",
+      "8": "えん"
+    },
     "meaning": "That onigiri is 1,000 yen",
     "meaning_id": "Nasi kepal itu seribu yen"
   },
@@ -8115,6 +11131,10 @@ export const generatedSentences = [
     "romanji": [
       "sono pan wa sen en desu"
     ],
+    "furigana": {
+      "5": "せん",
+      "6": "えん"
+    },
     "meaning": "That bread is 1,000 yen",
     "meaning_id": "Roti itu seribu yen"
   },
@@ -8126,6 +11146,11 @@ export const generatedSentences = [
     "romanji": [
       "sono nooto wa nihyaku en desu"
     ],
+    "furigana": {
+      "6": "に",
+      "7": "ひゃく",
+      "8": "えん"
+    },
     "meaning": "That notebook is 200 yen",
     "meaning_id": "Buku catatan itu dua ratus yen"
   },
@@ -8137,6 +11162,11 @@ export const generatedSentences = [
     "romanji": [
       "kono pen wa sanbyaku en desu"
     ],
+    "furigana": {
+      "5": "さん",
+      "6": "びゃく",
+      "7": "えん"
+    },
     "meaning": "This pen is 300 yen",
     "meaning_id": "Pulpen ini tiga ratus yen"
   },
@@ -8148,6 +11178,10 @@ export const generatedSentences = [
     "romanji": [
       "ano onigiri wa sen en desu"
     ],
+    "furigana": {
+      "7": "せん",
+      "8": "えん"
+    },
     "meaning": "That onigiri over there is 1,000 yen",
     "meaning_id": "Nasi kepal itu seribu yen"
   },
@@ -8159,6 +11193,11 @@ export const generatedSentences = [
     "romanji": [
       "sono onigiri wa nihyaku en desu"
     ],
+    "furigana": {
+      "7": "に",
+      "8": "ひゃく",
+      "9": "えん"
+    },
     "meaning": "That onigiri is 200 yen",
     "meaning_id": "Nasi kepal itu dua ratus yen"
   },
@@ -8170,6 +11209,10 @@ export const generatedSentences = [
     "romanji": [
       "sono keeki wa sen en desu"
     ],
+    "furigana": {
+      "6": "せん",
+      "7": "えん"
+    },
     "meaning": "That cake is 1,000 yen",
     "meaning_id": "Kue itu seribu yen"
   },
@@ -8181,6 +11224,10 @@ export const generatedSentences = [
     "romanji": [
       "ano pan wa hyaku en desu"
     ],
+    "furigana": {
+      "5": "ひゃく",
+      "6": "えん"
+    },
     "meaning": "That bread over there is 100 yen",
     "meaning_id": "Roti itu seratus yen"
   },
@@ -8193,6 +11240,10 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa shashin ga jouzu desu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
     "meaning": "The teacher is good at photography",
     "meaning_id": "Guru pandai foto"
   },
@@ -8217,6 +11268,10 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa ryouri ga jouzu desu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
     "meaning": "The teacher is good at cooking",
     "meaning_id": "Guru pandai memasak"
   },
@@ -8229,6 +11284,10 @@ export const generatedSentences = [
     "romanji": [
       "sensei wa sakkaa ga jouzu desu"
     ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
     "meaning": "The teacher is good at soccer",
     "meaning_id": "Guru pandai sepak bola"
   },
@@ -8253,6 +11312,9 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa yakyuu ga jouzu desu"
     ],
+    "furigana": {
+      "0": "とも"
+    },
     "meaning": "My friend is good at baseball",
     "meaning_id": "Teman saya pandai bisbol"
   },
@@ -8265,6 +11327,9 @@ export const generatedSentences = [
     "romanji": [
       "tomodachi wa shashin ga jouzu desu"
     ],
+    "furigana": {
+      "0": "とも"
+    },
     "meaning": "My friend is good at photography",
     "meaning_id": "Teman saya pandai foto"
   },
@@ -8277,6 +11342,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa yakyuu ga jouzu desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student is good at baseball",
     "meaning_id": "Pelajar pandai bisbol"
   },
@@ -8301,6 +11370,10 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa eigo ga jouzu desu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student is good at English",
     "meaning_id": "Pelajar pandai bahasa Inggris"
   },
@@ -8329,6 +11402,9 @@ export const generatedSentences = [
       "chichi wa shuumatsu ni kaimono wo shimasu",
       "chichi wa shuumatsu ni kaimono o shimasu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father does shopping on weekends",
     "meaning_id": "Ayah saya belanja di akhir pekan"
   },
@@ -8371,6 +11447,9 @@ export const generatedSentences = [
       "haha wa mainichi ni ryokou wo shimasu",
       "haha wa mainichi ni ryokou o shimasu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother does travel every day",
     "meaning_id": "Ibu saya wisata setiap hari"
   },
@@ -8385,6 +11464,9 @@ export const generatedSentences = [
       "haha wa mainichi ni kaimono wo shimasu",
       "haha wa mainichi ni kaimono o shimasu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother does shopping every day",
     "meaning_id": "Ibu saya belanja setiap hari"
   },
@@ -8413,6 +11495,9 @@ export const generatedSentences = [
       "tomodachi wa mainichi ni supootsu wo shimasu",
       "tomodachi wa mainichi ni supootsu o shimasu"
     ],
+    "furigana": {
+      "0": "とも"
+    },
     "meaning": "My friend does sports every day",
     "meaning_id": "Teman saya olahraga setiap hari"
   },
@@ -8469,6 +11554,10 @@ export const generatedSentences = [
       "gakusei wa kyou ni ryokou wo shimasu",
       "gakusei wa kyou ni ryokou o shimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student does travel today",
     "meaning_id": "Pelajar wisata hari ini"
   },
@@ -8483,6 +11572,10 @@ export const generatedSentences = [
       "gakusei wa mainichi ni shukudai wo shimasu",
       "gakusei wa mainichi ni shukudai o shimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
     "meaning": "The student does homework every day",
     "meaning_id": "Pelajar PR setiap hari"
   },
@@ -8539,6 +11632,9 @@ export const generatedSentences = [
       "haha wa mainichi ni ryouri wo shimasu",
       "haha wa mainichi ni ryouri o shimasu"
     ],
+    "furigana": {
+      "0": "はは"
+    },
     "meaning": "My mother does cooking every day",
     "meaning_id": "Ibu saya memasak setiap hari"
   },
@@ -8553,6 +11649,9 @@ export const generatedSentences = [
       "chichi wa ashita ni ryouri wo shimasu",
       "chichi wa ashita ni ryouri o shimasu"
     ],
+    "furigana": {
+      "0": "ちち"
+    },
     "meaning": "My father does cooking tomorrow",
     "meaning_id": "Ayah saya memasak besok"
   },
@@ -8566,6 +11665,11 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa tomodachi to issho ni gakkou e ikimasu"
     ],
+    "furigana": {
+      "14": "がっ",
+      "15": "こう",
+      "17": "い"
+    },
     "meaning": "I go to school with a friend",
     "meaning_id": "Saya pergi ke sekolah bersama teman"
   },
@@ -8579,6 +11683,9 @@ export const generatedSentences = [
     "romanji": [
       "kare wa tomodachi to issho ni konbini e ikimasu"
     ],
+    "furigana": {
+      "18": "い"
+    },
     "meaning": "He goes to the convenience store with a friend",
     "meaning_id": "Dia (laki-laki) pergi ke minimarket bersama teman"
   },
@@ -8592,6 +11699,10 @@ export const generatedSentences = [
     "romanji": [
       "anata wa haha to issho ni mise e ikimasu"
     ],
+    "furigana": {
+      "12": "みせ",
+      "14": "い"
+    },
     "meaning": "You go to the shop with my mother",
     "meaning_id": "Anda pergi ke toko bersama ibu"
   },
@@ -8605,6 +11716,9 @@ export const generatedSentences = [
     "romanji": [
       "kare wa haha to issho ni konbini e ikimasu"
     ],
+    "furigana": {
+      "16": "い"
+    },
     "meaning": "He goes to the convenience store with my mother",
     "meaning_id": "Dia (laki-laki) pergi ke minimarket bersama ibu"
   },
@@ -8618,6 +11732,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa haha to issho ni konbini e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "16": "い"
+    },
     "meaning": "The student goes to the convenience store with my mother",
     "meaning_id": "Pelajar pergi ke minimarket bersama ibu"
   },
@@ -8631,6 +11750,10 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa chichi to issho ni mise e ikimasu"
     ],
+    "furigana": {
+      "13": "みせ",
+      "15": "い"
+    },
     "meaning": "She goes to the shop with my father",
     "meaning_id": "Dia (perempuan) pergi ke toko bersama ayah"
   },
@@ -8644,6 +11767,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa haha to issho ni konbini e ikimasu"
     ],
+    "furigana": {
+      "17": "い"
+    },
     "meaning": "I go to the convenience store with my mother",
     "meaning_id": "Saya pergi ke minimarket bersama ibu"
   },
@@ -8657,6 +11783,9 @@ export const generatedSentences = [
     "romanji": [
       "kanojo wa tomodachi to issho ni suupaa e ikimasu"
     ],
+    "furigana": {
+      "20": "い"
+    },
     "meaning": "She goes to the supermarket with a friend",
     "meaning_id": "Dia (perempuan) pergi ke supermarket bersama teman"
   },
@@ -8670,6 +11799,9 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa chichi to issho ni depaato e ikimasu"
     ],
+    "furigana": {
+      "17": "い"
+    },
     "meaning": "I go to the department store with my father",
     "meaning_id": "Saya pergi ke toko serba ada bersama ayah"
   },
@@ -8683,6 +11815,11 @@ export const generatedSentences = [
     "romanji": [
       "gakusei wa chichi to issho ni kuukou e ikimasu"
     ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "16": "い"
+    },
     "meaning": "The student goes to the airport with my father",
     "meaning_id": "Pelajar pergi ke bandara bersama ayah"
   },
@@ -8696,6 +11833,10 @@ export const generatedSentences = [
     "romanji": [
       "watashi wa tomodachi to issho ni eki e ikimasu"
     ],
+    "furigana": {
+      "14": "えき",
+      "16": "い"
+    },
     "meaning": "I go to the station with a friend",
     "meaning_id": "Saya pergi ke stasiun bersama teman"
   },
@@ -8709,6 +11850,9 @@ export const generatedSentences = [
     "romanji": [
       "anata wa chichi to issho ni konbini e ikimasu"
     ],
+    "furigana": {
+      "17": "い"
+    },
     "meaning": "You go to the convenience store with my father",
     "meaning_id": "Anda pergi ke minimarket bersama ayah"
   },
@@ -8721,6 +11865,10 @@ export const generatedSentences = [
     "romanji": [
       "suupaa wa hito ga ooi desu"
     ],
+    "furigana": {
+      "5": "ひと",
+      "7": "おお"
+    },
     "meaning": "The supermarket is crowded",
     "meaning_id": "Supermarket ramai"
   },
@@ -8733,6 +11881,10 @@ export const generatedSentences = [
     "romanji": [
       "kouen wa hito ga ooi desu"
     ],
+    "furigana": {
+      "5": "ひと",
+      "7": "おお"
+    },
     "meaning": "The park is crowded",
     "meaning_id": "Taman ramai"
   },
@@ -8745,6 +11897,11 @@ export const generatedSentences = [
     "romanji": [
       "eki wa hito ga sukunai desu"
     ],
+    "furigana": {
+      "0": "えき",
+      "2": "ひと",
+      "4": "すく"
+    },
     "meaning": "The station is quiet",
     "meaning_id": "Stasiun sepi"
   },
@@ -8757,6 +11914,10 @@ export const generatedSentences = [
     "romanji": [
       "depaato wa hito ga ooi desu"
     ],
+    "furigana": {
+      "5": "ひと",
+      "7": "おお"
+    },
     "meaning": "The department store is crowded",
     "meaning_id": "Toko serba ada ramai"
   },
@@ -8769,6 +11930,12 @@ export const generatedSentences = [
     "romanji": [
       "gakkou wa hito ga ooi desu"
     ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "ひと",
+      "5": "おお"
+    },
     "meaning": "The school is crowded",
     "meaning_id": "Sekolah ramai"
   },
@@ -8781,6 +11948,10 @@ export const generatedSentences = [
     "romanji": [
       "kouen wa hito ga sukunai desu"
     ],
+    "furigana": {
+      "5": "ひと",
+      "7": "すく"
+    },
     "meaning": "The park is quiet",
     "meaning_id": "Taman sepi"
   },
@@ -8793,6 +11964,10 @@ export const generatedSentences = [
     "romanji": [
       "suupaa wa hito ga sukunai desu"
     ],
+    "furigana": {
+      "5": "ひと",
+      "7": "すく"
+    },
     "meaning": "The supermarket is quiet",
     "meaning_id": "Supermarket sepi"
   },
@@ -8805,6 +11980,10 @@ export const generatedSentences = [
     "romanji": [
       "konbini wa hito ga ooi desu"
     ],
+    "furigana": {
+      "5": "ひと",
+      "7": "おお"
+    },
     "meaning": "The convenience store is crowded",
     "meaning_id": "Minimarket ramai"
   },
@@ -8817,6 +11996,10 @@ export const generatedSentences = [
     "romanji": [
       "konbini wa hito ga sukunai desu"
     ],
+    "furigana": {
+      "5": "ひと",
+      "7": "すく"
+    },
     "meaning": "The convenience store is quiet",
     "meaning_id": "Minimarket sepi"
   },
@@ -8829,6 +12012,11 @@ export const generatedSentences = [
     "romanji": [
       "eki wa hito ga ooi desu"
     ],
+    "furigana": {
+      "0": "えき",
+      "2": "ひと",
+      "4": "おお"
+    },
     "meaning": "The station is crowded",
     "meaning_id": "Stasiun ramai"
   },

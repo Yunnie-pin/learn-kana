@@ -8,8 +8,9 @@ import { kanaCharacters } from '../kanaCharacters.js';
 /*
  * Tests for the "long" practice mode: real beginner sentences (e.g. わたしは学生です)
  * that have to be typed as a single romaji answer. Only sentences readable with
- * the selected hiragana / katakana / kanji groups are shown, and the meaning of
- * the sentence is revealed together with the romaji once it is typed correctly.
+ * the selected hiragana / katakana / kanji groups are shown. The romaji is
+ * never displayed for sentences: asking for help reveals small furigana above
+ * the kanji, and a correct answer reveals the meaning of the sentence.
  *
  * The sentence is picked at random, so instead of pinning one the tests read
  * the displayed sentence and look up its data (romaji + meaning) in
@@ -89,7 +90,7 @@ describe('long practice (real sentences)', () => {
     expect(score()).toHaveTextContent('0');
   });
 
-  test('typing the whole sentence reveals its romaji and meaning', async () => {
+  test('typing the whole sentence reveals its meaning', async () => {
     await renderLongPractice();
 
     const sentence = displayedSentence();
@@ -103,9 +104,10 @@ describe('long practice (real sentences)', () => {
     expect(score()).toHaveTextContent('1');
     expect(sentenceStats(sentence).currentGameStats.rightGuesses).toBe(1);
 
-    // The romaji is revealed together with the meaning of the sentence
+    // The meaning is revealed, without the romaji reading
     expect(solution()).not.toHaveClass('hidden-element');
-    expect(solution()).toHaveTextContent(entry.romanji[0]);
+    expect(solution().querySelector('.in-game-solution-romanji')).toBeNull();
+    expect(solution()).not.toHaveTextContent(entry.romanji[0]);
     expect(solution()).toHaveTextContent(entry.meaning);
 
     // Auto next is off, so the Next button starts a new sentence
@@ -129,7 +131,7 @@ describe('long practice (real sentences)', () => {
     const entry = sentenceEntry(sentence);
     pressKeys(...typedAnswerOf(entry).split(''));
     expect(cursorGroup()).toHaveClass('answer-correct');
-    expect(solution()).toHaveTextContent(entry.romanji[0]);
+    expect(solution().querySelector('.in-game-solution-romanji')).toBeNull();
     expect(solution()).toHaveTextContent(entry.meaning);
 
     // Start the next sentence so the game drops its Enter / tap listeners
@@ -162,6 +164,54 @@ describe('long practice (real sentences)', () => {
     const marked = [...document.querySelectorAll('#in-game-kana-character .in-game-particle')]
       .map(span => span.textContent).join('');
     expect(marked).toBe(entry.particles.map(index => [...sentence][index]).join(''));
+
+    // Start the next sentence so the game drops its Enter / tap listeners
+    await tapNextButton();
+  });
+
+  test('asking for help shows furigana above the kanji instead of the romaji', async () => {
+    // これは水です is the only sentence this selection can show, which makes
+    // the assertion deterministic
+    await renderLongPractice(['か', 'ら', 'は', 'だ', 'さ', kanjiGroupOf('水')]);
+
+    expect(displayedSentence()).toBe('これは水です');
+
+    // Before help: no furigana, and the romaji hint stays hidden
+    expect(document.querySelector('#in-game-kana-character rt')).toBeNull();
+    expect(document.querySelector('#in-game-kana-solution')).toHaveClass('hidden-element');
+
+    pressKeys('?');
+
+    // Small furigana appears above the kanji (水 -> みず), no romaji anywhere
+    const annotations = [...document.querySelectorAll('#in-game-kana-character ruby')]
+      .map(ruby => [ruby.childNodes[0].textContent, ruby.querySelector('rt')?.textContent]);
+    expect(annotations).toEqual([['水', 'みず']]);
+    expect(document.querySelector('#in-game-kana-solution')).toHaveClass('hidden-element');
+    expect(solution()).toHaveClass('hidden-element');
+    expect(sentenceStats('これは水です').currentGameStats.askForHelpCounter).toBe(1);
+
+    // The furigana stays visible while the meaning is revealed on a correct answer
+    pressKeys(...typedAnswerOf(sentenceEntry('これは水です')).split(''));
+    expect(solution()).not.toHaveClass('hidden-element');
+    expect(document.querySelector('#in-game-kana-character rt')).toHaveTextContent('みず');
+
+    // Start the next sentence so the game drops its Enter / tap listeners
+    await tapNextButton();
+  });
+
+  test('marks exactly the furigana of every shown sentence', async () => {
+    await renderLongPractice();
+
+    // Data-driven: the furigana annotations must match the sentence data
+    // (hundreds of generated ones included)
+    const sentence = displayedSentence();
+    const entry = sentenceEntry(sentence);
+    pressKeys('?');
+    const annotated = [...document.querySelectorAll('#in-game-kana-character ruby')]
+      .map(ruby => [ruby.childNodes[0].textContent, ruby.querySelector('rt')?.textContent]);
+    const expected = Object.entries(entry.furigana || {})
+      .map(([index, reading]) => [[...sentence][index], reading]);
+    expect(annotated).toEqual(expected);
 
     // Start the next sentence so the game drops its Enter / tap listeners
     await tapNextButton();

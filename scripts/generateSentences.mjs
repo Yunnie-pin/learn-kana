@@ -174,6 +174,81 @@ const seg = (...parts) => {
   return { jp, particles };
 };
 
+// ---------- Furigana ----------
+// Small kana readings shown above each kanji when the player asks for help in
+// the sentences practice mode. Keys are the maximal runs of consecutive kanji
+// exactly as they appear in the assembled sentences; values are the kana
+// readings of that run, one entry per kanji character (okurigana and
+// particles stay unannotated). The same dictionary is used to verify the
+// hand-written "furigana" fields of the curated sentences in src/sentences.js.
+const furiganaByKanjiRun = {
+  // verbs
+  '飲': ['の'], '食': ['た'], '読': ['よ'], '書': ['か'], '見': ['み'], '買': ['か'],
+  '聞': ['き'], '話': ['はな'], '会': ['あ'], '行': ['い'], '来': ['き'], '帰': ['かえ'],
+  '休': ['やす'],
+  // people
+  '学生': ['がく', 'せい'], '先生': ['せん', 'せい'], '友': ['とも'],
+  '父': ['ちち'], '母': ['はは'], '男': ['おとこ'], '女': ['おんな'], '子': ['こ'],
+  // places & things
+  '学校': ['がっ', 'こう'], '駅': ['えき'], '店': ['みせ'], '山': ['やま'], '川': ['かわ'],
+  '日本': ['に', 'ほん'], '日本語': ['に', 'ほん', 'ご'], '日本人': ['に', 'ほん', 'じん'],
+  '外国': ['がい', 'こく'], '大学': ['だい', 'がく'], '新聞': ['しん', 'ぶん'], '名前': ['な', 'まえ'],
+  '電車': ['でん', 'しゃ'], '車': ['くるま'], '水': ['みず'], '本': ['ほん'], '木': ['き'],
+  '手': ['て'], '天気': ['てん', 'き'], '雨': ['あめ'], '国': ['くに'], '北': ['きた'],
+  // positions ("on the desk", "inside the bag", ...)
+  '上': ['うえ'], '中': ['なか'], '下': ['した'],
+  // time words
+  '毎日': ['まい', 'にち'], '毎週': ['まい', 'しゅう'], '今日': ['きょ', 'う'],
+  '今週': ['こん', 'しゅう'], '先週': ['せん', 'しゅう'], '来週': ['らい', 'しゅう'], '今': ['いま'],
+  // adjectives (the trailing い stays unannotated)
+  '新': ['あたら'], '古': ['ふる'], '高': ['たか'], '安': ['やす'], '大': ['おお'],
+  '小': ['ちい'], '長': ['なが'], '白': ['しろ'], '黒': ['くろ'], '青': ['あお'],
+  '多': ['おお'], '少': ['すく'],
+  // hours (X時) and "half past"
+  '一時': ['いち', 'じ'], '二時': ['に', 'じ'], '三時': ['さん', 'じ'], '四時': ['よ', 'じ'],
+  '五時': ['ご', 'じ'], '六時': ['ろく', 'じ'], '七時': ['しち', 'じ'], '八時': ['はち', 'じ'],
+  '九時': ['く', 'じ'], '十時': ['じゅう', 'じ'], '半': ['はん'],
+  // days of the week
+  '月曜日': ['げつ', 'よう', 'び'], '火曜日': ['か', 'よう', 'び'], '水曜日': ['すい', 'よう', 'び'],
+  '木曜日': ['もく', 'よう', 'び'], '土曜日': ['ど', 'よう', 'び'], '日曜日': ['にち', 'よう', 'び'],
+  // prices (X円) and people counters (X人)
+  '百円': ['ひゃく', 'えん'], '二百円': ['に', 'ひゃく', 'えん'], '三百円': ['さん', 'びゃく', 'えん'],
+  '五百円': ['ご', 'ひゃく', 'えん'], '千円': ['せん', 'えん'],
+  '一人': ['ひと', 'り'], '二人': ['ふた', 'り'], '三人': ['さん', 'にん'], '四人': ['よ', 'にん'],
+  '五人': ['ご', 'にん'], '六人': ['ろく', 'にん'], '七人': ['しち', 'にん'], '八人': ['はち', 'にん'],
+  '九人': ['きゅう', 'にん'], '十人': ['じゅう', 'にん'], '三百人': ['さん', 'びゃく', 'にん'],
+  '人': ['ひと'],
+};
+
+const isKanji = (character) => /[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/.test(character);
+const KANA_READING = /^[\u3040-\u30ff]+$/;
+
+// Dictionary keys ordered longest first, so the greedy matcher below prefers
+// e.g. 今日 over 今 + a lookup failure on 日 when words abut each other.
+const furiganaRuns = Object.keys(furiganaByKanjiRun)
+  .sort((a, b) => [...b].length - [...a].length);
+
+// Builds the { characterIndex: reading } map of a sentence by matching every
+// kanji word against the dictionary above (longest match wins, so abutting
+// words like 毎日 + 五時 segment correctly). Returns {} for kana-only
+// sentences and null when a kanji word is missing from the dictionary.
+function computeFurigana(jp) {
+  const characters = [...jp];
+  const furigana = {};
+  let i = 0;
+  while (i < characters.length) {
+    if (!isKanji(characters[i])) { i++; continue; }
+    const run = furiganaRuns.find(key =>
+      [...key].every((character, offset) => characters[i + offset] === character)
+    );
+    if (!run) return null;
+    const readings = furiganaByKanjiRun[run];
+    [...run].forEach((_, offset) => { furigana[i + offset] = readings[offset]; });
+    i += [...run].length;
+  }
+  return furigana;
+}
+
 const templates = [];
 
 // 1. この / その / あの + noun + は + adjective + です (e.g. この本は新しいです)
@@ -1201,6 +1276,37 @@ const problems = [];
 const entries = [];
 const report = [];
 
+// The dictionary itself must be well formed: one kana-only reading per kanji.
+for (const [run, readings] of Object.entries(furiganaByKanjiRun)) {
+  if (readings.length !== [...run].length || !readings.every(reading => KANA_READING.test(reading))) {
+    problems.push(`furigana dictionary entry "${run}" must have one kana reading per kanji`);
+  }
+}
+
+// The hand-written curated sentences carry their own "furigana" fields; they
+// must agree with the readings the dictionary derives for the same sentence.
+{
+  const curatedBody = curatedSource.slice(curatedSource.indexOf('export const sentences = ['));
+  for (const block of curatedBody.split('\n  {').slice(1)) {
+    const jp = /"jp_character":\s*"([^"]+)"/.exec(block)?.[1];
+    if (!jp) continue;
+    const writtenMatch = /"furigana":\s*(\{[^}]*\})/.exec(block);
+    const written = writtenMatch ? JSON.parse(writtenMatch[1]) : null;
+    const computed = computeFurigana(jp);
+    if (computed === null) {
+      problems.push(`[curated] kanji word without furigana readings in ${jp}`);
+      continue;
+    }
+    if (Object.keys(computed).length === 0) {
+      if (written) problems.push(`[curated] kana-only sentence ${jp} must not have a furigana field`);
+    } else if (!written) {
+      problems.push(`[curated] ${jp} is missing its furigana field`);
+    } else if (JSON.stringify(written) !== JSON.stringify(computed)) {
+      problems.push(`[curated] furigana mismatch in ${jp}: expected ${JSON.stringify(computed)}`);
+    }
+  }
+}
+
 for (const [name, candidates] of templates) {
   const quota = quotas[name] ?? 10;
   const picked = shuffle(candidates, name.length * 7919 + candidates.length);
@@ -1226,6 +1332,11 @@ for (const [name, candidates] of templates) {
       problems.push(`[${name}] particle index out of range in ${entry.jp}`);
       continue;
     }
+    const furigana = computeFurigana(entry.jp);
+    if (furigana === null) {
+      problems.push(`[${name}] kanji word without furigana readings in ${entry.jp}`);
+      continue;
+    }
     // wo can always be typed as "o" as well
     const romanji = [entry.ro];
     if (/(^| )wo( |$)/.test(entry.ro)) {
@@ -1236,6 +1347,10 @@ for (const [name, candidates] of templates) {
       jp_character: entry.jp,
       particles: entry.particles || [],
       romanji,
+      // Small kana readings above the kanji, shown when the player asks for
+      // help (character index of the kanji -> its reading). Kana-only
+      // sentences carry no furigana at all.
+      ...(Object.keys(furigana).length ? { furigana } : {}),
       meaning: entry.en,
       meaning_id: entry.id,
     });
@@ -1283,7 +1398,9 @@ const output = `/* AUTO-GENERATED by scripts/generateSentences.mjs — do not ed
  * kanaCharacters.js, and each one carries its romaji (word-spaced) plus
  * English and Indonesian meanings. "particles" lists the character indices
  * of the particles (は, を, に...) so the game can show them in a different
- * color.
+ * color. "furigana" maps the character index of every kanji to its kana
+ * reading, shown in small print above the kanji when the player asks for
+ * help; sentences without kanji have no furigana field.
  *
  * The "sentences" practice mode only offers the sentences the player can
  * read with the groups selected in the menu (see getReadableSentences in

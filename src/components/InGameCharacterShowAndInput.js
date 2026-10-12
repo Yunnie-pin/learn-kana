@@ -262,7 +262,7 @@ export default function InGameCharacterShowAndInput() {
   const { t, meaningOf } = useLanguage();
   const isMacOS = /Mac/i.test(navigator.userAgentData?.platform || navigator.platform);
 
-  /* 
+  /*
     ##########################################
     # Creates and handles the Kana character #
     ##########################################
@@ -274,6 +274,10 @@ export default function InGameCharacterShowAndInput() {
   const [onScreenCharacterType, setOnScreenCharacterType] = useState(null);
   // Character indices of the particles in the shown sentence, so they can be highlighted
   const [onScreenParticles, setOnScreenParticles] = useState([]);
+  // Furigana of the shown sentence (character index of the kanji -> its kana
+  // reading), revealed in small print above the kanji when the player asks for help
+  const [onScreenFurigana, setOnScreenFurigana] = useState({});
+  const [furiganaVisible, setFuriganaVisible] = useState(false);
   const [onScreenKanjiUsage, setOnScreenKanjiUsage] = useState(null);
   const [isKanjiUsageQuestion, setIsKanjiUsageQuestion] = useState(false);
   const [onScreenSolution, setSolution] = useState('');
@@ -432,6 +436,7 @@ export default function InGameCharacterShowAndInput() {
       "jp_character": sentence.jp_character,
       "romanji": sentence.romanji,
       "particles": sentence.particles || [],
+      "furigana": sentence.furigana || {},
       "sound": "",
       "meaning": sentence.meaning,
       "type": "long",
@@ -503,7 +508,7 @@ export default function InGameCharacterShowAndInput() {
     return sampledElements;
   }
 
-  /* 
+  /*
   ##########################################
   # Creates and handles the touch answers #
   ##########################################
@@ -696,7 +701,7 @@ export default function InGameCharacterShowAndInput() {
     let pickedElement = isSrsPractice
       ? srsQueueRef.current?.shift()
       : await selectNextCharacter(charactersToShow);
-    
+
     if (!pickedElement) {
       if (isSrsPractice) {
         setUserGameScoreWindowVisible(true);
@@ -710,7 +715,7 @@ export default function InGameCharacterShowAndInput() {
         return;
       }
     }
-    
+
     inGameKanaOnScreen = pickedElement.jp_character;
     currentCharacterTypeRef.current = pickedElement.type;
     srsFailedRef.current = false;
@@ -765,6 +770,12 @@ export default function InGameCharacterShowAndInput() {
         ? pickedElement.particles
         : []
     );
+    setOnScreenFurigana(
+      pickedElement.type === 'long' && pickedElement.furigana
+        ? pickedElement.furigana
+        : {}
+    );
+    setFuriganaVisible(false);
     const charTextElement = document.querySelector("#in-game-kana-character>p");
     if (charTextElement) {
       const displayLength = [...questionCharacter].length;
@@ -900,7 +911,7 @@ export default function InGameCharacterShowAndInput() {
     setSrsCardDragOffset(0);
   }
 
-  /* 
+  /*
   #######################
   # Text input handlers #
   #######################
@@ -1363,13 +1374,22 @@ export default function InGameCharacterShowAndInput() {
     if (!hintsEnabled) {
       return;
     }
+    // Sentence questions reveal small furigana above the kanji instead of
+    // showing the romaji reading.
+    if (currentCharacterTypeRef.current === 'long') {
+      if (!furiganaVisible) {
+        updateCurrentGameStats('askForHelp')
+        setFuriganaVisible(true)
+      }
+      return;
+    }
     if (document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
       updateCurrentGameStats('askForHelp')
       document.querySelector('#in-game-kana-solution').classList.remove("hidden-element")
     }
   }
 
-  /* 
+  /*
   ########################
   # Touch input handlers #
   ########################
@@ -1461,7 +1481,7 @@ export default function InGameCharacterShowAndInput() {
     return (remainingTime / totalSeconds) * 100;
   }
 
-  /* 
+  /*
   ######################################################
   # Decide wether to use touch or keyboard for answers #
   ######################################################
@@ -1503,9 +1523,9 @@ export default function InGameCharacterShowAndInput() {
           {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
         </span>
       </div>
-      <input 
-        type="text" 
-        id='in-game-text-input' 
+      <input
+        type="text"
+        id='in-game-text-input'
         autoComplete="off"
         autoCorrect="off"
         autoCapitalize="off"
@@ -1676,20 +1696,31 @@ export default function InGameCharacterShowAndInput() {
                     )}
                   </span>
                 ) : character)
-                : onScreenCharacterType === 'long' && onScreenParticles.length > 0
-                  ? [...onScreenKana].map((character, index) => (
-                    onScreenParticles.includes(index)
-                      ? <span className='in-game-particle' key={`particle-${index}`}>{character}</span>
-                      : character
-                  ))
+                : onScreenCharacterType === 'long'
+                  ? [...onScreenKana].map((character, index) => {
+                    const body = onScreenParticles.includes(index)
+                      ? <span className='in-game-particle'>{character}</span>
+                      : character;
+                    // Help in sentence mode shows small furigana above the kanji
+                    return furiganaVisible && onScreenFurigana[index]
+                      ? <ruby key={`furigana-${index}`}>{body}<rt>{onScreenFurigana[index]}</rt></ruby>
+                      : <React.Fragment key={`long-char-${index}`}>{body}</React.Fragment>;
+                  })
                   : onScreenKana}
             </p>
           </div>}
           <div id='in-game-solution' className='in-game-solution hidden-element'>
-            <span className='in-game-solution-romanji'>{onScreenSolution[0]}</span>
+            <span id='in-game-solution-romanji-one'  className='in-game-solution-romanji-one'>{onScreenSolution[0]}</span>
+            <br></br>
+            {/* Sentence answers show the meaning only; the reading is the furigana above the kanji */}
+            {onScreenCharacterType !== 'long' && (
+              <span className='in-game-solution-romanji'>{onScreenSolution[0]}</span>
+            )}
             {onScreenWordMeaning ? (
               <>
-                <span className='in-game-solution-separator'> · </span>
+                {onScreenCharacterType !== 'long' && (
+                  <span className='in-game-solution-separator'> · </span>
+                )}
                 {onScreenWordMeaning}
               </>
             ) : null}
@@ -1710,7 +1741,9 @@ export default function InGameCharacterShowAndInput() {
               )}
           </div>
           <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
-            {Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution}
+            {/* Sentence help reveals furigana instead of the romaji reading */}
+            {onScreenCharacterType !== 'long' &&
+              (Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution)}
           </div>
           {onScreenKanjiUsage && (
             <div id='in-game-kanji-usage' className='in-game-solution in-game-kanji-usage hidden-element'>

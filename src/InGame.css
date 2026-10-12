@@ -344,6 +344,18 @@ html.in-game-scroll-lock body {
   color: #000000;
 }
 
+/* Furigana: small kana readings above the kanji, revealed on help in sentence mode */
+.in-game-kana-character ruby {
+  ruby-align: center;
+}
+
+.in-game-kana-character rt {
+  font-size: 0.38em;
+  font-weight: normal;
+  opacity: 0.9;
+  color: #445760;
+}
+
 .in-game-kana-character>p.kanji-reading-question-prompt {
   white-space: nowrap;
   padding-inline: 0.38em;
@@ -356,6 +368,13 @@ html.in-game-scroll-lock body {
   user-select: none;
   opacity: 0.85;
   animation: fadeIn 0.25s ease-out;
+}
+
+.in-game-solution-romanji-one {
+  font-size: 0.38em;
+  font-weight: normal;
+  opacity: 0.9;
+  color: #445760;
 }
 
 .in-game-solution-romanji {
