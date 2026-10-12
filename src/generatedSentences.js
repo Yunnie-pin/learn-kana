@@ -14535,4 +14535,6352 @@ export const generatedSentences = [
     "meaning": "Won't you go to the department store together?",
     "meaning_id": "Mau pergi ke toko serba ada bersama-sama?"
   },
+  {
+    "jp_character": "母は新聞を読みません",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "haha wa shinbun wo yomimasen",
+      "haha wa shinbun o yomimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "しん",
+      "3": "ぶん",
+      "5": "よ"
+    },
+    "meaning": "My mother doesn't read the newspaper",
+    "meaning_id": "Ibu saya tidak membaca koran",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "きのう、学生は日本語をべんきょうしませんでした",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "kinou gakusei wa nihongo wo benkyou shimasen deshita",
+      "kinou gakusei wa nihongo o benkyou shimasen deshita"
+    ],
+    "furigana": {
+      "4": "がく",
+      "5": "せい",
+      "7": "に",
+      "8": "ほん",
+      "9": "ご"
+    },
+    "meaning": "The student didn't study Japanese yesterday",
+    "meaning_id": "Kemarin pelajar tidak belajar bahasa Jepang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "毎日、父はテレビを見ません",
+    "particles": [
+      4,
+      8
+    ],
+    "romanji": [
+      "mainichi chichi wa terebi wo mimasen",
+      "mainichi chichi wa terebi o mimasen"
+    ],
+    "furigana": {
+      "0": "まい",
+      "1": "にち",
+      "3": "ちち",
+      "9": "み"
+    },
+    "meaning": "My father doesn't watch TV every day",
+    "meaning_id": "Setiap hari ayah saya tidak menonton TV",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたは水を飲みません",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "anata wa mizu wo nomimasen",
+      "anata wa mizu o nomimasen"
+    ],
+    "furigana": {
+      "4": "みず",
+      "6": "の"
+    },
+    "meaning": "You don't drink water",
+    "meaning_id": "Anda tidak minum air",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはひらがなを書きません",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "tomodachi wa hiragana wo kakimasen",
+      "tomodachi wa hiragana o kakimasen"
+    ],
+    "furigana": {
+      "0": "とも",
+      "9": "か"
+    },
+    "meaning": "My friend doesn't write hiragana",
+    "meaning_id": "Teman saya tidak menulis hiragana",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはおんがくを聞きません",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa ongaku wo kikimasen",
+      "watashi wa ongaku o kikimasen"
+    ],
+    "furigana": {
+      "9": "き"
+    },
+    "meaning": "I don't listen to music",
+    "meaning_id": "Saya tidak mendengarkan musik",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生はさかなを食べません",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "sensei wa sakana wo tabemasen",
+      "sensei wa sakana o tabemasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "7": "た"
+    },
+    "meaning": "The teacher doesn't eat fish",
+    "meaning_id": "Guru tidak makan ikan",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母はぎゅうにゅうを飲みません",
+    "particles": [
+      1,
+      8
+    ],
+    "romanji": [
+      "haha wa gyuunyuu wo nomimasen",
+      "haha wa gyuunyuu o nomimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "9": "の"
+    },
+    "meaning": "My mother doesn't drink milk",
+    "meaning_id": "Ibu saya tidak minum susu",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生はラーメンを食べません",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "gakusei wa raamen wo tabemasen",
+      "gakusei wa raamen o tabemasen"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "8": "た"
+    },
+    "meaning": "The student doesn't eat ramen",
+    "meaning_id": "Pelajar tidak makan ramen",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはかんじを書きません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa kanji wo kakimasen",
+      "watashi wa kanji o kakimasen"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "I don't write kanji",
+    "meaning_id": "Saya tidak menulis kanji",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生はおちゃを飲みません",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "sensei wa ocha wo nomimasen",
+      "sensei wa ocha o nomimasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "7": "の"
+    },
+    "meaning": "The teacher doesn't drink tea",
+    "meaning_id": "Guru tidak minum teh",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはパンを食べません",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa pan wo tabemasen",
+      "tomodachi wa pan o tabemasen"
+    ],
+    "furigana": {
+      "0": "とも",
+      "7": "た"
+    },
+    "meaning": "My friend doesn't eat bread",
+    "meaning_id": "Teman saya tidak makan roti",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたはカタカナを書きません",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "anata wa katakana wo kakimasen",
+      "anata wa katakana o kakimasen"
+    ],
+    "furigana": {
+      "9": "か"
+    },
+    "meaning": "You don't write katakana",
+    "meaning_id": "Anda tidak menulis katakana",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はテレビを見ません",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "chichi wa terebi wo mimasen",
+      "chichi wa terebi o mimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "6": "み"
+    },
+    "meaning": "My father doesn't watch TV",
+    "meaning_id": "Ayah saya tidak menonton TV",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生は新聞を読みません",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "gakusei wa shinbun wo yomimasen",
+      "gakusei wa shinbun o yomimasen"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "しん",
+      "4": "ぶん",
+      "6": "よ"
+    },
+    "meaning": "The student doesn't read the newspaper",
+    "meaning_id": "Pelajar tidak membaca koran",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生はおんがくを聞きません",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "sensei wa ongaku wo kikimasen",
+      "sensei wa ongaku o kikimasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "8": "き"
+    },
+    "meaning": "The teacher doesn't listen to music",
+    "meaning_id": "Guru tidak mendengarkan musik",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は日本語をべんきょうしません",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "haha wa nihongo wo benkyou shimasen",
+      "haha wa nihongo o benkyou shimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "に",
+      "3": "ほん",
+      "4": "ご"
+    },
+    "meaning": "My mother doesn't study Japanese",
+    "meaning_id": "Ibu saya tidak belajar bahasa Jepang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはコーヒーを飲みません",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa koohii wo nomimasen",
+      "watashi wa koohii o nomimasen"
+    ],
+    "furigana": {
+      "9": "の"
+    },
+    "meaning": "I don't drink coffee",
+    "meaning_id": "Saya tidak minum kopi",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはごはんを食べません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi wa gohan wo tabemasen",
+      "tomodachi wa gohan o tabemasen"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "た"
+    },
+    "meaning": "My friend doesn't eat rice",
+    "meaning_id": "Teman saya tidak makan nasi",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたはかんじを書きません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata wa kanji wo kakimasen",
+      "anata wa kanji o kakimasen"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "You don't write kanji",
+    "meaning_id": "Anda tidak menulis kanji",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はジュースを飲みません",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "chichi wa juusu wo nomimasen",
+      "chichi wa juusu o nomimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "7": "の"
+    },
+    "meaning": "My father doesn't drink juice",
+    "meaning_id": "Ayah saya tidak minum jus",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生はテレビを見ません",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa terebi wo mimasen",
+      "gakusei wa terebi o mimasen"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "7": "み"
+    },
+    "meaning": "The student doesn't watch TV",
+    "meaning_id": "Pelajar tidak menonton TV",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたは新聞を読みません",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "anata wa shinbun wo yomimasen",
+      "anata wa shinbun o yomimasen"
+    ],
+    "furigana": {
+      "4": "しん",
+      "5": "ぶん",
+      "7": "よ"
+    },
+    "meaning": "You don't read the newspaper",
+    "meaning_id": "Anda tidak membaca koran",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはにくを食べません",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa niku wo tabemasen",
+      "tomodachi wa niku o tabemasen"
+    ],
+    "furigana": {
+      "0": "とも",
+      "7": "た"
+    },
+    "meaning": "My friend doesn't eat meat",
+    "meaning_id": "Teman saya tidak makan daging",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母はおんがくを聞きません",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "haha wa ongaku wo kikimasen",
+      "haha wa ongaku o kikimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "き"
+    },
+    "meaning": "My mother doesn't listen to music",
+    "meaning_id": "Ibu saya tidak mendengarkan musik",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはすしを食べません",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa sushi wo tabemasen",
+      "watashi wa sushi o tabemasen"
+    ],
+    "furigana": {
+      "7": "た"
+    },
+    "meaning": "I don't eat sushi",
+    "meaning_id": "Saya tidak makan sushi",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はカタカナを書きません",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "chichi wa katakana wo kakimasen",
+      "chichi wa katakana o kakimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "7": "か"
+    },
+    "meaning": "My father doesn't write katakana",
+    "meaning_id": "Ayah saya tidak menulis katakana",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生はぎゅうにゅうを飲みません",
+    "particles": [
+      2,
+      9
+    ],
+    "romanji": [
+      "sensei wa gyuunyuu wo nomimasen",
+      "sensei wa gyuunyuu o nomimasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "10": "の"
+    },
+    "meaning": "The teacher doesn't drink milk",
+    "meaning_id": "Guru tidak minum susu",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母はひらがなを書きません",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "haha wa hiragana wo kakimasen",
+      "haha wa hiragana o kakimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "か"
+    },
+    "meaning": "My mother doesn't write hiragana",
+    "meaning_id": "Ibu saya tidak menulis hiragana",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生は日本語をべんきょうしません",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa nihongo wo benkyou shimasen",
+      "gakusei wa nihongo o benkyou shimasen"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん",
+      "5": "ご"
+    },
+    "meaning": "The student doesn't study Japanese",
+    "meaning_id": "Pelajar tidak belajar bahasa Jepang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはレストランへ行きたいです",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa resutoran e ikitai desu"
+    ],
+    "furigana": {
+      "10": "い"
+    },
+    "meaning": "I want to go to the restaurant",
+    "meaning_id": "Saya ingin pergi ke restoran",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしはざっしを読みたいです",
+    "particles": [
+      7,
+      11
+    ],
+    "romanji": [
+      "ashita watashi wa zasshi wo yomitai desu",
+      "ashita watashi wa zasshi o yomitai desu"
+    ],
+    "furigana": {
+      "12": "よ"
+    },
+    "meaning": "I want to read a magazine tomorrow",
+    "meaning_id": "Besok saya ingin membaca majalah",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしはかんじをべんきょうしたいです",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "raishuu watashi wa kanji wo benkyou shitai desu",
+      "raishuu watashi wa kanji o benkyou shitai desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう"
+    },
+    "meaning": "I want to study kanji next week",
+    "meaning_id": "Minggu depan saya ingin belajar kanji",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはパンを食べたいです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa pan wo tabetai desu",
+      "watashi wa pan o tabetai desu"
+    ],
+    "furigana": {
+      "7": "た"
+    },
+    "meaning": "I want to eat bread",
+    "meaning_id": "Saya ingin makan roti",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはこうえんへ行きたいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa kouen e ikitai desu"
+    ],
+    "furigana": {
+      "9": "い"
+    },
+    "meaning": "I want to go to the park",
+    "meaning_id": "Saya ingin pergi ke taman",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしははなを買いたいです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa hana wo kaitai desu",
+      "watashi wa hana o kaitai desu"
+    ],
+    "furigana": {
+      "7": "か"
+    },
+    "meaning": "I want to buy a flower",
+    "meaning_id": "Saya ingin membeli bunga",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはカタカナを書きたいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa katakana wo kakitai desu",
+      "watashi wa katakana o kakitai desu"
+    ],
+    "furigana": {
+      "9": "か"
+    },
+    "meaning": "I want to write katakana",
+    "meaning_id": "Saya ingin menulis katakana",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは日本へ行きたいです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa nihon e ikitai desu"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "7": "い"
+    },
+    "meaning": "I want to go to Japan",
+    "meaning_id": "Saya ingin pergi ke Jepang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはジュースを飲みたいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa juusu wo nomitai desu",
+      "watashi wa juusu o nomitai desu"
+    ],
+    "furigana": {
+      "9": "の"
+    },
+    "meaning": "I want to drink juice",
+    "meaning_id": "Saya ingin minum jus",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは外国へ行きたいです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa gaikoku e ikitai desu"
+    ],
+    "furigana": {
+      "4": "がい",
+      "5": "こく",
+      "7": "い"
+    },
+    "meaning": "I want to go to a foreign country",
+    "meaning_id": "Saya ingin pergi ke luar negeri",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはテレビを見たいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa terebi wo mitai desu",
+      "watashi wa terebi o mitai desu"
+    ],
+    "furigana": {
+      "8": "み"
+    },
+    "meaning": "I want to watch TV",
+    "meaning_id": "Saya ingin menonton TV",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはおんがくを聞きたいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa ongaku wo kikitai desu",
+      "watashi wa ongaku o kikitai desu"
+    ],
+    "furigana": {
+      "9": "き"
+    },
+    "meaning": "I want to listen to music",
+    "meaning_id": "Saya ingin mendengarkan musik",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは川へ行きたいです",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "watashi wa kawa e ikitai desu"
+    ],
+    "furigana": {
+      "4": "かわ",
+      "6": "い"
+    },
+    "meaning": "I want to go to the river",
+    "meaning_id": "Saya ingin pergi ke sungai",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはラーメンを食べたいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa raamen wo tabetai desu",
+      "watashi wa raamen o tabetai desu"
+    ],
+    "furigana": {
+      "9": "た"
+    },
+    "meaning": "I want to eat ramen",
+    "meaning_id": "Saya ingin makan ramen",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは新聞を読みたいです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa shinbun wo yomitai desu",
+      "watashi wa shinbun o yomitai desu"
+    ],
+    "furigana": {
+      "4": "しん",
+      "5": "ぶん",
+      "7": "よ"
+    },
+    "meaning": "I want to read the newspaper",
+    "meaning_id": "Saya ingin membaca koran",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは山へ行きたいです",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "watashi wa yama e ikitai desu"
+    ],
+    "furigana": {
+      "4": "やま",
+      "6": "い"
+    },
+    "meaning": "I want to go to the mountain",
+    "meaning_id": "Saya ingin pergi ke gunung",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはコーヒーを飲みたいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa koohii wo nomitai desu",
+      "watashi wa koohii o nomitai desu"
+    ],
+    "furigana": {
+      "9": "の"
+    },
+    "meaning": "I want to drink coffee",
+    "meaning_id": "Saya ingin minum kopi",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはとけいを買いたいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa tokei wo kaitai desu",
+      "watashi wa tokei o kaitai desu"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "I want to buy a watch",
+    "meaning_id": "Saya ingin membeli jam",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはデパートへ行きたいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa depaato e ikitai desu"
+    ],
+    "furigana": {
+      "9": "い"
+    },
+    "meaning": "I want to go to the department store",
+    "meaning_id": "Saya ingin pergi ke toko serba ada",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはてがみを書きたいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa tegami wo kakitai desu",
+      "watashi wa tegami o kakitai desu"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "I want to write a letter",
+    "meaning_id": "Saya ingin menulis surat",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはえいがを見たいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa eiga wo mitai desu",
+      "watashi wa eiga o mitai desu"
+    ],
+    "furigana": {
+      "8": "み"
+    },
+    "meaning": "I want to watch a movie",
+    "meaning_id": "Saya ingin menonton film",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしは川へ行きたいです",
+    "particles": [
+      6,
+      8
+    ],
+    "romanji": [
+      "raishuu watashi wa kawa e ikitai desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "7": "かわ",
+      "9": "い"
+    },
+    "meaning": "I want to go to the river next week",
+    "meaning_id": "Minggu depan saya ingin pergi ke sungai",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはにくを食べたいです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa niku wo tabetai desu",
+      "watashi wa niku o tabetai desu"
+    ],
+    "furigana": {
+      "7": "た"
+    },
+    "meaning": "I want to eat meat",
+    "meaning_id": "Saya ingin makan daging",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは水を飲みたいです",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "watashi wa mizu wo nomitai desu",
+      "watashi wa mizu o nomitai desu"
+    ],
+    "furigana": {
+      "4": "みず",
+      "6": "の"
+    },
+    "meaning": "I want to drink water",
+    "meaning_id": "Saya ingin minum air",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしはレストランへ行きたいです",
+    "particles": [
+      7,
+      13
+    ],
+    "romanji": [
+      "ashita watashi wa resutoran e ikitai desu"
+    ],
+    "furigana": {
+      "14": "い"
+    },
+    "meaning": "I want to go to the restaurant tomorrow",
+    "meaning_id": "Besok saya ingin pergi ke restoran",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにかんじを書きましょう",
+    "particles": [
+      8
+    ],
+    "romanji": [
+      "issho ni kanji wo kakimashou",
+      "issho ni kanji o kakimashou"
+    ],
+    "furigana": {
+      "9": "か"
+    },
+    "meaning": "Let's write kanji together",
+    "meaning_id": "Ayo tulis kanji bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、いっしょに駅へ行きましょう",
+    "particles": [
+      10
+    ],
+    "romanji": [
+      "ashita issho ni eki e ikimashou"
+    ],
+    "furigana": {
+      "9": "えき",
+      "11": "い"
+    },
+    "meaning": "Let's go to the station together tomorrow",
+    "meaning_id": "Besok, ayo pergi ke stasiun bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにはなを買いましょう",
+    "particles": [
+      7
+    ],
+    "romanji": [
+      "issho ni hana wo kaimashou",
+      "issho ni hana o kaimashou"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "Let's buy a flower together",
+    "meaning_id": "Ayo beli bunga bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにごはんを食べましょう",
+    "particles": [
+      8
+    ],
+    "romanji": [
+      "issho ni gohan wo tabemashou",
+      "issho ni gohan o tabemashou"
+    ],
+    "furigana": {
+      "9": "た"
+    },
+    "meaning": "Let's eat rice together",
+    "meaning_id": "Ayo makan nasi bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにスーパーへ行きましょう",
+    "particles": [
+      9
+    ],
+    "romanji": [
+      "issho ni suupaa e ikimashou"
+    ],
+    "furigana": {
+      "10": "い"
+    },
+    "meaning": "Let's go to the supermarket together",
+    "meaning_id": "Ayo pergi ke supermarket bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょに新聞を読みましょう",
+    "particles": [
+      7
+    ],
+    "romanji": [
+      "issho ni shinbun wo yomimashou",
+      "issho ni shinbun o yomimashou"
+    ],
+    "furigana": {
+      "5": "しん",
+      "6": "ぶん",
+      "8": "よ"
+    },
+    "meaning": "Let's read the newspaper together",
+    "meaning_id": "Ayo baca koran bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにテレビを見ましょう",
+    "particles": [
+      8
+    ],
+    "romanji": [
+      "issho ni terebi wo mimashou",
+      "issho ni terebi o mimashou"
+    ],
+    "furigana": {
+      "9": "み"
+    },
+    "meaning": "Let's watch TV together",
+    "meaning_id": "Ayo tonton TV bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょに山へ行きましょう",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "issho ni yama e ikimashou"
+    ],
+    "furigana": {
+      "5": "やま",
+      "7": "い"
+    },
+    "meaning": "Let's go to the mountain together",
+    "meaning_id": "Ayo pergi ke gunung bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょに水を飲みましょう",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "issho ni mizu wo nomimashou",
+      "issho ni mizu o nomimashou"
+    ],
+    "furigana": {
+      "5": "みず",
+      "7": "の"
+    },
+    "meaning": "Let's drink water together",
+    "meaning_id": "Ayo minum air bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにデパートへ行きましょう",
+    "particles": [
+      9
+    ],
+    "romanji": [
+      "issho ni depaato e ikimashou"
+    ],
+    "furigana": {
+      "10": "い"
+    },
+    "meaning": "Let's go to the department store together",
+    "meaning_id": "Ayo pergi ke toko serba ada bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにおんがくを聞きましょう",
+    "particles": [
+      9
+    ],
+    "romanji": [
+      "issho ni ongaku wo kikimashou",
+      "issho ni ongaku o kikimashou"
+    ],
+    "furigana": {
+      "10": "き"
+    },
+    "meaning": "Let's listen to music together",
+    "meaning_id": "Ayo dengarkan musik bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにカタカナを書きましょう",
+    "particles": [
+      9
+    ],
+    "romanji": [
+      "issho ni katakana wo kakimashou",
+      "issho ni katakana o kakimashou"
+    ],
+    "furigana": {
+      "10": "か"
+    },
+    "meaning": "Let's write katakana together",
+    "meaning_id": "Ayo tulis katakana bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょに川へ行きましょう",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "issho ni kawa e ikimashou"
+    ],
+    "furigana": {
+      "5": "かわ",
+      "7": "い"
+    },
+    "meaning": "Let's go to the river together",
+    "meaning_id": "Ayo pergi ke sungai bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにかばんを買いましょう",
+    "particles": [
+      8
+    ],
+    "romanji": [
+      "issho ni kaban wo kaimashou",
+      "issho ni kaban o kaimashou"
+    ],
+    "furigana": {
+      "9": "か"
+    },
+    "meaning": "Let's buy a bag together",
+    "meaning_id": "Ayo beli tas bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにラーメンを食べましょう",
+    "particles": [
+      9
+    ],
+    "romanji": [
+      "issho ni raamen wo tabemashou",
+      "issho ni raamen o tabemashou"
+    ],
+    "furigana": {
+      "10": "た"
+    },
+    "meaning": "Let's eat ramen together",
+    "meaning_id": "Ayo makan ramen bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにレストランへ行きましょう",
+    "particles": [
+      10
+    ],
+    "romanji": [
+      "issho ni resutoran e ikimashou"
+    ],
+    "furigana": {
+      "11": "い"
+    },
+    "meaning": "Let's go to the restaurant together",
+    "meaning_id": "Ayo pergi ke restoran bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにおちゃを飲みましょう",
+    "particles": [
+      8
+    ],
+    "romanji": [
+      "issho ni ocha wo nomimashou",
+      "issho ni ocha o nomimashou"
+    ],
+    "furigana": {
+      "9": "の"
+    },
+    "meaning": "Let's drink tea together",
+    "meaning_id": "Ayo minum teh bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにえいがを見ましょう",
+    "particles": [
+      8
+    ],
+    "romanji": [
+      "issho ni eiga wo mimashou",
+      "issho ni eiga o mimashou"
+    ],
+    "furigana": {
+      "9": "み"
+    },
+    "meaning": "Let's watch a movie together",
+    "meaning_id": "Ayo tonton film bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにこうえんへ行きましょう",
+    "particles": [
+      9
+    ],
+    "romanji": [
+      "issho ni kouen e ikimashou"
+    ],
+    "furigana": {
+      "10": "い"
+    },
+    "meaning": "Let's go to the park together",
+    "meaning_id": "Ayo pergi ke taman bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "いっしょにざっしを読みましょう",
+    "particles": [
+      8
+    ],
+    "romanji": [
+      "issho ni zasshi wo yomimashou",
+      "issho ni zasshi o yomimashou"
+    ],
+    "furigana": {
+      "9": "よ"
+    },
+    "meaning": "Let's read a magazine together",
+    "meaning_id": "Ayo baca majalah bersama-sama",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "えいがを見てください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "eiga wo mite kudasai",
+      "eiga o mite kudasai"
+    ],
+    "furigana": {
+      "4": "み"
+    },
+    "meaning": "Please watch a movie",
+    "meaning_id": "Tolong tonton film",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学校へ行ってください",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "gakkou e itte kudasai"
+    ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "い"
+    },
+    "meaning": "Please go to school",
+    "meaning_id": "Tolong pergi ke sekolah",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "ジュースを飲んでください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "juusu wo nonde kudasai",
+      "juusu o nonde kudasai"
+    ],
+    "furigana": {
+      "5": "の"
+    },
+    "meaning": "Please drink juice",
+    "meaning_id": "Tolong minum jus",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "とけいを買ってください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "tokei wo katte kudasai",
+      "tokei o katte kudasai"
+    ],
+    "furigana": {
+      "4": "か"
+    },
+    "meaning": "Please buy a watch",
+    "meaning_id": "Tolong beli jam",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "ぎんこうへ行ってください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "ginkou e itte kudasai"
+    ],
+    "furigana": {
+      "5": "い"
+    },
+    "meaning": "Please go to the bank",
+    "meaning_id": "Tolong pergi ke bank",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "すしを食べてください",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "sushi wo tabete kudasai",
+      "sushi o tabete kudasai"
+    ],
+    "furigana": {
+      "3": "た"
+    },
+    "meaning": "Please eat sushi",
+    "meaning_id": "Tolong makan sushi",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "てがみを書いてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "tegami wo kaite kudasai",
+      "tegami o kaite kudasai"
+    ],
+    "furigana": {
+      "4": "か"
+    },
+    "meaning": "Please write a letter",
+    "meaning_id": "Tolong tulis surat",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "うちへ行ってください",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "uchi e itte kudasai"
+    ],
+    "furigana": {
+      "3": "い"
+    },
+    "meaning": "Please go home",
+    "meaning_id": "Tolong pergi ke rumah",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "新聞を読んでください",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "shinbun wo yonde kudasai",
+      "shinbun o yonde kudasai"
+    ],
+    "furigana": {
+      "0": "しん",
+      "1": "ぶん",
+      "3": "よ"
+    },
+    "meaning": "Please read the newspaper",
+    "meaning_id": "Tolong baca koran",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "くうこうへ行ってください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "kuukou e itte kudasai"
+    ],
+    "furigana": {
+      "5": "い"
+    },
+    "meaning": "Please go to the airport",
+    "meaning_id": "Tolong pergi ke bandara",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "おんがくを聞いてください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "ongaku wo kiite kudasai",
+      "ongaku o kiite kudasai"
+    ],
+    "furigana": {
+      "5": "き"
+    },
+    "meaning": "Please listen to music",
+    "meaning_id": "Tolong dengarkan musik",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "かんじをべんきょうしてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kanji wo benkyou shite kudasai",
+      "kanji o benkyou shite kudasai"
+    ],
+    "meaning": "Please study kanji",
+    "meaning_id": "Tolong belajar kanji",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "駅へ行ってください",
+    "particles": [
+      1
+    ],
+    "romanji": [
+      "eki e itte kudasai"
+    ],
+    "furigana": {
+      "0": "えき",
+      "2": "い"
+    },
+    "meaning": "Please go to the station",
+    "meaning_id": "Tolong pergi ke stasiun",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "ごはんを食べてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "gohan wo tabete kudasai",
+      "gohan o tabete kudasai"
+    ],
+    "furigana": {
+      "4": "た"
+    },
+    "meaning": "Please eat rice",
+    "meaning_id": "Tolong makan nasi",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "かばんを買ってください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kaban wo katte kudasai",
+      "kaban o katte kudasai"
+    ],
+    "furigana": {
+      "4": "か"
+    },
+    "meaning": "Please buy a bag",
+    "meaning_id": "Tolong beli tas",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "こうえんへ行ってください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "kouen e itte kudasai"
+    ],
+    "furigana": {
+      "5": "い"
+    },
+    "meaning": "Please go to the park",
+    "meaning_id": "Tolong pergi ke taman",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "ぎゅうにゅうを飲んでください",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "gyuunyuu wo nonde kudasai",
+      "gyuunyuu o nonde kudasai"
+    ],
+    "furigana": {
+      "7": "の"
+    },
+    "meaning": "Please drink milk",
+    "meaning_id": "Tolong minum susu",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "本を読んでください",
+    "particles": [
+      1
+    ],
+    "romanji": [
+      "hon wo yonde kudasai",
+      "hon o yonde kudasai"
+    ],
+    "furigana": {
+      "0": "ほん",
+      "2": "よ"
+    },
+    "meaning": "Please read a book",
+    "meaning_id": "Tolong baca buku",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "ひらがなを書いてください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "hiragana wo kaite kudasai",
+      "hiragana o kaite kudasai"
+    ],
+    "furigana": {
+      "5": "か"
+    },
+    "meaning": "Please write hiragana",
+    "meaning_id": "Tolong tulis hiragana",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "テレビを見てください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "terebi wo mite kudasai",
+      "terebi o mite kudasai"
+    ],
+    "furigana": {
+      "4": "み"
+    },
+    "meaning": "Please watch TV",
+    "meaning_id": "Tolong tonton TV",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生は今、ラーメンを食べています",
+    "particles": [
+      2,
+      9
+    ],
+    "romanji": [
+      "sensei wa ima raamen wo tabete imasu",
+      "sensei wa ima raamen o tabete imasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "いま",
+      "10": "た"
+    },
+    "meaning": "The teacher is eating ramen now",
+    "meaning_id": "Guru sedang makan ramen sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生は今、テレビを見ています",
+    "particles": [
+      2,
+      8
+    ],
+    "romanji": [
+      "gakusei wa ima terebi wo mite imasu",
+      "gakusei wa ima terebi o mite imasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "いま",
+      "9": "み"
+    },
+    "meaning": "The student is watching TV now",
+    "meaning_id": "Pelajar sedang menonton TV sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は今、おんがくを聞いています",
+    "particles": [
+      1,
+      8
+    ],
+    "romanji": [
+      "haha wa ima ongaku wo kiite imasu",
+      "haha wa ima ongaku o kiite imasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "いま",
+      "9": "き"
+    },
+    "meaning": "My mother is listening to music now",
+    "meaning_id": "Ibu saya sedang mendengarkan musik sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたは今、ひらがなを書いています",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "anata wa ima hiragana wo kaite imasu",
+      "anata wa ima hiragana o kaite imasu"
+    ],
+    "furigana": {
+      "4": "いま",
+      "11": "か"
+    },
+    "meaning": "You are writing hiragana now",
+    "meaning_id": "Anda sedang menulis hiragana sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父は今、新聞を読んでいます",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "chichi wa ima shinbun wo yonde imasu",
+      "chichi wa ima shinbun o yonde imasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "いま",
+      "4": "しん",
+      "5": "ぶん",
+      "7": "よ"
+    },
+    "meaning": "My father is reading the newspaper now",
+    "meaning_id": "Ayah saya sedang membaca koran sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは今、コーヒーを飲んでいます",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "watashi wa ima koohii wo nonde imasu",
+      "watashi wa ima koohii o nonde imasu"
+    ],
+    "furigana": {
+      "4": "いま",
+      "11": "の"
+    },
+    "meaning": "I am drinking coffee now",
+    "meaning_id": "Saya sedang minum kopi sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちは今、かんじをべんきょうしています",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "tomodachi wa ima kanji wo benkyou shite imasu",
+      "tomodachi wa ima kanji o benkyou shite imasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "いま"
+    },
+    "meaning": "My friend is studying kanji now",
+    "meaning_id": "Teman saya sedang belajar kanji sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は今、おちゃを飲んでいます",
+    "particles": [
+      1,
+      7
+    ],
+    "romanji": [
+      "haha wa ima ocha wo nonde imasu",
+      "haha wa ima ocha o nonde imasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "いま",
+      "8": "の"
+    },
+    "meaning": "My mother is drinking tea now",
+    "meaning_id": "Ibu saya sedang minum teh sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父は今、にくを食べています",
+    "particles": [
+      1,
+      6
+    ],
+    "romanji": [
+      "chichi wa ima niku wo tabete imasu",
+      "chichi wa ima niku o tabete imasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "いま",
+      "7": "た"
+    },
+    "meaning": "My father is eating meat now",
+    "meaning_id": "Ayah saya sedang makan daging sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちは今、てがみを書いています",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "tomodachi wa ima tegami wo kaite imasu",
+      "tomodachi wa ima tegami o kaite imasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "いま",
+      "10": "か"
+    },
+    "meaning": "My friend is writing a letter now",
+    "meaning_id": "Teman saya sedang menulis surat sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは今、えいがを見ています",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa ima eiga wo mite imasu",
+      "watashi wa ima eiga o mite imasu"
+    ],
+    "furigana": {
+      "4": "いま",
+      "10": "み"
+    },
+    "meaning": "I am watching a movie now",
+    "meaning_id": "Saya sedang menonton film sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたは今、本を読んでいます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata wa ima hon wo yonde imasu",
+      "anata wa ima hon o yonde imasu"
+    ],
+    "furigana": {
+      "4": "いま",
+      "6": "ほん",
+      "8": "よ"
+    },
+    "meaning": "You are reading a book now",
+    "meaning_id": "Anda sedang membaca buku sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生は今、さかなを食べています",
+    "particles": [
+      2,
+      8
+    ],
+    "romanji": [
+      "gakusei wa ima sakana wo tabete imasu",
+      "gakusei wa ima sakana o tabete imasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "いま",
+      "9": "た"
+    },
+    "meaning": "The student is eating fish now",
+    "meaning_id": "Pelajar sedang makan ikan sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生は今、ぎゅうにゅうを飲んでいます",
+    "particles": [
+      2,
+      11
+    ],
+    "romanji": [
+      "sensei wa ima gyuunyuu wo nonde imasu",
+      "sensei wa ima gyuunyuu o nonde imasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "いま",
+      "12": "の"
+    },
+    "meaning": "The teacher is drinking milk now",
+    "meaning_id": "Guru sedang minum susu sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は今、日本語をべんきょうしています",
+    "particles": [
+      1,
+      7
+    ],
+    "romanji": [
+      "haha wa ima nihongo wo benkyou shite imasu",
+      "haha wa ima nihongo o benkyou shite imasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "いま",
+      "4": "に",
+      "5": "ほん",
+      "6": "ご"
+    },
+    "meaning": "My mother is studying Japanese now",
+    "meaning_id": "Ibu saya sedang belajar bahasa Jepang sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父は今、ざっしを読んでいます",
+    "particles": [
+      1,
+      7
+    ],
+    "romanji": [
+      "chichi wa ima zasshi wo yonde imasu",
+      "chichi wa ima zasshi o yonde imasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "いま",
+      "8": "よ"
+    },
+    "meaning": "My father is reading a magazine now",
+    "meaning_id": "Ayah saya sedang membaca majalah sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちは今、カタカナを書いています",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "tomodachi wa ima katakana wo kaite imasu",
+      "tomodachi wa ima katakana o kaite imasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "いま",
+      "11": "か"
+    },
+    "meaning": "My friend is writing katakana now",
+    "meaning_id": "Teman saya sedang menulis katakana sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生は今、おんがくを聞いています",
+    "particles": [
+      2,
+      9
+    ],
+    "romanji": [
+      "gakusei wa ima ongaku wo kiite imasu",
+      "gakusei wa ima ongaku o kiite imasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "いま",
+      "10": "き"
+    },
+    "meaning": "The student is listening to music now",
+    "meaning_id": "Pelajar sedang mendengarkan musik sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは今、パンを食べています",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa ima pan wo tabete imasu",
+      "watashi wa ima pan o tabete imasu"
+    ],
+    "furigana": {
+      "4": "いま",
+      "9": "た"
+    },
+    "meaning": "I am eating bread now",
+    "meaning_id": "Saya sedang makan roti sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生は今、えいがを見ています",
+    "particles": [
+      2,
+      8
+    ],
+    "romanji": [
+      "sensei wa ima eiga wo mite imasu",
+      "sensei wa ima eiga o mite imasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "いま",
+      "9": "み"
+    },
+    "meaning": "The teacher is watching a movie now",
+    "meaning_id": "Guru sedang menonton film sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたは今、ジュースを飲んでいます",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "anata wa ima juusu wo nonde imasu",
+      "anata wa ima juusu o nonde imasu"
+    ],
+    "furigana": {
+      "4": "いま",
+      "11": "の"
+    },
+    "meaning": "You are drinking juice now",
+    "meaning_id": "Anda sedang minum jus sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたは今、新聞を読んでいます",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "anata wa ima shinbun wo yonde imasu",
+      "anata wa ima shinbun o yonde imasu"
+    ],
+    "furigana": {
+      "4": "いま",
+      "6": "しん",
+      "7": "ぶん",
+      "9": "よ"
+    },
+    "meaning": "You are reading the newspaper now",
+    "meaning_id": "Anda sedang membaca koran sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは今、ごはんを食べています",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa ima gohan wo tabete imasu",
+      "watashi wa ima gohan o tabete imasu"
+    ],
+    "furigana": {
+      "4": "いま",
+      "10": "た"
+    },
+    "meaning": "I am eating rice now",
+    "meaning_id": "Saya sedang makan nasi sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生は今、かんじを書いています",
+    "particles": [
+      2,
+      8
+    ],
+    "romanji": [
+      "gakusei wa ima kanji wo kaite imasu",
+      "gakusei wa ima kanji o kaite imasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "いま",
+      "9": "か"
+    },
+    "meaning": "The student is writing kanji now",
+    "meaning_id": "Pelajar sedang menulis kanji sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちは今、おんがくを聞いています",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "tomodachi wa ima ongaku wo kiite imasu",
+      "tomodachi wa ima ongaku o kiite imasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "いま",
+      "11": "き"
+    },
+    "meaning": "My friend is listening to music now",
+    "meaning_id": "Teman saya sedang mendengarkan musik sekarang",
+    "jlpt": "N5",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "この川は長くないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono kawa wa nagakunai desu"
+    ],
+    "furigana": {
+      "2": "かわ",
+      "4": "なが"
+    },
+    "meaning": "This river is not long",
+    "meaning_id": "Sungai ini tidak panjang",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "そのへやは大きくないです",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "sono heya wa ookikunai desu"
+    ],
+    "furigana": {
+      "5": "おお"
+    },
+    "meaning": "That room is not big",
+    "meaning_id": "Kamar itu tidak besar",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "このテレビは高くないです",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "kono terebi wa takakunai desu"
+    ],
+    "furigana": {
+      "6": "たか"
+    },
+    "meaning": "This TV is not expensive",
+    "meaning_id": "TV ini tidak mahal",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "その車は小さくないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono kuruma wa chiisakunai desu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "ちい"
+    },
+    "meaning": "That car is not small",
+    "meaning_id": "Mobil itu tidak kecil",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "このかばんは黒くないです",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "kono kaban wa kurokunai desu"
+    ],
+    "furigana": {
+      "6": "くろ"
+    },
+    "meaning": "This bag is not black",
+    "meaning_id": "Tas ini tidak hitam",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "その本は新しくないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono hon wa atarashikunai desu"
+    ],
+    "furigana": {
+      "2": "ほん",
+      "4": "あたら"
+    },
+    "meaning": "That book is not new",
+    "meaning_id": "Buku itu tidak baru",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "この車は古くないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono kuruma wa furukunai desu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "ふる"
+    },
+    "meaning": "This car is not old",
+    "meaning_id": "Mobil ini tidak lama",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "その本は安くないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono hon wa yasukunai desu"
+    ],
+    "furigana": {
+      "2": "ほん",
+      "4": "やす"
+    },
+    "meaning": "That book is not cheap",
+    "meaning_id": "Buku itu tidak murah",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "このへやは小さくないです",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "kono heya wa chiisakunai desu"
+    ],
+    "furigana": {
+      "5": "ちい"
+    },
+    "meaning": "This room is not small",
+    "meaning_id": "Kamar ini tidak kecil",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "そのかばんは古くないです",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "sono kaban wa furukunai desu"
+    ],
+    "furigana": {
+      "6": "ふる"
+    },
+    "meaning": "That bag is not old",
+    "meaning_id": "Tas itu tidak lama",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "このテレビは安くないです",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "kono terebi wa yasukunai desu"
+    ],
+    "furigana": {
+      "6": "やす"
+    },
+    "meaning": "This TV is not cheap",
+    "meaning_id": "TV ini tidak murah",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "その川は大きくないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono kawa wa ookikunai desu"
+    ],
+    "furigana": {
+      "2": "かわ",
+      "4": "おお"
+    },
+    "meaning": "That river is not big",
+    "meaning_id": "Sungai itu tidak besar",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "この車は高くないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono kuruma wa takakunai desu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "たか"
+    },
+    "meaning": "This car is not expensive",
+    "meaning_id": "Mobil ini tidak mahal",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "そのかばんは黒くないです",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "sono kaban wa kurokunai desu"
+    ],
+    "furigana": {
+      "6": "くろ"
+    },
+    "meaning": "That bag is not black",
+    "meaning_id": "Tas itu tidak hitam",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "このへやは新しくないです",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "kono heya wa atarashikunai desu"
+    ],
+    "furigana": {
+      "5": "あたら"
+    },
+    "meaning": "This room is not new",
+    "meaning_id": "Kamar ini tidak baru",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "その本は長くないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono hon wa nagakunai desu"
+    ],
+    "furigana": {
+      "2": "ほん",
+      "4": "なが"
+    },
+    "meaning": "That book is not long",
+    "meaning_id": "Buku itu tidak panjang",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "そのテレビは小さくないです",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "sono terebi wa chiisakunai desu"
+    ],
+    "furigana": {
+      "6": "ちい"
+    },
+    "meaning": "That TV is not small",
+    "meaning_id": "TV itu tidak kecil",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "この川は大きくないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono kawa wa ookikunai desu"
+    ],
+    "furigana": {
+      "2": "かわ",
+      "4": "おお"
+    },
+    "meaning": "This river is not big",
+    "meaning_id": "Sungai ini tidak besar",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "この車は安くないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "kono kuruma wa yasukunai desu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "やす"
+    },
+    "meaning": "This car is not cheap",
+    "meaning_id": "Mobil ini tidak murah",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "その本は高くないです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "sono hon wa takakunai desu"
+    ],
+    "furigana": {
+      "2": "ほん",
+      "4": "たか"
+    },
+    "meaning": "That book is not expensive",
+    "meaning_id": "Buku itu tidak mahal",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしは青い本がほしいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa aoi hon ga hoshii desu"
+    ],
+    "furigana": {
+      "4": "あお",
+      "6": "ほん"
+    },
+    "meaning": "I want a blue book",
+    "meaning_id": "Saya ingin buku biru",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしはテレビがほしいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa terebi ga hoshii desu"
+    ],
+    "meaning": "I want a TV",
+    "meaning_id": "Saya ingin TV",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしは黒いとけいがほしいです",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa kuroi tokei ga hoshii desu"
+    ],
+    "furigana": {
+      "4": "くろ"
+    },
+    "meaning": "I want a black watch",
+    "meaning_id": "Saya ingin jam hitam",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしは車がほしいです",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "watashi wa kuruma ga hoshii desu"
+    ],
+    "furigana": {
+      "4": "くるま"
+    },
+    "meaning": "I want a car",
+    "meaning_id": "Saya ingin mobil",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしはかばんがほしいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa kaban ga hoshii desu"
+    ],
+    "meaning": "I want a bag",
+    "meaning_id": "Saya ingin tas",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしは大きいじてんしゃがほしいです",
+    "particles": [
+      3,
+      12
+    ],
+    "romanji": [
+      "watashi wa ookii jitensha ga hoshii desu"
+    ],
+    "furigana": {
+      "4": "おお"
+    },
+    "meaning": "I want a big bicycle",
+    "meaning_id": "Saya ingin sepeda besar",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしは小さい本がほしいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa chiisai hon ga hoshii desu"
+    ],
+    "furigana": {
+      "4": "ちい",
+      "7": "ほん"
+    },
+    "meaning": "I want a small book",
+    "meaning_id": "Saya ingin buku kecil",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしは新しい車がほしいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa atarashii kuruma ga hoshii desu"
+    ],
+    "furigana": {
+      "4": "あたら",
+      "7": "くるま"
+    },
+    "meaning": "I want a new car",
+    "meaning_id": "Saya ingin mobil baru",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしは白いテレビがほしいです",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa shiroi terebi ga hoshii desu"
+    ],
+    "furigana": {
+      "4": "しろ"
+    },
+    "meaning": "I want a white TV",
+    "meaning_id": "Saya ingin TV putih",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしはじてんしゃがほしいです",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa jitensha ga hoshii desu"
+    ],
+    "meaning": "I want a bicycle",
+    "meaning_id": "Saya ingin sepeda",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしはとけいがほしいです",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa tokei ga hoshii desu"
+    ],
+    "meaning": "I want a watch",
+    "meaning_id": "Saya ingin jam",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "わたしは大きいかばんがほしいです",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "watashi wa ookii kaban ga hoshii desu"
+    ],
+    "furigana": {
+      "4": "おお"
+    },
+    "meaning": "I want a big bag",
+    "meaning_id": "Saya ingin tas besar",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "コーヒーはおちゃより高いです",
+    "particles": [
+      4,
+      8,
+      9
+    ],
+    "romanji": [
+      "koohii wa ocha yori takai desu"
+    ],
+    "furigana": {
+      "10": "たか"
+    },
+    "meaning": "Coffee is more expensive than tea",
+    "meaning_id": "Kopi lebih mahal daripada teh",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "かんじはひらがなよりむずかしいです",
+    "particles": [
+      3,
+      8,
+      9
+    ],
+    "romanji": [
+      "kanji wa hiragana yori muzukashii desu"
+    ],
+    "meaning": "Kanji is more difficult than hiragana",
+    "meaning_id": "Kanji lebih sulit daripada hiragana",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "学校は駅より大きいです",
+    "particles": [
+      2,
+      4,
+      5
+    ],
+    "romanji": [
+      "gakkou wa eki yori ookii desu"
+    ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "3": "えき",
+      "6": "おお"
+    },
+    "meaning": "The school is bigger than the station",
+    "meaning_id": "Sekolah lebih besar daripada stasiun",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "川は山より長いです",
+    "particles": [
+      1,
+      3,
+      4
+    ],
+    "romanji": [
+      "kawa wa yama yori nagai desu"
+    ],
+    "furigana": {
+      "0": "かわ",
+      "2": "やま",
+      "5": "なが"
+    },
+    "meaning": "The river is longer than the mountain",
+    "meaning_id": "Sungai lebih panjang daripada gunung",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "へやはうちより小さいです",
+    "particles": [
+      2,
+      5,
+      6
+    ],
+    "romanji": [
+      "heya wa uchi yori chiisai desu"
+    ],
+    "furigana": {
+      "7": "ちい"
+    },
+    "meaning": "The room is smaller than the house",
+    "meaning_id": "Kamar lebih kecil daripada rumah",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "なつははるよりあついです",
+    "particles": [
+      2,
+      5,
+      6
+    ],
+    "romanji": [
+      "natsu wa haru yori atsui desu"
+    ],
+    "meaning": "Summer is hotter than spring",
+    "meaning_id": "Musim panas lebih panas daripada musim semi",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "電車はバスよりはやいです",
+    "particles": [
+      2,
+      5,
+      6
+    ],
+    "romanji": [
+      "densha wa basu yori hayai desu"
+    ],
+    "furigana": {
+      "0": "でん",
+      "1": "しゃ"
+    },
+    "meaning": "A train is faster than a bus",
+    "meaning_id": "Kereta lebih cepat daripada bus",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "ふゆはあきよりさむいです",
+    "particles": [
+      2,
+      5,
+      6
+    ],
+    "romanji": [
+      "fuyu wa aki yori samui desu"
+    ],
+    "meaning": "Winter is colder than autumn",
+    "meaning_id": "Musim dingin lebih dingin daripada musim gugur",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "車はじてんしゃより高いです",
+    "particles": [
+      1,
+      7,
+      8
+    ],
+    "romanji": [
+      "kuruma wa jitensha yori takai desu"
+    ],
+    "furigana": {
+      "0": "くるま",
+      "9": "たか"
+    },
+    "meaning": "A car is more expensive than a bicycle",
+    "meaning_id": "Mobil lebih mahal daripada sepeda",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "日本語はえいごよりむずかしいです",
+    "particles": [
+      3,
+      7,
+      8
+    ],
+    "romanji": [
+      "nihongo wa eigo yori muzukashii desu"
+    ],
+    "furigana": {
+      "0": "に",
+      "1": "ほん",
+      "2": "ご"
+    },
+    "meaning": "Japanese is more difficult than English",
+    "meaning_id": "Bahasa Jepang lebih sulit daripada bahasa Inggris",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "父は母より大きいです",
+    "particles": [
+      1,
+      3,
+      4
+    ],
+    "romanji": [
+      "chichi wa haha yori ookii desu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "はは",
+      "5": "おお"
+    },
+    "meaning": "My father is bigger than my mother",
+    "meaning_id": "Ayah saya lebih besar daripada ibu saya",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "本はざっしより高いです",
+    "particles": [
+      1,
+      5,
+      6
+    ],
+    "romanji": [
+      "hon wa zasshi yori takai desu"
+    ],
+    "furigana": {
+      "0": "ほん",
+      "7": "たか"
+    },
+    "meaning": "A book is more expensive than a magazine",
+    "meaning_id": "Buku lebih mahal daripada majalah",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "ひこうきは電車よりはやいです",
+    "particles": [
+      4,
+      7,
+      8
+    ],
+    "romanji": [
+      "hikouki wa densha yori hayai desu"
+    ],
+    "furigana": {
+      "5": "でん",
+      "6": "しゃ"
+    },
+    "meaning": "A plane is faster than a train",
+    "meaning_id": "Pesawat lebih cepat daripada kereta",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "山は木より高いです",
+    "particles": [
+      1,
+      3,
+      4
+    ],
+    "romanji": [
+      "yama wa ki yori takai desu"
+    ],
+    "furigana": {
+      "0": "やま",
+      "2": "き",
+      "5": "たか"
+    },
+    "meaning": "A mountain is higher than a tree",
+    "meaning_id": "Gunung lebih tinggi daripada pohon",
+    "jlpt": "N5",
+    "pattern": "desu"
+  },
+  {
+    "jp_character": "さかなを食べてもいいですか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "sakana wo tabete mo ii desu ka",
+      "sakana o tabete mo ii desu ka"
+    ],
+    "furigana": {
+      "4": "た"
+    },
+    "meaning": "May I eat fish?",
+    "meaning_id": "Bolehkah saya makan ikan?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "ここで新聞を読んでもいいですか",
+    "particles": [
+      2,
+      5,
+      9,
+      14
+    ],
+    "romanji": [
+      "koko de shinbun wo yonde mo ii desu ka",
+      "koko de shinbun o yonde mo ii desu ka"
+    ],
+    "furigana": {
+      "3": "しん",
+      "4": "ぶん",
+      "6": "よ"
+    },
+    "meaning": "May I read the newspaper here?",
+    "meaning_id": "Bolehkah saya membaca koran di sini?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "えいがを見てもいいですか",
+    "particles": [
+      3,
+      6,
+      11
+    ],
+    "romanji": [
+      "eiga wo mite mo ii desu ka",
+      "eiga o mite mo ii desu ka"
+    ],
+    "furigana": {
+      "4": "み"
+    },
+    "meaning": "May I watch a movie?",
+    "meaning_id": "Bolehkah saya menonton film?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "しゃしんをとってもいいですか",
+    "particles": [
+      4,
+      8,
+      13
+    ],
+    "romanji": [
+      "shashin wo totte mo ii desu ka",
+      "shashin o totte mo ii desu ka"
+    ],
+    "meaning": "May I take photos?",
+    "meaning_id": "Bolehkah saya mengambil foto?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "かばんを買ってもいいですか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "kaban wo katte mo ii desu ka",
+      "kaban o katte mo ii desu ka"
+    ],
+    "furigana": {
+      "4": "か"
+    },
+    "meaning": "May I buy a bag?",
+    "meaning_id": "Bolehkah saya membeli tas?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "ぎゅうにゅうを飲んでもいいですか",
+    "particles": [
+      6,
+      10,
+      15
+    ],
+    "romanji": [
+      "gyuunyuu wo nonde mo ii desu ka",
+      "gyuunyuu o nonde mo ii desu ka"
+    ],
+    "furigana": {
+      "7": "の"
+    },
+    "meaning": "May I drink milk?",
+    "meaning_id": "Bolehkah saya minum susu?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "てがみを書いてもいいですか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "tegami wo kaite mo ii desu ka",
+      "tegami o kaite mo ii desu ka"
+    ],
+    "furigana": {
+      "4": "か"
+    },
+    "meaning": "May I write a letter?",
+    "meaning_id": "Bolehkah saya menulis surat?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "おんがくを聞いてもいいですか",
+    "particles": [
+      4,
+      8,
+      13
+    ],
+    "romanji": [
+      "ongaku wo kiite mo ii desu ka",
+      "ongaku o kiite mo ii desu ka"
+    ],
+    "furigana": {
+      "5": "き"
+    },
+    "meaning": "May I listen to music?",
+    "meaning_id": "Bolehkah saya mendengarkan musik?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "パンを食べてもいいですか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "pan wo tabete mo ii desu ka",
+      "pan o tabete mo ii desu ka"
+    ],
+    "furigana": {
+      "3": "た"
+    },
+    "meaning": "May I eat bread?",
+    "meaning_id": "Bolehkah saya makan roti?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "とけいを買ってもいいですか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "tokei wo katte mo ii desu ka",
+      "tokei o katte mo ii desu ka"
+    ],
+    "furigana": {
+      "4": "か"
+    },
+    "meaning": "May I buy a watch?",
+    "meaning_id": "Bolehkah saya membeli jam?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "水を飲んでもいいですか",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "mizu wo nonde mo ii desu ka",
+      "mizu o nonde mo ii desu ka"
+    ],
+    "furigana": {
+      "0": "みず",
+      "2": "の"
+    },
+    "meaning": "May I drink water?",
+    "meaning_id": "Bolehkah saya minum air?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "テレビを見てもいいですか",
+    "particles": [
+      3,
+      6,
+      11
+    ],
+    "romanji": [
+      "terebi wo mite mo ii desu ka",
+      "terebi o mite mo ii desu ka"
+    ],
+    "furigana": {
+      "4": "み"
+    },
+    "meaning": "May I watch TV?",
+    "meaning_id": "Bolehkah saya menonton TV?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "ざっしを読んでもいいですか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "zasshi wo yonde mo ii desu ka",
+      "zasshi o yonde mo ii desu ka"
+    ],
+    "furigana": {
+      "4": "よ"
+    },
+    "meaning": "May I read a magazine?",
+    "meaning_id": "Bolehkah saya membaca majalah?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "ひらがなを書いてもいいですか",
+    "particles": [
+      4,
+      8,
+      13
+    ],
+    "romanji": [
+      "hiragana wo kaite mo ii desu ka",
+      "hiragana o kaite mo ii desu ka"
+    ],
+    "furigana": {
+      "5": "か"
+    },
+    "meaning": "May I write hiragana?",
+    "meaning_id": "Bolehkah saya menulis hiragana?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "にくを食べてもいいですか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "niku wo tabete mo ii desu ka",
+      "niku o tabete mo ii desu ka"
+    ],
+    "furigana": {
+      "3": "た"
+    },
+    "meaning": "May I eat meat?",
+    "meaning_id": "Bolehkah saya makan daging?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "コーヒーを飲んでもいいですか",
+    "particles": [
+      4,
+      8,
+      13
+    ],
+    "romanji": [
+      "koohii wo nonde mo ii desu ka",
+      "koohii o nonde mo ii desu ka"
+    ],
+    "furigana": {
+      "5": "の"
+    },
+    "meaning": "May I drink coffee?",
+    "meaning_id": "Bolehkah saya minum kopi?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "かんじを書いてもいいですか",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "kanji wo kaite mo ii desu ka",
+      "kanji o kaite mo ii desu ka"
+    ],
+    "furigana": {
+      "4": "か"
+    },
+    "meaning": "May I write kanji?",
+    "meaning_id": "Bolehkah saya menulis kanji?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "本を読んでもいいですか",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "hon wo yonde mo ii desu ka",
+      "hon o yonde mo ii desu ka"
+    ],
+    "furigana": {
+      "0": "ほん",
+      "2": "よ"
+    },
+    "meaning": "May I read a book?",
+    "meaning_id": "Bolehkah saya membaca buku?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "はなを買ってもいいですか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "hana wo katte mo ii desu ka",
+      "hana o katte mo ii desu ka"
+    ],
+    "furigana": {
+      "3": "か"
+    },
+    "meaning": "May I buy a flower?",
+    "meaning_id": "Bolehkah saya membeli bunga?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "すしを食べてもいいですか",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "sushi wo tabete mo ii desu ka",
+      "sushi o tabete mo ii desu ka"
+    ],
+    "furigana": {
+      "3": "た"
+    },
+    "meaning": "May I eat sushi?",
+    "meaning_id": "Bolehkah saya makan sushi?",
+    "jlpt": "N4",
+    "pattern": "question"
+  },
+  {
+    "jp_character": "へやでコーヒーを飲んではいけません",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "heya de koohii wo nonde wa ikemasen",
+      "heya de koohii o nonde wa ikemasen"
+    ],
+    "furigana": {
+      "8": "の"
+    },
+    "meaning": "You must not drink coffee in the room",
+    "meaning_id": "Tidak boleh minum kopi di kamar",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学校でラーメンを食べてはいけません",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "gakkou de raamen wo tabete wa ikemasen",
+      "gakkou de raamen o tabete wa ikemasen"
+    ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "8": "た"
+    },
+    "meaning": "You must not eat ramen at school",
+    "meaning_id": "Tidak boleh makan ramen di sekolah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "ここでしゃしんをとってはいけません",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "koko de shashin wo totte wa ikemasen",
+      "koko de shashin o totte wa ikemasen"
+    ],
+    "meaning": "You must not take photos here",
+    "meaning_id": "Tidak boleh mengambil foto di sini",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "電車の中でテレビを見てはいけません",
+    "particles": [
+      2,
+      4,
+      8,
+      11
+    ],
+    "romanji": [
+      "densha no naka de terebi wo mite wa ikemasen",
+      "densha no naka de terebi o mite wa ikemasen"
+    ],
+    "furigana": {
+      "0": "でん",
+      "1": "しゃ",
+      "3": "なか",
+      "9": "み"
+    },
+    "meaning": "You must not watch TV on the train",
+    "meaning_id": "Tidak boleh menonton TV di dalam kereta",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学校でジュースを飲んではいけません",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "gakkou de juusu wo nonde wa ikemasen",
+      "gakkou de juusu o nonde wa ikemasen"
+    ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "8": "の"
+    },
+    "meaning": "You must not drink juice at school",
+    "meaning_id": "Tidak boleh minum jus di sekolah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "ここですしを食べてはいけません",
+    "particles": [
+      2,
+      5,
+      9
+    ],
+    "romanji": [
+      "koko de sushi wo tabete wa ikemasen",
+      "koko de sushi o tabete wa ikemasen"
+    ],
+    "furigana": {
+      "6": "た"
+    },
+    "meaning": "You must not eat sushi here",
+    "meaning_id": "Tidak boleh makan sushi di sini",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "へやでしゃしんをとってはいけません",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "heya de shashin wo totte wa ikemasen",
+      "heya de shashin o totte wa ikemasen"
+    ],
+    "meaning": "You must not take photos in the room",
+    "meaning_id": "Tidak boleh mengambil foto di kamar",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "ここでテレビを見てはいけません",
+    "particles": [
+      2,
+      6,
+      9
+    ],
+    "romanji": [
+      "koko de terebi wo mite wa ikemasen",
+      "koko de terebi o mite wa ikemasen"
+    ],
+    "furigana": {
+      "7": "み"
+    },
+    "meaning": "You must not watch TV here",
+    "meaning_id": "Tidak boleh menonton TV di sini",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "へやでパンを食べてはいけません",
+    "particles": [
+      2,
+      5,
+      9
+    ],
+    "romanji": [
+      "heya de pan wo tabete wa ikemasen",
+      "heya de pan o tabete wa ikemasen"
+    ],
+    "furigana": {
+      "6": "た"
+    },
+    "meaning": "You must not eat bread in the room",
+    "meaning_id": "Tidak boleh makan roti di kamar",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学校でコーヒーを飲んではいけません",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "gakkou de koohii wo nonde wa ikemasen",
+      "gakkou de koohii o nonde wa ikemasen"
+    ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう",
+      "8": "の"
+    },
+    "meaning": "You must not drink coffee at school",
+    "meaning_id": "Tidak boleh minum kopi di sekolah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "へやでラーメンを食べてはいけません",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "heya de raamen wo tabete wa ikemasen",
+      "heya de raamen o tabete wa ikemasen"
+    ],
+    "furigana": {
+      "8": "た"
+    },
+    "meaning": "You must not eat ramen in the room",
+    "meaning_id": "Tidak boleh makan ramen di kamar",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学校でしゃしんをとってはいけません",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "gakkou de shashin wo totte wa ikemasen",
+      "gakkou de shashin o totte wa ikemasen"
+    ],
+    "furigana": {
+      "0": "がっ",
+      "1": "こう"
+    },
+    "meaning": "You must not take photos at school",
+    "meaning_id": "Tidak boleh mengambil foto di sekolah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "ここでジュースを飲んではいけません",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "koko de juusu wo nonde wa ikemasen",
+      "koko de juusu o nonde wa ikemasen"
+    ],
+    "furigana": {
+      "8": "の"
+    },
+    "meaning": "You must not drink juice here",
+    "meaning_id": "Tidak boleh minum jus di sini",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "電車の中ですしを食べてはいけません",
+    "particles": [
+      2,
+      4,
+      7,
+      11
+    ],
+    "romanji": [
+      "densha no naka de sushi wo tabete wa ikemasen",
+      "densha no naka de sushi o tabete wa ikemasen"
+    ],
+    "furigana": {
+      "0": "でん",
+      "1": "しゃ",
+      "3": "なか",
+      "8": "た"
+    },
+    "meaning": "You must not eat sushi on the train",
+    "meaning_id": "Tidak boleh makan sushi di dalam kereta",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "へやでテレビを見てはいけません",
+    "particles": [
+      2,
+      6,
+      9
+    ],
+    "romanji": [
+      "heya de terebi wo mite wa ikemasen",
+      "heya de terebi o mite wa ikemasen"
+    ],
+    "furigana": {
+      "7": "み"
+    },
+    "meaning": "You must not watch TV in the room",
+    "meaning_id": "Tidak boleh menonton TV di kamar",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "ここでコーヒーを飲んではいけません",
+    "particles": [
+      2,
+      7,
+      11
+    ],
+    "romanji": [
+      "koko de koohii wo nonde wa ikemasen",
+      "koko de koohii o nonde wa ikemasen"
+    ],
+    "furigana": {
+      "8": "の"
+    },
+    "meaning": "You must not drink coffee here",
+    "meaning_id": "Tidak boleh minum kopi di sini",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたはくうこうへ行ったことがありますか",
+    "particles": [
+      3,
+      8,
+      14,
+      19
+    ],
+    "romanji": [
+      "anata wa kuukou e itta koto ga arimasu ka"
+    ],
+    "furigana": {
+      "9": "い"
+    },
+    "meaning": "Have you ever been to the airport?",
+    "meaning_id": "Apakah Anda pernah pergi ke bandara?",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母はラーメンを食べたことがありません",
+    "particles": [
+      1,
+      6,
+      12
+    ],
+    "romanji": [
+      "haha wa raamen wo tabeta koto ga arimasen",
+      "haha wa raamen o tabeta koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "た"
+    },
+    "meaning": "My mother has never eaten ramen",
+    "meaning_id": "Ibu saya belum pernah makan ramen",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはかんじを書いたことがあります",
+    "particles": [
+      3,
+      7,
+      13
+    ],
+    "romanji": [
+      "watashi wa kanji wo kaita koto ga arimasu",
+      "watashi wa kanji o kaita koto ga arimasu"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "I have written kanji before",
+    "meaning_id": "Saya pernah menulis kanji",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生は山へ行ったことがありません",
+    "particles": [
+      2,
+      4,
+      10
+    ],
+    "romanji": [
+      "sensei wa yama e itta koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "やま",
+      "5": "い"
+    },
+    "meaning": "The teacher has never been to the mountain",
+    "meaning_id": "Guru belum pernah pergi ke gunung",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちは日本語をべんきょうしたことがあります",
+    "particles": [
+      3,
+      7,
+      17
+    ],
+    "romanji": [
+      "tomodachi wa nihongo wo benkyou shita koto ga arimasu",
+      "tomodachi wa nihongo o benkyou shita koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "に",
+      "5": "ほん",
+      "6": "ご"
+    },
+    "meaning": "My friend has studied Japanese before",
+    "meaning_id": "Teman saya pernah belajar bahasa Jepang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父は本を読んだことがありません",
+    "particles": [
+      1,
+      3,
+      9
+    ],
+    "romanji": [
+      "chichi wa hon wo yonda koto ga arimasen",
+      "chichi wa hon o yonda koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "ほん",
+      "4": "よ"
+    },
+    "meaning": "My father has never read a book",
+    "meaning_id": "Ayah saya belum pernah membaca buku",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはコーヒーを飲んだことがありません",
+    "particles": [
+      3,
+      8,
+      14
+    ],
+    "romanji": [
+      "watashi wa koohii wo nonda koto ga arimasen",
+      "watashi wa koohii o nonda koto ga arimasen"
+    ],
+    "furigana": {
+      "9": "の"
+    },
+    "meaning": "I have never drunk coffee",
+    "meaning_id": "Saya belum pernah minum kopi",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生は外国へ行ったことがあります",
+    "particles": [
+      2,
+      5,
+      11
+    ],
+    "romanji": [
+      "sensei wa gaikoku e itta koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がい",
+      "4": "こく",
+      "6": "い"
+    },
+    "meaning": "The teacher has been to a foreign country before",
+    "meaning_id": "Guru pernah pergi ke luar negeri",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはえいがを見たことがあります",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "tomodachi wa eiga wo mita koto ga arimasu",
+      "tomodachi wa eiga o mita koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "み"
+    },
+    "meaning": "My friend has seen a movie before",
+    "meaning_id": "Teman saya pernah menonton film",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は日本へ行ったことがありません",
+    "particles": [
+      1,
+      4,
+      10
+    ],
+    "romanji": [
+      "haha wa nihon e itta koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "に",
+      "3": "ほん",
+      "5": "い"
+    },
+    "meaning": "My mother has never been to Japan",
+    "meaning_id": "Ibu saya belum pernah pergi ke Jepang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父は新聞を読んだことがありません",
+    "particles": [
+      1,
+      4,
+      10
+    ],
+    "romanji": [
+      "chichi wa shinbun wo yonda koto ga arimasen",
+      "chichi wa shinbun o yonda koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "しん",
+      "3": "ぶん",
+      "5": "よ"
+    },
+    "meaning": "My father has never read the newspaper",
+    "meaning_id": "Ayah saya belum pernah membaca koran",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたはすしを食べたことがありますか",
+    "particles": [
+      3,
+      6,
+      12,
+      17
+    ],
+    "romanji": [
+      "anata wa sushi wo tabeta koto ga arimasu ka",
+      "anata wa sushi o tabeta koto ga arimasu ka"
+    ],
+    "furigana": {
+      "7": "た"
+    },
+    "meaning": "Have you ever eaten sushi?",
+    "meaning_id": "Apakah Anda pernah makan sushi?",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生はくうこうへ行ったことがありません",
+    "particles": [
+      2,
+      7,
+      13
+    ],
+    "romanji": [
+      "sensei wa kuukou e itta koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "8": "い"
+    },
+    "meaning": "The teacher has never been to the airport",
+    "meaning_id": "Guru belum pernah pergi ke bandara",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはてがみを書いたことがあります",
+    "particles": [
+      3,
+      7,
+      13
+    ],
+    "romanji": [
+      "tomodachi wa tegami wo kaita koto ga arimasu",
+      "tomodachi wa tegami o kaita koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "か"
+    },
+    "meaning": "My friend has written a letter before",
+    "meaning_id": "Teman saya pernah menulis surat",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは日本へ行ったことがありません",
+    "particles": [
+      3,
+      6,
+      12
+    ],
+    "romanji": [
+      "watashi wa nihon e itta koto ga arimasen"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "7": "い"
+    },
+    "meaning": "I have never been to Japan",
+    "meaning_id": "Saya belum pernah pergi ke Jepang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母はコーヒーを飲んだことがあります",
+    "particles": [
+      1,
+      6,
+      12
+    ],
+    "romanji": [
+      "haha wa koohii wo nonda koto ga arimasu",
+      "haha wa koohii o nonda koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "の"
+    },
+    "meaning": "My mother has drunk coffee before",
+    "meaning_id": "Ibu saya pernah minum kopi",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はえいがを見たことがあります",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "chichi wa eiga wo mita koto ga arimasu",
+      "chichi wa eiga o mita koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "6": "み"
+    },
+    "meaning": "My father has seen a movie before",
+    "meaning_id": "Ayah saya pernah menonton film",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は外国へ行ったことがありません",
+    "particles": [
+      1,
+      4,
+      10
+    ],
+    "romanji": [
+      "haha wa gaikoku e itta koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "がい",
+      "3": "こく",
+      "5": "い"
+    },
+    "meaning": "My mother has never been to a foreign country",
+    "meaning_id": "Ibu saya belum pernah pergi ke luar negeri",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はラーメンを食べたことがありません",
+    "particles": [
+      1,
+      6,
+      12
+    ],
+    "romanji": [
+      "chichi wa raamen wo tabeta koto ga arimasen",
+      "chichi wa raamen o tabeta koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "7": "た"
+    },
+    "meaning": "My father has never eaten ramen",
+    "meaning_id": "Ayah saya belum pernah makan ramen",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生は山へ行ったことがあります",
+    "particles": [
+      2,
+      4,
+      10
+    ],
+    "romanji": [
+      "sensei wa yama e itta koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "やま",
+      "5": "い"
+    },
+    "meaning": "The teacher has been to the mountain before",
+    "meaning_id": "Guru pernah pergi ke gunung",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは本を読んだことがありません",
+    "particles": [
+      3,
+      5,
+      11
+    ],
+    "romanji": [
+      "watashi wa hon wo yonda koto ga arimasen",
+      "watashi wa hon o yonda koto ga arimasen"
+    ],
+    "furigana": {
+      "4": "ほん",
+      "6": "よ"
+    },
+    "meaning": "I have never read a book",
+    "meaning_id": "Saya belum pernah membaca buku",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはかんじを書いたことがあります",
+    "particles": [
+      3,
+      7,
+      13
+    ],
+    "romanji": [
+      "tomodachi wa kanji wo kaita koto ga arimasu",
+      "tomodachi wa kanji o kaita koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "か"
+    },
+    "meaning": "My friend has written kanji before",
+    "meaning_id": "Teman saya pernah menulis kanji",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたは日本語をべんきょうしたことがありますか",
+    "particles": [
+      3,
+      7,
+      17,
+      22
+    ],
+    "romanji": [
+      "anata wa nihongo wo benkyou shita koto ga arimasu ka",
+      "anata wa nihongo o benkyou shita koto ga arimasu ka"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "6": "ご"
+    },
+    "meaning": "Have you ever studied Japanese?",
+    "meaning_id": "Apakah Anda pernah belajar bahasa Jepang?",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母はくうこうへ行ったことがありません",
+    "particles": [
+      1,
+      6,
+      12
+    ],
+    "romanji": [
+      "haha wa kuukou e itta koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "7": "い"
+    },
+    "meaning": "My mother has never been to the airport",
+    "meaning_id": "Ibu saya belum pernah pergi ke bandara",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはすしを食べたことがありません",
+    "particles": [
+      3,
+      6,
+      12
+    ],
+    "romanji": [
+      "watashi wa sushi wo tabeta koto ga arimasen",
+      "watashi wa sushi o tabeta koto ga arimasen"
+    ],
+    "furigana": {
+      "7": "た"
+    },
+    "meaning": "I have never eaten sushi",
+    "meaning_id": "Saya belum pernah makan sushi",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父は外国へ行ったことがあります",
+    "particles": [
+      1,
+      4,
+      10
+    ],
+    "romanji": [
+      "chichi wa gaikoku e itta koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "がい",
+      "3": "こく",
+      "5": "い"
+    },
+    "meaning": "My father has been to a foreign country before",
+    "meaning_id": "Ayah saya pernah pergi ke luar negeri",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはコーヒーを飲んだことがありません",
+    "particles": [
+      3,
+      8,
+      14
+    ],
+    "romanji": [
+      "tomodachi wa koohii wo nonda koto ga arimasen",
+      "tomodachi wa koohii o nonda koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "とも",
+      "9": "の"
+    },
+    "meaning": "My friend has never drunk coffee",
+    "meaning_id": "Teman saya belum pernah minum kopi",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生はてがみを書いたことがあります",
+    "particles": [
+      2,
+      6,
+      12
+    ],
+    "romanji": [
+      "sensei wa tegami wo kaita koto ga arimasu",
+      "sensei wa tegami o kaita koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "7": "か"
+    },
+    "meaning": "The teacher has written a letter before",
+    "meaning_id": "Guru pernah menulis surat",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は新聞を読んだことがありません",
+    "particles": [
+      1,
+      4,
+      10
+    ],
+    "romanji": [
+      "haha wa shinbun wo yonda koto ga arimasen",
+      "haha wa shinbun o yonda koto ga arimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "しん",
+      "3": "ぶん",
+      "5": "よ"
+    },
+    "meaning": "My mother has never read the newspaper",
+    "meaning_id": "Ibu saya belum pernah membaca koran",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父は山へ行ったことがあります",
+    "particles": [
+      1,
+      3,
+      9
+    ],
+    "romanji": [
+      "chichi wa yama e itta koto ga arimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "やま",
+      "4": "い"
+    },
+    "meaning": "My father has been to the mountain before",
+    "meaning_id": "Ayah saya pernah pergi ke gunung",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生はカタカナを書くことができません",
+    "particles": [
+      2,
+      7,
+      12
+    ],
+    "romanji": [
+      "gakusei wa katakana wo kaku koto ga dekimasen",
+      "gakusei wa katakana o kaku koto ga dekimasen"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "8": "か"
+    },
+    "meaning": "The student can't write katakana",
+    "meaning_id": "Pelajar tidak bisa menulis katakana",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはひらがなを読むことができます",
+    "particles": [
+      3,
+      8,
+      13
+    ],
+    "romanji": [
+      "tomodachi wa hiragana wo yomu koto ga dekimasu",
+      "tomodachi wa hiragana o yomu koto ga dekimasu"
+    ],
+    "furigana": {
+      "0": "とも",
+      "9": "よ"
+    },
+    "meaning": "My friend can read hiragana",
+    "meaning_id": "Teman saya bisa membaca hiragana",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はえいごを話すことができません",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "chichi wa eigo wo hanasu koto ga dekimasen",
+      "chichi wa eigo o hanasu koto ga dekimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "6": "はな"
+    },
+    "meaning": "My father can't speak English",
+    "meaning_id": "Ayah saya tidak bisa berbicara bahasa Inggris",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはラーメンをつくることができます",
+    "particles": [
+      3,
+      8,
+      14
+    ],
+    "romanji": [
+      "watashi wa raamen wo tsukuru koto ga dekimasu",
+      "watashi wa raamen o tsukuru koto ga dekimasu"
+    ],
+    "meaning": "I can make ramen",
+    "meaning_id": "Saya bisa membuat ramen",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は日本語を読むことができます",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "haha wa nihongo wo yomu koto ga dekimasu",
+      "haha wa nihongo o yomu koto ga dekimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "に",
+      "3": "ほん",
+      "4": "ご",
+      "6": "よ"
+    },
+    "meaning": "My mother can read Japanese",
+    "meaning_id": "Ibu saya bisa membaca bahasa Jepang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたはかんじを書くことができません",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "anata wa kanji wo kaku koto ga dekimasen",
+      "anata wa kanji o kaku koto ga dekimasen"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "You can't write kanji",
+    "meaning_id": "Anda tidak bisa menulis kanji",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生はすしをつくることができません",
+    "particles": [
+      2,
+      5,
+      11
+    ],
+    "romanji": [
+      "sensei wa sushi wo tsukuru koto ga dekimasen",
+      "sensei wa sushi o tsukuru koto ga dekimasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
+    "meaning": "The teacher can't make sushi",
+    "meaning_id": "Guru tidak bisa membuat sushi",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は日本語を話すことができます",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "haha wa nihongo wo hanasu koto ga dekimasu",
+      "haha wa nihongo o hanasu koto ga dekimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "に",
+      "3": "ほん",
+      "4": "ご",
+      "6": "はな"
+    },
+    "meaning": "My mother can speak Japanese",
+    "meaning_id": "Ibu saya bisa berbicara bahasa Jepang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はひらがなを読むことができません",
+    "particles": [
+      1,
+      6,
+      11
+    ],
+    "romanji": [
+      "chichi wa hiragana wo yomu koto ga dekimasen",
+      "chichi wa hiragana o yomu koto ga dekimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "7": "よ"
+    },
+    "meaning": "My father can't read hiragana",
+    "meaning_id": "Ayah saya tidak bisa membaca hiragana",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生はカタカナを書くことができます",
+    "particles": [
+      2,
+      7,
+      12
+    ],
+    "romanji": [
+      "gakusei wa katakana wo kaku koto ga dekimasu",
+      "gakusei wa katakana o kaku koto ga dekimasu"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "8": "か"
+    },
+    "meaning": "The student can write katakana",
+    "meaning_id": "Pelajar bisa menulis katakana",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたはえいごを話すことができません",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "anata wa eigo wo hanasu koto ga dekimasen",
+      "anata wa eigo o hanasu koto ga dekimasen"
+    ],
+    "furigana": {
+      "8": "はな"
+    },
+    "meaning": "You can't speak English",
+    "meaning_id": "Anda tidak bisa berbicara bahasa Inggris",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはラーメンをつくることができます",
+    "particles": [
+      3,
+      8,
+      14
+    ],
+    "romanji": [
+      "tomodachi wa raamen wo tsukuru koto ga dekimasu",
+      "tomodachi wa raamen o tsukuru koto ga dekimasu"
+    ],
+    "furigana": {
+      "0": "とも"
+    },
+    "meaning": "My friend can make ramen",
+    "meaning_id": "Teman saya bisa membuat ramen",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはかんじを書くことができません",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "watashi wa kanji wo kaku koto ga dekimasen",
+      "watashi wa kanji o kaku koto ga dekimasen"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "I can't write kanji",
+    "meaning_id": "Saya tidak bisa menulis kanji",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生はすしをつくることができます",
+    "particles": [
+      2,
+      5,
+      11
+    ],
+    "romanji": [
+      "sensei wa sushi wo tsukuru koto ga dekimasu",
+      "sensei wa sushi o tsukuru koto ga dekimasu"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい"
+    },
+    "meaning": "The teacher can make sushi",
+    "meaning_id": "Guru bisa membuat sushi",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生は日本語を読むことができません",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "gakusei wa nihongo wo yomu koto ga dekimasen",
+      "gakusei wa nihongo o yomu koto ga dekimasen"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん",
+      "5": "ご",
+      "7": "よ"
+    },
+    "meaning": "The student can't read Japanese",
+    "meaning_id": "Pelajar tidak bisa membaca bahasa Jepang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母はえいごを話すことができます",
+    "particles": [
+      1,
+      5,
+      10
+    ],
+    "romanji": [
+      "haha wa eigo wo hanasu koto ga dekimasu",
+      "haha wa eigo o hanasu koto ga dekimasu"
+    ],
+    "furigana": {
+      "0": "はは",
+      "6": "はな"
+    },
+    "meaning": "My mother can speak English",
+    "meaning_id": "Ibu saya bisa berbicara bahasa Inggris",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたはカタカナを読むことができます",
+    "particles": [
+      3,
+      8,
+      13
+    ],
+    "romanji": [
+      "anata wa katakana wo yomu koto ga dekimasu",
+      "anata wa katakana o yomu koto ga dekimasu"
+    ],
+    "furigana": {
+      "9": "よ"
+    },
+    "meaning": "You can read katakana",
+    "meaning_id": "Anda bisa membaca katakana",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはかんじを書くことができません",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "tomodachi wa kanji wo kaku koto ga dekimasen",
+      "tomodachi wa kanji o kaku koto ga dekimasen"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "か"
+    },
+    "meaning": "My friend can't write kanji",
+    "meaning_id": "Teman saya tidak bisa menulis kanji",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はすしをつくることができます",
+    "particles": [
+      1,
+      4,
+      10
+    ],
+    "romanji": [
+      "chichi wa sushi wo tsukuru koto ga dekimasu",
+      "chichi wa sushi o tsukuru koto ga dekimasu"
+    ],
+    "furigana": {
+      "0": "ちち"
+    },
+    "meaning": "My father can make sushi",
+    "meaning_id": "Ayah saya bisa membuat sushi",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはひらがなを書くことができません",
+    "particles": [
+      3,
+      8,
+      13
+    ],
+    "romanji": [
+      "watashi wa hiragana wo kaku koto ga dekimasen",
+      "watashi wa hiragana o kaku koto ga dekimasen"
+    ],
+    "furigana": {
+      "9": "か"
+    },
+    "meaning": "I can't write hiragana",
+    "meaning_id": "Saya tidak bisa menulis hiragana",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生は日本語を話すことができません",
+    "particles": [
+      2,
+      6,
+      11
+    ],
+    "romanji": [
+      "sensei wa nihongo wo hanasu koto ga dekimasen",
+      "sensei wa nihongo o hanasu koto ga dekimasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "に",
+      "4": "ほん",
+      "5": "ご",
+      "7": "はな"
+    },
+    "meaning": "The teacher can't speak Japanese",
+    "meaning_id": "Guru tidak bisa berbicara bahasa Jepang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母はラーメンをつくることができます",
+    "particles": [
+      1,
+      6,
+      12
+    ],
+    "romanji": [
+      "haha wa raamen wo tsukuru koto ga dekimasu",
+      "haha wa raamen o tsukuru koto ga dekimasu"
+    ],
+    "furigana": {
+      "0": "はは"
+    },
+    "meaning": "My mother can make ramen",
+    "meaning_id": "Ibu saya bisa membuat ramen",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はひらがなを読むことができます",
+    "particles": [
+      1,
+      6,
+      11
+    ],
+    "romanji": [
+      "chichi wa hiragana wo yomu koto ga dekimasu",
+      "chichi wa hiragana o yomu koto ga dekimasu"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "7": "よ"
+    },
+    "meaning": "My father can read hiragana",
+    "meaning_id": "Ayah saya bisa membaca hiragana",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはえいごを話すことができません",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "watashi wa eigo wo hanasu koto ga dekimasen",
+      "watashi wa eigo o hanasu koto ga dekimasen"
+    ],
+    "furigana": {
+      "8": "はな"
+    },
+    "meaning": "I can't speak English",
+    "meaning_id": "Saya tidak bisa berbicara bahasa Inggris",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしははなを買うつもりです",
+    "particles": [
+      7,
+      10
+    ],
+    "romanji": [
+      "ashita watashi wa hana wo kau tsumori desu",
+      "ashita watashi wa hana o kau tsumori desu"
+    ],
+    "furigana": {
+      "11": "か"
+    },
+    "meaning": "I plan to buy a flower tomorrow",
+    "meaning_id": "Besok saya berencana membeli bunga",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしは外国へ行くつもりです",
+    "particles": [
+      6,
+      9
+    ],
+    "romanji": [
+      "raishuu watashi wa gaikoku e iku tsumori desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "7": "がい",
+      "8": "こく",
+      "10": "い"
+    },
+    "meaning": "I plan to go to a foreign country next week",
+    "meaning_id": "Minggu depan saya berencana pergi ke luar negeri",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしはえいがを見るつもりです",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "raishuu watashi wa eiga wo miru tsumori desu",
+      "raishuu watashi wa eiga o miru tsumori desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "11": "み"
+    },
+    "meaning": "I plan to watch a movie next week",
+    "meaning_id": "Minggu depan saya berencana menonton film",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしはひらがなを書くつもりです",
+    "particles": [
+      7,
+      12
+    ],
+    "romanji": [
+      "ashita watashi wa hiragana wo kaku tsumori desu",
+      "ashita watashi wa hiragana o kaku tsumori desu"
+    ],
+    "furigana": {
+      "13": "か"
+    },
+    "meaning": "I plan to write hiragana tomorrow",
+    "meaning_id": "Besok saya berencana menulis hiragana",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしは川へ行くつもりです",
+    "particles": [
+      6,
+      8
+    ],
+    "romanji": [
+      "raishuu watashi wa kawa e iku tsumori desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "7": "かわ",
+      "9": "い"
+    },
+    "meaning": "I plan to go to the river next week",
+    "meaning_id": "Minggu depan saya berencana pergi ke sungai",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしはざっしを読むつもりです",
+    "particles": [
+      7,
+      11
+    ],
+    "romanji": [
+      "ashita watashi wa zasshi wo yomu tsumori desu",
+      "ashita watashi wa zasshi o yomu tsumori desu"
+    ],
+    "furigana": {
+      "12": "よ"
+    },
+    "meaning": "I plan to read a magazine tomorrow",
+    "meaning_id": "Besok saya berencana membaca majalah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしは日本へ行くつもりです",
+    "particles": [
+      6,
+      9
+    ],
+    "romanji": [
+      "raishuu watashi wa nihon e iku tsumori desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "7": "に",
+      "8": "ほん",
+      "10": "い"
+    },
+    "meaning": "I plan to go to Japan next week",
+    "meaning_id": "Minggu depan saya berencana pergi ke Jepang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしはおんがくを聞くつもりです",
+    "particles": [
+      7,
+      12
+    ],
+    "romanji": [
+      "ashita watashi wa ongaku wo kiku tsumori desu",
+      "ashita watashi wa ongaku o kiku tsumori desu"
+    ],
+    "furigana": {
+      "13": "き"
+    },
+    "meaning": "I plan to listen to music tomorrow",
+    "meaning_id": "Besok saya berencana mendengarkan musik",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしはコーヒーを飲むつもりです",
+    "particles": [
+      6,
+      11
+    ],
+    "romanji": [
+      "raishuu watashi wa koohii wo nomu tsumori desu",
+      "raishuu watashi wa koohii o nomu tsumori desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "12": "の"
+    },
+    "meaning": "I plan to drink coffee next week",
+    "meaning_id": "Minggu depan saya berencana minum kopi",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしは山へ行くつもりです",
+    "particles": [
+      7,
+      9
+    ],
+    "romanji": [
+      "ashita watashi wa yama e iku tsumori desu"
+    ],
+    "furigana": {
+      "8": "やま",
+      "10": "い"
+    },
+    "meaning": "I plan to go to the mountain tomorrow",
+    "meaning_id": "Besok saya berencana pergi ke gunung",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしは日本語をべんきょうするつもりです",
+    "particles": [
+      7,
+      11
+    ],
+    "romanji": [
+      "ashita watashi wa nihongo wo benkyou suru tsumori desu",
+      "ashita watashi wa nihongo o benkyou suru tsumori desu"
+    ],
+    "furigana": {
+      "8": "に",
+      "9": "ほん",
+      "10": "ご"
+    },
+    "meaning": "I plan to study Japanese tomorrow",
+    "meaning_id": "Besok saya berencana belajar bahasa Jepang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしはラーメンを食べるつもりです",
+    "particles": [
+      6,
+      11
+    ],
+    "romanji": [
+      "raishuu watashi wa raamen wo taberu tsumori desu",
+      "raishuu watashi wa raamen o taberu tsumori desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "12": "た"
+    },
+    "meaning": "I plan to eat ramen next week",
+    "meaning_id": "Minggu depan saya berencana makan ramen",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしはデパートへ行くつもりです",
+    "particles": [
+      7,
+      12
+    ],
+    "romanji": [
+      "ashita watashi wa depaato e iku tsumori desu"
+    ],
+    "furigana": {
+      "13": "い"
+    },
+    "meaning": "I plan to go to the department store tomorrow",
+    "meaning_id": "Besok saya berencana pergi ke toko serba ada",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしはとけいを買うつもりです",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "raishuu watashi wa tokei wo kau tsumori desu",
+      "raishuu watashi wa tokei o kau tsumori desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "11": "か"
+    },
+    "meaning": "I plan to buy a watch next week",
+    "meaning_id": "Minggu depan saya berencana membeli jam",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしはてがみを書くつもりです",
+    "particles": [
+      7,
+      11
+    ],
+    "romanji": [
+      "ashita watashi wa tegami wo kaku tsumori desu",
+      "ashita watashi wa tegami o kaku tsumori desu"
+    ],
+    "furigana": {
+      "12": "か"
+    },
+    "meaning": "I plan to write a letter tomorrow",
+    "meaning_id": "Besok saya berencana menulis surat",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしはこうえんへ行くつもりです",
+    "particles": [
+      6,
+      11
+    ],
+    "romanji": [
+      "raishuu watashi wa kouen e iku tsumori desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "12": "い"
+    },
+    "meaning": "I plan to go to the park next week",
+    "meaning_id": "Minggu depan saya berencana pergi ke taman",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週、わたしはテレビを見るつもりです",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "raishuu watashi wa terebi wo miru tsumori desu",
+      "raishuu watashi wa terebi o miru tsumori desu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "11": "み"
+    },
+    "meaning": "I plan to watch TV next week",
+    "meaning_id": "Minggu depan saya berencana menonton TV",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、わたしはパンを食べるつもりです",
+    "particles": [
+      7,
+      10
+    ],
+    "romanji": [
+      "ashita watashi wa pan wo taberu tsumori desu",
+      "ashita watashi wa pan o taberu tsumori desu"
+    ],
+    "furigana": {
+      "11": "た"
+    },
+    "meaning": "I plan to eat bread tomorrow",
+    "meaning_id": "Besok saya berencana makan roti",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "今日、学生は名前を書かなければなりません",
+    "particles": [
+      5,
+      8
+    ],
+    "romanji": [
+      "kyou gakusei wa namae wo kakanakereba narimasen",
+      "kyou gakusei wa namae o kakanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う",
+      "3": "がく",
+      "4": "せい",
+      "6": "な",
+      "7": "まえ",
+      "9": "か"
+    },
+    "meaning": "The student must write my name today",
+    "meaning_id": "Hari ini pelajar harus menulis nama",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あした、先生は学校へ行かなければなりません",
+    "particles": [
+      6,
+      9
+    ],
+    "romanji": [
+      "ashita sensei wa gakkou e ikanakereba narimasen"
+    ],
+    "furigana": {
+      "4": "せん",
+      "5": "せい",
+      "7": "がっ",
+      "8": "こう",
+      "10": "い"
+    },
+    "meaning": "The teacher must go to school tomorrow",
+    "meaning_id": "Besok guru harus pergi ke sekolah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたはうちに帰らなければなりません",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "anata wa uchi ni kaeranakereba narimasen"
+    ],
+    "furigana": {
+      "7": "かえ"
+    },
+    "meaning": "You must go home",
+    "meaning_id": "Anda harus pulang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は本を読まなければなりません",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "haha wa hon wo yomanakereba narimasen",
+      "haha wa hon o yomanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "ほん",
+      "4": "よ"
+    },
+    "meaning": "My mother must read a book",
+    "meaning_id": "Ibu saya harus membaca buku",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは水を飲まなければなりません",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "watashi wa mizu wo nomanakereba narimasen",
+      "watashi wa mizu o nomanakereba narimasen"
+    ],
+    "furigana": {
+      "4": "みず",
+      "6": "の"
+    },
+    "meaning": "I must drink water",
+    "meaning_id": "Saya harus minum air",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父は日本語をべんきょうしなければなりません",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "chichi wa nihongo wo benkyou shinakereba narimasen",
+      "chichi wa nihongo o benkyou shinakereba narimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "に",
+      "3": "ほん",
+      "4": "ご"
+    },
+    "meaning": "My father must study Japanese",
+    "meaning_id": "Ayah saya harus belajar bahasa Jepang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちは学校へ行かなければなりません",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa gakkou e ikanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "とも",
+      "4": "がっ",
+      "5": "こう",
+      "7": "い"
+    },
+    "meaning": "My friend must go to school",
+    "meaning_id": "Teman saya harus pergi ke sekolah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はうちに帰らなければなりません",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "chichi wa uchi ni kaeranakereba narimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "5": "かえ"
+    },
+    "meaning": "My father must go home",
+    "meaning_id": "Ayah saya harus pulang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたはかばんを買わなければなりません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "anata wa kaban wo kawanakereba narimasen",
+      "anata wa kaban o kawanakereba narimasen"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "You must buy a bag",
+    "meaning_id": "Anda harus membeli tas",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生は新聞を読まなければなりません",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa shinbun wo yomanakereba narimasen",
+      "sensei wa shinbun o yomanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "しん",
+      "4": "ぶん",
+      "6": "よ"
+    },
+    "meaning": "The teacher must read the newspaper",
+    "meaning_id": "Guru harus membaca koran",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしは学校へ行かなければなりません",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa gakkou e ikanakereba narimasen"
+    ],
+    "furigana": {
+      "4": "がっ",
+      "5": "こう",
+      "7": "い"
+    },
+    "meaning": "I must go to school",
+    "meaning_id": "Saya harus pergi ke sekolah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母はうちに帰らなければなりません",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "haha wa uchi ni kaeranakereba narimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "5": "かえ"
+    },
+    "meaning": "My mother must go home",
+    "meaning_id": "Ibu saya harus pulang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはてがみを書かなければなりません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "tomodachi wa tegami wo kakanakereba narimasen",
+      "tomodachi wa tegami o kakanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "とも",
+      "8": "か"
+    },
+    "meaning": "My friend must write a letter",
+    "meaning_id": "Teman saya harus menulis surat",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生はかんじをべんきょうしなければなりません",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "gakusei wa kanji wo benkyou shinakereba narimasen",
+      "gakusei wa kanji o benkyou shinakereba narimasen"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい"
+    },
+    "meaning": "The student must study kanji",
+    "meaning_id": "Pelajar harus belajar kanji",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生は学校へ行かなければなりません",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa gakkou e ikanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "6": "い"
+    },
+    "meaning": "The teacher must go to school",
+    "meaning_id": "Guru harus pergi ke sekolah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "わたしはうちに帰らなければなりません",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa uchi ni kaeranakereba narimasen"
+    ],
+    "furigana": {
+      "7": "かえ"
+    },
+    "meaning": "I must go home",
+    "meaning_id": "Saya harus pulang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は水を飲まなければなりません",
+    "particles": [
+      1,
+      3
+    ],
+    "romanji": [
+      "haha wa mizu wo nomanakereba narimasen",
+      "haha wa mizu o nomanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "みず",
+      "4": "の"
+    },
+    "meaning": "My mother must drink water",
+    "meaning_id": "Ibu saya harus minum air",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父はかばんを買わなければなりません",
+    "particles": [
+      1,
+      5
+    ],
+    "romanji": [
+      "chichi wa kaban wo kawanakereba narimasen",
+      "chichi wa kaban o kawanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "6": "か"
+    },
+    "meaning": "My father must buy a bag",
+    "meaning_id": "Ayah saya harus membeli tas",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "学生は学校へ行かなければなりません",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "gakusei wa gakkou e ikanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "がく",
+      "1": "せい",
+      "3": "がっ",
+      "4": "こう",
+      "6": "い"
+    },
+    "meaning": "The student must go to school",
+    "meaning_id": "Pelajar harus pergi ke sekolah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "友だちはうちに帰らなければなりません",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "tomodachi wa uchi ni kaeranakereba narimasen"
+    ],
+    "furigana": {
+      "0": "とも",
+      "7": "かえ"
+    },
+    "meaning": "My friend must go home",
+    "meaning_id": "Teman saya harus pulang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あなたは本を読まなければなりません",
+    "particles": [
+      3,
+      5
+    ],
+    "romanji": [
+      "anata wa hon wo yomanakereba narimasen",
+      "anata wa hon o yomanakereba narimasen"
+    ],
+    "furigana": {
+      "4": "ほん",
+      "6": "よ"
+    },
+    "meaning": "You must read a book",
+    "meaning_id": "Anda harus membaca buku",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "父は名前を書かなければなりません",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "chichi wa namae wo kakanakereba narimasen",
+      "chichi wa namae o kakanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "ちち",
+      "2": "な",
+      "3": "まえ",
+      "5": "か"
+    },
+    "meaning": "My father must write my name",
+    "meaning_id": "Ayah saya harus menulis nama",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "母は学校へ行かなければなりません",
+    "particles": [
+      1,
+      4
+    ],
+    "romanji": [
+      "haha wa gakkou e ikanakereba narimasen"
+    ],
+    "furigana": {
+      "0": "はは",
+      "2": "がっ",
+      "3": "こう",
+      "5": "い"
+    },
+    "meaning": "My mother must go to school",
+    "meaning_id": "Ibu saya harus pergi ke sekolah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "先生はうちに帰らなければなりません",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "sensei wa uchi ni kaeranakereba narimasen"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "せい",
+      "6": "かえ"
+    },
+    "meaning": "The teacher must go home",
+    "meaning_id": "Guru harus pulang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "きのうはおんがくを聞いたりテレビを見たりしました",
+    "particles": [
+      3,
+      8,
+      16
+    ],
+    "romanji": [
+      "kinou wa ongaku wo kiitari terebi wo mitari shimashita",
+      "kinou wa ongaku o kiitari terebi o mitari shimashita"
+    ],
+    "furigana": {
+      "9": "き",
+      "17": "み"
+    },
+    "meaning": "Yesterday, I did things like listening to music and watching TV",
+    "meaning_id": "Kemarin, saya mendengarkan musik, menonton TV, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "日曜日はコーヒーを飲んだりてがみを書いたりします",
+    "particles": [
+      3,
+      8,
+      16
+    ],
+    "romanji": [
+      "nichiyoubi wa koohii wo nondari tegami wo kaitari shimasu",
+      "nichiyoubi wa koohii o nondari tegami o kaitari shimasu"
+    ],
+    "furigana": {
+      "0": "にち",
+      "1": "よう",
+      "2": "び",
+      "9": "の",
+      "17": "か"
+    },
+    "meaning": "On Sundays, I do things like drinking coffee and writing a letter",
+    "meaning_id": "Setiap hari Minggu, saya minum kopi, menulis surat, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "しゅうまつは日本語をべんきょうしたり本を読んだりします",
+    "particles": [
+      5,
+      9,
+      19
+    ],
+    "romanji": [
+      "shuumatsu wa nihongo wo benkyou shitari hon wo yondari shimasu",
+      "shuumatsu wa nihongo o benkyou shitari hon o yondari shimasu"
+    ],
+    "furigana": {
+      "6": "に",
+      "7": "ほん",
+      "8": "ご",
+      "18": "ほん",
+      "20": "よ"
+    },
+    "meaning": "On weekends, I do things like studying Japanese and reading a book",
+    "meaning_id": "Saat akhir pekan, saya belajar bahasa Jepang, membaca buku, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "きのうはえいがを見たりすしをつくったりしました",
+    "particles": [
+      3,
+      7,
+      13
+    ],
+    "romanji": [
+      "kinou wa eiga wo mitari sushi wo tsukuttari shimashita",
+      "kinou wa eiga o mitari sushi o tsukuttari shimashita"
+    ],
+    "furigana": {
+      "8": "み"
+    },
+    "meaning": "Yesterday, I did things like watching a movie and making sushi",
+    "meaning_id": "Kemarin, saya menonton film, membuat sushi, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "しゅうまつはおんがくを聞いたり本を読んだりします",
+    "particles": [
+      5,
+      10,
+      16
+    ],
+    "romanji": [
+      "shuumatsu wa ongaku wo kiitari hon wo yondari shimasu",
+      "shuumatsu wa ongaku o kiitari hon o yondari shimasu"
+    ],
+    "furigana": {
+      "11": "き",
+      "15": "ほん",
+      "17": "よ"
+    },
+    "meaning": "On weekends, I do things like listening to music and reading a book",
+    "meaning_id": "Saat akhir pekan, saya mendengarkan musik, membaca buku, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "きのうはコーヒーを飲んだりてがみを書いたりしました",
+    "particles": [
+      3,
+      8,
+      16
+    ],
+    "romanji": [
+      "kinou wa koohii wo nondari tegami wo kaitari shimashita",
+      "kinou wa koohii o nondari tegami o kaitari shimashita"
+    ],
+    "furigana": {
+      "9": "の",
+      "17": "か"
+    },
+    "meaning": "Yesterday, I did things like drinking coffee and writing a letter",
+    "meaning_id": "Kemarin, saya minum kopi, menulis surat, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "日曜日はすしをつくったりテレビを見たりします",
+    "particles": [
+      3,
+      6,
+      15
+    ],
+    "romanji": [
+      "nichiyoubi wa sushi wo tsukuttari terebi wo mitari shimasu",
+      "nichiyoubi wa sushi o tsukuttari terebi o mitari shimasu"
+    ],
+    "furigana": {
+      "0": "にち",
+      "1": "よう",
+      "2": "び",
+      "16": "み"
+    },
+    "meaning": "On Sundays, I do things like making sushi and watching TV",
+    "meaning_id": "Setiap hari Minggu, saya membuat sushi, menonton TV, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "日曜日はおんがくを聞いたり日本語をべんきょうしたりします",
+    "particles": [
+      3,
+      8,
+      16
+    ],
+    "romanji": [
+      "nichiyoubi wa ongaku wo kiitari nihongo wo benkyou shitari shimasu",
+      "nichiyoubi wa ongaku o kiitari nihongo o benkyou shitari shimasu"
+    ],
+    "furigana": {
+      "0": "にち",
+      "1": "よう",
+      "2": "び",
+      "9": "き",
+      "13": "に",
+      "14": "ほん",
+      "15": "ご"
+    },
+    "meaning": "On Sundays, I do things like listening to music and studying Japanese",
+    "meaning_id": "Setiap hari Minggu, saya mendengarkan musik, belajar bahasa Jepang, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "きのうは本を読んだりえいがを見たりしました",
+    "particles": [
+      3,
+      5,
+      13
+    ],
+    "romanji": [
+      "kinou wa hon wo yondari eiga wo mitari shimashita",
+      "kinou wa hon o yondari eiga o mitari shimashita"
+    ],
+    "furigana": {
+      "4": "ほん",
+      "6": "よ",
+      "14": "み"
+    },
+    "meaning": "Yesterday, I did things like reading a book and watching a movie",
+    "meaning_id": "Kemarin, saya membaca buku, menonton film, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "しゅうまつはてがみを書いたりコーヒーを飲んだりします",
+    "particles": [
+      5,
+      9,
+      18
+    ],
+    "romanji": [
+      "shuumatsu wa tegami wo kaitari koohii wo nondari shimasu",
+      "shuumatsu wa tegami o kaitari koohii o nondari shimasu"
+    ],
+    "furigana": {
+      "10": "か",
+      "19": "の"
+    },
+    "meaning": "On weekends, I do things like writing a letter and drinking coffee",
+    "meaning_id": "Saat akhir pekan, saya menulis surat, minum kopi, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "きのうは日本語をべんきょうしたりすしをつくったりしました",
+    "particles": [
+      3,
+      7,
+      18
+    ],
+    "romanji": [
+      "kinou wa nihongo wo benkyou shitari sushi wo tsukuttari shimashita",
+      "kinou wa nihongo o benkyou shitari sushi o tsukuttari shimashita"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "6": "ご"
+    },
+    "meaning": "Yesterday, I did things like studying Japanese and making sushi",
+    "meaning_id": "Kemarin, saya belajar bahasa Jepang, membuat sushi, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "日曜日はえいがを見たり本を読んだりします",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "nichiyoubi wa eiga wo mitari hon wo yondari shimasu",
+      "nichiyoubi wa eiga o mitari hon o yondari shimasu"
+    ],
+    "furigana": {
+      "0": "にち",
+      "1": "よう",
+      "2": "び",
+      "8": "み",
+      "11": "ほん",
+      "13": "よ"
+    },
+    "meaning": "On Sundays, I do things like watching a movie and reading a book",
+    "meaning_id": "Setiap hari Minggu, saya menonton film, membaca buku, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "しゅうまつはおんがくを聞いたりコーヒーを飲んだりします",
+    "particles": [
+      5,
+      10,
+      19
+    ],
+    "romanji": [
+      "shuumatsu wa ongaku wo kiitari koohii wo nondari shimasu",
+      "shuumatsu wa ongaku o kiitari koohii o nondari shimasu"
+    ],
+    "furigana": {
+      "11": "き",
+      "20": "の"
+    },
+    "meaning": "On weekends, I do things like listening to music and drinking coffee",
+    "meaning_id": "Saat akhir pekan, saya mendengarkan musik, minum kopi, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "きのうはすしをつくったりてがみを書いたりしました",
+    "particles": [
+      3,
+      6,
+      15
+    ],
+    "romanji": [
+      "kinou wa sushi wo tsukuttari tegami wo kaitari shimashita",
+      "kinou wa sushi o tsukuttari tegami o kaitari shimashita"
+    ],
+    "furigana": {
+      "16": "か"
+    },
+    "meaning": "Yesterday, I did things like making sushi and writing a letter",
+    "meaning_id": "Kemarin, saya membuat sushi, menulis surat, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "日曜日はてがみを書いたりテレビを見たりします",
+    "particles": [
+      3,
+      7,
+      15
+    ],
+    "romanji": [
+      "nichiyoubi wa tegami wo kaitari terebi wo mitari shimasu",
+      "nichiyoubi wa tegami o kaitari terebi o mitari shimasu"
+    ],
+    "furigana": {
+      "0": "にち",
+      "1": "よう",
+      "2": "び",
+      "8": "か",
+      "16": "み"
+    },
+    "meaning": "On Sundays, I do things like writing a letter and watching TV",
+    "meaning_id": "Setiap hari Minggu, saya menulis surat, menonton TV, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "きのうはおんがくを聞いたりすしをつくったりしました",
+    "particles": [
+      3,
+      8,
+      15
+    ],
+    "romanji": [
+      "kinou wa ongaku wo kiitari sushi wo tsukuttari shimashita",
+      "kinou wa ongaku o kiitari sushi o tsukuttari shimashita"
+    ],
+    "furigana": {
+      "9": "き"
+    },
+    "meaning": "Yesterday, I did things like listening to music and making sushi",
+    "meaning_id": "Kemarin, saya mendengarkan musik, membuat sushi, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "しゅうまつはコーヒーを飲んだり本を読んだりします",
+    "particles": [
+      5,
+      10,
+      16
+    ],
+    "romanji": [
+      "shuumatsu wa koohii wo nondari hon wo yondari shimasu",
+      "shuumatsu wa koohii o nondari hon o yondari shimasu"
+    ],
+    "furigana": {
+      "11": "の",
+      "15": "ほん",
+      "17": "よ"
+    },
+    "meaning": "On weekends, I do things like drinking coffee and reading a book",
+    "meaning_id": "Saat akhir pekan, saya minum kopi, membaca buku, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "きのうは日本語をべんきょうしたりテレビを見たりしました",
+    "particles": [
+      3,
+      7,
+      19
+    ],
+    "romanji": [
+      "kinou wa nihongo wo benkyou shitari terebi wo mitari shimashita",
+      "kinou wa nihongo o benkyou shitari terebi o mitari shimashita"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん",
+      "6": "ご",
+      "20": "み"
+    },
+    "meaning": "Yesterday, I did things like studying Japanese and watching TV",
+    "meaning_id": "Kemarin, saya belajar bahasa Jepang, menonton TV, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "しゅうまつはてがみを書いたりえいがを見たりします",
+    "particles": [
+      5,
+      9,
+      17
+    ],
+    "romanji": [
+      "shuumatsu wa tegami wo kaitari eiga wo mitari shimasu",
+      "shuumatsu wa tegami o kaitari eiga o mitari shimasu"
+    ],
+    "furigana": {
+      "10": "か",
+      "18": "み"
+    },
+    "meaning": "On weekends, I do things like writing a letter and watching a movie",
+    "meaning_id": "Saat akhir pekan, saya menulis surat, menonton film, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "日曜日はコーヒーを飲んだりすしをつくったりします",
+    "particles": [
+      3,
+      8,
+      15
+    ],
+    "romanji": [
+      "nichiyoubi wa koohii wo nondari sushi wo tsukuttari shimasu",
+      "nichiyoubi wa koohii o nondari sushi o tsukuttari shimasu"
+    ],
+    "furigana": {
+      "0": "にち",
+      "1": "よう",
+      "2": "び",
+      "9": "の"
+    },
+    "meaning": "On Sundays, I do things like drinking coffee and making sushi",
+    "meaning_id": "Setiap hari Minggu, saya minum kopi, membuat sushi, dan lain-lain",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "この本は古いとおもいます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "kono hon wa furui to omoimasu"
+    ],
+    "furigana": {
+      "2": "ほん",
+      "4": "ふる"
+    },
+    "meaning": "I think this book is old",
+    "meaning_id": "Saya pikir buku ini lama",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週はくもりだとおもいます",
+    "particles": [
+      2,
+      7
+    ],
+    "romanji": [
+      "raishuu wa kumori da to omoimasu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう"
+    },
+    "meaning": "I think it will be cloudy next week",
+    "meaning_id": "Saya pikir minggu depan akan berawan",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "かんじはおもしろいとおもいます",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "kanji wa omoshiroi to omoimasu"
+    ],
+    "meaning": "I think kanji is interesting",
+    "meaning_id": "Saya pikir kanji menarik",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あの車は安いとおもいます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "ano kuruma wa yasui to omoimasu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "やす"
+    },
+    "meaning": "I think that car is cheap",
+    "meaning_id": "Saya pikir mobil itu murah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "日本語はむずかしいとおもいます",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "nihongo wa muzukashii to omoimasu"
+    ],
+    "furigana": {
+      "0": "に",
+      "1": "ほん",
+      "2": "ご"
+    },
+    "meaning": "I think Japanese is difficult",
+    "meaning_id": "Saya pikir bahasa Jepang sulit",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あしたは雨だとおもいます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "ashita wa ame da to omoimasu"
+    ],
+    "furigana": {
+      "4": "あめ"
+    },
+    "meaning": "I think it will rain tomorrow",
+    "meaning_id": "Saya pikir besok akan hujan",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "この川は大きいとおもいます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "kono kawa wa ookii to omoimasu"
+    ],
+    "furigana": {
+      "2": "かわ",
+      "4": "おお"
+    },
+    "meaning": "I think this river is big",
+    "meaning_id": "Saya pikir sungai ini besar",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "かんじはむずかしいとおもいます",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "kanji wa muzukashii to omoimasu"
+    ],
+    "meaning": "I think kanji is difficult",
+    "meaning_id": "Saya pikir kanji sulit",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "日本語はおもしろいとおもいます",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "nihongo wa omoshiroi to omoimasu"
+    ],
+    "furigana": {
+      "0": "に",
+      "1": "ほん",
+      "2": "ご"
+    },
+    "meaning": "I think Japanese is interesting",
+    "meaning_id": "Saya pikir bahasa Jepang menarik",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あの車は高いとおもいます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "ano kuruma wa takai to omoimasu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "たか"
+    },
+    "meaning": "I think that car is expensive",
+    "meaning_id": "Saya pikir mobil itu mahal",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あしたははれだとおもいます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "ashita wa hare da to omoimasu"
+    ],
+    "meaning": "I think it will be sunny tomorrow",
+    "meaning_id": "Saya pikir besok akan cerah",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "この川は長いとおもいます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "kono kawa wa nagai to omoimasu"
+    ],
+    "furigana": {
+      "2": "かわ",
+      "4": "なが"
+    },
+    "meaning": "I think this river is long",
+    "meaning_id": "Saya pikir sungai ini panjang",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "この本は新しいとおもいます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "kono hon wa atarashii to omoimasu"
+    ],
+    "furigana": {
+      "2": "ほん",
+      "4": "あたら"
+    },
+    "meaning": "I think this book is new",
+    "meaning_id": "Saya pikir buku ini baru",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週はゆきだとおもいます",
+    "particles": [
+      2,
+      6
+    ],
+    "romanji": [
+      "raishuu wa yuki da to omoimasu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう"
+    },
+    "meaning": "I think it will snow next week",
+    "meaning_id": "Saya pikir minggu depan akan turun salju",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あの車は新しいとおもいます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "ano kuruma wa atarashii to omoimasu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "あたら"
+    },
+    "meaning": "I think that car is new",
+    "meaning_id": "Saya pikir mobil itu baru",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "来週は雨だとおもいます",
+    "particles": [
+      2,
+      5
+    ],
+    "romanji": [
+      "raishuu wa ame da to omoimasu"
+    ],
+    "furigana": {
+      "0": "らい",
+      "1": "しゅう",
+      "3": "あめ"
+    },
+    "meaning": "I think it will rain next week",
+    "meaning_id": "Saya pikir minggu depan akan hujan",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "この本は高いとおもいます",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "kono hon wa takai to omoimasu"
+    ],
+    "furigana": {
+      "2": "ほん",
+      "4": "たか"
+    },
+    "meaning": "I think this book is expensive",
+    "meaning_id": "Saya pikir buku ini mahal",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
+  {
+    "jp_character": "あの車は大きいとおもいます",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "ano kuruma wa ookii to omoimasu"
+    ],
+    "furigana": {
+      "2": "くるま",
+      "4": "おお"
+    },
+    "meaning": "I think that car is big",
+    "meaning_id": "Saya pikir mobil itu besar",
+    "jlpt": "N4",
+    "pattern": "verb"
+  },
 ];

@@ -75,6 +75,7 @@ export default function GameModeSelector(props) {
   React.useEffect(() => {
     localStorage.setItem('game-mode-sentence-level', sentenceOptions.level);
     localStorage.setItem('game-mode-sentence-pattern', sentenceOptions.pattern);
+    localStorage.setItem('game-mode-sentence-jlpt', sentenceOptions.jlpt);
     localStorage.setItem('game-mode-sentence-exercise', sentenceOptions.exercise);
     if (props.onChange) {
       props.onChange();
@@ -186,6 +187,17 @@ export default function GameModeSelector(props) {
                 { value: 'listen', label: t('sentenceExerciseListen'), icon: 'volume', disabled: !isSpeechSupported(), disabledReason: t('sentenceExerciseListenDisabled') },
                 { value: 'particle', label: t('sentenceExerciseParticle'), icon: 'target' },
                 { value: 'arrange', label: t('sentenceExerciseArrange'), icon: 'shuffle' },
+              ]}
+            />
+            <SegmentedControl
+              className='sentence-jlpt-row'
+              label={t('sentenceJlptLabel')}
+              value={sentenceOptions.jlpt}
+              onChange={(value) => changeSentenceOption('jlpt', value)}
+              options={[
+                { value: 'all', label: t('sentenceAll') },
+                { value: 'N5', label: 'N5' },
+                { value: 'N4', label: 'N4' },
               ]}
             />
             <SegmentedControl

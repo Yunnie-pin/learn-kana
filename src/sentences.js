@@ -477,8 +477,10 @@ export function sentenceLevel(sentence) {
   return 'hard';
 }
 
-// The grammar pattern a sentence practices, from how it ends
+// The grammar pattern a sentence practices: set by its template, or read
+// from how it ends
 export function sentencePattern(sentence) {
+  if (sentence.pattern) return sentence.pattern;
   const jp = sentence.jp_character;
   if (/か$/.test(jp)) return 'question';
   if (/(あります|います|ありました|いました)$/.test(jp)) return 'exist';
@@ -486,7 +488,13 @@ export function sentencePattern(sentence) {
   return 'desu';
 }
 
+// JLPT level of the grammar a sentence practices (N5 unless its template says N4)
+export function sentenceJlpt(sentence) {
+  return sentence.jlpt || 'N5';
+}
+
 export const SENTENCE_LEVELS = ['all', 'easy', 'medium', 'hard'];
+export const SENTENCE_JLPT_LEVELS = ['all', 'N5', 'N4'];
 export const SENTENCE_PATTERNS = ['all', 'desu', 'verb', 'exist', 'question'];
 // type: read and type the sentence; listen: type what is heard; particle:
 // type the missing particle; arrange: put the shuffled words in order
@@ -504,6 +512,7 @@ export function getSentenceOptions() {
   return {
     level: storedOption('game-mode-sentence-level', SENTENCE_LEVELS),
     pattern: storedOption('game-mode-sentence-pattern', SENTENCE_PATTERNS),
+    jlpt: storedOption('game-mode-sentence-jlpt', SENTENCE_JLPT_LEVELS),
     exercise: storedOption('game-mode-sentence-exercise', SENTENCE_EXERCISES),
   };
 }
@@ -514,6 +523,7 @@ export function getPracticeSentences(selectedGroupTitles, options = getSentenceO
   return getReadableSentences(selectedGroupTitles).filter(sentence =>
     (options.level === 'all' || sentenceLevel(sentence) === options.level) &&
     (options.pattern === 'all' || sentencePattern(sentence) === options.pattern) &&
+    (!options.jlpt || options.jlpt === 'all' || sentenceJlpt(sentence) === options.jlpt) &&
     (options.exercise !== 'particle' || (sentence.particles || []).length > 0)
   );
 }

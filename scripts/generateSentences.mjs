@@ -1601,6 +1601,575 @@ templates.push(['seasons and temperature', [
   templates.push(['question: いっしょに [place] へ 行きませんか', out]);
 }
 
+// ---------- N5 / N4 grammar templates ----------
+// The most common grammar of the JLPT N5 and N4 levels that the templates
+// above don't cover: negative and past negative, wanting, inviting, asking,
+// te-form patterns, permission, prohibition, experience, ability, plans,
+// obligation, comparison and giving an opinion.
+//
+// Every template is pushed with { jlpt, pattern }: the JLPT level of its
+// grammar, and the grammar pattern of the menu filter (its ending can't tell
+// it: 〜ています ends like います, 〜てください like です). Each sentence also
+// carries "gloss": meanings of its conjugated words for the word breakdown
+// (written to src/generatedGlossary.js).
+
+// Conjugations of the verbs used below: masu-stem, te-form, ta-form,
+// dictionary form and nai-stem (romaji and kana), plus English -ing and past
+// participle and the Indonesian command form
+const conjugate = (v, [stem, stemRo], [te, teRo], [ta, taRo], [dict, dictRo], [nai, naiRo], enIng, enPP, idCmd) =>
+  ({ ...v, stem, stemRo, te, teRo, ta, taRo, dict, dictRo, nai, naiRo, enIng, enPP, idCmd });
+
+const cDrink = conjugate(drink, ['飲み', 'nomi'], ['飲んで', 'nonde'], ['飲んだ', 'nonda'], ['飲む', 'nomu'], ['飲ま', 'noma'], 'drinking', 'drunk', 'minum');
+const cEat = conjugate(eat, ['食べ', 'tabe'], ['食べて', 'tabete'], ['食べた', 'tabeta'], ['食べる', 'taberu'], ['食べ', 'tabe'], 'eating', 'eaten', 'makan');
+const cRead = conjugate(readV, ['読み', 'yomi'], ['読んで', 'yonde'], ['読んだ', 'yonda'], ['読む', 'yomu'], ['読ま', 'yoma'], 'reading', 'read', 'baca');
+const cWrite = conjugate(writeV, ['書き', 'kaki'], ['書いて', 'kaite'], ['書いた', 'kaita'], ['書く', 'kaku'], ['書か', 'kaka'], 'writing', 'written', 'tulis');
+const cWatch = conjugate(watchV, ['見', 'mi'], ['見て', 'mite'], ['見た', 'mita'], ['見る', 'miru'], ['見', 'mi'], 'watching', 'seen', 'tonton');
+const cBuy = conjugate(buy, ['買い', 'kai'], ['買って', 'katte'], ['買った', 'katta'], ['買う', 'kau'], ['買わ', 'kawa'], 'buying', 'bought', 'beli');
+const cListen = conjugate(listen, ['聞き', 'kiki'], ['聞いて', 'kiite'], ['聞いた', 'kiita'], ['聞く', 'kiku'], ['聞か', 'kika'], 'listening to', 'listened to', 'dengarkan');
+const cSpeak = conjugate(speak, ['話し', 'hanashi'], ['話して', 'hanashite'], ['話した', 'hanashita'], ['話す', 'hanasu'], ['話さ', 'hanasa'], 'speaking', 'spoken', 'bicara');
+const cGo = conjugate(go, ['行き', 'iki'], ['行って', 'itte'], ['行った', 'itta'], ['行く', 'iku'], ['行か', 'ika'], 'going', 'been', 'pergi');
+const cReturn = conjugate(returnHome, ['帰り', 'kaeri'], ['帰って', 'kaette'], ['帰った', 'kaetta'], ['帰る', 'kaeru'], ['帰ら', 'kaera'], 'going home', 'gone home', 'pulang');
+const cStudy = conjugate(study, ['べんきょうし', 'benkyou shi'], ['べんきょうして', 'benkyou shite'], ['べんきょうした', 'benkyou shita'], ['べんきょうする', 'benkyou suru'], ['べんきょうし', 'benkyou shi'], 'studying', 'studied', 'belajar');
+const cMake = conjugate(
+  verb('つくります', 'tsukurimasu', 'つくりました', 'tsukurimashita', 'make', 'makes', 'will make', 'made', 'membuat'),
+  ['つくり', 'tsukuri'], ['つくって', 'tsukutte'], ['つくった', 'tsukutta'], ['つくる', 'tsukuru'], ['つくら', 'tsukura'], 'making', 'made', 'buat');
+const cTake = conjugate(
+  verb('とります', 'torimasu', 'とりました', 'torimashita', 'take', 'takes', 'will take', 'took', 'mengambil'),
+  ['とり', 'tori'], ['とって', 'totte'], ['とった', 'totta'], ['とる', 'toru'], ['とら', 'tora'], 'taking', 'taken', 'ambil');
+
+const shashin = obj('しゃしん', 'shashin', 'photos', 'foto');
+const nihongoObj = obj('日本語', 'nihongo', 'Japanese', 'bahasa Jepang');
+const eigoObj = obj('えいご', 'eigo', 'English', 'bahasa Inggris');
+
+// Object + verb pairs that read naturally without an article ("drink coffee")
+const plainPairs = [
+  [mizu, cDrink], [ocha, cDrink], [coffee, cDrink], [milk, cDrink], [juusu, cDrink],
+  [gohan, cEat], [pan, cEat], [fish, cEat], [meat, cEat], [sushi, cEat], [ramen, cEat],
+  [shinbun, cRead], [kanjiObj, cWrite], [hiraganaObj, cWrite], [katakanaObj, cWrite],
+  [terebi, cWatch], [ongaku, cListen], [nihongoObj, cStudy], [kanjiObj, cStudy],
+];
+// Pairs whose object takes an article in English ("read a book")
+const articlePairs = [
+  [hon, cRead], [zasshi, cRead], [tegami, cWrite], [eiga, cWatch],
+  [kaban, cBuy], [tokei, cBuy], [hana, cBuy],
+];
+const allPairs = [...plainPairs, ...articlePairs];
+const people = [watashi, anata, gakusei, sensei, tomodachi, chichi, haha];
+const beVerb = (p) => (p === watashi ? 'am' : p === anata ? 'are' : 'is');
+// "Ayah saya" at the start of a sentence, "ayah saya" after a time word
+const idSubject = (t, p) => (t.id ? `${t.id} ${p.idPoss}` : p.id);
+const timeComma = (t) => (t.jp ? t.jp + '、' : '');
+const timeRo = (t) => (t.ro ? t.ro + ' ' : '');
+
+// N5-1. 〜ません / 〜ませんでした (e.g. 父はコーヒーを飲みません)
+{
+  const out = [];
+  for (const p of people) {
+    for (const [item, v] of plainPairs) {
+      for (const t of [noTime, mainichi, kinou, senshuu]) {
+        const past = t.tense === 'past';
+        const ending = past ? 'ませんでした' : 'ません';
+        const { jp, particles } = seg(timeComma(t), p.jp, P('は'), item.jp, P('を'), v.stem + ending);
+        out.push({
+          jp,
+          particles,
+          ro: `${timeRo(t)}${p.ro} wa ${item.ro} wo ${v.stemRo}${past ? 'masen deshita' : 'masen'}`,
+          en: `${cap(p.en)} ${past ? "didn't" : p.third ? "doesn't" : "don't"} ${v.en} ${item.en}${trailing(t.en.toLowerCase())}`,
+          id: `${idSubject(t, p)} tidak ${v.id} ${item.id}`,
+          gloss: { [v.stem + 'ません']: [`don't ${v.en}`, `tidak ${v.id}`] },
+        });
+      }
+    }
+  }
+  templates.push(['N5 negative: [person] は [object] を [verb]ません / ませんでした', out, { jlpt: 'N5', pattern: 'verb' }]);
+}
+
+// N5-2. 〜たいです (e.g. わたしは日本へ行きたいです)
+{
+  const out = [];
+  for (const t of [noTime, ashita, raishuu]) {
+    for (const [item, v] of allPairs) {
+      const { jp, particles } = seg(timeComma(t), 'わたし', P('は'), item.jp, P('を'), v.stem + 'たいです');
+      out.push({
+        jp,
+        particles,
+        ro: `${timeRo(t)}watashi wa ${item.ro} wo ${v.stemRo}tai desu`,
+        en: `I want to ${v.en} ${item.en}${trailing(t.en.toLowerCase())}`,
+        id: cap(`${t.id ? t.id.toLowerCase() + ' ' : ''}saya ingin ${v.id} ${item.id}`),
+        gloss: { [v.stem + 'たい']: [`want to ${v.en}`, `ingin ${v.id}`] },
+      });
+    }
+    for (const pl of [japan, foreignCountry, park, mountain, river, restaurant, departmentStore]) {
+      const { jp, particles } = seg(timeComma(t), 'わたし', P('は'), pl.jp, P('へ'), '行きたいです');
+      out.push({
+        jp,
+        particles,
+        ro: `${timeRo(t)}watashi wa ${pl.ro} e ikitai desu`,
+        en: `I want to go ${pl.enTo}${trailing(t.en.toLowerCase())}`,
+        id: cap(`${t.id ? t.id.toLowerCase() + ' ' : ''}saya ingin pergi ${pl.idTo}`),
+        gloss: { '行きたい': ['want to go', 'ingin pergi'] },
+      });
+    }
+  }
+  templates.push(['N5 want: わたしは [object] を [verb]たいです', out, { jlpt: 'N5', pattern: 'verb' }]);
+}
+
+// N5-3. 〜ましょう (e.g. いっしょにすしを食べましょう)
+{
+  const out = [];
+  for (const t of [noTime, ashita]) {
+    for (const [item, v] of allPairs.filter(([, v]) => v !== cStudy)) {
+      const { jp, particles } = seg(timeComma(t), 'いっしょに', item.jp, P('を'), v.stem + 'ましょう');
+      out.push({
+        jp,
+        particles,
+        ro: `${timeRo(t)}issho ni ${item.ro} wo ${v.stemRo}mashou`,
+        en: `Let's ${v.en} ${item.en} together${trailing(t.en.toLowerCase())}`,
+        id: `${t.id ? t.id + ', ayo' : 'Ayo'} ${v.idCmd} ${item.id} bersama-sama`,
+        gloss: { [v.stem + 'ましょう']: [`let's ${v.en}`, `ayo ${v.idCmd}`] },
+      });
+    }
+    for (const pl of [park, station, mountain, river, restaurant, departmentStore, supermarket]) {
+      const { jp, particles } = seg(timeComma(t), 'いっしょに', pl.jp, P('へ'), '行きましょう');
+      out.push({
+        jp,
+        particles,
+        ro: `${timeRo(t)}issho ni ${pl.ro} e ikimashou`,
+        en: `Let's go ${pl.enTo} together${trailing(t.en.toLowerCase())}`,
+        id: `${t.id ? t.id + ', ayo' : 'Ayo'} pergi ${pl.idTo} bersama-sama`,
+        gloss: { '行きましょう': ["let's go", 'ayo pergi'] },
+      });
+    }
+  }
+  templates.push(['N5 invite: いっしょに [object] を [verb]ましょう', out, { jlpt: 'N5', pattern: 'verb' }]);
+}
+
+// N5-4. 〜てください (e.g. 本を読んでください)
+{
+  const out = [];
+  for (const [item, v] of allPairs) {
+    const { jp, particles } = seg(item.jp, P('を'), v.te + 'ください');
+    out.push({
+      jp,
+      particles,
+      ro: `${item.ro} wo ${v.teRo} kudasai`,
+      en: `Please ${v.en} ${item.en}`,
+      id: `Tolong ${v.idCmd} ${item.id}`,
+      gloss: { [v.te + 'ください']: [`please ${v.en}`, `tolong ${v.idCmd}`] },
+    });
+  }
+  for (const pl of [school, station, home, park, ginkou, kuukou]) {
+    const { jp, particles } = seg(pl.jp, P('へ'), '行ってください');
+    out.push({
+      jp,
+      particles,
+      ro: `${pl.ro} e itte kudasai`,
+      en: `Please go ${pl.enTo}`,
+      id: `Tolong pergi ${pl.idTo}`,
+      gloss: { '行ってください': ['please go', 'tolong pergi'] },
+    });
+  }
+  templates.push(['N5 request: [object] を [verb]てください', out, { jlpt: 'N5', pattern: 'verb' }]);
+}
+
+// N5-5. 〜ています (e.g. 母は今パンを食べています)
+{
+  const out = [];
+  for (const p of people) {
+    for (const [item, v] of allPairs.filter(([, v]) => v !== cBuy)) {
+      // 今、 with a comma: 今日本語 would read as 今日 (today) + 本語
+      const { jp, particles } = seg(p.jp, P('は'), '今、', item.jp, P('を'), v.te + 'います');
+      out.push({
+        jp,
+        particles,
+        ro: `${p.ro} wa ima ${item.ro} wo ${v.teRo} imasu`,
+        en: `${cap(p.en)} ${beVerb(p)} ${v.enIng} ${item.en} now`,
+        id: `${p.id} sedang ${v.id} ${item.id} sekarang`,
+        gloss: { [v.te + 'います']: [`is ${v.enIng}`, `sedang ${v.id}`] },
+      });
+    }
+  }
+  templates.push(['N5 progressive: [person] は 今 [object] を [verb]ています', out, { jlpt: 'N5', pattern: 'verb' }]);
+}
+
+// N5-6. Adjective negative 〜くないです (e.g. この本は高くないです)
+{
+  const demos = [
+    { jp: 'この', ro: 'kono', en: 'This', id: 'ini' },
+    { jp: 'その', ro: 'sono', en: 'That', id: 'itu' },
+  ];
+  const nouns = [
+    [obj('本', 'hon', 'book', 'buku'), [atarashii, furui, takai, yasui, nagai]],
+    [obj('車', 'kuruma', 'car', 'mobil'), [atarashii, furui, takai, yasui, ookii, chiisai]],
+    [obj('かばん', 'kaban', 'bag', 'tas'), [atarashii, furui, takai, yasui, ookii, chiisai, kuroi]],
+    [obj('テレビ', 'terebi', 'TV', 'TV'), [atarashii, furui, takai, yasui, ookii, chiisai]],
+    [obj('へや', 'heya', 'room', 'kamar'), [atarashii, furui, ookii, chiisai]],
+    [obj('川', 'kawa', 'river', 'sungai'), [nagai, ookii, chiisai]],
+  ];
+  const out = [];
+  for (const demo of demos) {
+    for (const [item, adjs] of nouns) {
+      for (const a of adjs) {
+        const stemJp = a.jp.slice(0, -1);
+        const stemRo = a.ro.slice(0, -1);
+        const { jp, particles } = seg(demo.jp, item.jp, P('は'), stemJp + 'くないです');
+        out.push({
+          jp,
+          particles,
+          ro: `${demo.ro} ${item.ro} wa ${stemRo}kunai desu`,
+          en: `${demo.en} ${item.en} is not ${a.en}`,
+          id: `${cap(item.id)} ${demo.id} tidak ${a.id}`,
+          gloss: { [stemJp + 'くない']: [`not ${a.en}`, `tidak ${a.id}`] },
+        });
+      }
+    }
+  }
+  templates.push(['N5 adjective negative: [noun] は [adjective]くないです', out, { jlpt: 'N5', pattern: 'desu' }]);
+}
+
+// N5-7. 〜がほしいです (e.g. わたしは新しい車がほしいです)
+{
+  const out = [];
+  const things = [kaban, tokei, kuruma, hon, obj('テレビ', 'terebi', 'a TV', 'TV'), obj('じてんしゃ', 'jitensha', 'a bicycle', 'sepeda')];
+  for (const item of things) {
+    for (const a of [null, atarashii, ookii, chiisai, shiroi, kuroi, aoi]) {
+      const thingJp = a ? a.jp + item.jp : item.jp;
+      const thingRo = a ? `${a.ro} ${item.ro}` : item.ro;
+      const en = a ? item.en.replace(/^an? /, `a ${a.en} `).replace(/^a ([aeiou])/, 'an $1') : item.en;
+      const { jp, particles } = seg('わたし', P('は'), thingJp, P('が'), 'ほしいです');
+      out.push({
+        jp,
+        particles,
+        ro: `watashi wa ${thingRo} ga hoshii desu`,
+        en: `I want ${en}`,
+        id: `Saya ingin ${item.id}${a ? ' ' + a.id : ''}`,
+        gloss: { 'ほしい': ['want (to have)', 'ingin (memiliki)'] },
+      });
+    }
+  }
+  templates.push(['N5 want something: わたしは [thing] が ほしいです', out, { jlpt: 'N5', pattern: 'desu' }]);
+}
+
+// N5-8. Comparison 〜は〜より〜です (e.g. 車はじてんしゃより高いです)
+{
+  const thing = (jp, ro, en, id) => ({ jp, ro, en, id });
+  const comparisons = [
+    [thing('車', 'kuruma', 'A car', 'Mobil'), thing('じてんしゃ', 'jitensha', 'a bicycle', 'sepeda'), '高い', 'takai', 'more expensive', 'mahal'],
+    [thing('山', 'yama', 'A mountain', 'Gunung'), thing('木', 'ki', 'a tree', 'pohon'), '高い', 'takai', 'higher', 'tinggi'],
+    [thing('ひこうき', 'hikouki', 'A plane', 'Pesawat'), thing('電車', 'densha', 'a train', 'kereta'), 'はやい', 'hayai', 'faster', 'cepat'],
+    [thing('電車', 'densha', 'A train', 'Kereta'), thing('バス', 'basu', 'a bus', 'bus'), 'はやい', 'hayai', 'faster', 'cepat'],
+    [thing('なつ', 'natsu', 'Summer', 'Musim panas'), thing('はる', 'haru', 'spring', 'musim semi'), 'あつい', 'atsui', 'hotter', 'panas'],
+    [thing('ふゆ', 'fuyu', 'Winter', 'Musim dingin'), thing('あき', 'aki', 'autumn', 'musim gugur'), 'さむい', 'samui', 'colder', 'dingin'],
+    [thing('日本語', 'nihongo', 'Japanese', 'Bahasa Jepang'), thing('えいご', 'eigo', 'English', 'bahasa Inggris'), 'むずかしい', 'muzukashii', 'more difficult', 'sulit'],
+    [thing('かんじ', 'kanji', 'Kanji', 'Kanji'), thing('ひらがな', 'hiragana', 'hiragana', 'hiragana'), 'むずかしい', 'muzukashii', 'more difficult', 'sulit'],
+    [thing('本', 'hon', 'A book', 'Buku'), thing('ざっし', 'zasshi', 'a magazine', 'majalah'), '高い', 'takai', 'more expensive', 'mahal'],
+    [thing('学校', 'gakkou', 'The school', 'Sekolah'), thing('駅', 'eki', 'the station', 'stasiun'), '大きい', 'ookii', 'bigger', 'besar'],
+    [thing('川', 'kawa', 'The river', 'Sungai'), thing('山', 'yama', 'the mountain', 'gunung'), '長い', 'nagai', 'longer', 'panjang'],
+    [thing('コーヒー', 'koohii', 'Coffee', 'Kopi'), thing('おちゃ', 'ocha', 'tea', 'teh'), '高い', 'takai', 'more expensive', 'mahal'],
+    [thing('父', 'chichi', 'My father', 'Ayah saya'), thing('母', 'haha', 'my mother', 'ibu saya'), '大きい', 'ookii', 'bigger', 'besar'],
+    [thing('へや', 'heya', 'The room', 'Kamar'), thing('うち', 'uchi', 'the house', 'rumah'), '小さい', 'chiisai', 'smaller', 'kecil'],
+  ];
+  const out = [];
+  for (const [a, b, adjJp, adjRo, enMore, idAdj] of comparisons) {
+    const { jp, particles } = seg(a.jp, P('は'), b.jp, P('より'), adjJp + 'です');
+    out.push({
+      jp,
+      particles,
+      ro: `${a.ro} wa ${b.ro} yori ${adjRo} desu`,
+      en: `${a.en} is ${enMore} than ${b.en}`,
+      id: `${a.id} lebih ${idAdj} daripada ${b.id}`,
+      gloss: {
+        'はやい': ['fast', 'cepat'],
+        'むずかしい': ['difficult', 'sulit'],
+        'はる': ['spring', 'musim semi'],
+      },
+    });
+  }
+  templates.push(['N5 comparison: [A] は [B] より [adjective] です', out, { jlpt: 'N5', pattern: 'desu' }]);
+}
+
+// N4-1. 〜てもいいですか (e.g. ここでしゃしんをとってもいいですか)
+{
+  const out = [];
+  const pairs = [...allPairs.filter(([, v]) => v !== cStudy), [shashin, cTake]];
+  for (const where of [null, { jp: 'ここ', ro: 'koko', en: ' here', id: ' di sini' }]) {
+    for (const [item, v] of pairs) {
+      const { jp, particles } = seg(where ? where.jp : '', ...(where ? [P('で')] : []), item.jp, P('を'), v.te, P('も'), 'いいです', P('か'));
+      out.push({
+        jp,
+        particles,
+        ro: `${where ? where.ro + ' de ' : ''}${item.ro} wo ${v.teRo} mo ii desu ka`,
+        en: `May I ${v.en} ${item.en}${where ? where.en : ''}?`,
+        id: `Bolehkah saya ${v.id} ${item.id}${where ? where.id : ''}?`,
+        gloss: { [v.te]: [`${v.en} (te-form)`, `${v.id} (bentuk -te)`], 'いい': ['good / all right', 'baik / boleh'] },
+      });
+    }
+  }
+  templates.push(['N4 permission: [object] を [verb]てもいいですか', out, { jlpt: 'N4', pattern: 'question' }]);
+}
+
+// N4-2. 〜てはいけません (e.g. 電車の中で電話をしてはいけません)
+{
+  const out = [];
+  const places = [
+    { parts: ['ここ'], ro: 'koko', en: 'here', id: 'di sini' },
+    { parts: ['電車', P('の'), '中'], ro: 'densha no naka', en: 'on the train', id: 'di dalam kereta' },
+    { parts: ['へや'], ro: 'heya', en: 'in the room', id: 'di kamar' },
+    { parts: ['学校'], ro: 'gakkou', en: 'at school', id: 'di sekolah' },
+  ];
+  const pairs = [[pan, cEat], [ramen, cEat], [sushi, cEat], [coffee, cDrink], [juusu, cDrink], [shashin, cTake], [terebi, cWatch]];
+  for (const pl of places) {
+    for (const [item, v] of pairs) {
+      const { jp, particles } = seg(...pl.parts, P('で'), item.jp, P('を'), v.te, P('は'), 'いけません');
+      out.push({
+        jp,
+        particles,
+        ro: `${pl.ro} de ${item.ro} wo ${v.teRo} wa ikemasen`,
+        en: `You must not ${v.en} ${item.en} ${pl.en}`,
+        id: `Tidak boleh ${v.id} ${item.id} ${pl.id}`,
+        gloss: { [v.te]: [`${v.en} (te-form)`, `${v.id} (bentuk -te)`], 'いけません': ['is not allowed', 'tidak boleh'] },
+      });
+    }
+  }
+  templates.push(['N4 prohibition: [place] で [object] を [verb]てはいけません', out, { jlpt: 'N4', pattern: 'verb' }]);
+}
+
+// N4-3. 〜たことがあります (e.g. わたしはすしを食べたことがあります)
+{
+  const out = [];
+  const pairs = [[sushi, cEat], [ramen, cEat], [coffee, cDrink], [hon, cRead], [shinbun, cRead], [tegami, cWrite], [eiga, cWatch], [kanjiObj, cWrite], [nihongoObj, cStudy]];
+  const forms = [
+    { ending: 'あります', ro: 'arimasu', question: false, never: false },
+    { ending: 'ありません', ro: 'arimasen', question: false, never: true },
+    { ending: 'ありますか', ro: 'arimasu ka', question: true, never: false },
+  ];
+  for (const form of forms) {
+    const subjects = form.question ? [anata] : [watashi, chichi, haha, tomodachi, sensei];
+    for (const p of subjects) {
+      for (const [item, v] of pairs) {
+        const verbEnd = form.question ? [form.ending.slice(0, -1), P('か')] : [form.ending];
+        const { jp, particles } = seg(p.jp, P('は'), item.jp, P('を'), v.ta, 'こと', P('が'), ...verbEnd);
+        const has = p.third ? 'has' : 'have';
+        out.push({
+          jp,
+          particles,
+          ro: `${p.ro} wa ${item.ro} wo ${v.taRo} koto ga ${form.ro}`,
+          en: form.question
+            ? `Have you ever ${v.enPP} ${item.en}?`
+            : `${cap(p.en)} ${has} ${form.never ? 'never ' : ''}${v.enPP} ${item.en}${form.never ? '' : ' before'}`,
+          id: form.question
+            ? `Apakah Anda pernah ${v.id} ${item.id}?`
+            : `${p.id} ${form.never ? 'belum pernah' : 'pernah'} ${v.id} ${item.id}`,
+          gloss: {
+            [v.ta]: [`${v.enPP} (past)`, `${v.id} (lampau)`],
+            'こと': ['thing / experience', 'hal / pengalaman'],
+            'ありません': ['there is not', 'tidak ada'],
+          },
+        });
+      }
+      if (!form.question || p === anata) {
+        for (const pl of [japan, foreignCountry, mountain, kuukou]) {
+          const verbEnd = form.question ? [form.ending.slice(0, -1), P('か')] : [form.ending];
+          const { jp, particles } = seg(p.jp, P('は'), pl.jp, P('へ'), '行った', 'こと', P('が'), ...verbEnd);
+          out.push({
+            jp,
+            particles,
+            ro: `${p.ro} wa ${pl.ro} e itta koto ga ${form.ro}`,
+            en: form.question
+              ? `Have you ever been ${pl.enTo}?`
+              : `${cap(p.en)} ${p.third ? 'has' : 'have'} ${form.never ? 'never ' : ''}been ${pl.enTo}${form.never ? '' : ' before'}`,
+            id: form.question
+              ? `Apakah Anda pernah pergi ${pl.idTo}?`
+              : `${p.id} ${form.never ? 'belum pernah' : 'pernah'} pergi ${pl.idTo}`,
+            gloss: {
+              '行った': ['went', 'pergi (lampau)'],
+              'こと': ['thing / experience', 'hal / pengalaman'],
+              'ありません': ['there is not', 'tidak ada'],
+            },
+          });
+        }
+      }
+    }
+  }
+  templates.push(['N4 experience: [person] は [object] を [verb]たことがあります', out, { jlpt: 'N4', pattern: 'verb' }]);
+}
+
+// N4-4. 〜ことができます (e.g. 母はかんじを読むことができます)
+{
+  const out = [];
+  const pairs = [
+    [kanjiObj, cRead], [kanjiObj, cWrite], [hiraganaObj, cRead], [hiraganaObj, cWrite], [katakanaObj, cRead], [katakanaObj, cWrite],
+    [nihongoObj, cSpeak], [nihongoObj, cRead], [eigoObj, cSpeak], [sushi, cMake], [ramen, cMake],
+  ];
+  for (const p of people) {
+    for (const [item, v] of pairs) {
+      for (const can of [true, false]) {
+        const { jp, particles } = seg(p.jp, P('は'), item.jp, P('を'), v.dict, 'こと', P('が'), can ? 'できます' : 'できません');
+        out.push({
+          jp,
+          particles,
+          ro: `${p.ro} wa ${item.ro} wo ${v.dictRo} koto ga ${can ? 'dekimasu' : 'dekimasen'}`,
+          en: `${cap(p.en)} ${can ? 'can' : "can't"} ${v.en} ${item.en}`,
+          id: `${p.id} ${can ? 'bisa' : 'tidak bisa'} ${v.id} ${item.id}`,
+          gloss: {
+            [v.dict]: [`${v.en} (dictionary form)`, `${v.id} (bentuk kamus)`],
+            'こと': ['thing / experience', 'hal / pengalaman'],
+            'できます': ['can, be able to', 'bisa'],
+            'できません': ["can't", 'tidak bisa'],
+          },
+        });
+      }
+    }
+  }
+  templates.push(['N4 ability: [person] は [object] を [verb]ことができます', out, { jlpt: 'N4', pattern: 'verb' }]);
+}
+
+// N4-5. 〜つもりです (e.g. 来週、わたしは日本へ行くつもりです)
+{
+  const out = [];
+  for (const t of [ashita, raishuu]) {
+    for (const [item, v] of allPairs) {
+      const { jp, particles } = seg(timeComma(t), 'わたし', P('は'), item.jp, P('を'), v.dict, 'つもりです');
+      out.push({
+        jp,
+        particles,
+        ro: `${timeRo(t)}watashi wa ${item.ro} wo ${v.dictRo} tsumori desu`,
+        en: `I plan to ${v.en} ${item.en} ${t.en.toLowerCase()}`,
+        id: `${t.id} saya berencana ${v.id} ${item.id}`,
+        gloss: {
+          [v.dict]: [`${v.en} (dictionary form)`, `${v.id} (bentuk kamus)`],
+          'つもり': ['intention, plan', 'rencana, niat'],
+        },
+      });
+    }
+    for (const pl of [japan, foreignCountry, mountain, river, park, departmentStore]) {
+      const { jp, particles } = seg(timeComma(t), 'わたし', P('は'), pl.jp, P('へ'), '行く', 'つもりです');
+      out.push({
+        jp,
+        particles,
+        ro: `${timeRo(t)}watashi wa ${pl.ro} e iku tsumori desu`,
+        en: `I plan to go ${pl.enTo} ${t.en.toLowerCase()}`,
+        id: `${t.id} saya berencana pergi ${pl.idTo}`,
+        gloss: { '行く': ['go (dictionary form)', 'pergi (bentuk kamus)'], 'つもり': ['intention, plan', 'rencana, niat'] },
+      });
+    }
+  }
+  templates.push(['N4 plan: わたしは [object] を [verb]つもりです', out, { jlpt: 'N4', pattern: 'verb' }]);
+}
+
+// N4-6. 〜なければなりません (e.g. 学生はかんじをべんきょうしなければなりません)
+{
+  const out = [];
+  const pairs = [[nihongoObj, cStudy], [kanjiObj, cStudy], [shinbun, cRead], [hon, cRead], [tegami, cWrite], [namae, cWrite], [mizu, cDrink], [kaban, cBuy]];
+  for (const p of people) {
+    for (const t of [noTime, kyou, ashita]) {
+      for (const [item, v] of pairs) {
+        const { jp, particles } = seg(timeComma(t), p.jp, P('は'), item.jp, P('を'), v.nai + 'なければなりません');
+        out.push({
+          jp,
+          particles,
+          ro: `${timeRo(t)}${p.ro} wa ${item.ro} wo ${v.naiRo}nakereba narimasen`,
+          en: `${cap(p.en)} must ${v.en} ${item.en}${trailing(t.en.toLowerCase())}`,
+          id: `${idSubject(t, p)} harus ${v.id} ${item.id}`,
+          gloss: { [v.nai + 'なければなりません']: [`must ${v.en}`, `harus ${v.id}`] },
+        });
+      }
+      for (const [pl, v, idVerb] of [[school, cGo, 'pergi ke sekolah'], [home, cReturn, 'pulang']]) {
+        const { jp, particles } = seg(timeComma(t), p.jp, P('は'), pl.jp, P(v === cGo ? 'へ' : 'に'), v.nai + 'なければなりません');
+        out.push({
+          jp,
+          particles,
+          ro: `${timeRo(t)}${p.ro} wa ${pl.ro} ${v === cGo ? 'e' : 'ni'} ${v.naiRo}nakereba narimasen`,
+          en: `${cap(p.en)} must ${v === cGo ? 'go to school' : 'go home'}${trailing(t.en.toLowerCase())}`,
+          id: `${idSubject(t, p)} harus ${idVerb}`,
+          gloss: { [v.nai + 'なければなりません']: [`must ${v === cGo ? 'go' : 'go home'}`, `harus ${v === cGo ? 'pergi' : 'pulang'}`] },
+        });
+      }
+    }
+  }
+  templates.push(['N4 obligation: [person] は [object] を [verb]なければなりません', out, { jlpt: 'N4', pattern: 'verb' }]);
+}
+
+// N4-7. 〜たり〜たりします (e.g. しゅうまつは本を読んだりテレビを見たりします)
+{
+  const out = [];
+  const activities = [[hon, cRead], [terebi, cWatch], [ongaku, cListen], [tegami, cWrite], [eiga, cWatch], [sushi, cMake], [nihongoObj, cStudy], [coffee, cDrink]];
+  const times = [
+    { jp: 'しゅうまつ', ro: 'shuumatsu', en: 'On weekends', id: 'Saat akhir pekan', past: false },
+    { jp: '日曜日', ro: 'nichiyoubi', en: 'On Sundays', id: 'Setiap hari Minggu', past: false },
+    { jp: 'きのう', ro: 'kinou', en: 'Yesterday', id: 'Kemarin', past: true },
+  ];
+  for (const t of times) {
+    for (const [a, va] of activities) {
+      for (const [b, vb] of activities) {
+        if (a === b || va === vb) continue;
+        const { jp, particles } = seg(t.jp, P('は'), a.jp, P('を'), va.ta + 'り', b.jp, P('を'), vb.ta + 'り', t.past ? 'しました' : 'します');
+        out.push({
+          jp,
+          particles,
+          ro: `${t.ro} wa ${a.ro} wo ${va.taRo}ri ${b.ro} wo ${vb.taRo}ri ${t.past ? 'shimashita' : 'shimasu'}`,
+          en: `${t.en}, I ${t.past ? 'did' : 'do'} things like ${va.enIng} ${a.en} and ${vb.enIng} ${b.en}`,
+          id: `${t.id}, saya ${va.id} ${a.id}, ${vb.id} ${b.id}, dan lain-lain`,
+          gloss: {
+            [va.ta + 'り']: [`(things like) ${va.enIng}`, `(antara lain) ${va.id}`],
+            [vb.ta + 'り']: [`(things like) ${vb.enIng}`, `(antara lain) ${vb.id}`],
+          },
+        });
+      }
+    }
+  }
+  templates.push(['N4 listing actions: [time] は [A]たり [B]たりします', out, { jlpt: 'N4', pattern: 'verb' }]);
+}
+
+// N4-8. 〜と思います (e.g. あしたは雨だと思います)
+{
+  const out = [];
+  const weather = [
+    { jp: '雨', ro: 'ame', en: 'it will rain', id: 'akan hujan' },
+    { jp: 'はれ', ro: 'hare', en: 'it will be sunny', id: 'akan cerah' },
+    { jp: 'くもり', ro: 'kumori', en: 'it will be cloudy', id: 'akan berawan' },
+    { jp: 'ゆき', ro: 'yuki', en: 'it will snow', id: 'akan turun salju' },
+  ];
+  for (const t of [ashita, raishuu]) {
+    for (const w of weather) {
+      const { jp, particles } = seg(t.jp, P('は'), w.jp, 'だ', P('と'), 'おもいます');
+      out.push({
+        jp,
+        particles,
+        ro: `${t.ro} wa ${w.ro} da to omoimasu`,
+        en: `I think ${w.en} ${t.en.toLowerCase()}`,
+        id: `Saya pikir ${t.id.toLowerCase()} ${w.id}`,
+        gloss: { 'だ': ['is (plain form)', 'adalah (bentuk biasa)'], 'おもいます': ['think', 'pikir'] },
+      });
+    }
+  }
+  const opinions = [
+    [obj('この本', 'kono hon', 'this book', 'buku ini'), [takai, yasui, atarashii, furui]],
+    [obj('あの車', 'ano kuruma', 'that car', 'mobil itu'), [takai, yasui, atarashii, ookii]],
+    [obj('日本語', 'nihongo', 'Japanese', 'bahasa Jepang'), [adj('むずかしい', 'muzukashii', 'difficult', 'sulit'), adj('おもしろい', 'omoshiroi', 'interesting', 'menarik')]],
+    [obj('かんじ', 'kanji', 'kanji', 'kanji'), [adj('むずかしい', 'muzukashii', 'difficult', 'sulit'), adj('おもしろい', 'omoshiroi', 'interesting', 'menarik')]],
+    [obj('この川', 'kono kawa', 'this river', 'sungai ini'), [nagai, ookii]],
+  ];
+  for (const [item, adjs] of opinions) {
+    for (const a of adjs) {
+      const { jp, particles } = seg(item.jp, P('は'), a.jp, P('と'), 'おもいます');
+      out.push({
+        jp,
+        particles,
+        ro: `${item.ro} wa ${a.ro} to omoimasu`,
+        en: `I think ${item.en} is ${a.en}`,
+        id: `Saya pikir ${item.id} ${a.id}`,
+        gloss: {
+          'おもいます': ['think', 'pikir'],
+          'むずかしい': ['difficult', 'sulit'],
+          'おもしろい': ['interesting', 'menarik'],
+        },
+      });
+    }
+  }
+  templates.push(['N4 opinion: [topic] は [opinion] と思います', out, { jlpt: 'N4', pattern: 'verb' }]);
+}
+
 // ---------- Sampling ----------
 // Deterministic shuffle so the output file is stable between runs
 function mulberry32(seed) {
@@ -1701,6 +2270,23 @@ const quotas = {
   'question: [person] は [place] で [object] を [verb]ますか': 11,
   'question: [person] は なんじに おきます / ねます か': 6,
   'question: いっしょに [place] へ 行きませんか': 5,
+  // N5 / N4 grammar templates
+  'N5 negative: [person] は [object] を [verb]ません / ませんでした': 30,
+  'N5 want: わたしは [object] を [verb]たいです': 25,
+  'N5 invite: いっしょに [object] を [verb]ましょう': 20,
+  'N5 request: [object] を [verb]てください': 20,
+  'N5 progressive: [person] は 今 [object] を [verb]ています': 25,
+  'N5 adjective negative: [noun] は [adjective]くないです': 20,
+  'N5 want something: わたしは [thing] が ほしいです': 12,
+  'N5 comparison: [A] は [B] より [adjective] です': 14,
+  'N4 permission: [object] を [verb]てもいいですか': 20,
+  'N4 prohibition: [place] で [object] を [verb]てはいけません': 16,
+  'N4 experience: [person] は [object] を [verb]たことがあります': 30,
+  'N4 ability: [person] は [object] を [verb]ことができます': 24,
+  'N4 plan: わたしは [object] を [verb]つもりです': 18,
+  'N4 obligation: [person] は [object] を [verb]なければなりません': 24,
+  'N4 listing actions: [time] は [A]たり [B]たりします': 20,
+  'N4 opinion: [topic] は [opinion] と思います': 18,
 };
 
 // ---------- Validation + assembly ----------
@@ -1743,7 +2329,11 @@ for (const [run, readings] of Object.entries(furiganaByKanjiRun)) {
   }
 }
 
-for (const [name, candidates] of templates) {
+// Meanings of the conjugated words of the kept sentences, for the word
+// breakdown (written to src/generatedGlossary.js)
+const generatedGlossary = {};
+
+for (const [name, candidates, meta = {}] of templates) {
   const quota = quotas[name] ?? 10;
   const picked = varied(shuffle(candidates, name.length * 7919 + candidates.length));
   let taken = 0;
@@ -1789,7 +2379,12 @@ for (const [name, candidates] of templates) {
       ...(Object.keys(furigana).length ? { furigana } : {}),
       meaning: entry.en,
       meaning_id: entry.id,
+      // JLPT level and grammar pattern, for templates that set them (the
+      // others are N5, and their pattern is read from how they end)
+      ...(meta.jlpt ? { jlpt: meta.jlpt } : {}),
+      ...(meta.pattern ? { pattern: meta.pattern } : {}),
     });
+    Object.assign(generatedGlossary, entry.gloss || {});
     taken++;
   }
   report.push(`${name}: ${taken}/${candidates.length} (quota ${quota})`);
@@ -1847,4 +2442,17 @@ ${chunks},
 ];
 `;
 fs.writeFileSync(path.join(root, 'src/generatedSentences.js'), output);
+
+const glossaryOutput = `/* AUTO-GENERATED by scripts/generateSentences.mjs — do not edit by hand.
+ * Meanings of the conjugated words of the generated sentences (飲みません,
+ * 食べています...), shown in the word breakdown after a sentence is typed
+ * correctly. Each entry is [English, Indonesian]; see sentenceGlossary.js.
+ */
+export const generatedGlossary = ${JSON.stringify(
+  Object.fromEntries(Object.entries(generatedGlossary).sort(([a], [b]) => a.localeCompare(b, 'ja'))),
+  null,
+  2
+)};
+`;
+fs.writeFileSync(path.join(root, 'src/generatedGlossary.js'), glossaryOutput);
 console.log('\nwrote src/generatedSentences.js');

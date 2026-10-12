@@ -1,4 +1,4 @@
-import { getPracticeSentences, getReadableSentences, sentenceLevel, sentencePattern } from './sentences.js';
+import { getPracticeSentences, getReadableSentences, sentenceJlpt, sentenceLevel, sentencePattern, sentences } from './sentences.js';
 import { kanaCharacters } from './kanaCharacters.js';
 
 const ALL_GROUP_TITLES = ['hiragana', 'katakana', 'kanji'].flatMap(script =>
@@ -42,5 +42,24 @@ test('every level and pattern has sentences', () => {
   }
   for (const pattern of ['desu', 'verb', 'exist', 'question']) {
     expect(getPracticeSentences(ALL_GROUP_TITLES, options({ pattern })).length).toBeGreaterThan(5);
+  }
+});
+
+test('the pattern set by a template wins over how the sentence ends', () => {
+  // 〜ています ends like います (there is) but practices a verb form
+  expect(sentencePattern({ jp_character: '母は今、パンを食べています', pattern: 'verb' })).toBe('verb');
+  expect(sentencePattern({ jp_character: '母は今、パンを食べています' })).toBe('exist');
+});
+
+test('JLPT levels: N5 by default, N4 for the N4 grammar templates', () => {
+  expect(sentenceJlpt({})).toBe('N5');
+  const n4 = getPracticeSentences(ALL_GROUP_TITLES, options({ jlpt: 'N4' }));
+  expect(n4.length).toBeGreaterThan(100);
+  expect(n4.every(sentence => sentence.jlpt === 'N4')).toBe(true);
+  const n5 = getPracticeSentences(ALL_GROUP_TITLES, options({ jlpt: 'N5' }));
+  expect(n5.length + n4.length).toBe(getReadableSentences(ALL_GROUP_TITLES).length);
+  // Every N4 grammar is there
+  for (const ending of ['てもいいですか', 'てはいけません', 'ことがあります', 'ことができます', 'つもりです', 'なければなりません', 'たりします', 'とおもいます']) {
+    expect(sentences.some(sentence => sentence.jlpt === 'N4' && sentence.jp_character.replace(/[んっ]/g, '').includes(ending.replace(/[んっ]/g, '')))).toBe(true);
   }
 });

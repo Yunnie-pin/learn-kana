@@ -1,5 +1,6 @@
 import { kanaCharacters } from './kanaCharacters.js';
 import { alignWords } from './sentenceMatching.js';
+import { generatedGlossary } from './generatedGlossary.js';
 
 /* Word meanings for the breakdown shown after a sentence is typed correctly
  * in the "sentences" practice mode.
@@ -128,7 +129,8 @@ export const particleRoles = {
   'へ': ['direction: "to ..."', 'arah: "ke ..."'],
   'で': ['place of an action, or "by / with"', 'tempat kegiatan, atau "dengan"'],
   'の': ['possession: "\'s / of"', 'kepemilikan: "milik / dari"'],
-  'と': ['"and" / "with"', '"dan" / "bersama"'],
+  'と': ['"and" / "with", or quoting (〜と思います)', '"dan" / "bersama", atau kutipan (〜と思います)'],
+  'より': ['"than" (comparison)', '"daripada" (perbandingan)'],
   'も': ['"also / too"', '"juga"'],
   'か': ['question marker', 'penanda pertanyaan'],
   'ね': ['"right?", seeks agreement', '"ya?", meminta persetujuan'],
@@ -157,7 +159,9 @@ for (const group of Object.values(kanaCharacters.kanji)) {
 for (const word of Object.values(kanaCharacters.words)) {
   if (word.meaning) glossary[word.jp_character] = [word.meaning, word.meaning_id || word.meaning];
 }
-Object.assign(glossary, sentenceWords);
+// Conjugated words of the generated sentences (飲みません, 食べています...),
+// then the list above, which wins when both have a word
+Object.assign(glossary, generatedGlossary, sentenceWords);
 
 // Meaning of a word of a sentence in the given language ('en' / 'id'), or ''
 export function glossOf(word, language = 'en') {
@@ -187,16 +191,25 @@ export function sentenceBreakdown(sentence, language = 'en') {
     const text = characters.slice(start, end).join('').replace(/[、。]/g, '');
     return { text, romaji: words[index], particle: particles.includes(start) && Boolean(particleRoles[text]) };
   });
-  // Words written with a space in romaji but known as one word (いっしょ + に)
+  // Words written with spaces in romaji but known as one word: いっしょ + に,
+  // 食べて + います, べんきょう + して + ください (the longest known one wins)
   const merged = [];
-  for (const part of parts) {
-    const previous = merged[merged.length - 1];
-    if (previous && !previous.particle && !part.particle && glossary[previous.text + part.text]) {
-      previous.text += part.text;
-      previous.romaji += ` ${part.romaji}`;
-    } else {
-      merged.push({ ...part });
+  for (let index = 0; index < parts.length;) {
+    let end = index + 1;
+    if (!parts[index].particle) {
+      let text = parts[index].text;
+      for (let next = index + 1; next < parts.length && !parts[next].particle; next++) {
+        text += parts[next].text;
+        if (glossary[text]) end = next + 1;
+      }
     }
+    const group = parts.slice(index, end);
+    merged.push({
+      text: group.map(part => part.text).join(''),
+      romaji: group.map(part => part.romaji).join(' '),
+      particle: parts[index].particle,
+    });
+    index = end;
   }
   return merged.map(part => ({
     ...part,

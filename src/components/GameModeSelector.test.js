@@ -57,9 +57,11 @@ describe('sentence options', () => {
     fireEvent.click(radio('Particles'));
     fireEvent.click(radio('Long'));
     fireEvent.click(radio('〜ます'));
+    fireEvent.click(radio('N4'));
     expect(localStorage.getItem('game-mode-sentence-exercise')).toBe('particle');
     expect(localStorage.getItem('game-mode-sentence-level')).toBe('hard');
     expect(localStorage.getItem('game-mode-sentence-pattern')).toBe('verb');
+    expect(localStorage.getItem('game-mode-sentence-jlpt')).toBe('N4');
   });
 
   test('listening is disabled when the browser cannot speak', () => {
