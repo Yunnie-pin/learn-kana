@@ -3,6 +3,7 @@ import {  useState, useEffect, useRef, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toHiragana } from 'wanakana';
 import { kanaCharacters } from '../kanaCharacters.js'
+import { getReadableSentences } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
 import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
@@ -261,7 +262,7 @@ export default function InGameCharacterShowAndInput() {
   const { t, meaningOf } = useLanguage();
   const isMacOS = /Mac/i.test(navigator.userAgentData?.platform || navigator.platform);
 
-  /* 
+  /*
     ##########################################
     # Creates and handles the Kana character #
     ##########################################
@@ -271,6 +272,12 @@ export default function InGameCharacterShowAndInput() {
   const [srsCardDragOffset, setSrsCardDragOffset] = useState(0);
   const [srsCardSwipeDirection, setSrsCardSwipeDirection] = useState(null);
   const [onScreenCharacterType, setOnScreenCharacterType] = useState(null);
+  // Character indices of the particles in the shown sentence, so they can be highlighted
+  const [onScreenParticles, setOnScreenParticles] = useState([]);
+  // Furigana of the shown sentence (character index of the kanji -> its kana
+  // reading), revealed in small print above the kanji when the player asks for help
+  const [onScreenFurigana, setOnScreenFurigana] = useState({});
+  const [furiganaVisible, setFuriganaVisible] = useState(false);
   const [onScreenKanjiUsage, setOnScreenKanjiUsage] = useState(null);
   const [isKanjiUsageQuestion, setIsKanjiUsageQuestion] = useState(false);
   const [onScreenSolution, setSolution] = useState('');
@@ -420,12 +427,29 @@ export default function InGameCharacterShowAndInput() {
     return output;
   }
 
+  // Sentence practice: real beginner sentences, each one typed as a single
+  // romaji answer. Only sentences the player can read with the selected
+  // hiragana / katakana / kanji groups are shown, and the meaning is
+  // revealed once the sentence is completed.
+  function getListOfSentences(charGroups) {
+    return getReadableSentences(charGroups).map(sentence => ({
+      "jp_character": sentence.jp_character,
+      "romanji": sentence.romanji,
+      "particles": sentence.particles || [],
+      "furigana": sentence.furigana || {},
+      "sound": "",
+      "meaning": sentence.meaning,
+      "type": "long",
+    }));
+  }
+
   function getListForPractice(charGroups, mode) {
     const characters = getListOfKanas(charGroups);
     if (mode === 'mixed') {
       return [...characters, ...getListOfWords(charGroups)];
     }
     if (mode === 'words') return getListOfWords(charGroups);
+    if (mode === 'long') return getListOfSentences(charGroups);
     // "characters": every selected kana and kanji group
     return characters;
   }
@@ -484,7 +508,7 @@ export default function InGameCharacterShowAndInput() {
     return sampledElements;
   }
 
-  /* 
+  /*
   ##########################################
   # Creates and handles the touch answers #
   ##########################################
@@ -677,7 +701,7 @@ export default function InGameCharacterShowAndInput() {
     let pickedElement = isSrsPractice
       ? srsQueueRef.current?.shift()
       : await selectNextCharacter(charactersToShow);
-    
+
     if (!pickedElement) {
       if (isSrsPractice) {
         setUserGameScoreWindowVisible(true);
@@ -691,7 +715,7 @@ export default function InGameCharacterShowAndInput() {
         return;
       }
     }
-    
+
     inGameKanaOnScreen = pickedElement.jp_character;
     currentCharacterTypeRef.current = pickedElement.type;
     srsFailedRef.current = false;
@@ -741,6 +765,17 @@ export default function InGameCharacterShowAndInput() {
       ? pickedElement.usage.word
       : pickedElement.jp_character;
     setKana(questionCharacter);
+    setOnScreenParticles(
+      pickedElement.type === 'long' && Array.isArray(pickedElement.particles)
+        ? pickedElement.particles
+        : []
+    );
+    setOnScreenFurigana(
+      pickedElement.type === 'long' && pickedElement.furigana
+        ? pickedElement.furigana
+        : {}
+    );
+    setFuriganaVisible(false);
     const charTextElement = document.querySelector("#in-game-kana-character>p");
     if (charTextElement) {
       const displayLength = [...questionCharacter].length;
@@ -770,7 +805,8 @@ export default function InGameCharacterShowAndInput() {
     // @ts-ignore
     if (useKanjiUsageQuestion) {
       setWordMeaning(meaningOf(pickedElement.usage.word, pickedElement.usage.meaning));
-    } else if (pickedElement.type === "word" || pickedElement.type === "kanji") {
+    } else if (pickedElement.type === "word" || pickedElement.type === "kanji" ||
+               pickedElement.type === "long") {
       // @ts-ignore
       setWordMeaning(meaningOf(pickedElement.jp_character, pickedElement.meaning));
     } else {
@@ -875,7 +911,7 @@ export default function InGameCharacterShowAndInput() {
     setSrsCardDragOffset(0);
   }
 
-  /* 
+  /*
   #######################
   # Text input handlers #
   #######################
@@ -931,6 +967,8 @@ export default function InGameCharacterShowAndInput() {
       document.querySelector('#in-game-text-input-before-cursor').textContent = '';
       document.querySelector('#in-game-text-input-after-cursor').textContent = '';
       document.querySelector('#in-game-text-input-cursor-group').classList.remove("answer-correct", "answer-wrong");
+      // Restore the default size right away for the next character
+      fitTypedAnswerFontSize();
       syncHiddenInput();
     }
 
@@ -1088,8 +1126,9 @@ export default function InGameCharacterShowAndInput() {
         wrongSubmissionCounted = false; // Reset for next character
         setScore(prevScore => prevScore + 1)
 
-        // If the user is in word mode, show the translation of the word
-        if (currentCharacterTypeRef.current === 'word') {
+        // Long answers (words and sentences) wait for the player:
+        // reveal the romanji (and translation) and show the Next button
+        if (currentCharacterTypeRef.current === 'word' || currentCharacterTypeRef.current === 'long') {
           if (!document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
             document.querySelector('#in-game-kana-solution').classList.add("hidden-element");
           }
@@ -1219,42 +1258,87 @@ export default function InGameCharacterShowAndInput() {
     }
   }, [userGameScoreWindowVisible]);
 
+  // Keep long answers (words, sentences) inside the input line: when the
+  // typed text grows wider than the field, shrink the text and the cursor so
+  // the whole answer stays visible instead of being clipped at the edges
+  function fitTypedAnswerFontSize() {
+    try {
+      const cursorGroup = document.querySelector('#in-game-text-input-cursor-group');
+      const cursor = document.querySelector('#in-game-text-input-cursor');
+      const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+      const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
+      if (!cursorGroup || !cursor || !beforeCursor || !afterCursor) {
+        return;
+      }
+      // Back to the CSS sizes first, to measure the natural text width
+      beforeCursor.style.fontSize = '';
+      afterCursor.style.fontSize = '';
+      cursor.style.height = '';
+      const textWidth = beforeCursor.scrollWidth + afterCursor.scrollWidth;
+      // Nothing typed (also the case in jsdom, which has no layout)
+      if (!textWidth) {
+        return;
+      }
+      // clientWidth includes the 5px padding on both sides; the cursor is
+      // 3px wide with -6px of margins, plus a small safety margin
+      const availableWidth = cursorGroup.clientWidth - 14;
+      if (availableWidth <= 0 || textWidth <= availableWidth) {
+        return;
+      }
+      // Same values as the CSS: text min(13vh, 11vw), cursor height min(11.5vh, 10vw)
+      const ratio = availableWidth / textWidth;
+      const fontSize = `min(${(13 * ratio).toFixed(2)}vh, ${(11 * ratio).toFixed(2)}vw)`;
+      beforeCursor.style.fontSize = fontSize;
+      afterCursor.style.fontSize = fontSize;
+      cursor.style.height = `min(${(11.5 * ratio).toFixed(2)}vh, ${(10 * ratio).toFixed(2)}vw)`;
+    } catch (error) { }
+  }
+
   const cursorBlinkInterval = useRef(null);
+
+  // An element's computed font size expressed in viewport-height units
+  function getFontSizeInVH(element) {
+    const fontSizeInPixels = parseFloat(window.getComputedStyle(element).fontSize);
+    return (fontSizeInPixels / window.innerHeight) * 100;
+  }
+
+  // Long sentences do not fit on one line at the default 35vh, so shrink them
+  // to a per-character size as soon as they wrap. This runs in a layout effect
+  // (before paint) so switching questions never flashes an oversized, wrapped
+  // frame, and again on an interval to catch late webfont metrics.
+  function fitCharacterToLine() {
+    try {
+      const kanaCharacter = document.querySelector("#in-game-kana-character>p");
+      if (!kanaCharacter) return;
+      const lineHeightParsed = parseInt(window.getComputedStyle(kanaCharacter).fontSize, 10);
+      const amountOfLinesTilAdjust = 2;
+      const isWraped = kanaCharacter.getAttribute("data-word-wraped") === "true";
+      const displayLength = Number(kanaCharacter.dataset.displayLength) || kanaCharacter.textContent.length;
+      if (isWraped && getFontSizeInVH(kanaCharacter) >= 35) {
+        kanaCharacter.style.fontSize = "35vh";
+        kanaCharacter.setAttribute("data-word-wraped", "false");
+      } else if (isWraped) {
+        kanaCharacter.style.fontSize = (90 / displayLength) + "vw";
+        kanaCharacter.setAttribute("data-word-wraped", "true");
+      } else if (kanaCharacter.offsetHeight >= lineHeightParsed * amountOfLinesTilAdjust) {
+        kanaCharacter.style.fontSize = (90 / displayLength) + "vw";
+        kanaCharacter.setAttribute("data-word-wraped", "true");
+      }
+    } catch (error) { }
+  }
+
+  // Fit the new question before it is painted, so the oversized wrapped frame
+  // is never shown while the question swaps
+  React.useLayoutEffect(() => {
+    fitCharacterToLine();
+  }, [onScreenKana, onScreenCharacterType, isKanjiUsageQuestion]);
   React.useEffect(() => {
-    function getFontSizeInVH(element) {
-      const computedStyles = window.getComputedStyle(element);
-      const fontSizeInPixels = parseFloat(computedStyles.fontSize);
-      const viewportHeight = window.innerHeight;
-      const fontSizeInVh = (fontSizeInPixels / viewportHeight) * 100;
-      return fontSizeInVh;
-    }
-    function onLineWrapDoSomething() {
-      try {
-        const kanaCharacter = document.querySelector("#in-game-kana-character>p")
-        // kanaCharacter.style.fontSize = "35vh";
-        const lineHeight = window.getComputedStyle(kanaCharacter).getPropertyValue('font-size');
-        const lineHeightParsed = parseInt(lineHeight.split('px')[0]);
-        const amountOfLinesTilAdjust = 2;
-        const isWraped = kanaCharacter.getAttribute("data-word-wraped") === "true"
-        const displayLength = Number(kanaCharacter.dataset.displayLength) || kanaCharacter.textContent.length;
-        if (isWraped & getFontSizeInVH(kanaCharacter) >= 35) {
-          kanaCharacter.style.fontSize = "35vh";
-          kanaCharacter.setAttribute("data-word-wraped", "false")
-        }
-        else if (isWraped) {
-          kanaCharacter.style.fontSize = (90 / displayLength) + "vw";
-          kanaCharacter.setAttribute("data-word-wraped", "true")
-        } else if (!isWraped & kanaCharacter.offsetHeight >= (lineHeightParsed * amountOfLinesTilAdjust)) {
-          kanaCharacter.style.fontSize = (90 / displayLength) + "vw";
-          kanaCharacter.setAttribute("data-word-wraped", "true")
-        }
-      } catch (error) { }
-    }
-
-    // window.addEventListener('resize', onLineWrapDoSomething)
-
     //handles style changes on banner to check wrapping
-    const lineWrapInterval = setInterval(onLineWrapDoSomething, 100)
+    const lineWrapInterval = setInterval(() => {
+      fitCharacterToLine();
+      // Also keep the typed answer fitting inside the input line
+      fitTypedAnswerFontSize();
+    }, 100)
 
     function handleFocus() {
       document.querySelector('#in-game-text-input').focus();
@@ -1290,13 +1374,22 @@ export default function InGameCharacterShowAndInput() {
     if (!hintsEnabled) {
       return;
     }
+    // Sentence questions reveal small furigana above the kanji instead of
+    // showing the romaji reading.
+    if (currentCharacterTypeRef.current === 'long') {
+      if (!furiganaVisible) {
+        updateCurrentGameStats('askForHelp')
+        setFuriganaVisible(true)
+      }
+      return;
+    }
     if (document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
       updateCurrentGameStats('askForHelp')
       document.querySelector('#in-game-kana-solution').classList.remove("hidden-element")
     }
   }
 
-  /* 
+  /*
   ########################
   # Touch input handlers #
   ########################
@@ -1388,7 +1481,7 @@ export default function InGameCharacterShowAndInput() {
     return (remainingTime / totalSeconds) * 100;
   }
 
-  /* 
+  /*
   ######################################################
   # Decide wether to use touch or keyboard for answers #
   ######################################################
@@ -1430,9 +1523,9 @@ export default function InGameCharacterShowAndInput() {
           {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
         </span>
       </div>
-      <input 
-        type="text" 
-        id='in-game-text-input' 
+      <input
+        type="text"
+        id='in-game-text-input'
         autoComplete="off"
         autoCorrect="off"
         autoCapitalize="off"
@@ -1603,13 +1696,34 @@ export default function InGameCharacterShowAndInput() {
                     )}
                   </span>
                 ) : character)
-                : onScreenKana}
+                : onScreenCharacterType === 'long'
+                  ? [...onScreenKana].map((character, index) => {
+                    const body = onScreenParticles.includes(index)
+                      ? <span className='in-game-particle'>{character}</span>
+                      : character;
+                    // Help in sentence mode shows small furigana above the kanji
+                    return furiganaVisible && onScreenFurigana[index]
+                      ? <ruby key={`furigana-${index}`}>{body}<rt>{onScreenFurigana[index]}</rt></ruby>
+                      : <React.Fragment key={`long-char-${index}`}>{body}</React.Fragment>;
+                  })
+                  : onScreenKana}
             </p>
           </div>}
           <div id='in-game-solution' className='in-game-solution hidden-element'>
-            <span className='in-game-solution-romanji'>{onScreenSolution[0]}</span>
-            <span className='in-game-solution-separator'> · </span>
-            {onScreenWordMeaning}
+            <span id='in-game-solution-romanji-one'  className='in-game-solution-romanji-one'>{onScreenSolution[0]}</span>
+            <br></br>
+            {/* Sentence answers show the meaning only; the reading is the furigana above the kanji */}
+            {onScreenCharacterType !== 'long' && (
+              <span className='in-game-solution-romanji'>{onScreenSolution[0]}</span>
+            )}
+            {onScreenWordMeaning ? (
+              <>
+                {onScreenCharacterType !== 'long' && (
+                  <span className='in-game-solution-separator'> · </span>
+                )}
+                {onScreenWordMeaning}
+              </>
+            ) : null}
             {onScreenCharacterType === 'kanji' &&
               !isKanjiUsageQuestion &&
               localStorage.getItem('game-mode-kanji-readings') === 'true' &&
@@ -1627,7 +1741,9 @@ export default function InGameCharacterShowAndInput() {
               )}
           </div>
           <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
-            {Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution}
+            {/* Sentence help reveals furigana instead of the romaji reading */}
+            {onScreenCharacterType !== 'long' &&
+              (Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution)}
           </div>
           {onScreenKanjiUsage && (
             <div id='in-game-kanji-usage' className='in-game-solution in-game-kanji-usage hidden-element'>
