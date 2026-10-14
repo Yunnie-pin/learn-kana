@@ -181,3 +181,32 @@ describe('after a game', () => {
     expect(localStorage.getItem('userStats')).toBe(userStats);
   });
 });
+
+describe('search engines', () => {
+  const robots = () => document.querySelector('meta[name="robots"]').content;
+
+  test('the menu is indexed, with a title and description in the app language', async () => {
+    await open('/');
+    expect(document.title).toBe(translate('en', 'seoTitleMenu'));
+    expect(document.querySelector('meta[name="description"]').content).toBe(translate('en', 'seoDescription'));
+    expect(robots()).toBe('index, follow');
+  });
+
+  test('the title follows the language', async () => {
+    localStorage.setItem('language', 'id');
+    await open('/');
+    expect(document.title).toBe(translate('id', 'seoTitleMenu'));
+  });
+
+  test('the game screen is not indexed', async () => {
+    await open('/game');
+    expect(document.title).toBe(translate('en', 'seoTitleGame'));
+    expect(robots()).toBe('noindex, follow');
+  });
+
+  test('unknown addresses are not indexed', async () => {
+    await open('/nothing-here');
+    expect(document.title).toBe(translate('en', 'seoTitleNotFound'));
+    expect(robots()).toBe('noindex, follow');
+  });
+});

@@ -204,6 +204,10 @@ const translations = {
 
     // Not found page
     menuDismiss: 'Dismiss',
+    seoTitleMenu: 'Learn Kana – Practice Hiragana, Katakana, Kanji & Japanese Sentences',
+    seoTitleGame: 'Practice · Learn Kana',
+    seoTitleNotFound: 'Page not found · Learn Kana',
+    seoDescription: 'Free Japanese practice in your browser: hiragana and katakana drills, N5 / N4 kanji with spaced repetition, 700+ beginner words and 1,200+ JLPT N5 / N4 sentences. Type the romaji, track your progress, works offline.',
     notFoundTitle: 'Oops!',
     notFoundMessage: 'Page not found',
     notFoundRedirecting: ({ seconds }) => `Redirecting back in ${seconds} seconds...`,
@@ -397,6 +401,10 @@ const translations = {
     statsHelpRequested: ({ count }) => `Minta petunjuk: ${count} kali`,
 
     menuDismiss: 'Tutup',
+    seoTitleMenu: 'Learn Kana – Latihan Hiragana, Katakana, Kanji & Kalimat Jepang',
+    seoTitleGame: 'Latihan · Learn Kana',
+    seoTitleNotFound: 'Halaman tidak ditemukan · Learn Kana',
+    seoDescription: 'Latihan bahasa Jepang gratis di browser: hiragana dan katakana, kanji N5 / N4 dengan pengulangan berjarak, 700+ kosakata dasar, dan 1.200+ kalimat JLPT N5 / N4. Ketik romaji, pantau kemajuanmu, bisa offline.',
     notFoundTitle: 'Ups!',
     notFoundMessage: 'Halaman tidak ditemukan',
     notFoundRedirecting: ({ seconds }) => `Kembali dalam ${seconds} detik...`,
