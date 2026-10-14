@@ -164,16 +164,19 @@ export default function GameModeSelector(props) {
             { value: "long", label: t('practiceLong'), icon: 'shuffle' },
           ]}
         />
-        <SegmentedControl
-          className='answer-mode-row'
-          label={t('answerByLabel')}
-          value={answerBy}
-          onChange={setAnswerBy}
-          options={[
-            { value: "typing", label: t('answerTyping'), icon: 'keyboard' },
-            { value: "touch", label: t('answerMultipleChoice'), icon: 'grid', disabled: ['words', 'mixed', 'long'].includes(practice), disabledReason: t('answerMultipleChoiceDisabled') },
-          ]}
-        />
+        {/* Sentences are always typed: no choice to show (and the room goes to the sentence options) */}
+        {practice !== 'long' && (
+          <SegmentedControl
+            className='answer-mode-row'
+            label={t('answerByLabel')}
+            value={answerBy}
+            onChange={setAnswerBy}
+            options={[
+              { value: "typing", label: t('answerTyping'), icon: 'keyboard' },
+              { value: "touch", label: t('answerMultipleChoice'), icon: 'grid', disabled: ['words', 'mixed'].includes(practice), disabledReason: t('answerMultipleChoiceDisabled') },
+            ]}
+          />
+        )}
         {practice === 'long' && (
           <>
             <SegmentedControl
@@ -232,7 +235,10 @@ export default function GameModeSelector(props) {
         <CheckMark characterText={<><Icon name='pen' className='icon-leading' />{t('optionHandwrittenFonts')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-random-fonts"/>
         <CheckMark characterText={<><Icon name='skip-forward' className='icon-leading' />{t('optionAutoNext')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-auto-next" default="true"/>
         {isSpeechSupported() && <CheckMark characterText={<><Icon name='volume' className='icon-leading' />{t('optionSound')}</>} class="game-mode-selector-button-group-row-2" id={SOUND_SETTING_KEY}/>}
-        <CheckMark characterText={<><Icon name='languages' className='icon-leading' />{t('kanjiReadingsOption')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-kanji-readings" disabled={!props.kanjiSelected} disabledReason={t('kanjiReadingsDisabled')}/>
+        {/* Readings are shown with kanji questions, which sentence practice has none of */}
+        {practice !== 'long' && (
+          <CheckMark characterText={<><Icon name='languages' className='icon-leading' />{t('kanjiReadingsOption')}</>} class="game-mode-selector-button-group-row-2" id="game-mode-kanji-readings" disabled={!props.kanjiSelected} disabledReason={t('kanjiReadingsDisabled')}/>
+        )}
       </div>
     </div>
   )

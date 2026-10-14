@@ -367,3 +367,20 @@ test('the Learning Progress tooltip shows the mastery and what lowers it', async
     translate('en', 'masteryLossSpeed', { seconds: '0.86' }) + '−3',
   ]);
 });
+
+test('the menu fades the edge of the mode options while more are hidden below', async () => {
+  await open('/');
+  const side = document.querySelector('.game-menu-side');
+  const options = document.querySelector('.game-mode-selector');
+  // jsdom has no layout: give the options list a size
+  Object.defineProperty(options, 'scrollHeight', { configurable: true, value: 1000 });
+  Object.defineProperty(options, 'clientHeight', { configurable: true, value: 300 });
+
+  options.scrollTop = 0;
+  fireEvent.scroll(options);
+  expect(side).toHaveClass('has-more-below');
+
+  options.scrollTop = 700;
+  fireEvent.scroll(options);
+  expect(side).not.toHaveClass('has-more-below');
+});

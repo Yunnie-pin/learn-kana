@@ -70,3 +70,25 @@ describe('sentence options', () => {
     expect(radio('Listen')).toBeDisabled();
   });
 });
+
+describe('options that do not apply to sentences are hidden', () => {
+  test('sentences: no "Answer by" (always typed) and no kanji readings option', () => {
+    localStorage.setItem('game-mode-practice', 'long');
+    render(<GameModeSelector kanjiSelected={true} />);
+    expect(screen.queryByRole('radiogroup', { name: 'Answer by' })).toBeNull();
+    expect(document.querySelector('#game-mode-kanji-readings')).toBeNull();
+  });
+
+  test('characters: both are there', () => {
+    localStorage.setItem('game-mode-practice', 'characters');
+    render(<GameModeSelector kanjiSelected={true} />);
+    expect(screen.getByRole('radiogroup', { name: 'Answer by' })).toBeInTheDocument();
+    expect(document.querySelector('#game-mode-kanji-readings')).toBeInTheDocument();
+  });
+
+  test('words: multiple choice stays visible but disabled', () => {
+    localStorage.setItem('game-mode-practice', 'words');
+    render(<GameModeSelector kanjiSelected={true} />);
+    expect(screen.getByRole('radio', { name: 'Multiple choice' })).toBeDisabled();
+  });
+});

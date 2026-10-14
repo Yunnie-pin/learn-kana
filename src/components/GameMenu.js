@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import KanaGroup from './KanaGroup'
 import GameModeSelector from './GameModeSelector'
 import ProgressStatsModal from './ProgressStatsModal'
@@ -136,6 +136,27 @@ export default function GameMenu() {
   // Bumped whenever the selection or game mode changes, so the summary below is recomputed
   const [settingsVersion, setSettingsVersion] = useState(0);
   const refreshSummary = () => setSettingsVersion(version => version + 1);
+
+  // On wide screens the mode options scroll above a Start bar that always
+  // stays in view (App.css); when options are hidden below, the bar fades
+  // the edge to show there is more
+  const modeOptionsRef = useRef(null);
+  const [modeOptionsMoreBelow, setModeOptionsMoreBelow] = useState(false);
+  useEffect(() => {
+    const options = modeOptionsRef.current;
+    if (!options) return undefined;
+    const update = () => {
+      setModeOptionsMoreBelow(options.scrollHeight - options.scrollTop - options.clientHeight > 4);
+    };
+    update();
+    options.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      options.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+    // Options come and go with the practice type (settingsVersion changes then)
+  }, [settingsVersion]);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -290,8 +311,8 @@ export default function GameMenu() {
           <KanaGroup groupToShow="kanji" onSelectionChange={refreshSummary} />
         </div>
       </div>
-      <aside className='game-menu-side'>
-        <div className='game-mode-selector'>
+      <aside className={'game-menu-side' + (modeOptionsMoreBelow ? ' has-more-below' : '')}>
+        <div className='game-mode-selector' ref={modeOptionsRef}>
           <GameModeSelector onChange={refreshSummary} kanjiSelected={kanjiGroupCount > 0} />
         </div>
         <div className='game-menu-start-bar'>
