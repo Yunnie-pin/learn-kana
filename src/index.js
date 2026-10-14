@@ -1,44 +1,23 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider, } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import './App.css';
 import './InGame.css';
-import App from './App';
-import InGame from './pages/InGame'
-import NotFound from './NotFound';
 import './fonts/Belanosima/Belanosima-SemiBold.ttf'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { loadAnalytics } from './analytics';
 import { LanguageProvider } from './i18n';
 import { runStatsMaintenance } from './statsStorage';
+import { getBasename, isGamePath, restoreRedirectedPath } from './routes';
+import { appRoutes } from './router';
 
+// Back from public/404.html (GitHub Pages): put the requested path back first
+restoreRedirectedPath();
 
+// '' at the root of a domain (Docker), '/learn-kana' on GitHub Pages
+const basename = getBasename();
 
-import Layout from './components/Layout';
-
-const router = createBrowserRouter([
-  {
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        element: < App />,
-      },
-      {
-        path: "/learn-kana",
-        element: < App />,
-      },
-      {
-        path: "/learn-kana∕game",
-        element: <InGame />,
-      },
-      {
-        path: "*",
-        element: <NotFound />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(appRoutes, { basename });
 
 // Keeps the saved practice history small; does nothing when it already ran today
 try {
@@ -65,7 +44,7 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (!hadController || reloading) return;
     // Don't interrupt a running game: the next page load (menu / play again) picks up the new version
-    if (window.location.pathname.includes('game')) return;
+    if (isGamePath(window.location.pathname, basename)) return;
     reloading = true;
     window.location.reload();
   });

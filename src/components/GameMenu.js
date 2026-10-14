@@ -2,7 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react'
 import KanaGroup from './KanaGroup'
 import GameModeSelector from './GameModeSelector'
 import ProgressStatsModal from './ProgressStatsModal'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { GAME_MODES, gamePath, ROUTES } from '../routes';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences } from '../sentences.js'
 import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
@@ -104,6 +105,18 @@ function getSelectionSummary() {
 export default function GameMenu() {
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
+  // A game that could not start comes back here with the reason
+  const gameError = location.state?.error || null;
+  const dismissGameError = () => navigate(location.pathname, { replace: true, state: null });
+
+  // Coming back from a game: scroll to the part of the menu it asked for
+  // (e.g. #game-menu-title from "Back to menu" on the summary)
+  useEffect(() => {
+    if (!location.hash) return;
+    document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView?.();
+  }, [location.hash]);
+
   const [showStatsModal, setShowStatsModal] = useState(false);
   // Section to show and highlight when the window is opened from a notification
   const [statsFocusSection, setStatsFocusSection] = useState(null);
@@ -196,30 +209,29 @@ export default function GameMenu() {
     });
 
     localStorage.setItem('checkedKanas', JSON.stringify([...checkedChars]));
-    localStorage.setItem('game-mode-srs', 'false');
-
   };
 
-  // SRS is a one-off session: the practice type picked in the menu stays as it is,
-  // and GameModeSelector sets game-mode-srs back to false when the menu opens again
-  const startSrsReview = () => {
-    localStorage.setItem('game-mode-srs', 'true');
-  };
-
-  // Starts a game with only the given characters, through the same filter as "Try Problematics"
+  // Starts a game with only the given characters, the same way as "Try Problematics"
   const practiceWeakest = (characters) => {
     handleButtonClick();
-    localStorage.setItem('problematicKanasFilter', JSON.stringify(characters));
-    navigate('/learn-kana∕game');
+    navigate(ROUTES.game, { state: { characters } });
   };
 
   return (
     <div className={`game-menu-page tab-${activeKanaTab}`}>
       <h2 id='game-menu-title'>{t('menuTitle')}</h2>
+      {gameError && (
+        <div className='game-menu-error' role='alert'>
+          <span>{gameError}</span>
+          <button type='button' onClick={dismissGameError} aria-label={t('menuDismiss')} title={t('menuDismiss')}>
+            <Icon name='x' />
+          </button>
+        </div>
+      )}
       {dueReviewCount > 0 && (
         <div className='srs-review-banner' role='status'>
           <span><Icon name='bell' className='icon-leading icon-bell' />{t('kanjiSrsDue', { count: dueReviewCount })}</span>
-          <Link to='/learn-kana∕game' className='srs-review-banner-button' onClick={startSrsReview}>
+          <Link to={gamePath(GAME_MODES.review)} className='srs-review-banner-button'>
             {t('srsBannerStart')}
           </Link>
         </div>
@@ -261,7 +273,7 @@ export default function GameMenu() {
           {kanjiCount > 0 && (
             <div className='kanji-srs-start'>
               {srsDueCount > 0 ? (
-                <Link to='/learn-kana∕game' className='srs-review-banner-button' onClick={startSrsReview}>
+                <Link to={gamePath(GAME_MODES.review)} className='srs-review-banner-button'>
                   {t('srsStartButton', { count: srsDueCount })}
                 </Link>
               ) : (
@@ -283,7 +295,7 @@ export default function GameMenu() {
           <div className='game-menu-start'>
             <p className={'game-menu-summary' + (canStart ? '' : ' game-menu-summary-warning')}>{summaryText}</p>
             {canStart ? (
-              <Link to='/learn-kana∕game'>
+              <Link to={ROUTES.game}>
                 <button className='glowButton' onClick={handleButtonClick}><Icon name='play' className='icon-leading icon-play' />{t('menuStart')}</button>
               </Link>
             ) : (

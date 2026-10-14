@@ -124,7 +124,6 @@ const translations = {
     kanjiKuShort: 'ku',
     gameEnd: 'End game',
     gameErrorNoKana: "You didn't select any Kana!",
-    gameErrorNoCharacters: 'No characters available to show!',
 
     // Summary
     summaryCompletedKanas: 'Kanas Completed!',
@@ -204,6 +203,7 @@ const translations = {
     statsHelpRequested: ({ count }) => `Help Requested: ${count} times`,
 
     // Not found page
+    menuDismiss: 'Dismiss',
     notFoundTitle: 'Oops!',
     notFoundMessage: 'Page not found',
     notFoundRedirecting: ({ seconds }) => `Redirecting back in ${seconds} seconds...`,
@@ -320,7 +320,6 @@ const translations = {
     kanjiKuShort: 'ku',
     gameEnd: 'Akhiri permainan',
     gameErrorNoKana: 'Kamu belum memilih kana!',
-    gameErrorNoCharacters: 'Tidak ada karakter untuk ditampilkan!',
 
     summaryCompletedKanas: 'Kana Selesai!',
     summaryCompletedWords: 'Kata Selesai!',
@@ -397,6 +396,7 @@ const translations = {
     statsWrongSubmissions: ({ count }) => `Jawaban salah: ${count}`,
     statsHelpRequested: ({ count }) => `Minta petunjuk: ${count} kali`,
 
+    menuDismiss: 'Tutup',
     notFoundTitle: 'Ups!',
     notFoundMessage: 'Halaman tidak ditemukan',
     notFoundRedirecting: ({ seconds }) => `Kembali dalam ${seconds} detik...`,

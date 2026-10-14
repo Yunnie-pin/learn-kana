@@ -1,6 +1,7 @@
 import React from 'react'
 import {  useState, useEffect, useRef, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { GAME_MODES, ROUTES } from '../routes.js'
 import { toHiragana } from 'wanakana';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
@@ -337,6 +338,12 @@ export default function InGameCharacterShowAndInput() {
   // must not count the same answer again
   const questionAnsweredRef = useRef(false);
   const kanjiAutoAdvanceTimeoutRef = useRef(null);
+  // A word / sentence answered with auto next: the pending move to the next
+  // question, and without auto next: removes its Enter / tap listeners. Both
+  // are undone when the game unmounts (Play again, back to the menu), so they
+  // can't act on the next game's screen.
+  const advanceTimeoutRef = useRef(null);
+  const removeNextListenersRef = useRef(null);
   const inGameAnswerListRef = useRef([]);
   const srsQueueRef = useRef(null);
   const srsFailedRef = useRef(false);
@@ -361,7 +368,10 @@ export default function InGameCharacterShowAndInput() {
   }, []);
   const practiceMode = localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
-  const isSrsPractice = localStorage.getItem('game-mode-srs') === 'true';
+  // Session-only modes come with the address (see routes.js): ?mode=review is
+  // a kanji review, and Try Problematics passes its characters in the state
+  const location = useLocation();
+  const isSrsPractice = new URLSearchParams(location.search).get('mode') === GAME_MODES.review;
   // SRS reviews are always answered by typing, whatever is picked in the menu
   const useTouchAnswers = !isSrsPractice && localStorage.getItem("game-mode-touch") === "true";
   const selectedKanjiGroups = useMemo(() => getSelectedKanjiGroupTitles(), []);
@@ -387,16 +397,14 @@ export default function InGameCharacterShowAndInput() {
   }
 
   // Filter to problematic characters if that mode is active
-  const problematicFilter = localStorage.getItem('problematicKanasFilter');
+  const problematicChars = Array.isArray(location.state?.characters) ? location.state.characters : null;
   let isProblematicsMode = false;
-  if (problematicFilter && !isSrsPractice) {
-    const problematicChars = JSON.parse(problematicFilter);
+  if (problematicChars && !isSrsPractice) {
     charactersToShow = charactersToShow.filter(char => problematicChars.includes(char.jp_character));
     isProblematicsMode = true;
 
-    // If filter resulted in no characters, clear it and use original list
+    // If filter resulted in no characters, use the original list
     if (charactersToShow.length === 0) {
-      localStorage.removeItem('problematicKanasFilter');
       isProblematicsMode = false;
       // Restore original list
       charactersToShow = isSrsPractice
@@ -410,7 +418,7 @@ export default function InGameCharacterShowAndInput() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (charactersToShow.length === 0 && !isSrsPractice) {
-      navigate('/bruh', { state: { message: t('gameErrorNoKana') } });
+      navigate(ROUTES.menu, { replace: true, state: { error: t('gameErrorNoKana') } });
     }
   }, [charactersToShow, isSrsPractice, navigate, t]);
 
@@ -757,7 +765,8 @@ export default function InGameCharacterShowAndInput() {
       if (charactersToShow.length > 0) {
         pickedElement = charactersToShow[Math.floor(Math.random() * charactersToShow.length)];
       } else {
-        navigate('/bruh', { state: { message: t('gameErrorNoCharacters') } });
+        // Nothing to show: the effect that checks charactersToShow already
+        // went back to the menu with the reason
         return;
       }
     }
@@ -1251,16 +1260,19 @@ export default function InGameCharacterShowAndInput() {
             const solutionElement = document.querySelector('#in-game-solution');
             const nextButton = document.querySelector('#in-game-next-button');
             nextButton.classList.remove("hidden-element");
+            // Remove the listeners to prevent multiple listeners from being added
+            const removeListeners = () => {
+              document.removeEventListener('keydown', handleKeyDown);
+              solutionElement.removeEventListener('click', goToNextWord);
+              nextButton.removeEventListener('click', goToNextWord);
+              removeNextListenersRef.current = null;
+            };
             const goToNextWord = () => {
               clearAnswerInput();
               solutionElement.classList.add("hidden-element");
               nextButton.classList.add("hidden-element");
               showNewCharacter();
-
-              // Remove the listeners to prevent multiple listeners from being added
-              document.removeEventListener('keydown', handleKeyDown);
-              solutionElement.removeEventListener('click', goToNextWord);
-              nextButton.removeEventListener('click', goToNextWord);
+              removeListeners();
             };
             // Define the function for keydown event
             const handleKeyDown = (event) => {
@@ -1273,9 +1285,10 @@ export default function InGameCharacterShowAndInput() {
             document.addEventListener('keydown', handleKeyDown);
             solutionElement.addEventListener('click', goToNextWord);
             nextButton.addEventListener('click', goToNextWord);
+            removeNextListenersRef.current = removeListeners;
           } else {
             timeoutInProgress = true;
-            setTimeout(function () {
+            advanceTimeoutRef.current = window.setTimeout(function () {
               clearAnswerInput();
               document.querySelector('#in-game-solution').classList.add("hidden-element");
               showNewCharacter();
@@ -1306,7 +1319,7 @@ export default function InGameCharacterShowAndInput() {
             }
           } else {
             // Kana continues to advance automatically.
-            setTimeout(function () {
+            advanceTimeoutRef.current = window.setTimeout(function () {
               clearAnswerInput();
               showNewCharacter();
             }, 200)
@@ -1479,6 +1492,8 @@ export default function InGameCharacterShowAndInput() {
       clearInterval(cursorBlinkInterval.current);
       clearInterval(lineWrapInterval);
       window.clearTimeout(kanjiAutoAdvanceTimeoutRef.current);
+      window.clearTimeout(advanceTimeoutRef.current);
+      if (removeNextListenersRef.current) removeNextListenersRef.current();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -1623,7 +1638,7 @@ export default function InGameCharacterShowAndInput() {
       // Animate the element in ID in-game-kana-character using the class animation-wrong
       document.querySelector('#in-game-kana-character').classList.add("animation-wrong1");
       setTimeout(function () {
-        document.querySelector('#in-game-kana-character').classList.remove("animation-wrong1");
+        document.querySelector('#in-game-kana-character')?.classList.remove("animation-wrong1");
       }, 300)
     }
   }

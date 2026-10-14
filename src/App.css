@@ -3526,3 +3526,28 @@ html[data-theme='dark'] .notification-action {
     box-shadow: 0 0 0 3px #ff9a3caa;
   }
 }
+
+/* A game that could not start sends the reason back to the menu */
+.game-menu-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+  width: min(calc(100% - 2em), 40em);
+  margin: 0 auto 1em;
+  padding: 0.5em 0.6em 0.5em 1.2em;
+  box-sizing: border-box;
+  border: 1px solid #ff6b6b99;
+  border-radius: 50em;
+  background: #ff6b6b26;
+  font-family: var(--ui-font);
+}
+
+.game-menu-error button {
+  display: inline-flex;
+  padding: 0.3em;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+}

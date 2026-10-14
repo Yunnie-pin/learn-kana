@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Learn Kana</title>
+    <script>
+      // GitHub Pages has no fallback to index.html for app routes like
+      // /learn-kana/game, it serves this page instead. Send the visitor to
+      // the app with the path as ?/game; restoreRedirectedPath (src/routes.js)
+      // puts it back before the router starts. On github.io the first folder
+      // is the repository name, which is where the app lives.
+      // nginx (Docker) never gets here: it serves index.html for app routes.
+      var keep = /\.github\.io$/.test(location.hostname) ? 1 : 0;
+      var parts = location.pathname.split('/');
+      location.replace(
+        location.protocol + '//' + location.host +
+        parts.slice(0, 1 + keep).join('/') + '/?/' +
+        parts.slice(1 + keep).join('/').replace(/&/g, '~and~') +
+        (location.search ? '&' + location.search.slice(1).replace(/&/g, '~and~') : '') +
+        location.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

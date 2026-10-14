@@ -87,6 +87,10 @@ The app is served at `http://localhost:<APP_PORT>` (default `8080`). To change t
 - A help window showing Kanas with their romanjis, together with similar Kanas. ❔
 - Online sync of progress and settings. ❔
 
+## Deploying to GitHub Pages (or any static host)
+
+The same build works at the root of a domain (Docker, `http://localhost:8080/game`) and in a sub folder (GitHub Pages, `https://<user>.github.io/learn-kana/game`): asset paths are relative and the app finds its folder at run time. Publish the contents of `./build` after `npm run build`. GitHub Pages has no fallback to `index.html` for app routes, so `404.html` (copied from `public/`) sends a reload of `/learn-kana/game` back into the app.
+
 ## Privacy & Analytics
 
 This website can use [Umami](https://umami.is/), a privacy-focused, open-source analytics solution. It collects anonymous data to understand how the site is used and improve it. No personal data is collected, and cookies are not used for tracking.

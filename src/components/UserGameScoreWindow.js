@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ROUTES } from '../routes.js'
 import { kanaCharacters } from '../kanaCharacters.js'
 import { useLanguage } from '../i18n'
 import { isSpeechSupported, speak } from '../speech'
@@ -56,19 +58,18 @@ function getThirtyDaysAgoTimestamp() {
     return thirtyDaysAgo.getTime();
 }
 
-function goToMainMenu() {
-    localStorage.removeItem('problematicKanasFilter');
-    // Changing to window.location because of some react problems
-    // (game-mode-word change wasn't being respected)
-    window.location.href = "/learn-kana#game-menu-title";
-}
-
-function playAgain() {
-    localStorage.removeItem('problematicKanasFilter');
-    window.location.reload(false);
-}
-
 export default function UserGameScoreWindow(props) {
+    const navigate = useNavigate();
+    const location = useLocation();
+    // Back to the menu, at the mode settings
+    const goToMainMenu = useCallback(() => {
+        navigate(`${ROUTES.menu}#game-menu-title`);
+    }, [navigate]);
+    // A new game of the same kind (a kanji review stays a review); the game
+    // restarts because every navigation gets a new location key (pages/InGame.js)
+    const playAgain = useCallback(() => {
+        navigate(`${ROUTES.game}${location.search}`, { replace: true });
+    }, [navigate, location.search]);
     const { t } = useLanguage();
 
     // Tapping a chip reads it aloud (when the browser has speech synthesis)
@@ -197,11 +198,8 @@ export default function UserGameScoreWindow(props) {
             return;
         }
 
-        // Store the problematic characters filter in localStorage
-        localStorage.setItem('problematicKanasFilter', JSON.stringify(problematicChars));
-
-        // Reload to start a new game with filtered characters
-        window.location.reload(false);
+        // A new game with only these characters
+        navigate(ROUTES.game, { replace: true, state: { characters: problematicChars } });
     }
 
     // Compare the best streak with the all-time record once, when the summary opens
@@ -230,7 +228,7 @@ export default function UserGameScoreWindow(props) {
         }
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [props.visible]);
+    }, [props.visible, playAgain, goToMainMenu]);
 
     if (!props.visible) {
         return <></>;

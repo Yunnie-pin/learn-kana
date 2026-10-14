@@ -1,0 +1,60 @@
+# AGENT.md
+
+This file provides guidance to AI Code (claude.ai/code, gpt, and some ai agent) when working with code in this repository.
+
+## What this is
+
+A client-only React (Create React App via CRACO) PWA for practicing kana, kanji, words and Japanese sentences. There is no backend: all progress, settings and selections live in browser `localStorage`. Keep it deployable as a static build (served by nginx in Docker, or GitHub/Cloudflare Pages). The UI is in English and Indonesian.
+
+## Commands
+
+```bash
+npm install
+npm start                                   # dev server, http://localhost:3000
+npm run build                               # production build in ./build
+npm run fonts                               # re-subset the Japanese fonts (see below)
+node scripts/generateSentences.mjs          # regenerate the sentence data (see below)
+
+# Tests (Jest via craco; CI=true makes it run once instead of watching)
+CI=true npx craco test --watchAll=false
+CI=true npx craco test --watchAll=false --testPathPattern sentenceMatching   # one file
+CI=true npx craco test --watchAll=false --testPathPattern longPractice -t "particle"   # one test
+```
+
+There is no lint script; CRA's ESLint (`react-app`) runs during `npm start` / `npm run build`, and `CI=true npm run build` fails on lint warnings. GitHub Actions (`.github/workflows/test.yml`) runs `npm ci` + the test suite on Node 20 for pushes to `main` and for pull requests.
+
+## Architecture
+
+**Routing** (`src/index.js`): `/` and `/learn-kana` render the menu (`App` → `GameMenu`); the game is at `/learn-kana∕game`. That `∕` is U+2215 DIVISION SLASH, not `/` — copy it from an existing `navigate()`/`<Link>` rather than typing it.
+
+**Settings flow through localStorage, not props.** The menu (`GameMenu`, `GameModeSelector`, `KanaGroup`, `CheckMark`) writes keys such as `checkedKanas` (selected group titles), `game-mode-practice` (`characters` | `words` | `mixed` | `long` = sentences), `game-mode-touch`, `game-mode-auto-next`, `game-mode-hints`, `game-mode-sentence-*`, `gameMode` (session limit); the game screen reads them when it mounts. New settings follow the `game-mode-*` naming. Per-character stats are in `userStats`, keyed by the shown `jp_character` (for sentences: the whole sentence) and used by the weighted picker `selectNextCharacter`.
+
+**The game screen** is almost entirely `src/components/InGameCharacterShowAndInput.js` (`src/pages/InGame.js` only wraps it). Things to know before editing it:
+- The typed answer is managed by direct DOM manipulation of `#in-game-text-input-before-cursor` / `-after-cursor`, plus a hidden `<input>` for mobile keyboards; checks read `textContent` from those elements.
+- The keyboard/input handlers are registered once in a `useEffect([], ...)`, so they see stale state. Anything they need that changes per question must be in a ref (`questionAnsweredRef`, `currentCharacterTypeRef`, `sentenceHelpRef`, ...), not in state.
+- `questionAnsweredRef` blocks all input between a correct answer and the next question; without it extra keys re-count the answer and stack Enter listeners.
+- Question types (`kana`, `kanji`, `word`, `long`) share one flow: `showNewCharacter` → `checkAnswer` → correct branch. Sentences (`long`) use the matcher from `sentenceMatching.js` instead of the exact-string answer list.
+
+**Character data**: `src/kanaCharacters.js` holds the hiragana/katakana groups and the ~600 words (each word lists the kana groups it needs); the kanji groups are built at import time from `kanjiUsage.js`, `kanjiUsageMeanings.js` and `kanjiReadings.js` (it throws if one of them is missing an entry). Group `title`s are what `checkedKanas` stores.
+
+**Sentence pipeline** — the most interconnected part:
+- `scripts/generateSentences.mjs` builds sentences from word banks × grammar templates, with per-template quotas, and writes two generated files: `src/generatedSentences.js` and `src/generatedGlossary.js` (meanings of conjugated words). Never edit those two by hand. It validates every sentence (only kanji taught in `kanaCharacters.js`; every kanji run must be in its `furiganaByKanjiRun` dictionary) and also checks the furigana of the hand-written sentences. Output is deterministic (seeded shuffle), so re-running without changes produces no diff.
+- `src/sentences.js`: hand-written sentences + the generated ones; `getReadableSentences` keeps only sentences whose kana/kanji groups are all selected, and `getPracticeSentences` adds the menu filters (length, pattern, JLPT, exercise).
+- Sentence entries: `romanji` is word-spaced Hepburn (spaces matter: each word is lined up with the Japanese characters), `particles` are character indices, `furigana` maps kanji indices to readings, and templates may set `jlpt` (`N4`) and `pattern` (otherwise inferred from the ending).
+- `src/sentenceMatching.js`: aligns romaji words to characters (via furigana + wanakana), accepts alternative spellings (Kunrei-shiki, long vowels, は=ha, kana input), and builds the per-exercise questions (type / listen / particle / arrange).
+- `src/sentenceGlossary.js`: the word-by-word breakdown shown after a correct answer (meanings from kanaCharacters + generated + hand-written glossary, and particle roles).
+- Tests enforce data integrity over **all** sentences: every sentence aligns, every typed prefix of every answer stays "on track", and every word has a meaning in both languages. After adding sentences or templates, run the generator and then the test suite.
+
+**i18n**: all UI strings go in `src/i18n.js` with both `en` and `id` entries. Indonesian meanings of data use `meaning_id` fields.
+
+**Fonts**: Japanese fonts in `src/fonts` are subset to the characters the app uses. After adding kana, words, kanji or sentences with new characters, run `npm run fonts` (it scans every `.js` file in `src`).
+
+## Tests
+
+Tests live next to the code (`src/**/*.test.js`). Game-screen tests render `InGameCharacterShowAndInput` and drive it with `fireEvent.keyDown(window, { key })`. Since questions are picked at random, tests pin one by selecting groups that make exactly one word or sentence readable (e.g. `['か','ら','は','だ','さ', <kanji group of 水>]` → only これは水です). A test that ends while an answer is shown should tap Next, or its Enter listener leaks into the next test.
+
+## Conventions
+
+- Plain CSS files (`App.css`, `InGame.css`), not CSS modules. Note that `#in-game-text-input-cursor-group span` floats every span inside the answer field.
+- Keep dependencies minimal; the app must work on mobile browsers and offline (service worker in `src/service-worker.js`).
+- Umami analytics is configured with `REACT_APP_UMAMI_*` env vars at build time (`.env.example`); in Docker they are build args.

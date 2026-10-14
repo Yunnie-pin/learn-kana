@@ -57,7 +57,6 @@ export default function GameModeSelector(props) {
 
   React.useEffect(() => {
     localStorage.setItem("game-mode-practice", practice);
-    localStorage.setItem("game-mode-srs", "false");
     localStorage.setItem("game-mode-word", practice === "words");
     if (['words', 'mixed', 'long'].includes(practice) && answerBy === 'touch') {
       setAnswerBy('typing');

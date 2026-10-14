@@ -17,8 +17,8 @@ import {
   visibleNotifications,
 } from '../notifications.js';
 import { openLearningProgress } from '../progressNavigation.js';
+import { GAME_MODES, gamePath, ROUTES } from '../routes.js';
 
-const GAME_PATH = '/learn-kana∕game';
 
 function readJson(key, fallback) {
   try {
@@ -101,12 +101,10 @@ export default function NotificationMenu() {
   const runAction = (notification) => {
     switch (notification.action) {
       case 'srs':
-        localStorage.setItem('game-mode-srs', 'true');
-        navigate(GAME_PATH);
+        navigate(gamePath(GAME_MODES.review));
         break;
       case 'practice':
-        localStorage.setItem('game-mode-srs', 'false');
-        navigate(GAME_PATH);
+        navigate(ROUTES.game);
         break;
       case 'open-progress':
         openLearningProgress(notification.section);
