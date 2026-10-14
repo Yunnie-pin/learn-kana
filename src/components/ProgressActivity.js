@@ -23,35 +23,43 @@ function getKanaRomanji(character) {
   return kanaRomanji[character] || '';
 }
 
-function ConfusionPairs({ pairs, practicableKana, onPractice, t }) {
+// Every pair is a button that practices just that pair; the header button
+// practices all of them (a /game?mode=mixups game, from every kana)
+function ConfusionPairs({ pairs, onPracticeMixups, t }) {
   return (
     <div className='progress-activity-calendar-block' data-progress-section='confusions'>
       <div className='progress-stats-weakest-header progress-activity-panel-header'>
         <span>{t('statsConfusionsTitle')}</span>
-        {practicableKana.length > 0 && (
-          <button className='progress-stats-weakest-button' onClick={() => onPractice(practicableKana)}>
-            {t('statsPracticeWeakest')}
+        {pairs.length > 0 && onPracticeMixups && (
+          <button className='progress-stats-weakest-button' onClick={() => onPracticeMixups()}>
+            {t('mixupCallButton')}
           </button>
         )}
       </div>
       {pairs.length > 0 ? (
-        <div className='progress-activity-confusions'>
-          {pairs.map(pair => (
-            <div
-              key={pair.characters.join('')}
-              className='progress-activity-confusion'
-              aria-label={t('statsConfusionPair', { first: pair.characters[0], second: pair.characters[1], count: pair.count })}
-            >
-              {pair.characters.map(character => (
-                <span key={character} className='progress-activity-confusion-kana'>
-                  <span className='progress-activity-confusion-character'>{character}</span>
-                  <span className='progress-activity-confusion-romanji'>{getKanaRomanji(character)}</span>
-                </span>
-              ))}
-              <span className='progress-activity-confusion-count'>{pair.count}×</span>
-            </div>
-          ))}
-        </div>
+        <>
+          <div className='progress-activity-confusions'>
+            {pairs.map(pair => (
+              <button
+                type='button'
+                key={pair.characters.join('')}
+                className='progress-activity-confusion'
+                aria-label={t('statsConfusionPracticePair', { first: pair.characters[0], second: pair.characters[1], count: pair.count })}
+                title={t('statsConfusionPracticePair', { first: pair.characters[0], second: pair.characters[1], count: pair.count })}
+                onClick={() => onPracticeMixups && onPracticeMixups(pair.characters)}
+              >
+                {pair.characters.map(character => (
+                  <span key={character} className='progress-activity-confusion-kana'>
+                    <span className='progress-activity-confusion-character'>{character}</span>
+                    <span className='progress-activity-confusion-romanji'>{getKanaRomanji(character)}</span>
+                  </span>
+                ))}
+                <span className='progress-activity-confusion-count'>{pair.count}×</span>
+              </button>
+            ))}
+          </div>
+          <p className='progress-activity-confusions-hint'>{t('statsConfusionsHint')}</p>
+        </>
       ) : (
         <p className='progress-stats-weakest-empty'>{t('statsConfusionsEmpty')}</p>
       )}
@@ -166,7 +174,7 @@ function TrendChart({ title, points, maxValue, formatValue, formatWeek, noDataTe
   );
 }
 
-function ProgressActivity({ userStats, confusionPairs, practicableConfusedKana, onPractice, language, t }) {
+function ProgressActivity({ userStats, confusionPairs, onPracticeMixups, language, t }) {
   const [selectedDay, setSelectedDay] = useState(null);
   const locale = language === 'id' ? 'id-ID' : 'en-US';
   const formatDate = timestamp =>
@@ -220,7 +228,7 @@ function ProgressActivity({ userStats, confusionPairs, practicableConfusedKana, 
         ))}
       </div>
 
-      <ConfusionPairs pairs={confusionPairs} practicableKana={practicableConfusedKana} onPractice={onPractice} t={t} />
+      <ConfusionPairs pairs={confusionPairs} onPracticeMixups={onPracticeMixups} t={t} />
 
       <div className='progress-activity-calendar-block'>
         <div className='progress-activity-chart-title'>{t('statsCalendarTitle')}</div>

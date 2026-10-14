@@ -86,3 +86,20 @@ export function getConfusionPairs(confusions, limit = 8) {
     .sort((a, b) => b.count - a.count || b.last - a.last)
     .slice(0, limit);
 }
+
+// ---------- Mix-up practice ----------
+// A game with only the kana the user mixes up (/game?mode=mixups), offered
+// from the Learning Progress window, the notifications and the summary of a
+// game in which kana were mixed up.
+
+// How many of the most frequent pairs a mix-up game practices
+export const MIXUP_PRACTICE_PAIRS = 8;
+// The kana of the pairs to practice
+export function getMixupKana(pairs) {
+  return [...new Set(pairs.flatMap(pair => pair.characters))];
+}
+
+// Pairs mixed up since `since` (e.g. during the game that just ended)
+export function getPairsMixedUpSince(since, confusions = readConfusions()) {
+  return getConfusionPairs(confusions, MIXUP_PRACTICE_PAIRS).filter(pair => pair.last >= since);
+}

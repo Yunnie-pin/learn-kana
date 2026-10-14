@@ -1,4 +1,4 @@
-import { calculateMastery, getRetention, getTimeLimitSeconds, getWeakestItems } from './mastery.js';
+import { calculateMastery, getMasteryBreakdown, getRetention, getTimeLimitSeconds, getWeakestItems } from './mastery.js';
 
 const DAY = 24 * 60 * 60 * 1000;
 const NOW = new Date(2026, 9, 8, 12).getTime();
@@ -79,4 +79,38 @@ test('weakest items skip unpracticed and excellent ones, weakest first', () => {
   const weakest = getWeakestItems(items, { あ: good, い: bad, う: okay }, 10, NOW);
   expect(weakest.map(item => item.jp_character)).toEqual(['い', 'う']);
   expect(getWeakestItems(items, { い: bad, う: okay }, 1, NOW)).toHaveLength(1);
+});
+
+describe('what makes up the mastery', () => {
+  // あ answered right 3 times out of 3 in 0.86s on average, 14 days ago:
+  // 100% accuracy, but 83% mastery
+  const answeredRightThreeTimes = stats([{ date: NOW - 14 * DAY, rightGuesses: 3, responseTimeSum: 3 * 860 }]);
+
+  test('the breakdown gives the same mastery', () => {
+    const breakdown = getMasteryBreakdown(answeredRightThreeTimes, 'あ', NOW);
+    expect(breakdown.mastery).toBe(calculateMastery(answeredRightThreeTimes, 'あ', NOW));
+    expect(breakdown.mastery).toBe(83);
+  });
+
+  test('says how many points each part costs', () => {
+    const breakdown = getMasteryBreakdown(answeredRightThreeTimes, 'あ', NOW);
+    const lost = Object.fromEntries(breakdown.parts.map(part => [part.key, part.lost]));
+    expect(lost.accuracy).toBe(0);
+    expect(lost.help).toBe(0);
+    // 3 of 20 answers: 8.5 of the 10 experience points are missing
+    expect(lost.experience).toBeCloseTo(8.5);
+    // 0.86s of the 5s limit
+    expect(lost.speed).toBeCloseTo(15 * 0.86 / 5);
+    // 7 days past the grace week: 7% of the rest
+    expect(breakdown.retention).toBeCloseTo(0.93);
+    expect(breakdown.retentionLost).toBeCloseTo((100 - lost.experience - lost.speed) * 0.07);
+    expect(breakdown.lifetimeAttempts).toBe(3);
+    expect(breakdown.averageSeconds).toBeCloseTo(0.86);
+  });
+
+  test('the parts and the retention add up to the mastery', () => {
+    const breakdown = getMasteryBreakdown(answeredRightThreeTimes, 'あ', NOW);
+    const totalLost = breakdown.parts.reduce((sum, part) => sum + part.lost, 0) + breakdown.retentionLost;
+    expect(Math.round(100 - totalLost)).toBe(breakdown.mastery);
+  });
 });

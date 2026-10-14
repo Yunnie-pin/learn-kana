@@ -217,6 +217,12 @@ export default function GameMenu() {
     navigate(ROUTES.game, { state: { characters } });
   };
 
+  // Practices the kana the user mixes up: all of the frequent pairs, or the
+  // ones given (a single pair picked in Learning Progress)
+  const practiceMixups = (characters) => {
+    navigate(gamePath(GAME_MODES.mixups), characters ? { state: { characters } } : undefined);
+  };
+
   return (
     <div className={`game-menu-page tab-${activeKanaTab}`}>
       <h2 id='game-menu-title'>{t('menuTitle')}</h2>
@@ -309,6 +315,7 @@ export default function GameMenu() {
         focusSection={statsFocusSection}
         onClose={() => { setShowStatsModal(false); setStatsFocusSection(null); }}
         onPracticeWeakest={practiceWeakest}
+        onPracticeMixups={practiceMixups}
       />
     </div>
   )

@@ -38,6 +38,7 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 - The kana you got wrong (with the right answer) and your slowest ones. Tap one to hear it.
 - Comparison with your average of the last 30 days, and your all-time best streak.
 - *Try Problematics*: a new game with only the characters you struggle with.
+- **Practice mix-ups**: kana you answered with another kana's reading (シ ⇄ ツ, ぬ ⇄ め...) get their own practice game, from all kana whatever groups you picked. It's offered at the end of a game in which you mixed kana up, in the *Often mixed up* list of Learning Progress (tap a pair to practice just those two) and in its notification.
 - Progress stats per character, colored by how well you know them.
 
 **Mobile**

@@ -174,11 +174,6 @@ Navbar
   font-size: 1.7em;
 }
 
-.navbar-author {
-  font-size: 0.9em;
-  opacity: 0.6;
-}
-
 .navbar-actions {
   display: flex;
   align-items: center;
@@ -232,10 +227,16 @@ Navbar
   }
 }
 
+/* Opens the About window (AboutDialog) */
 .github-icon {
   display: flex;
+  flex: none;
   width: 28px;
   height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: var(--cursor-pointer);
 }
 
 .github-icon svg {
@@ -1606,6 +1607,54 @@ Progress Stats Modal
   margin: 0.2em 0;
 }
 
+/* Mastery (the percentage on the tile) and what lowers it */
+.progress-stats-tooltip-mastery {
+  margin-bottom: 0.8em;
+  padding-bottom: 0.8em;
+  border-bottom: 1px solid #ff9a3c40;
+  color: #ff9a3c;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+.progress-stats-tooltip-mastery-value {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.15em;
+  font-weight: bold;
+}
+
+.progress-stats-tooltip-mastery-dot {
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50%;
+}
+
+.progress-stats-tooltip-mastery-label {
+  margin-top: 0.5em;
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
+.progress-stats-tooltip-mastery-reasons {
+  margin: 0.2em 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.progress-stats-tooltip-mastery-reasons li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  margin: 0.15em 0;
+}
+
+.progress-stats-tooltip-mastery-points {
+  flex: none;
+  color: #f87171;
+  font-weight: bold;
+}
+
 @media (max-width: 655px) {
   .progress-stats-modal {
     max-width: 95vw;
@@ -2417,20 +2466,8 @@ Kana group preview on hover
   padding: 0.35em 0.8em;
 }
 
-.navbar-title,
-.navbar-author {
+.navbar-title {
   white-space: nowrap;
-}
-
-/* Very narrow phones: the language switch needs the room, so the credit goes under the title */
-@media (max-width: 420px) {
-  .navbar-brand {
-    flex-direction: column;
-    gap: 0;
-  }
-  .navbar-author {
-    font-size: 0.75em;
-  }
 }
 
 /*
@@ -3465,20 +3502,13 @@ Notifications (navbar bell)
   }
 }
 
-/* Phones: smaller round buttons, and no GitHub link next to the bell, theme, language and
-   install buttons when there is no room for it */
+/* Phones: smaller round buttons */
 @media (max-width: 655px) {
   .navbar-theme-toggle,
   .navbar-icon-button,
   .navbar-install {
     width: 2.1em;
     height: 2.1em;
-  }
-}
-
-@media (max-width: 440px) {
-  .navbar .github-icon {
-    display: none;
   }
 }
 
@@ -3550,4 +3580,216 @@ html[data-theme='dark'] .notification-action {
   border-radius: 50%;
   background: transparent;
   color: inherit;
+}
+
+/* Call to practice the kana mixed up during a game, in the game summary */
+.mixup-call {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em 1em;
+  width: min(calc(100% - 2em), 40em);
+  margin: 0 auto 1em;
+  padding: 0.6em 0.6em 0.6em 1.2em;
+  box-sizing: border-box;
+  border: 1px solid #ff9a3c66;
+  border-radius: 1.4em;
+  background: #00000025;
+  font-family: var(--ui-font);
+  font-size: 1.05em;
+}
+
+.mixup-call-text {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em 0.5em;
+}
+
+.mixup-call-pairs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+}
+
+.mixup-call-pair {
+  padding: 0.05em 0.55em;
+  border-radius: 50em;
+  background: #ff9a3c26;
+  font-family: "KleeOne", sans-serif;
+  white-space: nowrap;
+}
+
+.mixup-call-button {
+  padding: 0.45em 1.1em;
+  border: none;
+  border-radius: 50em;
+  background: #ff9a3c;
+  color: #155263;
+  font: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: var(--cursor-pointer);
+}
+
+@media (hover: hover) {
+  .mixup-call-button:hover {
+    background: #ffb36b;
+  }
+}
+
+/* In the game summary it sits between the stats and the buttons */
+.mixup-call-summary {
+  width: 100%;
+  margin: 0.8em 0 0;
+  font-size: 0.95em;
+}
+
+/* Learning Progress: every mix-up pair is a button that practices it */
+button.progress-activity-confusion {
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: var(--cursor-pointer);
+}
+
+@media (hover: hover) {
+  button.progress-activity-confusion:hover {
+    background: #ff9a3c33;
+  }
+}
+
+.progress-activity-confusions-hint {
+  margin: 0.5em 0 0;
+  font-size: 0.85em;
+  opacity: 0.65;
+}
+
+/* About window: open source, repository, fork of Eldoprano/learn-kana */
+.about-dialog-background {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  background-color: #00000080;
+  backdrop-filter: blur(5px);
+}
+
+.about-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9em;
+  width: min(100%, 26em);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 1.5em;
+  border: 1px solid #ff9a3c30;
+  border-radius: 24px;
+  background-color: #155263;
+  box-shadow: 5px 5px 16px #11384366, -4px -4px 14px #1b607033;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+}
+
+html[data-theme='dark'] .about-dialog {
+  background-color: #2a373d;
+  box-shadow: 0 0 24px #1e272b, 0.5rem 0.5rem 30px #151c1f;
+}
+
+.about-dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+
+.about-dialog-header h2 {
+  margin: 0;
+  font-size: 1.9em;
+}
+
+.about-dialog-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2.2em;
+  height: 2.2em;
+  padding: 0;
+  border: 2px solid #ff9a3c;
+  border-radius: 50%;
+  background: transparent;
+  color: #ff9a3c;
+  cursor: var(--cursor-pointer);
+}
+
+.about-dialog-badge {
+  align-self: flex-start;
+  padding: 0.15em 0.75em;
+  border-radius: 50em;
+  background: #4ade8026;
+  color: #4ade80;
+  font-size: 0.9em;
+}
+
+.about-dialog p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.about-dialog a {
+  color: inherit;
+}
+
+.about-dialog-repository {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  padding: 0.7em 0.9em;
+  border-radius: 14px;
+  background: #00000025;
+  text-decoration: none;
+}
+
+.about-dialog-repository svg {
+  flex: none;
+  width: 2em;
+  height: 2em;
+  fill: currentColor;
+}
+
+.about-dialog-repository-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.about-dialog-repository-text strong {
+  overflow-wrap: anywhere;
+}
+
+.about-dialog-repository-text span {
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+.about-dialog-fork,
+.about-dialog-links {
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+@media (hover: hover) {
+  .about-dialog-repository:hover {
+    background: #ff9a3c26;
+  }
+  .about-dialog-close:hover {
+    background: #ff9a3c26;
+  }
 }

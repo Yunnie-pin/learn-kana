@@ -1,4 +1,4 @@
-import { findKanaForAnswer, getConfusionPairs, getSimilarKana, readConfusions, recordConfusion } from './confusions.js';
+import { findKanaForAnswer, getConfusionPairs, getMixupKana, getPairsMixedUpSince, getSimilarKana, readConfusions, recordConfusion } from './confusions.js';
 
 beforeEach(() => localStorage.clear());
 
@@ -46,4 +46,24 @@ test('similar kana list the user mix-ups first, most frequent first, then the lo
   expect(getSimilarKana('ツ')).toEqual(['ソ', 'ン', 'シ']);
   expect(getSimilarKana('ぬ')).toEqual(['め']);
   expect(getSimilarKana('山')).toEqual([]);
+});
+
+describe('mix-up practice', () => {
+  const DAY = 24 * 60 * 60 * 1000;
+  const NOW = new Date(2026, 9, 14, 12).getTime();
+  const confusions = {
+    'ツ': { 'シ': { count: 4, last: NOW - DAY } },
+    'シ': { 'ツ': { count: 1, last: NOW - 2 * DAY } },
+    'ソ': { 'ン': { count: 5, last: NOW - 30 * DAY } },
+    'ぬ': { 'め': { count: 1, last: NOW } },
+  };
+
+  test('the pairs mixed up during a game', () => {
+    expect(getPairsMixedUpSince(NOW - DAY / 2, confusions).map(pair => pair.characters)).toEqual([['ぬ', 'め']]);
+    expect(getPairsMixedUpSince(NOW + 1, confusions)).toEqual([]);
+  });
+
+  test('the kana of the pairs, each once', () => {
+    expect(getMixupKana([{ characters: ['シ', 'ツ'] }, { characters: ['ツ', 'ソ'] }])).toEqual(['シ', 'ツ', 'ソ']);
+  });
 });

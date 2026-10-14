@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ROUTES } from '../routes.js'
+import { GAME_MODES, gamePath, ROUTES } from '../routes.js'
+import { getMixupKana, getPairsMixedUpSince } from '../confusions.js'
 import { kanaCharacters } from '../kanaCharacters.js'
 import { useLanguage } from '../i18n'
 import { isSpeechSupported, speak } from '../speech'
@@ -311,6 +312,12 @@ export default function UserGameScoreWindow(props) {
         </div>
     }
 
+    // Kana mixed up during this game: a call to practice exactly those
+    const mixedUpPairs = props.gameStartedAt ? getPairsMixedUpSince(props.gameStartedAt) : [];
+    const practiceMixups = () => {
+        navigate(gamePath(GAME_MODES.mixups), { replace: true, state: { characters: getMixupKana(mixedUpPairs) } });
+    };
+
     return (
         <div className='inGameUserGameScoreBackground'>
             <div className='inGameUserGameScoreWindow'>
@@ -319,6 +326,22 @@ export default function UserGameScoreWindow(props) {
                     <h2>{isWordMode ? t('summaryCompletedWords') : t('summaryCompletedKanas')}</h2>
                 </div>
                 {userStatsElement}
+                {mixedUpPairs.length > 0 && (
+                    <div className='mixup-call mixup-call-summary' role='status'>
+                        <span className='mixup-call-text'>
+                            <Icon name='arrow-left-right' className='icon-leading' />
+                            {t('mixupCallSummary')}
+                            <span className='mixup-call-pairs'>
+                                {mixedUpPairs.slice(0, 3).map(pair => (
+                                    <span key={pair.characters.join('')} className='mixup-call-pair'>{pair.characters.join(' ⇄ ')}</span>
+                                ))}
+                            </span>
+                        </span>
+                        <button type='button' className='mixup-call-button' onClick={practiceMixups}>
+                            {t('mixupCallButton')}
+                        </button>
+                    </div>
+                )}
                 <div className='inGameUserGameScoreWindow_buttons'>
                     <button onClick={goToMainMenu}><Icon name='home' className='icon-leading' />{t('summaryBackToMenu')}</button>
                     <button onClick={handleTryProblematicsClick}><Icon name='target' className='icon-leading' />{t('summaryTryProblematics')}</button>

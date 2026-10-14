@@ -55,6 +55,52 @@
     .app-intro { max-width: 40em; margin: 0 auto; padding: 18vh 1.5em 0; text-align: center; font-family: "Trebuchet MS", sans-serif; }
     .app-intro h1 { margin: 0 0 0.4em; font-size: 2.2em; }
     .app-intro p { margin: 0; line-height: 1.5; opacity: 0.85; }
+
+    /* With a fast load (cached by the service worker) the app replaces this
+       in a few hundred milliseconds: it only fades in after 0.3s, so a quick
+       start shows no flash of it, and a slow one gets a smooth entrance */
+    .app-intro { opacity: 0; animation: app-intro-in 0.4s ease-out 0.3s forwards; }
+    @keyframes app-intro-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* A tile that cycles through kana, like the ones the app practices.
+       Browsers that can't animate "content" just show あ */
+    .app-intro-kana {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.9em; height: 1.9em; margin-bottom: 0.45em;
+      border: 2px solid #ff9a3c80; border-radius: 0.35em; background: #00000025;
+      font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif; font-size: 2.6em;
+      animation: app-intro-kana-pop 0.6s ease-out infinite;
+    }
+    .app-intro-kana::after {
+      content: 'あ';
+      animation: app-intro-kana 6s infinite;
+    }
+    @keyframes app-intro-kana {
+      0%, 9.99% { content: 'あ'; }
+      10%, 19.99% { content: 'ア'; }
+      20%, 29.99% { content: 'か'; }
+      30%, 39.99% { content: 'カ'; }
+      40%, 49.99% { content: 'さ'; }
+      50%, 59.99% { content: 'サ'; }
+      60%, 69.99% { content: 'た'; }
+      70%, 79.99% { content: 'タ'; }
+      80%, 89.99% { content: 'な'; }
+      90%, 100% { content: 'ナ'; }
+    }
+    /* A small pop each time the kana changes (every 0.6s) */
+    @keyframes app-intro-kana-pop {
+      0% { transform: scale(0.92); }
+      25%, 100% { transform: scale(1); }
+    }
+
+    /* No movement for people who asked for less of it: shown right away, still */
+    @media (prefers-reduced-motion: reduce) {
+      .app-intro, .app-intro-kana, .app-intro-kana::after { animation: none; }
+      .app-intro { opacity: 1; }
+    }
   </style>
   <!-- Umami analytics is added by src/analytics.js when configured in .env -->
 </head>
@@ -62,6 +108,7 @@
 <body>
   <div id="root">
     <main class="app-intro">
+      <span class="app-intro-kana" aria-hidden="true"></span>
       <h1>Learn Kana</h1>
       <p>Practice hiragana, katakana, N5 / N4 kanji, beginner words and JLPT N5 / N4 Japanese sentences right in your browser. Pick the characters you want, type the romaji, and track your progress — free, offline, in English and Indonesian.</p>
     </main>

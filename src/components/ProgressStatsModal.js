@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { kanaCharacters } from '../kanaCharacters.js';
 import { useLanguage } from '../i18n';
 import { getKanjiSrsProgress, getKanjiSrsStage, getSelectedKanjiGroupTitles } from '../kanjiSrs.js';
-import { calculateMastery, getWeakestItems } from '../mastery.js';
+import { calculateMastery, EXPERIENCE_ANSWERS, getMasteryBreakdown, getWeakestItems } from '../mastery.js';
 import { getConfusionPairs, readConfusions } from '../confusions.js';
 import { getListForPractice, getStoredPracticeMode } from '../practiceList.js';
 import ProgressActivity from './ProgressActivity.js';
@@ -102,13 +102,8 @@ function ProgressStatsModal(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [practiceList, userStats, language]);
 
-    // Most frequent mix-ups, and which of their kana a game with the current selection can show
+    // Most frequent mix-ups (practiced from every kana, not only the selection)
     const confusionPairs = useMemo(() => getConfusionPairs(confusions), [confusions]);
-    const practicableConfusedKana = useMemo(() => {
-        const available = new Set(practiceList.map(item => item.jp_character));
-        return [...new Set(confusionPairs.flatMap(pair => pair.characters))]
-            .filter(character => available.has(character));
-    }, [confusionPairs, practiceList]);
 
     // Get color based on mastery level
     const getMasteryColor = (mastery) => {
@@ -292,6 +287,60 @@ function ProgressStatsModal(props) {
         );
     };
 
+    // Mastery of the hovered item and what lowers it, biggest first: the
+    // percentage on the tile is mastery, not accuracy, so a kana answered
+    // right every time can still be under 100%
+    const renderMastery = (character) => {
+        const breakdown = getMasteryBreakdown(userStats[character], character);
+        if (!breakdown) return null;
+        const reasons = [
+            ...breakdown.parts.map(part => ({ key: part.key, lost: part.lost })),
+            { key: 'retention', lost: breakdown.retentionLost },
+        ]
+            .filter(reason => reason.lost >= 0.5)
+            .sort((a, b) => b.lost - a.lost);
+        const reasonText = (key) => {
+            switch (key) {
+                case 'experience':
+                    return t('masteryLossExperience', { count: breakdown.lifetimeAttempts, needed: EXPERIENCE_ANSWERS });
+                case 'speed':
+                    return t('masteryLossSpeed', {
+                        seconds: breakdown.averageSeconds === null ? '—' : breakdown.averageSeconds.toFixed(2),
+                    });
+                case 'retention':
+                    return t('masteryLossRetention', { days: Math.floor(breakdown.daysSincePractice) });
+                default:
+                    return t({
+                        accuracy: 'masteryLossAccuracy',
+                        help: 'masteryLossHelp',
+                        edits: 'masteryLossEdits',
+                        submissions: 'masteryLossSubmissions',
+                    }[key]);
+            }
+        };
+        return (
+            <div className="progress-stats-tooltip-mastery">
+                <div className="progress-stats-tooltip-mastery-value">
+                    <span className="progress-stats-tooltip-mastery-dot" style={{ background: getMasteryColor(breakdown.mastery) }} />
+                    {t('masteryValue', { percent: breakdown.mastery })}
+                </div>
+                {reasons.length > 0 && (
+                    <>
+                        <div className="progress-stats-tooltip-mastery-label">{t('masteryLossTitle')}</div>
+                        <ul className="progress-stats-tooltip-mastery-reasons">
+                            {reasons.map(reason => (
+                                <li key={reason.key}>
+                                    <span>{reasonText(reason.key)}</span>
+                                    <span className="progress-stats-tooltip-mastery-points">−{Math.round(reason.lost)}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                )}
+            </div>
+        );
+    };
+
     // Render tooltip
     const renderTooltip = () => {
         if (!hoveredItem) return null;
@@ -302,6 +351,7 @@ function ProgressStatsModal(props) {
                     {hoveredItem.character} ({hoveredItem.romanji})
                     {hoveredItem.meaning && <span className="progress-stats-tooltip-meaning"> - {hoveredItem.meaning}</span>}
                 </div>
+                {renderMastery(hoveredItem.character)}
                 <div className="progress-stats-tooltip-content">
                     {getStatsText(hoveredItem.character).split('\n').map((line, i) => (
                         <div key={i}>{line}</div>
@@ -425,8 +475,7 @@ function ProgressStatsModal(props) {
                         <ProgressActivity
                             userStats={userStats}
                             confusionPairs={confusionPairs}
-                            practicableConfusedKana={practicableConfusedKana}
-                            onPractice={props.onPracticeWeakest}
+                            onPracticeMixups={props.onPracticeMixups}
                             language={language}
                             t={t}
                         />

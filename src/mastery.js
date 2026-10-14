@@ -55,8 +55,25 @@ export function getRetention(daysSincePractice) {
   return Math.max(MIN_RETENTION, 1 - forgottenDays * FORGET_RATE_PER_DAY);
 }
 
-// Mastery of one character or word from its userStats entry (0-100), or null without answers
-export function calculateMastery(stats, character, now = Date.now()) {
+// The parts of the mastery score, each worth `weight` of it (they add up to 1)
+export const MASTERY_PARTS = [
+  { key: 'accuracy', weight: 0.4 },
+  { key: 'speed', weight: 0.15 },
+  { key: 'help', weight: 0.1 },
+  { key: 'edits', weight: 0.15 },
+  { key: 'submissions', weight: 0.1 },
+  { key: 'experience', weight: 0.1 },
+];
+// Answers needed for the full experience part
+export const EXPERIENCE_ANSWERS = 20;
+
+// How the mastery of one character or word (0-100) is made up, or null
+// without answers:
+//   { mastery, parts: [{ key, weight, score, lost }], retention, retentionLost,
+//     daysSincePractice, lifetimeAttempts, averageSeconds, timeLimitSeconds }
+// Every part scores 0-1 and `lost` is how many mastery points it costs;
+// `retentionLost` is what not practicing lately costs on top of that.
+export function getMasteryBreakdown(stats, character, now = Date.now()) {
   if (!stats) return null;
 
   const lifetimeAttempts = (stats.totalRightGuesses || 0) + (stats.totalWrongGuesses || 0);
@@ -73,43 +90,56 @@ export function calculateMastery(stats, character, now = Date.now()) {
   const attempts = totals.rightGuesses + totals.wrongGuesses;
   if (attempts === 0) return null;
 
-  // Calculate accuracy (0-1)
-  const accuracy = totals.rightGuesses / attempts;
-
-  // Average response time of correct answers (lower is better); no correct answers scores 0
-  const timeScore = totals.rightGuesses > 0
-    ? Math.max(0, 1 - (totals.responseTimeSum / totals.rightGuesses / 1000) / getTimeLimitSeconds(character))
-    : 0;
-
-  // Calculate help factor (less help is better)
-  const helpFactor = Math.max(0, 1 - (totals.askForHelpCounter / attempts));
-
-  // Calculate edit efficiency (fewer edits per correct answer is better, cap at 5 edits)
+  const timeLimitSeconds = getTimeLimitSeconds(character);
+  const averageSeconds = totals.rightGuesses > 0 ? totals.responseTimeSum / totals.rightGuesses / 1000 : null;
+  // Fewer edits per correct answer is better, 5 or more scores 0
   const avgEditsPerCorrect = totals.rightGuesses > 0 ? totals.editCount / totals.rightGuesses : 0;
-  const editEfficiency = Math.max(0, 1 - (avgEditsPerCorrect / 5));
 
-  // Calculate wrong submission penalty (fewer wrong submissions is better)
-  const submissionAccuracy = Math.max(0, 1 - (totals.wrongSubmissions / attempts));
+  const scores = {
+    accuracy: totals.rightGuesses / attempts,
+    // Average time of correct answers (lower is better); no correct answers scores 0
+    speed: averageSeconds !== null ? Math.max(0, 1 - averageSeconds / timeLimitSeconds) : 0,
+    // Less help is better
+    help: Math.max(0, 1 - (totals.askForHelpCounter / attempts)),
+    edits: Math.max(0, 1 - (avgEditsPerCorrect / 5)),
+    // Fewer wrong keys on the way to an answer is better
+    submissions: Math.max(0, 1 - (totals.wrongSubmissions / attempts)),
+    // Every answer ever given counts (more practice is better)
+    experience: Math.min(lifetimeAttempts / EXPERIENCE_ANSWERS, 1),
+  };
 
-  // Experience counts every answer ever given (more practice is better, cap at 20 attempts)
-  const experienceFactor = Math.min(lifetimeAttempts / 20, 1);
+  const parts = MASTERY_PARTS.map(({ key, weight }) => ({
+    key,
+    weight,
+    score: scores[key],
+    lost: (1 - scores[key]) * weight * 100,
+  }));
+  const beforeRetention = parts.reduce((sum, part) => sum + part.score * part.weight * 100, 0);
 
-  // Weighted formula: accuracy (40%), time (15%), help (10%), edits (15%), submissions (10%), experience (10%)
-  let mastery = (
-    accuracy * 0.4 +
-    timeScore * 0.15 +
-    helpFactor * 0.1 +
-    editEfficiency * 0.15 +
-    submissionAccuracy * 0.1 +
-    experienceFactor * 0.1
-  ) * 100;
-
+  let retention = 1;
+  let daysSincePractice = null;
   if (hasDailyData) {
     const lastPracticed = Math.max(...dailyPerformance.map(daily => daily.date));
-    mastery *= getRetention((now - lastPracticed) / DAY);
+    daysSincePractice = (now - lastPracticed) / DAY;
+    retention = getRetention(daysSincePractice);
   }
 
-  return Math.round(mastery);
+  return {
+    mastery: Math.round(beforeRetention * retention),
+    parts,
+    retention,
+    retentionLost: beforeRetention * (1 - retention),
+    daysSincePractice,
+    lifetimeAttempts,
+    averageSeconds,
+    timeLimitSeconds,
+  };
+}
+
+// Mastery of one character or word from its userStats entry (0-100), or null without answers
+export function calculateMastery(stats, character, now = Date.now()) {
+  const breakdown = getMasteryBreakdown(stats, character, now);
+  return breakdown ? breakdown.mastery : null;
 }
 
 // Practiced items below "Excellent" mastery, weakest first

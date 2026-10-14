@@ -210,3 +210,160 @@ describe('search engines', () => {
     expect(robots()).toBe('noindex, follow');
   });
 });
+
+describe('practicing mix-ups', () => {
+  const DAY = 24 * 60 * 60 * 1000;
+  const setConfusions = (confusions) => localStorage.setItem('kanaConfusions', JSON.stringify(confusions));
+  const recent = (count) => ({ count, last: Date.now() - DAY });
+
+  test('the menu has no mix-up banner', async () => {
+    setConfusions({ 'ツ': { 'シ': recent(4) } });
+    await open('/');
+    expect(document.querySelector('.mixup-call')).toBeNull();
+  });
+
+  test('a mix-up game shows only those kana, whatever groups are selected', async () => {
+    // Only the あ group is selected, the mix-ups are katakana
+    setConfusions({ 'ツ': { 'シ': recent(4) }, 'ソ': { 'ン': recent(2) } });
+    await open('/game?mode=mixups');
+    expect(path()).toBe('/game');
+    expect(score()).toHaveTextContent(translate('en', 'gameScoreMixups').trim());
+    const shown = new Set();
+    for (let round = 0; round < 12; round++) {
+      shown.add(displayed());
+      // Answer it to move on to the next kana
+      const romaji = { 'シ': 'shi', 'ツ': 'tsu', 'ソ': 'so', 'ン': 'n' }[displayed()];
+      expect(romaji).toBeDefined();
+      await act(async () => {
+        romaji.split('').forEach(key => fireEvent.keyDown(window, { key }));
+        await new Promise(resolve => setTimeout(resolve, 250));
+      });
+    }
+    expect([...shown].every(kana => ['シ', 'ツ', 'ソ', 'ン'].includes(kana))).toBe(true);
+  });
+
+  test('a mix-up game can practice a single pair', async () => {
+    setConfusions({ 'ツ': { 'シ': recent(4) }, 'ソ': { 'ン': recent(2) } });
+    await open({ pathname: '/game', search: '?mode=mixups', state: { characters: ['ソ', 'ン'] } });
+    expect(['ソ', 'ン']).toContain(displayed());
+  });
+
+  test('without mix-ups it goes back to the menu and says why', async () => {
+    await open('/game?mode=mixups');
+    expect(path()).toBe('/');
+    expect(screen.getByRole('alert')).toHaveTextContent(translate('en', 'gameErrorNoMixups'));
+  });
+
+  test('the summary offers to practice the kana mixed up in that game', async () => {
+    await open('/game');
+    // Answer the shown vowel with another vowel's reading: a mix-up
+    const shownKana = displayed();
+    const romaji = { 'あ': 'a', 'い': 'i', 'う': 'u', 'え': 'e', 'お': 'o' };
+    const [otherKana, otherRomaji] = Object.entries(romaji).find(([kana]) => kana !== shownKana);
+    fireEvent.keyDown(window, { key: otherRomaji });
+    fireEvent.keyDown(window, { key: 'Escape' });
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 650));
+    });
+
+    const call = document.querySelector('.mixup-call-summary');
+    expect(call).toHaveTextContent([shownKana, otherKana].sort().join(' ⇄ '));
+    await act(async () => {
+      fireEvent.click(call.querySelector('button'));
+    });
+    expect(router.state.location.search).toBe('?mode=mixups');
+    expect([shownKana, otherKana]).toContain(displayed());
+  });
+
+  test('no call in the summary when nothing was mixed up', async () => {
+    await open('/game');
+    fireEvent.keyDown(window, { key: 'Escape' });
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 650));
+    });
+    expect(document.querySelector('.inGameUserGameScoreWindow')).toBeInTheDocument();
+    expect(document.querySelector('.mixup-call-summary')).toBeNull();
+  });
+});
+
+describe('About window', () => {
+  test('the navbar has no author credit, its GitHub button opens the About window', async () => {
+    await open('/');
+    expect(document.querySelector('.navbar')).not.toHaveTextContent('Eldoprano');
+    expect(screen.queryByRole('dialog', { name: 'Learn Kana' })).toBeNull();
+
+    fireEvent.click(screen.getByRole('button', { name: translate('en', 'navbarAbout') }));
+    const dialog = screen.getByRole('dialog', { name: 'Learn Kana' });
+    expect(dialog).toHaveTextContent(translate('en', 'aboutOpenSource'));
+
+    const links = [...dialog.querySelectorAll('a')].map(link => link.getAttribute('href'));
+    expect(links).toContain('https://github.com/Yunnie-pin/learn-kana');
+    expect(links).toContain('https://github.com/Eldoprano/learn-kana');
+    expect(dialog).toHaveTextContent('Yunnie-pin/learn-kana');
+    expect(dialog).toHaveTextContent('Eldoprano/learn-kana');
+    // Links open in a new tab, the app stays where it was
+    dialog.querySelectorAll('a').forEach(link => {
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noreferrer');
+    });
+    // The close button gets the focus, for keyboard users
+    expect(document.activeElement).toBe(screen.getByRole('button', { name: translate('en', 'aboutClose') }));
+  });
+
+  test('closes with Escape, the close button or a click outside', async () => {
+    await open('/');
+    const openAbout = () => fireEvent.click(screen.getByRole('button', { name: translate('en', 'navbarAbout') }));
+
+    openAbout();
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).toBeNull();
+
+    openAbout();
+    fireEvent.click(screen.getByRole('button', { name: translate('en', 'aboutClose') }));
+    expect(screen.queryByRole('dialog')).toBeNull();
+
+    openAbout();
+    fireEvent.click(document.querySelector('.about-dialog-background'));
+    expect(screen.queryByRole('dialog')).toBeNull();
+
+    // A click inside the window keeps it open
+    openAbout();
+    fireEvent.click(screen.getByRole('dialog'));
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+  });
+
+  test('in Indonesian', async () => {
+    localStorage.setItem('language', 'id');
+    await open('/');
+    fireEvent.click(screen.getByRole('button', { name: translate('id', 'navbarAbout') }));
+    expect(screen.getByRole('dialog')).toHaveTextContent(translate('id', 'aboutForkedFrom'));
+  });
+});
+
+test('the Learning Progress tooltip shows the mastery and what lowers it', async () => {
+  const DAY = 24 * 60 * 60 * 1000;
+  // あ: right 3 times out of 3 in 0.86s, 14 days ago (100% accuracy, 83% mastery)
+  localStorage.setItem('userStats', JSON.stringify({
+    'あ': {
+      totalTimesShown: 3,
+      totalRightGuesses: 3,
+      totalWrongGuesses: 0,
+      totaltotalResponseTime: 2580,
+      dailyPerformance: [{ date: Date.now() - 14 * DAY, rightGuesses: 3, wrongGuesses: 0, responseTimeSum: 2580 }],
+    },
+  }));
+  await open('/');
+  fireEvent.click(document.querySelector('.stats-button-floating'));
+  const tile = [...document.querySelectorAll('.progress-stats-grid-item')].find(item => item.textContent.startsWith('あ'));
+  fireEvent.mouseEnter(tile);
+
+  const tooltip = document.querySelector('.progress-stats-tooltip');
+  expect(tooltip).toHaveTextContent(translate('en', 'masteryValue', { percent: 83 }));
+  expect(tooltip).toHaveTextContent(translate('en', 'statsAccuracy', { percent: 100 }));
+  const reasons = [...tooltip.querySelectorAll('.progress-stats-tooltip-mastery-reasons li')].map(li => li.textContent);
+  expect(reasons).toEqual([
+    translate('en', 'masteryLossExperience', { count: 3, needed: 20 }) + '−9',
+    translate('en', 'masteryLossRetention', { days: 14 }) + '−6',
+    translate('en', 'masteryLossSpeed', { seconds: '0.86' }) + '−3',
+  ]);
+});

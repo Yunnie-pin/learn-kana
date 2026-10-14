@@ -20,9 +20,11 @@ export const LEGACY_ROUTES = {
 };
 
 // Session-only game modes travel in the URL, not in localStorage, so a mode
-// can't stick around for the next game: ?mode=review starts a kanji review
+// can't stick around for the next game: ?mode=review starts a kanji review,
+// ?mode=mixups a game with the kana the user mixes up (see confusions.js)
 export const GAME_MODES = {
   review: 'review',
+  mixups: 'mixups',
 };
 
 export function gamePath(mode) {

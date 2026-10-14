@@ -106,6 +106,9 @@ export default function NotificationMenu() {
       case 'practice':
         navigate(ROUTES.game);
         break;
+      case 'mixups':
+        navigate(gamePath(GAME_MODES.mixups));
+        break;
       case 'open-progress':
         openLearningProgress(notification.section);
         break;
@@ -122,6 +125,7 @@ export default function NotificationMenu() {
   const actionLabels = {
     srs: t('notifyActionReview'),
     practice: t('notifyActionPractice'),
+    mixups: t('mixupCallButton'),
     backup: t('notifyActionBackup'),
     'open-progress': t('notifyActionOpenProgress'),
   };

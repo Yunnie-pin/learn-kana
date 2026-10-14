@@ -8,7 +8,7 @@ import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
 import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
 import { getListForPractice } from '../practiceList.js'
-import { findKanaForAnswer, getSimilarKana, recordConfusion } from '../confusions.js'
+import { findKanaForAnswer, getConfusionPairs, getMixupKana, getSimilarKana, MIXUP_PRACTICE_PAIRS, readConfusions, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
 import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
 import { createSentenceQuestion } from '../sentenceMatching.js'
@@ -362,16 +362,26 @@ export default function InGameCharacterShowAndInput() {
     ? gameModeSetting.value
     : null;
 
+  // Session-only modes come with the address (see routes.js): ?mode=review is
+  // a kanji review, ?mode=mixups practices the kana the user mixes up, and
+  // Try Problematics passes its characters in the state
+  const location = useLocation();
+  // When this game started: the summary offers to practice what was mixed up since
+  const [gameStartedAt] = useState(() => Date.now());
+  const sessionMode = new URLSearchParams(location.search).get('mode');
+  const isSrsPractice = sessionMode === GAME_MODES.review;
+  const isMixupPractice = sessionMode === GAME_MODES.mixups;
+
+  // Mix-ups are practiced from every kana, whatever groups are selected
   const characterGroupsToShow = useMemo(() => {
+    if (isMixupPractice) {
+      return ['hiragana', 'katakana'].flatMap(script => Object.values(kanaCharacters[script]).map(group => group.title));
+    }
     const storedCharacterGroups = JSON.parse(localStorage.getItem("checkedKanas") || '[]');
     return Array.isArray(storedCharacterGroups) ? storedCharacterGroups : [];
-  }, []);
-  const practiceMode = localStorage.getItem('game-mode-practice') ||
+  }, [isMixupPractice]);
+  const practiceMode = isMixupPractice ? 'characters' : localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
-  // Session-only modes come with the address (see routes.js): ?mode=review is
-  // a kanji review, and Try Problematics passes its characters in the state
-  const location = useLocation();
-  const isSrsPractice = new URLSearchParams(location.search).get('mode') === GAME_MODES.review;
   // SRS reviews are always answered by typing, whatever is picked in the menu
   const useTouchAnswers = !isSrsPractice && localStorage.getItem("game-mode-touch") === "true";
   const selectedKanjiGroups = useMemo(() => getSelectedKanjiGroupTitles(), []);
@@ -396,8 +406,18 @@ export default function InGameCharacterShowAndInput() {
     srsQueueRef.current = [...charactersToShow].sort(() => Math.random() - 0.5);
   }
 
+  // Mix-up practice: only the kana of the most frequent mix-ups, or of the
+  // pairs passed with the navigation (one pair from Learning Progress, or the
+  // ones mixed up during the game that just ended)
+  const stateCharacters = Array.isArray(location.state?.characters) ? location.state.characters : null;
+  if (isMixupPractice) {
+    const mixupKana = stateCharacters ||
+      getMixupKana(getConfusionPairs(readConfusions(), MIXUP_PRACTICE_PAIRS));
+    charactersToShow = charactersToShow.filter(char => mixupKana.includes(char.jp_character));
+  }
+
   // Filter to problematic characters if that mode is active
-  const problematicChars = Array.isArray(location.state?.characters) ? location.state.characters : null;
+  const problematicChars = isMixupPractice ? null : stateCharacters;
   let isProblematicsMode = false;
   if (problematicChars && !isSrsPractice) {
     charactersToShow = charactersToShow.filter(char => problematicChars.includes(char.jp_character));
@@ -418,9 +438,9 @@ export default function InGameCharacterShowAndInput() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (charactersToShow.length === 0 && !isSrsPractice) {
-      navigate(ROUTES.menu, { replace: true, state: { error: t('gameErrorNoKana') } });
+      navigate(ROUTES.menu, { replace: true, state: { error: t(isMixupPractice ? 'gameErrorNoMixups' : 'gameErrorNoKana') } });
     }
-  }, [charactersToShow, isSrsPractice, navigate, t]);
+  }, [charactersToShow, isSrsPractice, isMixupPractice, navigate, t]);
 
   // game-mode-auto-next
   let autoNext = false;
@@ -507,60 +527,6 @@ export default function InGameCharacterShowAndInput() {
     return characters;
   }
 
-  // Helper function to get n random unique elements from an array
-  function sample(inputArray, numberOfOutputs, onePerVocal = false) {
-    const vocals = ["a", "i", "u", "e", "o"];
-    let current_vocal = 0;
-
-    // Create a copy of the original array to avoid modifying it
-    const copyArray = [...inputArray];
-    const sampledElements = [];
-
-    if (inputArray.length < numberOfOutputs) {
-      inputArray = inputArray.concat(inputArray);
-      onePerVocal = false;
-    }
-
-    const hasVocalHints = copyArray.some(item => item && item.vocal && vocals.includes(item.vocal));
-    if (onePerVocal && !hasVocalHints) {
-      onePerVocal = false;
-    }
-
-    // If n is greater than the size of a, set possible unique outputs to the size of array
-    const numberOfUniqueOutputs = Math.min(numberOfOutputs, copyArray.length);
-
-    for (let i = 0; i < numberOfUniqueOutputs; i++) {
-      while (true) {
-        const randomIndex = Math.floor(Math.random() * copyArray.length);
-        if (onePerVocal) {
-          const candidate = copyArray[randomIndex];
-          if (candidate?.vocal && vocals.includes(candidate.vocal)) {
-            if (candidate.vocal === vocals[current_vocal]) {
-              current_vocal++;
-            } else {
-              continue;
-            }
-          } else {
-            onePerVocal = false;
-          }
-        }
-        sampledElements.push(copyArray[randomIndex]);
-        // Remove the selected element from the copyArray to avoid duplicates
-        copyArray.splice(randomIndex, 1);
-        break;
-      }
-    }
-
-    // If still space, fill it with duplicate elements
-    const remainingOutputs = numberOfOutputs - numberOfUniqueOutputs;
-    for (let i = 0; i < remainingOutputs; i++) {
-      const randomIndex = Math.floor(Math.random() * numberOfUniqueOutputs);
-      sampledElements.push(sampledElements[randomIndex]);
-    }
-
-    return sampledElements;
-  }
-
   /*
   ##########################################
   # Creates and handles the touch answers #
@@ -568,26 +534,12 @@ export default function InGameCharacterShowAndInput() {
   */
   // Kana the user mixes up (or that look alike) are offered as wrong options more often
   function fillTouchAnswers(picked_kana) {
-    const useVocalSampling = Boolean(picked_kana && picked_kana.vocal);
-    const possibleAnswers = sample(charactersToShow, 5, useVocalSampling);
+    const similar = picked_kana.type === 'kana' ? getSimilarKana(picked_kana.jp_character) : [];
     const elements = document.querySelectorAll('.in-game-touch-answer>p');
-
-    if (useVocalSampling) {
-      for (let i = 0; i < possibleAnswers.length; i++) {
-        if (possibleAnswers[i].vocal === picked_kana.vocal) {
-          Object.assign(possibleAnswers[i], picked_kana);
-        }
-      }
-    } else {
-      const targetIndex = Math.floor(Math.random() * possibleAnswers.length);
-      Object.assign(possibleAnswers[targetIndex], picked_kana);
-    }
-
-    // Go over the elements
-    for (let i = 0; i < elements.length; i++) {
-      const answer = Array.isArray(possibleAnswers[i]?.romanji) ? possibleAnswers[i].romanji : [possibleAnswers[i]?.romanji || ''];
-      elements[i].textContent = answer[0];
-    }
+    const options = chooseTouchOptions(picked_kana, charactersToShow, similar, elements.length || 5);
+    elements.forEach((element, i) => {
+      element.textContent = options[i] || '';
+    });
   }
 
   function resetCurentGameStats() {
@@ -1863,7 +1815,10 @@ export default function InGameCharacterShowAndInput() {
         <div className='in-game-score-group'>
           <div className='in-game-score' id='in-game-score'>
             {isProblematicsMode && <Icon name='target' className='icon-leading' />}
-            {isProblematicsMode ? t('gameScoreProblematics') : t(practiceMode === 'long' ? 'gameScoreSentences' : 'gameScoreKanas')}{onScreenScore}
+            {isMixupPractice && <Icon name='arrow-left-right' className='icon-leading' />}
+            {isProblematicsMode ? t('gameScoreProblematics')
+              : isMixupPractice ? t('gameScoreMixups')
+              : t(practiceMode === 'long' ? 'gameScoreSentences' : 'gameScoreKanas')}{onScreenScore}
             {kanaGoal !== null && <span className='in-game-score-goal'> / {kanaGoal}</span>}
           </div>
           {streak >= 3 && <div className='in-game-streak' title={t('gameStreakTitle')}><Icon name='flame' className='icon-flame icon-leading' />{streak}</div>}
@@ -2095,6 +2050,7 @@ export default function InGameCharacterShowAndInput() {
       <UserGameScoreWindow
         visible={userGameScoreWindowVisible}
         bestStreak={bestStreak}
+        gameStartedAt={gameStartedAt}
       />
     </>
   )
