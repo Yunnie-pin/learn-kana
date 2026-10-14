@@ -384,3 +384,45 @@ test('the menu fades the edge of the mode options while more are hidden below', 
   fireEvent.scroll(options);
   expect(side).not.toHaveClass('has-more-below');
 });
+
+describe('character order', () => {
+  const romaji = { 'あ': 'a', 'い': 'i', 'う': 'u', 'え': 'e', 'お': 'o', 'か': 'ka', 'き': 'ki', 'く': 'ku', 'け': 'ke', 'こ': 'ko' };
+  async function answerShown() {
+    await act(async () => {
+      romaji[displayed()].split('').forEach(key => fireEvent.keyDown(window, { key }));
+      await new Promise(resolve => setTimeout(resolve, 250));
+    });
+  }
+
+  test('in order: the kana table order, starting again at the end', async () => {
+    practiceCharacters(['あ', 'か']);
+    localStorage.setItem('game-mode-order', 'sequential');
+    await open('/game');
+    const shown = [];
+    for (let round = 0; round < 12; round++) {
+      shown.push(displayed());
+      await answerShown();
+    }
+    expect(shown.join('')).toBe('あいうえおかきくけこあい');
+  });
+
+  test('random: not the table order', async () => {
+    practiceCharacters(['あ', 'か']);
+    localStorage.setItem('game-mode-order', 'random');
+    await open('/game');
+    const shown = [];
+    for (let round = 0; round < 10; round++) {
+      shown.push(displayed());
+      await answerShown();
+    }
+    // 10 random picks matching the table order by chance is (1/10)^9
+    expect(shown.join('')).not.toBe('あいうえおかきくけこ');
+  });
+
+  test('Try Problematics keeps picking what needs practice, even in order mode', async () => {
+    practiceCharacters(['あ']);
+    localStorage.setItem('game-mode-order', 'sequential');
+    await open({ pathname: '/game', state: { characters: ['お'] } });
+    expect(displayed()).toBe('お');
+  });
+});

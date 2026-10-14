@@ -7,7 +7,7 @@ import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
 import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
-import { getListForPractice } from '../practiceList.js'
+import { getCharacterOrder, getListForPractice } from '../practiceList.js'
 import { findKanaForAnswer, getConfusionPairs, getMixupKana, getSimilarKana, MIXUP_PRACTICE_PAIRS, readConfusions, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
 import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
@@ -433,6 +433,13 @@ export default function InGameCharacterShowAndInput() {
     }
   }
 
+  // Characters practice can go through the selection in the order of the kana
+  // table instead of picking by how well each one is known. Only for a normal
+  // game: reviews, mix-ups and problematics pick what needs practice.
+  const isSequentialOrder = practiceMode === 'characters' && !sessionMode && !isProblematicsMode &&
+    getCharacterOrder() === 'sequential';
+  const sequentialIndexRef = useRef(0);
+
   // Be mad at the user if the charactersToShow is empty
   const navigate = useNavigate();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -706,7 +713,9 @@ export default function InGameCharacterShowAndInput() {
     // Get and show the current Kana using the weighted selection logic
     let pickedElement = isSrsPractice
       ? srsQueueRef.current?.shift()
-      : await selectNextCharacter(charactersToShow, inGameKanaOnScreen || null);
+      : isSequentialOrder && charactersToShow.length > 0
+        ? charactersToShow[sequentialIndexRef.current++ % charactersToShow.length]
+        : await selectNextCharacter(charactersToShow, inGameKanaOnScreen || null);
 
     if (!pickedElement) {
       if (isSrsPractice) {

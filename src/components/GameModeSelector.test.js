@@ -92,3 +92,17 @@ describe('options that do not apply to sentences are hidden', () => {
     expect(screen.getByRole('radio', { name: 'Multiple choice' })).toBeDisabled();
   });
 });
+
+describe('character order', () => {
+  test('is offered for characters practice only, random by default', () => {
+    localStorage.setItem('game-mode-practice', 'characters');
+    render(<GameModeSelector kanjiSelected={true} />);
+    expect(screen.getByRole('radio', { name: 'Random' })).toHaveAttribute('aria-checked', 'true');
+
+    fireEvent.click(screen.getByRole('radio', { name: 'In order' }));
+    expect(localStorage.getItem('game-mode-order')).toBe('sequential');
+
+    fireEvent.click(screen.getByRole('radio', { name: 'Words' }));
+    expect(screen.queryByRole('radiogroup', { name: 'Order' })).toBeNull();
+  });
+});

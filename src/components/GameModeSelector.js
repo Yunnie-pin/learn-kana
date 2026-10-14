@@ -4,6 +4,7 @@ import Icon from './Icon';
 import { useLanguage } from '../i18n';
 import { isSpeechSupported, SOUND_SETTING_KEY } from '../speech';
 import { getSentenceOptions } from '../sentences';
+import { CHARACTER_ORDER_KEY, getCharacterOrder } from '../practiceList';
 
 // A row of mutually exclusive practice or answer modes.
 function SegmentedControl(props) {
@@ -67,6 +68,13 @@ export default function GameModeSelector(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [practice, answerBy]);
+
+  // Characters practice: random (weakest more often) or in kana table order
+  const [characterOrder, setCharacterOrder] = useState(getCharacterOrder);
+  React.useEffect(() => {
+    localStorage.setItem(CHARACTER_ORDER_KEY, characterOrder);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [characterOrder]);
 
   // Sentence practice: length, grammar pattern and kind of exercise
   const [sentenceOptions, setSentenceOptions] = useState(getSentenceOptions);
@@ -164,6 +172,18 @@ export default function GameModeSelector(props) {
             { value: "long", label: t('practiceLong'), icon: 'shuffle' },
           ]}
         />
+        {practice === 'characters' && (
+          <SegmentedControl
+            className='character-order-row'
+            label={t('characterOrderLabel')}
+            value={characterOrder}
+            onChange={setCharacterOrder}
+            options={[
+              { value: 'random', label: t('characterOrderRandom'), icon: 'shuffle' },
+              { value: 'sequential', label: t('characterOrderSequential'), icon: 'arrow-right' },
+            ]}
+          />
+        )}
         {/* Sentences are always typed: no choice to show (and the room goes to the sentence options) */}
         {practice !== 'long' && (
           <SegmentedControl

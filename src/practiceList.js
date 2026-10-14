@@ -72,3 +72,17 @@ export function getStoredPracticeMode() {
   // Older "kanji" / "srs" values count as "characters", like in GameModeSelector
   return ['words', 'mixed'].includes(stored) ? stored : 'characters';
 }
+
+// Order of the characters practice: "random" picks the next character by how
+// well it is known (weakest more often), "sequential" goes through the
+// selection in the order of the kana table (あ い う え お, か き く け こ...)
+export const CHARACTER_ORDERS = ['random', 'sequential'];
+export const CHARACTER_ORDER_KEY = 'game-mode-order';
+
+export function getCharacterOrder() {
+  let stored = null;
+  try {
+    stored = localStorage.getItem(CHARACTER_ORDER_KEY);
+  } catch (error) { }
+  return CHARACTER_ORDERS.includes(stored) ? stored : 'random';
+}
