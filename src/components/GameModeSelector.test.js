@@ -106,3 +106,20 @@ describe('character order', () => {
     expect(screen.queryByRole('radiogroup', { name: 'Order' })).toBeNull();
   });
 });
+
+describe('word topic', () => {
+  test('is offered for words, mixed and sentence practice, and saved', () => {
+    localStorage.setItem('game-mode-practice', 'words');
+    render(<GameModeSelector kanjiSelected={true} />);
+    expect(screen.getByRole('radio', { name: 'All words' })).toHaveAttribute('aria-checked', 'true');
+    fireEvent.click(screen.getByRole('radio', { name: 'IT & work' }));
+    expect(localStorage.getItem('game-mode-word-topic')).toBe('it');
+
+    fireEvent.click(screen.getByRole('radio', { name: 'Mixed' }));
+    expect(screen.getByRole('radiogroup', { name: 'Topic' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('radio', { name: 'Sentences' }));
+    expect(screen.getByRole('radiogroup', { name: 'Topic' })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('radio', { name: 'Characters' }));
+    expect(screen.queryByRole('radiogroup', { name: 'Topic' })).toBeNull();
+  });
+});

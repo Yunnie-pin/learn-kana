@@ -63,3 +63,14 @@ test('JLPT levels: N5 by default, N4 for the N4 grammar templates', () => {
     expect(sentences.some(sentence => sentence.jlpt === 'N4' && sentence.jp_character.replace(/[んっ]/g, '').includes(ending.replace(/[んっ]/g, '')))).toBe(true);
   }
 });
+
+test('the IT topic keeps the IT and workplace sentences', () => {
+  const it = getPracticeSentences(ALL_GROUP_TITLES, options({ topic: 'it' }));
+  expect(it.length).toBeGreaterThan(150);
+  expect(it.every(sentence => sentence.topic === 'it')).toBe(true);
+  const spellings = it.map(sentence => sentence.jp_character);
+  expect(spellings).toContain('わたしはエンジニアです');
+  expect(spellings).toContain('わたしは日本のかいしゃではたらきたいです');
+  expect(getPracticeSentences(ALL_GROUP_TITLES, options({ topic: 'all' })))
+    .toHaveLength(getReadableSentences(ALL_GROUP_TITLES).length);
+});

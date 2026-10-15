@@ -4,7 +4,7 @@ import Icon from './Icon';
 import { useLanguage } from '../i18n';
 import { isSpeechSupported, SOUND_SETTING_KEY } from '../speech';
 import { getSentenceOptions } from '../sentences';
-import { CHARACTER_ORDER_KEY, getCharacterOrder } from '../practiceList';
+import { CHARACTER_ORDER_KEY, getCharacterOrder, getWordTopic, WORD_TOPIC_KEY } from '../practiceList';
 
 // A row of mutually exclusive practice or answer modes.
 function SegmentedControl(props) {
@@ -75,6 +75,16 @@ export default function GameModeSelector(props) {
     localStorage.setItem(CHARACTER_ORDER_KEY, characterOrder);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterOrder]);
+
+  // Words / mixed / sentence practice: everything, or only the IT and workplace ones
+  const [wordTopic, setWordTopic] = useState(getWordTopic);
+  React.useEffect(() => {
+    localStorage.setItem(WORD_TOPIC_KEY, wordTopic);
+    if (props.onChange) {
+      props.onChange();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [wordTopic]);
 
   // Sentence practice: length, grammar pattern and kind of exercise
   const [sentenceOptions, setSentenceOptions] = useState(getSentenceOptions);
@@ -181,6 +191,19 @@ export default function GameModeSelector(props) {
             options={[
               { value: 'random', label: t('characterOrderRandom'), icon: 'shuffle' },
               { value: 'sequential', label: t('characterOrderSequential'), icon: 'arrow-right' },
+            ]}
+          />
+        )}
+        {/* One topic for the words and the sentences: "IT & work" keeps their IT and workplace ones */}
+        {(practice === 'words' || practice === 'mixed' || practice === 'long') && (
+          <SegmentedControl
+            className='word-topic-row'
+            label={t('wordTopicLabel')}
+            value={wordTopic}
+            onChange={setWordTopic}
+            options={[
+              { value: 'all', label: t('wordTopicAll'), icon: 'book-open' },
+              { value: 'it', label: t('wordTopicIt'), icon: 'keyboard' },
             ]}
           />
         )}

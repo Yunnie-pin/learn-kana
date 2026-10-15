@@ -7,7 +7,7 @@ import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
 import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
-import { getCharacterOrder, getListForPractice } from '../practiceList.js'
+import { getCharacterOrder, getListForPractice, getWordTopic, wordInTopic } from '../practiceList.js'
 import { findKanaForAnswer, getConfusionPairs, getMixupKana, getSimilarKana, MIXUP_PRACTICE_PAIRS, readConfusions, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
 import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
@@ -482,8 +482,10 @@ export default function InGameCharacterShowAndInput() {
   function getListOfWords(charGroups) {
     let output = []
     const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
+    // Only the words of the topic picked in the menu (e.g. IT words)
+    const wordTopic = getWordTopic();
     Object.entries(kanaCharacters.words).forEach(([key, value]) => {
-      let ignoreWord = false;
+      let ignoreWord = !wordInTopic(value, wordTopic);
       for (let i = 0; i < value.hiragana_groups.length; i++) {
         if (!selectedGroups.includes(value.hiragana_groups[i])) {
           ignoreWord = true;

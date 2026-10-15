@@ -32,6 +32,31 @@ const PARTICLE_READINGS = { 'は': 'わ', 'へ': 'え', 'を': 'を' };
 
 const PUNCTUATION = /[、。！？!?・]/;
 
+// Kana combinations of loanwords that wanakana romanizes letter by letter
+// (ファイル -> "fuairu", ティ -> "tei"), in the Hepburn the data and Japanese
+// keyboards use: ファイル = "fairu", セキュリティ = "sekyuriti"
+const LOANWORD_KANA = {
+  'ファ': 'fa', 'フィ': 'fi', 'フェ': 'fe', 'フォ': 'fo', 'フュ': 'fyu',
+  'ティ': 'ti', 'ディ': 'di', 'トゥ': 'tu', 'ドゥ': 'du', 'テュ': 'tyu', 'デュ': 'dyu',
+  'ウィ': 'wi', 'ウェ': 'we', 'ウォ': 'wo',
+  'シェ': 'she', 'ジェ': 'je', 'チェ': 'che',
+  'ヴァ': 'va', 'ヴィ': 'vi', 'ヴェ': 've', 'ヴォ': 'vo', 'ヴ': 'vu',
+};
+for (const [katakana, romaji] of Object.entries(LOANWORD_KANA)) {
+  // The same combinations typed in hiragana (ふぁ, てぃ...)
+  const hiragana = katakana.replace(/[ァ-ヶ]/g, character => String.fromCharCode(character.charCodeAt(0) - 0x60));
+  if (hiragana !== katakana) LOANWORD_KANA[hiragana] = romaji;
+}
+const LOANWORD_PATTERN = new RegExp(
+  Object.keys(LOANWORD_KANA).sort((a, b) => b.length - a.length).join('|'),
+  'g'
+);
+
+// Romaji of a kana text (loanword combinations in Hepburn, see above)
+export function kanaToRomaji(text) {
+  return toRomaji(text.replace(LOANWORD_PATTERN, combination => LOANWORD_KANA[combination]));
+}
+
 // Every accepted spelling of one Hepburn word
 export function wordSpellings(word) {
   const results = new Set();
@@ -83,7 +108,7 @@ export function alignWords(sentence, words) {
   const readings = characterReadings(sentence);
   const romajiUpTo = [''];
   for (let end = 1; end <= characters.length; end++) {
-    romajiUpTo.push(alignmentForm(toRomaji(readings.slice(0, end).join(''))));
+    romajiUpTo.push(alignmentForm(kanaToRomaji(readings.slice(0, end).join(''))));
   }
 
   const segments = [];
@@ -153,7 +178,7 @@ export function normalizeTypedAnswer(raw) {
         rawLength += characters[index].length;
         index++;
       }
-      chunk = toRomaji(run).replace(/'/g, '');
+      chunk = kanaToRomaji(run).replace(/'/g, '');
     } else {
       chunk = characters[index].normalize('NFKC').toLowerCase()
         .replace(/[\s\-'’​-‍﻿]/g, '');

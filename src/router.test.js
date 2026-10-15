@@ -426,3 +426,24 @@ describe('character order', () => {
     expect(displayed()).toBe('お');
   });
 });
+
+test('words practice with the IT topic only shows IT words', async () => {
+  const { kanaCharacters } = require('./kanaCharacters.js');
+  const allKanaGroups = ['hiragana', 'katakana'].flatMap(script => Object.values(kanaCharacters[script]).map(group => group.title));
+  const itWords = Object.values(kanaCharacters.words).filter(word => (word.tags || []).includes('it'));
+  localStorage.setItem('checkedKanas', JSON.stringify(allKanaGroups));
+  localStorage.setItem('game-mode-practice', 'words');
+  localStorage.setItem('game-mode-word', 'true');
+  localStorage.setItem('game-mode-word-topic', 'it');
+  await open('/game');
+  for (let round = 0; round < 8; round++) {
+    const word = itWords.find(item => item.jp_character === displayed());
+    expect(word).toBeDefined();
+    await act(async () => {
+      word.romanji[0].split('').forEach(key => fireEvent.keyDown(window, { key }));
+    });
+    await act(async () => {
+      fireEvent.keyDown(document, { key: 'Enter' });
+    });
+  }
+});

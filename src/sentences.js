@@ -1,5 +1,6 @@
 import { kanaCharacters } from './kanaCharacters.js';
 import { generatedSentences } from './generatedSentences.js';
+import { getWordTopic } from './practiceList.js';
 
 /* Sentence data for the "sentences" (long typing) practice: real, correct
  * beginner sentences that are typed as a single romaji answer.
@@ -513,6 +514,9 @@ export function getSentenceOptions() {
     level: storedOption('game-mode-sentence-level', SENTENCE_LEVELS),
     pattern: storedOption('game-mode-sentence-pattern', SENTENCE_PATTERNS),
     jlpt: storedOption('game-mode-sentence-jlpt', SENTENCE_JLPT_LEVELS),
+    // The menu's topic, shared with the words practice: "it" keeps the IT
+    // and workplace sentences
+    topic: getWordTopic(),
     exercise: storedOption('game-mode-sentence-exercise', SENTENCE_EXERCISES),
   };
 }
@@ -524,6 +528,7 @@ export function getPracticeSentences(selectedGroupTitles, options = getSentenceO
     (options.level === 'all' || sentenceLevel(sentence) === options.level) &&
     (options.pattern === 'all' || sentencePattern(sentence) === options.pattern) &&
     (!options.jlpt || options.jlpt === 'all' || sentenceJlpt(sentence) === options.jlpt) &&
+    (!options.topic || options.topic === 'all' || sentence.topic === options.topic) &&
     (options.exercise !== 'particle' || (sentence.particles || []).length > 0)
   );
 }

@@ -4,6 +4,7 @@ import GameModeSelector from './GameModeSelector'
 import ProgressStatsModal from './ProgressStatsModal'
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GAME_MODES, gamePath, ROUTES } from '../routes';
+import { getWordTopic, wordInTopic } from '../practiceList.js';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences } from '../sentences.js'
 import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
@@ -92,7 +93,10 @@ function getSelectionSummary() {
       }
     }
   }
+  // Words readable with the selected groups, in the topic picked in the menu
+  const wordTopic = getWordTopic();
   const wordCount = Object.values(kanaCharacters.words).filter(word =>
+    wordInTopic(word, wordTopic) &&
     [...word.hiragana_groups, ...word.katakana_groups].every(group => checkedKanas.includes(group))
   ).length;
   // Sentence practice only offers the sentences readable with the selected

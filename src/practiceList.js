@@ -86,3 +86,20 @@ export function getCharacterOrder() {
   } catch (error) { }
   return CHARACTER_ORDERS.includes(stored) ? stored : 'random';
 }
+
+// Topic of the words practice: every word, or only the IT and workplace words
+// (tag "it": プログラム, サーバー, めんせつ...) for people heading to an IT company
+export const WORD_TOPICS = ['all', 'it'];
+export const WORD_TOPIC_KEY = 'game-mode-word-topic';
+
+export function getWordTopic() {
+  let stored = null;
+  try {
+    stored = localStorage.getItem(WORD_TOPIC_KEY);
+  } catch (error) { }
+  return WORD_TOPICS.includes(stored) ? stored : 'all';
+}
+
+export function wordInTopic(word, topic = getWordTopic()) {
+  return topic === 'all' || (word.tags || []).includes(topic);
+}
