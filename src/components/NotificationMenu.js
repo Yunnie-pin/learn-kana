@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../i18n';
 import Icon from './Icon';
 import { getDailyTotals } from '../activityStats.js';
@@ -48,6 +48,7 @@ function collectNotifications() {
 export default function NotificationMenu() {
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [unseen, setUnseen] = useState(0);
@@ -110,7 +111,12 @@ export default function NotificationMenu() {
         navigate(gamePath(GAME_MODES.mixups));
         break;
       case 'open-progress':
-        openLearningProgress(notification.section);
+        // The Learning Progress window belongs to the Games tab
+        if (location.pathname === ROUTES.menu) {
+          openLearningProgress(notification.section);
+        } else {
+          navigate(ROUTES.menu, { state: { openProgress: notification.section || true } });
+        }
         break;
       case 'backup':
         downloadBackup();

@@ -781,3 +781,57 @@ test('the review summary offers more new kanji once today\'s are done', async ()
   expect(document.querySelector('.srs-summary')).toBeNull();
   expect(document.querySelector('.kanji-srs-session-count')).toHaveTextContent(`1 / ${NEW_KANJI_PER_DAY}`);
 });
+
+describe('tabs', () => {
+  test('the root is the Games tab, the navbar links to the Dictionary', async () => {
+    await open('/');
+    const games = screen.getByRole('link', { name: translate('en', 'tabGames') });
+    const dictionary = screen.getByRole('link', { name: translate('en', 'tabDictionary') });
+    expect(games).toHaveAttribute('aria-current', 'page');
+    expect(dictionary).not.toHaveAttribute('aria-current');
+
+    await act(async () => {
+      fireEvent.click(dictionary);
+    });
+    expect(path()).toBe('/dictionary');
+    expect(screen.getByRole('link', { name: translate('en', 'tabDictionary') })).toHaveAttribute('aria-current', 'page');
+
+    await act(async () => {
+      fireEvent.click(screen.getByRole('link', { name: translate('en', 'tabGames') }));
+    });
+    expect(path()).toBe('/');
+    expect(document.getElementById('game-menu-title')).toBeInTheDocument();
+  });
+
+  test('the dictionary searches and filters', async () => {
+    await open('/dictionary');
+    expect(document.title).toBe(translate('en', 'seoTitleDictionary'));
+    expect(document.querySelector('meta[name="robots"]').content).toBe('index, follow');
+
+    fireEvent.click(screen.getByRole('radio', { name: translate('en', 'dictionaryKanji') }));
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'water' } });
+    const first = document.querySelector('.dictionary-entry');
+    expect(first.querySelector('.dictionary-entry-character')).toHaveTextContent('水');
+    expect(first).toHaveTextContent('スイ');
+    expect(first).toHaveTextContent('みず');
+
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'zzzqqq' } });
+    expect(screen.getByText(translate('en', 'dictionaryEmpty'))).toBeInTheDocument();
+  });
+
+  test('the dictionary shows the meanings in Indonesian', async () => {
+    localStorage.setItem('language', 'id');
+    await open('/dictionary');
+    fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'kawaii' } });
+    expect(document.querySelector('.dictionary-entry')).toHaveTextContent('imut');
+  });
+
+  test('a Learning Progress notification opens it on the Games tab', async () => {
+    await open('/dictionary');
+    await act(async () => {
+      router.navigate('/', { state: { openProgress: true } });
+    });
+    expect(document.querySelector('.progress-stats-modal')).toBeInTheDocument();
+    expect(router.state.location.state).toBeNull();
+  });
+});

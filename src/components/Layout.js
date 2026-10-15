@@ -34,16 +34,17 @@ export default function Layout() {
     }, [location]);
 
     // Title and description of the page in the app's language. Only the menu
-    // is worth finding in search results: the game screen and unknown
-    // addresses ask search engines not to index them.
+    // and the dictionary are worth finding in search results: the game screen
+    // and unknown addresses ask search engines not to index them.
     const { t } = useLanguage();
     useEffect(() => {
         const page = location.pathname === ROUTES.menu ? 'menu'
             : location.pathname === ROUTES.game ? 'game'
+            : location.pathname === ROUTES.dictionary ? 'dictionary'
             : 'notFound';
-        document.title = t({ menu: 'seoTitleMenu', game: 'seoTitleGame', notFound: 'seoTitleNotFound' }[page]);
-        metaTag('description').content = t('seoDescription');
-        metaTag('robots').content = page === 'menu' ? 'index, follow' : 'noindex, follow';
+        document.title = t({ menu: 'seoTitleMenu', game: 'seoTitleGame', dictionary: 'seoTitleDictionary', notFound: 'seoTitleNotFound' }[page]);
+        metaTag('description').content = t(page === 'dictionary' ? 'seoDescriptionDictionary' : 'seoDescription');
+        metaTag('robots').content = ['menu', 'dictionary'].includes(page) ? 'index, follow' : 'noindex, follow';
     }, [location.pathname, t]);
 
     useLayoutEffect(() => {

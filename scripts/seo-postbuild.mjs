@@ -50,14 +50,19 @@ export function addSiteUrl(html, siteUrl) {
     .replace('"@type": "WebApplication",', `"@type": "WebApplication", "url": ${JSON.stringify(siteUrl)}, "image": ${JSON.stringify(image)},`);
 }
 
+// The indexed pages: the Games tab (menu) and the Dictionary tab (src/routes.js)
+const SITEMAP_PATHS = ['', 'dictionary'];
+
 export function sitemap(siteUrl, date = new Date()) {
+  const lastmod = date.toISOString().slice(0, 10);
+  const urls = SITEMAP_PATHS.map(page => `  <url>
+    <loc>${escapeHtml(new URL(page, siteUrl).href)}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </url>
+`).join('');
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${escapeHtml(siteUrl)}</loc>
-    <lastmod>${date.toISOString().slice(0, 10)}</lastmod>
-  </url>
-</urlset>
+${urls}</urlset>
 `;
 }
 

@@ -135,6 +135,15 @@ export default function GameMenu() {
     window.addEventListener(OPEN_PROGRESS_EVENT, openAtSection);
     return () => window.removeEventListener(OPEN_PROGRESS_EVENT, openAtSection);
   }, []);
+
+  // Opened from a notification on another tab (Dictionary): open it once here
+  const openProgress = location.state?.openProgress;
+  useEffect(() => {
+    if (!openProgress) return;
+    setStatsFocusSection(typeof openProgress === 'string' ? openProgress : null);
+    setShowStatsModal(true);
+    navigate(location.pathname, { replace: true, state: null });
+  }, [openProgress, navigate, location.pathname]);
   // On phones only one group is shown at a time (.kana-group-tabs); on larger screens
   // hiragana + katakana share one "Kana" tab next to a "Kanji" tab (.kana-group-tabs-wide)
   const [activeKanaTab, setActiveKanaTab] = useState('hiragana');

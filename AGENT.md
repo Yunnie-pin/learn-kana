@@ -25,7 +25,7 @@ There is no lint script; CRA's ESLint (`react-app`) runs during `npm start` / `n
 
 ## Architecture
 
-**Routing** (`src/index.js`): `/` and `/learn-kana` render the menu (`App` → `GameMenu`); the game is at `/learn-kana∕game`. That `∕` is U+2215 DIVISION SLASH, not `/` — copy it from an existing `navigate()`/`<Link>` rather than typing it.
+**Routing** (`src/routes.js`, `src/router.js`): the navbar has two tabs, Games at `/` (the menu, `App` → `GameMenu`) and Dictionary at `/dictionary` (`src/pages/Dictionary.js`, data and search in `src/dictionary.js`); the game is at `/game`. Keep every route one level deep (see `routes.js`). The old `/learn-kana` and `/learn-kana∕game` addresses (`∕` is U+2215 DIVISION SLASH) redirect to the new ones.
 
 **Settings flow through localStorage, not props.** The menu (`GameMenu`, `GameModeSelector`, `KanaGroup`, `CheckMark`) writes keys such as `checkedKanas` (selected group titles), `game-mode-practice` (`characters` | `words` | `mixed` | `long` = sentences), `game-mode-touch`, `game-mode-auto-next`, `game-mode-hints`, `game-mode-sentence-*`, `gameMode` (session limit); the game screen reads them when it mounts. New settings follow the `game-mode-*` naming. Per-character stats are in `userStats`, keyed by the shown `jp_character` (for sentences: the whole sentence) and used by the weighted picker `selectNextCharacter`.
 

@@ -1,9 +1,15 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { NavLink, useOutletContext } from 'react-router-dom';
 import { LANGUAGES, useLanguage } from '../i18n';
+import { ROUTES } from '../routes';
 import Icon from './Icon';
 import NotificationMenu from './NotificationMenu';
 import AboutDialog, { GitHubMark } from './AboutDialog';
+
+const NAVBAR_TABS = [
+  { to: ROUTES.menu, icon: 'gamepad', label: 'tabGames' },
+  { to: ROUTES.dictionary, icon: 'book-open', label: 'tabDictionary' },
+];
 
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
@@ -41,6 +47,20 @@ export default function Navbar() {
       <nav className='navbar'>
         <div className='navbar-brand'>
           <span className='navbar-title'>日本語</span>
+        </div>
+        {/* The app's tabs: the practice menu (Games) and the Dictionary */}
+        <div className='segmented-control navbar-tabs' aria-label={t('navbarTabs')}>
+          {NAVBAR_TABS.map(tab => (
+            <NavLink
+              key={tab.to}
+              to={tab.to}
+              end
+              className={({ isActive }) => 'segmented-option navbar-tab' + (isActive ? ' active' : '')}
+            >
+              <Icon name={tab.icon} />
+              <span>{t(tab.label)}</span>
+            </NavLink>
+          ))}
         </div>
         <div className='navbar-actions'>
           <NotificationMenu />

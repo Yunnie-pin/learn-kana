@@ -7,8 +7,11 @@
  * level deep; the router's basename is found at run time (getBasename).
  */
 export const ROUTES = {
+  // The Games tab: the practice menu
   menu: '/',
   game: '/game',
+  // The Dictionary tab: every kana, kanji and word the app teaches
+  dictionary: '/dictionary',
 };
 
 // Old addresses, still opened from bookmarks and installed apps: the game
