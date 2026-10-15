@@ -1,0 +1,65 @@
+name: Deploy to GitHub Pages
+
+# Builds the app and publishes it to GitHub Pages, served at the custom domain
+# https://learn-kana.gulagulali.tech (DNS on Cloudflare, see README).
+# Needs Settings > Pages > Source: "GitHub Actions" in the repository.
+on:
+  push:
+    branches: [main]
+  # Run it by hand from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer push waits instead of cancelling one in progress
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  # Public address of the site: canonical link, link previews and sitemap.xml
+  # (scripts/seo-postbuild.mjs)
+  SITE_URL: https://learn-kana.gulagulali.tech
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Same Node version as the Docker build and the test workflow
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # A failing test stops the deployment
+      - run: npm test -- --watchAll=false
+
+      - run: npm run build
+        env:
+          # Optional Umami analytics: set them in Settings > Secrets and
+          # variables > Actions > Variables (left empty, analytics stay off)
+          REACT_APP_UMAMI_SCRIPT_URL: ${{ vars.REACT_APP_UMAMI_SCRIPT_URL }}
+          REACT_APP_UMAMI_WEBSITE_ID: ${{ vars.REACT_APP_UMAMI_WEBSITE_ID }}
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
