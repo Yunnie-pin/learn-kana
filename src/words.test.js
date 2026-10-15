@@ -78,3 +78,93 @@ describe('IT words', () => {
     expect(wordInTopic({}, 'it')).toBe(false);
   });
 });
+
+describe('kanji words', () => {
+  const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
+  const kanjiGroupOf = {};
+  Object.values(kanaCharacters.kanji).forEach(group =>
+    Object.values(group.characters).forEach(character => { kanjiGroupOf[character.jp_character] ??= group.title; })
+  );
+  const isKanji = (character) => /[一-鿿]/.test(character);
+
+  test('selecting only kanji groups gives words: the vocabulary of those kanji', () => {
+    const { getListOfKanjiWords } = require('./practiceList.js');
+    const words = getListOfKanjiWords(kanjiGroups);
+    expect(words.length).toBeGreaterThan(150);
+    expect(words.map(word => word.jp_character)).toEqual(expect.arrayContaining(['水曜日', '毎日', '今日']));
+    // Every one only uses taught kanji, has a reading and meanings
+    words.forEach(word => {
+      expect([...word.jp_character].filter(isKanji).every(character => kanjiGroupOf[character])).toBe(true);
+      expect(word.romanji[0]).toMatch(/^[a-z' ]+$/);
+      expect(word.meaning).toBeTruthy();
+      expect(word.meaning_id).toBeTruthy();
+    });
+    // Each word once
+    expect(new Set(words.map(word => word.jp_character)).size).toBe(words.length);
+  });
+
+  test('only the words whose kanji are all selected', () => {
+    const { getListOfKanjiWords } = require('./practiceList.js');
+    const oneGroup = kanjiGroups[0];
+    const words = getListOfKanjiWords([oneGroup]);
+    words.forEach(word => {
+      [...word.jp_character].filter(isKanji).forEach(character => expect(kanjiGroupOf[character]).toBe(oneGroup));
+    });
+    expect(getListOfKanjiWords([])).toEqual([]);
+    // Kana groups alone give no kanji words
+    expect(getListOfKanjiWords(Object.values(kanaCharacters.hiragana).map(group => group.title))).toEqual([]);
+  });
+
+  test('words with a kanji the app does not teach are left out', () => {
+    const { getListOfKanjiWords } = require('./practiceList.js');
+    const spellings = getListOfKanjiWords(kanjiGroups).map(word => word.jp_character);
+    // 一番 needs 番, which is not taught
+    expect(kanjiGroupOf['番']).toBeUndefined();
+    expect(spellings).not.toContain('一番');
+  });
+
+
+});
+
+describe('kanji vocabulary list (kanjiWords.js)', () => {
+  const { kanjiWords, itUsageWords } = require('./kanjiWords.js');
+  const { getListOfKanjiWords } = require('./practiceList.js');
+  const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
+  const taught = new Set(Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters).map(c => c.jp_character)));
+  const usageWords = new Set(Object.values(kanaCharacters.kanji).flatMap(group =>
+    Object.values(group.characters).map(c => c.usage?.word).filter(Boolean)));
+  const isKanji = (character) => /[一-鿿]/.test(character);
+
+  test('only taught kanji, complete, each word once and not a usage word again', () => {
+    const problems = [];
+    const seen = new Set();
+    for (const [word, romanji, meaning, meaningId, tags] of kanjiWords) {
+      const untaught = [...word].filter(isKanji).filter(character => !taught.has(character));
+      if (untaught.length) problems.push(`${word}: untaught ${untaught.join('')}`);
+      if (![...word].some(isKanji)) problems.push(`${word}: no kanji`);
+      if (!romanji.length || !romanji.every(r => /^[a-z]+$/.test(r))) problems.push(`${word}: romaji ${romanji}`);
+      if (!meaning || !meaningId) problems.push(`${word}: meaning`);
+      if (tags && !tags.every(tag => tag === 'it')) problems.push(`${word}: tags ${tags}`);
+      if (seen.has(word)) problems.push(`${word}: twice`);
+      if (usageWords.has(word)) problems.push(`${word}: already a usage word`);
+      seen.add(word);
+    }
+    itUsageWords.forEach(word => { if (!usageWords.has(word)) problems.push(`${word}: not a usage word`); });
+    expect(problems).toEqual([]);
+  });
+
+  test('all of them are offered once every kanji group is selected', () => {
+    const offered = new Set(getListOfKanjiWords(kanjiGroups).map(word => word.jp_character));
+    expect(kanjiWords.filter(([word]) => !offered.has(word)).map(([word]) => word)).toEqual([]);
+    expect(offered.size).toBeGreaterThan(350);
+  });
+
+  test('IT & work kanji words are in the IT topic', () => {
+    const it = getListOfKanjiWords(kanjiGroups).filter(word => wordInTopic(word, 'it')).map(word => word.jp_character);
+    expect(it).toEqual(expect.arrayContaining(['会社', '仕事', '社員', '入力', '通知', '働く']));
+    expect(it).not.toContain('水曜日');
+    // Every usage word listed as IT is offered (all its kanji are taught)
+    const { itUsageWords } = require('./kanjiWords.js');
+    expect(itUsageWords.filter(word => !it.includes(word))).toEqual([]);
+  });
+});

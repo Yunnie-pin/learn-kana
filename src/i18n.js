@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { kanaCharacters } from './kanaCharacters';
 import { sentences } from './sentences';
+import { kanjiWords } from './kanjiWords';
 
 export const LANGUAGES = [
   { code: 'en', label: 'EN' },
@@ -498,6 +499,9 @@ for (const group of Object.values(kanaCharacters.kanji)) {
       indonesianMeanings[character.usage.word] = character.usage.meaning_id;
     }
   }
+}
+for (const [word, , , meaningId] of kanjiWords) {
+  if (meaningId && !indonesianMeanings[word]) indonesianMeanings[word] = meaningId;
 }
 for (const sentence of sentences) {
   if (sentence.meaning_id) {

@@ -7,7 +7,7 @@ import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
 import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
-import { getCharacterOrder, getListForPractice, getWordTopic, wordInTopic } from '../practiceList.js'
+import { getCharacterOrder, getListForPractice, getListOfKanjiWords, getWordTopic, wordInTopic } from '../practiceList.js'
 import { findKanaForAnswer, getConfusionPairs, getMixupKana, getSimilarKana, MIXUP_PRACTICE_PAIRS, readConfusions, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
 import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
@@ -527,10 +527,13 @@ export default function InGameCharacterShowAndInput() {
 
   function getListForPractice(charGroups, mode) {
     const characters = getListOfKanas(charGroups);
+    // Kana words, plus the kanji vocabulary of the selected kanji groups
+    // (not in the IT topic: those words have no topic)
+    const kanjiWords = getListOfKanjiWords(charGroups).filter(word => wordInTopic(word));
     if (mode === 'mixed') {
-      return [...characters, ...getListOfWords(charGroups)];
+      return [...characters, ...getListOfWords(charGroups), ...kanjiWords];
     }
-    if (mode === 'words') return getListOfWords(charGroups);
+    if (mode === 'words') return [...getListOfWords(charGroups), ...kanjiWords];
     if (mode === 'long') return getListOfSentences(charGroups);
     // "characters": every selected kana and kanji group
     return characters;
@@ -2022,6 +2025,26 @@ export default function InGameCharacterShowAndInput() {
                     <span className='kanji-answer-reading-label'>{t('kanjiKuShort')}</span>
                     {kanjiReadings[onScreenKana].kunyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
                   </span>
+                </span>
+              )}
+            {/* Kanji words (水曜日, 時間...): the readings of each of their kanji, once answered */}
+            {onScreenCharacterType === 'word' &&
+              localStorage.getItem('game-mode-kanji-readings') === 'true' &&
+              [...onScreenKana].some(character => kanjiReadings[character]) && (
+                <span className='kanji-word-readings'>
+                  {[...new Set([...onScreenKana])].filter(character => kanjiReadings[character]).map(character => (
+                    <span key={character} className='kanji-answer-readings kanji-word-reading'>
+                      <span className='kanji-word-reading-character'>{character}</span>
+                      <span>
+                        <span className='kanji-answer-reading-label'>{t('kanjiOnShort')}</span>
+                        {kanjiReadings[character].onyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
+                      </span>
+                      <span>
+                        <span className='kanji-answer-reading-label'>{t('kanjiKuShort')}</span>
+                        {kanjiReadings[character].kunyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
+                      </span>
+                    </span>
+                  ))}
                 </span>
               )}
           </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { appRoutes } from './router';
 import { LanguageProvider } from './i18n';
@@ -446,4 +446,65 @@ test('words practice with the IT topic only shows IT words', async () => {
       fireEvent.keyDown(document, { key: 'Enter' });
     });
   }
+});
+
+test('words practice with only kanji groups selected shows kanji words', async () => {
+  const { kanaCharacters } = require('./kanaCharacters.js');
+  const { getListOfKanjiWords } = require('./practiceList.js');
+  const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
+  const kanjiWords = getListOfKanjiWords(kanjiGroups);
+  localStorage.setItem('checkedKanas', JSON.stringify(kanjiGroups));
+  localStorage.setItem('game-mode-practice', 'words');
+  localStorage.setItem('game-mode-word', 'true');
+
+  // The menu counts them
+  await open('/');
+  expect(document.querySelector('.game-menu-summary')).toHaveTextContent(String(kanjiWords.length));
+  expect(document.querySelector('.game-menu-start a')).toBeInTheDocument();
+  cleanup();
+
+  // The game shows them and takes their romaji
+  await open('/game');
+  const word = kanjiWords.find(item => item.jp_character === displayed());
+  expect(word).toBeDefined();
+  await act(async () => {
+    word.romanji[0].split('').forEach(key => fireEvent.keyDown(window, { key }));
+  });
+  expect(score()).toHaveTextContent('1');
+});
+
+describe('kanji readings with kanji words', () => {
+  const { kanaCharacters } = require('./kanaCharacters.js');
+  const { getListOfKanjiWords } = require('./practiceList.js');
+  const { kanjiReadings } = require('./kanjiReadings.js');
+  const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
+
+  async function answerKanjiWord(readingsOn) {
+    localStorage.setItem('checkedKanas', JSON.stringify(kanjiGroups));
+    localStorage.setItem('game-mode-practice', 'words');
+    localStorage.setItem('game-mode-word', 'true');
+    localStorage.setItem('game-mode-kanji-readings', String(readingsOn));
+    await open('/game');
+    const word = getListOfKanjiWords(kanjiGroups).find(item => item.jp_character === displayed());
+    // Not shown before answering: they would give the answer away
+    expect(document.querySelector('#in-game-solution')).toHaveClass('hidden-element');
+    await act(async () => {
+      word.romanji[0].split('').forEach(key => fireEvent.keyDown(window, { key }));
+    });
+    return word;
+  }
+
+  test('on: once answered, every kanji of the word with its on / kun readings', async () => {
+    const word = await answerKanjiWord(true);
+    const kanji = [...new Set([...word.jp_character])].filter(character => kanjiReadings[character]);
+    const blocks = [...document.querySelectorAll('#in-game-solution .kanji-word-reading')];
+    expect(blocks.map(block => block.querySelector('.kanji-word-reading-character').textContent)).toEqual(kanji);
+    expect(blocks[0]).toHaveTextContent(translate('en', 'kanjiOnShort'));
+    expect(blocks[0]).toHaveTextContent(translate('en', 'kanjiKuShort'));
+  });
+
+  test('off: no readings', async () => {
+    await answerKanjiWord(false);
+    expect(document.querySelector('.kanji-word-reading')).toBeNull();
+  });
 });

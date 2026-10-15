@@ -1,4 +1,5 @@
 import { kanaCharacters } from './kanaCharacters.js';
+import { itUsageWords, kanjiWords } from './kanjiWords.js';
 
 // Creates a list of all possible Kanas/Words to show, the element outputs look like this:
 // { "jp_character": "あ", "romanji": ["a"], "sound": "あ", "type": "kana/word", *"vocal": "a", *"meaning": "dog" }
@@ -55,12 +56,78 @@ export function getListOfWords(charGroups) {
   return output;
 }
 
+// Kanji vocabulary for the words practice: the usage word of every kanji
+// (水 -> 水曜日, 時 -> 時間...), offered when all of its kanji are in the
+// selected kanji groups. Its kana (多い, 少し) need no kana group: kanji are
+// practiced once kana can be read. Words with a kanji the app doesn't teach
+// (一番) are left out, and one-kanji words are the kanji questions themselves.
+let kanjiGroupByCharacter = null;
+export function getListOfKanjiWords(charGroups) {
+  const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
+  if (!kanjiGroupByCharacter) {
+    kanjiGroupByCharacter = {};
+    for (const group of Object.values(kanaCharacters.kanji || {})) {
+      for (const character of Object.values(group.characters || {})) {
+        if (!(character.jp_character in kanjiGroupByCharacter)) {
+          kanjiGroupByCharacter[character.jp_character] = group.title;
+        }
+      }
+    }
+  }
+  const isKanji = (character) => /[㐀-䶿一-鿿]/.test(character);
+  const output = [];
+  const seen = new Set();
+  for (const group of Object.values(kanaCharacters.kanji || {})) {
+    for (const character of Object.values(group.characters || {})) {
+      const usage = character.usage;
+      if (!usage || seen.has(usage.word) || [...usage.word].length < 2) continue;
+      const kanji = [...usage.word].filter(isKanji);
+      const readable = kanji.length > 0 && kanji.every(item =>
+        kanjiGroupByCharacter[item] && selectedGroups.includes(kanjiGroupByCharacter[item])
+      );
+      if (!readable) continue;
+      seen.add(usage.word);
+      output.push({
+        "jp_character": usage.word,
+        "romanji": [usage.romanji],
+        "sound": usage.word,
+        "meaning": usage.meaning,
+        "meaning_id": usage.meaning_id,
+        "tags": itUsageWords.includes(usage.word) ? ['it'] : [],
+        "type": "word",
+        "kanjiWord": true,
+      });
+    }
+  }
+  // More kanji vocabulary (kanjiWords.js), with the same rule
+  for (const [word, romanji, meaning, meaningId, tags = []] of kanjiWords) {
+    if (seen.has(word)) continue;
+    const kanji = [...word].filter(isKanji);
+    const readable = kanji.length > 0 && kanji.every(item =>
+      kanjiGroupByCharacter[item] && selectedGroups.includes(kanjiGroupByCharacter[item])
+    );
+    if (!readable) continue;
+    seen.add(word);
+    output.push({
+      "jp_character": word,
+      "romanji": romanji,
+      "sound": word,
+      "meaning": meaning,
+      "meaning_id": meaningId,
+      "tags": tags,
+      "type": "word",
+      "kanjiWord": true,
+    });
+  }
+  return output;
+}
+
 export function getListForPractice(charGroups, mode) {
   const characters = getListOfKanas(charGroups);
   if (mode === 'mixed') {
-    return [...characters, ...getListOfWords(charGroups)];
+    return [...characters, ...getListOfWords(charGroups), ...getListOfKanjiWords(charGroups)];
   }
-  if (mode === 'words') return getListOfWords(charGroups);
+  if (mode === 'words') return [...getListOfWords(charGroups), ...getListOfKanjiWords(charGroups)];
   // "characters": every selected kana and kanji group
   return characters;
 }
