@@ -266,7 +266,7 @@ export default function GameModeSelector(props) {
                 <span aria-live='polite'>
                   {limit.type === "time"
                     ? t('modeMinutes', { count: limit.minutes })
-                    : t('modeKanaCount', { count: limit.count })}
+                    : t('modeCount', { count: limit.count, practice })}
                 </span>
                 <button type='button' aria-label={t('limitIncrease')} onClick={() => changeLimit(1)}><Icon name='plus' strokeWidth={2.5} /></button>
               </div>

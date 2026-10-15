@@ -9,6 +9,10 @@ body,
 }
 
 :root {
+  /* Secondary text: lighter than the orange instead of faded with opacity, so
+     it keeps a 5.6:1 contrast on the teal background (7.9:1 on the dark
+     theme); faded orange was down to about 2.3:1 */
+  --text-muted: #ffc48a;
   --ui-font: "Belanosima", "Trebuchet MS", sans-serif;
   /* Same check as <Icon name="check" />, for places that can only use CSS (::after) */
   --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
@@ -670,7 +674,7 @@ Game Menu Page
 .kanji-character-element .character-checkbox-content>.kanji-usage-example {
   margin-top: 0.25em;
   font-size: 0.85em;
-  opacity: 0.8;
+  color: var(--text-muted);
 }
 
 .kana-group-elements>h2 {
@@ -1041,7 +1045,7 @@ Progress Stats Modal
 .progress-stats-summary-label {
   font-size: 1em;
   color: #ff9a3c;
-  opacity: 0.8;
+  color: var(--text-muted);
   margin-top: -0.5em;
 }
 
@@ -1134,7 +1138,7 @@ Progress Stats Modal
 
 .progress-stats-weakest-empty {
   margin: 0;
-  opacity: 0.8;
+  color: var(--text-muted);
   font-size: 0.9em;
 }
 
@@ -1153,7 +1157,7 @@ Progress Stats Modal
 
 .progress-activity-empty {
   text-align: center;
-  opacity: 0.8;
+  color: var(--text-muted);
 }
 
 .progress-activity-calendar-block,
@@ -1220,7 +1224,7 @@ Progress Stats Modal
   display: flex;
   align-items: center;
   gap: 3px;
-  opacity: 0.85;
+  color: var(--text-muted);
 }
 
 .progress-activity-scale .progress-activity-day {
@@ -1357,7 +1361,7 @@ Progress Stats Modal
   border-top: 1px solid #ffffff33;
   text-align: center;
   font-size: 0.7em;
-  opacity: 0.8;
+  color: var(--text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1407,7 +1411,7 @@ Progress Stats Modal
 
 .progress-activity-confusion-romanji {
   font-size: 0.75em;
-  opacity: 0.75;
+  color: var(--text-muted);
 }
 
 .progress-activity-confusion-count {
@@ -1436,7 +1440,7 @@ Progress Stats Modal
 
 .progress-activity-axis {
   fill: currentColor;
-  opacity: 0.7;
+  color: var(--text-muted);
   font-size: 10px;
   font-variant-numeric: tabular-nums;
 }
@@ -1594,7 +1598,7 @@ Progress Stats Modal
 
 .progress-stats-tooltip-meaning {
   font-size: 0.8em;
-  opacity: 0.8;
+  color: var(--text-muted);
 }
 
 .progress-stats-tooltip-content {
@@ -1633,7 +1637,7 @@ Progress Stats Modal
 .progress-stats-tooltip-mastery-label {
   margin-top: 0.5em;
   font-size: 0.85em;
-  opacity: 0.7;
+  color: var(--text-muted);
 }
 
 .progress-stats-tooltip-mastery-reasons {
@@ -2304,7 +2308,7 @@ Selection summary + start
   margin: 0.4em 0 0;
   font-family: var(--ui-font);
   font-size: 0.95em;
-  opacity: 0.8;
+  color: var(--text-muted);
   user-select: none;
 }
 
@@ -2422,7 +2426,7 @@ Kana group preview on hover
 .kana-group-preview-romanji {
   font-family: 'Trebuchet MS', sans-serif;
   font-size: 0.8em;
-  opacity: 0.75;
+  color: var(--text-muted);
 }
 
 /* EN / ID switch in the navbar */
@@ -2651,7 +2655,7 @@ button.character-title-group-button {
   background: #00000030;
   font-size: 0.8em;
   font-weight: normal;
-  opacity: 0.85;
+  color: var(--text-muted);
 }
 
 /* Keyboard focus. The real checkboxes are invisible, so the visible card gets the ring */
@@ -3392,7 +3396,7 @@ Notifications (navbar bell)
 .notification-item-title + p {
   margin-top: 0.1em;
   font-size: 0.85em;
-  opacity: 0.8;
+  color: var(--text-muted);
 }
 
 /* Kana / pairs of a notification, like the chips on the game summary */
@@ -3420,7 +3424,7 @@ Notifications (navbar bell)
 
 .notification-chip-detail {
   font-size: 0.75em;
-  opacity: 0.75;
+  color: var(--text-muted);
 }
 
 .notification-action {
@@ -3456,7 +3460,7 @@ Notifications (navbar bell)
   align-items: center;
   justify-content: center;
   margin: 0.8em 0;
-  opacity: 0.8;
+  color: var(--text-muted);
 }
 
 @media (hover: hover) {
@@ -3651,7 +3655,7 @@ button.progress-activity-confusion {
 .progress-activity-confusions-hint {
   margin: 0.5em 0 0;
   font-size: 0.85em;
-  opacity: 0.65;
+  color: var(--text-muted);
 }
 
 /* About window: open source, repository, fork of Eldoprano/learn-kana */
@@ -3763,13 +3767,13 @@ html[data-theme='dark'] .about-dialog {
 
 .about-dialog-repository-text span {
   font-size: 0.85em;
-  opacity: 0.75;
+  color: var(--text-muted);
 }
 
 .about-dialog-fork,
 .about-dialog-links {
   font-size: 0.9em;
-  opacity: 0.85;
+  color: var(--text-muted);
 }
 
 @media (hover: hover) {
@@ -3859,7 +3863,7 @@ html[data-theme='dark'] .practice-tab.active {
   font-size: 0.9em;
   line-height: 1.35;
   text-align: center;
-  opacity: 0.75;
+  color: var(--text-muted);
 }
 
 /* The options of the picked practice type fade in when it changes */
@@ -3932,7 +3936,7 @@ html[data-theme='dark'] .practice-tab.active {
   max-width: 100%;
   font-size: 0.78em;
   font-weight: normal;
-  opacity: 0.65;
+  color: var(--text-muted);
 }
 
 /* The toggles fill the card: with its padding inside the width, not added to it */

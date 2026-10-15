@@ -185,9 +185,31 @@ export function getNewKanjiStartedToday(now = Date.now()) {
     .filter(entry => Number(entry?.firstReviewedAt) >= since).length;
 }
 
+// More new kanji asked for today on top of NEW_KANJI_PER_DAY ("learn 10
+// more" once today's ones are done): { day, count }, reset the next day
+const EXTRA_NEW_KEY = 'kanji-srs-extra-new';
+
+function getExtraNewToday(now = Date.now()) {
+  try {
+    const stored = JSON.parse(localStorage.getItem(EXTRA_NEW_KEY));
+    return stored && stored.day === startOfDay(now) ? Number(stored.count) || 0 : 0;
+  } catch (error) {
+    return 0;
+  }
+}
+
+// Lets today's review bring in NEW_KANJI_PER_DAY more new kanji
+export function addExtraNewKanji(now = Date.now()) {
+  localStorage.setItem(EXTRA_NEW_KEY, JSON.stringify({
+    day: startOfDay(now),
+    count: getExtraNewToday(now) + NEW_KANJI_PER_DAY,
+  }));
+}
+
 // What a review session of the selected groups holds: the kanji due again
 // (most overdue first) and the new kanji left for today, in the order of the
-// groups. { due, fresh, total }
+// groups. { due, fresh, total, unlearned }: unlearned counts every new kanji
+// of the selection, also the ones past today's limit
 export function getSrsSession(selectedGroups, now = Date.now()) {
   const progress = readProgress();
   const selected = new Set(selectedGroups);
@@ -198,11 +220,10 @@ export function getSrsSession(selectedGroups, now = Date.now()) {
       return Number.isFinite(dueAt) && dueAt <= now;
     })
     .sort((a, b) => progress[a.jp_character].dueAt - progress[b.jp_character].dueAt);
-  const newLeft = Math.max(0, NEW_KANJI_PER_DAY - getNewKanjiStartedToday(now));
-  const fresh = kanji
-    .filter(character => !Number.isFinite(Number(progress[character.jp_character]?.dueAt)))
-    .slice(0, newLeft);
-  return { due, fresh, total: due.length + fresh.length };
+  const unlearned = kanji.filter(character => !Number.isFinite(Number(progress[character.jp_character]?.dueAt)));
+  const newLeft = Math.max(0, NEW_KANJI_PER_DAY + getExtraNewToday(now) - getNewKanjiStartedToday(now));
+  const fresh = unlearned.slice(0, newLeft);
+  return { due, fresh, total: due.length + fresh.length, unlearned: unlearned.length };
 }
 
 // Kanji from the selected groups that were practiced before and are due again.

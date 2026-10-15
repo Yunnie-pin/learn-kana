@@ -112,3 +112,19 @@ describe('review sessions', () => {
     expect(getSrsSession([group.title], NOW).fresh).toHaveLength(NEW_KANJI_PER_DAY - 4);
   });
 });
+
+test('"learn more" lets today bring in more new kanji, until tomorrow', () => {
+  const { addExtraNewKanji } = require('./kanjiSrs.js');
+  const group = Object.values(kanaCharacters.kanji).find(item => Object.keys(item.characters).length >= 10);
+  const others = Object.values(kanaCharacters.kanji).filter(item => item !== group);
+  // Today's 10 new kanji learned elsewhere
+  others.flatMap(item => Object.values(item.characters)).slice(0, NEW_KANJI_PER_DAY)
+    .forEach(character => recordKanjiSrsAnswer(character.jp_character, 'good', NOW));
+  expect(getSrsSession([group.title], NOW).fresh).toHaveLength(0);
+  expect(getSrsSession([group.title], NOW).unlearned).toBe(Object.keys(group.characters).length);
+
+  addExtraNewKanji(NOW);
+  expect(getSrsSession([group.title], NOW).fresh).toHaveLength(NEW_KANJI_PER_DAY);
+  // The next day the limit is back to normal
+  expect(getSrsSession([group.title], NOW + DAY).fresh).toHaveLength(NEW_KANJI_PER_DAY);
+});

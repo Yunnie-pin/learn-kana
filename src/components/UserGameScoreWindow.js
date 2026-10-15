@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { GAME_MODES, gamePath, ROUTES } from '../routes.js'
 import { getMixupKana, getPairsMixedUpSince } from '../confusions.js'
+import { addExtraNewKanji, getSelectedKanjiGroupTitles, getSrsSession, NEW_KANJI_PER_DAY } from '../kanjiSrs.js'
 import { kanaCharacters } from '../kanaCharacters.js'
 import { useLanguage } from '../i18n'
 import { isSpeechSupported, speak } from '../speech'
@@ -238,6 +239,8 @@ export default function UserGameScoreWindow(props) {
     // Kanji review: what the session did and when the next one comes
     if (props.srsResult) {
         const result = props.srsResult;
+        // What another review would hold now (nothing: it would end right away)
+        const nextSession = getSrsSession(getSelectedKanjiGroupTitles());
         let nextText = t('srsSummaryNoNext');
         if (result.next) {
             const day = new Date(result.next.at);
@@ -265,7 +268,14 @@ export default function UserGameScoreWindow(props) {
                     <p className='srs-summary-next'><Icon name='bell' className='icon-leading' />{nextText}</p>
                     <div className='inGameUserGameScoreWindow_buttons'>
                         <button onClick={goToMainMenu}><Icon name='home' className='icon-leading' />{t('summaryBackToMenu')}</button>
-                        <button className='score-button-primary' onClick={playAgain}><Icon name='rotate-ccw' className='icon-leading' />{t('srsSummaryAgain')}</button>
+                        {nextSession.total > 0 ? (
+                            <button className='score-button-primary' onClick={playAgain}><Icon name='rotate-ccw' className='icon-leading' />{t('srsSummaryAgain')}</button>
+                        ) : nextSession.unlearned > 0 ? (
+                            // Today's new kanji are done: more of them, on request
+                            <button className='score-button-primary' onClick={() => { addExtraNewKanji(); playAgain(); }}>
+                                <Icon name='plus' className='icon-leading' />{t('srsSummaryLearnMore', { count: Math.min(NEW_KANJI_PER_DAY, nextSession.unlearned) })}
+                            </button>
+                        ) : null}
                     </div>
                     <div className='score-shortcuts label-keyboard'>{t('summaryShortcuts')}</div>
                 </div>
@@ -286,7 +296,12 @@ export default function UserGameScoreWindow(props) {
         }
     }
 
-    const isWordMode = localStorage.getItem("game-mode-word") === "true";
+    // What was practiced, for the title: characters, words, a mix or sentences
+    // (a mix-up practice is always characters)
+    const practice = new URLSearchParams(location.search).get('mode') === GAME_MODES.mixups ? 'characters'
+        : localStorage.getItem('game-mode-practice') ||
+        (localStorage.getItem("game-mode-word") === "true" ? 'words' : 'characters');
+    const completedKey = { words: 'summaryCompletedWords', mixed: 'summaryCompletedMixed', long: 'summaryCompletedSentences' }[practice] || 'summaryCompletedKanas';
 
     let userStatsElement;
     if (totalRight > 0) {
@@ -361,7 +376,7 @@ export default function UserGameScoreWindow(props) {
             <div className='inGameUserGameScoreWindow'>
                 <div className='inGameUserGameScoreWindow_header'>
                     <h1>{totalRight}</h1>
-                    <h2>{isWordMode ? t('summaryCompletedWords') : t('summaryCompletedKanas')}</h2>
+                    <h2>{t(completedKey)}</h2>
                 </div>
                 {userStatsElement}
                 {mixedUpPairs.length > 0 && (

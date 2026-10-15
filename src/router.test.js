@@ -118,10 +118,13 @@ describe('after a game', () => {
   });
 
   test('Play again keeps a kanji review a review', async () => {
-    // No kanji are due, so the review ends right away on its summary
+    // A review of a kanji group, ended early with Esc: more kanji are left
+    const { kanaCharacters } = require('./kanaCharacters.js');
+    localStorage.setItem('checkedKanas', JSON.stringify(Object.values(kanaCharacters.kanji).map(group => group.title)));
     await open('/game?mode=review');
     await act(async () => {
-      await new Promise(resolve => setTimeout(resolve, 650));
+      fireEvent.keyDown(window, { key: 'ArrowRight' });
+      fireEvent.keyDown(window, { key: 'Escape' });
     });
     const firstGame = router.state.location.key;
     await act(async () => {
@@ -695,4 +698,86 @@ describe('kanji review screen', () => {
     expect(hint).toHaveTextContent(translate('en', 'srsGradeAgain'));
     expect(Number(hint.style.opacity)).toBeCloseTo(0.5);
   });
+});
+
+describe('labels follow what is practiced', () => {
+  test('score and summary title for characters, words and sentences', async () => {
+    const cases = [
+      ['characters', ['あ'], 'gameScoreKanas', 'summaryCompletedKanas'],
+      ['words', ['ア', 'サ'], 'gameScoreWords', 'summaryCompletedWords'],
+    ];
+    for (const [practice, groups, scoreKey, titleKey] of cases) {
+      localStorage.setItem('checkedKanas', JSON.stringify(groups));
+      localStorage.setItem('game-mode-practice', practice);
+      localStorage.setItem('game-mode-word', String(practice === 'words'));
+      await open('/game');
+      expect(score()).toHaveTextContent(translate('en', scoreKey).trim());
+      fireEvent.keyDown(window, { key: 'Escape' });
+      await act(async () => {
+        await new Promise(resolve => setTimeout(resolve, 650));
+      });
+      expect(document.querySelector('.inGameUserGameScoreWindow_header h2')).toHaveTextContent(translate('en', titleKey));
+      cleanup();
+    }
+  });
+});
+
+describe('kanji review once today\'s new kanji are done', () => {
+  const { kanaCharacters } = require('./kanaCharacters.js');
+  const { recordKanjiSrsAnswer, NEW_KANJI_PER_DAY } = require('./kanjiSrs.js');
+  const groups = Object.values(kanaCharacters.kanji);
+  const selected = groups.filter(group => /^N5 (Numbers|Activities)/.test(group.title));
+  const summary = () => document.querySelector('.game-menu-summary').textContent;
+
+  beforeEach(() => {
+    localStorage.setItem('checkedKanas', JSON.stringify(selected.map(group => group.title)));
+    localStorage.setItem('game-mode-practice', 'srs');
+  });
+
+  test('says so instead of "no kanji due", and Start brings in more new kanji', async () => {
+    // 10 new kanji already learned today, from another group
+    const other = groups.find(group => group.title.startsWith('N4'));
+    Object.values(other.characters).forEach(character => recordKanjiSrsAnswer(character.jp_character, 'good'));
+
+    await open('/');
+    expect(summary()).toBe(translate('en', 'menuSummarySrsMoreNew', { count: NEW_KANJI_PER_DAY }));
+    const start = document.querySelector('.game-menu-start button');
+    expect(start).toBeEnabled();
+
+    await act(async () => {
+      fireEvent.click(start);
+    });
+    expect(router.state.location.search).toBe('?mode=review');
+    expect(document.querySelector('.kanji-srs-session-count')).toHaveTextContent(`1 / ${NEW_KANJI_PER_DAY}`);
+  });
+
+  test('when every kanji is learned and none is due: when the next review is', async () => {
+    selected.forEach(group => Object.values(group.characters)
+      .forEach(character => recordKanjiSrsAnswer(character.jp_character, 'good')));
+    await open('/');
+    expect(summary()).toBe(translate('en', 'menuSummarySrsCaughtUp', {
+      when: translate('en', 'srsSummaryTomorrow'),
+      count: selected.reduce((sum, group) => sum + Object.keys(group.characters).length, 0),
+    }));
+    expect(document.querySelector('.game-menu-start a')).toBeNull();
+  });
+});
+
+test('the review summary offers more new kanji once today\'s are done', async () => {
+  const { kanaCharacters } = require('./kanaCharacters.js');
+  const { NEW_KANJI_PER_DAY } = require('./kanjiSrs.js');
+  localStorage.setItem('checkedKanas', JSON.stringify(Object.values(kanaCharacters.kanji).map(group => group.title)));
+  await open('/game?mode=review');
+  for (let round = 0; round < NEW_KANJI_PER_DAY; round++) {
+    await act(async () => {
+      fireEvent.keyDown(window, { key: 'ArrowRight' });
+    });
+  }
+  const more = document.querySelector('.srs-summary .score-button-primary');
+  expect(more).toHaveTextContent(translate('en', 'srsSummaryLearnMore', { count: NEW_KANJI_PER_DAY }));
+  await act(async () => {
+    fireEvent.click(more);
+  });
+  expect(document.querySelector('.srs-summary')).toBeNull();
+  expect(document.querySelector('.kanji-srs-session-count')).toHaveTextContent(`1 / ${NEW_KANJI_PER_DAY}`);
 });

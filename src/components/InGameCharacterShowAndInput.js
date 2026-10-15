@@ -1938,7 +1938,7 @@ export default function InGameCharacterShowAndInput() {
             {isMixupPractice && <Icon name='arrow-left-right' className='icon-leading' />}
             {isProblematicsMode ? t('gameScoreProblematics')
               : isMixupPractice ? t('gameScoreMixups')
-              : t(practiceMode === 'long' ? 'gameScoreSentences' : 'gameScoreKanas')}{onScreenScore}
+              : t({ long: 'gameScoreSentences', words: 'gameScoreWords', mixed: 'gameScoreMixed' }[practiceMode] || 'gameScoreKanas')}{onScreenScore}
             {kanaGoal !== null && <span className='in-game-score-goal'> / {kanaGoal}</span>}
           </div>
           {streak >= 3 && <div className='in-game-streak' title={t('gameStreakTitle')}><Icon name='flame' className='icon-flame icon-leading' />{streak}</div>}

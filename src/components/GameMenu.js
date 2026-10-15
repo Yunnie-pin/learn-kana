@@ -7,7 +7,7 @@ import { GAME_MODES, gamePath, ROUTES } from '../routes';
 import { getListOfKanjiWords, getWordTopic, wordInTopic } from '../practiceList.js';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences } from '../sentences.js'
-import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsSession } from '../kanjiSrs.js'
+import { addExtraNewKanji, getDueReviewCount, getNextReview, getSelectedKanjiGroupTitles, getSrsSession, NEW_KANJI_PER_DAY } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
 import { OPEN_PROGRESS_EVENT } from '../progressNavigation.js'
 import Icon from './Icon'
@@ -109,7 +109,7 @@ function getSelectionSummary() {
 }
 
 export default function GameMenu() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
   // A game that could not start comes back here with the reason
@@ -200,13 +200,32 @@ export default function GameMenu() {
   );
   let summaryText;
   let canStart = true;
+  // Kanji review: Start first allows NEW_KANJI_PER_DAY more new kanji today
+  let learnMoreNewKanji = false;
+  // "later today", "tomorrow" or the date, for when the next review comes
+  const formatWhen = (at) => {
+    const day = new Date(at);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    if (day.toDateString() === new Date().toDateString()) return t('srsSummaryToday');
+    if (day.toDateString() === tomorrow.toDateString()) return t('srsSummaryTomorrow');
+    return day.toLocaleDateString(language === 'id' ? 'id-ID' : 'en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+  };
   if (practice === 'srs') {
     // Kanji review: what the session holds (due again + new for today)
     if (kanjiGroupCount === 0) {
       summaryText = t('menuSummarySrsNoKanji');
       canStart = false;
+    } else if (srsSession.total === 0 && srsSession.unlearned > 0) {
+      // Today's new kanji are done but more are waiting: Start brings in more
+      summaryText = t('menuSummarySrsMoreNew', { count: Math.min(NEW_KANJI_PER_DAY, srsSession.unlearned) });
+      learnMoreNewKanji = true;
     } else if (srsSession.total === 0) {
-      summaryText = t('kanjiSrsNothingDue');
+      // Every kanji of the selection learned, none due: when the next ones are
+      const next = getNextReview(selectedKanjiGroups);
+      summaryText = next
+        ? t('menuSummarySrsCaughtUp', { when: formatWhen(next.at), count: next.count })
+        : t('kanjiSrsNothingDue');
       canStart = false;
     } else {
       summaryText = t('menuSummarySrs', { due: srsSession.due.length, fresh: srsSession.fresh.length });
@@ -332,7 +351,10 @@ export default function GameMenu() {
             <p className={'game-menu-summary' + (canStart ? '' : ' game-menu-summary-warning')}>{summaryText}</p>
             {canStart ? (
               <Link to={practice === 'srs' ? gamePath(GAME_MODES.review) : ROUTES.game}>
-                <button className='glowButton' onClick={handleButtonClick}><Icon name='play' className='icon-leading icon-play' />{t('menuStart')}</button>
+                <button className='glowButton' onClick={() => {
+                  if (learnMoreNewKanji) addExtraNewKanji();
+                  handleButtonClick();
+                }}><Icon name='play' className='icon-leading icon-play' />{t('menuStart')}</button>
               </Link>
             ) : (
               <button className='glowButton' disabled><Icon name='play' className='icon-leading icon-play' />{t('menuStart')}</button>

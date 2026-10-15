@@ -238,3 +238,16 @@ describe('session length per practice type', () => {
     expect(gameMode()).toEqual({ type: 'kana-selector', value: 15 });
   });
 });
+
+test('the length counts what the practice type practices', () => {
+  localStorage.setItem('game-mode-practice', 'characters');
+  localStorage.setItem('gameMode', JSON.stringify({ type: 'kana-selector', value: 10 }));
+  render(<GameModeSelector kanjiSelected={true} />);
+  const stepper = () => document.querySelector('.limit-stepper span').textContent;
+  expect(stepper()).toBe('10 characters');
+  for (const [tab, label] of [['Words', 'words'], ['Mixed', 'questions'], ['Sentences', 'sentences']]) {
+    fireEvent.click(screen.getByRole('tab', { name: tab }));
+    fireEvent.click(screen.getByRole('radio', { name: 'Count' }));
+    expect(stepper()).toBe(`5 ${label}`);
+  }
+});
