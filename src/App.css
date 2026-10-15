@@ -2039,7 +2039,6 @@ Practice / answer type segments
     margin: 0.7em auto;
   }
 
-  .game-mode-selector-segments .segmented-row.practice-mode-row,
   .game-mode-selector-segments .segmented-row.answer-mode-row {
     display: flex;
     width: 100%;
@@ -2052,21 +2051,13 @@ Practice / answer type segments
     border-radius: 16px;
   }
 
-  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-label,
   .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-label {
     padding: 0;
     text-align: center;
   }
 
-  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-control {
-    display: grid;
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2px;
-    border-radius: 12px;
-  }
+
+
 
   .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-control {
     display: grid;
@@ -2078,7 +2069,6 @@ Practice / answer type segments
     border-radius: 12px;
   }
 
-  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-option,
   .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-option {
     min-width: 0;
     padding: 0.45em 0.2em;
@@ -2110,7 +2100,6 @@ Practice / answer type segments
     justify-items: stretch;
   }
 
-  .game-mode-selector-segments .segmented-row.practice-mode-row,
   .game-mode-selector-segments .segmented-row.answer-mode-row {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -2155,7 +2144,6 @@ Practice / answer type segments
     white-space: nowrap;
   }
 
-  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-label,
   .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-label {
     width: 100%;
     min-width: 0;
@@ -2163,15 +2151,6 @@ Practice / answer type segments
     text-align: center;
   }
 
-  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-control {
-    display: grid;
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    box-sizing: border-box;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 2px;
-  }
 
   .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-control {
     display: grid;
@@ -2183,17 +2162,6 @@ Practice / answer type segments
     gap: 2px;
   }
 
-  /* The practice row has four options: keep the font small enough that even
-     the longest label ("Characters") never overflows its quarter-width cell */
-  .game-mode-selector-segments .segmented-row.practice-mode-row .segmented-option {
-    min-width: 0;
-    padding: 0.45em 0.05em;
-    font-size: clamp(0.62rem, 2.4vw, 0.8rem);
-    line-height: 1.15;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
   .game-mode-selector-segments .segmented-row.answer-mode-row .segmented-option {
     min-width: 0;
@@ -2917,19 +2885,6 @@ Session length (count / time / unlimited)
   .limit-stepper {
     justify-content: center;
   }
-}
-
-/* "Study with SRS" at the top of the Kanji tab */
-.kanji-srs-start {
-  display: flex;
-  justify-content: center;
-  margin: 0 auto 1em;
-  font-family: var(--ui-font);
-}
-
-.kanji-srs-start>p {
-  margin: 0;
-  opacity: 0.75;
 }
 
 html[data-theme='dark'] .progress-stats-weakest-button:not(.backup-panel-import) {
@@ -3824,4 +3779,166 @@ html[data-theme='dark'] .about-dialog {
   .about-dialog-close:hover {
     background: #ff9a3c26;
   }
+}
+
+/*
+##################################
+Practice tabs: the practice type comes first in the mode panel, the options
+below are the ones of that type, the on / off ones are folded
+##################################
+*/
+/* Five tabs: three on the first line, two on the second, both lines filled */
+.practice-tabs {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border-radius: 16px;
+  background-color: #00000030;
+}
+
+.practice-tab {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15em;
+  min-width: 0;
+  padding: 0.5em 0.2em;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  font-size: 0.9em;
+  line-height: 1.15;
+  cursor: var(--cursor-pointer, pointer);
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.practice-tab:nth-child(n + 4) {
+  grid-column: span 3;
+}
+
+.practice-tab > span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.practice-tab-icon {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+.practice-tab.active {
+  background-color: #ff9a3c;
+  color: #155263;
+}
+
+html[data-theme='dark'] .practice-tab.active {
+  color: #2a373d;
+}
+
+@media (hover: hover) {
+  .practice-tab:not(.active):hover {
+    background-color: #ff9a3c26;
+  }
+}
+
+.practice-tab:focus-visible {
+  outline: 2px solid #ff9a3c;
+  outline-offset: 2px;
+}
+
+.practice-description {
+  margin: 0.5em 0.3em;
+  font-family: var(--ui-font);
+  font-size: 0.9em;
+  line-height: 1.35;
+  text-align: center;
+  opacity: 0.75;
+}
+
+/* The options of the picked practice type fade in when it changes */
+.practice-panel {
+  animation: practice-panel-in 0.18s ease-out;
+}
+
+@keyframes practice-panel-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .practice-panel {
+    animation: none;
+  }
+}
+
+/* "More options": the on / off options, folded. Same card as the Length /
+   Topic rows above it, title centred like their labels */
+.more-options {
+  /* The rows above already end with their margin */
+  margin-top: 0;
+  padding: 0.5em;
+  border: 1px solid #ff9a3c25;
+  border-radius: 16px;
+  background: #00000016;
+  font-family: var(--ui-font);
+}
+
+.more-options > summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+  padding: 0.1em 0.4em;
+  list-style: none;
+  text-align: center;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.more-options > summary::-webkit-details-marker {
+  display: none;
+}
+
+.more-options-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+/* Chevron before the title: points down once open */
+.more-options-title::before {
+  content: '';
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.15s;
+}
+
+.more-options[open] .more-options-title::before {
+  transform: rotate(45deg) translate(-0.1em, -0.1em);
+}
+
+.more-options-active {
+  max-width: 100%;
+  font-size: 0.78em;
+  font-weight: normal;
+  opacity: 0.65;
+}
+
+/* The toggles fill the card: with its padding inside the width, not added to it */
+.more-options > .game-mode-selector-button-group {
+  width: 100%;
+  margin: 0.5em 0 0;
+  padding: 0;
+  box-sizing: border-box;
 }

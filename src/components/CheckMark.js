@@ -17,6 +17,7 @@ export default function CheckMark(props) {
   const handleCheckMarked = (e) => {
     // Mark the checkbox as checked
     localStorage.setItem(props.id, e.target.checked);
+    if (props.onChange) props.onChange(e.target.checked);
   }
 
   return (

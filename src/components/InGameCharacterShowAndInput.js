@@ -6,7 +6,7 @@ import { toHiragana } from 'wanakana';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
-import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
+import { getKanjiSrsProgress, getKanjiSrsStage, getNextReview, getSelectedKanjiGroupTitles, getSrsKanjiCharacters, getSrsSession, previewSrsIntervals, recordKanjiSrsAnswer, SRS_GRADES } from '../kanjiSrs.js'
 import { getCharacterOrder, getListForPractice, getListOfKanjiWords, getWordTopic, wordInTopic } from '../practiceList.js'
 import { findKanaForAnswer, getConfusionPairs, getMixupKana, getSimilarKana, MIXUP_PRACTICE_PAIRS, readConfusions, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
@@ -346,6 +346,15 @@ export default function InGameCharacterShowAndInput() {
   const removeNextListenersRef = useRef(null);
   const inGameAnswerListRef = useRef([]);
   const srsQueueRef = useRef(null);
+  // Kanji review progress: cards graded / cards in the session (a forgotten
+  // card comes back, so it counts again), what the card on screen is (new,
+  // review or forgotten earlier in the session), and what the session did,
+  // for its summary
+  const [srsProgress, setSrsProgress] = useState({ done: 0, total: 0 });
+  const [srsCardKind, setSrsCardKind] = useState('review');
+  const srsForgottenRef = useRef(new Set());
+  const srsResultRef = useRef({ reviewed: 0, forgot: 0, promoted: 0, learned: 0 });
+  const [srsResult, setSrsResult] = useState(null);
   const srsFailedRef = useRef(false);
   // A typed mix-up ("shi" for ツ) is recorded once per character shown
   const confusionRecordedRef = useRef(false);
@@ -369,7 +378,10 @@ export default function InGameCharacterShowAndInput() {
   // When this game started: the summary offers to practice what was mixed up since
   const [gameStartedAt] = useState(() => Date.now());
   const sessionMode = new URLSearchParams(location.search).get('mode');
-  const isSrsPractice = sessionMode === GAME_MODES.review;
+  // A review: ?mode=review, or a plain game while the menu's practice is the
+  // kanji review (e.g. started from a notification)
+  const isSrsPractice = sessionMode === GAME_MODES.review ||
+    (!sessionMode && !location.state?.characters && localStorage.getItem('game-mode-practice') === 'srs');
   const isMixupPractice = sessionMode === GAME_MODES.mixups;
 
   // Mix-ups are practiced from every kana, whatever groups are selected
@@ -385,8 +397,10 @@ export default function InGameCharacterShowAndInput() {
   // SRS reviews are always answered by typing, whatever is picked in the menu
   const useTouchAnswers = !isSrsPractice && localStorage.getItem("game-mode-touch") === "true";
   const selectedKanjiGroups = useMemo(() => getSelectedKanjiGroupTitles(), []);
-  const srsKanjiOverview = useMemo(
-    () => isSrsPractice ? getSrsKanjiCharacters(selectedKanjiGroups) : null,
+  // A review session: the kanji due again, then the new kanji left for today
+  // (NEW_KANJI_PER_DAY), see getSrsSession
+  const srsSession = useMemo(
+    () => isSrsPractice ? getSrsSession(selectedKanjiGroups) : null,
     [isSrsPractice, selectedKanjiGroups]
   );
 
@@ -398,13 +412,18 @@ export default function InGameCharacterShowAndInput() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   let charactersToShow = useMemo(
     () => isSrsPractice
-      ? srsKanjiOverview.due
+      ? [...srsSession.due, ...srsSession.fresh]
       : getListForPractice(characterGroupsToShow, practiceMode),
-    [isSrsPractice, srsKanjiOverview, characterGroupsToShow, practiceMode]
+    [isSrsPractice, srsSession, characterGroupsToShow, practiceMode]
   );
   if (isSrsPractice && srsQueueRef.current === null) {
-    srsQueueRef.current = [...charactersToShow].sort(() => Math.random() - 0.5);
+    srsQueueRef.current = [...charactersToShow];
   }
+  // The session size, once (the queue itself shrinks as cards are shown)
+  useEffect(() => {
+    if (isSrsPractice) setSrsProgress({ done: 0, total: charactersToShow.length });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSrsPractice]);
 
   // Mix-up practice: only the kana of the most frequent mix-ups, or of the
   // pairs passed with the navigation (one pair from Learning Progress, or the
@@ -724,6 +743,7 @@ export default function InGameCharacterShowAndInput() {
 
     if (!pickedElement) {
       if (isSrsPractice) {
+        setSrsResult({ ...srsResultRef.current, next: getNextReview(selectedKanjiGroups) });
         setUserGameScoreWindowVisible(true);
         return;
       }
@@ -743,6 +763,13 @@ export default function InGameCharacterShowAndInput() {
     srsFailedRef.current = false;
     confusionRecordedRef.current = false;
     srsCurrentCardRef.current = isSrsPractice ? pickedElement : null;
+    if (isSrsPractice) {
+      setSrsCardKind(
+        srsForgottenRef.current.has(pickedElement.jp_character) ? 'relearn'
+          : getKanjiSrsProgress()[pickedElement.jp_character] ? 'review'
+          : 'new'
+      );
+    }
     setOnScreenCharacterType(pickedElement.type);
 
     // Update totalTimesShown
@@ -904,14 +931,37 @@ export default function InGameCharacterShowAndInput() {
     document.querySelector('#in-game-next-button')?.classList.toggle('hidden-element', !showNextButton);
   }
 
-  function rateSrsCard(remembered) {
+  // Grades the kanji on screen: "again" (forgot), "hard", "good" or "easy"
+  // (true / false from a swipe: good / again). A forgotten kanji comes back at
+  // the end of the session, until it is remembered.
+  function rateSrsCard(grade) {
     const card = srsCurrentCardRef.current;
     if (!isSrsPractice || !card || waitingForKanjiNextRef.current) return;
+    const resolvedGrade = grade === true ? 'good' : grade === false ? 'again' : grade;
+    const remembered = resolvedGrade !== 'again';
 
-    recordKanjiSrsAnswer(card.jp_character, remembered);
+    // What this card does for the session summary: stages go new ->
+    // learning -> young -> mature; moving up from learning or young counts
+    const STAGES = ['new', 'learning', 'young', 'mature'];
+    const stageBefore = getKanjiSrsStage(getKanjiSrsProgress()[card.jp_character]);
+    recordKanjiSrsAnswer(card.jp_character, resolvedGrade);
+    const stageAfter = getKanjiSrsStage(getKanjiSrsProgress()[card.jp_character]);
+    const result = srsResultRef.current;
+    result.reviewed++;
+    if (!remembered) result.forgot++;
+    if (stageBefore === 'new') result.learned++;
+    else if (STAGES.indexOf(stageAfter) > STAGES.indexOf(stageBefore)) result.promoted++;
+
     updateCurrentGameStats(remembered ? 'correct' : 'wrong');
+    setSrsProgress(progress => ({
+      done: progress.done + 1,
+      total: progress.total + (remembered ? 0 : 1),
+    }));
     if (remembered) {
       setScore(score => score + 1);
+    } else {
+      srsForgottenRef.current.add(card.jp_character);
+      srsQueueRef.current?.push(card);
     }
 
     srsCurrentCardRef.current = null;
@@ -959,10 +1009,12 @@ export default function InGameCharacterShowAndInput() {
   React.useEffect(() => {
     const gameMode = JSON.parse(localStorage.getItem("gameMode"));
 
-    // Initialize timer if in time-selector mode
-    if (gameMode && gameMode.type === "time-selector" && gameMode.value !== -1) {
+    // Initialize timer if in time-selector mode (a kanji review has no time
+    // limit: its session is set by the schedule)
+    if (!isSrsPractice && gameMode && gameMode.type === "time-selector" && gameMode.value !== -1) {
       setRemainingTime(gameMode.value * 60); // Convert minutes to seconds
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
@@ -1464,6 +1516,32 @@ export default function InGameCharacterShowAndInput() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Keyboard in kanji reviews: Space / Enter turns the card over, 1-4 grade it
+  // (forgot / hard / good / easy), ← forgot, → remembered, Esc ends the review
+  useEffect(() => {
+    if (!isSrsPractice) return undefined;
+    const handleSrsKeyDown = (event) => {
+      if (scoreWindowVisibleRef.current || event.ctrlKey || event.metaKey || event.altKey) return;
+      if (!srsCurrentCardRef.current || srsCardSwipeDirection) return;
+      if (event.key === ' ' || event.key === 'Enter') {
+        event.preventDefault();
+        setSrsCardRevealed(revealed => !revealed);
+      } else if (event.key === 'ArrowLeft') {
+        rateSrsCard('again');
+      } else if (event.key === 'ArrowRight') {
+        rateSrsCard('good');
+      } else if (/^[1-4]$/.test(event.key) && srsCardRevealed) {
+        rateSrsCard(SRS_GRADES[Number(event.key) - 1]);
+      } else if (event.key === 'Escape') {
+        setUserGameScoreWindowVisible(true);
+      }
+    };
+    window.addEventListener('keydown', handleSrsKeyDown);
+    return () => window.removeEventListener('keydown', handleSrsKeyDown);
+    // rateSrsCard reads the current card from refs; the effect follows the card state
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSrsPractice, srsCardRevealed, srsCardSwipeDirection]);
+
   // Kana and words are read aloud; a lone kanji is skipped since the voice can't know which reading is asked
   function speakCorrectAnswer() {
     if (currentCharacterTypeRef.current === 'kanji') return;
@@ -1701,6 +1779,34 @@ export default function InGameCharacterShowAndInput() {
     </>
   }
 
+  // Grade buttons, once the card is turned over: each says when the kanji
+  // comes back with that grade (keys 1-4, or ← / → for forgot / remembered)
+  const formatSrsInterval = (milliseconds) => {
+    const minutes = Math.round(milliseconds / 60000);
+    if (minutes < 60) return t('srsIntervalMinutes', { count: minutes });
+    const days = Math.round(milliseconds / 86400000);
+    if (days < 31) return t('srsIntervalDays', { count: days });
+    return t('srsIntervalMonths', { count: Math.round(days / 30) });
+  };
+  const srsIntervals = isSrsPractice && srsCardRevealed && onScreenKana ? previewSrsIntervals(onScreenKana) : null;
+  // The row keeps its room while the card is face up, so nothing moves when it turns over
+  const srsGradeButtons = isSrsPractice && !userGameScoreWindowVisible ? (
+    <div className='kanji-srs-grades' role='group' aria-label={t('srsGradeLabel')}>
+      {srsIntervals && SRS_GRADES.map((grade, index) => (
+        <button
+          key={grade}
+          type='button'
+          className={`kanji-srs-grade grade-${grade}`}
+          onClick={() => rateSrsCard(grade)}
+        >
+          <span className='kanji-srs-grade-name'>{t({ again: 'srsGradeAgain', hard: 'srsGradeHard', good: 'srsGradeGood', easy: 'srsGradeEasy' }[grade])}</span>
+          <span className='kanji-srs-grade-interval'>{formatSrsInterval(srsIntervals[grade])}</span>
+          <span className='kanji-srs-grade-key label-keyboard'>{index + 1}</span>
+        </button>
+      ))}
+    </div>
+  ) : null;
+
   const kanjiSrsCardBack = (
     <div className='kanji-srs-card-back'>
       <div className='kanji-srs-card-meaning'>{onScreenWordMeaning}</div>
@@ -1866,7 +1972,14 @@ export default function InGameCharacterShowAndInput() {
       <div className='in-game-game-screen' onClick={focusTextInput}>
 
         <div className='in-game-kana-area'>
-          {isSrsPractice ? (
+          {isSrsPractice ? (<>
+            <div className='kanji-srs-session' aria-live='polite'>
+              <span className={`kanji-srs-kind kind-${srsCardKind}`}>{t({ new: 'srsKindNew', review: 'srsKindReview', relearn: 'srsKindRelearn' }[srsCardKind])}</span>
+              <div className='kanji-srs-session-bar'>
+                <div className='kanji-srs-session-fill' style={{ width: `${srsProgress.total ? Math.min(1, srsProgress.done / srsProgress.total) * 100 : 0}%` }} />
+              </div>
+              <span className='kanji-srs-session-count'>{Math.min(srsProgress.done + 1, srsProgress.total)} / {srsProgress.total}</span>
+            </div>
             <div
               id='in-game-kana-character'
               className={`in-game-kana-character kanji-srs-flip-card${isMacOS && localStorage.getItem("game-mode-random-fonts") !== "true" ? ' font-forceDefault' : ''}`}
@@ -1893,6 +2006,15 @@ export default function InGameCharacterShowAndInput() {
                 rateSrsCard(srsCardSwipeDirection === 'right');
               }}
             >
+              {/* While the card is dragged: forgot on the left, remembered on the right */}
+              {srsCardDragOffset !== 0 && (
+                <span
+                  className={`kanji-srs-swipe-hint ${srsCardDragOffset < 0 ? 'hint-again' : 'hint-good'}`}
+                  style={{ opacity: Math.min(1, Math.abs(srsCardDragOffset) / 60) }}
+                >
+                  {srsCardDragOffset < 0 ? t('srsGradeAgain') : t('srsGradeGood')}
+                </span>
+              )}
               <div className={`kanji-srs-flip-inner${srsCardRevealed ? ' is-flipped' : ''}`}>
                 <div className='kanji-srs-flip-face kanji-srs-flip-front'>
                   <span>{onScreenKana}</span>
@@ -1902,7 +2024,8 @@ export default function InGameCharacterShowAndInput() {
                 </div>
               </div>
             </div>
-          ) : <>{sentencePrompt}<div
+            {srsGradeButtons}
+          </>) : <>{sentencePrompt}<div
             id='in-game-kana-character'
             onClick={onClickChangeFontToDefault}
             className={`in-game-kana-character${isMacOS && localStorage.getItem("game-mode-random-fonts") !== "true" ? ' font-forceDefault' : ''}`}
@@ -2085,6 +2208,7 @@ export default function InGameCharacterShowAndInput() {
         visible={userGameScoreWindowVisible}
         bestStreak={bestStreak}
         gameStartedAt={gameStartedAt}
+        srsResult={isSrsPractice ? (srsResult || { ...srsResultRef.current, next: getNextReview(selectedKanjiGroups) }) : null}
       />
     </>
   )

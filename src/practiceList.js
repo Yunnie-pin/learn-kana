@@ -136,7 +136,7 @@ export function getListForPractice(charGroups, mode) {
 export function getStoredPracticeMode() {
   const stored = localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem('game-mode-word') === 'true' ? 'words' : 'characters');
-  // Older "kanji" / "srs" values count as "characters", like in GameModeSelector
+  // Older "kanji" values, and the kanji review ("srs", its own session), count as "characters"
   return ['words', 'mixed'].includes(stored) ? stored : 'characters';
 }
 

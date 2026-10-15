@@ -71,7 +71,7 @@ export default function UserGameScoreWindow(props) {
     const playAgain = useCallback(() => {
         navigate(`${ROUTES.game}${location.search}`, { replace: true });
     }, [navigate, location.search]);
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
 
     // Tapping a chip reads it aloud (when the browser has speech synthesis)
     const listenProps = (text) => isSpeechSupported() ? {
@@ -233,6 +233,44 @@ export default function UserGameScoreWindow(props) {
 
     if (!props.visible) {
         return <></>;
+    }
+
+    // Kanji review: what the session did and when the next one comes
+    if (props.srsResult) {
+        const result = props.srsResult;
+        let nextText = t('srsSummaryNoNext');
+        if (result.next) {
+            const day = new Date(result.next.at);
+            const today = new Date();
+            const tomorrow = new Date();
+            tomorrow.setDate(today.getDate() + 1);
+            const sameDay = (a, b) => a.toDateString() === b.toDateString();
+            const when = sameDay(day, today) ? t('srsSummaryToday')
+                : sameDay(day, tomorrow) ? t('srsSummaryTomorrow')
+                : day.toLocaleDateString(language === 'id' ? 'id-ID' : 'en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+            nextText = t('srsSummaryNext', { when, count: result.next.count });
+        }
+        return (
+            <div className='inGameUserGameScoreBackground'>
+                <div className='inGameUserGameScoreWindow srs-summary'>
+                    <div className='inGameUserGameScoreWindow_header'>
+                        <h1>{result.reviewed}</h1>
+                        <h2>{t('srsSummaryTitle')}</h2>
+                    </div>
+                    <ul className='srs-summary-stats'>
+                        <li className='stat-learned'><strong>{result.learned}</strong>{t('srsSummaryLearned')}</li>
+                        <li className='stat-promoted'><strong>{result.promoted}</strong>{t('srsSummaryPromoted')}</li>
+                        <li className='stat-forgot'><strong>{result.forgot}</strong>{t('srsSummaryForgot')}</li>
+                    </ul>
+                    <p className='srs-summary-next'><Icon name='bell' className='icon-leading' />{nextText}</p>
+                    <div className='inGameUserGameScoreWindow_buttons'>
+                        <button onClick={goToMainMenu}><Icon name='home' className='icon-leading' />{t('summaryBackToMenu')}</button>
+                        <button className='score-button-primary' onClick={playAgain}><Icon name='rotate-ccw' className='icon-leading' />{t('srsSummaryAgain')}</button>
+                    </div>
+                    <div className='score-shortcuts label-keyboard'>{t('summaryShortcuts')}</div>
+                </div>
+            </div>
+        );
     }
 
     let comparisonText = null;

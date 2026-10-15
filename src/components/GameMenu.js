@@ -7,7 +7,7 @@ import { GAME_MODES, gamePath, ROUTES } from '../routes';
 import { getListOfKanjiWords, getWordTopic, wordInTopic } from '../practiceList.js';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences } from '../sentences.js'
-import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
+import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsSession } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
 import { OPEN_PROGRESS_EVENT } from '../progressNavigation.js'
 import Icon from './Icon'
@@ -179,16 +179,19 @@ export default function GameMenu() {
   const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount } = getSelectionSummary();
   const storedPractice = localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem('game-mode-word') === 'true' ? 'words' : 'characters');
-  // Older "kanji" / "srs" values count as "characters", like in GameModeSelector
-  const practice = ['words', 'mixed', 'long'].includes(storedPractice) ? storedPractice : 'characters';
+  // Older "kanji" values count as "characters", like in GameModeSelector
+  const practice = ['words', 'mixed', 'long', 'srs'].includes(storedPractice) ? storedPractice : 'characters';
   const selectedKanjiGroups = useMemo(
     () => getSelectedKanjiGroupTitles(),
     [settingsVersion]
   );
-  // SRS session for the Kanji tab: due kanji including ones never practiced
-  const srsDueCount = useMemo(
-    () => getSrsKanjiCharacters(selectedKanjiGroups).due.length,
-    [selectedKanjiGroups]
+  // SRS session for the Kanji tab: the kanji due again plus the new kanji
+  // left for today, exactly what the review will show
+  const srsSession = useMemo(
+    () => getSrsSession(selectedKanjiGroups),
+    // settingsVersion: recounted every minute and when the selection changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [selectedKanjiGroups, settingsVersion]
   );
   // Kanji practiced before that are due again, offered in the banner at the top
   const dueReviewCount = useMemo(
@@ -197,7 +200,18 @@ export default function GameMenu() {
   );
   let summaryText;
   let canStart = true;
-  if (practice === 'words' && wordCount === 0) {
+  if (practice === 'srs') {
+    // Kanji review: what the session holds (due again + new for today)
+    if (kanjiGroupCount === 0) {
+      summaryText = t('menuSummarySrsNoKanji');
+      canStart = false;
+    } else if (srsSession.total === 0) {
+      summaryText = t('kanjiSrsNothingDue');
+      canStart = false;
+    } else {
+      summaryText = t('menuSummarySrs', { due: srsSession.due.length, fresh: srsSession.fresh.length });
+    }
+  } else if (practice === 'words' && wordCount === 0) {
     summaryText = t('menuSummaryNoWords');
     canStart = false;
   } else if (practice === 'mixed' && kanaCount + kanjiCount + wordCount === 0) {
@@ -303,17 +317,6 @@ export default function GameMenu() {
           <KanaGroup groupToShow="katakana" onSelectionChange={refreshSummary} />
         </div>
         <div className="kana-group-kanji-block">
-          {kanjiCount > 0 && (
-            <div className='kanji-srs-start'>
-              {srsDueCount > 0 ? (
-                <Link to={gamePath(GAME_MODES.review)} className='srs-review-banner-button'>
-                  {t('srsStartButton', { count: srsDueCount })}
-                </Link>
-              ) : (
-                <p>{t('kanjiSrsNothingDue')}</p>
-              )}
-            </div>
-          )}
           <KanaGroup groupToShow="kanji" onSelectionChange={refreshSummary} />
         </div>
       </div>
@@ -328,7 +331,7 @@ export default function GameMenu() {
           <div className='game-menu-start'>
             <p className={'game-menu-summary' + (canStart ? '' : ' game-menu-summary-warning')}>{summaryText}</p>
             {canStart ? (
-              <Link to={ROUTES.game}>
+              <Link to={practice === 'srs' ? gamePath(GAME_MODES.review) : ROUTES.game}>
                 <button className='glowButton' onClick={handleButtonClick}><Icon name='play' className='icon-leading icon-play' />{t('menuStart')}</button>
               </Link>
             ) : (

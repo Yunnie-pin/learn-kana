@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, createEvent, fireEvent, render, screen } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { appRoutes } from './router';
 import { LanguageProvider } from './i18n';
@@ -506,5 +506,193 @@ describe('kanji readings with kanji words', () => {
   test('off: no readings', async () => {
     await answerKanjiWord(false);
     expect(document.querySelector('.kanji-word-reading')).toBeNull();
+  });
+});
+
+describe('kanji review (SRS)', () => {
+  const { kanaCharacters } = require('./kanaCharacters.js');
+  const { NEW_KANJI_PER_DAY } = require('./kanjiSrs.js');
+  const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
+  const card = () => document.querySelector('.kanji-srs-flip-front span')?.textContent;
+  const progress = () => JSON.parse(localStorage.getItem('kanji-srs-progress') || '{}');
+  const press = async (key) => {
+    await act(async () => {
+      fireEvent.keyDown(window, { key });
+    });
+  };
+
+  beforeEach(() => {
+    localStorage.setItem('checkedKanas', JSON.stringify(kanjiGroups));
+  });
+
+  test('a first review brings in only the new kanji of the day, not all 300', async () => {
+    localStorage.setItem('game-mode-practice', 'srs');
+    await open('/');
+    expect(document.querySelector('.game-menu-summary'))
+      .toHaveTextContent(translate('en', 'menuSummarySrs', { due: 0, fresh: NEW_KANJI_PER_DAY }));
+
+    cleanup();
+    await open('/game?mode=review');
+    const seen = new Set();
+    for (let round = 0; round < NEW_KANJI_PER_DAY; round++) {
+      seen.add(card());
+      await press('ArrowRight');
+    }
+    expect(seen.size).toBe(NEW_KANJI_PER_DAY);
+    // The session is over: the summary
+    expect(document.querySelector('.score-button-primary')).toBeInTheDocument();
+  });
+
+  test('keyboard: Space turns the card over, 1-4 grade it', async () => {
+    await open('/game?mode=review');
+    const first = card();
+    expect(document.querySelector('.kanji-srs-grade')).toBeNull();
+
+    await press(' ');
+    expect(document.querySelector('.kanji-srs-flip-inner')).toHaveClass('is-flipped');
+    const grades = [...document.querySelectorAll('.kanji-srs-grade')];
+    expect(grades.map(button => button.querySelector('.kanji-srs-grade-name').textContent))
+      .toEqual(['Forgot', 'Hard', 'Good', 'Easy']);
+    // Each says when the kanji comes back
+    expect(grades[0]).toHaveTextContent('10 min');
+    expect(grades[3]).toHaveTextContent('4 days');
+
+    await press('4');
+    expect(progress()[first].intervalDays).toBe(4);
+    expect(card()).not.toBe(first);
+  });
+
+  test('a forgotten kanji comes back at the end of the session', async () => {
+    await open('/game?mode=review');
+    const forgotten = card();
+    await press('ArrowLeft');
+    expect(progress()[forgotten].lapses).toBe(1);
+
+    const shown = [];
+    for (let round = 0; round < NEW_KANJI_PER_DAY; round++) {
+      shown.push(card());
+      await press('ArrowRight');
+    }
+    // The other new kanji first, then the forgotten one again
+    expect(shown[shown.length - 1]).toBe(forgotten);
+    expect(progress()[forgotten].repetitions).toBe(1);
+  });
+
+  test('the grade buttons work like the keys', async () => {
+    await open('/game?mode=review');
+    const first = card();
+    fireEvent.click(document.querySelector('.kanji-srs-flip-card'));
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: /Hard/ }));
+    });
+    expect(progress()[first].repetitions).toBe(1);
+    expect(card()).not.toBe(first);
+  });
+});
+
+describe('kanji review in the Practice options', () => {
+  const { kanaCharacters } = require('./kanaCharacters.js');
+  const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
+
+  test('Practice = Kanji review starts a review from the Start button', async () => {
+    localStorage.setItem('checkedKanas', JSON.stringify(kanjiGroups));
+    await open('/');
+    fireEvent.click(screen.getByRole('tab', { name: translate('en', 'practiceSrs') }));
+    expect(localStorage.getItem('game-mode-practice')).toBe('srs');
+    // Typing / multiple choice and the readings option don't apply to the cards
+    expect(screen.queryByRole('radiogroup', { name: 'Answer by' })).toBeNull();
+    expect(document.querySelector('#game-mode-kanji-readings')).toBeNull();
+    // The Start button goes to the review
+    expect(document.querySelector('.game-menu-start a').getAttribute('href')).toBe('/game?mode=review');
+    // No separate review button in the Kanji tab any more
+    expect(document.querySelector('.kanji-srs-start')).toBeNull();
+  });
+
+  test('without a kanji group there is nothing to review', async () => {
+    localStorage.setItem('game-mode-practice', 'srs');
+    await open('/');
+    expect(document.querySelector('.game-menu-summary')).toHaveTextContent(translate('en', 'menuSummarySrsNoKanji'));
+    expect(document.querySelector('.game-menu-start a')).toBeNull();
+  });
+
+  test('a plain game while the practice is the kanji review is a review', async () => {
+    localStorage.setItem('checkedKanas', JSON.stringify(kanjiGroups));
+    localStorage.setItem('game-mode-practice', 'srs');
+    await open('/game');
+    expect(document.querySelector('.kanji-srs-flip-card')).toBeInTheDocument();
+  });
+});
+
+describe('kanji review screen', () => {
+  const { kanaCharacters } = require('./kanaCharacters.js');
+  const { NEW_KANJI_PER_DAY } = require('./kanjiSrs.js');
+  const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
+  const card = () => document.querySelector('.kanji-srs-flip-front span')?.textContent;
+  const count = () => document.querySelector('.kanji-srs-session-count').textContent;
+  const kind = () => document.querySelector('.kanji-srs-kind').textContent;
+  const press = async (key) => {
+    await act(async () => {
+      fireEvent.keyDown(window, { key });
+    });
+  };
+
+  beforeEach(() => {
+    localStorage.setItem('checkedKanas', JSON.stringify(kanjiGroups));
+  });
+
+  test('shows how far the session is and what the card is', async () => {
+    await open('/game?mode=review');
+    expect(count()).toBe(`1 / ${NEW_KANJI_PER_DAY}`);
+    expect(kind()).toBe(translate('en', 'srsKindNew'));
+
+    const forgotten = card();
+    await press('ArrowLeft');
+    // A forgotten card comes back: one more card in the session
+    expect(count()).toBe(`2 / ${NEW_KANJI_PER_DAY + 1}`);
+    for (let round = 1; round < NEW_KANJI_PER_DAY; round++) {
+      await press('ArrowRight');
+    }
+    expect(card()).toBe(forgotten);
+    expect(kind()).toBe(translate('en', 'srsKindRelearn'));
+  });
+
+  test('the summary says what the review did and when the next one is', async () => {
+    await open('/game?mode=review');
+    await press('ArrowLeft');
+    for (let round = 0; round < NEW_KANJI_PER_DAY; round++) {
+      await press('ArrowRight');
+    }
+    const summary = document.querySelector('.srs-summary');
+    expect(summary).toBeInTheDocument();
+    // 11 cards graded: 10 new kanji (one forgotten, then remembered)
+    expect(summary.querySelector('h1')).toHaveTextContent(String(NEW_KANJI_PER_DAY + 1));
+    expect(summary.querySelector('.stat-learned strong')).toHaveTextContent(String(NEW_KANJI_PER_DAY));
+    expect(summary.querySelector('.stat-forgot strong')).toHaveTextContent('1');
+    // Everything learned comes back tomorrow (1 day)
+    expect(summary.querySelector('.srs-summary-next'))
+      .toHaveTextContent(translate('en', 'srsSummaryNext', { when: translate('en', 'srsSummaryTomorrow'), count: NEW_KANJI_PER_DAY }));
+  });
+
+  test('dragging the card says which way means what', async () => {
+    Element.prototype.setPointerCapture = Element.prototype.setPointerCapture || (() => {});
+    await open('/game?mode=review');
+    const cardElement = document.querySelector('.kanji-srs-flip-card');
+    expect(document.querySelector('.kanji-srs-swipe-hint')).toBeNull();
+
+    // jsdom has no PointerEvent: give the events their position by hand
+    const pointer = (type, clientX) => {
+      const event = createEvent[type](cardElement, { pointerId: 1 });
+      Object.defineProperty(event, 'clientX', { value: clientX });
+      fireEvent(cardElement, event);
+    };
+    pointer('pointerDown', 200);
+    pointer('pointerMove', 290);
+    expect(document.querySelector('.kanji-srs-swipe-hint')).toHaveTextContent(translate('en', 'srsGradeGood'));
+    expect(document.querySelector('.kanji-srs-swipe-hint').style.opacity).toBe('1');
+
+    pointer('pointerMove', 170);
+    const hint = document.querySelector('.kanji-srs-swipe-hint');
+    expect(hint).toHaveTextContent(translate('en', 'srsGradeAgain'));
+    expect(Number(hint.style.opacity)).toBeCloseTo(0.5);
   });
 });

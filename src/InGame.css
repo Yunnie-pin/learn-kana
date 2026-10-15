@@ -267,6 +267,67 @@ html.in-game-scroll-lock body {
   box-shadow: 0.4rem 0.5rem 1.5rem #0c354244;
 }
 
+/* Room above the card for the session progress and under it for the grade
+   buttons; the swipe hints are placed in the card */
+.kanji-srs-flip-card {
+  position: relative;
+  height: min(62vh, 35rem);
+}
+
+.kanji-srs-grades {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+  width: min(90vw, 34rem);
+  min-height: 3.6rem;
+  margin-top: 0.9rem;
+}
+
+.kanji-srs-grade {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  padding: 0.45rem 0.25rem;
+  border: 2px solid currentColor;
+  border-radius: 0.8rem;
+  background: transparent;
+  font-family: var(--ui-font);
+  cursor: var(--cursor-pointer, pointer);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.kanji-srs-grade-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.kanji-srs-grade-interval {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.kanji-srs-grade-key {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.45rem;
+  font-size: 0.7rem;
+  opacity: 0.55;
+}
+
+.kanji-srs-grade.grade-again { color: #f87171; }
+.kanji-srs-grade.grade-hard { color: #fbbf24; }
+.kanji-srs-grade.grade-good { color: #4ade80; }
+.kanji-srs-grade.grade-easy { color: #22d3ee; }
+
+@media (hover: hover) {
+  .kanji-srs-grade:hover {
+    background: #ffffff14;
+  }
+}
+
 .kanji-srs-flip-inner {
   position: relative;
   width: 100%;
@@ -1320,4 +1381,109 @@ Summary icons
   .score-new-record {
     animation: none;
   }
+}
+
+/* Kanji review: progress of the session and what the card on screen is */
+.kanji-srs-session {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: min(90vw, 34rem);
+  margin-bottom: 0.7rem;
+  font-family: var(--ui-font);
+}
+
+.kanji-srs-kind {
+  flex: none;
+  padding: 0.1rem 0.6rem;
+  border-radius: 50em;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.kanji-srs-kind.kind-new { background: #22d3ee26; color: #22d3ee; }
+.kanji-srs-kind.kind-review { background: #ff9a3c26; color: #ff9a3c; }
+.kanji-srs-kind.kind-relearn { background: #f8717126; color: #f87171; }
+
+.kanji-srs-session-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: #ff9a3c26;
+  overflow: hidden;
+}
+
+.kanji-srs-session-fill {
+  height: 100%;
+  background: #ff9a3c;
+  transition: width 0.25s ease-out;
+}
+
+.kanji-srs-session-count {
+  flex: none;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* While the card is dragged: forgot (left) / remembered (right) */
+.kanji-srs-swipe-hint {
+  position: absolute;
+  top: 1rem;
+  z-index: 2;
+  padding: 0.2rem 0.8rem;
+  border: 3px solid currentColor;
+  border-radius: 0.6rem;
+  font-family: var(--ui-font);
+  font-size: 1.4rem;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.kanji-srs-swipe-hint.hint-again {
+  right: 1rem;
+  color: #f87171;
+  transform: rotate(8deg);
+}
+
+.kanji-srs-swipe-hint.hint-good {
+  left: 1rem;
+  color: #4ade80;
+  transform: rotate(-8deg);
+}
+
+/* Summary of a kanji review */
+.srs-summary-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 0.5rem 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--ui-font);
+  text-align: center;
+}
+
+.srs-summary-stats li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.6rem 0.3rem;
+  border-radius: 0.8rem;
+  background: #00000020;
+  font-size: 0.85rem;
+}
+
+.srs-summary-stats strong {
+  font-size: 1.6rem;
+}
+
+.srs-summary-stats .stat-learned strong { color: #22d3ee; }
+.srs-summary-stats .stat-promoted strong { color: #4ade80; }
+.srs-summary-stats .stat-forgot strong { color: #f87171; }
+
+.srs-summary-next {
+  margin: 0.4rem 0 0.2rem;
+  font-family: var(--ui-font);
+  text-align: center;
+  opacity: 0.9;
 }
