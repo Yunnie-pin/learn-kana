@@ -1,13 +1,15 @@
 import { isKana, isRomaji, toHiragana, toKatakana } from 'wanakana';
 import { kanaCharacters } from './kanaCharacters.js';
 import { getListOfKanjiWords } from './practiceList.js';
+import { sentences } from './sentences.js';
 
 /* The Dictionary tab: every kana, kanji and word the app teaches, in one
  * list, with a search over the Japanese, the romaji and both meanings.
  *
  * Entry: { id, type: 'kana' | 'kanji' | 'word', jp, reading (kana, words
  * only when it differs from jp), romaji: [], meaning, meaningId, and
- * script (kana), level / onyomi / kunyomi / usage (kanji) }
+ * script / row / vowel (kana), level / onyomi / kunyomi / usage (kanji),
+ * tags (words: their topics) }
  */
 let entries = null;
 
@@ -23,9 +25,18 @@ export function getDictionaryEntries() {
   };
 
   for (const script of ['hiragana', 'katakana']) {
-    for (const group of Object.values(kanaCharacters[script])) {
-      for (const character of Object.values(group.characters)) {
-        add({ type: 'kana', script, jp: character.jp_character, romaji: character.romanji });
+    for (const [groupKey, group] of Object.entries(kanaCharacters[script])) {
+      for (const [vowel, character] of Object.entries(group.characters)) {
+        // row / vowel: its place in the gojūon table (ん has a row of its own)
+        const isN = /^[んン]$/.test(character.jp_character);
+        add({
+          type: 'kana',
+          script,
+          jp: character.jp_character,
+          romaji: character.romanji,
+          row: isN ? 'nn' : groupKey,
+          vowel: isN ? 'a' : vowel,
+        });
       }
     }
   }
@@ -55,6 +66,7 @@ export function getDictionaryEntries() {
       romaji: word.romanji,
       meaning: word.meaning,
       meaningId: word.meaning_id,
+      tags: word.tags || [],
     });
   }
   // Kanji vocabulary: read with the first romaji, written in hiragana
@@ -66,9 +78,68 @@ export function getDictionaryEntries() {
       romaji: word.romanji,
       meaning: word.meaning,
       meaningId: word.meaning_id,
+      tags: word.tags || [],
     });
   }
   return entries;
+}
+
+const KANJI = /[㐀-䶿一-鿿]/;
+export const isKanji = (character) => KANJI.test(character);
+
+// The kanji entry of a character, when the app teaches it
+let kanjiById = null;
+export function getKanjiEntry(character) {
+  if (!kanjiById) {
+    kanjiById = new Map(getDictionaryEntries().filter(entry => entry.type === 'kanji').map(entry => [entry.jp, entry]));
+  }
+  return kanjiById.get(character) || null;
+}
+
+// The topics of the words, most used first
+let wordTopics = null;
+export function getWordTopics() {
+  if (!wordTopics) {
+    const counts = new Map();
+    for (const entry of getDictionaryEntries()) {
+      for (const tag of entry.tags || []) counts.set(tag, (counts.get(tag) || 0) + 1);
+    }
+    wordTopics = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([tag]) => tag);
+  }
+  return wordTopics;
+}
+
+// "days_of_week" -> "Days of week"
+export const topicLabel = (tag) => tag === 'it' ? 'IT' : (tag.charAt(0).toUpperCase() + tag.slice(1)).replace(/_/g, ' ');
+
+// Up to `count` sentences of the app that use a kanji or a word, shortest
+// first. Short kana words (いい, ここ) would be found inside other words: a
+// word needs a kanji or at least 3 kana.
+const sentencesByEntry = new Map();
+export function getExampleSentences(entry, count = 2) {
+  if (entry.type === 'kana') return [];
+  if (entry.type === 'word' && ![...entry.jp].some(isKanji) && [...entry.jp].length < 3) return [];
+  if (!sentencesByEntry.has(entry.id)) {
+    sentencesByEntry.set(entry.id, sentences
+      .filter(sentence => sentence.jp_character.includes(entry.jp))
+      .sort((a, b) => a.jp_character.length - b.jp_character.length));
+  }
+  return sentencesByEntry.get(entry.id).slice(0, count);
+}
+
+// The gojūon table of a script: rows of the 5 vowels (null: no kana there)
+export const KANA_VOWELS = ['a', 'i', 'u', 'e', 'o'];
+export function getKanaTable(script) {
+  const rows = new Map();
+  for (const entry of getDictionaryEntries()) {
+    if (entry.type !== 'kana' || entry.script !== script) continue;
+    if (!rows.has(entry.row)) rows.set(entry.row, Object.fromEntries(KANA_VOWELS.map(vowel => [vowel, null])));
+    rows.get(entry.row)[entry.vowel] = entry;
+  }
+  // ん after わ, before the dakuten rows
+  const order = [...rows.keys()].filter(row => row !== 'nn');
+  order.splice(order.indexOf('w') + 1, 0, 'nn');
+  return order.filter(row => rows.has(row)).map(row => ({ row, cells: KANA_VOWELS.map(vowel => rows.get(row)[vowel]) }));
 }
 
 // On'yomi are written in katakana, kun'yomi in hiragana
@@ -77,29 +148,59 @@ export const kunyomiKana = (reading) => toHiragana(reading);
 
 const normalize = (text) => String(text || '').toLowerCase().trim();
 
-// The texts a query is compared with: whole texts, and each part of a
-// meaning ("before and after, around" -> "before and after", "around")
-function searchTexts(entry) {
-  const meanings = [entry.meaning, entry.meaningId].filter(Boolean).map(normalize);
-  return [
-    entry.jp,
-    entry.reading,
-    ...entry.romaji,
-    ...(entry.onyomi || []),
-    ...(entry.kunyomi || []),
-    ...(entry.onyomi || []).map(onyomiKana),
-    ...(entry.kunyomi || []).map(kunyomiKana),
-    ...meanings,
-    ...meanings.flatMap(meaning => meaning.split(/[,/;()]/)),
-  ].filter(Boolean).map(normalize).filter(Boolean);
+// One spelling for every way to type the same romaji, so that Kunrei-shiki
+// (si, tu, syo), long vowels (kyoo, kyō, kyou) and m before b / p (shimbun)
+// find the Hepburn of the data. Only for comparing, never shown.
+const ROMAJI_KEY_RULES = [
+  [/ā/g, 'aa'], [/ī/g, 'ii'], [/ū/g, 'uu'], [/ē/g, 'ee'], [/ō/g, 'ou'],
+  [/['\-\s]/g, ''],
+  [/oo/g, 'ou'],
+  [/sy/g, 'sh'], [/[zj]y/g, 'j'], [/[tc]y/g, 'ch'],
+  [/si/g, 'shi'], [/ti/g, 'chi'], [/tu/g, 'tsu'], [/hu/g, 'fu'], [/zi/g, 'ji'],
+  [/m(?=[bp])/g, 'n'], [/nn/g, 'n'],
+];
+export function romajiKey(text) {
+  return ROMAJI_KEY_RULES.reduce((key, [pattern, replacement]) => key.replace(pattern, replacement), normalize(text));
 }
 
-// 0: exact, 1: starts with, 2: contains, null: no match
+// What a query is compared with, built once per entry: the Japanese texts
+// and meanings as they are (each part of a meaning too: "before and after,
+// around" -> "before and after", "around"), and the romaji as romajiKey
+const searchIndex = new WeakMap();
+function searchTexts(entry) {
+  if (searchIndex.has(entry)) return searchIndex.get(entry);
+  const meanings = [entry.meaning, entry.meaningId].filter(Boolean).map(normalize);
+  const romaji = [...entry.romaji, ...(entry.onyomi || []), ...(entry.kunyomi || [])];
+  const texts = {
+    plain: [
+      entry.jp,
+      entry.reading,
+      ...(entry.onyomi || []).map(onyomiKana),
+      ...(entry.kunyomi || []).map(kunyomiKana),
+      ...meanings,
+      ...meanings.flatMap(meaning => meaning.split(/[,/;()]/)),
+    ].filter(Boolean).map(normalize).filter(Boolean),
+    romaji: romaji.map(romajiKey).filter(Boolean),
+  };
+  searchIndex.set(entry, texts);
+  return texts;
+}
+
+// 0: exact, 1: starts with, 2: contains, null: no match. One Latin letter
+// would be in nearly every meaning: it only finds what starts with it.
+function rankText(text, query) {
+  if (text === query) return 0;
+  if (text.startsWith(query)) return 1;
+  if (text.includes(query) && !/^[a-z]$/.test(query)) return 2;
+  return null;
+}
+
 function matchRank(entry, queries) {
+  const texts = searchTexts(entry);
   let best = null;
-  for (const text of searchTexts(entry)) {
-    for (const query of queries) {
-      const rank = text === query ? 0 : text.startsWith(query) ? 1 : text.includes(query) ? 2 : null;
+  for (const [kind, query] of queries) {
+    for (const text of texts[kind]) {
+      const rank = rankText(text, query);
       if (rank !== null && (best === null || rank < best)) best = rank;
       if (best === 0) return 0;
     }
@@ -113,11 +214,13 @@ export function searchDictionary(query, type = 'all', list = getDictionaryEntrie
   const ofType = type === 'all' ? list : list.filter(entry => entry.type === type);
   const text = normalize(query);
   if (!text) return ofType;
-  // Romaji also finds the kana: "neko" -> ねこ, ネコ
-  const queries = [text];
+  const queries = [['plain', text]];
   if (isRomaji(text)) {
+    queries.push(['romaji', romajiKey(text)]);
+    // Romaji also finds the kana: "neko" -> ねこ, ネコ. Not for one letter:
+    // "a" -> あ would be in hundreds of words
     const hiragana = toHiragana(text);
-    if (isKana(hiragana)) queries.push(hiragana, toKatakana(text));
+    if (text.length >= 2 && isKana(hiragana)) queries.push(['plain', hiragana], ['plain', toKatakana(text)]);
   }
   return ofType
     .map((entry, index) => ({ entry, index, rank: matchRank(entry, queries) }))

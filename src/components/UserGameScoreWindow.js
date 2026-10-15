@@ -68,10 +68,12 @@ export default function UserGameScoreWindow(props) {
         navigate(`${ROUTES.menu}#game-menu-title`);
     }, [navigate]);
     // A new game of the same kind (a kanji review stays a review); the game
-    // restarts because every navigation gets a new location key (pages/InGame.js)
+    // restarts because every navigation gets a new location key (pages/InGame.js).
+    // A practice from the Dictionary keeps its entries.
+    const dictionaryState = location.state?.anyGroup ? location.state : undefined;
     const playAgain = useCallback(() => {
-        navigate(`${ROUTES.game}${location.search}`, { replace: true });
-    }, [navigate, location.search]);
+        navigate(`${ROUTES.game}${location.search}`, { replace: true, state: dictionaryState });
+    }, [navigate, location.search, dictionaryState]);
     const { t, language } = useLanguage();
 
     // Tapping a chip reads it aloud (when the browser has speech synthesis)

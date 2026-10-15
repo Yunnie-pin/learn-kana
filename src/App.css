@@ -3964,21 +3964,49 @@ Navbar tabs: Games, Dictionary
   text-decoration: none;
 }
 
-/* On phones the tabs get a row of their own under the title and buttons */
+/* On phones the tabs are a bar at the bottom of the screen, in reach of the
+   thumb; the pages leave room for it (--tab-bar-height) */
 @media (max-width: 655px) {
-  .navbar {
-    flex-wrap: wrap;
-    row-gap: 0.5em;
+  :root {
+    --tab-bar-height: calc(3.6em + env(safe-area-inset-bottom));
   }
 
-  .navbar-tabs {
-    order: 3;
-    width: 100%;
+  .navbar-tabs.segmented-control {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 80;
+    display: flex;
+    box-sizing: border-box;
+    height: var(--tab-bar-height);
+    padding: 0.35em calc(0.6em + env(safe-area-inset-right)) calc(0.35em + env(safe-area-inset-bottom)) calc(0.6em + env(safe-area-inset-left));
+    border-top: 1px solid #ff9a3c33;
+    border-radius: 0;
+    background: #155263;
+    font-size: 0.85em;
   }
 
   .navbar-tab.segmented-option {
     flex: 1;
+    flex-direction: column;
     justify-content: center;
+    gap: 0.15em;
+    border-radius: 14px;
+    padding: 0.3em;
+  }
+
+  .navbar-tab .icon {
+    font-size: 1.3em;
+  }
+
+  /* The Start bar stays just above the tab bar */
+  .game-menu-start-bar {
+    bottom: var(--tab-bar-height);
+  }
+
+  html[data-theme='dark'] .navbar-tabs.segmented-control {
+    background: #2a373d;
   }
 }
 
@@ -4131,7 +4159,26 @@ Dictionary
   margin-right: 0.5em;
 }
 
-.dictionary-entry-listen {
+.dictionary-entry-actions {
+  display: inline-flex;
+  gap: 0.4em;
+}
+
+.dictionary-practice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.45em 1em;
+  border: none;
+  border-radius: 50em;
+  background: #ff9a3c;
+  color: #155263;
+  font-family: var(--ui-font);
+  font-size: 0.95em;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.dictionary-entry-button {
   display: inline-grid;
   place-items: center;
   width: 1.9em;
@@ -4144,7 +4191,7 @@ Dictionary
   cursor: var(--cursor-pointer, pointer);
 }
 
-.dictionary-entry-kana {
+.dictionary-entry-reading-kana {
   font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
 }
 
@@ -4189,7 +4236,7 @@ Dictionary
 }
 
 @media (hover: hover) {
-  .dictionary-entry-listen:hover,
+  .dictionary-entry-button:hover,
   .dictionary-search-clear:hover,
   .dictionary-more:hover {
     background-color: #ff9a3c26;
@@ -4218,4 +4265,205 @@ Dictionary
 html[data-theme='dark'] .dictionary-entry {
   background-image: linear-gradient(145deg, #2a373d, #38454c);
   box-shadow: 0 0 12px #1e272b;
+}
+
+.dictionary-subfilters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.dictionary-subfilters select {
+  padding: 0.45em 0.8em;
+  border: 1px solid #ff9a3c66;
+  border-radius: 50em;
+  background: #00000030;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  font-size: 0.95em;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.dictionary-subfilters option {
+  background: #155263;
+}
+
+.dictionary-weak-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.dictionary-weak-toggle input {
+  accent-color: #ff9a3c;
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.dictionary-results-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em;
+  min-height: 2.2em;
+  margin: 0 0 0.8em;
+}
+
+/* A kanji inside a word: opens its entry */
+.dictionary-kanji-link {
+  padding: 0;
+  border: none;
+  border-bottom: 2px dotted #ff9a3c88;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.dictionary-entry-sentences {
+  margin: 0.45em 0 0;
+  padding: 0.4em 0 0;
+  border-top: 1px dashed #ff9a3c40;
+  list-style: none;
+  font-size: 0.92em;
+}
+
+.dictionary-entry-sentences li + li {
+  margin-top: 0.3em;
+}
+
+.dictionary-entry-sentences [lang='ja'] {
+  display: block;
+  font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
+.dictionary-entry-sentence-meaning {
+  color: var(--text-muted);
+}
+
+.dictionary-entry-progress {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: 0.5em;
+  font-size: 0.82em;
+}
+
+.dictionary-mastery {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.dictionary-mastery-bar {
+  display: inline-block;
+  width: 3.5em;
+  height: 0.4em;
+  overflow: hidden;
+  border-radius: 1em;
+  background: #00000040;
+}
+
+.dictionary-mastery-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #7fd18b;
+}
+
+.is-weak .dictionary-mastery-bar > span {
+  background: #ff9a3c;
+}
+
+.dictionary-srs-stage {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ff9a3c66;
+  border-radius: 50em;
+}
+
+/* Gojūon tables */
+.dictionary-kana-tables {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17em, 1fr));
+  gap: 1.2em;
+}
+
+.dictionary-kana-table h2 {
+  margin: 0 0 0.4em;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.dictionary-kana-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.35em;
+}
+
+.dictionary-kana-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+  min-width: 0;
+  padding: 0.35em 0.2em;
+  border: 1px solid #ff9a3c30;
+  border-radius: 12px;
+  background: #00000020;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.dictionary-kana-cell.is-empty {
+  border-color: transparent;
+  background: transparent;
+  cursor: default;
+}
+
+.dictionary-kana-cell.is-weak {
+  border-color: #ff9a3c99;
+}
+
+.dictionary-kana-cell-character {
+  font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 1.6em;
+  line-height: 1.15;
+}
+
+.dictionary-kana-cell-romaji {
+  color: var(--text-muted);
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 0.75em;
+}
+
+.dictionary-kana-cell .dictionary-mastery-bar {
+  width: 70%;
+  height: 0.25em;
+}
+
+@media (hover: hover) {
+  .dictionary-kana-cell:not(.is-empty):hover {
+    background-color: #ff9a3c26;
+  }
+}
+
+@media (max-width: 655px) {
+  .game-menu-page,
+  .dictionary-page {
+    padding-bottom: calc(var(--tab-bar-height) + 1em);
+  }
+}
+
+html[data-theme='dark'] .dictionary-subfilters option {
+  background: #2a373d;
+}
+
+html[data-theme='dark'] .dictionary-practice {
+  color: #2a373d;
 }

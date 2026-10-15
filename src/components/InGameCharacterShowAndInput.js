@@ -383,19 +383,25 @@ export default function InGameCharacterShowAndInput() {
   const isSrsPractice = sessionMode === GAME_MODES.review ||
     (!sessionMode && !location.state?.characters && localStorage.getItem('game-mode-practice') === 'srs');
   const isMixupPractice = sessionMode === GAME_MODES.mixups;
+  // Practice from the Dictionary: the kana, kanji or words passed in the
+  // state, whatever groups and practice type are picked in the menu
+  const isDictionaryPractice = !isMixupPractice && Boolean(location.state?.anyGroup) &&
+    Array.isArray(location.state?.characters);
 
   // Mix-ups are practiced from every kana, whatever groups are selected
   const characterGroupsToShow = useMemo(() => {
-    if (isMixupPractice) {
-      return ['hiragana', 'katakana'].flatMap(script => Object.values(kanaCharacters[script]).map(group => group.title));
+    if (isMixupPractice || isDictionaryPractice) {
+      const scripts = isDictionaryPractice ? ['hiragana', 'katakana', 'kanji'] : ['hiragana', 'katakana'];
+      return scripts.flatMap(script => Object.values(kanaCharacters[script]).map(group => group.title));
     }
     const storedCharacterGroups = JSON.parse(localStorage.getItem("checkedKanas") || '[]');
     return Array.isArray(storedCharacterGroups) ? storedCharacterGroups : [];
-  }, [isMixupPractice]);
-  const practiceMode = isMixupPractice ? 'characters' : localStorage.getItem('game-mode-practice') ||
+  }, [isMixupPractice, isDictionaryPractice]);
+  const practiceMode = isMixupPractice ? 'characters' : isDictionaryPractice ? 'mixed' : localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
-  // SRS reviews are always answered by typing, whatever is picked in the menu
-  const useTouchAnswers = !isSrsPractice && localStorage.getItem("game-mode-touch") === "true";
+  // SRS reviews are always answered by typing, whatever is picked in the menu;
+  // so is a Dictionary practice: a few entries are too few wrong options
+  const useTouchAnswers = !isSrsPractice && !isDictionaryPractice && localStorage.getItem("game-mode-touch") === "true";
   const selectedKanjiGroups = useMemo(() => getSelectedKanjiGroupTitles(), []);
   // A review session: the kanji due again, then the new kanji left for today
   // (NEW_KANJI_PER_DAY), see getSrsSession
@@ -1345,7 +1351,7 @@ export default function InGameCharacterShowAndInput() {
         }
       }
     }
-    if (!isSrsPractice && localStorage.getItem("game-mode-touch") !== "true") {
+    if (!isSrsPractice && !useTouchAnswers) {
       const hiddenInput = document.querySelector('#in-game-text-input');
       if (!hiddenInput) return;
 
@@ -1498,7 +1504,7 @@ export default function InGameCharacterShowAndInput() {
         }
       }, 700);
     }
-    if (!isSrsPractice && localStorage.getItem("game-mode-touch") !== "true") {
+    if (!isSrsPractice && !useTouchAnswers) {
       handleFocus();
     }
     if (!hasStartedInitialCharacterRef.current) {

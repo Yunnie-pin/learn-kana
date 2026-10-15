@@ -38,6 +38,8 @@ function practiceCharacters(groups) {
 
 beforeEach(() => {
   localStorage.clear();
+  // The Dictionary keeps its search here
+  sessionStorage.clear();
   practiceCharacters(['あ']);
 });
 
@@ -833,5 +835,129 @@ describe('tabs', () => {
     });
     expect(document.querySelector('.progress-stats-modal')).toBeInTheDocument();
     expect(router.state.location.state).toBeNull();
+  });
+});
+
+describe('practicing from the Dictionary', () => {
+  const search = (value) => fireEvent.change(screen.getByRole('searchbox'), { target: { value } });
+
+  test('an entry is practiced even when its groups are not selected in the menu', async () => {
+    // Only the あ group is selected, and multiple choice is on
+    localStorage.setItem('game-mode-touch', 'true');
+    await open('/dictionary');
+    search('kawaii');
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: `${translate('en', 'dictionaryPractice')}: かわいい` }));
+    });
+    expect(path()).toBe('/game');
+    expect(displayed()).toBe('かわいい');
+    // Typed, not multiple choice: one entry has no wrong options
+    expect(document.querySelector('.in-game-touch-answer')).toBeNull();
+    await act(async () => {
+      'kawaii'.split('').forEach(key => fireEvent.keyDown(window, { key }));
+    });
+    expect(score()).toHaveTextContent('1');
+
+    // Play again practices it again
+    fireEvent.keyDown(window, { key: 'Escape' });
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 650));
+    });
+    await act(async () => {
+      fireEvent.click(document.querySelector('.score-button-primary'));
+    });
+    expect(displayed()).toBe('かわいい');
+  });
+
+  test('Practice these: the results of a search', async () => {
+    await open('/dictionary');
+    fireEvent.click(screen.getByRole('radio', { name: translate('en', 'dictionaryKana') }));
+    search('ka');
+    await act(async () => {
+      fireEvent.click(document.querySelector('.dictionary-practice'));
+    });
+    expect(router.state.location.state.characters).toEqual(expect.arrayContaining(['か', 'カ']));
+    expect(['か', 'カ', 'が', 'ガ']).toContain(displayed());
+  });
+
+  test('the search and filter are kept when coming back to the tab', async () => {
+    await open('/dictionary');
+    fireEvent.click(screen.getByRole('radio', { name: translate('en', 'dictionaryKanji') }));
+    search('water');
+    await act(async () => {
+      fireEvent.click(screen.getByRole('link', { name: translate('en', 'tabGames') }));
+    });
+    await act(async () => {
+      fireEvent.click(screen.getByRole('link', { name: translate('en', 'tabDictionary') }));
+    });
+    expect(screen.getByRole('searchbox')).toHaveValue('water');
+    expect(screen.getByRole('radio', { name: translate('en', 'dictionaryKanji') })).toHaveAttribute('aria-checked', 'true');
+  });
+});
+
+describe('Dictionary: progress, filters and links', () => {
+  const search = (value) => fireEvent.change(screen.getByRole('searchbox'), { target: { value } });
+  const pickType = (key) => fireEvent.click(screen.getByRole('radio', { name: translate('en', key) }));
+  const entries = () => [...document.querySelectorAll('.dictionary-entry-character')].map(element => element.textContent);
+
+  test('shows the mastery and the kanji review stage', async () => {
+    localStorage.setItem('userStats', JSON.stringify({
+      'あ': { totalTimesShown: 3, totalRightGuesses: 3, totalWrongGuesses: 0, totaltotalResponseTime: 2580,
+        dailyPerformance: [{ date: Date.now(), rightGuesses: 3, wrongGuesses: 0, responseTimeSum: 2580 }] },
+    }));
+    const { recordKanjiSrsAnswer } = require('./kanjiSrs.js');
+    recordKanjiSrsAnswer('水', 'good');
+    await open('/dictionary');
+    search('あ');
+    expect(document.querySelector('.dictionary-entry')).toHaveTextContent(/Mastery: \d+%/);
+    search('water');
+    expect(document.querySelector('.dictionary-entry')).toHaveTextContent(translate('en', 'srsStageLearning'));
+  });
+
+  test('Needs practice keeps what is below 80% mastery', async () => {
+    const DAY = 24 * 60 * 60 * 1000;
+    const stats = (right, wrong) => ({ totalTimesShown: right + wrong, totalRightGuesses: right, totalWrongGuesses: wrong,
+      totaltotalResponseTime: 1000 * right, dailyPerformance: [{ date: Date.now() - DAY, rightGuesses: right, wrongGuesses: wrong, responseTimeSum: 1000 * right }] });
+    localStorage.setItem('userStats', JSON.stringify({ 'か': stats(1, 5) }));
+    await open('/dictionary');
+    fireEvent.click(screen.getByRole('checkbox', { name: translate('en', 'dictionaryWeakOnly') }));
+    expect(entries()).toEqual(['か']);
+    // Practice these: just that one
+    await act(async () => {
+      fireEvent.click(document.querySelector('.dictionary-practice'));
+    });
+    expect(displayed()).toBe('か');
+  });
+
+  test('level and topic filters', async () => {
+    await open('/dictionary');
+    pickType('dictionaryKanji');
+    fireEvent.change(screen.getByRole('combobox', { name: translate('en', 'dictionaryLevel') }), { target: { value: 'N4' } });
+    expect(document.querySelector('.dictionary-entry-kind')).toHaveTextContent('N4');
+    expect([...document.querySelectorAll('.dictionary-entry-kind')].every(kind => kind.textContent.endsWith('N4'))).toBe(true);
+
+    pickType('dictionaryWords');
+    fireEvent.change(screen.getByRole('combobox', { name: translate('en', 'wordTopicLabel') }), { target: { value: 'it' } });
+    const { getDictionaryEntries } = require('./dictionary.js');
+    const itWords = getDictionaryEntries().filter(item => (item.tags || []).includes('it'));
+    expect(document.querySelector('.dictionary-count')).toHaveTextContent(String(itWords.length));
+  });
+
+  test('a kanji in a word opens its entry', async () => {
+    await open('/dictionary');
+    search('suiyoubi');
+    const link = screen.getAllByRole('button', { name: '水' })[0];
+    fireEvent.click(link);
+    expect(screen.getByRole('searchbox')).toHaveValue('水');
+    expect(document.querySelector('.dictionary-entry')).toHaveClass('dictionary-entry-kanji');
+  });
+
+  test('Kana without a search is the gojūon table; a tap looks the kana up', async () => {
+    await open('/dictionary');
+    pickType('dictionaryKana');
+    expect(document.querySelectorAll('.dictionary-kana-table')).toHaveLength(2);
+    fireEvent.click(screen.getByRole('button', { name: 'ぬ nu' }));
+    expect(screen.getByRole('searchbox')).toHaveValue('ぬ');
+    expect(entries()[0]).toBe('ぬ');
   });
 });

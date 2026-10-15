@@ -33,6 +33,7 @@ There is no lint script; CRA's ESLint (`react-app`) runs during `npm start` / `n
 - The typed answer is managed by direct DOM manipulation of `#in-game-text-input-before-cursor` / `-after-cursor`, plus a hidden `<input>` for mobile keyboards; checks read `textContent` from those elements.
 - The keyboard/input handlers are registered once in a `useEffect([], ...)`, so they see stale state. Anything they need that changes per question must be in a ref (`questionAnsweredRef`, `currentCharacterTypeRef`, `sentenceHelpRef`, ...), not in state.
 - `questionAnsweredRef` blocks all input between a correct answer and the next question; without it extra keys re-count the answer and stack Enter listeners.
+- Navigation state picks what is practiced: `{ characters }` filters the selected groups (Try Problematics), `{ characters, anyGroup: true }` practices those entries from every group in `mixed` mode, typed (Dictionary "Practice"); Play again keeps the `anyGroup` state.
 - Question types (`kana`, `kanji`, `word`, `long`) share one flow: `showNewCharacter` → `checkAnswer` → correct branch. Sentences (`long`) use the matcher from `sentenceMatching.js` instead of the exact-string answer list.
 
 **Character data**: `src/kanaCharacters.js` holds the hiragana/katakana groups and the ~600 words (each word lists the kana groups it needs); the kanji groups are built at import time from `kanjiUsage.js`, `kanjiUsageMeanings.js` and `kanjiReadings.js` (it throws if one of them is missing an entry). Group `title`s are what `checkedKanas` stores.
