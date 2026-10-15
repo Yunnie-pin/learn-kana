@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, cleanup, createEvent, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, createEvent, fireEvent, render, screen, within } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { appRoutes } from './router';
 import { LanguageProvider } from './i18n';
@@ -898,7 +898,8 @@ describe('practicing from the Dictionary', () => {
 describe('Dictionary: progress, filters and links', () => {
   const search = (value) => fireEvent.change(screen.getByRole('searchbox'), { target: { value } });
   const pickType = (key) => fireEvent.click(screen.getByRole('radio', { name: translate('en', key) }));
-  const entries = () => [...document.querySelectorAll('.dictionary-entry-character')].map(element => element.textContent);
+  // Cards and kana chips, in the order shown
+  const entries = () => [...document.querySelectorAll('.dictionary-entry-character, .dictionary-kana-chip .dictionary-kana-cell-character')].map(element => element.textContent);
 
   test('shows the mastery and the kanji review stage', async () => {
     localStorage.setItem('userStats', JSON.stringify({
@@ -909,7 +910,12 @@ describe('Dictionary: progress, filters and links', () => {
     recordKanjiSrsAnswer('水', 'good');
     await open('/dictionary');
     search('あ');
-    expect(document.querySelector('.dictionary-entry')).toHaveTextContent(/Mastery: \d+%/);
+    // A kana chip shows the bar, its details the mastery
+    const chip = screen.getByRole('button', { name: 'あ a' });
+    expect(chip.querySelector('.dictionary-mastery-bar')).toBeInTheDocument();
+    fireEvent.click(chip);
+    expect(screen.getByRole('dialog')).toHaveTextContent(/Mastery: \d+%/);
+    fireEvent.keyDown(window, { key: 'Escape' });
     search('water');
     expect(document.querySelector('.dictionary-entry')).toHaveTextContent(translate('en', 'srsStageLearning'));
   });
@@ -952,12 +958,119 @@ describe('Dictionary: progress, filters and links', () => {
     expect(document.querySelector('.dictionary-entry')).toHaveClass('dictionary-entry-kanji');
   });
 
-  test('Kana without a search is the gojūon table; a tap looks the kana up', async () => {
+  test('Kana without a search is the gojūon table; a tap opens the kana', async () => {
     await open('/dictionary');
     pickType('dictionaryKana');
     expect(document.querySelectorAll('.dictionary-kana-table')).toHaveLength(2);
     fireEvent.click(screen.getByRole('button', { name: 'ぬ nu' }));
-    expect(screen.getByRole('searchbox')).toHaveValue('ぬ');
-    expect(entries()[0]).toBe('ぬ');
+    expect(screen.getByRole('dialog')).toHaveTextContent('ぬ');
+  });
+});
+
+describe('Dictionary home', () => {
+  test('before a search: shortcuts and a kanji and a word of the day, not the whole list', async () => {
+    await open('/dictionary');
+    expect(document.querySelectorAll('.dictionary-entry')).toHaveLength(2);
+    expect(document.querySelector('.dictionary-entry-kanji')).toBeInTheDocument();
+    expect(document.querySelector('.dictionary-entry-word')).toBeInTheDocument();
+    // No "Needs practice" shortcut without practice
+    expect(screen.queryByRole('button', { name: new RegExp(translate('en', 'dictionaryWeakOnly')) })).toBeNull();
+
+    fireEvent.click(screen.getByRole('button', { name: new RegExp(translate('en', 'dictionaryShortcutKanji', { level: 'N4' })) }));
+    expect(screen.getByRole('radio', { name: translate('en', 'dictionaryKanji') })).toHaveAttribute('aria-checked', 'true');
+    expect(screen.getByRole('combobox', { name: translate('en', 'dictionaryLevel') })).toHaveValue('N4');
+    expect([...document.querySelectorAll('.dictionary-entry-kind')].every(kind => kind.textContent.endsWith('N4'))).toBe(true);
+  });
+
+  test('"/" puts the cursor in the search, but not while typing elsewhere', async () => {
+    await open('/dictionary');
+    const input = screen.getByRole('searchbox');
+    expect(input).not.toHaveFocus();
+    fireEvent.keyDown(document.body, { key: '/' });
+    expect(input).toHaveFocus();
+  });
+});
+
+describe('Dictionary results and details', () => {
+  const search = (value) => fireEvent.change(screen.getByRole('searchbox'), { target: { value } });
+
+  test('All results are grouped by type, with See all for the long ones', async () => {
+    await open('/dictionary');
+    search('ka');
+    const groups = [...document.querySelectorAll('.dictionary-group h2')].map(heading => heading.firstChild.textContent.trim());
+    expect(groups).toEqual(expect.arrayContaining([translate('en', 'dictionaryKana'), translate('en', 'dictionaryWords')]));
+    // Kana are chips, not cards
+    expect(document.querySelector('.dictionary-entry-kana')).toBeNull();
+    expect(screen.getByRole('button', { name: 'か ka' })).toBeInTheDocument();
+
+    const seeAllWords = [...document.querySelectorAll('.dictionary-group')]
+      .find(group => group.getAttribute('aria-label') === translate('en', 'dictionaryWords'))
+      .querySelector('.dictionary-see-all');
+    fireEvent.click(seeAllWords);
+    expect(screen.getByRole('radio', { name: translate('en', 'dictionaryWords') })).toHaveAttribute('aria-checked', 'true');
+  });
+
+  test('the matched part is highlighted', async () => {
+    await open('/dictionary');
+    fireEvent.click(screen.getByRole('radio', { name: translate('en', 'dictionaryKanji') }));
+    search('wat');
+    expect(document.querySelector('.dictionary-entry .dictionary-match')).toHaveTextContent('wat');
+  });
+
+  test('a word with kanji has its reading above (furigana)', async () => {
+    await open('/dictionary');
+    search('suiyoubi');
+    const ruby = document.querySelector('.dictionary-entry-word ruby');
+    expect(ruby.querySelector('rt')).toHaveTextContent('すいようび');
+  });
+
+  test('details: sentences, words with the kanji, and back and forth between them', async () => {
+    await open('/dictionary');
+    fireEvent.click(screen.getByRole('radio', { name: translate('en', 'dictionaryKanji') }));
+    search('water');
+    fireEvent.click(document.querySelector('.dictionary-entry .dictionary-entry-details'));
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveTextContent(translate('en', 'dictionarySentences'));
+    expect(dialog).toHaveTextContent(translate('en', 'dictionaryWordsWith', { kanji: '水' }));
+
+    fireEvent.click(within(dialog).getByRole('button', { name: /^水曜日/ }));
+    expect(screen.getByRole('dialog')).toHaveTextContent(translate('en', 'dictionaryKanjiOfWord'));
+    expect(screen.getByRole('dialog').querySelector('rt')).toHaveTextContent('すいようび');
+
+    fireEvent.click(screen.getByRole('button', { name: translate('en', 'aboutClose') }));
+    expect(screen.queryByRole('dialog')).toBeNull();
+  });
+
+  test('no results: spellings that exist, and the count in the other types', async () => {
+    await open('/dictionary');
+    search('watr');
+    fireEvent.click(screen.getByRole('button', { name: 'water' }));
+    expect(screen.getByRole('searchbox')).toHaveValue('water');
+
+    fireEvent.click(screen.getByRole('radio', { name: translate('en', 'dictionaryKana') }));
+    search('water');
+    fireEvent.click(screen.getByRole('button', { name: /found in All/ }));
+    expect(screen.getByRole('radio', { name: translate('en', 'dictionaryAll') })).toHaveAttribute('aria-checked', 'true');
+  });
+
+  test('searches are remembered and shown before the next search', async () => {
+    jest.useFakeTimers();
+    try {
+      await open('/dictionary');
+      search('mizu');
+      await act(async () => {
+        jest.advanceTimersByTime(2000);
+      });
+      search('');
+      const recent = screen.getByRole('region', { name: translate('en', 'dictionaryRecent') });
+      fireEvent.click(within(recent).getByRole('button', { name: 'mizu' }));
+      expect(screen.getByRole('searchbox')).toHaveValue('mizu');
+
+      search('');
+      fireEvent.click(screen.getByRole('button', { name: translate('en', 'dictionaryRecentClear') }));
+      expect(screen.queryByRole('region', { name: translate('en', 'dictionaryRecent') })).toBeNull();
+    } finally {
+      jest.useRealTimers();
+    }
   });
 });

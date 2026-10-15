@@ -71,7 +71,7 @@ describe('helpers of the Dictionary page', () => {
   });
 
   test('example sentences use the word, shortest first; none for short kana words', () => {
-    const examples = getExampleSentences(entry('kanji', '水'));
+    const examples = getExampleSentences(entry('kanji', '水'), 2);
     expect(examples.length).toBe(2);
     examples.forEach(sentence => expect(sentence.jp_character).toContain('水'));
     expect(examples[0].jp_character.length).toBeLessThanOrEqual(examples[1].jp_character.length);

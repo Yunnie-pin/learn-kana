@@ -13,6 +13,8 @@ body,
      it keeps a 5.6:1 contrast on the teal background (7.9:1 on the dark
      theme); faded orange was down to about 2.3:1 */
   --text-muted: #ffc48a;
+  /* The main text of a card (a meaning), set apart from the orange around it */
+  --text-strong: #fff1e2;
   --ui-font: "Belanosima", "Trebuchet MS", sans-serif;
   /* Same check as <Icon name="check" />, for places that can only use CSS (::after) */
   --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
@@ -4029,10 +4031,45 @@ Dictionary
   font-size: clamp(1.8em, 2.6vw, 2.6em);
 }
 
+/* Search and filters stay at the top of the screen while the results scroll */
+.dictionary-controls {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  margin: 0 -0.5em;
+  padding: 0.5em 0.5em 0.1em;
+  background: #155263;
+  box-shadow: 0 10px 12px -12px #0b2c35;
+}
+
+html[data-theme='dark'] .dictionary-controls {
+  background: #2a373d;
+  box-shadow: 0 10px 12px -12px #161d20;
+}
+
 .dictionary-search {
   position: relative;
   display: flex;
   align-items: center;
+}
+
+/* The "/" shortcut, on screens with a keyboard */
+.dictionary-search-key {
+  position: absolute;
+  right: 0.9em;
+  padding: 0.05em 0.5em;
+  border: 1px solid #ff9a3c66;
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-family: var(--ui-font);
+  font-size: 0.85em;
+  pointer-events: none;
+}
+
+@media (pointer: coarse) {
+  .dictionary-search-key {
+    display: none;
+  }
 }
 
 .dictionary-search-icon {
@@ -4095,13 +4132,16 @@ Dictionary
 }
 
 .dictionary-count {
-  color: var(--text-muted);
-  font-size: 0.95em;
+  color: var(--text-strong);
+  font-size: 1em;
 }
 
 .dictionary-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(17em, 1fr));
+  /* Two columns at most: narrower cards squeezed the buttons and labels */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22em), 1fr));
+  /* Each card as tall as its content, not as the tallest of its row */
+  align-items: start;
   gap: 0.8em;
   margin: 0;
   padding: 0;
@@ -4140,11 +4180,18 @@ Dictionary
   overflow-wrap: anywhere;
 }
 
+/* The buttons go under the label rather than breaking it into pieces */
 .dictionary-entry-head {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.5em;
+}
+
+.dictionary-entry-kind,
+.dictionary-entry-button {
+  white-space: nowrap;
 }
 
 .dictionary-entry-kind,
@@ -4179,31 +4226,51 @@ Dictionary
 }
 
 .dictionary-entry-button {
-  display: inline-grid;
-  place-items: center;
-  width: 1.9em;
-  height: 1.9em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+  min-width: 2.3em;
+  height: 2.3em;
   padding: 0;
   border: 1px solid #ff9a3c66;
-  border-radius: 50%;
+  border-radius: 50em;
   background: transparent;
   color: #ff9a3c;
+  font-family: var(--ui-font);
+  font-size: 0.9em;
   cursor: var(--cursor-pointer, pointer);
 }
 
+/* "Practice" says what it does: an icon alone looked like playing the sound */
+.dictionary-entry-practice {
+  padding: 0 0.8em;
+}
+
+/* Fingers need about 44px */
+@media (pointer: coarse) {
+  .dictionary-entry-button {
+    min-width: 44px;
+    height: 44px;
+  }
+}
+
 .dictionary-entry-reading-kana {
+  margin-top: 0.15em;
   font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
 }
 
 .dictionary-entry-romaji {
   color: var(--text-muted);
   font-family: 'Trebuchet MS', sans-serif;
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
 .dictionary-entry-meaning {
-  margin-top: 0.2em;
-  font-size: 1.05em;
+  margin-top: 0.15em;
+  color: var(--text-strong);
+  font-size: 1.2em;
+  line-height: 1.25;
 }
 
 .dictionary-entry-readings,
@@ -4289,17 +4356,95 @@ html[data-theme='dark'] .dictionary-entry {
   background: #155263;
 }
 
+/* A chip like the segmented options, the checkbox itself is hidden */
 .dictionary-weak-toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
+  padding: 0.45em 0.9em;
+  border: 1px solid #ff9a3c66;
+  border-radius: 50em;
+  font-size: 0.95em;
   cursor: var(--cursor-pointer, pointer);
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .dictionary-weak-toggle input {
-  accent-color: #ff9a3c;
-  width: 1.1em;
-  height: 1.1em;
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.dictionary-weak-toggle.active {
+  border-color: #ff9a3c;
+  background: #ff9a3c;
+  color: #155263;
+}
+
+.dictionary-weak-toggle:focus-within {
+  box-shadow: 0 0 0 2px #ff9a3c88;
+}
+
+html[data-theme='dark'] .dictionary-weak-toggle.active {
+  color: #2a373d;
+}
+
+/* Before a search: shortcuts and the kanji and word of the day */
+.dictionary-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10.5em, 1fr));
+  gap: 0.6em;
+  margin-bottom: 1.4em;
+}
+
+.dictionary-shortcut {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 0.6em;
+  align-items: center;
+  padding: 0.75em 0.9em;
+  border: 1px solid #ff9a3c40;
+  border-radius: 16px;
+  background: #00000024;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  text-align: left;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.dictionary-shortcut .icon {
+  grid-row: span 2;
+  font-size: 1.5em;
+}
+
+.dictionary-shortcut-label {
+  color: var(--text-strong);
+  font-size: 1.05em;
+}
+
+.dictionary-shortcut-count {
+  color: var(--text-muted);
+  font-size: 0.85em;
+}
+
+.dictionary-shortcut.is-weak {
+  border-color: #ff9a3c;
+}
+
+.dictionary-home-title {
+  margin: 0 0 0.6em;
+  font-size: 1.25em;
+}
+
+@media (hover: hover) {
+  .dictionary-shortcut:hover,
+  .dictionary-weak-toggle:not(.active):hover {
+    background-color: #ff9a3c26;
+  }
 }
 
 .dictionary-results-bar {
@@ -4466,4 +4611,275 @@ html[data-theme='dark'] .dictionary-subfilters option {
 
 html[data-theme='dark'] .dictionary-practice {
   color: #2a373d;
+}
+
+/* What the search found */
+.dictionary-match {
+  border-radius: 3px;
+  padding: 0 0.1em;
+  background: #ff9a3c40;
+  color: inherit;
+  box-shadow: inset 0 -2px 0 #ff9a3c;
+}
+
+/* Furigana: the reading of a word above its kanji */
+.dictionary-entry-character ruby,
+.dictionary-detail-headword ruby {
+  ruby-position: over;
+}
+
+.dictionary-entry-character rt,
+.dictionary-detail-headword rt {
+  color: var(--text-muted);
+  font-size: 0.42em;
+  letter-spacing: 0.04em;
+}
+
+.dictionary-entry-details {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  margin-top: 0.5em;
+  padding: 0.2em 0;
+  border: none;
+  background: transparent;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  font-size: 0.95em;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+@media (hover: hover) {
+  .dictionary-entry-details:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Kana in the results: chips like the cells of the kana table */
+.dictionary-kana-chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(4.2em, 1fr));
+  gap: 0.4em;
+  margin-bottom: 0.8em;
+}
+
+/* "All" results, grouped by type */
+.dictionary-group + .dictionary-group {
+  margin-top: 1.4em;
+}
+
+.dictionary-group-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1em;
+  margin-bottom: 0.6em;
+}
+
+.dictionary-group-header h2 {
+  margin: 0;
+  font-size: 1.25em;
+}
+
+.dictionary-group-count {
+  color: var(--text-muted);
+  font-size: 0.75em;
+}
+
+.dictionary-see-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.3em 0;
+  border: none;
+  background: transparent;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  font-size: 0.95em;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+/* Recent searches, "did you mean" */
+.dictionary-history {
+  margin-bottom: 1.4em;
+}
+
+.dictionary-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: inherit;
+  gap: 0.5em;
+}
+
+.dictionary-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  min-height: 2.4em;
+  padding: 0.3em 0.9em;
+  border: 1px solid #ff9a3c66;
+  border-radius: 50em;
+  background: #00000024;
+  color: var(--text-strong);
+  font-family: var(--ui-font);
+  font-size: 0.95em;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.dictionary-chip .icon {
+  color: #ff9a3c;
+}
+
+.dictionary-empty p.dictionary-chips {
+  justify-content: center;
+  margin: 0 0 1em;
+}
+
+@media (hover: hover) {
+  .dictionary-chip:hover,
+  .dictionary-see-all:hover {
+    background-color: #ff9a3c26;
+  }
+}
+
+/* Details of an entry: a window, a sheet from the bottom on phones */
+.dictionary-detail-background {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  background-color: #00000080;
+  backdrop-filter: blur(5px);
+}
+
+.dictionary-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35em;
+  width: min(100%, 32em);
+  max-height: 88vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 1.2em 1.4em 1.5em;
+  border: 1px solid #ff9a3c30;
+  border-radius: 24px;
+  background-color: #155263;
+  box-shadow: 5px 5px 16px #11384366, -4px -4px 14px #1b607033;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+}
+
+html[data-theme='dark'] .dictionary-detail {
+  background-color: #2a373d;
+  box-shadow: 0 0 24px #1e272b, 0.5rem 0.5rem 30px #151c1f;
+}
+
+.dictionary-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+}
+
+.dictionary-detail-headword {
+  font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 3.2em;
+  line-height: 1.2;
+}
+
+.dictionary-detail p.dictionary-entry-meaning {
+  margin: 0;
+  font-size: 1.4em;
+}
+
+.dictionary-detail .dictionary-entry-actions {
+  margin-top: 0.6em;
+}
+
+.dictionary-detail-section {
+  align-self: stretch;
+  margin-top: 0.8em;
+  padding-top: 0.8em;
+  border-top: 1px dashed #ff9a3c40;
+}
+
+.dictionary-detail-section h3 {
+  margin: 0 0 0.5em;
+  font-size: 1.05em;
+}
+
+.dictionary-detail-section .dictionary-entry-sentences {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.dictionary-related {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45em;
+}
+
+.dictionary-related-entry {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 100%;
+  padding: 0.4em 0.75em;
+  border: 1px solid #ff9a3c40;
+  border-radius: 12px;
+  background: #00000024;
+  color: #ff9a3c;
+  font-family: var(--ui-font);
+  text-align: left;
+  cursor: var(--cursor-pointer, pointer);
+}
+
+.dictionary-related-entry [lang='ja'] {
+  font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 1.15em;
+}
+
+.dictionary-related-meaning {
+  color: var(--text-muted);
+  font-size: 0.8em;
+}
+
+@media (hover: hover) {
+  .dictionary-related-entry:hover {
+    background-color: #ff9a3c26;
+  }
+}
+
+@media (max-width: 655px) {
+  .dictionary-detail-background {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .dictionary-detail {
+    width: 100%;
+    max-height: 85vh;
+    padding-bottom: calc(1.5em + env(safe-area-inset-bottom));
+    border-radius: 24px 24px 0 0;
+    animation: dictionary-sheet-in 0.2s ease-out;
+  }
+}
+
+@keyframes dictionary-sheet-in {
+  from {
+    transform: translateY(30%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dictionary-detail {
+    animation: none;
+  }
 }

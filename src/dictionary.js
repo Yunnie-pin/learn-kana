@@ -116,7 +116,7 @@ export const topicLabel = (tag) => tag === 'it' ? 'IT' : (tag.charAt(0).toUpperC
 // first. Short kana words (いい, ここ) would be found inside other words: a
 // word needs a kanji or at least 3 kana.
 const sentencesByEntry = new Map();
-export function getExampleSentences(entry, count = 2) {
+export function getExampleSentences(entry, count = 1) {
   if (entry.type === 'kana') return [];
   if (entry.type === 'word' && ![...entry.jp].some(isKanji) && [...entry.jp].length < 3) return [];
   if (!sentencesByEntry.has(entry.id)) {
@@ -227,4 +227,93 @@ export function searchDictionary(query, type = 'all', list = getDictionaryEntrie
     .filter(result => result.rank !== null)
     .sort((a, b) => a.rank - b.rank || a.index - b.index)
     .map(result => result.entry);
+}
+
+// The words that are written with a kanji (水 -> 水曜日, 池の水...)
+export function getWordsWithKanji(kanji, count = 12) {
+  return getDictionaryEntries().filter(entry => entry.type === 'word' && entry.jp.includes(kanji)).slice(0, count);
+}
+
+// The kanji entries of a word, in order, once each
+export function getKanjiOfWord(entry) {
+  return [...new Set([...entry.jp])].map(getKanjiEntry).filter(Boolean);
+}
+
+// Where a search query is in a text, to highlight it: [start, end] or null.
+// Romaji also finds its kana (mizu -> みず).
+export function findMatch(text, query) {
+  const value = normalize(query);
+  if (!text || !value) return null;
+  const candidates = [value];
+  if (isRomaji(value) && value.length >= 2) {
+    const hiragana = toHiragana(value);
+    if (isKana(hiragana)) candidates.push(hiragana, toKatakana(value));
+  }
+  const lower = String(text).toLowerCase();
+  for (const candidate of candidates) {
+    const start = lower.indexOf(candidate);
+    if (start >= 0) return [start, start + candidate.length];
+  }
+  return null;
+}
+
+// Number of single-letter edits from a to b (Levenshtein)
+function editDistance(a, b) {
+  let previous = Array.from({ length: b.length + 1 }, (_, index) => index);
+  for (let i = 1; i <= a.length; i++) {
+    const current = [i];
+    for (let j = 1; j <= b.length; j++) {
+      current[j] = Math.min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    }
+    previous = current;
+  }
+  return previous[b.length];
+}
+
+// For a search without results: up to `count` romaji or meanings spelled
+// almost the same ("mizuu" -> "mizu", "wtaer" -> "water"), closest first
+export function getSpellingSuggestions(query, count = 3) {
+  const value = normalize(query);
+  if (value.length < 3 || !/^[a-z' -]+$/.test(value)) return [];
+  const limit = value.length >= 6 ? 2 : 1;
+  const found = new Map();
+  for (const entry of getDictionaryEntries()) {
+    const words = [
+      ...entry.romaji,
+      ...[entry.meaning, entry.meaningId].filter(Boolean).flatMap(meaning => meaning.split(/[,/;()]/)),
+    ].map(normalize).filter(text => text && Math.abs(text.length - value.length) <= limit);
+    for (const word of words) {
+      if (found.has(word)) continue;
+      const distance = editDistance(value, word);
+      if (distance > 0 && distance <= limit) found.set(word, distance);
+    }
+  }
+  return [...found.entries()].sort((a, b) => a[1] - b[1] || a[0].localeCompare(b[0])).slice(0, count).map(([word]) => word);
+}
+
+// The last searches, newest first (localStorage: they help on the next visit too)
+const HISTORY_KEY = 'dictionary-history';
+export const HISTORY_SIZE = 5;
+export function readSearchHistory() {
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY));
+    return Array.isArray(history) ? history.filter(item => typeof item === 'string').slice(0, HISTORY_SIZE) : [];
+  } catch (error) {
+    return [];
+  }
+}
+export function addToSearchHistory(query) {
+  const value = String(query || '').trim();
+  if (!value) return readSearchHistory();
+  const history = [value, ...readSearchHistory().filter(item => item.toLowerCase() !== value.toLowerCase())].slice(0, HISTORY_SIZE);
+  try {
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  } catch (error) { }
+  return history;
+}
+export function clearSearchHistory() {
+  try {
+    localStorage.removeItem(HISTORY_KEY);
+  } catch (error) { }
+  return [];
 }

@@ -32,3 +32,9 @@ test('no text in the grey-blue that was nearly invisible on teal (furigana, roma
   expect(contrast('#445760', LIGHT_BACKGROUND)).toBeLessThan(1.5);
   expect(css).not.toMatch(/color:\s*#445760/i);
 });
+
+test('the main text of the Dictionary cards is readable on both themes', () => {
+  const strong = /--text-strong:\s*(#[0-9a-f]{6})/i.exec(css)[1];
+  expect(contrast(strong, LIGHT_BACKGROUND)).toBeGreaterThanOrEqual(7);
+  expect(contrast(strong, DARK_BACKGROUND)).toBeGreaterThanOrEqual(7);
+});
