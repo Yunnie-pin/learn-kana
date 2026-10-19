@@ -1,24 +1,13 @@
 import React, { useMemo } from 'react';
 import { toHiragana } from 'wanakana';
-import { kanaCharacters } from '../../kanaCharacters.js';
 import { kanjiReadings } from '../../kanjiReadings.js';
 import { readingsUsedInWord } from '../../kanjiWordReadings.js';
 import { useLanguage } from '../../i18n';
+import { kanjiEntryByCharacter, kanjiOfWord } from '../../game/kanjiEntries.js';
 
 // How the game shows the kanji of a question: the readings of a kanji once it
 // is answered, and for a kanji word (水曜日) each of its kanji, with the
 // readings the word uses marked.
-
-// Every kanji entry by its character
-const kanjiEntryByCharacter = new Map(
-  Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters))
-    .map(entry => [entry.jp_character, entry])
-);
-
-// The kanji the app teaches in a word, once each, in order
-export function kanjiOfWord(word) {
-  return [...new Set([...String(word || '')])].filter(character => kanjiEntryByCharacter.has(character));
-}
 
 // The on'yomi and kun'yomi of a kanji in hiragana. `used` (from
 // readingsUsedInWord) marks the ones the shown word reads it with.
@@ -94,9 +83,9 @@ export function KanjiWordReadings({ word, romanji }) {
   );
 }
 
-// The help on a kanji word, in steps: 1 the meaning of each of its kanji,
-// 2 also their readings (the 3rd step, the romaji, is the game's)
-export function KanjiWordHint({ word, romanji, step }) {
+// The help on a kanji word: the meaning of each of its kanji, and with
+// showReadings their readings too (the steps are hintSteps, game/questions.js)
+export function KanjiWordHint({ word, romanji, showReadings }) {
   const { t, language } = useLanguage();
   const used = useReadingsUsed(word, romanji);
   const characters = kanjiOfWord(word);
@@ -112,7 +101,7 @@ export function KanjiWordHint({ word, romanji, step }) {
               <span className='kanji-word-reading-character'>{character}</span>
               <span className='kanji-word-hint-meaning'>{language === 'id' && entry.meaning_id ? entry.meaning_id : entry.meaning}</span>
             </span>
-            {readings && step >= 2 && (
+            {readings && showReadings && (
               <span className='kanji-word-hint-readings'>
                 <KanjiReadingLines readings={readings} used={used?.get(character)} />
               </span>
@@ -120,7 +109,7 @@ export function KanjiWordHint({ word, romanji, step }) {
           </span>
         );
       })}
-      {step >= 2 && !used && (
+      {showReadings && !used && (
         <span className='kanji-word-special-reading'>{t('kanjiSpecialReading')}</span>
       )}
     </span>

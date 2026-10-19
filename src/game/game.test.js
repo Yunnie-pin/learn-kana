@@ -78,3 +78,45 @@ test('the practice list keeps only the words of the topic picked in the menu', (
   expect(getListForPractice(groups, 'mixed', 'it').filter(item => item.type !== 'word').length)
     .toBe(getListForPractice(groups, 'characters', 'it').length);
 });
+
+describe('questions', () => {
+  const { createQuestion, normalizeAnswer, QUESTION_TYPES } = require('./questions.js');
+  const kanjiEntry = Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters))
+    .find(entry => entry.jp_character === '水');
+
+  test('every kind of entry has its behaviour', () => {
+    expect(Object.keys(QUESTION_TYPES).sort()).toEqual(['kana', 'kanji', 'long', 'word']);
+    for (const kind of Object.values(QUESTION_TYPES)) {
+      expect(['next', 'reveal', 'wait']).toContain(kind.afterCorrect);
+    }
+  });
+
+  test('answers are compared without case, spaces or hyphens', () => {
+    expect(normalizeAnswer(' Ko-n Nichi wa ')).toBe('konnichiwa');
+    expect(normalizeAnswer('ＫＡ')).toBe('ka');
+  });
+
+  test('a kana: its romaji, no meaning, the romaji as the only help', () => {
+    const question = createQuestion({ jp_character: 'あ', romanji: ['a'], type: 'kana' });
+    expect(question).toMatchObject({ display: 'あ', answers: ['a'], meaning: null, hintSteps: ['romaji'] });
+  });
+
+  test('a kanji is also answered in kana, asked through its usage word in mixed games only', () => {
+    const entry = { ...kanjiEntry, type: 'kanji' };
+    const plain = createQuestion(entry, { practiceMode: 'characters', random: () => 0 });
+    expect(plain.display).toBe('水');
+    expect(plain.answers).toEqual(expect.arrayContaining(['mizu', 'みず']));
+    expect(plain.kanjiUsage).toBe(entry.usage);
+
+    const usage = createQuestion(entry, { practiceMode: 'mixed', random: () => 0 });
+    expect(usage).toMatchObject({ display: entry.usage.word, isUsageQuestion: true, meaning: { jp: entry.usage.word } });
+    expect(createQuestion(entry, { practiceMode: 'mixed', random: () => 0.9 }).isUsageQuestion).toBe(false);
+    expect(createQuestion(entry, { practiceMode: 'mixed', isSrsPractice: true, random: () => 0 }).isUsageQuestion).toBe(false);
+  });
+
+  test('a kanji word helps with the meanings, the readings, then the romaji', () => {
+    const word = { jp_character: '水曜日', romanji: ['suiyoubi'], meaning: 'Wednesday', type: 'word' };
+    expect(createQuestion(word).hintSteps).toEqual(['meanings', 'readings', 'romaji']);
+    expect(createQuestion({ ...word, jp_character: 'かわいい' }).hintSteps).toEqual(['romaji']);
+  });
+});

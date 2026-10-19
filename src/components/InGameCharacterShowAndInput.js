@@ -11,16 +11,16 @@ import { getCharacterOrder, getListForPractice } from '../practiceList.js'
 import { findKanaForAnswer, getConfusionPairs, getMixupKana, getSimilarKana, MIXUP_PRACTICE_PAIRS, readConfusions, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
 import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
-import { createSentenceQuestion } from '../sentenceMatching.js'
-import { bunpouFormNote, createBunpouQuestion, getBunpouOptions, getBunpouQuestions } from '../bunpou.js'
+import { bunpouFormNote, getBunpouOptions, getBunpouQuestions } from '../bunpou.js'
 import { particleRoleOf, sentenceBreakdown } from '../sentenceGlossary.js'
 import Icon from './Icon.js'
-import { KanjiAnswerReadings, KanjiReadingColumns, KanjiReadingLines, KanjiWordHint, KanjiWordReadings, kanjiOfWord } from './game/KanjiBreakdown.js'
+import { KanjiAnswerReadings, KanjiReadingColumns, KanjiReadingLines, KanjiWordHint, KanjiWordReadings } from './game/KanjiBreakdown.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
 import { readUserStats, writeUserStats, readSelectedGroups } from '../storage.js';
 import { selectNextCharacter } from '../game/selectNextCharacter.js';
 import { recordGuess, recordShown, resetCurrentGameStats } from '../game/userStatsUpdates.js';
+import { createQuestion, normalizeAnswer, questionType } from '../game/questions.js';
 
 let fontClassList = [
   // "Belanosima",
@@ -42,13 +42,6 @@ let fontClassList = [
 let kanaTimeToAnswerTimer = 0;
 let inGameKanaOnScreen = "";
 
-function normalizeAnswer(answer) {
-  return String(answer ?? '')
-    .normalize('NFKC')
-    .toLowerCase()
-    .replace(/[\u200B-\u200D\uFEFF]/g, '')
-    .replace(/[\s-]/g, '');
-}
 
 export default function InGameCharacterShowAndInput() {
   const { t, meaningOf, language } = useLanguage();
@@ -76,7 +69,7 @@ export default function InGameCharacterShowAndInput() {
     const { exercise } = getSentenceOptions();
     return exercise === 'listen' && !isSpeechSupported() ? 'type' : exercise;
   }, []);
-  // The shown sentence question (see createSentenceQuestion in sentenceMatching.js)
+  // The shown sentence question (see createQuestion in game/questions.js)
   const [sentenceQuestion, setSentenceQuestion] = useState({ exercise: 'type' });
   // Sentence practice: checks the typed sentence word by word (see sentenceMatching.js)
   const sentenceMatcherRef = useRef(null);
@@ -91,12 +84,13 @@ export default function InGameCharacterShowAndInput() {
   // last step is a hint shown under the sentence, once per word
   const [sentenceHint, setSentenceHint] = useState(null);
   const sentenceHelpRef = useRef({ step: 0, hintWord: null });
-  // Help on a kanji word also comes in steps: the meaning of each kanji, then
-  // their readings, then the romaji (0 = no help asked yet). The ref holds the
-  // number of kanji of the shown word, for the keyboard handler set up once.
-  const [wordHintStep, setWordHintStep] = useState(0);
-  const wordHintStepRef = useRef(0);
-  const wordHintKanjiCountRef = useRef(0);
+  // Help on the other questions comes in the steps of the question too
+  // (hintSteps in game/questions.js): how many are shown (0 = no help asked
+  // yet). Refs too, for the keyboard handler set up once.
+  const [hintStep, setHintStep] = useState(0);
+  const hintStepRef = useRef(0);
+  const hintStepsRef = useRef(['romaji']);
+  const [onScreenHintSteps, setOnScreenHintSteps] = useState(['romaji']);
   const [onScreenKanjiUsage, setOnScreenKanjiUsage] = useState(null);
   const [isKanjiUsageQuestion, setIsKanjiUsageQuestion] = useState(false);
   const [onScreenSolution, setSolution] = useState('');
@@ -134,7 +128,6 @@ export default function InGameCharacterShowAndInput() {
   const srsForgottenRef = useRef(new Set());
   const srsResultRef = useRef({ reviewed: 0, forgot: 0, promoted: 0, learned: 0 });
   const [srsResult, setSrsResult] = useState(null);
-  const srsFailedRef = useRef(false);
   // A typed mix-up ("shi" for ツ) is recorded once per character shown
   const confusionRecordedRef = useRef(false);
   const srsCurrentCardRef = useRef(null);
@@ -341,8 +334,8 @@ export default function InGameCharacterShowAndInput() {
     document.querySelector('#in-game-kana-solution')?.classList.add('hidden-element');
     document.querySelector('#in-game-kanji-usage')?.classList.add('hidden-element');
     document.querySelector('#in-game-solution')?.classList.add('hidden-element');
-    wordHintStepRef.current = 0;
-    setWordHintStep(0);
+    hintStepRef.current = 0;
+    setHintStep(0);
 
     // Get and show the current Kana using the weighted selection logic
     let pickedElement = isSrsPractice
@@ -370,7 +363,6 @@ export default function InGameCharacterShowAndInput() {
     inGameKanaOnScreen = pickedElement.jp_character;
     currentCharacterTypeRef.current = pickedElement.type;
     questionAnsweredRef.current = false;
-    srsFailedRef.current = false;
     confusionRecordedRef.current = false;
     srsCurrentCardRef.current = isSrsPractice ? pickedElement : null;
     if (isSrsPractice) {
@@ -385,31 +377,13 @@ export default function InGameCharacterShowAndInput() {
     // Update totalTimesShown
     writeUserStats(recordShown(readUserStats(), inGameKanaOnScreen));
 
-    const useKanjiUsageQuestion = !isSrsPractice &&
-      pickedElement.type === 'kanji' &&
-      pickedElement.usage &&
-      practiceMode === 'mixed' &&
-      Math.random() < 0.5;
-    const questionCharacter = useKanjiUsageQuestion
-      ? pickedElement.usage.word
-      : pickedElement.jp_character;
-    setKana(questionCharacter);
-    setOnScreenParticles(
-      pickedElement.type === 'long' && Array.isArray(pickedElement.particles)
-        ? pickedElement.particles
-        : []
-    );
-    setOnScreenFurigana(
-      pickedElement.type === 'long' && pickedElement.furigana
-        ? pickedElement.furigana
-        : {}
-    );
+    // What is shown, what is accepted and what is revealed (game/questions.js)
+    const shown = createQuestion(pickedElement, { practiceMode, isSrsPractice, sentenceExercise });
+    setKana(shown.display);
+    setOnScreenParticles(shown.particles);
+    setOnScreenFurigana(shown.furigana);
     setFuriganaVisible(false);
-    const question = pickedElement.type === 'long'
-      ? pickedElement.bunpou
-        ? createBunpouQuestion(pickedElement)
-        : createSentenceQuestion(pickedElement, sentenceExercise)
-      : { exercise: 'type', matcher: null };
+    const question = shown.sentence;
     sentenceQuestionRef.current = question;
     setSentenceQuestion(question);
     sentenceMatcherRef.current = question.matcher;
@@ -420,13 +394,13 @@ export default function InGameCharacterShowAndInput() {
     setSentenceTextVisible(false);
     setSentenceAnswered(false);
     // Listening: the sentence is read out as soon as it is shown
-    if (pickedElement.type === 'long' && question.exercise === 'listen') {
+    if (question.exercise === 'listen') {
       speak(pickedElement.jp_character);
     }
     const charTextElement = document.querySelector("#in-game-kana-character>p");
     if (charTextElement) {
-      const displayLength = [...questionCharacter].length;
-      const showReadingHints = useKanjiUsageQuestion &&
+      const displayLength = [...shown.display].length;
+      const showReadingHints = shown.isUsageQuestion &&
         localStorage.getItem('game-mode-kanji-readings') === 'true';
       charTextElement.dataset.displayLength = String(displayLength);
       charTextElement.style.fontSize = showReadingHints
@@ -434,34 +408,13 @@ export default function InGameCharacterShowAndInput() {
         : "35vh";
       charTextElement.setAttribute("data-word-wraped", "false");
     }
-    setOnScreenKanjiUsage(pickedElement.type === 'kanji' ? pickedElement.usage : null);
-    wordHintKanjiCountRef.current = pickedElement.type === 'word'
-      ? kanjiOfWord(pickedElement.jp_character).length
-      : 0;
-    setIsKanjiUsageQuestion(Boolean(useKanjiUsageQuestion));
-    // @ts-ignore
-    const readings = Array.isArray(pickedElement.romanji) ? pickedElement.romanji : [pickedElement.romanji];
-    const answerReadings = useKanjiUsageQuestion
-      ? [pickedElement.usage.romanji]
-      : readings;
-    const acceptedAnswers = pickedElement.type === 'kanji'
-      ? answerReadings.flatMap(reading => [reading, toHiragana(reading)])
-      : answerReadings;
-    inGameAnswerListRef.current = acceptedAnswers
-      .map(normalizeAnswer)
-      .filter(Boolean);
-    // @ts-ignore
-    setSolution(pickedElement.type === 'kanji' ? answerReadings : pickedElement.romanji);
-    // @ts-ignore
-    if (useKanjiUsageQuestion) {
-      setWordMeaning(meaningOf(pickedElement.usage.word, pickedElement.usage.meaning));
-    } else if (pickedElement.type === "word" || pickedElement.type === "kanji" ||
-               pickedElement.type === "long") {
-      // @ts-ignore
-      setWordMeaning(meaningOf(pickedElement.jp_character, pickedElement.meaning));
-    } else {
-      setWordMeaning('');
-    }
+    setOnScreenKanjiUsage(shown.kanjiUsage);
+    hintStepsRef.current = shown.hintSteps;
+    setOnScreenHintSteps(shown.hintSteps);
+    setIsKanjiUsageQuestion(shown.isUsageQuestion);
+    inGameAnswerListRef.current = shown.answers;
+    setSolution(shown.solution);
+    setWordMeaning(shown.meaning ? meaningOf(shown.meaning.jp, shown.meaning.en) : '');
 
     const charDisplayElement = document.querySelector('#in-game-kana-character');
     if (charDisplayElement) {
@@ -479,8 +432,7 @@ export default function InGameCharacterShowAndInput() {
     }
 
     if (useTouchAnswers) {
-      // @ts-ignore
-      fillTouchAnswers({ ...pickedElement, romanji: answerReadings });
+      fillTouchAnswers(shown.touchEntry);
     }
 
     kanaTimeToAnswerTimer = Date.now();
@@ -728,7 +680,7 @@ export default function InGameCharacterShowAndInput() {
         const currentAnswer =
           document.querySelector('#in-game-text-input-before-cursor').textContent +
           document.querySelector('#in-game-text-input-after-cursor').textContent;
-        if (currentCharacterTypeRef.current === 'kanji' && /[\u3040-\u30ff]/.test(currentAnswer)) {
+        if (questionType(currentCharacterTypeRef.current).kanaInput && /[\u3040-\u30ff]/.test(currentAnswer)) {
           checkAnswer(true);
         }
         return;
@@ -958,8 +910,8 @@ export default function InGameCharacterShowAndInput() {
         return;
       }
 
-      const isKanaInput = currentCharacterTypeRef.current === 'kanji' &&
-        /[\u3040-\u30ff]/.test(InGameUserCurrentAnswer);
+      const kind = questionType(currentCharacterTypeRef.current);
+      const isKanaInput = kind.kanaInput && /[\u3040-\u30ff]/.test(InGameUserCurrentAnswer);
       if (isKanaInput && !isSubmission) return;
 
       const answerGroup = document.querySelector('#in-game-text-input-cursor-group');
@@ -987,7 +939,7 @@ export default function InGameCharacterShowAndInput() {
 
       // Only a finished answer: "n" on the way to "na" is not a mix-up with ん
       if (!isCorrect && (!isOnTrack || isSubmission) && !confusionRecordedRef.current &&
-        currentCharacterTypeRef.current === 'kana') {
+        kind.recordsConfusions) {
         const answeredAs = findKanaForAnswer(charactersToShow, typedAnswer, inGameKanaOnScreen);
         if (answeredAs) {
           recordConfusion(inGameKanaOnScreen, answeredAs);
@@ -998,10 +950,6 @@ export default function InGameCharacterShowAndInput() {
       if (!isOnTrack && !wrongSubmissionCounted) {
         updateCurrentGameStats("wrongSubmission");
         wrongSubmissionCounted = true;
-        if (isSrsPractice && currentCharacterTypeRef.current === 'kanji') {
-          recordKanjiSrsAnswer(inGameKanaOnScreen, false);
-          srsFailedRef.current = true;
-        }
       }
 
 
@@ -1020,24 +968,19 @@ export default function InGameCharacterShowAndInput() {
         }
         updateCurrentGameStats("correct");
         speakCorrectAnswer();
-        if (isSrsPractice && currentCharacterTypeRef.current === 'kanji' && !srsFailedRef.current) {
-          recordKanjiSrsAnswer(inGameKanaOnScreen, true);
-        }
         answerGroup.classList.add("answer-correct");
         document.querySelector('#in-game-kana-character').classList.add("answer-correct");
         wrongSubmissionCounted = false; // Reset for next character
         setScore(prevScore => prevScore + 1)
 
-        // Long answers (words and sentences) wait for the player:
-        // reveal the romanji (and translation) and show the Next button
-        if (currentCharacterTypeRef.current === 'word' || currentCharacterTypeRef.current === 'long') {
+        // What comes next depends on the kind of question (QUESTION_TYPES):
+        // long answers (words and sentences) wait for the player with the
+        // romaji and meaning shown, kanji show their readings, kana go on
+        if (kind.afterCorrect === 'wait') {
           revealAnswerAndWait();
         }
         else {
-          if (currentCharacterTypeRef.current === 'kanji') {
-            if (isSrsPractice && !srsFailedRef.current) {
-              recordKanjiSrsAnswer(inGameKanaOnScreen, true);
-            }
+          if (kind.afterCorrect === 'reveal') {
             waitingForKanjiNextRef.current = true;
             showKanjiAnswer(!autoNext);
             if (autoNext) {
@@ -1291,7 +1234,7 @@ export default function InGameCharacterShowAndInput() {
 
   // Kana and words are read aloud; a lone kanji is skipped since the voice can't know which reading is asked
   function speakCorrectAnswer() {
-    if (currentCharacterTypeRef.current === 'kanji') return;
+    if (!questionType(currentCharacterTypeRef.current).readAloud) return;
     speakIfEnabled(inGameKanaOnScreen);
   }
 
@@ -1331,20 +1274,14 @@ export default function InGameCharacterShowAndInput() {
     if (!hintsEnabled) {
       return;
     }
-    // Sentence questions give help in steps instead of the whole romaji
-    // (refs, since the keyboard handler is set up once):
-    //   type / arrange: furigana, then the romaji of the word being typed
-    //   listen: the sentence text, furigana, then the word being typed
-    //   particle: furigana, then what the missing particle does
-    // Every step counts as asking for help; the word hint once per word.
+    // Help comes in the steps of the question (hintSteps in game/questions.js;
+    // a ref, since the keyboard handler is set up once).
+    // Sentences: every step counts as asking for help; the word hint once per word.
+    const steps = hintStepsRef.current;
     if (currentCharacterTypeRef.current === 'long') {
       if (questionAnsweredRef.current) return;
       const help = sentenceHelpRef.current;
       const question = sentenceQuestionRef.current;
-      const steps = {
-        listen: ['text', 'furigana', 'word'],
-        particle: ['furigana', 'role'],
-      }[question.exercise] || ['furigana', 'word'];
       const step = steps[Math.min(help.step, steps.length - 1)];
       if (step === 'word') {
         const wordIndex = sentenceWordsDoneRef.current;
@@ -1374,10 +1311,11 @@ export default function InGameCharacterShowAndInput() {
       updateCurrentGameStats('askForHelp')
       solutionElement.classList.remove("hidden-element")
     }
-    // Kanji words: every further ask shows one more step, up to the romaji
-    if (wordHintKanjiCountRef.current > 0 && wordHintStepRef.current < 3) {
-      wordHintStepRef.current++;
-      setWordHintStep(wordHintStepRef.current);
+    // Other questions: the first ask shows the help (and counts), every
+    // further one the next step, up to the romaji
+    if (hintStepRef.current < steps.length) {
+      hintStepRef.current++;
+      setHintStep(hintStepRef.current);
     }
   }
 
@@ -1398,10 +1336,7 @@ export default function InGameCharacterShowAndInput() {
         answerButton.classList.remove("touch-answer-correct");
       }, 300);
       setScore(onScreenScore + 1)
-      if (currentCharacterTypeRef.current === 'kanji') {
-        if (isSrsPractice && !srsFailedRef.current) {
-          recordKanjiSrsAnswer(inGameKanaOnScreen, true);
-        }
+      if (questionType(currentCharacterTypeRef.current).afterCorrect === 'reveal') {
         waitingForKanjiNextRef.current = true;
         showKanjiAnswer(!autoNext);
         if (autoNext) {
@@ -1420,13 +1355,9 @@ export default function InGameCharacterShowAndInput() {
       }
     } else {
       updateCurrentGameStats("wrong");
-      if (currentCharacterTypeRef.current === 'kana') {
+      if (questionType(currentCharacterTypeRef.current).recordsConfusions) {
         const pickedAnswer = normalizeAnswer(event.target.firstChild.textContent);
         recordConfusion(inGameKanaOnScreen, findKanaForAnswer(charactersToShow, pickedAnswer, inGameKanaOnScreen));
-      }
-      if (isSrsPractice && currentCharacterTypeRef.current === 'kanji' && !srsFailedRef.current) {
-        recordKanjiSrsAnswer(inGameKanaOnScreen, false);
-        srsFailedRef.current = true;
       }
       // Short haptic feedback on phones that support it (Android)
       if (navigator.vibrate) {
@@ -1704,8 +1635,11 @@ export default function InGameCharacterShowAndInput() {
     ? bunpouFormNote(sentenceQuestion.choice.correct, t)
     : null;
 
-  // The shown word has kanji: its help is given in steps (see handleUserAskForHelp)
-  const hasHintKanji = onScreenCharacterType === 'word' && kanjiOfWord(onScreenKana).length > 0;
+  // A step of help is shown once it has been asked for (see handleUserAskForHelp)
+  const hintShown = step => {
+    const index = onScreenHintSteps.indexOf(step);
+    return index !== -1 && index < hintStep;
+  };
 
   return (
     <>
@@ -1896,14 +1830,14 @@ export default function InGameCharacterShowAndInput() {
           <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
             {/* Sentence help reveals furigana instead of the romaji reading */}
             {/* Kanji words keep the romaji for the last step of help */}
-            {onScreenCharacterType !== 'long' && (!hasHintKanji || wordHintStep >= 3) && (
+            {onScreenCharacterType !== 'long' && hintShown('romaji') && (
               <span className='in-game-kana-solution-romaji'>
                 {Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution}
               </span>
             )}
             {/* Kanji words: the kanji they are made of, each with its meaning, then its readings */}
-            {hasHintKanji && (
-              <KanjiWordHint word={onScreenKana} romanji={onScreenSolution} step={wordHintStep} />
+            {hintShown('meanings') && (
+              <KanjiWordHint word={onScreenKana} romanji={onScreenSolution} showReadings={hintShown('readings')} />
             )}
           </div>
           {/* Last step of sentence help: the word being typed, or what the missing particle does */}
