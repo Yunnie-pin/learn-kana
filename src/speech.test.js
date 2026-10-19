@@ -9,7 +9,7 @@ describe('speech', () => {
     window.SpeechSynthesisUtterance = function (text) { this.text = text; };
     window.speechSynthesis = {
       getVoices: () => [],
-      cancel: jest.fn(),
+      cancel: vi.fn(),
       speak: utterance => spoken.push(utterance),
     };
   });

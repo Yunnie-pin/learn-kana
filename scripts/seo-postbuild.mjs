@@ -9,7 +9,7 @@
  *   SITE_URL=https://user.github.io/learn-kana npm run build
  * Without SITE_URL nothing is added: the build still works, without them.
  *
- * Runs after `craco build` (see "build" in package.json).
+ * Runs after `vite build` (see "build" in package.json).
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -67,7 +67,7 @@ ${urls}</urlset>
 }
 
 // SITE_URL from the environment (Docker build arg, CI), else from the .env
-// files CRA reads for builds (this script runs outside of CRA)
+// files a production build reads (this script runs outside of Vite)
 function readSiteUrl() {
   if (process.env.SITE_URL !== undefined) return process.env.SITE_URL;
   for (const file of ['.env.production.local', '.env.local', '.env.production', '.env']) {

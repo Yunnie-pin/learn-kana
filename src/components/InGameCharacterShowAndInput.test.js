@@ -76,7 +76,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 describe('words practice (long typing)', () => {
@@ -132,7 +132,7 @@ describe('words practice (long typing)', () => {
   });
 
   test('moves on to the next word by itself when auto next is on', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     await renderWordsPractice({ autoNext: true });
 
     pressKeys(...WORD_ROMANJI.split(''));
@@ -141,7 +141,7 @@ describe('words practice (long typing)', () => {
 
     // Auto next waits one second before the next word is picked
     await act(async () => {
-      jest.advanceTimersByTime(1200);
+      vi.advanceTimersByTime(1200);
     });
 
     // A new round started: answer cleared, feedback hidden, next word shown

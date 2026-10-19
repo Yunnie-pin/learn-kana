@@ -2,7 +2,6 @@ import React from 'react'
 import {  useState, useEffect, useRef, useMemo } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GAME_MODES, ROUTES } from '../routes.js'
-import { toHiragana } from 'wanakana';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
@@ -21,6 +20,30 @@ import { readUserStats, writeUserStats, readSelectedGroups } from '../storage.js
 import { selectNextCharacter } from '../game/selectNextCharacter.js';
 import { recordGuess, recordShown, resetCurrentGameStats } from '../game/userStatsUpdates.js';
 import { createQuestion, normalizeAnswer, questionType } from '../game/questions.js';
+
+// Sentence practice: real beginner sentences, each one typed as a single
+// romaji answer. Only sentences the player can read with the selected
+// hiragana / katakana / kanji groups are shown, and the meaning is
+// revealed once the sentence is completed.
+function getListOfSentences(charGroups) {
+  return getPracticeSentences(charGroups).map(sentence => ({
+    "jp_character": sentence.jp_character,
+    "romanji": sentence.romanji,
+    "particles": sentence.particles || [],
+    "furigana": sentence.furigana || {},
+    "sound": "",
+    "meaning": sentence.meaning,
+    "type": "long",
+  }));
+}
+
+// Characters, words and mixed games share their list with the Learning
+// Progress window (practiceList.js); sentences and grammar have their own
+function getGameList(charGroups, mode) {
+  if (mode === 'long') return getListOfSentences(charGroups);
+  if (mode === 'bunpou') return getBunpouQuestions(charGroups);
+  return getListForPractice(charGroups, mode);
+}
 
 let fontClassList = [
   // "Belanosima",
@@ -191,7 +214,6 @@ export default function InGameCharacterShowAndInput() {
   // { "jp_character": "あ", "romanji": ["a"], "sound": "あ", "type": "kana/word", *"vocal": "a", *"meaning": "dog" }
   // *The key "vocal" only shows up when the type is "kana"
   // *The key "meaning" only shows up when the type is "word"
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   let charactersToShow = useMemo(
     () => isSrsPractice
       ? [...srsSession.due, ...srsSession.fresh]
@@ -257,29 +279,6 @@ export default function InGameCharacterShowAndInput() {
   }
 
 
-  // Sentence practice: real beginner sentences, each one typed as a single
-  // romaji answer. Only sentences the player can read with the selected
-  // hiragana / katakana / kanji groups are shown, and the meaning is
-  // revealed once the sentence is completed.
-  function getListOfSentences(charGroups) {
-    return getPracticeSentences(charGroups).map(sentence => ({
-      "jp_character": sentence.jp_character,
-      "romanji": sentence.romanji,
-      "particles": sentence.particles || [],
-      "furigana": sentence.furigana || {},
-      "sound": "",
-      "meaning": sentence.meaning,
-      "type": "long",
-    }));
-  }
-
-  // Characters, words and mixed games share their list with the Learning
-  // Progress window (practiceList.js); sentences and grammar have their own
-  function getGameList(charGroups, mode) {
-    if (mode === 'long') return getListOfSentences(charGroups);
-    if (mode === 'bunpou') return getBunpouQuestions(charGroups);
-    return getListForPractice(charGroups, mode);
-  }
 
   /*
   ##########################################
@@ -1165,6 +1164,8 @@ export default function InGameCharacterShowAndInput() {
   // is never shown while the question swaps
   React.useLayoutEffect(() => {
     fitCharacterToLine();
+    // fitCharacterToLine reads the DOM: run it for every new question only
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onScreenKana, onScreenCharacterType, isKanjiUsageQuestion]);
   React.useEffect(() => {
     //handles style changes on banner to check wrapping

@@ -62,9 +62,9 @@ export function getListOfWords(charGroups) {
 // selected kanji groups. Its kana (多い, 少し) need no kana group: kanji are
 // practiced once kana can be read. Words with a kanji the app doesn't teach
 // (一番) are left out, and one-kanji words are the kanji questions themselves.
+// The title of the kanji group of every kanji, built once
 let kanjiGroupByCharacter = null;
-export function getListOfKanjiWords(charGroups) {
-  const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
+function kanjiGroupTitles() {
   if (!kanjiGroupByCharacter) {
     kanjiGroupByCharacter = {};
     for (const group of Object.values(kanaCharacters.kanji || {})) {
@@ -75,6 +75,12 @@ export function getListOfKanjiWords(charGroups) {
       }
     }
   }
+  return kanjiGroupByCharacter;
+}
+
+export function getListOfKanjiWords(charGroups) {
+  const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
+  const groupOf = kanjiGroupTitles();
   const isKanji = (character) => /[㐀-䶿一-鿿]/.test(character);
   const output = [];
   const seen = new Set();
@@ -84,7 +90,7 @@ export function getListOfKanjiWords(charGroups) {
       if (!usage || seen.has(usage.word) || [...usage.word].length < 2) continue;
       const kanji = [...usage.word].filter(isKanji);
       const readable = kanji.length > 0 && kanji.every(item =>
-        kanjiGroupByCharacter[item] && selectedGroups.includes(kanjiGroupByCharacter[item])
+        groupOf[item] && selectedGroups.includes(groupOf[item])
       );
       if (!readable) continue;
       seen.add(usage.word);
@@ -105,7 +111,7 @@ export function getListOfKanjiWords(charGroups) {
     if (seen.has(word)) continue;
     const kanji = [...word].filter(isKanji);
     const readable = kanji.length > 0 && kanji.every(item =>
-      kanjiGroupByCharacter[item] && selectedGroups.includes(kanjiGroupByCharacter[item])
+      groupOf[item] && selectedGroups.includes(groupOf[item])
     );
     if (!readable) continue;
     seen.add(word);

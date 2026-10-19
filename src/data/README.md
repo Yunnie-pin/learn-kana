@@ -28,7 +28,7 @@ does not exist...). `src/kanaCharacters.test.js` fails when it finds any, so
 run the tests after editing:
 
 ```bash
-CI=true npx craco test --watchAll=false --testPathPattern kanaCharacters
+npx vitest run src/kanaCharacters.test.js
 ```
 
 Then, when the edit brings new characters, `npm run fonts` (it reads the

@@ -13,6 +13,8 @@ const STAGE_LABEL_KEYS = {
 
 // Review progress of every kanji: how far along each one is and when reviews come due
 function KanjiSrsPanel({ visible, language, t }) {
+  // visible: read again from localStorage each time the panel is opened
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const summary = useMemo(() => getKanjiSrsSummary(), [visible]);
   const locale = language === 'id' ? 'id-ID' : 'en-US';
 

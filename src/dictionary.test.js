@@ -1,4 +1,4 @@
-import { getDictionaryEntries, searchDictionary } from './dictionary';
+import { getDictionaryEntries, getExampleSentences, getKanaTable, getKanjiEntry, getWordTopics, searchDictionary } from './dictionary';
 import { kanaCharacters } from './kanaCharacters';
 
 const jp = (results) => results.map(entry => entry.jp);
@@ -54,7 +54,6 @@ test('one Latin letter only finds what starts with it', () => {
 });
 
 describe('helpers of the Dictionary page', () => {
-  const { getExampleSentences, getKanaTable, getKanjiEntry, getWordTopics } = require('./dictionary');
   const entry = (type, text) => getDictionaryEntries().find(item => item.type === type && item.jp === text);
 
   test('the gojūon table: 5 vowels a row, ん on a row of its own after わ', () => {

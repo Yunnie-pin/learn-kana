@@ -85,8 +85,10 @@ Requires Node.js 18 or newer.
 
 ```bash
 npm install
-npm start          # development server on http://localhost:3000
+npm start          # development server (Vite) on http://localhost:3000
 npm run build      # production build in ./build
+npm run preview    # serve that build on http://localhost:3000
+npm run lint       # ESLint, fails on any warning
 npm run fonts      # regenerate the subset fonts after adding kana, words or kanji
 node scripts/generateSentences.mjs   # regenerate the sentence data after changing templates
 ```
@@ -94,7 +96,7 @@ node scripts/generateSentences.mjs   # regenerate the sentence data after changi
 Run the tests once (they also run on GitHub Actions for every push to `main` and every pull request):
 
 ```bash
-npm test -- --watchAll=false
+npm test           # Vitest, every test once (npm run test:watch to re-run on changes)
 ```
 
 ## Running with Docker

@@ -1,5 +1,6 @@
 import { kanaCharacters } from './kanaCharacters.js';
-import { getListOfWords, wordInTopic } from './practiceList.js';
+import { getListOfKanjiWords, getListOfWords, wordInTopic } from './practiceList.js';
+import { itUsageWords, kanjiWords } from './kanjiWords.js';
 
 /*
  * The words list (kanaCharacters.words): every word is only offered when all
@@ -88,7 +89,6 @@ describe('kanji words', () => {
   const isKanji = (character) => /[一-鿿]/.test(character);
 
   test('selecting only kanji groups gives words: the vocabulary of those kanji', () => {
-    const { getListOfKanjiWords } = require('./practiceList.js');
     const words = getListOfKanjiWords(kanjiGroups);
     expect(words.length).toBeGreaterThan(150);
     expect(words.map(word => word.jp_character)).toEqual(expect.arrayContaining(['水曜日', '毎日', '今日']));
@@ -104,7 +104,6 @@ describe('kanji words', () => {
   });
 
   test('only the words whose kanji are all selected', () => {
-    const { getListOfKanjiWords } = require('./practiceList.js');
     const oneGroup = kanjiGroups[0];
     const words = getListOfKanjiWords([oneGroup]);
     words.forEach(word => {
@@ -116,7 +115,6 @@ describe('kanji words', () => {
   });
 
   test('words with a kanji the app does not teach are left out', () => {
-    const { getListOfKanjiWords } = require('./practiceList.js');
     const spellings = getListOfKanjiWords(kanjiGroups).map(word => word.jp_character);
     // 一番 needs 番, which is not taught
     expect(kanjiGroupOf['番']).toBeUndefined();
@@ -127,8 +125,6 @@ describe('kanji words', () => {
 });
 
 describe('kanji vocabulary list (kanjiWords.js)', () => {
-  const { kanjiWords, itUsageWords } = require('./kanjiWords.js');
-  const { getListOfKanjiWords } = require('./practiceList.js');
   const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
   const taught = new Set(Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters).map(c => c.jp_character)));
   const usageWords = new Set(Object.values(kanaCharacters.kanji).flatMap(group =>
@@ -164,7 +160,6 @@ describe('kanji vocabulary list (kanjiWords.js)', () => {
     expect(it).toEqual(expect.arrayContaining(['会社', '仕事', '社員', '入力', '通知', '働く']));
     expect(it).not.toContain('水曜日');
     // Every usage word listed as IT is offered (all its kanji are taught)
-    const { itUsageWords } = require('./kanjiWords.js');
     expect(itUsageWords.filter(word => !it.includes(word))).toEqual([]);
   });
 });

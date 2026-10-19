@@ -1,4 +1,4 @@
-import { getKanjiSrsStage, getKanjiSrsSummary, getNewKanjiStartedToday, getSrsSession, NEW_KANJI_PER_DAY, nextSrsState, previewSrsIntervals, recordKanjiSrsAnswer } from './kanjiSrs.js';
+import { addExtraNewKanji, getKanjiSrsStage, getKanjiSrsSummary, getNewKanjiStartedToday, getSrsSession, NEW_KANJI_PER_DAY, nextSrsState, previewSrsIntervals, recordKanjiSrsAnswer } from './kanjiSrs.js';
 import { kanaCharacters } from './kanaCharacters.js';
 
 const MINUTE = 60 * 1000;
@@ -114,7 +114,6 @@ describe('review sessions', () => {
 });
 
 test('"learn more" lets today bring in more new kanji, until tomorrow', () => {
-  const { addExtraNewKanji } = require('./kanjiSrs.js');
   const group = Object.values(kanaCharacters.kanji).find(item => Object.keys(item.characters).length >= 10);
   const others = Object.values(kanaCharacters.kanji).filter(item => item !== group);
   // Today's 10 new kanji learned elsewhere

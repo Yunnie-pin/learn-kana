@@ -38,8 +38,9 @@ jobs:
 
       - run: npm ci
 
-      # A failing test stops the deployment
-      - run: npm test -- --watchAll=false
+      # A lint warning or a failing test stops the deployment
+      - run: npm run lint
+      - run: npm test
 
       - run: npm run build
         env:

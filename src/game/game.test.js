@@ -2,6 +2,7 @@ import { selectNextCharacter } from './selectNextCharacter.js';
 import { MAX_RESPONSE_TIME, recordGuess, recordShown, resetCurrentGameStats } from './userStatsUpdates.js';
 import { getListForPractice } from '../practiceList.js';
 import { kanaCharacters } from '../kanaCharacters.js';
+import { createQuestion, normalizeAnswer, QUESTION_TYPES } from './questions.js';
 
 const NOW = new Date(2026, 9, 19, 12).getTime();
 const today = new Date(NOW).setHours(0, 0, 0, 0);
@@ -80,7 +81,6 @@ test('the practice list keeps only the words of the topic picked in the menu', (
 });
 
 describe('questions', () => {
-  const { createQuestion, normalizeAnswer, QUESTION_TYPES } = require('./questions.js');
   const kanjiEntry = Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters))
     .find(entry => entry.jp_character === '水');
 

@@ -19,5 +19,5 @@ jobs:
 
       - run: npm ci
 
-      # GitHub Actions sets CI=true, so the tests run once instead of watching
-      - run: npm test -- --watchAll=false
+      - run: npm run lint
+      - run: npm test

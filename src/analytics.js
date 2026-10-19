@@ -2,8 +2,8 @@
 //   REACT_APP_UMAMI_SCRIPT_URL  e.g. https://umami.example.com/script.js
 //   REACT_APP_UMAMI_WEBSITE_ID  the website id from the Umami dashboard
 // When either is missing, no tracking script is loaded at all.
-const scriptUrl = process.env.REACT_APP_UMAMI_SCRIPT_URL;
-const websiteId = process.env.REACT_APP_UMAMI_WEBSITE_ID;
+const scriptUrl = import.meta.env.REACT_APP_UMAMI_SCRIPT_URL;
+const websiteId = import.meta.env.REACT_APP_UMAMI_WEBSITE_ID;
 
 let lastTrackedPath = null;
 

@@ -1,9 +1,17 @@
 import React from 'react';
-import { act, cleanup, createEvent, fireEvent, render, screen, within } from '@testing-library/react';
+import { act, cleanup, createEvent, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { appRoutes } from './router';
 import { LanguageProvider } from './i18n';
 import { translate } from './i18n';
+import { kanaCharacters } from './kanaCharacters.js';
+import { sentences } from './sentences.js';
+import { getBunpouQuestions } from './bunpou.js';
+import { getListOfKanjiWords } from './practiceList.js';
+import { kanjiReadings } from './kanjiReadings.js';
+import { readingsUsedInWord } from './kanjiWordReadings.js';
+import { NEW_KANJI_PER_DAY, recordKanjiSrsAnswer } from './kanjiSrs.js';
+import { getDictionaryEntries } from './dictionary.js';
 
 /*
  * The routes of the app, with the same route list as the real app: the menu
@@ -11,6 +19,18 @@ import { translate } from './i18n';
  * passed with the address, and the game restarting without a page reload.
  */
 let router;
+
+// The pages other than the menu are loaded when opened (React.lazy in
+// router.js): load them once, so a test only waits for React to show them
+beforeAll(() => Promise.all([
+  import('./pages/InGame'),
+  import('./pages/Dictionary'),
+  import('./pages/Materi'),
+  import('./NotFound'),
+]));
+
+// Until the page is there instead of its "Loading…" (Layout's Suspense)
+const pageLoaded = () => waitFor(() => expect(document.querySelector('.page-loading')).toBeNull());
 
 async function open(entry) {
   router = createMemoryRouter(appRoutes, { initialEntries: [entry] });
@@ -21,6 +41,7 @@ async function open(entry) {
       </LanguageProvider>
     );
   });
+  await pageLoaded();
 }
 
 const path = () => router.state.location.pathname;
@@ -121,7 +142,6 @@ describe('after a game', () => {
 
   test('Play again keeps a kanji review a review', async () => {
     // A review of a kanji group, ended early with Esc: more kanji are left
-    const { kanaCharacters } = require('./kanaCharacters.js');
     localStorage.setItem('checkedKanas', JSON.stringify(Object.values(kanaCharacters.kanji).map(group => group.title)));
     await open('/game?mode=review');
     await act(async () => {
@@ -433,7 +453,6 @@ describe('character order', () => {
 });
 
 test('words practice with the IT topic only shows IT words', async () => {
-  const { kanaCharacters } = require('./kanaCharacters.js');
   const allKanaGroups = ['hiragana', 'katakana'].flatMap(script => Object.values(kanaCharacters[script]).map(group => group.title));
   const itWords = Object.values(kanaCharacters.words).filter(word => (word.tags || []).includes('it'));
   localStorage.setItem('checkedKanas', JSON.stringify(allKanaGroups));
@@ -454,8 +473,6 @@ test('words practice with the IT topic only shows IT words', async () => {
 });
 
 test('sentence practice with the IT topic only shows IT sentences', async () => {
-  const { kanaCharacters } = require('./kanaCharacters.js');
-  const { sentences } = require('./sentences.js');
   const allGroups = ['hiragana', 'katakana', 'kanji'].flatMap(script =>
     Object.values(kanaCharacters[script] || {}).map(group => group.title));
   const itSentences = sentences.filter(sentence => sentence.topic === 'it');
@@ -476,8 +493,6 @@ test('sentence practice with the IT topic only shows IT sentences', async () => 
 });
 
 test('grammar practice hides the verb form at the end of a real sentence', async () => {
-  const { kanaCharacters } = require('./kanaCharacters.js');
-  const { getBunpouQuestions } = require('./bunpou.js');
   const allGroups = ['hiragana', 'katakana', 'kanji'].flatMap(script =>
     Object.values(kanaCharacters[script] || {}).map(group => group.title));
   localStorage.setItem('checkedKanas', JSON.stringify(allGroups));
@@ -516,8 +531,6 @@ test('grammar practice hides the verb form at the end of a real sentence', async
 }, 15000);
 
 test('words practice with only kanji groups selected shows kanji words', async () => {
-  const { kanaCharacters } = require('./kanaCharacters.js');
-  const { getListOfKanjiWords } = require('./practiceList.js');
   const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
   const kanjiWords = getListOfKanjiWords(kanjiGroups);
   localStorage.setItem('checkedKanas', JSON.stringify(kanjiGroups));
@@ -541,9 +554,6 @@ test('words practice with only kanji groups selected shows kanji words', async (
 });
 
 describe('kanji readings with kanji words', () => {
-  const { kanaCharacters } = require('./kanaCharacters.js');
-  const { getListOfKanjiWords } = require('./practiceList.js');
-  const { kanjiReadings } = require('./kanjiReadings.js');
   const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
 
   async function answerKanjiWord(readingsOn) {
@@ -605,7 +615,6 @@ describe('kanji readings with kanji words', () => {
     expect(blocks[0]).toHaveTextContent(translate('en', 'kanjiKuShort'));
     expect(hint.querySelector('.in-game-kana-solution-romaji')).toBeNull();
     // the reading the word uses stands out, or the word is said to be special
-    const { readingsUsedInWord } = require('./kanjiWordReadings.js');
     if (readingsUsedInWord(word.jp_character, word.romanji)) {
       expect(hint.querySelector('.kanji-reading-used')).toBeInTheDocument();
     } else {
@@ -619,8 +628,6 @@ describe('kanji readings with kanji words', () => {
 });
 
 describe('kanji review (SRS)', () => {
-  const { kanaCharacters } = require('./kanaCharacters.js');
-  const { NEW_KANJI_PER_DAY } = require('./kanjiSrs.js');
   const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
   const card = () => document.querySelector('.kanji-srs-flip-front span')?.textContent;
   const progress = () => JSON.parse(localStorage.getItem('kanji-srs-progress') || '{}');
@@ -700,7 +707,6 @@ describe('kanji review (SRS)', () => {
 });
 
 describe('kanji review in the Practice options', () => {
-  const { kanaCharacters } = require('./kanaCharacters.js');
   const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
 
   test('Practice = Kanji review starts a review from the Start button', async () => {
@@ -733,8 +739,6 @@ describe('kanji review in the Practice options', () => {
 });
 
 describe('kanji review screen', () => {
-  const { kanaCharacters } = require('./kanaCharacters.js');
-  const { NEW_KANJI_PER_DAY } = require('./kanjiSrs.js');
   const kanjiGroups = Object.values(kanaCharacters.kanji).map(group => group.title);
   const card = () => document.querySelector('.kanji-srs-flip-front span')?.textContent;
   const count = () => document.querySelector('.kanji-srs-session-count').textContent;
@@ -829,8 +833,6 @@ describe('labels follow what is practiced', () => {
 });
 
 describe('kanji review once today\'s new kanji are done', () => {
-  const { kanaCharacters } = require('./kanaCharacters.js');
-  const { recordKanjiSrsAnswer, NEW_KANJI_PER_DAY } = require('./kanjiSrs.js');
   const groups = Object.values(kanaCharacters.kanji);
   const selected = groups.filter(group => /^N5 (Numbers|Activities)/.test(group.title));
   const summary = () => document.querySelector('.game-menu-summary').textContent;
@@ -870,8 +872,6 @@ describe('kanji review once today\'s new kanji are done', () => {
 });
 
 test('the review summary offers more new kanji once today\'s are done', async () => {
-  const { kanaCharacters } = require('./kanaCharacters.js');
-  const { NEW_KANJI_PER_DAY } = require('./kanjiSrs.js');
   localStorage.setItem('checkedKanas', JSON.stringify(Object.values(kanaCharacters.kanji).map(group => group.title)));
   await open('/game?mode=review');
   for (let round = 0; round < NEW_KANJI_PER_DAY; round++) {
@@ -1028,7 +1028,6 @@ describe('Dictionary: progress, filters and links', () => {
       'あ': { totalTimesShown: 3, totalRightGuesses: 3, totalWrongGuesses: 0, totaltotalResponseTime: 2580,
         dailyPerformance: [{ date: Date.now(), rightGuesses: 3, wrongGuesses: 0, responseTimeSum: 2580 }] },
     }));
-    const { recordKanjiSrsAnswer } = require('./kanjiSrs.js');
     recordKanjiSrsAnswer('水', 'good');
     await open('/dictionary');
     search('あ');
@@ -1066,7 +1065,6 @@ describe('Dictionary: progress, filters and links', () => {
 
     pickType('dictionaryWords');
     fireEvent.change(screen.getByRole('combobox', { name: translate('en', 'wordTopicLabel') }), { target: { value: 'it' } });
-    const { getDictionaryEntries } = require('./dictionary.js');
     const itWords = getDictionaryEntries().filter(item => (item.tags || []).includes('it'));
     expect(document.querySelector('.dictionary-count')).toHaveTextContent(String(itWords.length));
   });
@@ -1176,12 +1174,12 @@ describe('Dictionary results and details', () => {
   });
 
   test('searches are remembered and shown before the next search', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     try {
       await open('/dictionary');
       search('mizu');
       await act(async () => {
-        jest.advanceTimersByTime(2000);
+        vi.advanceTimersByTime(2000);
       });
       search('');
       const recent = screen.getByRole('region', { name: translate('en', 'dictionaryRecent') });
@@ -1192,7 +1190,7 @@ describe('Dictionary results and details', () => {
       fireEvent.click(screen.getByRole('button', { name: translate('en', 'dictionaryRecentClear') }));
       expect(screen.queryByRole('region', { name: translate('en', 'dictionaryRecent') })).toBeNull();
     } finally {
-      jest.useRealTimers();
+      vi.useRealTimers();
     }
   });
 });

@@ -24,11 +24,11 @@ test('writes store JSON, strings as they are', () => {
 });
 
 test('a full storage does not throw: the write fails and the app is told', () => {
-  const setItem = jest.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+  const setItem = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
     throw new DOMException('full', 'QuotaExceededError');
   });
-  const warn = jest.spyOn(console, 'warn').mockImplementation(() => { });
-  const onFull = jest.fn();
+  const warn = vi.spyOn(console, 'warn').mockImplementation(() => { });
+  const onFull = vi.fn();
   window.addEventListener(STORAGE_FULL_EVENT, onFull);
   try {
     expect(writeUserStats({ あ: {} })).toBe(false);
@@ -61,9 +61,9 @@ describe('migrations', () => {
   });
 
   test('a failing migration stops there and is tried again next time', () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => { });
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => { });
     let fail = true;
-    const later = jest.fn();
+    const later = vi.fn();
     const migrations = [() => { if (fail) throw new Error('boom'); }, later];
     expect(runStorageMigrations(migrations)).toBe(0);
     expect(later).not.toHaveBeenCalled();

@@ -214,6 +214,8 @@ export default function GameMenu() {
   const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount, bunpouCount } = getSelectionSummary(sentenceData, practice);
   const selectedKanjiGroups = useMemo(
     () => getSelectedKanjiGroupTitles(),
+    // settingsVersion: read again from localStorage when the selection changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [settingsVersion]
   );
   // SRS session for the Kanji tab: the kanji due again plus the new kanji

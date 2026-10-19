@@ -4,7 +4,7 @@ This file provides guidance to AI Code (claude.ai/code, gpt, and some ai agent) 
 
 ## What this is
 
-A client-only React (Create React App via CRACO) PWA for practicing kana, kanji, words and Japanese sentences. There is no backend: all progress, settings and selections live in browser `localStorage`. Keep it deployable as a static build (served by nginx in Docker, or GitHub/Cloudflare Pages). The UI is in English and Indonesian.
+A client-only React (Vite, see `vite.config.mjs`) PWA for practicing kana, kanji, words and Japanese sentences. There is no backend: all progress, settings and selections live in browser `localStorage`. Keep it deployable as a static build (served by nginx in Docker, or GitHub/Cloudflare Pages). The UI is in English and Indonesian.
 
 ## Commands
 
@@ -15,13 +15,17 @@ npm run build                               # production build in ./build
 npm run fonts                               # re-subset the Japanese fonts (see below)
 node scripts/generateSentences.mjs          # regenerate the sentence data (see below)
 
-# Tests (Jest via craco; CI=true makes it run once instead of watching)
-CI=true npx craco test --watchAll=false
-CI=true npx craco test --watchAll=false --testPathPattern sentenceMatching   # one file
-CI=true npx craco test --watchAll=false --testPathPattern longPractice -t "particle"   # one test
+npm run preview                             # serve ./build, http://localhost:3000
+npm run lint                                # ESLint (react-app rules), fails on any warning
+
+# Tests (Vitest with jsdom, see "test" in vite.config.mjs)
+npm test                                    # every test, once
+npm run test:watch                          # re-run on changes
+npx vitest run src/sentenceMatching.test.js # one file
+npx vitest run longPractice -t "particle"   # one test
 ```
 
-There is no lint script; CRA's ESLint (`react-app`) runs during `npm start` / `npm run build`, and `CI=true npm run build` fails on lint warnings. GitHub Actions (`.github/workflows/test.yml`) runs `npm ci` + the test suite on Node 20 for pushes to `main` and for pull requests.
+The build does not lint: run `npm run lint`. GitHub Actions (`.github/workflows/test.yml`) runs `npm ci`, the lint and the tests on Node 20 for pushes to `main` and for pull requests; the Pages deployment (`deploy.yml`) runs them before building. Build-time settings keep their `REACT_APP_` names (`envPrefix` in `vite.config.mjs`) and are read with `import.meta.env`. The service worker is `src/service-worker.js`, built by `vite-plugin-pwa` (injectManifest) with the build's files to precache; tests use `vi` (Vitest) where Jest had `jest`.
 
 ## Architecture
 

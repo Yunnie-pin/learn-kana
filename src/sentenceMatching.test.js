@@ -1,5 +1,5 @@
 import { sentences } from './sentences.js';
-import { alignWords, createSentenceMatcher, createSentenceQuestion, normalizeTypedAnswer, wordSpellings } from './sentenceMatching.js';
+import { alignWords, createSentenceMatcher, createSentenceQuestion, kanaToRomaji, normalizeTypedAnswer, wordSpellings } from './sentenceMatching.js';
 
 const sentence = (jp) => sentences.find(entry => entry.jp_character === jp);
 
@@ -154,7 +154,6 @@ describe('sentence questions', () => {
 });
 
 test('loanword kana are romanized the way they are typed', () => {
-  const { kanaToRomaji } = require('./sentenceMatching.js');
   expect(kanaToRomaji('ファイル')).toBe('fairu');
   expect(kanaToRomaji('セキュリティ')).toBe('sekyuriti');
   expect(kanaToRomaji('ミーティング')).toBe('miitingu');
