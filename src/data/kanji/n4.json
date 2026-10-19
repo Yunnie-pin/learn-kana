@@ -1,0 +1,2211 @@
+{
+  "categories": [
+    {
+      "key": "n4-daily-verbs",
+      "title": "N4 Daily Verbs",
+      "title_id": "Kata Kerja Harian",
+      "kanji": [
+        {
+          "key": "thing",
+          "jp_character": "事",
+          "romanji": [
+            "koto",
+            "ji"
+          ],
+          "sound": "こと",
+          "meaning": "thing / matter",
+          "meaning_id": "hal / urusan"
+        },
+        {
+          "key": "use",
+          "jp_character": "使",
+          "romanji": [
+            "tsukau",
+            "shi"
+          ],
+          "sound": "つかう",
+          "meaning": "use",
+          "meaning_id": "menggunakan"
+        },
+        {
+          "key": "wait",
+          "jp_character": "待",
+          "romanji": [
+            "matsu",
+            "tai"
+          ],
+          "sound": "まつ",
+          "meaning": "wait",
+          "meaning_id": "menunggu"
+        },
+        {
+          "key": "hold",
+          "jp_character": "持",
+          "romanji": [
+            "motsu",
+            "ji"
+          ],
+          "sound": "もつ",
+          "meaning": "hold / carry",
+          "meaning_id": "memegang / membawa"
+        },
+        {
+          "key": "begin",
+          "jp_character": "始",
+          "romanji": [
+            "hajimeru",
+            "shi"
+          ],
+          "sound": "はじめる",
+          "meaning": "begin",
+          "meaning_id": "memulai"
+        },
+        {
+          "key": "end",
+          "jp_character": "終",
+          "romanji": [
+            "owaru",
+            "shuu"
+          ],
+          "sound": "おわる",
+          "meaning": "end / finish",
+          "meaning_id": "selesai"
+        },
+        {
+          "key": "open",
+          "jp_character": "開",
+          "romanji": [
+            "hiraku",
+            "kai"
+          ],
+          "sound": "ひらく",
+          "meaning": "open",
+          "meaning_id": "membuka"
+        },
+        {
+          "key": "close",
+          "jp_character": "閉",
+          "romanji": [
+            "shimeru",
+            "hei"
+          ],
+          "sound": "しめる",
+          "meaning": "close",
+          "meaning_id": "menutup"
+        },
+        {
+          "key": "move",
+          "jp_character": "動",
+          "romanji": [
+            "ugoku",
+            "dou"
+          ],
+          "sound": "うごく",
+          "meaning": "move",
+          "meaning_id": "bergerak"
+        },
+        {
+          "key": "work",
+          "jp_character": "働",
+          "romanji": [
+            "hataraku",
+            "dou"
+          ],
+          "sound": "はたらく",
+          "meaning": "work",
+          "meaning_id": "bekerja"
+        },
+        {
+          "key": "teach",
+          "jp_character": "教",
+          "romanji": [
+            "oshieru",
+            "kyou"
+          ],
+          "sound": "おしえる",
+          "meaning": "teach",
+          "meaning_id": "mengajar"
+        },
+        {
+          "key": "learn",
+          "jp_character": "習",
+          "romanji": [
+            "narau",
+            "shuu"
+          ],
+          "sound": "ならう",
+          "meaning": "learn / practice",
+          "meaning_id": "belajar / berlatih"
+        },
+        {
+          "key": "think",
+          "jp_character": "考",
+          "romanji": [
+            "kangaeru",
+            "kou"
+          ],
+          "sound": "かんがえる",
+          "meaning": "think",
+          "meaning_id": "berpikir"
+        },
+        {
+          "key": "know",
+          "jp_character": "知",
+          "romanji": [
+            "shiru",
+            "chi"
+          ],
+          "sound": "しる",
+          "meaning": "know",
+          "meaning_id": "mengetahui"
+        },
+        {
+          "key": "feel",
+          "jp_character": "思",
+          "romanji": [
+            "omou",
+            "shi"
+          ],
+          "sound": "おもう",
+          "meaning": "think / feel",
+          "meaning_id": "berpikir / merasa"
+        },
+        {
+          "key": "forget",
+          "jp_character": "忘",
+          "romanji": [
+            "wasureru",
+            "bou"
+          ],
+          "sound": "わすれる",
+          "meaning": "forget",
+          "meaning_id": "lupa"
+        },
+        {
+          "key": "remember",
+          "jp_character": "覚",
+          "romanji": [
+            "oboeru",
+            "kaku"
+          ],
+          "sound": "おぼえる",
+          "meaning": "remember / learn",
+          "meaning_id": "mengingat / menghafal"
+        },
+        {
+          "key": "answer",
+          "jp_character": "答",
+          "romanji": [
+            "kotaeru",
+            "tou"
+          ],
+          "sound": "こたえる",
+          "meaning": "answer",
+          "meaning_id": "menjawab"
+        },
+        {
+          "key": "ask",
+          "jp_character": "問",
+          "romanji": [
+            "tou",
+            "mon"
+          ],
+          "sound": "とう",
+          "meaning": "ask / question",
+          "meaning_id": "bertanya / pertanyaan"
+        },
+        {
+          "key": "study",
+          "jp_character": "勉",
+          "romanji": [
+            "ben"
+          ],
+          "sound": "べん",
+          "meaning": "diligence / study",
+          "meaning_id": "ketekunan / belajar"
+        },
+        {
+          "key": "make",
+          "jp_character": "作",
+          "romanji": [
+            "tsukuru",
+            "saku"
+          ],
+          "sound": "つくる",
+          "meaning": "make / create",
+          "meaning_id": "membuat"
+        },
+        {
+          "key": "send",
+          "jp_character": "送",
+          "romanji": [
+            "okuru",
+            "sou"
+          ],
+          "sound": "おくる",
+          "meaning": "send",
+          "meaning_id": "mengirim"
+        },
+        {
+          "key": "return",
+          "jp_character": "返",
+          "romanji": [
+            "kaesu",
+            "hen"
+          ],
+          "sound": "かえす",
+          "meaning": "return / give back",
+          "meaning_id": "mengembalikan"
+        },
+        {
+          "key": "borrow",
+          "jp_character": "借",
+          "romanji": [
+            "kariru",
+            "shaku"
+          ],
+          "sound": "かりる",
+          "meaning": "borrow",
+          "meaning_id": "meminjam"
+        },
+        {
+          "key": "lend",
+          "jp_character": "貸",
+          "romanji": [
+            "kasu",
+            "tai"
+          ],
+          "sound": "かす",
+          "meaning": "lend",
+          "meaning_id": "meminjamkan"
+        },
+        {
+          "key": "pay",
+          "jp_character": "払",
+          "romanji": [
+            "harau",
+            "futsu"
+          ],
+          "sound": "はらう",
+          "meaning": "pay",
+          "meaning_id": "membayar"
+        },
+        {
+          "key": "choose",
+          "jp_character": "選",
+          "romanji": [
+            "erabu",
+            "sen"
+          ],
+          "sound": "えらぶ",
+          "meaning": "choose",
+          "meaning_id": "memilih"
+        },
+        {
+          "key": "wake",
+          "jp_character": "起",
+          "romanji": [
+            "okiru",
+            "ki"
+          ],
+          "sound": "おきる",
+          "meaning": "get up / wake",
+          "meaning_id": "bangun"
+        },
+        {
+          "key": "sleep",
+          "jp_character": "寝",
+          "romanji": [
+            "neru",
+            "shin"
+          ],
+          "sound": "ねる",
+          "meaning": "sleep / go to bed",
+          "meaning_id": "tidur"
+        },
+        {
+          "key": "swim",
+          "jp_character": "泳",
+          "romanji": [
+            "oyogu",
+            "ei"
+          ],
+          "sound": "およぐ",
+          "meaning": "swim",
+          "meaning_id": "berenang"
+        },
+        {
+          "key": "run",
+          "jp_character": "走",
+          "romanji": [
+            "hashiru",
+            "sou"
+          ],
+          "sound": "はしる",
+          "meaning": "run",
+          "meaning_id": "berlari"
+        },
+        {
+          "key": "walk",
+          "jp_character": "歩",
+          "romanji": [
+            "aruku",
+            "ho"
+          ],
+          "sound": "あるく",
+          "meaning": "walk",
+          "meaning_id": "berjalan"
+        },
+        {
+          "key": "cross",
+          "jp_character": "渡",
+          "romanji": [
+            "wataru",
+            "to"
+          ],
+          "sound": "わたる",
+          "meaning": "cross / hand over",
+          "meaning_id": "menyeberang / menyerahkan"
+        },
+        {
+          "key": "ride",
+          "jp_character": "乗",
+          "romanji": [
+            "noru",
+            "jou"
+          ],
+          "sound": "のる",
+          "meaning": "ride / get on",
+          "meaning_id": "naik / menumpang"
+        },
+        {
+          "key": "getOff",
+          "jp_character": "降",
+          "romanji": [
+            "oriru",
+            "kou"
+          ],
+          "sound": "おりる",
+          "meaning": "get off / descend",
+          "meaning_id": "turun"
+        },
+        {
+          "key": "stop",
+          "jp_character": "止",
+          "romanji": [
+            "tomaru",
+            "shi"
+          ],
+          "sound": "とまる",
+          "meaning": "stop",
+          "meaning_id": "berhenti"
+        },
+        {
+          "key": "pass",
+          "jp_character": "通",
+          "romanji": [
+            "tooru",
+            "tsuu"
+          ],
+          "sound": "とおる",
+          "meaning": "pass / go through",
+          "meaning_id": "melewati"
+        },
+        {
+          "key": "advance",
+          "jp_character": "進",
+          "romanji": [
+            "susumu",
+            "shin"
+          ],
+          "sound": "すすむ",
+          "meaning": "advance / proceed",
+          "meaning_id": "maju / melanjutkan"
+        },
+        {
+          "key": "take",
+          "jp_character": "取",
+          "romanji": [
+            "toru",
+            "shu"
+          ],
+          "sound": "とる",
+          "meaning": "take / obtain",
+          "meaning_id": "mengambil"
+        },
+        {
+          "key": "fix",
+          "jp_character": "直",
+          "romanji": [
+            "naosu",
+            "choku"
+          ],
+          "sound": "なおす",
+          "meaning": "fix / repair",
+          "meaning_id": "memperbaiki"
+        }
+      ]
+    },
+    {
+      "key": "n4-qualities",
+      "title": "N4 Qualities & Conditions",
+      "title_id": "Sifat & Kondisi",
+      "kanji": [
+        {
+          "key": "bright",
+          "jp_character": "明",
+          "romanji": [
+            "akarui",
+            "mei"
+          ],
+          "sound": "あかるい",
+          "meaning": "bright / clear",
+          "meaning_id": "terang / jelas"
+        },
+        {
+          "key": "dark",
+          "jp_character": "暗",
+          "romanji": [
+            "kurai",
+            "an"
+          ],
+          "sound": "くらい",
+          "meaning": "dark",
+          "meaning_id": "gelap"
+        },
+        {
+          "key": "strong",
+          "jp_character": "強",
+          "romanji": [
+            "tsuyoi",
+            "kyou"
+          ],
+          "sound": "つよい",
+          "meaning": "strong",
+          "meaning_id": "kuat"
+        },
+        {
+          "key": "weak",
+          "jp_character": "弱",
+          "romanji": [
+            "yowai",
+            "jaku"
+          ],
+          "sound": "よわい",
+          "meaning": "weak",
+          "meaning_id": "lemah"
+        },
+        {
+          "key": "early",
+          "jp_character": "早",
+          "romanji": [
+            "hayai",
+            "sou"
+          ],
+          "sound": "はやい",
+          "meaning": "early / fast",
+          "meaning_id": "awal / cepat"
+        },
+        {
+          "key": "late",
+          "jp_character": "遅",
+          "romanji": [
+            "osoi",
+            "chi"
+          ],
+          "sound": "おそい",
+          "meaning": "late / slow",
+          "meaning_id": "terlambat / lambat"
+        },
+        {
+          "key": "heavy",
+          "jp_character": "重",
+          "romanji": [
+            "omoi",
+            "juu"
+          ],
+          "sound": "おもい",
+          "meaning": "heavy / important",
+          "meaning_id": "berat / penting"
+        },
+        {
+          "key": "light",
+          "jp_character": "軽",
+          "romanji": [
+            "karui",
+            "kei"
+          ],
+          "sound": "かるい",
+          "meaning": "light (weight)",
+          "meaning_id": "ringan"
+        },
+        {
+          "key": "wide",
+          "jp_character": "広",
+          "romanji": [
+            "hiroi",
+            "kou"
+          ],
+          "sound": "ひろい",
+          "meaning": "wide / spacious",
+          "meaning_id": "luas"
+        },
+        {
+          "key": "low",
+          "jp_character": "低",
+          "romanji": [
+            "hikui",
+            "tei"
+          ],
+          "sound": "ひくい",
+          "meaning": "low",
+          "meaning_id": "rendah"
+        },
+        {
+          "key": "good",
+          "jp_character": "良",
+          "romanji": [
+            "yoi",
+            "ryou"
+          ],
+          "sound": "よい",
+          "meaning": "good",
+          "meaning_id": "baik"
+        },
+        {
+          "key": "bad",
+          "jp_character": "悪",
+          "romanji": [
+            "warui",
+            "aku"
+          ],
+          "sound": "わるい",
+          "meaning": "bad / evil",
+          "meaning_id": "buruk / jahat"
+        },
+        {
+          "key": "pleasant",
+          "jp_character": "楽",
+          "romanji": [
+            "tanoshii",
+            "raku"
+          ],
+          "sound": "たのしい",
+          "meaning": "pleasant / fun",
+          "meaning_id": "menyenangkan"
+        },
+        {
+          "key": "correct",
+          "jp_character": "正",
+          "romanji": [
+            "tadashii",
+            "sei"
+          ],
+          "sound": "ただしい",
+          "meaning": "correct / proper",
+          "meaning_id": "benar / tepat"
+        },
+        {
+          "key": "warm",
+          "jp_character": "暖",
+          "romanji": [
+            "atatakai",
+            "dan"
+          ],
+          "sound": "あたたかい",
+          "meaning": "warm",
+          "meaning_id": "hangat"
+        },
+        {
+          "key": "cold",
+          "jp_character": "寒",
+          "romanji": [
+            "samui",
+            "kan"
+          ],
+          "sound": "さむい",
+          "meaning": "cold (weather)",
+          "meaning_id": "dingin"
+        },
+        {
+          "key": "hot",
+          "jp_character": "暑",
+          "romanji": [
+            "atsui",
+            "sho"
+          ],
+          "sound": "あつい",
+          "meaning": "hot (weather)",
+          "meaning_id": "panas"
+        },
+        {
+          "key": "cool",
+          "jp_character": "涼",
+          "romanji": [
+            "suzushii",
+            "ryou"
+          ],
+          "sound": "すずしい",
+          "meaning": "cool / refreshing",
+          "meaning_id": "sejuk"
+        },
+        {
+          "key": "thick",
+          "jp_character": "太",
+          "romanji": [
+            "futoi",
+            "tai"
+          ],
+          "sound": "ふとい",
+          "meaning": "thick / fat",
+          "meaning_id": "tebal / gemuk"
+        },
+        {
+          "key": "thin",
+          "jp_character": "細",
+          "romanji": [
+            "hosoi",
+            "sai"
+          ],
+          "sound": "ほそい",
+          "meaning": "thin / narrow",
+          "meaning_id": "tipis / sempit"
+        },
+        {
+          "key": "round",
+          "jp_character": "丸",
+          "romanji": [
+            "marui",
+            "gan"
+          ],
+          "sound": "まるい",
+          "meaning": "round",
+          "meaning_id": "bulat"
+        },
+        {
+          "key": "beautiful",
+          "jp_character": "美",
+          "romanji": [
+            "utsukushii",
+            "bi"
+          ],
+          "sound": "うつくしい",
+          "meaning": "beautiful",
+          "meaning_id": "indah / cantik"
+        },
+        {
+          "key": "young",
+          "jp_character": "若",
+          "romanji": [
+            "wakai",
+            "jaku"
+          ],
+          "sound": "わかい",
+          "meaning": "young",
+          "meaning_id": "muda"
+        },
+        {
+          "key": "busy",
+          "jp_character": "忙",
+          "romanji": [
+            "isogashii",
+            "bou"
+          ],
+          "sound": "いそがしい",
+          "meaning": "busy",
+          "meaning_id": "sibuk"
+        },
+        {
+          "key": "quiet",
+          "jp_character": "静",
+          "romanji": [
+            "shizuka",
+            "sei"
+          ],
+          "sound": "しずか",
+          "meaning": "quiet / calm",
+          "meaning_id": "tenang"
+        },
+        {
+          "key": "energy",
+          "jp_character": "元",
+          "romanji": [
+            "gen"
+          ],
+          "sound": "げん",
+          "meaning": "origin / energy",
+          "meaning_id": "asal / energi"
+        },
+        {
+          "key": "true",
+          "jp_character": "真",
+          "romanji": [
+            "makoto",
+            "shin"
+          ],
+          "sound": "まこと",
+          "meaning": "true / real",
+          "meaning_id": "benar / nyata"
+        },
+        {
+          "key": "same",
+          "jp_character": "同",
+          "romanji": [
+            "onaji",
+            "dou"
+          ],
+          "sound": "おなじ",
+          "meaning": "same",
+          "meaning_id": "sama"
+        },
+        {
+          "key": "different",
+          "jp_character": "別",
+          "romanji": [
+            "betsu"
+          ],
+          "sound": "べつ",
+          "meaning": "different / separate",
+          "meaning_id": "berbeda / terpisah"
+        },
+        {
+          "key": "special",
+          "jp_character": "特",
+          "romanji": [
+            "toku"
+          ],
+          "sound": "とく",
+          "meaning": "special",
+          "meaning_id": "khusus"
+        },
+        {
+          "key": "necessary",
+          "jp_character": "必",
+          "romanji": [
+            "hitsu"
+          ],
+          "sound": "ひつ",
+          "meaning": "necessary / certain",
+          "meaning_id": "perlu / pasti"
+        },
+        {
+          "key": "strange",
+          "jp_character": "変",
+          "romanji": [
+            "hen",
+            "kawaru"
+          ],
+          "sound": "へん",
+          "meaning": "strange / change",
+          "meaning_id": "aneh / berubah"
+        },
+        {
+          "key": "troubled",
+          "jp_character": "困",
+          "romanji": [
+            "komaru",
+            "kon"
+          ],
+          "sound": "こまる",
+          "meaning": "be troubled",
+          "meaning_id": "kesulitan"
+        },
+        {
+          "key": "tired",
+          "jp_character": "疲",
+          "romanji": [
+            "tsukareru",
+            "hi"
+          ],
+          "sound": "つかれる",
+          "meaning": "tired",
+          "meaning_id": "lelah"
+        },
+        {
+          "key": "painful",
+          "jp_character": "痛",
+          "romanji": [
+            "itai",
+            "tsuu"
+          ],
+          "sound": "いたい",
+          "meaning": "painful",
+          "meaning_id": "sakit"
+        },
+        {
+          "key": "happy",
+          "jp_character": "幸",
+          "romanji": [
+            "shiawase",
+            "kou"
+          ],
+          "sound": "しあわせ",
+          "meaning": "happiness / fortunate",
+          "meaning_id": "bahagia / beruntung"
+        },
+        {
+          "key": "sad",
+          "jp_character": "悲",
+          "romanji": [
+            "kanashii",
+            "hi"
+          ],
+          "sound": "かなしい",
+          "meaning": "sad",
+          "meaning_id": "sedih"
+        },
+        {
+          "key": "scary",
+          "jp_character": "怖",
+          "romanji": [
+            "kowai",
+            "fu"
+          ],
+          "sound": "こわい",
+          "meaning": "scary / frightening",
+          "meaning_id": "menakutkan"
+        },
+        {
+          "key": "deep",
+          "jp_character": "深",
+          "romanji": [
+            "fukai",
+            "shin"
+          ],
+          "sound": "ふかい",
+          "meaning": "deep",
+          "meaning_id": "dalam"
+        },
+        {
+          "key": "shallow",
+          "jp_character": "浅",
+          "romanji": [
+            "asai",
+            "sen"
+          ],
+          "sound": "あさい",
+          "meaning": "shallow",
+          "meaning_id": "dangkal"
+        }
+      ]
+    },
+    {
+      "key": "n4-buildings-places",
+      "title": "N4 Buildings & Places",
+      "title_id": "Bangunan & Tempat",
+      "kanji": [
+        {
+          "key": "travel",
+          "jp_character": "旅",
+          "romanji": [
+            "tabi",
+            "ryo"
+          ],
+          "sound": "たび",
+          "meaning": "travel / trip",
+          "meaning_id": "perjalanan"
+        },
+        {
+          "key": "building",
+          "jp_character": "館",
+          "romanji": [
+            "kan"
+          ],
+          "sound": "かん",
+          "meaning": "large building / hall",
+          "meaning_id": "gedung / aula"
+        },
+        {
+          "key": "road",
+          "jp_character": "道",
+          "romanji": [
+            "michi",
+            "dou"
+          ],
+          "sound": "みち",
+          "meaning": "road / way",
+          "meaning_id": "jalan"
+        },
+        {
+          "key": "near",
+          "jp_character": "近",
+          "romanji": [
+            "chikai",
+            "kin"
+          ],
+          "sound": "ちかい",
+          "meaning": "near",
+          "meaning_id": "dekat"
+        },
+        {
+          "key": "far",
+          "jp_character": "遠",
+          "romanji": [
+            "tooi",
+            "en"
+          ],
+          "sound": "とおい",
+          "meaning": "far",
+          "meaning_id": "jauh"
+        },
+        {
+          "key": "town",
+          "jp_character": "町",
+          "romanji": [
+            "machi",
+            "chou"
+          ],
+          "sound": "まち",
+          "meaning": "town",
+          "meaning_id": "kota kecil"
+        },
+        {
+          "key": "city",
+          "jp_character": "市",
+          "romanji": [
+            "shi",
+            "ichi"
+          ],
+          "sound": "し",
+          "meaning": "city / market",
+          "meaning_id": "kota / pasar"
+        },
+        {
+          "key": "place",
+          "jp_character": "場",
+          "romanji": [
+            "ba",
+            "jou"
+          ],
+          "sound": "ば",
+          "meaning": "place / location",
+          "meaning_id": "tempat"
+        },
+        {
+          "key": "location",
+          "jp_character": "所",
+          "romanji": [
+            "tokoro",
+            "sho"
+          ],
+          "sound": "ところ",
+          "meaning": "place",
+          "meaning_id": "tempat"
+        },
+        {
+          "key": "build",
+          "jp_character": "建",
+          "romanji": [
+            "tateru",
+            "ken"
+          ],
+          "sound": "たてる",
+          "meaning": "build",
+          "meaning_id": "membangun"
+        },
+        {
+          "key": "illness",
+          "jp_character": "病",
+          "romanji": [
+            "byou",
+            "yamai"
+          ],
+          "sound": "びょう",
+          "meaning": "illness",
+          "meaning_id": "penyakit"
+        },
+        {
+          "key": "institution",
+          "jp_character": "院",
+          "romanji": [
+            "in"
+          ],
+          "sound": "いん",
+          "meaning": "institution / hospital",
+          "meaning_id": "lembaga / rumah sakit"
+        },
+        {
+          "key": "ward",
+          "jp_character": "区",
+          "romanji": [
+            "ku"
+          ],
+          "sound": "く",
+          "meaning": "ward / district",
+          "meaning_id": "kecamatan / distrik"
+        },
+        {
+          "key": "capital",
+          "jp_character": "都",
+          "romanji": [
+            "miyako",
+            "to"
+          ],
+          "sound": "みやこ",
+          "meaning": "capital / metropolis",
+          "meaning_id": "ibu kota / metropolis"
+        },
+        {
+          "key": "prefecture",
+          "jp_character": "県",
+          "romanji": [
+            "ken"
+          ],
+          "sound": "けん",
+          "meaning": "prefecture",
+          "meaning_id": "prefektur"
+        },
+        {
+          "key": "village",
+          "jp_character": "村",
+          "romanji": [
+            "mura",
+            "son"
+          ],
+          "sound": "むら",
+          "meaning": "village",
+          "meaning_id": "desa"
+        },
+        {
+          "key": "island",
+          "jp_character": "島",
+          "romanji": [
+            "shima",
+            "tou"
+          ],
+          "sound": "しま",
+          "meaning": "island",
+          "meaning_id": "pulau"
+        },
+        {
+          "key": "bridge",
+          "jp_character": "橋",
+          "romanji": [
+            "hashi",
+            "kyou"
+          ],
+          "sound": "はし",
+          "meaning": "bridge",
+          "meaning_id": "jembatan"
+        },
+        {
+          "key": "pond",
+          "jp_character": "池",
+          "romanji": [
+            "ike",
+            "chi"
+          ],
+          "sound": "いけ",
+          "meaning": "pond",
+          "meaning_id": "kolam"
+        },
+        {
+          "key": "temple",
+          "jp_character": "寺",
+          "romanji": [
+            "tera",
+            "ji"
+          ],
+          "sound": "てら",
+          "meaning": "temple",
+          "meaning_id": "kuil"
+        },
+        {
+          "key": "shrine",
+          "jp_character": "神",
+          "romanji": [
+            "kami",
+            "shin"
+          ],
+          "sound": "かみ",
+          "meaning": "god / deity",
+          "meaning_id": "dewa"
+        },
+        {
+          "key": "gate",
+          "jp_character": "門",
+          "romanji": [
+            "mon"
+          ],
+          "sound": "もん",
+          "meaning": "gate",
+          "meaning_id": "gerbang"
+        },
+        {
+          "key": "floor",
+          "jp_character": "階",
+          "romanji": [
+            "kai"
+          ],
+          "sound": "かい",
+          "meaning": "floor / story of a building",
+          "meaning_id": "lantai / tingkat gedung"
+        },
+        {
+          "key": "room",
+          "jp_character": "室",
+          "romanji": [
+            "shitsu",
+            "muro"
+          ],
+          "sound": "しつ",
+          "meaning": "room",
+          "meaning_id": "ruangan"
+        },
+        {
+          "key": "shop",
+          "jp_character": "屋",
+          "romanji": [
+            "ya",
+            "oku"
+          ],
+          "sound": "や",
+          "meaning": "shop / roof",
+          "meaning_id": "toko / atap"
+        },
+        {
+          "key": "hall",
+          "jp_character": "堂",
+          "romanji": [
+            "dou"
+          ],
+          "sound": "どう",
+          "meaning": "hall",
+          "meaning_id": "aula"
+        },
+        {
+          "key": "port",
+          "jp_character": "港",
+          "romanji": [
+            "minato",
+            "kou"
+          ],
+          "sound": "みなと",
+          "meaning": "port / harbor",
+          "meaning_id": "pelabuhan"
+        },
+        {
+          "key": "boat",
+          "jp_character": "船",
+          "romanji": [
+            "fune",
+            "sen"
+          ],
+          "sound": "ふね",
+          "meaning": "boat / ship",
+          "meaning_id": "perahu / kapal"
+        },
+        {
+          "key": "department",
+          "jp_character": "部",
+          "romanji": [
+            "bu"
+          ],
+          "sound": "ぶ",
+          "meaning": "department / section",
+          "meaning_id": "bagian / departemen"
+        },
+        {
+          "key": "craft",
+          "jp_character": "工",
+          "romanji": [
+            "kou",
+            "ku"
+          ],
+          "sound": "こう",
+          "meaning": "craft / construction",
+          "meaning_id": "kerajinan / konstruksi"
+        },
+        {
+          "key": "garden",
+          "jp_character": "庭",
+          "romanji": [
+            "niwa",
+            "tei"
+          ],
+          "sound": "にわ",
+          "meaning": "garden",
+          "meaning_id": "taman"
+        },
+        {
+          "key": "corner",
+          "jp_character": "角",
+          "romanji": [
+            "kado",
+            "kaku"
+          ],
+          "sound": "かど",
+          "meaning": "corner / angle",
+          "meaning_id": "sudut"
+        },
+        {
+          "key": "ground",
+          "jp_character": "地",
+          "romanji": [
+            "chi",
+            "ji"
+          ],
+          "sound": "ち",
+          "meaning": "ground / land",
+          "meaning_id": "tanah / daratan"
+        },
+        {
+          "key": "map",
+          "jp_character": "図",
+          "romanji": [
+            "zu",
+            "to"
+          ],
+          "sound": "ず",
+          "meaning": "diagram / map",
+          "meaning_id": "diagram / peta"
+        },
+        {
+          "key": "slope",
+          "jp_character": "坂",
+          "romanji": [
+            "saka",
+            "han"
+          ],
+          "sound": "さか",
+          "meaning": "slope / hill",
+          "meaning_id": "lereng / tanjakan"
+        },
+        {
+          "key": "shore",
+          "jp_character": "岸",
+          "romanji": [
+            "kishi",
+            "gan"
+          ],
+          "sound": "きし",
+          "meaning": "shore / bank",
+          "meaning_id": "tepi / pantai"
+        },
+        {
+          "key": "lake",
+          "jp_character": "湖",
+          "romanji": [
+            "mizuumi",
+            "ko"
+          ],
+          "sound": "みずうみ",
+          "meaning": "lake",
+          "meaning_id": "danau"
+        },
+        {
+          "key": "forest",
+          "jp_character": "森",
+          "romanji": [
+            "mori",
+            "shin"
+          ],
+          "sound": "もり",
+          "meaning": "forest",
+          "meaning_id": "hutan"
+        },
+        {
+          "key": "plain",
+          "jp_character": "原",
+          "romanji": [
+            "hara",
+            "gen"
+          ],
+          "sound": "はら",
+          "meaning": "plain / field",
+          "meaning_id": "dataran / padang"
+        },
+        {
+          "key": "rock",
+          "jp_character": "岩",
+          "romanji": [
+            "iwa",
+            "gan"
+          ],
+          "sound": "いわ",
+          "meaning": "rock / boulder",
+          "meaning_id": "batu besar"
+        }
+      ]
+    },
+    {
+      "key": "n4-relations-society",
+      "title": "N4 Relationships & Society",
+      "title_id": "Hubungan & Masyarakat",
+      "kanji": [
+        {
+          "key": "house",
+          "jp_character": "家",
+          "romanji": [
+            "ie",
+            "ka"
+          ],
+          "sound": "いえ",
+          "meaning": "house / home",
+          "meaning_id": "rumah"
+        },
+        {
+          "key": "family",
+          "jp_character": "族",
+          "romanji": [
+            "zoku"
+          ],
+          "sound": "ぞく",
+          "meaning": "family / tribe",
+          "meaning_id": "keluarga"
+        },
+        {
+          "key": "parent",
+          "jp_character": "親",
+          "romanji": [
+            "oya",
+            "shin"
+          ],
+          "sound": "おや",
+          "meaning": "parent",
+          "meaning_id": "orang tua"
+        },
+        {
+          "key": "elderBrother",
+          "jp_character": "兄",
+          "romanji": [
+            "ani",
+            "kyou"
+          ],
+          "sound": "あに",
+          "meaning": "older brother",
+          "meaning_id": "kakak laki-laki"
+        },
+        {
+          "key": "elderSister",
+          "jp_character": "姉",
+          "romanji": [
+            "ane",
+            "shi"
+          ],
+          "sound": "あね",
+          "meaning": "older sister",
+          "meaning_id": "kakak perempuan"
+        },
+        {
+          "key": "youngerBrother",
+          "jp_character": "弟",
+          "romanji": [
+            "otouto",
+            "tei"
+          ],
+          "sound": "おとうと",
+          "meaning": "younger brother",
+          "meaning_id": "adik laki-laki"
+        },
+        {
+          "key": "youngerSister",
+          "jp_character": "妹",
+          "romanji": [
+            "imouto",
+            "mai"
+          ],
+          "sound": "いもうと",
+          "meaning": "younger sister",
+          "meaning_id": "adik perempuan"
+        },
+        {
+          "key": "husband",
+          "jp_character": "夫",
+          "romanji": [
+            "otto",
+            "fu"
+          ],
+          "sound": "おっと",
+          "meaning": "husband",
+          "meaning_id": "suami"
+        },
+        {
+          "key": "wife",
+          "jp_character": "妻",
+          "romanji": [
+            "tsuma",
+            "sai"
+          ],
+          "sound": "つま",
+          "meaning": "wife",
+          "meaning_id": "istri"
+        },
+        {
+          "key": "he",
+          "jp_character": "彼",
+          "romanji": [
+            "kare",
+            "hi"
+          ],
+          "sound": "かれ",
+          "meaning": "he / boyfriend",
+          "meaning_id": "dia / pacar laki-laki"
+        },
+        {
+          "key": "member",
+          "jp_character": "員",
+          "romanji": [
+            "in"
+          ],
+          "sound": "いん",
+          "meaning": "member / staff",
+          "meaning_id": "anggota / staf"
+        },
+        {
+          "key": "company",
+          "jp_character": "社",
+          "romanji": [
+            "sha",
+            "yashiro"
+          ],
+          "sound": "しゃ",
+          "meaning": "company / shrine",
+          "meaning_id": "perusahaan / kuil"
+        },
+        {
+          "key": "person",
+          "jp_character": "者",
+          "romanji": [
+            "mono",
+            "sha"
+          ],
+          "sound": "もの",
+          "meaning": "person",
+          "meaning_id": "orang"
+        },
+        {
+          "key": "everyone",
+          "jp_character": "皆",
+          "romanji": [
+            "mina",
+            "kai"
+          ],
+          "sound": "みな",
+          "meaning": "everyone",
+          "meaning_id": "semua orang"
+        },
+        {
+          "key": "who",
+          "jp_character": "誰",
+          "romanji": [
+            "dare"
+          ],
+          "sound": "だれ",
+          "meaning": "who",
+          "meaning_id": "siapa"
+        },
+        {
+          "key": "you",
+          "jp_character": "君",
+          "romanji": [
+            "kimi",
+            "kun"
+          ],
+          "sound": "きみ",
+          "meaning": "you / lord",
+          "meaning_id": "kamu / tuan"
+        },
+        {
+          "key": "generation",
+          "jp_character": "代",
+          "romanji": [
+            "dai",
+            "yo"
+          ],
+          "sound": "だい",
+          "meaning": "generation / era",
+          "meaning_id": "generasi / zaman"
+        },
+        {
+          "key": "world",
+          "jp_character": "世",
+          "romanji": [
+            "yo",
+            "sei"
+          ],
+          "sound": "よ",
+          "meaning": "world / generation",
+          "meaning_id": "dunia / generasi"
+        },
+        {
+          "key": "society",
+          "jp_character": "界",
+          "romanji": [
+            "kai"
+          ],
+          "sound": "かい",
+          "meaning": "world / society",
+          "meaning_id": "dunia / masyarakat"
+        },
+        {
+          "key": "main",
+          "jp_character": "主",
+          "romanji": [
+            "nushi",
+            "shu"
+          ],
+          "sound": "ぬし",
+          "meaning": "main / master",
+          "meaning_id": "utama / tuan"
+        },
+        {
+          "key": "other",
+          "jp_character": "他",
+          "romanji": [
+            "hoka",
+            "ta"
+          ],
+          "sound": "ほか",
+          "meaning": "other",
+          "meaning_id": "lain"
+        },
+        {
+          "key": "guest",
+          "jp_character": "客",
+          "romanji": [
+            "kyaku"
+          ],
+          "sound": "きゃく",
+          "meaning": "guest / customer",
+          "meaning_id": "tamu / pelanggan"
+        },
+        {
+          "key": "people",
+          "jp_character": "民",
+          "romanji": [
+            "tami",
+            "min"
+          ],
+          "sound": "たみ",
+          "meaning": "people / citizens",
+          "meaning_id": "rakyat / warga"
+        },
+        {
+          "key": "government",
+          "jp_character": "政",
+          "romanji": [
+            "sei"
+          ],
+          "sound": "せい",
+          "meaning": "government / politics",
+          "meaning_id": "pemerintahan / politik"
+        },
+        {
+          "key": "role",
+          "jp_character": "役",
+          "romanji": [
+            "yaku"
+          ],
+          "sound": "やく",
+          "meaning": "role / duty",
+          "meaning_id": "peran / tugas"
+        },
+        {
+          "key": "serve",
+          "jp_character": "仕",
+          "romanji": [
+            "tsukaeru",
+            "shi"
+          ],
+          "sound": "つかえる",
+          "meaning": "serve / work for",
+          "meaning_id": "melayani / bekerja untuk"
+        },
+        {
+          "key": "produce",
+          "jp_character": "産",
+          "romanji": [
+            "umu",
+            "san"
+          ],
+          "sound": "うむ",
+          "meaning": "produce / give birth",
+          "meaning_id": "menghasilkan / melahirkan"
+        },
+        {
+          "key": "image",
+          "jp_character": "像",
+          "romanji": [
+            "zou"
+          ],
+          "sound": "ぞう",
+          "meaning": "image / statue",
+          "meaning_id": "gambar / patung"
+        },
+        {
+          "key": "body",
+          "jp_character": "身",
+          "romanji": [
+            "mi",
+            "shin"
+          ],
+          "sound": "み",
+          "meaning": "body / oneself",
+          "meaning_id": "tubuh / diri sendiri"
+        },
+        {
+          "key": "heart",
+          "jp_character": "心",
+          "romanji": [
+            "kokoro",
+            "shin"
+          ],
+          "sound": "こころ",
+          "meaning": "heart / mind",
+          "meaning_id": "hati / pikiran"
+        },
+        {
+          "key": "power",
+          "jp_character": "力",
+          "romanji": [
+            "chikara",
+            "ryoku"
+          ],
+          "sound": "ちから",
+          "meaning": "power / strength",
+          "meaning_id": "tenaga / kekuatan"
+        },
+        {
+          "key": "voice",
+          "jp_character": "声",
+          "romanji": [
+            "koe",
+            "sei"
+          ],
+          "sound": "こえ",
+          "meaning": "voice",
+          "meaning_id": "suara"
+        },
+        {
+          "key": "ceremony",
+          "jp_character": "式",
+          "romanji": [
+            "shiki"
+          ],
+          "sound": "しき",
+          "meaning": "ceremony / style",
+          "meaning_id": "upacara / gaya"
+        },
+        {
+          "key": "tie",
+          "jp_character": "結",
+          "romanji": [
+            "musubu",
+            "ketsu"
+          ],
+          "sound": "むすぶ",
+          "meaning": "tie / connect",
+          "meaning_id": "mengikat / menghubungkan"
+        },
+        {
+          "key": "marriage",
+          "jp_character": "婚",
+          "romanji": [
+            "kon"
+          ],
+          "sound": "こん",
+          "meaning": "marriage",
+          "meaning_id": "pernikahan"
+        },
+        {
+          "key": "stay",
+          "jp_character": "留",
+          "romanji": [
+            "tomaru",
+            "ryuu"
+          ],
+          "sound": "とまる",
+          "meaning": "stay / detain",
+          "meaning_id": "tinggal / menahan"
+        },
+        {
+          "key": "visit",
+          "jp_character": "訪",
+          "romanji": [
+            "otozureru",
+            "hou"
+          ],
+          "sound": "おとずれる",
+          "meaning": "visit",
+          "meaning_id": "mengunjungi"
+        },
+        {
+          "key": "trust",
+          "jp_character": "信",
+          "romanji": [
+            "shin"
+          ],
+          "sound": "しん",
+          "meaning": "trust / believe",
+          "meaning_id": "percaya"
+        },
+        {
+          "key": "promise",
+          "jp_character": "約",
+          "romanji": [
+            "yaku"
+          ],
+          "sound": "やく",
+          "meaning": "promise / approximately",
+          "meaning_id": "janji / kira-kira"
+        },
+        {
+          "key": "interaction",
+          "jp_character": "交",
+          "romanji": [
+            "majiwaru",
+            "kou"
+          ],
+          "sound": "まじわる",
+          "meaning": "interact / exchange",
+          "meaning_id": "berinteraksi / bertukar"
+        }
+      ]
+    },
+    {
+      "key": "n4-weather-time-nature",
+      "title": "N4 Weather, Time & Nature",
+      "title_id": "Cuaca, Waktu & Alam",
+      "kanji": [
+        {
+          "key": "medicine",
+          "jp_character": "薬",
+          "romanji": [
+            "kusuri",
+            "yaku"
+          ],
+          "sound": "くすり",
+          "meaning": "medicine",
+          "meaning_id": "obat"
+        },
+        {
+          "key": "bird",
+          "jp_character": "鳥",
+          "romanji": [
+            "tori",
+            "chou"
+          ],
+          "sound": "とり",
+          "meaning": "bird",
+          "meaning_id": "burung"
+        },
+        {
+          "key": "fish",
+          "jp_character": "魚",
+          "romanji": [
+            "sakana",
+            "gyo"
+          ],
+          "sound": "さかな",
+          "meaning": "fish",
+          "meaning_id": "ikan"
+        },
+        {
+          "key": "meat",
+          "jp_character": "肉",
+          "romanji": [
+            "niku"
+          ],
+          "sound": "にく",
+          "meaning": "meat",
+          "meaning_id": "daging"
+        },
+        {
+          "key": "field",
+          "jp_character": "野",
+          "romanji": [
+            "no",
+            "ya"
+          ],
+          "sound": "の",
+          "meaning": "field / plain",
+          "meaning_id": "padang / dataran"
+        },
+        {
+          "key": "vegetable",
+          "jp_character": "菜",
+          "romanji": [
+            "sai",
+            "na"
+          ],
+          "sound": "さい",
+          "meaning": "vegetable",
+          "meaning_id": "sayuran"
+        },
+        {
+          "key": "tea",
+          "jp_character": "茶",
+          "romanji": [
+            "cha",
+            "sa"
+          ],
+          "sound": "ちゃ",
+          "meaning": "tea",
+          "meaning_id": "teh"
+        },
+        {
+          "key": "rice",
+          "jp_character": "米",
+          "romanji": [
+            "kome",
+            "bei"
+          ],
+          "sound": "こめ",
+          "meaning": "rice",
+          "meaning_id": "beras"
+        },
+        {
+          "key": "spring",
+          "jp_character": "春",
+          "romanji": [
+            "haru",
+            "shun"
+          ],
+          "sound": "はる",
+          "meaning": "spring",
+          "meaning_id": "musim semi"
+        },
+        {
+          "key": "summer",
+          "jp_character": "夏",
+          "romanji": [
+            "natsu",
+            "ka"
+          ],
+          "sound": "なつ",
+          "meaning": "summer",
+          "meaning_id": "musim panas"
+        },
+        {
+          "key": "autumn",
+          "jp_character": "秋",
+          "romanji": [
+            "aki",
+            "shuu"
+          ],
+          "sound": "あき",
+          "meaning": "autumn",
+          "meaning_id": "musim gugur"
+        },
+        {
+          "key": "winter",
+          "jp_character": "冬",
+          "romanji": [
+            "fuyu",
+            "tou"
+          ],
+          "sound": "ふゆ",
+          "meaning": "winter",
+          "meaning_id": "musim dingin"
+        },
+        {
+          "key": "morning",
+          "jp_character": "朝",
+          "romanji": [
+            "asa",
+            "chou"
+          ],
+          "sound": "あさ",
+          "meaning": "morning",
+          "meaning_id": "pagi"
+        },
+        {
+          "key": "noon",
+          "jp_character": "昼",
+          "romanji": [
+            "hiru",
+            "chuu"
+          ],
+          "sound": "ひる",
+          "meaning": "noon / daytime",
+          "meaning_id": "siang"
+        },
+        {
+          "key": "night",
+          "jp_character": "夜",
+          "romanji": [
+            "yoru",
+            "ya"
+          ],
+          "sound": "よる",
+          "meaning": "night / evening",
+          "meaning_id": "malam"
+        },
+        {
+          "key": "evening",
+          "jp_character": "夕",
+          "romanji": [
+            "yuu"
+          ],
+          "sound": "ゆう",
+          "meaning": "evening",
+          "meaning_id": "sore"
+        },
+        {
+          "key": "clearWeather",
+          "jp_character": "晴",
+          "romanji": [
+            "hareru",
+            "sei"
+          ],
+          "sound": "はれる",
+          "meaning": "clear / sunny",
+          "meaning_id": "cerah"
+        },
+        {
+          "key": "cloudy",
+          "jp_character": "曇",
+          "romanji": [
+            "kumoru",
+            "don"
+          ],
+          "sound": "くもる",
+          "meaning": "cloudy",
+          "meaning_id": "berawan"
+        },
+        {
+          "key": "snow",
+          "jp_character": "雪",
+          "romanji": [
+            "yuki",
+            "setsu"
+          ],
+          "sound": "ゆき",
+          "meaning": "snow",
+          "meaning_id": "salju"
+        },
+        {
+          "key": "wind",
+          "jp_character": "風",
+          "romanji": [
+            "kaze",
+            "fuu"
+          ],
+          "sound": "かぜ",
+          "meaning": "wind",
+          "meaning_id": "angin"
+        },
+        {
+          "key": "cloud",
+          "jp_character": "雲",
+          "romanji": [
+            "kumo",
+            "un"
+          ],
+          "sound": "くも",
+          "meaning": "cloud",
+          "meaning_id": "awan"
+        },
+        {
+          "key": "fog",
+          "jp_character": "霧",
+          "romanji": [
+            "kiri",
+            "mu"
+          ],
+          "sound": "きり",
+          "meaning": "fog",
+          "meaning_id": "kabut"
+        },
+        {
+          "key": "thunder",
+          "jp_character": "雷",
+          "romanji": [
+            "kaminari",
+            "rai"
+          ],
+          "sound": "かみなり",
+          "meaning": "thunder",
+          "meaning_id": "guntur"
+        },
+        {
+          "key": "ice",
+          "jp_character": "氷",
+          "romanji": [
+            "koori",
+            "hyou"
+          ],
+          "sound": "こおり",
+          "meaning": "ice",
+          "meaning_id": "es"
+        },
+        {
+          "key": "wave",
+          "jp_character": "波",
+          "romanji": [
+            "nami",
+            "ha"
+          ],
+          "sound": "なみ",
+          "meaning": "wave",
+          "meaning_id": "ombak"
+        },
+        {
+          "key": "grass",
+          "jp_character": "草",
+          "romanji": [
+            "kusa",
+            "sou"
+          ],
+          "sound": "くさ",
+          "meaning": "grass",
+          "meaning_id": "rumput"
+        },
+        {
+          "key": "flower",
+          "jp_character": "花",
+          "romanji": [
+            "hana",
+            "ka"
+          ],
+          "sound": "はな",
+          "meaning": "flower",
+          "meaning_id": "bunga"
+        },
+        {
+          "key": "insect",
+          "jp_character": "虫",
+          "romanji": [
+            "mushi",
+            "chuu"
+          ],
+          "sound": "むし",
+          "meaning": "insect",
+          "meaning_id": "serangga"
+        },
+        {
+          "key": "star",
+          "jp_character": "星",
+          "romanji": [
+            "hoshi",
+            "sei"
+          ],
+          "sound": "ほし",
+          "meaning": "star",
+          "meaning_id": "bintang"
+        },
+        {
+          "key": "light",
+          "jp_character": "光",
+          "romanji": [
+            "hikari",
+            "kou"
+          ],
+          "sound": "ひかり",
+          "meaning": "light",
+          "meaning_id": "cahaya"
+        },
+        {
+          "key": "valley",
+          "jp_character": "谷",
+          "romanji": [
+            "tani",
+            "koku"
+          ],
+          "sound": "たに",
+          "meaning": "valley",
+          "meaning_id": "lembah"
+        },
+        {
+          "key": "degree",
+          "jp_character": "度",
+          "romanji": [
+            "do",
+            "tabi"
+          ],
+          "sound": "ど",
+          "meaning": "degree / time",
+          "meaning_id": "derajat / kali"
+        },
+        {
+          "key": "end",
+          "jp_character": "末",
+          "romanji": [
+            "sue",
+            "matsu"
+          ],
+          "sound": "すえ",
+          "meaning": "end / tip",
+          "meaning_id": "akhir / ujung"
+        },
+        {
+          "key": "beginning",
+          "jp_character": "初",
+          "romanji": [
+            "hatsu",
+            "hajime"
+          ],
+          "sound": "はつ",
+          "meaning": "first / beginning",
+          "meaning_id": "pertama / awal"
+        },
+        {
+          "key": "longAgo",
+          "jp_character": "昔",
+          "romanji": [
+            "mukashi",
+            "seki"
+          ],
+          "sound": "むかし",
+          "meaning": "long ago / old times",
+          "meaning_id": "dahulu / zaman dulu"
+        },
+        {
+          "key": "lateEvening",
+          "jp_character": "晩",
+          "romanji": [
+            "ban"
+          ],
+          "sound": "ばん",
+          "meaning": "evening / night",
+          "meaning_id": "petang / malam"
+        },
+        {
+          "key": "leaf",
+          "jp_character": "葉",
+          "romanji": [
+            "ha",
+            "you"
+          ],
+          "sound": "は",
+          "meaning": "leaf",
+          "meaning_id": "daun"
+        },
+        {
+          "key": "branch",
+          "jp_character": "枝",
+          "romanji": [
+            "eda",
+            "shi"
+          ],
+          "sound": "えだ",
+          "meaning": "branch",
+          "meaning_id": "ranting"
+        },
+        {
+          "key": "root",
+          "jp_character": "根",
+          "romanji": [
+            "ne",
+            "kon"
+          ],
+          "sound": "ね",
+          "meaning": "root",
+          "meaning_id": "akar"
+        },
+        {
+          "key": "fruit",
+          "jp_character": "実",
+          "romanji": [
+            "mi",
+            "jitsu"
+          ],
+          "sound": "み",
+          "meaning": "fruit / truth",
+          "meaning_id": "buah / kenyataan"
+        }
+      ]
+    }
+  ]
+}

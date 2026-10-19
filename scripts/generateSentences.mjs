@@ -19,10 +19,21 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 
 // ---------- Allowed characters (everything taught in kanaCharacters.js) ----------
-const charactersSource = read('src/kanaCharacters.js');
+// The data of kanaCharacters.js is in src/data (see its README.md). The N4
+// kanji (src/data/kanji/n4.json) are not allowed yet: the word banks only
+// use the kana, the words and the N5 kanji.
+const readJson = (relative) => JSON.parse(read(relative));
+const hiraganaData = readJson('src/data/kana/hiragana.json');
+const katakanaData = readJson('src/data/kana/katakana.json');
+const wordsData = readJson('src/data/words.json');
+const n5KanjiData = readJson('src/data/kanji/n5.json');
 const allowedKanji = new Set(
-  [...charactersSource.matchAll(/"jp_character":\s*"([^"]+)"/g)]
-    .map(match => match[1])
+  [
+    ...[hiraganaData, katakanaData].flatMap(groups => Object.values(groups).flatMap(group => Object.values(group.characters))),
+    ...Object.values(wordsData),
+    ...n5KanjiData.kanji,
+  ]
+    .map(entry => entry.jp_character)
     .filter(value => [...value].length === 1)
 );
 const isAllowedCharacter = (character) =>
@@ -2755,14 +2766,16 @@ if (problems.length) {
 // The longPractice test expects exactly one sentence for this selection
 {
   const groupOf = {};
-  const lines = charactersSource.split('\n');
-  for (const [a, b] of [[73, 692], [692, 1310], [10886, lines.length]]) {
-    const text = lines.slice(a - 1, b - 1).join('\n');
-    for (const g of [...text.matchAll(/"title":\s*"([^"]+)"[\s\S]*?(?="title":|$)/g)]) {
-      for (const c of [...g[0].matchAll(/"jp_character":\s*"([^"]+)"/g)]) {
-        if (!(c[1] in groupOf)) groupOf[c[1]] = g[1];
-      }
+  for (const group of [...Object.values(hiraganaData), ...Object.values(katakanaData)]) {
+    for (const character of Object.values(group.characters)) {
+      if (!(character.jp_character in groupOf)) groupOf[character.jp_character] = group.title;
     }
+  }
+  // Kanji groups as kanaCharacters.js makes them: each theme in groups of 10
+  for (const category of n5KanjiData.categories) {
+    category.characters.forEach((character, index) => {
+      if (!(character in groupOf)) groupOf[character] = `${category.title} - ${Math.floor(index / 10) + 1}`;
+    });
   }
   const selection = new Set(['か', 'ら', 'は', 'だ', 'さ', groupOf['水']]);
   const readable = entries

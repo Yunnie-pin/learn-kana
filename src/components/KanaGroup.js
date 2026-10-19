@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { kanaCharacters } from '../kanaCharacters.js'
+import { kanaCharacters, kanjiLevels } from '../kanaCharacters.js'
 import { useLanguage } from '../i18n'
 import Icon from './Icon'
 import { readSelectedGroups, writeSelectedGroups } from '../storage.js';
@@ -54,7 +54,7 @@ function getTagSelection(script, tag) {
 
 export default function KanaGroup(props) {
   const { t, language } = useLanguage();
-  const [kanjiLevel, setKanjiLevel] = useState('N5');
+  const [kanjiLevel, setKanjiLevel] = useState(kanjiLevels[0].level);
   const groupRef = useRef(null);
   const isKanjiGroup = props.groupToShow === 'kanji';
 
@@ -123,7 +123,7 @@ export default function KanaGroup(props) {
       <div className="character-title-group">
         {isKanjiGroup && (
           <div className="kanji-level-tabs" role="tablist" aria-label="Kanji level">
-            {['N5', 'N4'].map(level => (
+            {kanjiLevels.map(({ level }) => (
               <button
                 key={level}
                 type="button"

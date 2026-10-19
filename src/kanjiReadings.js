@@ -368,31 +368,3 @@ export const kanjiReadings = {
   '豆': { onyomi: ['tou', 'zu'], kunyomi: ['mame'] },
   '際': { onyomi: ['sai'], kunyomi: ['kiwa'] },
 };
-
-export function validateKanjiReadings(kanjiEntries) {
-  const sourceKanji = new Set(kanjiEntries.map(({ jp_character }) => jp_character));
-  if (
-    [...sourceKanji].some(character => !Object.prototype.hasOwnProperty.call(kanjiReadings, character))
-  ) {
-    throw new Error('Kanji reading coverage mismatch: every kanaCharacters.kanji entry must have readings.');
-  }
-
-  const compoundKanji = new Set(
-    kanjiEntries.flatMap(({ usage }) => usage ? [...usage.word].filter(character => /[\u3400-\u9fff]/u.test(character)) : [])
-  );
-  const allKanji = new Set([...sourceKanji, ...compoundKanji]);
-
-  for (const jp_character of allKanji) {
-    if (!Object.prototype.hasOwnProperty.call(kanjiReadings, jp_character)) {
-      throw new Error(`Kanji reading coverage mismatch: missing compound reading for ${jp_character}.`);
-    }
-    const { onyomi, kunyomi } = kanjiReadings[jp_character];
-    if (
-      !Array.isArray(onyomi) ||
-      !Array.isArray(kunyomi) ||
-      [...onyomi, ...kunyomi].some(reading => typeof reading !== 'string' || !reading.trim())
-    ) {
-      throw new Error(`Invalid onyomi or kunyomi data for ${jp_character}.`);
-    }
-  }
-}

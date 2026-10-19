@@ -1,0 +1,619 @@
+{
+  "a": {
+    "title": "あ",
+    "tags": [
+      "main_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "あ",
+        "romanji": [
+          "a"
+        ],
+        "sound": "あ"
+      },
+      "i": {
+        "jp_character": "い",
+        "romanji": [
+          "i"
+        ],
+        "sound": "い"
+      },
+      "u": {
+        "jp_character": "う",
+        "romanji": [
+          "u"
+        ],
+        "sound": "う"
+      },
+      "e": {
+        "jp_character": "え",
+        "romanji": [
+          "e"
+        ],
+        "sound": "え"
+      },
+      "o": {
+        "jp_character": "お",
+        "romanji": [
+          "o"
+        ],
+        "sound": "お"
+      }
+    }
+  },
+  "k": {
+    "title": "か",
+    "tags": [
+      "main_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "か",
+        "romanji": [
+          "ka"
+        ],
+        "sound": "か"
+      },
+      "i": {
+        "jp_character": "き",
+        "romanji": [
+          "ki"
+        ],
+        "sound": "き"
+      },
+      "u": {
+        "jp_character": "く",
+        "romanji": [
+          "ku"
+        ],
+        "sound": "く"
+      },
+      "e": {
+        "jp_character": "け",
+        "romanji": [
+          "ke"
+        ],
+        "sound": "け"
+      },
+      "o": {
+        "jp_character": "こ",
+        "romanji": [
+          "ko"
+        ],
+        "sound": "こ"
+      }
+    }
+  },
+  "s": {
+    "title": "さ",
+    "tags": [
+      "main_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "さ",
+        "romanji": [
+          "sa"
+        ],
+        "sound": "さ"
+      },
+      "i": {
+        "jp_character": "し",
+        "romanji": [
+          "shi"
+        ],
+        "sound": "し"
+      },
+      "u": {
+        "jp_character": "す",
+        "romanji": [
+          "su"
+        ],
+        "sound": "す"
+      },
+      "e": {
+        "jp_character": "せ",
+        "romanji": [
+          "se"
+        ],
+        "sound": "せ"
+      },
+      "o": {
+        "jp_character": "そ",
+        "romanji": [
+          "so"
+        ],
+        "sound": "そ"
+      }
+    }
+  },
+  "t": {
+    "title": "た",
+    "tags": [
+      "main_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "た",
+        "romanji": [
+          "ta"
+        ],
+        "sound": "た"
+      },
+      "i": {
+        "jp_character": "ち",
+        "romanji": [
+          "chi"
+        ],
+        "sound": "ち"
+      },
+      "u": {
+        "jp_character": "つ",
+        "romanji": [
+          "tsu"
+        ],
+        "sound": "つ"
+      },
+      "e": {
+        "jp_character": "て",
+        "romanji": [
+          "te"
+        ],
+        "sound": "て"
+      },
+      "o": {
+        "jp_character": "と",
+        "romanji": [
+          "to"
+        ],
+        "sound": "と"
+      }
+    }
+  },
+  "n": {
+    "title": "な",
+    "tags": [
+      "main_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "な",
+        "romanji": [
+          "na"
+        ],
+        "sound": "な"
+      },
+      "i": {
+        "jp_character": "に",
+        "romanji": [
+          "ni"
+        ],
+        "sound": "に"
+      },
+      "u": {
+        "jp_character": "ぬ",
+        "romanji": [
+          "nu"
+        ],
+        "sound": "ぬ"
+      },
+      "e": {
+        "jp_character": "ね",
+        "romanji": [
+          "ne"
+        ],
+        "sound": "ね"
+      },
+      "o": {
+        "jp_character": "の",
+        "romanji": [
+          "no"
+        ],
+        "sound": "の"
+      }
+    }
+  },
+  "h": {
+    "title": "は",
+    "tags": [
+      "main_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "は",
+        "romanji": [
+          "ha"
+        ],
+        "sound": "は"
+      },
+      "i": {
+        "jp_character": "ひ",
+        "romanji": [
+          "hi"
+        ],
+        "sound": "ひ"
+      },
+      "u": {
+        "jp_character": "ふ",
+        "romanji": [
+          "fu"
+        ],
+        "sound": "ふ"
+      },
+      "e": {
+        "jp_character": "へ",
+        "romanji": [
+          "he"
+        ],
+        "sound": "へ"
+      },
+      "o": {
+        "jp_character": "ほ",
+        "romanji": [
+          "ho"
+        ],
+        "sound": "ほ"
+      }
+    }
+  },
+  "m": {
+    "title": "ま",
+    "tags": [
+      "main_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "ま",
+        "romanji": [
+          "ma"
+        ],
+        "sound": "ま"
+      },
+      "i": {
+        "jp_character": "み",
+        "romanji": [
+          "mi"
+        ],
+        "sound": "み"
+      },
+      "u": {
+        "jp_character": "む",
+        "romanji": [
+          "mu"
+        ],
+        "sound": "む"
+      },
+      "e": {
+        "jp_character": "め",
+        "romanji": [
+          "me"
+        ],
+        "sound": "め"
+      },
+      "o": {
+        "jp_character": "も",
+        "romanji": [
+          "mo"
+        ],
+        "sound": "も"
+      }
+    }
+  },
+  "y": {
+    "title": "や",
+    "tags": [
+      "main_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "や",
+        "romanji": [
+          "ya"
+        ],
+        "sound": "や"
+      },
+      "u": {
+        "jp_character": "ゆ",
+        "romanji": [
+          "yu"
+        ],
+        "sound": "ゆ"
+      },
+      "o": {
+        "jp_character": "よ",
+        "romanji": [
+          "yo"
+        ],
+        "sound": "よ"
+      }
+    }
+  },
+  "r": {
+    "title": "ら",
+    "tags": [
+      "main_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "ら",
+        "romanji": [
+          "ra"
+        ],
+        "sound": "ら"
+      },
+      "i": {
+        "jp_character": "り",
+        "romanji": [
+          "ri"
+        ],
+        "sound": "り"
+      },
+      "u": {
+        "jp_character": "る",
+        "romanji": [
+          "ru"
+        ],
+        "sound": "る"
+      },
+      "e": {
+        "jp_character": "れ",
+        "romanji": [
+          "re"
+        ],
+        "sound": "れ"
+      },
+      "o": {
+        "jp_character": "ろ",
+        "romanji": [
+          "ro"
+        ],
+        "sound": "ろ"
+      }
+    }
+  },
+  "w": {
+    "title": "わ",
+    "tags": [
+      "main_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "わ",
+        "romanji": [
+          "wa"
+        ],
+        "sound": "わ"
+      },
+      "o": {
+        "jp_character": "を",
+        "romanji": [
+          "wo"
+        ],
+        "sound": "を"
+      },
+      "u": {
+        "jp_character": "ん",
+        "romanji": [
+          "n"
+        ],
+        "sound": "ん"
+      }
+    }
+  },
+  "g": {
+    "title": "が",
+    "tags": [
+      "dakuten_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "が",
+        "romanji": [
+          "ga"
+        ],
+        "sound": "が"
+      },
+      "i": {
+        "jp_character": "ぎ",
+        "romanji": [
+          "gi"
+        ],
+        "sound": "ぎ"
+      },
+      "u": {
+        "jp_character": "ぐ",
+        "romanji": [
+          "gu"
+        ],
+        "sound": "ぐ"
+      },
+      "e": {
+        "jp_character": "げ",
+        "romanji": [
+          "ge"
+        ],
+        "sound": "げ"
+      },
+      "o": {
+        "jp_character": "ご",
+        "romanji": [
+          "go"
+        ],
+        "sound": "ご"
+      }
+    }
+  },
+  "z": {
+    "title": "ざ",
+    "tags": [
+      "dakuten_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "ざ",
+        "romanji": [
+          "za"
+        ],
+        "sound": "ざ"
+      },
+      "i": {
+        "jp_character": "じ",
+        "romanji": [
+          "ji"
+        ],
+        "sound": "じ"
+      },
+      "u": {
+        "jp_character": "ず",
+        "romanji": [
+          "zu"
+        ],
+        "sound": "ず"
+      },
+      "e": {
+        "jp_character": "ぜ",
+        "romanji": [
+          "ze"
+        ],
+        "sound": "ぜ"
+      },
+      "o": {
+        "jp_character": "ぞ",
+        "romanji": [
+          "zo"
+        ],
+        "sound": "ぞ"
+      }
+    }
+  },
+  "d": {
+    "title": "だ",
+    "tags": [
+      "dakuten_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "だ",
+        "romanji": [
+          "da"
+        ],
+        "sound": "だ"
+      },
+      "i": {
+        "jp_character": "ぢ",
+        "romanji": [
+          "ji"
+        ],
+        "sound": "ぢ"
+      },
+      "u": {
+        "jp_character": "づ",
+        "romanji": [
+          "zu"
+        ],
+        "sound": "づ"
+      },
+      "e": {
+        "jp_character": "で",
+        "romanji": [
+          "de"
+        ],
+        "sound": "で"
+      },
+      "o": {
+        "jp_character": "ど",
+        "romanji": [
+          "do"
+        ],
+        "sound": "ど"
+      }
+    }
+  },
+  "b": {
+    "title": "ば",
+    "tags": [
+      "dakuten_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "ば",
+        "romanji": [
+          "ba"
+        ],
+        "sound": "ば"
+      },
+      "i": {
+        "jp_character": "び",
+        "romanji": [
+          "bi"
+        ],
+        "sound": "び"
+      },
+      "u": {
+        "jp_character": "ぶ",
+        "romanji": [
+          "bu"
+        ],
+        "sound": "ぶ"
+      },
+      "e": {
+        "jp_character": "べ",
+        "romanji": [
+          "be"
+        ],
+        "sound": "べ"
+      },
+      "o": {
+        "jp_character": "ぼ",
+        "romanji": [
+          "bo"
+        ],
+        "sound": "ぼ"
+      }
+    }
+  },
+  "p": {
+    "title": "ぱ",
+    "tags": [
+      "dakuten_kana"
+    ],
+    "characters": {
+      "a": {
+        "jp_character": "ぱ",
+        "romanji": [
+          "pa"
+        ],
+        "sound": "ぱ"
+      },
+      "i": {
+        "jp_character": "ぴ",
+        "romanji": [
+          "pi"
+        ],
+        "sound": "ぴ"
+      },
+      "u": {
+        "jp_character": "ぷ",
+        "romanji": [
+          "pu"
+        ],
+        "sound": "ぷ"
+      },
+      "e": {
+        "jp_character": "ぺ",
+        "romanji": [
+          "pe"
+        ],
+        "sound": "ぺ"
+      },
+      "o": {
+        "jp_character": "ぽ",
+        "romanji": [
+          "po"
+        ],
+        "sound": "ぽ"
+      }
+    }
+  }
+}

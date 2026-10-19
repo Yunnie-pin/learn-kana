@@ -511,7 +511,9 @@ test('grammar practice hides the verb form at the end of a real sentence', async
   expect(cursorGroup()).toHaveClass('answer-correct');
   expect(score()).toHaveTextContent('1');
   expect(document.querySelector('#in-game-solution')).not.toHaveClass('hidden-element');
-});
+  // Counts the grammar questions of every group twice (menu and game): slow
+  // when the whole suite runs in parallel
+}, 15000);
 
 test('words practice with only kanji groups selected shows kanji words', async () => {
   const { kanaCharacters } = require('./kanaCharacters.js');

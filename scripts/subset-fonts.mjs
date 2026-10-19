@@ -1,7 +1,7 @@
 // Shrinks the Japanese fonts to the characters the app can show and converts them to WOFF2.
 // Run it again after adding kana, words or kanji: npm run fonts
 //
-// The characters come from every .js file in src (kana, words, kanji, usage examples, UI text),
+// The characters come from every .js and .json file in src (kana, words, kanji, usage examples, UI text),
 // plus the full hiragana and katakana blocks, Japanese punctuation and printable ASCII.
 import { readFile, readdir, writeFile, mkdir, stat } from 'node:fs/promises';
 import path from 'node:path';
@@ -38,7 +38,7 @@ async function listJsFiles(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) files.push(...await listJsFiles(fullPath));
-    else if (entry.name.endsWith('.js')) files.push(fullPath);
+    else if (/\.(js|json)$/.test(entry.name)) files.push(fullPath);
   }
   return files;
 }
