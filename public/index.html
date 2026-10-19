@@ -3,32 +3,119 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/icon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+  <title>Learn Kana – Practice Hiragana, Katakana, Kanji &amp; Japanese Sentences</title>
+  <meta name="description" content="Free Japanese practice in your browser: hiragana and katakana drills, N5 / N4 kanji with spaced repetition, 700+ beginner words and 1,200+ JLPT N5 / N4 sentences. Type the romaji, track your progress, works offline. In English and Indonesian." />
+  <meta name="keywords" content="hiragana, katakana, kana, kanji, learn Japanese, Japanese practice, JLPT N5, JLPT N4, romaji, belajar bahasa Jepang" />
   <meta name="theme-color" content="#155263" />
-  <meta name="description" content="Come here to practice some Kanas!" />
+  <link rel="icon" href="%PUBLIC_URL%/icon.png" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/icon.png" />
-  <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-  <title>日本語</title>
+  <!-- Link previews (Facebook, WhatsApp, X...). The canonical address,
+       og:url and the absolute og:image are added at build time when SITE_URL
+       is set (scripts/seo-postbuild.mjs): they need the public address. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Learn Kana" />
+  <meta property="og:title" content="Learn Kana – Practice Hiragana, Katakana, Kanji &amp; Japanese Sentences" />
+  <meta property="og:description" content="Hiragana and katakana drills, N5 / N4 kanji reviews, beginner words and 1,200+ JLPT N5 / N4 sentences. Free, in the browser, works offline." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Learn Kana – Practice Hiragana, Katakana, Kanji &amp; Japanese Sentences" />
+  <meta name="twitter:description" content="Hiragana and katakana drills, N5 / N4 kanji reviews, beginner words and 1,200+ JLPT N5 / N4 sentences. Free, in the browser, works offline." />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Learn Kana",
+      "description": "Free Japanese practice in the browser: hiragana and katakana drills, N5 / N4 kanji with spaced repetition, beginner words and JLPT N5 / N4 sentences.",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any (web browser)",
+      "inLanguage": ["en", "id"],
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "educationalLevel": "Beginner",
+      "teaches": ["Hiragana", "Katakana", "Kanji", "Japanese vocabulary", "Japanese grammar (JLPT N5, N4)"]
+    }
+  </script>
+
+  <script>
+    // Dark theme before the first paint, so it doesn't flash light while the app loads
+    try {
+      if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+    } catch (error) { }
+  </script>
+  <style>
+    /* Shown until the app starts (React replaces #root's content), and what
+       crawlers that don't run JavaScript read */
+    body { margin: 0; background-color: #155263; color: #ff9a3c; }
+    html[data-theme='dark'] body { background-color: #2a373d; }
+    .app-intro { max-width: 40em; margin: 0 auto; padding: 18vh 1.5em 0; text-align: center; font-family: "Trebuchet MS", sans-serif; }
+    .app-intro h1 { margin: 0 0 0.4em; font-size: 2.2em; }
+    .app-intro p { margin: 0; line-height: 1.5; opacity: 0.85; }
+
+    /* With a fast load (cached by the service worker) the app replaces this
+       in a few hundred milliseconds: it only fades in after 0.3s, so a quick
+       start shows no flash of it, and a slow one gets a smooth entrance */
+    .app-intro { opacity: 0; animation: app-intro-in 0.4s ease-out 0.3s forwards; }
+    @keyframes app-intro-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    /* A tile that cycles through kana, like the ones the app practices.
+       Browsers that can't animate "content" just show あ */
+    .app-intro-kana {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.9em; height: 1.9em; margin-bottom: 0.45em;
+      border: 2px solid #ff9a3c80; border-radius: 0.35em; background: #00000025;
+      font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif; font-size: 2.6em;
+      animation: app-intro-kana-pop 0.6s ease-out infinite;
+    }
+    .app-intro-kana::after {
+      content: 'あ';
+      animation: app-intro-kana 6s infinite;
+    }
+    @keyframes app-intro-kana {
+      0%, 9.99% { content: 'あ'; }
+      10%, 19.99% { content: 'ア'; }
+      20%, 29.99% { content: 'か'; }
+      30%, 39.99% { content: 'カ'; }
+      40%, 49.99% { content: 'さ'; }
+      50%, 59.99% { content: 'サ'; }
+      60%, 69.99% { content: 'た'; }
+      70%, 79.99% { content: 'タ'; }
+      80%, 89.99% { content: 'な'; }
+      90%, 100% { content: 'ナ'; }
+    }
+    /* A small pop each time the kana changes (every 0.6s) */
+    @keyframes app-intro-kana-pop {
+      0% { transform: scale(0.92); }
+      25%, 100% { transform: scale(1); }
+    }
+
+    /* No movement for people who asked for less of it: shown right away, still */
+    @media (prefers-reduced-motion: reduce) {
+      .app-intro, .app-intro-kana, .app-intro-kana::after { animation: none; }
+      .app-intro { opacity: 1; }
+    }
+  </style>
   <!-- Umami analytics is added by src/analytics.js when configured in .env -->
 </head>
 
 <body>
-  <noscript>Sorry, you need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+  <div id="root">
+    <main class="app-intro">
+      <span class="app-intro-kana" aria-hidden="true"></span>
+      <h1>Learn Kana</h1>
+      <p>Practice hiragana, katakana, N5 / N4 kanji, beginner words and JLPT N5 / N4 Japanese sentences right in your browser. Pick the characters you want, type the romaji, and track your progress — free, offline, in English and Indonesian.</p>
+    </main>
+  </div>
+  <noscript>
+    <p style="text-align: center">Learn Kana needs JavaScript to run. Please enable it to practice.</p>
+  </noscript>
 </body>
 
 </html>

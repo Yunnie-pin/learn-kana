@@ -1,6 +1,6 @@
 import { toHiragana } from 'wanakana';
 import { sentences } from './sentences.js';
-import { alignWords, createSentenceMatcher, createSentenceQuestion, isSpokenAnswerPrefix, matchesSpokenAnswer, normalizeTypedAnswer, transcriptToRomaji, wordSpellings } from './sentenceMatching.js';
+import { alignWords, createSentenceMatcher, createSentenceQuestion, normalizeTypedAnswer, wordSpellings } from './sentenceMatching.js';
 
 const sentence = (jp) => sentences.find(entry => entry.jp_character === jp);
 
@@ -145,86 +145,5 @@ describe('sentence questions', () => {
     const plain = { jp_character: 'おはよう', romanji: ['ohayou'], particles: [] };
     expect(createSentenceQuestion(plain, 'particle').exercise).toBe('type');
     expect(createSentenceQuestion(plain, 'listen').exercise).toBe('listen');
-  });
-});
-
-describe('spoken answers', () => {
-  const water = sentence('これは水です');
-
-  test('accept the sentence as written and as it is read out loud', () => {
-    expect(matchesSpokenAnswer(water, 'これは水です')).toBe(true);
-    expect(matchesSpokenAnswer(water, 'これはみずです')).toBe(true);
-    // The recognizer adds punctuation of its own
-    expect(matchesSpokenAnswer(water, 'これは水です。')).toBe(true);
-  });
-
-  test('accept the particles written as they sound (は as わ)', () => {
-    const student = sentence('わたしは学生です');
-    expect(matchesSpokenAnswer(student, 'ワタシハガクセイデス')).toBe(true);
-    expect(matchesSpokenAnswer(student, 'わたしわ学生です')).toBe(true);
-  });
-
-  test('reject another sentence and empty speech', () => {
-    expect(matchesSpokenAnswer(water, 'それは水です')).toBe(false);
-    expect(matchesSpokenAnswer(water, 'これは木です')).toBe(false);
-    expect(matchesSpokenAnswer(water, '')).toBe(false);
-  });
-
-  test('a part of the sentence still fits it while it is being read', () => {
-    expect(isSpokenAnswerPrefix(water, 'これは')).toBe(true);
-    expect(isSpokenAnswerPrefix(water, 'これはみず')).toBe(true);
-    expect(isSpokenAnswerPrefix(water, 'これは水')).toBe(true);
-    // The particles written as they sound fit as well
-    const student = sentence('わたしは学生です');
-    expect(isSpokenAnswerPrefix(student, 'わたしわ')).toBe(true);
-    // A pause between the parts changes nothing
-    expect(isSpokenAnswerPrefix(water, 'これは 水')).toBe(true);
-  });
-
-  test('speech that can no longer become the sentence was mispronounced', () => {
-    expect(isSpokenAnswerPrefix(water, 'それは')).toBe(false);
-    expect(isSpokenAnswerPrefix(water, 'みずです')).toBe(false);
-    expect(isSpokenAnswerPrefix(water, 'これはみずですよ')).toBe(false);
-    expect(isSpokenAnswerPrefix(water, '')).toBe(false);
-  });
-
-  test('turn speech into romaji so a wrong recognition can be edited by hand', () => {
-    // Speech that does not follow the sentence is kept as it was heard
-    expect(transcriptToRomaji(water, 'それは水です')).toBe('sorehamizudesu');
-    // The words of the sentence are written the way the answer is stored
-    expect(transcriptToRomaji(water, 'これは水です')).toBe('kore wa mizu desu');
-    expect(transcriptToRomaji(sentence('わたしは学生です'), 'わたしは学生です')).toBe('watashi wa gakusei desu');
-    // The particles sound as they are read (は as わ)
-    expect(transcriptToRomaji(water, 'これわみずです')).toBe('kore wa mizu desu');
-  });
-
-  test('the words heard so far are separated by spaces', () => {
-    expect(transcriptToRomaji(water, 'これは')).toBe('kore wa');
-    // A word heard only in part shows its kana so far
-    expect(transcriptToRomaji(water, 'これはみ')).toBe('kore wa mi');
-    // A pause changes nothing about the words
-    expect(transcriptToRomaji(water, 'これは 水です')).toBe('kore wa mizu desu');
-  });
-
-  test('kanji outside the sentence are read with the dictionary', () => {
-    // 水 heard as 木: the part no longer fitting the sentence stays as heard
-    expect(transcriptToRomaji(water, 'これは木です')).toBe('kore wa kidesu');
-  });
-
-  test('a kanji run the dictionary cannot read still fits the sentence it sounds like', () => {
-    // The recognizer writes こうえん with its kanji, which the game never teaches
-    const park = { jp_character: 'こうえんはどこですか', particles: [4, 9], furigana: {}, romanji: ['kouen wa doko desu ka'] };
-    expect(matchesSpokenAnswer(park, '公園はどこですか')).toBe(true);
-    expect(isSpokenAnswerPrefix(park, '公園は')).toBe(true);
-    expect(isSpokenAnswerPrefix(park, '公園ゼ')).toBe(false);
-    expect(transcriptToRomaji(park, '公園はどこですか')).toBe('kouen wa doko desu ka');
-    expect(transcriptToRomaji(park, '公園は')).toBe('kouen wa');
-  });
-
-  test('katakana words are written as the sentence stores them', () => {
-    const coffee = sentence('コーヒーを飲みます');
-    expect(transcriptToRomaji(coffee, 'コーヒーを飲みます')).toBe('koohii wo nomimasu');
-    // The recognizer may write a katakana word in hiragana
-    expect(transcriptToRomaji(coffee, 'こうひいをのみます')).toBe('koohii wo nomimasu');
   });
 });

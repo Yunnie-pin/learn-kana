@@ -1,4 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { GAME_MODES, gamePath, ROUTES } from '../routes.js'
+import { getMixupKana, getPairsMixedUpSince } from '../confusions.js'
+import { addExtraNewKanji, getSelectedKanjiGroupTitles, getSrsSession, NEW_KANJI_PER_DAY } from '../kanjiSrs.js'
 import { kanaCharacters } from '../kanaCharacters.js'
 import { useLanguage } from '../i18n'
 import { isSpeechSupported, speak } from '../speech'
@@ -56,20 +60,21 @@ function getThirtyDaysAgoTimestamp() {
     return thirtyDaysAgo.getTime();
 }
 
-function goToMainMenu() {
-    localStorage.removeItem('problematicKanasFilter');
-    // Changing to window.location because of some react problems
-    // (game-mode-word change wasn't being respected)
-    window.location.href = "/learn-kana#game-menu-title";
-}
-
-function playAgain() {
-    localStorage.removeItem('problematicKanasFilter');
-    window.location.reload(false);
-}
-
 export default function UserGameScoreWindow(props) {
-    const { t } = useLanguage();
+    const navigate = useNavigate();
+    const location = useLocation();
+    // Back to the menu, at the mode settings
+    const goToMainMenu = useCallback(() => {
+        navigate(`${ROUTES.menu}#game-menu-title`);
+    }, [navigate]);
+    // A new game of the same kind (a kanji review stays a review); the game
+    // restarts because every navigation gets a new location key (pages/InGame.js).
+    // A practice from the Dictionary keeps its entries.
+    const dictionaryState = location.state?.anyGroup ? location.state : undefined;
+    const playAgain = useCallback(() => {
+        navigate(`${ROUTES.game}${location.search}`, { replace: true, state: dictionaryState });
+    }, [navigate, location.search, dictionaryState]);
+    const { t, language } = useLanguage();
 
     // Tapping a chip reads it aloud (when the browser has speech synthesis)
     const listenProps = (text) => isSpeechSupported() ? {
@@ -197,11 +202,8 @@ export default function UserGameScoreWindow(props) {
             return;
         }
 
-        // Store the problematic characters filter in localStorage
-        localStorage.setItem('problematicKanasFilter', JSON.stringify(problematicChars));
-
-        // Reload to start a new game with filtered characters
-        window.location.reload(false);
+        // A new game with only these characters
+        navigate(ROUTES.game, { replace: true, state: { characters: problematicChars } });
     }
 
     // Compare the best streak with the all-time record once, when the summary opens
@@ -230,10 +232,57 @@ export default function UserGameScoreWindow(props) {
         }
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [props.visible]);
+    }, [props.visible, playAgain, goToMainMenu]);
 
     if (!props.visible) {
         return <></>;
+    }
+
+    // Kanji review: what the session did and when the next one comes
+    if (props.srsResult) {
+        const result = props.srsResult;
+        // What another review would hold now (nothing: it would end right away)
+        const nextSession = getSrsSession(getSelectedKanjiGroupTitles());
+        let nextText = t('srsSummaryNoNext');
+        if (result.next) {
+            const day = new Date(result.next.at);
+            const today = new Date();
+            const tomorrow = new Date();
+            tomorrow.setDate(today.getDate() + 1);
+            const sameDay = (a, b) => a.toDateString() === b.toDateString();
+            const when = sameDay(day, today) ? t('srsSummaryToday')
+                : sameDay(day, tomorrow) ? t('srsSummaryTomorrow')
+                : day.toLocaleDateString(language === 'id' ? 'id-ID' : 'en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+            nextText = t('srsSummaryNext', { when, count: result.next.count });
+        }
+        return (
+            <div className='inGameUserGameScoreBackground'>
+                <div className='inGameUserGameScoreWindow srs-summary'>
+                    <div className='inGameUserGameScoreWindow_header'>
+                        <h1>{result.reviewed}</h1>
+                        <h2>{t('srsSummaryTitle')}</h2>
+                    </div>
+                    <ul className='srs-summary-stats'>
+                        <li className='stat-learned'><strong>{result.learned}</strong>{t('srsSummaryLearned')}</li>
+                        <li className='stat-promoted'><strong>{result.promoted}</strong>{t('srsSummaryPromoted')}</li>
+                        <li className='stat-forgot'><strong>{result.forgot}</strong>{t('srsSummaryForgot')}</li>
+                    </ul>
+                    <p className='srs-summary-next'><Icon name='bell' className='icon-leading' />{nextText}</p>
+                    <div className='inGameUserGameScoreWindow_buttons'>
+                        <button onClick={goToMainMenu}><Icon name='home' className='icon-leading' />{t('summaryBackToMenu')}</button>
+                        {nextSession.total > 0 ? (
+                            <button className='score-button-primary' onClick={playAgain}><Icon name='rotate-ccw' className='icon-leading' />{t('srsSummaryAgain')}</button>
+                        ) : nextSession.unlearned > 0 ? (
+                            // Today's new kanji are done: more of them, on request
+                            <button className='score-button-primary' onClick={() => { addExtraNewKanji(); playAgain(); }}>
+                                <Icon name='plus' className='icon-leading' />{t('srsSummaryLearnMore', { count: Math.min(NEW_KANJI_PER_DAY, nextSession.unlearned) })}
+                            </button>
+                        ) : null}
+                    </div>
+                    <div className='score-shortcuts label-keyboard'>{t('summaryShortcuts')}</div>
+                </div>
+            </div>
+        );
     }
 
     let comparisonText = null;
@@ -249,7 +298,12 @@ export default function UserGameScoreWindow(props) {
         }
     }
 
-    const isWordMode = localStorage.getItem("game-mode-word") === "true";
+    // What was practiced, for the title: characters, words, a mix or sentences
+    // (a mix-up practice is always characters)
+    const practice = new URLSearchParams(location.search).get('mode') === GAME_MODES.mixups ? 'characters'
+        : localStorage.getItem('game-mode-practice') ||
+        (localStorage.getItem("game-mode-word") === "true" ? 'words' : 'characters');
+    const completedKey = { words: 'summaryCompletedWords', mixed: 'summaryCompletedMixed', long: 'summaryCompletedSentences', bunpou: 'summaryCompletedBunpou' }[practice] || 'summaryCompletedKanas';
 
     let userStatsElement;
     if (totalRight > 0) {
@@ -313,14 +367,36 @@ export default function UserGameScoreWindow(props) {
         </div>
     }
 
+    // Kana mixed up during this game: a call to practice exactly those
+    const mixedUpPairs = props.gameStartedAt ? getPairsMixedUpSince(props.gameStartedAt) : [];
+    const practiceMixups = () => {
+        navigate(gamePath(GAME_MODES.mixups), { replace: true, state: { characters: getMixupKana(mixedUpPairs) } });
+    };
+
     return (
         <div className='inGameUserGameScoreBackground'>
             <div className='inGameUserGameScoreWindow'>
                 <div className='inGameUserGameScoreWindow_header'>
                     <h1>{totalRight}</h1>
-                    <h2>{isWordMode ? t('summaryCompletedWords') : t('summaryCompletedKanas')}</h2>
+                    <h2>{t(completedKey)}</h2>
                 </div>
                 {userStatsElement}
+                {mixedUpPairs.length > 0 && (
+                    <div className='mixup-call mixup-call-summary' role='status'>
+                        <span className='mixup-call-text'>
+                            <Icon name='arrow-left-right' className='icon-leading' />
+                            {t('mixupCallSummary')}
+                            <span className='mixup-call-pairs'>
+                                {mixedUpPairs.slice(0, 3).map(pair => (
+                                    <span key={pair.characters.join('')} className='mixup-call-pair'>{pair.characters.join(' ⇄ ')}</span>
+                                ))}
+                            </span>
+                        </span>
+                        <button type='button' className='mixup-call-button' onClick={practiceMixups}>
+                            {t('mixupCallButton')}
+                        </button>
+                    </div>
+                )}
                 <div className='inGameUserGameScoreWindow_buttons'>
                     <button onClick={goToMainMenu}><Icon name='home' className='icon-leading' />{t('summaryBackToMenu')}</button>
                     <button onClick={handleTryProblematicsClick}><Icon name='target' className='icon-leading' />{t('summaryTryProblematics')}</button>

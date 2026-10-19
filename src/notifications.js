@@ -44,6 +44,7 @@ function weekKey(timestamp) {
 // Every notification that applies right now, most useful first.
 // { id, icon, titleKey?, key, params, chips?, action, section? } where action is one of:
 // 'srs' (start the kanji review), 'practice' (start a game with the selection),
+// 'mixups' (start a game with the kana the user mixes up),
 // 'open-progress' (the Learning Progress window at `section`), 'backup' (save a backup file)
 export function buildNotifications({
   now = Date.now(),
@@ -102,7 +103,7 @@ export function buildNotifications({
         text: pair.characters.join(' ⇄ '),
         detail: `×${pair.count}`,
       })),
-      action: 'open-progress',
+      action: 'mixups',
       section: 'confusions',
     });
   }

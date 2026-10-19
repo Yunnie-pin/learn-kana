@@ -1,6 +1,9 @@
 {
   "short_name": "日本語",
-  "name": "日本語",
+  "name": "Learn Kana – Japanese practice",
+  "description": "Practice hiragana, katakana, kanji, words and JLPT N5 / N4 sentences.",
+  "lang": "en",
+  "categories": ["education"],
   "icons": [
     {
       "src": "icon192.png",

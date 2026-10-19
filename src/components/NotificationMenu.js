@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../i18n';
 import Icon from './Icon';
 import { getDailyTotals } from '../activityStats.js';
@@ -17,8 +17,8 @@ import {
   visibleNotifications,
 } from '../notifications.js';
 import { openLearningProgress } from '../progressNavigation.js';
+import { GAME_MODES, gamePath, ROUTES } from '../routes.js';
 
-const GAME_PATH = '/learn-kana∕game';
 
 function readJson(key, fallback) {
   try {
@@ -48,6 +48,7 @@ function collectNotifications() {
 export default function NotificationMenu() {
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [unseen, setUnseen] = useState(0);
@@ -101,15 +102,21 @@ export default function NotificationMenu() {
   const runAction = (notification) => {
     switch (notification.action) {
       case 'srs':
-        localStorage.setItem('game-mode-srs', 'true');
-        navigate(GAME_PATH);
+        navigate(gamePath(GAME_MODES.review));
         break;
       case 'practice':
-        localStorage.setItem('game-mode-srs', 'false');
-        navigate(GAME_PATH);
+        navigate(ROUTES.game);
+        break;
+      case 'mixups':
+        navigate(gamePath(GAME_MODES.mixups));
         break;
       case 'open-progress':
-        openLearningProgress(notification.section);
+        // The Learning Progress window belongs to the Games tab
+        if (location.pathname === ROUTES.menu) {
+          openLearningProgress(notification.section);
+        } else {
+          navigate(ROUTES.menu, { state: { openProgress: notification.section || true } });
+        }
         break;
       case 'backup':
         downloadBackup();
@@ -124,6 +131,7 @@ export default function NotificationMenu() {
   const actionLabels = {
     srs: t('notifyActionReview'),
     practice: t('notifyActionPractice'),
+    mixups: t('mixupCallButton'),
     backup: t('notifyActionBackup'),
     'open-progress': t('notifyActionOpenProgress'),
   };

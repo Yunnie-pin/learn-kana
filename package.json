@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build",
+    "build": "craco build && node scripts/seo-postbuild.mjs",
     "test": "craco test",
     "eject": "craco eject",
     "fonts": "node scripts/subset-fonts.mjs"

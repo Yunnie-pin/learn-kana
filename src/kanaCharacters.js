@@ -1965,7 +1965,7 @@ export const kanaCharacters = {
       "sound": "パソコン",
       "meaning": "computer",
       "meaning_id": "komputer",
-      "tags": ["items", "technology"],
+      "tags": ["items", "technology", "it"],
       "katakana_groups": [
         "サ",
         "ワ",
@@ -2393,7 +2393,8 @@ export const kanaCharacters = {
     "misoshiru": {
       "jp_character": "みそしる",
       "romanji": [
-        "misoshiru"
+        "misoshiru",
+        "misosiru"
       ],
       "sound": "みそしる",
       "meaning": "miso soup",
@@ -2434,23 +2435,6 @@ export const kanaCharacters = {
       "tags": ["food"],
       "katakana_groups": [
         "サ",
-        "パ"
-      ],
-      "hiragana_groups": []
-    },
-    "pasta": {
-      "jp_character": "パスタ",
-      "romanji": [
-        "pasta",
-        "pasuta"
-      ],
-      "sound": "パスタ",
-      "meaning": "pasta",
-      "meaning_id": "pasta",
-      "tags": ["food"],
-      "katakana_groups": [
-        "サ",
-        "タ",
         "パ"
       ],
       "hiragana_groups": []
@@ -2971,22 +2955,6 @@ export const kanaCharacters = {
       ],
       "hiragana_groups": []
     },
-    "nan": {
-      "jp_character": "パン",
-      "romanji": [
-        "nan",
-        "pan"
-      ],
-      "sound": "パン",
-      "meaning": "bread",
-      "meaning_id": "roti",
-      "tags": ["food"],
-      "katakana_groups": [
-        "ワ",
-        "パ"
-      ],
-      "hiragana_groups": []
-    },
     "piza": {
       "jp_character": "ピザ",
       "romanji": [
@@ -3005,7 +2973,8 @@ export const kanaCharacters = {
     "pasuta": {
       "jp_character": "パスタ",
       "romanji": [
-        "pasuta"
+        "pasuta",
+        "pasta"
       ],
       "sound": "パスタ",
       "meaning": "pasta",
@@ -4056,23 +4025,6 @@ export const kanaCharacters = {
         "ハ"
       ],
       "hiragana_groups": []
-    },
-    "misosiru": {
-      "jp_character": "みそしる",
-      "romanji": [
-        "misosiru",
-        "misoshiru"
-      ],
-      "sound": "みそしる",
-      "meaning": "miso soup",
-      "meaning_id": "sup miso",
-      "tags": ["food", "japanese_culture"],
-      "katakana_groups": [],
-      "hiragana_groups": [
-        "ら",
-        "ま",
-        "さ"
-      ]
     },
     "toire": {
       "jp_character": "トイレ",
@@ -6701,7 +6653,7 @@ export const kanaCharacters = {
       "sound": "しごと",
       "meaning": "work/job",
       "meaning_id": "pekerjaan",
-      "tags": ["work"],
+      "tags": ["work", "it"],
       "katakana_groups": [],
       "hiragana_groups": [
         "が",
@@ -6717,7 +6669,7 @@ export const kanaCharacters = {
       "sound": "かいしゃ",
       "meaning": "company",
       "meaning_id": "perusahaan",
-      "tags": ["work"],
+      "tags": ["work", "it"],
       "katakana_groups": [],
       "hiragana_groups": [
         "や",
@@ -7823,7 +7775,7 @@ export const kanaCharacters = {
       "sound": "はたらく",
       "meaning": "to work",
       "meaning_id": "bekerja",
-      "tags": ["verbs", "work"],
+      "tags": ["verbs", "work", "it"],
       "katakana_groups": [],
       "hiragana_groups": [
         "は",
@@ -9363,7 +9315,7 @@ export const kanaCharacters = {
       "sound": "スマホ",
       "meaning": "smartphone",
       "meaning_id": "ponsel pintar",
-      "tags": ["items", "technology"],
+      "tags": ["items", "technology", "it"],
       "katakana_groups": [
         "サ",
         "マ",
@@ -11157,7 +11109,7 @@ export const kanaCharacters = {
       "sound": "メニュー",
       "meaning": "menu",
       "meaning_id": "menu",
-      "tags": ["food", "places"],
+      "tags": ["food", "places", "it"],
       "katakana_groups": [
         "マ",
         "ナ",
@@ -11861,7 +11813,7 @@ export const kanaCharacters = {
       "sound": "ボタン",
       "meaning": "button",
       "meaning_id": "tombol",
-      "tags": ["items"],
+      "tags": ["items", "it"],
       "katakana_groups": [
         "バ",
         "タ",
@@ -11929,7 +11881,7 @@ export const kanaCharacters = {
       "sound": "コンピューター",
       "meaning": "computer",
       "meaning_id": "komputer",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "カ",
         "ワ",
@@ -11948,7 +11900,7 @@ export const kanaCharacters = {
       "sound": "インターネット",
       "meaning": "internet",
       "meaning_id": "internet",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "ア",
         "ワ",
@@ -11966,7 +11918,7 @@ export const kanaCharacters = {
       "sound": "メール",
       "meaning": "email",
       "meaning_id": "surel",
-      "tags": ["technology", "communication"],
+      "tags": ["technology", "communication", "it"],
       "katakana_groups": [
         "マ",
         "ラ"
@@ -11982,7 +11934,7 @@ export const kanaCharacters = {
       "sound": "パスワード",
       "meaning": "password",
       "meaning_id": "kata sandi",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "パ",
         "サ",
@@ -12000,7 +11952,7 @@ export const kanaCharacters = {
       "sound": "キーボード",
       "meaning": "keyboard",
       "meaning_id": "papan ketik",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "カ",
         "バ",
@@ -12016,7 +11968,7 @@ export const kanaCharacters = {
       "sound": "マウス",
       "meaning": "mouse (computer)",
       "meaning_id": "tetikus",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "マ",
         "ア",
@@ -12033,7 +11985,7 @@ export const kanaCharacters = {
       "sound": "プリンター",
       "meaning": "printer",
       "meaning_id": "printer",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "パ",
         "ラ",
@@ -12051,7 +12003,7 @@ export const kanaCharacters = {
       "sound": "スクリーン",
       "meaning": "screen",
       "meaning_id": "layar",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "サ",
         "カ",
@@ -12068,7 +12020,7 @@ export const kanaCharacters = {
       "sound": "アプリ",
       "meaning": "app",
       "meaning_id": "aplikasi",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "ア",
         "パ",
@@ -12085,7 +12037,7 @@ export const kanaCharacters = {
       "sound": "データ",
       "meaning": "data",
       "meaning_id": "data",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "ダ",
         "タ"
@@ -12134,7 +12086,7 @@ export const kanaCharacters = {
       "sound": "ケーブル",
       "meaning": "cable",
       "meaning_id": "kabel",
-      "tags": ["technology", "items"],
+      "tags": ["technology", "items", "it"],
       "katakana_groups": [
         "カ",
         "バ",
@@ -12199,7 +12151,7 @@ export const kanaCharacters = {
       "sound": "サイト",
       "meaning": "website",
       "meaning_id": "situs web",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "サ",
         "ア",
@@ -12215,7 +12167,7 @@ export const kanaCharacters = {
       "sound": "ブログ",
       "meaning": "blog",
       "meaning_id": "blog",
-      "tags": ["technology"],
+      "tags": ["technology", "it"],
       "katakana_groups": [
         "バ",
         "ラ",
@@ -12697,7 +12649,7 @@ export const kanaCharacters = {
       "sound": "チーム",
       "meaning": "team",
       "meaning_id": "tim",
-      "tags": ["sports", "people"],
+      "tags": ["sports", "people", "it"],
       "katakana_groups": [
         "タ",
         "マ"
@@ -13114,7 +13066,7 @@ export const kanaCharacters = {
       "sound": "テスト",
       "meaning": "test",
       "meaning_id": "ujian",
-      "tags": ["education", "school"],
+      "tags": ["education", "school", "it"],
       "katakana_groups": [
         "タ",
         "サ"
@@ -13162,7 +13114,7 @@ export const kanaCharacters = {
       "sound": "レポート",
       "meaning": "report",
       "meaning_id": "laporan",
-      "tags": ["education", "work"],
+      "tags": ["education", "work", "it"],
       "katakana_groups": [
         "ラ",
         "パ",
@@ -13195,7 +13147,7 @@ export const kanaCharacters = {
       "sound": "メモ",
       "meaning": "memo",
       "meaning_id": "catatan",
-      "tags": ["items", "work"],
+      "tags": ["items", "work", "it"],
       "katakana_groups": [
         "マ"
       ],
@@ -13227,7 +13179,7 @@ export const kanaCharacters = {
       "sound": "サラリーマン",
       "meaning": "office worker",
       "meaning_id": "pegawai kantoran",
-      "tags": ["work", "people"],
+      "tags": ["work", "people", "it"],
       "katakana_groups": [
         "サ",
         "ラ",
@@ -13245,7 +13197,7 @@ export const kanaCharacters = {
       "sound": "スケジュール",
       "meaning": "schedule",
       "meaning_id": "jadwal",
-      "tags": ["work", "time"],
+      "tags": ["work", "time", "it"],
       "katakana_groups": [
         "サ",
         "カ",
@@ -13332,7 +13284,7 @@ export const kanaCharacters = {
       "sound": "リーダー",
       "meaning": "leader",
       "meaning_id": "pemimpin",
-      "tags": ["people", "work"],
+      "tags": ["people", "work", "it"],
       "katakana_groups": [
         "ラ",
         "ダ"
@@ -13477,7 +13429,7 @@ export const kanaCharacters = {
       "sound": "デザイン",
       "meaning": "design",
       "meaning_id": "desain",
-      "tags": ["art"],
+      "tags": ["art", "it"],
       "katakana_groups": [
         "ダ",
         "ザ",
@@ -13620,7 +13572,7 @@ export const kanaCharacters = {
       "sound": "スタッフ",
       "meaning": "staff",
       "meaning_id": "staf",
-      "tags": ["work", "people"],
+      "tags": ["work", "people", "it"],
       "katakana_groups": [
         "サ",
         "タ",
@@ -13788,7 +13740,7 @@ export const kanaCharacters = {
       "sound": "サービス",
       "meaning": "service",
       "meaning_id": "layanan",
-      "tags": ["shopping"],
+      "tags": ["shopping", "it"],
       "katakana_groups": [
         "サ",
         "バ"
@@ -14229,6 +14181,1862 @@ export const kanaCharacters = {
         "サ"
       ],
       "hiragana_groups": []
+    },
+    // IT and workplace words (tag "it"), for people heading to an IT company
+    "puroguramu": {
+      "jp_character": "プログラム",
+      "romanji": [
+        "puroguramu"
+      ],
+      "sound": "プログラム",
+      "meaning": "program",
+      "meaning_id": "program",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "パ",
+        "ラ",
+        "ガ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "puroguramingu": {
+      "jp_character": "プログラミング",
+      "romanji": [
+        "puroguramingu"
+      ],
+      "sound": "プログラミング",
+      "meaning": "programming",
+      "meaning_id": "pemrograman",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "パ",
+        "ラ",
+        "ガ",
+        "マ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "puroguramaa": {
+      "jp_character": "プログラマー",
+      "romanji": [
+        "puroguramaa",
+        "purogurama"
+      ],
+      "sound": "プログラマー",
+      "meaning": "programmer",
+      "meaning_id": "programmer",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "パ",
+        "ラ",
+        "ガ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "enjinia": {
+      "jp_character": "エンジニア",
+      "romanji": [
+        "enjinia"
+      ],
+      "sound": "エンジニア",
+      "meaning": "engineer",
+      "meaning_id": "insinyur / engineer",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "ア",
+        "ワ",
+        "ザ",
+        "ナ"
+      ],
+      "hiragana_groups": []
+    },
+    "shisutemu": {
+      "jp_character": "システム",
+      "romanji": [
+        "shisutemu"
+      ],
+      "sound": "システム",
+      "meaning": "system",
+      "meaning_id": "sistem",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "サ",
+        "タ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "sofutowea": {
+      "jp_character": "ソフトウェア",
+      "romanji": [
+        "sofutowea"
+      ],
+      "sound": "ソフトウェア",
+      "meaning": "software",
+      "meaning_id": "perangkat lunak",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "サ",
+        "ハ",
+        "タ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "haadowea": {
+      "jp_character": "ハードウェア",
+      "romanji": [
+        "haadowea",
+        "hadowea"
+      ],
+      "sound": "ハードウェア",
+      "meaning": "hardware",
+      "meaning_id": "perangkat keras",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ハ",
+        "ダ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "saabaa": {
+      "jp_character": "サーバー",
+      "romanji": [
+        "saabaa",
+        "saba"
+      ],
+      "sound": "サーバー",
+      "meaning": "server",
+      "meaning_id": "server",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "サ",
+        "バ"
+      ],
+      "hiragana_groups": []
+    },
+    "deetabeesu": {
+      "jp_character": "データベース",
+      "romanji": [
+        "deetabeesu",
+        "detabesu"
+      ],
+      "sound": "データベース",
+      "meaning": "database",
+      "meaning_id": "basis data",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ダ",
+        "タ",
+        "バ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "nettowaaku": {
+      "jp_character": "ネットワーク",
+      "romanji": [
+        "nettowaaku",
+        "nettowaku"
+      ],
+      "sound": "ネットワーク",
+      "meaning": "network",
+      "meaning_id": "jaringan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ナ",
+        "タ",
+        "ワ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "sekyuriti": {
+      "jp_character": "セキュリティ",
+      "romanji": [
+        "sekyuriti",
+        "sekyurithi"
+      ],
+      "sound": "セキュリティ",
+      "meaning": "security",
+      "meaning_id": "keamanan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "サ",
+        "カ",
+        "ヤ",
+        "ラ",
+        "タ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "kuraudo": {
+      "jp_character": "クラウド",
+      "romanji": [
+        "kuraudo"
+      ],
+      "sound": "クラウド",
+      "meaning": "cloud",
+      "meaning_id": "cloud (komputasi awan)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "カ",
+        "ラ",
+        "ア",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "arugorizumu": {
+      "jp_character": "アルゴリズム",
+      "romanji": [
+        "arugorizumu"
+      ],
+      "sound": "アルゴリズム",
+      "meaning": "algorithm",
+      "meaning_id": "algoritma",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "ラ",
+        "ガ",
+        "ザ",
+        "マ"
+      ],
+      "hiragana_groups": []
+    },
+    "koodo": {
+      "jp_character": "コード",
+      "romanji": [
+        "koodo",
+        "kodo"
+      ],
+      "sound": "コード",
+      "meaning": "code",
+      "meaning_id": "kode",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "カ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "sukuriputo": {
+      "jp_character": "スクリプト",
+      "romanji": [
+        "sukuriputo"
+      ],
+      "sound": "スクリプト",
+      "meaning": "script",
+      "meaning_id": "skrip",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "サ",
+        "カ",
+        "ラ",
+        "パ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "bagu": {
+      "jp_character": "バグ",
+      "romanji": [
+        "bagu"
+      ],
+      "sound": "バグ",
+      "meaning": "bug",
+      "meaning_id": "bug (galat)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "バ",
+        "ガ"
+      ],
+      "hiragana_groups": []
+    },
+    "debaggu": {
+      "jp_character": "デバッグ",
+      "romanji": [
+        "debaggu"
+      ],
+      "sound": "デバッグ",
+      "meaning": "debugging",
+      "meaning_id": "debugging (mencari galat)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ダ",
+        "バ",
+        "タ",
+        "ガ"
+      ],
+      "hiragana_groups": []
+    },
+    "eraa": {
+      "jp_character": "エラー",
+      "romanji": [
+        "eraa",
+        "era"
+      ],
+      "sound": "エラー",
+      "meaning": "error",
+      "meaning_id": "error / galat",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "ririisu": {
+      "jp_character": "リリース",
+      "romanji": [
+        "ririisu",
+        "ririsu"
+      ],
+      "sound": "リリース",
+      "meaning": "release",
+      "meaning_id": "rilis",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ラ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "baajon": {
+      "jp_character": "バージョン",
+      "romanji": [
+        "baajon",
+        "bajon"
+      ],
+      "sound": "バージョン",
+      "meaning": "version",
+      "meaning_id": "versi",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "バ",
+        "ザ",
+        "ヤ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "appudeeto": {
+      "jp_character": "アップデート",
+      "romanji": [
+        "appudeeto",
+        "appudeto"
+      ],
+      "sound": "アップデート",
+      "meaning": "update",
+      "meaning_id": "pembaruan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "タ",
+        "パ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "insutooru": {
+      "jp_character": "インストール",
+      "romanji": [
+        "insutooru",
+        "insutoru"
+      ],
+      "sound": "インストール",
+      "meaning": "installation",
+      "meaning_id": "instalasi",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "ワ",
+        "サ",
+        "タ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "furontoendo": {
+      "jp_character": "フロントエンド",
+      "romanji": [
+        "furontoendo"
+      ],
+      "sound": "フロントエンド",
+      "meaning": "front end",
+      "meaning_id": "front end",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ハ",
+        "ラ",
+        "ワ",
+        "タ",
+        "ア",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "bakkuendo": {
+      "jp_character": "バックエンド",
+      "romanji": [
+        "bakkuendo"
+      ],
+      "sound": "バックエンド",
+      "meaning": "back end",
+      "meaning_id": "back end",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "バ",
+        "タ",
+        "カ",
+        "ア",
+        "ワ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "infura": {
+      "jp_character": "インフラ",
+      "romanji": [
+        "infura"
+      ],
+      "sound": "インフラ",
+      "meaning": "infrastructure",
+      "meaning_id": "infrastruktur",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "ワ",
+        "ハ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "kuraianto": {
+      "jp_character": "クライアント",
+      "romanji": [
+        "kuraianto"
+      ],
+      "sound": "クライアント",
+      "meaning": "client",
+      "meaning_id": "klien",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "カ",
+        "ラ",
+        "ア",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "rikuesuto": {
+      "jp_character": "リクエスト",
+      "romanji": [
+        "rikuesuto"
+      ],
+      "sound": "リクエスト",
+      "meaning": "request",
+      "meaning_id": "permintaan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ラ",
+        "カ",
+        "ア",
+        "サ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "resuponsu": {
+      "jp_character": "レスポンス",
+      "romanji": [
+        "resuponsu"
+      ],
+      "sound": "レスポンス",
+      "meaning": "response",
+      "meaning_id": "respons",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ラ",
+        "サ",
+        "パ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "enjin": {
+      "jp_character": "エンジン",
+      "romanji": [
+        "enjin"
+      ],
+      "sound": "エンジン",
+      "meaning": "engine",
+      "meaning_id": "mesin (engine)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "ワ",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "tsuuru": {
+      "jp_character": "ツール",
+      "romanji": [
+        "tsuuru",
+        "tsuru"
+      ],
+      "sound": "ツール",
+      "meaning": "tool",
+      "meaning_id": "alat (tool)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "タ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "rogu": {
+      "jp_character": "ログ",
+      "romanji": [
+        "rogu"
+      ],
+      "sound": "ログ",
+      "meaning": "log",
+      "meaning_id": "log (catatan sistem)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ラ",
+        "ガ"
+      ],
+      "hiragana_groups": []
+    },
+    "kyasshu": {
+      "jp_character": "キャッシュ",
+      "romanji": [
+        "kyasshu"
+      ],
+      "sound": "キャッシュ",
+      "meaning": "cache",
+      "meaning_id": "cache",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "カ",
+        "ヤ",
+        "タ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "memori": {
+      "jp_character": "メモリ",
+      "romanji": [
+        "memori"
+      ],
+      "sound": "メモリ",
+      "meaning": "memory",
+      "meaning_id": "memori",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "マ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "sutoreeji": {
+      "jp_character": "ストレージ",
+      "romanji": [
+        "sutoreeji",
+        "sutoreji"
+      ],
+      "sound": "ストレージ",
+      "meaning": "storage",
+      "meaning_id": "penyimpanan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "サ",
+        "タ",
+        "ラ",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "bakkuappu": {
+      "jp_character": "バックアップ",
+      "romanji": [
+        "bakkuappu"
+      ],
+      "sound": "バックアップ",
+      "meaning": "backup",
+      "meaning_id": "cadangan (backup)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "バ",
+        "タ",
+        "カ",
+        "ア",
+        "パ"
+      ],
+      "hiragana_groups": []
+    },
+    "uirusu": {
+      "jp_character": "ウイルス",
+      "romanji": [
+        "uirusu"
+      ],
+      "sound": "ウイルス",
+      "meaning": "(computer) virus",
+      "meaning_id": "virus (komputer)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "ラ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "supekku": {
+      "jp_character": "スペック",
+      "romanji": [
+        "supekku"
+      ],
+      "sound": "スペック",
+      "meaning": "specs",
+      "meaning_id": "spesifikasi",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "サ",
+        "パ",
+        "タ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "kontentsu": {
+      "jp_character": "コンテンツ",
+      "romanji": [
+        "kontentsu"
+      ],
+      "sound": "コンテンツ",
+      "meaning": "content",
+      "meaning_id": "konten",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "カ",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "roguin": {
+      "jp_character": "ログイン",
+      "romanji": [
+        "roguin"
+      ],
+      "sound": "ログイン",
+      "meaning": "login",
+      "meaning_id": "masuk (login)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ラ",
+        "ガ",
+        "ア",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "roguauto": {
+      "jp_character": "ログアウト",
+      "romanji": [
+        "roguauto"
+      ],
+      "sound": "ログアウト",
+      "meaning": "logout",
+      "meaning_id": "keluar (logout)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ラ",
+        "ガ",
+        "ア",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "akaunto": {
+      "jp_character": "アカウント",
+      "romanji": [
+        "akaunto"
+      ],
+      "sound": "アカウント",
+      "meaning": "account",
+      "meaning_id": "akun",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "カ",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "yuuzaa": {
+      "jp_character": "ユーザー",
+      "romanji": [
+        "yuuzaa",
+        "yuza"
+      ],
+      "sound": "ユーザー",
+      "meaning": "user",
+      "meaning_id": "pengguna",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ヤ",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "fairu": {
+      "jp_character": "ファイル",
+      "romanji": [
+        "fairu"
+      ],
+      "sound": "ファイル",
+      "meaning": "file",
+      "meaning_id": "berkas",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ハ",
+        "ア",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "foruda": {
+      "jp_character": "フォルダ",
+      "romanji": [
+        "foruda"
+      ],
+      "sound": "フォルダ",
+      "meaning": "folder",
+      "meaning_id": "folder",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ハ",
+        "ア",
+        "ラ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "daunroodo": {
+      "jp_character": "ダウンロード",
+      "romanji": [
+        "daunroodo",
+        "daunrodo"
+      ],
+      "sound": "ダウンロード",
+      "meaning": "download",
+      "meaning_id": "unduh",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ダ",
+        "ア",
+        "ワ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "appuroodo": {
+      "jp_character": "アップロード",
+      "romanji": [
+        "appuroodo",
+        "appurodo"
+      ],
+      "sound": "アップロード",
+      "meaning": "upload",
+      "meaning_id": "unggah",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "タ",
+        "パ",
+        "ラ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "monitaa": {
+      "jp_character": "モニター",
+      "romanji": [
+        "monitaa",
+        "monita"
+      ],
+      "sound": "モニター",
+      "meaning": "monitor",
+      "meaning_id": "monitor",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "マ",
+        "ナ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "burauza": {
+      "jp_character": "ブラウザ",
+      "romanji": [
+        "burauza"
+      ],
+      "sound": "ブラウザ",
+      "meaning": "browser",
+      "meaning_id": "peramban (browser)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "バ",
+        "ラ",
+        "ア",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "webusaito": {
+      "jp_character": "ウェブサイト",
+      "romanji": [
+        "webusaito",
+        "uebusaito"
+      ],
+      "sound": "ウェブサイト",
+      "meaning": "website",
+      "meaning_id": "situs web",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "バ",
+        "サ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "hoomupeeji": {
+      "jp_character": "ホームページ",
+      "romanji": [
+        "hoomupeeji",
+        "homupeji"
+      ],
+      "sound": "ホームページ",
+      "meaning": "homepage",
+      "meaning_id": "halaman web",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ハ",
+        "マ",
+        "パ",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "peeji": {
+      "jp_character": "ページ",
+      "romanji": [
+        "peeji",
+        "peji"
+      ],
+      "sound": "ページ",
+      "meaning": "page",
+      "meaning_id": "halaman",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "パ",
+        "ザ"
+      ],
+      "hiragana_groups": []
+    },
+    "rinku": {
+      "jp_character": "リンク",
+      "romanji": [
+        "rinku"
+      ],
+      "sound": "リンク",
+      "meaning": "link",
+      "meaning_id": "tautan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ラ",
+        "ワ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "aikon": {
+      "jp_character": "アイコン",
+      "romanji": [
+        "aikon"
+      ],
+      "sound": "アイコン",
+      "meaning": "icon",
+      "meaning_id": "ikon",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "カ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "windou": {
+      "jp_character": "ウィンドウ",
+      "romanji": [
+        "windou",
+        "uindou",
+        "windo",
+        "uindo"
+      ],
+      "sound": "ウィンドウ",
+      "meaning": "window (on screen)",
+      "meaning_id": "jendela (di layar)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "ワ",
+        "ダ"
+      ],
+      "hiragana_groups": []
+    },
+    "fonto": {
+      "jp_character": "フォント",
+      "romanji": [
+        "fonto"
+      ],
+      "sound": "フォント",
+      "meaning": "font",
+      "meaning_id": "fon (huruf)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ハ",
+        "ア",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "kurikku": {
+      "jp_character": "クリック",
+      "romanji": [
+        "kurikku"
+      ],
+      "sound": "クリック",
+      "meaning": "click",
+      "meaning_id": "klik",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "カ",
+        "ラ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "sukurooru": {
+      "jp_character": "スクロール",
+      "romanji": [
+        "sukurooru",
+        "sukuroru"
+      ],
+      "sound": "スクロール",
+      "meaning": "scroll",
+      "meaning_id": "gulir",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "サ",
+        "カ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "kopii": {
+      "jp_character": "コピー",
+      "romanji": [
+        "kopii",
+        "kopi"
+      ],
+      "sound": "コピー",
+      "meaning": "copy",
+      "meaning_id": "salin",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "カ",
+        "パ"
+      ],
+      "hiragana_groups": []
+    },
+    "peesuto": {
+      "jp_character": "ペースト",
+      "romanji": [
+        "peesuto",
+        "pesuto"
+      ],
+      "sound": "ペースト",
+      "meaning": "paste",
+      "meaning_id": "tempel",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "パ",
+        "サ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "taburetto": {
+      "jp_character": "タブレット",
+      "romanji": [
+        "taburetto"
+      ],
+      "sound": "タブレット",
+      "meaning": "tablet",
+      "meaning_id": "tablet",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "タ",
+        "バ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "onrain": {
+      "jp_character": "オンライン",
+      "romanji": [
+        "onrain"
+      ],
+      "sound": "オンライン",
+      "meaning": "online",
+      "meaning_id": "daring (online)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "ワ",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "ofurain": {
+      "jp_character": "オフライン",
+      "romanji": [
+        "ofurain"
+      ],
+      "sound": "オフライン",
+      "meaning": "offline",
+      "meaning_id": "luring (offline)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "ア",
+        "ハ",
+        "ラ",
+        "ワ"
+      ],
+      "hiragana_groups": []
+    },
+    "manyuaru": {
+      "jp_character": "マニュアル",
+      "romanji": [
+        "manyuaru"
+      ],
+      "sound": "マニュアル",
+      "meaning": "manual",
+      "meaning_id": "buku panduan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [
+        "マ",
+        "ナ",
+        "ヤ",
+        "ア",
+        "ラ"
+      ],
+      "hiragana_groups": []
+    },
+    "purojekuto": {
+      "jp_character": "プロジェクト",
+      "romanji": [
+        "purojekuto"
+      ],
+      "sound": "プロジェクト",
+      "meaning": "project",
+      "meaning_id": "proyek",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "パ",
+        "ラ",
+        "ザ",
+        "ア",
+        "カ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "miitingu": {
+      "jp_character": "ミーティング",
+      "romanji": [
+        "miitingu",
+        "mitingu",
+        "miithingu"
+      ],
+      "sound": "ミーティング",
+      "meaning": "meeting",
+      "meaning_id": "rapat",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "マ",
+        "タ",
+        "ア",
+        "ワ",
+        "ガ"
+      ],
+      "hiragana_groups": []
+    },
+    "tasuku": {
+      "jp_character": "タスク",
+      "romanji": [
+        "tasuku"
+      ],
+      "sound": "タスク",
+      "meaning": "task",
+      "meaning_id": "tugas",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "タ",
+        "サ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "rebyuu": {
+      "jp_character": "レビュー",
+      "romanji": [
+        "rebyuu",
+        "rebyu"
+      ],
+      "sound": "レビュー",
+      "meaning": "review",
+      "meaning_id": "tinjauan (review)",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "ラ",
+        "バ",
+        "ヤ"
+      ],
+      "hiragana_groups": []
+    },
+    "fiidobakku": {
+      "jp_character": "フィードバック",
+      "romanji": [
+        "fiidobakku",
+        "fidobakku"
+      ],
+      "sound": "フィードバック",
+      "meaning": "feedback",
+      "meaning_id": "umpan balik",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "ハ",
+        "ア",
+        "ダ",
+        "バ",
+        "タ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "maneejaa": {
+      "jp_character": "マネージャー",
+      "romanji": [
+        "maneejaa",
+        "manejaa",
+        "maneja"
+      ],
+      "sound": "マネージャー",
+      "meaning": "manager",
+      "meaning_id": "manajer",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "マ",
+        "ナ",
+        "ザ",
+        "ヤ"
+      ],
+      "hiragana_groups": []
+    },
+    "dezainaa": {
+      "jp_character": "デザイナー",
+      "romanji": [
+        "dezainaa",
+        "dezaina"
+      ],
+      "sound": "デザイナー",
+      "meaning": "designer",
+      "meaning_id": "desainer",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "ダ",
+        "ザ",
+        "ア",
+        "ナ"
+      ],
+      "hiragana_groups": []
+    },
+    "sapooto": {
+      "jp_character": "サポート",
+      "romanji": [
+        "sapooto",
+        "sapoto"
+      ],
+      "sound": "サポート",
+      "meaning": "support",
+      "meaning_id": "dukungan",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "サ",
+        "パ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "rimootowaaku": {
+      "jp_character": "リモートワーク",
+      "romanji": [
+        "rimootowaaku",
+        "rimotowaku"
+      ],
+      "sound": "リモートワーク",
+      "meaning": "remote work",
+      "meaning_id": "kerja jarak jauh",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "ラ",
+        "マ",
+        "タ",
+        "ワ",
+        "カ"
+      ],
+      "hiragana_groups": []
+    },
+    "ofisu": {
+      "jp_character": "オフィス",
+      "romanji": [
+        "ofisu"
+      ],
+      "sound": "オフィス",
+      "meaning": "office",
+      "meaning_id": "kantor",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "ア",
+        "ハ",
+        "サ"
+      ],
+      "hiragana_groups": []
+    },
+    "intaan": {
+      "jp_character": "インターン",
+      "romanji": [
+        "intaan",
+        "intan"
+      ],
+      "sound": "インターン",
+      "meaning": "internship / intern",
+      "meaning_id": "magang",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "ア",
+        "ワ",
+        "タ"
+      ],
+      "hiragana_groups": []
+    },
+    "kyaria": {
+      "jp_character": "キャリア",
+      "romanji": [
+        "kyaria"
+      ],
+      "sound": "キャリア",
+      "meaning": "career",
+      "meaning_id": "karier",
+      "tags": ["it", "work"],
+      "katakana_groups": [
+        "カ",
+        "ヤ",
+        "ラ",
+        "ア"
+      ],
+      "hiragana_groups": []
+    },
+    "kaigi": {
+      "jp_character": "かいぎ",
+      "romanji": [
+        "kaigi"
+      ],
+      "sound": "かいぎ",
+      "meaning": "meeting",
+      "meaning_id": "rapat",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "か",
+        "あ",
+        "が"
+      ]
+    },
+    "mensetsu": {
+      "jp_character": "めんせつ",
+      "romanji": [
+        "mensetsu"
+      ],
+      "sound": "めんせつ",
+      "meaning": "job interview",
+      "meaning_id": "wawancara kerja",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "ま",
+        "わ",
+        "さ",
+        "た"
+      ]
+    },
+    "rirekisho": {
+      "jp_character": "りれきしょ",
+      "romanji": [
+        "rirekisho"
+      ],
+      "sound": "りれきしょ",
+      "meaning": "resume, CV",
+      "meaning_id": "daftar riwayat hidup (CV)",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "ら",
+        "か",
+        "さ",
+        "や"
+      ]
+    },
+    "shuushoku": {
+      "jp_character": "しゅうしょく",
+      "romanji": [
+        "shuushoku",
+        "shushoku"
+      ],
+      "sound": "しゅうしょく",
+      "meaning": "getting a job",
+      "meaning_id": "mendapat pekerjaan",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "さ",
+        "や",
+        "あ",
+        "か"
+      ]
+    },
+    "shain": {
+      "jp_character": "しゃいん",
+      "romanji": [
+        "shain"
+      ],
+      "sound": "しゃいん",
+      "meaning": "employee",
+      "meaning_id": "karyawan",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "さ",
+        "や",
+        "あ",
+        "わ"
+      ]
+    },
+    "joushi": {
+      "jp_character": "じょうし",
+      "romanji": [
+        "joushi",
+        "joshi"
+      ],
+      "sound": "じょうし",
+      "meaning": "boss, superior",
+      "meaning_id": "atasan",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "ざ",
+        "や",
+        "あ",
+        "さ"
+      ]
+    },
+    "douryou": {
+      "jp_character": "どうりょう",
+      "romanji": [
+        "douryou",
+        "doryo"
+      ],
+      "sound": "どうりょう",
+      "meaning": "colleague",
+      "meaning_id": "rekan kerja",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "だ",
+        "あ",
+        "ら",
+        "や"
+      ]
+    },
+    "shussha": {
+      "jp_character": "しゅっしゃ",
+      "romanji": [
+        "shussha"
+      ],
+      "sound": "しゅっしゃ",
+      "meaning": "going to the office",
+      "meaning_id": "masuk kantor",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "さ",
+        "や",
+        "た"
+      ]
+    },
+    "zangyou": {
+      "jp_character": "ざんぎょう",
+      "romanji": [
+        "zangyou",
+        "zangyo"
+      ],
+      "sound": "ざんぎょう",
+      "meaning": "overtime",
+      "meaning_id": "lembur",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "ざ",
+        "わ",
+        "が",
+        "や",
+        "あ"
+      ]
+    },
+    "shimekiri": {
+      "jp_character": "しめきり",
+      "romanji": [
+        "shimekiri"
+      ],
+      "sound": "しめきり",
+      "meaning": "deadline",
+      "meaning_id": "tenggat waktu",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "さ",
+        "ま",
+        "か",
+        "ら"
+      ]
+    },
+    "houkoku": {
+      "jp_character": "ほうこく",
+      "romanji": [
+        "houkoku",
+        "hokoku"
+      ],
+      "sound": "ほうこく",
+      "meaning": "report",
+      "meaning_id": "laporan",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "は",
+        "あ",
+        "か"
+      ]
+    },
+    "renraku": {
+      "jp_character": "れんらく",
+      "romanji": [
+        "renraku"
+      ],
+      "sound": "れんらく",
+      "meaning": "contact, notice",
+      "meaning_id": "kabar / kontak",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "ら",
+        "わ",
+        "か"
+      ]
+    },
+    "soudan": {
+      "jp_character": "そうだん",
+      "romanji": [
+        "soudan",
+        "sodan"
+      ],
+      "sound": "そうだん",
+      "meaning": "consultation",
+      "meaning_id": "konsultasi",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "さ",
+        "あ",
+        "だ",
+        "わ"
+      ]
+    },
+    "kakunin": {
+      "jp_character": "かくにん",
+      "romanji": [
+        "kakunin"
+      ],
+      "sound": "かくにん",
+      "meaning": "confirmation, check",
+      "meaning_id": "konfirmasi / pengecekan",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "か",
+        "な",
+        "わ"
+      ]
+    },
+    "kenshuu": {
+      "jp_character": "けんしゅう",
+      "romanji": [
+        "kenshuu",
+        "kenshu"
+      ],
+      "sound": "けんしゅう",
+      "meaning": "training",
+      "meaning_id": "pelatihan",
+      "tags": ["it", "work"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "か",
+        "わ",
+        "さ",
+        "や",
+        "あ"
+      ]
+    },
+    "kaihatsu": {
+      "jp_character": "かいはつ",
+      "romanji": [
+        "kaihatsu"
+      ],
+      "sound": "かいはつ",
+      "meaning": "development",
+      "meaning_id": "pengembangan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "か",
+        "あ",
+        "は",
+        "た"
+      ]
+    },
+    "sekkei": {
+      "jp_character": "せっけい",
+      "romanji": [
+        "sekkei"
+      ],
+      "sound": "せっけい",
+      "meaning": "design (of a system)",
+      "meaning_id": "perancangan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "さ",
+        "た",
+        "か",
+        "あ"
+      ]
+    },
+    "shiyousho": {
+      "jp_character": "しようしょ",
+      "romanji": [
+        "shiyousho",
+        "shiyosho"
+      ],
+      "sound": "しようしょ",
+      "meaning": "specification (document)",
+      "meaning_id": "dokumen spesifikasi",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "さ",
+        "や",
+        "あ"
+      ]
+    },
+    "jissou": {
+      "jp_character": "じっそう",
+      "romanji": [
+        "jissou",
+        "jisso"
+      ],
+      "sound": "じっそう",
+      "meaning": "implementation",
+      "meaning_id": "implementasi",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "ざ",
+        "た",
+        "さ",
+        "あ"
+      ]
+    },
+    "honban": {
+      "jp_character": "ほんばん",
+      "romanji": [
+        "honban"
+      ],
+      "sound": "ほんばん",
+      "meaning": "production (environment)",
+      "meaning_id": "produksi (lingkungan)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "は",
+        "わ",
+        "ば"
+      ]
+    },
+    "fuguai": {
+      "jp_character": "ふぐあい",
+      "romanji": [
+        "fuguai"
+      ],
+      "sound": "ふぐあい",
+      "meaning": "defect, malfunction",
+      "meaning_id": "kerusakan / bug",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "は",
+        "が",
+        "あ"
+      ]
+    },
+    "shuusei": {
+      "jp_character": "しゅうせい",
+      "romanji": [
+        "shuusei",
+        "shusei"
+      ],
+      "sound": "しゅうせい",
+      "meaning": "fix, correction",
+      "meaning_id": "perbaikan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "さ",
+        "や",
+        "あ"
+      ]
+    },
+    "hoshu": {
+      "jp_character": "ほしゅ",
+      "romanji": [
+        "hoshu"
+      ],
+      "sound": "ほしゅ",
+      "meaning": "maintenance",
+      "meaning_id": "pemeliharaan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "は",
+        "さ",
+        "や"
+      ]
+    },
+    "settei": {
+      "jp_character": "せってい",
+      "romanji": [
+        "settei"
+      ],
+      "sound": "せってい",
+      "meaning": "settings",
+      "meaning_id": "pengaturan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "さ",
+        "た",
+        "あ"
+      ]
+    },
+    "hozon": {
+      "jp_character": "ほぞん",
+      "romanji": [
+        "hozon"
+      ],
+      "sound": "ほぞん",
+      "meaning": "save",
+      "meaning_id": "simpan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "は",
+        "ざ",
+        "わ"
+      ]
+    },
+    "sakujo": {
+      "jp_character": "さくじょ",
+      "romanji": [
+        "sakujo"
+      ],
+      "sound": "さくじょ",
+      "meaning": "delete",
+      "meaning_id": "hapus",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "さ",
+        "か",
+        "ざ",
+        "や"
+      ]
+    },
+    "kensaku": {
+      "jp_character": "けんさく",
+      "romanji": [
+        "kensaku"
+      ],
+      "sound": "けんさく",
+      "meaning": "search",
+      "meaning_id": "pencarian",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "か",
+        "わ",
+        "さ"
+      ]
+    },
+    "henshuu": {
+      "jp_character": "へんしゅう",
+      "romanji": [
+        "henshuu",
+        "henshu"
+      ],
+      "sound": "へんしゅう",
+      "meaning": "editing",
+      "meaning_id": "penyuntingan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "は",
+        "わ",
+        "さ",
+        "や",
+        "あ"
+      ]
+    },
+    "nyuuryoku": {
+      "jp_character": "にゅうりょく",
+      "romanji": [
+        "nyuuryoku",
+        "nyuryoku"
+      ],
+      "sound": "にゅうりょく",
+      "meaning": "input",
+      "meaning_id": "masukan (input)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "な",
+        "や",
+        "あ",
+        "ら",
+        "か"
+      ]
+    },
+    "gamen": {
+      "jp_character": "がめん",
+      "romanji": [
+        "gamen"
+      ],
+      "sound": "がめん",
+      "meaning": "screen",
+      "meaning_id": "layar",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "が",
+        "ま",
+        "わ"
+      ]
+    },
+    "gijutsu": {
+      "jp_character": "ぎじゅつ",
+      "romanji": [
+        "gijutsu"
+      ],
+      "sound": "ぎじゅつ",
+      "meaning": "technology, skill",
+      "meaning_id": "teknologi, keterampilan",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "が",
+        "ざ",
+        "や",
+        "た"
+      ]
+    },
+    "jouhou": {
+      "jp_character": "じょうほう",
+      "romanji": [
+        "jouhou",
+        "joho"
+      ],
+      "sound": "じょうほう",
+      "meaning": "information",
+      "meaning_id": "informasi",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "ざ",
+        "や",
+        "あ",
+        "は"
+      ]
+    },
+    "angou": {
+      "jp_character": "あんごう",
+      "romanji": [
+        "angou",
+        "ango"
+      ],
+      "sound": "あんごう",
+      "meaning": "encryption, code",
+      "meaning_id": "sandi (enkripsi)",
+      "tags": ["it", "technology"],
+      "katakana_groups": [],
+      "hiragana_groups": [
+        "あ",
+        "わ",
+        "が"
+      ]
     }
   },
   "kanjiSource": {

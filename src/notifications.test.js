@@ -66,7 +66,7 @@ test('the weakest kana of the selection are listed and lead to that section of L
   expect(buildNotifications({ now, dailyTotals: practiced(0) }).some(item => item.key === 'notifyWeakest')).toBe(false);
 });
 
-test('frequent mix-ups are listed as pairs and lead to that section of Learning Progress', () => {
+test('frequent mix-ups are listed as pairs, with a button that practices them', () => {
   const confusionPairs = [
     { characters: ['シ', 'ツ'], count: 5, last: now },
     { characters: ['ソ', 'ン'], count: 3, last: now },
@@ -77,7 +77,7 @@ test('frequent mix-ups are listed as pairs and lead to that section of Learning 
   expect(notification).toMatchObject({
     titleKey: 'statsConfusionsTitle',
     params: { count: 2 },
-    action: 'open-progress',
+    action: 'mixups',
     section: 'confusions',
   });
   expect(notification.chips).toEqual([{ text: 'シ ⇄ ツ', detail: '×5' }, { text: 'ソ ⇄ ン', detail: '×3' }]);

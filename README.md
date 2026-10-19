@@ -21,8 +21,9 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 - See how many characters, words or sentences your selection gives you before starting.
 
 **Game modes**
-- Practice **characters** or **words** (~600 beginner words, only the ones you can read with the groups you picked).
-- **Sentences**: 1,200+ real sentences covering the common JLPT N5 and N4 grammar (e.g. 「わたしは学生です」, 「すしを食べたことがあります」) that you type as a single romaji answer — only sentences you can read with the groups you picked appear, particles like は and を are shown in black, and the words you have typed fade out as you go. Any common spelling works (Kunrei-shiki like *si*/*tu*, *kyoo* or *kyō*, は typed as *ha*, or kana from a Japanese keyboard), and a mistake is underlined from where it starts. Help comes in steps: furigana first, then the romaji of the word you are on. Once you get a sentence right you see its meaning plus every word with its romaji, its meaning and what each particle does. Four exercises: **Read** (type the sentence), **Listen** (type what you hear), **Particles** (type the missing particle) and **Arrange** (type the shuffled words in the right order), and you can narrow the sentences by length (short / medium / long), grammar pattern (〜です, 〜ます, あります・います, 〜か) and JLPT level (N5 / N4).
+- Practice **characters** or **words** (900+ words, only the ones you can read with the groups you picked). Pick the **IT & work** topic to practice only the 130+ words you need at an IT company: プログラム, サーバー, データベース, デバッグ, めんせつ (job interview), しめきり (deadline)...
+- **Sentences**: 1,400+ real sentences covering the common JLPT N5 and N4 grammar (e.g. 「わたしは学生です」, 「すしを食べたことがあります」), 170+ of them about working at an IT company (「コードをレビューしてください」, 「わたしは日本のかいしゃではたらきたいです」) for the IT & work topic that you type as a single romaji answer — only sentences you can read with the groups you picked appear, particles like は and を are shown in black, and the words you have typed fade out as you go. Any common spelling works (Kunrei-shiki like *si*/*tu*, *kyoo* or *kyō*, は typed as *ha*, or kana from a Japanese keyboard), and a mistake is underlined from where it starts. Help comes in steps: furigana first, then the romaji of the word you are on. Once you get a sentence right you see its meaning plus every word with its romaji, its meaning and what each particle does. Four exercises: **Read** (type the sentence), **Listen** (type what you hear), **Particles** (type the missing particle) and **Arrange** (type the shuffled words in the right order), and you can narrow the sentences by length (short / medium / long), grammar pattern (〜です, 〜ます, あります・います, 〜か) and JLPT level (N5 / N4).
+- Characters come in **random** order (the ones you know least show up more often) or **in order**, following the kana table (あ い う え お, か き く け こ...).
 - Answer by **typing** the romaji or by **multiple choice**. Multiple choice offers kana that look alike (シ / ツ, ぬ / め, ...) and the ones you mix up the most as wrong answers.
 - Play a fixed amount (*Give me 10 Kanas*), against the clock (*Give me 5 minutes*) or without a limit.
 - Options: hints on/off, handwritten fonts, auto next, sound (reads each kana or word aloud in Japanese when you get it right).
@@ -38,6 +39,7 @@ Practice hiragana and katakana right in the browser, on desktop or phone. Pick t
 - The kana you got wrong (with the right answer) and your slowest ones. Tap one to hear it.
 - Comparison with your average of the last 30 days, and your all-time best streak.
 - *Try Problematics*: a new game with only the characters you struggle with.
+- **Practice mix-ups**: kana you answered with another kana's reading (シ ⇄ ツ, ぬ ⇄ め...) get their own practice game, from all kana whatever groups you picked. It's offered at the end of a game in which you mixed kana up, in the *Often mixed up* list of Learning Progress (tap a pair to practice just those two) and in its notification.
 - Progress stats per character, colored by how well you know them.
 
 **Mobile**
@@ -86,6 +88,12 @@ The app is served at `http://localhost:<APP_PORT>` (default `8080`). To change t
 - A beginner mode that slowly includes more characters into the mix. ❔
 - A help window showing Kanas with their romanjis, together with similar Kanas. ❔
 - Online sync of progress and settings. ❔
+
+## Deploying to GitHub Pages (or any static host)
+
+The same build works at the root of a domain (Docker, `http://localhost:8080/game`) and in a sub folder (GitHub Pages, `https://<user>.github.io/learn-kana/game`): asset paths are relative and the app finds its folder at run time. Publish the contents of `./build` after `npm run build`. GitHub Pages has no fallback to `index.html` for app routes, so `404.html` (copied from `public/`) sends a reload of `/learn-kana/game` back into the app.
+
+Set `SITE_URL` to the public address when building (e.g. `SITE_URL=https://<user>.github.io/learn-kana npm run build`, or in `.env` / as a Docker build arg) to add the canonical link, absolute link-preview image and `sitemap.xml` for search engines. Without it the build works the same, just without those.
 
 ## Privacy & Analytics
 

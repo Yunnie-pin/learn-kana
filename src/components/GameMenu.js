@@ -1,11 +1,14 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import KanaGroup from './KanaGroup'
 import GameModeSelector from './GameModeSelector'
 import ProgressStatsModal from './ProgressStatsModal'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { GAME_MODES, gamePath, ROUTES } from '../routes';
+import { getListOfKanjiWords, getWordTopic, wordInTopic } from '../practiceList.js';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences } from '../sentences.js'
-import { getDueReviewCount, getSelectedKanjiGroupTitles, getSrsKanjiCharacters } from '../kanjiSrs.js'
+import { getBunpouQuestions } from '../bunpou.js'
+import { addExtraNewKanji, getDueReviewCount, getNextReview, getSelectedKanjiGroupTitles, getSrsSession, NEW_KANJI_PER_DAY } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
 import { OPEN_PROGRESS_EVENT } from '../progressNavigation.js'
 import Icon from './Icon'
@@ -91,19 +94,39 @@ function getSelectionSummary() {
       }
     }
   }
+  // Words readable with the selected groups, in the topic picked in the menu
+  const wordTopic = getWordTopic();
   const wordCount = Object.values(kanaCharacters.words).filter(word =>
+    wordInTopic(word, wordTopic) &&
     [...word.hiragana_groups, ...word.katakana_groups].every(group => checkedKanas.includes(group))
-  ).length;
+  ).length +
+    // Kanji vocabulary of the selected kanji groups (水曜日, 時間...)
+    getListOfKanjiWords(checkedKanas).filter(word => wordInTopic(word, wordTopic)).length;
   // Sentence practice only offers the sentences readable with the selected
   // groups that also match the sentence options (level, pattern, exercise)
   const sentenceCount = getPracticeSentences(checkedKanas).length;
+  // Grammar practice offers the readable sentences that end with a verb form
+  // the practice can hide, minus the ones the menu options leave out
+  const bunpouCount = getBunpouQuestions(checkedKanas).length;
 
-  return { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount };
+  return { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount, bunpouCount };
 }
 
 export default function GameMenu() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
+  // A game that could not start comes back here with the reason
+  const gameError = location.state?.error || null;
+  const dismissGameError = () => navigate(location.pathname, { replace: true, state: null });
+
+  // Coming back from a game: scroll to the part of the menu it asked for
+  // (e.g. #game-menu-title from "Back to menu" on the summary)
+  useEffect(() => {
+    if (!location.hash) return;
+    document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView?.();
+  }, [location.hash]);
+
   const [showStatsModal, setShowStatsModal] = useState(false);
   // Section to show and highlight when the window is opened from a notification
   const [statsFocusSection, setStatsFocusSection] = useState(null);
@@ -116,6 +139,15 @@ export default function GameMenu() {
     window.addEventListener(OPEN_PROGRESS_EVENT, openAtSection);
     return () => window.removeEventListener(OPEN_PROGRESS_EVENT, openAtSection);
   }, []);
+
+  // Opened from a notification on another tab (Dictionary): open it once here
+  const openProgress = location.state?.openProgress;
+  useEffect(() => {
+    if (!openProgress) return;
+    setStatsFocusSection(typeof openProgress === 'string' ? openProgress : null);
+    setShowStatsModal(true);
+    navigate(location.pathname, { replace: true, state: null });
+  }, [openProgress, navigate, location.pathname]);
   // On phones only one group is shown at a time (.kana-group-tabs); on larger screens
   // hiragana + katakana share one "Kana" tab next to a "Kanji" tab (.kana-group-tabs-wide)
   const [activeKanaTab, setActiveKanaTab] = useState('hiragana');
@@ -123,6 +155,27 @@ export default function GameMenu() {
   // Bumped whenever the selection or game mode changes, so the summary below is recomputed
   const [settingsVersion, setSettingsVersion] = useState(0);
   const refreshSummary = () => setSettingsVersion(version => version + 1);
+
+  // On wide screens the mode options scroll above a Start bar that always
+  // stays in view (App.css); when options are hidden below, the bar fades
+  // the edge to show there is more
+  const modeOptionsRef = useRef(null);
+  const [modeOptionsMoreBelow, setModeOptionsMoreBelow] = useState(false);
+  useEffect(() => {
+    const options = modeOptionsRef.current;
+    if (!options) return undefined;
+    const update = () => {
+      setModeOptionsMoreBelow(options.scrollHeight - options.scrollTop - options.clientHeight > 4);
+    };
+    update();
+    options.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      options.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+    // Options come and go with the practice type (settingsVersion changes then)
+  }, [settingsVersion]);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -136,19 +189,22 @@ export default function GameMenu() {
   }
   migrateKanjiGroupSelections();
 
-  const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount } = getSelectionSummary();
+  const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount, bunpouCount } = getSelectionSummary();
   const storedPractice = localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem('game-mode-word') === 'true' ? 'words' : 'characters');
-  // Older "kanji" / "srs" values count as "characters", like in GameModeSelector
-  const practice = ['words', 'mixed', 'long'].includes(storedPractice) ? storedPractice : 'characters';
+  // Older "kanji" values count as "characters", like in GameModeSelector
+  const practice = ['words', 'mixed', 'long', 'bunpou', 'srs'].includes(storedPractice) ? storedPractice : 'characters';
   const selectedKanjiGroups = useMemo(
     () => getSelectedKanjiGroupTitles(),
     [settingsVersion]
   );
-  // SRS session for the Kanji tab: due kanji including ones never practiced
-  const srsDueCount = useMemo(
-    () => getSrsKanjiCharacters(selectedKanjiGroups).due.length,
-    [selectedKanjiGroups]
+  // SRS session for the Kanji tab: the kanji due again plus the new kanji
+  // left for today, exactly what the review will show
+  const srsSession = useMemo(
+    () => getSrsSession(selectedKanjiGroups),
+    // settingsVersion: recounted every minute and when the selection changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [selectedKanjiGroups, settingsVersion]
   );
   // Kanji practiced before that are due again, offered in the banner at the top
   const dueReviewCount = useMemo(
@@ -157,7 +213,37 @@ export default function GameMenu() {
   );
   let summaryText;
   let canStart = true;
-  if (practice === 'words' && wordCount === 0) {
+  // Kanji review: Start first allows NEW_KANJI_PER_DAY more new kanji today
+  let learnMoreNewKanji = false;
+  // "later today", "tomorrow" or the date, for when the next review comes
+  const formatWhen = (at) => {
+    const day = new Date(at);
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    if (day.toDateString() === new Date().toDateString()) return t('srsSummaryToday');
+    if (day.toDateString() === tomorrow.toDateString()) return t('srsSummaryTomorrow');
+    return day.toLocaleDateString(language === 'id' ? 'id-ID' : 'en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+  };
+  if (practice === 'srs') {
+    // Kanji review: what the session holds (due again + new for today)
+    if (kanjiGroupCount === 0) {
+      summaryText = t('menuSummarySrsNoKanji');
+      canStart = false;
+    } else if (srsSession.total === 0 && srsSession.unlearned > 0) {
+      // Today's new kanji are done but more are waiting: Start brings in more
+      summaryText = t('menuSummarySrsMoreNew', { count: Math.min(NEW_KANJI_PER_DAY, srsSession.unlearned) });
+      learnMoreNewKanji = true;
+    } else if (srsSession.total === 0) {
+      // Every kanji of the selection learned, none due: when the next ones are
+      const next = getNextReview(selectedKanjiGroups);
+      summaryText = next
+        ? t('menuSummarySrsCaughtUp', { when: formatWhen(next.at), count: next.count })
+        : t('kanjiSrsNothingDue');
+      canStart = false;
+    } else {
+      summaryText = t('menuSummarySrs', { due: srsSession.due.length, fresh: srsSession.fresh.length });
+    }
+  } else if (practice === 'words' && wordCount === 0) {
     summaryText = t('menuSummaryNoWords');
     canStart = false;
   } else if (practice === 'mixed' && kanaCount + kanjiCount + wordCount === 0) {
@@ -169,12 +255,17 @@ export default function GameMenu() {
   } else if (practice === 'long' && sentenceCount === 0) {
     summaryText = t('menuSummaryNoSentences');
     canStart = false;
+  } else if (practice === 'bunpou' && bunpouCount === 0) {
+    summaryText = t('menuSummaryNoBunpou');
+    canStart = false;
   } else if (practice === 'words') {
     summaryText = t('menuSummaryWords', { words: wordCount, groups: kanaGroupCount });
   } else if (practice === 'mixed') {
     summaryText = t('menuSummaryMixed', { kanas: kanaCount, kanji: kanjiCount, words: wordCount });
   } else if (practice === 'long') {
     summaryText = t('menuSummaryLong', { count: sentenceCount });
+  } else if (practice === 'bunpou') {
+    summaryText = t('menuSummaryBunpou', { count: bunpouCount });
   } else {
     summaryText = t('menuSummaryCharacters', {
       groups: kanaGroupCount + kanjiGroupCount,
@@ -196,30 +287,35 @@ export default function GameMenu() {
     });
 
     localStorage.setItem('checkedKanas', JSON.stringify([...checkedChars]));
-    localStorage.setItem('game-mode-srs', 'false');
-
   };
 
-  // SRS is a one-off session: the practice type picked in the menu stays as it is,
-  // and GameModeSelector sets game-mode-srs back to false when the menu opens again
-  const startSrsReview = () => {
-    localStorage.setItem('game-mode-srs', 'true');
-  };
-
-  // Starts a game with only the given characters, through the same filter as "Try Problematics"
+  // Starts a game with only the given characters, the same way as "Try Problematics"
   const practiceWeakest = (characters) => {
     handleButtonClick();
-    localStorage.setItem('problematicKanasFilter', JSON.stringify(characters));
-    navigate('/learn-kana∕game');
+    navigate(ROUTES.game, { state: { characters } });
+  };
+
+  // Practices the kana the user mixes up: all of the frequent pairs, or the
+  // ones given (a single pair picked in Learning Progress)
+  const practiceMixups = (characters) => {
+    navigate(gamePath(GAME_MODES.mixups), characters ? { state: { characters } } : undefined);
   };
 
   return (
     <div className={`game-menu-page tab-${activeKanaTab}`}>
       <h2 id='game-menu-title'>{t('menuTitle')}</h2>
+      {gameError && (
+        <div className='game-menu-error' role='alert'>
+          <span>{gameError}</span>
+          <button type='button' onClick={dismissGameError} aria-label={t('menuDismiss')} title={t('menuDismiss')}>
+            <Icon name='x' />
+          </button>
+        </div>
+      )}
       {dueReviewCount > 0 && (
         <div className='srs-review-banner' role='status'>
           <span><Icon name='bell' className='icon-leading icon-bell' />{t('kanjiSrsDue', { count: dueReviewCount })}</span>
-          <Link to='/learn-kana∕game' className='srs-review-banner-button' onClick={startSrsReview}>
+          <Link to={gamePath(GAME_MODES.review)} className='srs-review-banner-button'>
             {t('srsBannerStart')}
           </Link>
         </div>
@@ -258,22 +354,11 @@ export default function GameMenu() {
           <KanaGroup groupToShow="katakana" onSelectionChange={refreshSummary} />
         </div>
         <div className="kana-group-kanji-block">
-          {kanjiCount > 0 && (
-            <div className='kanji-srs-start'>
-              {srsDueCount > 0 ? (
-                <Link to='/learn-kana∕game' className='srs-review-banner-button' onClick={startSrsReview}>
-                  {t('srsStartButton', { count: srsDueCount })}
-                </Link>
-              ) : (
-                <p>{t('kanjiSrsNothingDue')}</p>
-              )}
-            </div>
-          )}
           <KanaGroup groupToShow="kanji" onSelectionChange={refreshSummary} />
         </div>
       </div>
-      <aside className='game-menu-side'>
-        <div className='game-mode-selector'>
+      <aside className={'game-menu-side' + (modeOptionsMoreBelow ? ' has-more-below' : '')}>
+        <div className='game-mode-selector' ref={modeOptionsRef}>
           <GameModeSelector onChange={refreshSummary} kanjiSelected={kanjiGroupCount > 0} />
         </div>
         <div className='game-menu-start-bar'>
@@ -283,8 +368,11 @@ export default function GameMenu() {
           <div className='game-menu-start'>
             <p className={'game-menu-summary' + (canStart ? '' : ' game-menu-summary-warning')}>{summaryText}</p>
             {canStart ? (
-              <Link to='/learn-kana∕game'>
-                <button className='glowButton' onClick={handleButtonClick}><Icon name='play' className='icon-leading icon-play' />{t('menuStart')}</button>
+              <Link to={practice === 'srs' ? gamePath(GAME_MODES.review) : ROUTES.game}>
+                <button className='glowButton' onClick={() => {
+                  if (learnMoreNewKanji) addExtraNewKanji();
+                  handleButtonClick();
+                }}><Icon name='play' className='icon-leading icon-play' />{t('menuStart')}</button>
               </Link>
             ) : (
               <button className='glowButton' disabled><Icon name='play' className='icon-leading icon-play' />{t('menuStart')}</button>
@@ -297,6 +385,7 @@ export default function GameMenu() {
         focusSection={statsFocusSection}
         onClose={() => { setShowStatsModal(false); setStatsFocusSection(null); }}
         onPracticeWeakest={practiceWeakest}
+        onPracticeMixups={practiceMixups}
       />
     </div>
   )

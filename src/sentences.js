@@ -499,6 +499,24 @@ export const SENTENCE_PATTERNS = ['all', 'desu', 'verb', 'exist', 'question'];
 // type: read and type the sentence; listen: type what is heard; particle:
 // type the missing particle; arrange: put the shuffled words in order
 export const SENTENCE_EXERCISES = ['type', 'listen', 'particle', 'arrange'];
+// Topic of the sentences practice: the everyday sentences with no topic
+// ("general"), the IT and workplace ones (topic "it": エンジニア, ミーティング...),
+// or both
+export const SENTENCE_TOPICS = ['all', 'general', 'it'];
+export const SENTENCE_TOPIC_KEY = 'game-mode-sentence-topic';
+
+export function getSentenceTopic() {
+  let stored = null;
+  try {
+    stored = localStorage.getItem(SENTENCE_TOPIC_KEY);
+  } catch (error) { }
+  return SENTENCE_TOPICS.includes(stored) ? stored : 'all';
+}
+
+export function sentenceInTopic(sentence, topic = getSentenceTopic()) {
+  if (topic === 'general') return sentence.topic !== 'it';
+  return topic === 'all' || sentence.topic === topic;
+}
 
 function storedOption(key, allowed) {
   let value = null;
@@ -513,6 +531,9 @@ export function getSentenceOptions() {
     level: storedOption('game-mode-sentence-level', SENTENCE_LEVELS),
     pattern: storedOption('game-mode-sentence-pattern', SENTENCE_PATTERNS),
     jlpt: storedOption('game-mode-sentence-jlpt', SENTENCE_JLPT_LEVELS),
+    // The sentence topic of the menu: "general" (everyday sentences), "it"
+    // (IT and workplace sentences) or "all"
+    topic: getSentenceTopic(),
     exercise: storedOption('game-mode-sentence-exercise', SENTENCE_EXERCISES),
   };
 }
@@ -524,6 +545,7 @@ export function getPracticeSentences(selectedGroupTitles, options = getSentenceO
     (options.level === 'all' || sentenceLevel(sentence) === options.level) &&
     (options.pattern === 'all' || sentencePattern(sentence) === options.pattern) &&
     (!options.jlpt || options.jlpt === 'all' || sentenceJlpt(sentence) === options.jlpt) &&
+    sentenceInTopic(sentence, options.topic) &&
     (options.exercise !== 'particle' || (sentence.particles || []).length > 0)
   );
 }

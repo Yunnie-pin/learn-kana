@@ -1,16 +1,18 @@
 import React from 'react'
 import {  useState, useEffect, useRef, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { GAME_MODES, ROUTES } from '../routes.js'
 import { toHiragana } from 'wanakana';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
-import { getSelectedKanjiGroupTitles, getSrsKanjiCharacters, recordKanjiSrsAnswer } from '../kanjiSrs.js'
-import { getListForPractice } from '../practiceList.js'
-import { findKanaForAnswer, getSimilarKana, recordConfusion } from '../confusions.js'
+import { getKanjiSrsProgress, getKanjiSrsStage, getNextReview, getSelectedKanjiGroupTitles, getSrsKanjiCharacters, getSrsSession, previewSrsIntervals, recordKanjiSrsAnswer, SRS_GRADES } from '../kanjiSrs.js'
+import { getCharacterOrder, getListForPractice, getListOfKanjiWords, getWordTopic, wordInTopic } from '../practiceList.js'
+import { findKanaForAnswer, getConfusionPairs, getMixupKana, getSimilarKana, MIXUP_PRACTICE_PAIRS, readConfusions, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
-import { isRecognitionSupported, isSpeechSupported, speak, speakIfEnabled, startListening } from '../speech.js'
-import { createSentenceQuestion, isSpokenAnswerPrefix, matchesSpokenAnswer, transcriptToRomaji } from '../sentenceMatching.js'
+import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
+import { createSentenceQuestion } from '../sentenceMatching.js'
+import { bunpouFormNote, createBunpouQuestion, getBunpouOptions, getBunpouQuestions } from '../bunpou.js'
 import { particleRoleOf, sentenceBreakdown } from '../sentenceGlossary.js'
 import Icon from './Icon.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
@@ -317,14 +319,6 @@ export default function InGameCharacterShowAndInput() {
   // last step is a hint shown under the sentence, once per word
   const [sentenceHint, setSentenceHint] = useState(null);
   const sentenceHelpRef = useRef({ step: 0, hintWord: null });
-  // Speech answering: the mic button listens to the sentence being read out
-  // loud and turns what it hears into the answer (see onClickSpeechButton)
-  const [sentenceListening, setSentenceListening] = useState(false);
-  const speechRecognitionRef = useRef(null);
-  // What has been heard so far: the parts the recognizer is sure about (with
-  // their alternatives), the part it is still guessing, and the text last
-  // shown in the answer input (so typing is never overwritten)
-  const speechHeardRef = useRef({ finals: [], interim: '', preview: null });
   const [onScreenKanjiUsage, setOnScreenKanjiUsage] = useState(null);
   const [isKanjiUsageQuestion, setIsKanjiUsageQuestion] = useState(false);
   const [onScreenSolution, setSolution] = useState('');
@@ -345,8 +339,23 @@ export default function InGameCharacterShowAndInput() {
   // must not count the same answer again
   const questionAnsweredRef = useRef(false);
   const kanjiAutoAdvanceTimeoutRef = useRef(null);
+  // A word / sentence answered with auto next: the pending move to the next
+  // question, and without auto next: removes its Enter / tap listeners. Both
+  // are undone when the game unmounts (Play again, back to the menu), so they
+  // can't act on the next game's screen.
+  const advanceTimeoutRef = useRef(null);
+  const removeNextListenersRef = useRef(null);
   const inGameAnswerListRef = useRef([]);
   const srsQueueRef = useRef(null);
+  // Kanji review progress: cards graded / cards in the session (a forgotten
+  // card comes back, so it counts again), what the card on screen is (new,
+  // review or forgotten earlier in the session), and what the session did,
+  // for its summary
+  const [srsProgress, setSrsProgress] = useState({ done: 0, total: 0 });
+  const [srsCardKind, setSrsCardKind] = useState('review');
+  const srsForgottenRef = useRef(new Set());
+  const srsResultRef = useRef({ reviewed: 0, forgot: 0, promoted: 0, learned: 0 });
+  const [srsResult, setSrsResult] = useState(null);
   const srsFailedRef = useRef(false);
   // A typed mix-up ("shi" for ツ) is recorded once per character shown
   const confusionRecordedRef = useRef(false);
@@ -363,18 +372,46 @@ export default function InGameCharacterShowAndInput() {
     ? gameModeSetting.value
     : null;
 
+  // Session-only modes come with the address (see routes.js): ?mode=review is
+  // a kanji review, ?mode=mixups practices the kana the user mixes up, and
+  // Try Problematics passes its characters in the state
+  const location = useLocation();
+  // When this game started: the summary offers to practice what was mixed up since
+  const [gameStartedAt] = useState(() => Date.now());
+  const sessionMode = new URLSearchParams(location.search).get('mode');
+  // A review: ?mode=review, or a plain game while the menu's practice is the
+  // kanji review (e.g. started from a notification)
+  const isSrsPractice = sessionMode === GAME_MODES.review ||
+    (!sessionMode && !location.state?.characters && localStorage.getItem('game-mode-practice') === 'srs');
+  const isMixupPractice = sessionMode === GAME_MODES.mixups;
+  // Practice from the Dictionary: the kana, kanji or words passed in the
+  // state, whatever groups and practice type are picked in the menu
+  const isDictionaryPractice = !isMixupPractice && Boolean(location.state?.anyGroup) &&
+    Array.isArray(location.state?.characters);
+
+  // Mix-ups are practiced from every kana, whatever groups are selected
   const characterGroupsToShow = useMemo(() => {
+    if (isMixupPractice || isDictionaryPractice) {
+      const scripts = isDictionaryPractice ? ['hiragana', 'katakana', 'kanji'] : ['hiragana', 'katakana'];
+      return scripts.flatMap(script => Object.values(kanaCharacters[script]).map(group => group.title));
+    }
     const storedCharacterGroups = JSON.parse(localStorage.getItem("checkedKanas") || '[]');
     return Array.isArray(storedCharacterGroups) ? storedCharacterGroups : [];
-  }, []);
-  const practiceMode = localStorage.getItem('game-mode-practice') ||
+  }, [isMixupPractice, isDictionaryPractice]);
+  const practiceMode = isMixupPractice ? 'characters' : isDictionaryPractice ? 'mixed' : localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
-  const isSrsPractice = localStorage.getItem('game-mode-srs') === 'true';
-  // SRS reviews are always answered by typing, whatever is picked in the menu
-  const useTouchAnswers = !isSrsPractice && localStorage.getItem("game-mode-touch") === "true";
+  // SRS reviews are always answered by typing, whatever is picked in the menu;
+  // so is a Dictionary practice: a few entries are too few wrong options.
+  // The grammar practice has its own answer mode, picked in the menu: the
+  // missing form is typed, or chosen among four buttons
+  const useTouchAnswers = !isSrsPractice && !isDictionaryPractice && practiceMode !== 'bunpou' && localStorage.getItem("game-mode-touch") === "true";
+  const bunpouOptions = practiceMode === 'bunpou' ? getBunpouOptions() : null;
+  const isBunpouChoice = Boolean(bunpouOptions) && bunpouOptions.answer === 'choice';
   const selectedKanjiGroups = useMemo(() => getSelectedKanjiGroupTitles(), []);
-  const srsKanjiOverview = useMemo(
-    () => isSrsPractice ? getSrsKanjiCharacters(selectedKanjiGroups) : null,
+  // A review session: the kanji due again, then the new kanji left for today
+  // (NEW_KANJI_PER_DAY), see getSrsSession
+  const srsSession = useMemo(
+    () => isSrsPractice ? getSrsSession(selectedKanjiGroups) : null,
     [isSrsPractice, selectedKanjiGroups]
   );
 
@@ -386,25 +423,38 @@ export default function InGameCharacterShowAndInput() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   let charactersToShow = useMemo(
     () => isSrsPractice
-      ? srsKanjiOverview.due
+      ? [...srsSession.due, ...srsSession.fresh]
       : getListForPractice(characterGroupsToShow, practiceMode),
-    [isSrsPractice, srsKanjiOverview, characterGroupsToShow, practiceMode]
+    [isSrsPractice, srsSession, characterGroupsToShow, practiceMode]
   );
   if (isSrsPractice && srsQueueRef.current === null) {
-    srsQueueRef.current = [...charactersToShow].sort(() => Math.random() - 0.5);
+    srsQueueRef.current = [...charactersToShow];
+  }
+  // The session size, once (the queue itself shrinks as cards are shown)
+  useEffect(() => {
+    if (isSrsPractice) setSrsProgress({ done: 0, total: charactersToShow.length });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSrsPractice]);
+
+  // Mix-up practice: only the kana of the most frequent mix-ups, or of the
+  // pairs passed with the navigation (one pair from Learning Progress, or the
+  // ones mixed up during the game that just ended)
+  const stateCharacters = Array.isArray(location.state?.characters) ? location.state.characters : null;
+  if (isMixupPractice) {
+    const mixupKana = stateCharacters ||
+      getMixupKana(getConfusionPairs(readConfusions(), MIXUP_PRACTICE_PAIRS));
+    charactersToShow = charactersToShow.filter(char => mixupKana.includes(char.jp_character));
   }
 
   // Filter to problematic characters if that mode is active
-  const problematicFilter = localStorage.getItem('problematicKanasFilter');
+  const problematicChars = isMixupPractice ? null : stateCharacters;
   let isProblematicsMode = false;
-  if (problematicFilter && !isSrsPractice) {
-    const problematicChars = JSON.parse(problematicFilter);
+  if (problematicChars && !isSrsPractice) {
     charactersToShow = charactersToShow.filter(char => problematicChars.includes(char.jp_character));
     isProblematicsMode = true;
 
-    // If filter resulted in no characters, clear it and use original list
+    // If filter resulted in no characters, use the original list
     if (charactersToShow.length === 0) {
-      localStorage.removeItem('problematicKanasFilter');
       isProblematicsMode = false;
       // Restore original list
       charactersToShow = isSrsPractice
@@ -413,14 +463,21 @@ export default function InGameCharacterShowAndInput() {
     }
   }
 
+  // Characters practice can go through the selection in the order of the kana
+  // table instead of picking by how well each one is known. Only for a normal
+  // game: reviews, mix-ups and problematics pick what needs practice.
+  const isSequentialOrder = practiceMode === 'characters' && !sessionMode && !isProblematicsMode &&
+    getCharacterOrder() === 'sequential';
+  const sequentialIndexRef = useRef(0);
+
   // Be mad at the user if the charactersToShow is empty
   const navigate = useNavigate();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (charactersToShow.length === 0 && !isSrsPractice) {
-      navigate('/bruh', { state: { message: t('gameErrorNoKana') } });
+      navigate(ROUTES.menu, { replace: true, state: { error: t(isMixupPractice ? 'gameErrorNoMixups' : 'gameErrorNoKana') } });
     }
-  }, [charactersToShow, isSrsPractice, navigate, t]);
+  }, [charactersToShow, isSrsPractice, isMixupPractice, navigate, t]);
 
   // game-mode-auto-next
   let autoNext = false;
@@ -455,8 +512,10 @@ export default function InGameCharacterShowAndInput() {
   function getListOfWords(charGroups) {
     let output = []
     const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
+    // Only the words of the topic picked in the menu (e.g. IT words)
+    const wordTopic = getWordTopic();
     Object.entries(kanaCharacters.words).forEach(([key, value]) => {
-      let ignoreWord = false;
+      let ignoreWord = !wordInTopic(value, wordTopic);
       for (let i = 0; i < value.hiragana_groups.length; i++) {
         if (!selectedGroups.includes(value.hiragana_groups[i])) {
           ignoreWord = true;
@@ -498,67 +557,17 @@ export default function InGameCharacterShowAndInput() {
 
   function getListForPractice(charGroups, mode) {
     const characters = getListOfKanas(charGroups);
+    // Kana words, plus the kanji vocabulary of the selected kanji groups
+    // (not in the IT topic: those words have no topic)
+    const kanjiWords = getListOfKanjiWords(charGroups).filter(word => wordInTopic(word));
     if (mode === 'mixed') {
-      return [...characters, ...getListOfWords(charGroups)];
+      return [...characters, ...getListOfWords(charGroups), ...kanjiWords];
     }
-    if (mode === 'words') return getListOfWords(charGroups);
+    if (mode === 'words') return [...getListOfWords(charGroups), ...kanjiWords];
     if (mode === 'long') return getListOfSentences(charGroups);
+    if (mode === 'bunpou') return getBunpouQuestions(charGroups);
     // "characters": every selected kana and kanji group
     return characters;
-  }
-
-  // Helper function to get n random unique elements from an array
-  function sample(inputArray, numberOfOutputs, onePerVocal = false) {
-    const vocals = ["a", "i", "u", "e", "o"];
-    let current_vocal = 0;
-
-    // Create a copy of the original array to avoid modifying it
-    const copyArray = [...inputArray];
-    const sampledElements = [];
-
-    if (inputArray.length < numberOfOutputs) {
-      inputArray = inputArray.concat(inputArray);
-      onePerVocal = false;
-    }
-
-    const hasVocalHints = copyArray.some(item => item && item.vocal && vocals.includes(item.vocal));
-    if (onePerVocal && !hasVocalHints) {
-      onePerVocal = false;
-    }
-
-    // If n is greater than the size of a, set possible unique outputs to the size of array
-    const numberOfUniqueOutputs = Math.min(numberOfOutputs, copyArray.length);
-
-    for (let i = 0; i < numberOfUniqueOutputs; i++) {
-      while (true) {
-        const randomIndex = Math.floor(Math.random() * copyArray.length);
-        if (onePerVocal) {
-          const candidate = copyArray[randomIndex];
-          if (candidate?.vocal && vocals.includes(candidate.vocal)) {
-            if (candidate.vocal === vocals[current_vocal]) {
-              current_vocal++;
-            } else {
-              continue;
-            }
-          } else {
-            onePerVocal = false;
-          }
-        }
-        sampledElements.push(copyArray[randomIndex]);
-        // Remove the selected element from the copyArray to avoid duplicates
-        copyArray.splice(randomIndex, 1);
-        break;
-      }
-    }
-
-    // If still space, fill it with duplicate elements
-    const remainingOutputs = numberOfOutputs - numberOfUniqueOutputs;
-    for (let i = 0; i < remainingOutputs; i++) {
-      const randomIndex = Math.floor(Math.random() * numberOfUniqueOutputs);
-      sampledElements.push(sampledElements[randomIndex]);
-    }
-
-    return sampledElements;
   }
 
   /*
@@ -568,26 +577,12 @@ export default function InGameCharacterShowAndInput() {
   */
   // Kana the user mixes up (or that look alike) are offered as wrong options more often
   function fillTouchAnswers(picked_kana) {
-    const useVocalSampling = Boolean(picked_kana && picked_kana.vocal);
-    const possibleAnswers = sample(charactersToShow, 5, useVocalSampling);
+    const similar = picked_kana.type === 'kana' ? getSimilarKana(picked_kana.jp_character) : [];
     const elements = document.querySelectorAll('.in-game-touch-answer>p');
-
-    if (useVocalSampling) {
-      for (let i = 0; i < possibleAnswers.length; i++) {
-        if (possibleAnswers[i].vocal === picked_kana.vocal) {
-          Object.assign(possibleAnswers[i], picked_kana);
-        }
-      }
-    } else {
-      const targetIndex = Math.floor(Math.random() * possibleAnswers.length);
-      Object.assign(possibleAnswers[targetIndex], picked_kana);
-    }
-
-    // Go over the elements
-    for (let i = 0; i < elements.length; i++) {
-      const answer = Array.isArray(possibleAnswers[i]?.romanji) ? possibleAnswers[i].romanji : [possibleAnswers[i]?.romanji || ''];
-      elements[i].textContent = answer[0];
-    }
+    const options = chooseTouchOptions(picked_kana, charactersToShow, similar, elements.length || 5);
+    elements.forEach((element, i) => {
+      element.textContent = options[i] || '';
+    });
   }
 
   function resetCurentGameStats() {
@@ -730,8 +725,6 @@ export default function InGameCharacterShowAndInput() {
   // Function gets called at the beginning and every time the kana changes
   async function showNewCharacter() {
     setSrsCardRevealed(false);
-    // The next question is never answered with the mic left on from the last one
-    stopSentenceListening();
 
     // Check if the user already answered its kana limits. If so, show stats.
     const gameScoreElement = document.getElementById("in-game-score");
@@ -756,10 +749,13 @@ export default function InGameCharacterShowAndInput() {
     // Get and show the current Kana using the weighted selection logic
     let pickedElement = isSrsPractice
       ? srsQueueRef.current?.shift()
-      : await selectNextCharacter(charactersToShow, inGameKanaOnScreen || null);
+      : isSequentialOrder && charactersToShow.length > 0
+        ? charactersToShow[sequentialIndexRef.current++ % charactersToShow.length]
+        : await selectNextCharacter(charactersToShow, inGameKanaOnScreen || null);
 
     if (!pickedElement) {
       if (isSrsPractice) {
+        setSrsResult({ ...srsResultRef.current, next: getNextReview(selectedKanjiGroups) });
         setUserGameScoreWindowVisible(true);
         return;
       }
@@ -767,7 +763,8 @@ export default function InGameCharacterShowAndInput() {
       if (charactersToShow.length > 0) {
         pickedElement = charactersToShow[Math.floor(Math.random() * charactersToShow.length)];
       } else {
-        navigate('/bruh', { state: { message: t('gameErrorNoCharacters') } });
+        // Nothing to show: the effect that checks charactersToShow already
+        // went back to the menu with the reason
         return;
       }
     }
@@ -778,6 +775,13 @@ export default function InGameCharacterShowAndInput() {
     srsFailedRef.current = false;
     confusionRecordedRef.current = false;
     srsCurrentCardRef.current = isSrsPractice ? pickedElement : null;
+    if (isSrsPractice) {
+      setSrsCardKind(
+        srsForgottenRef.current.has(pickedElement.jp_character) ? 'relearn'
+          : getKanjiSrsProgress()[pickedElement.jp_character] ? 'review'
+          : 'new'
+      );
+    }
     setOnScreenCharacterType(pickedElement.type);
 
     // Update totalTimesShown
@@ -835,7 +839,9 @@ export default function InGameCharacterShowAndInput() {
     );
     setFuriganaVisible(false);
     const question = pickedElement.type === 'long'
-      ? createSentenceQuestion(pickedElement, sentenceExercise)
+      ? pickedElement.bunpou
+        ? createBunpouQuestion(pickedElement)
+        : createSentenceQuestion(pickedElement, sentenceExercise)
       : { exercise: 'type', matcher: null };
     sentenceQuestionRef.current = question;
     setSentenceQuestion(question);
@@ -939,14 +945,37 @@ export default function InGameCharacterShowAndInput() {
     document.querySelector('#in-game-next-button')?.classList.toggle('hidden-element', !showNextButton);
   }
 
-  function rateSrsCard(remembered) {
+  // Grades the kanji on screen: "again" (forgot), "hard", "good" or "easy"
+  // (true / false from a swipe: good / again). A forgotten kanji comes back at
+  // the end of the session, until it is remembered.
+  function rateSrsCard(grade) {
     const card = srsCurrentCardRef.current;
     if (!isSrsPractice || !card || waitingForKanjiNextRef.current) return;
+    const resolvedGrade = grade === true ? 'good' : grade === false ? 'again' : grade;
+    const remembered = resolvedGrade !== 'again';
 
-    recordKanjiSrsAnswer(card.jp_character, remembered);
+    // What this card does for the session summary: stages go new ->
+    // learning -> young -> mature; moving up from learning or young counts
+    const STAGES = ['new', 'learning', 'young', 'mature'];
+    const stageBefore = getKanjiSrsStage(getKanjiSrsProgress()[card.jp_character]);
+    recordKanjiSrsAnswer(card.jp_character, resolvedGrade);
+    const stageAfter = getKanjiSrsStage(getKanjiSrsProgress()[card.jp_character]);
+    const result = srsResultRef.current;
+    result.reviewed++;
+    if (!remembered) result.forgot++;
+    if (stageBefore === 'new') result.learned++;
+    else if (STAGES.indexOf(stageAfter) > STAGES.indexOf(stageBefore)) result.promoted++;
+
     updateCurrentGameStats(remembered ? 'correct' : 'wrong');
+    setSrsProgress(progress => ({
+      done: progress.done + 1,
+      total: progress.total + (remembered ? 0 : 1),
+    }));
     if (remembered) {
       setScore(score => score + 1);
+    } else {
+      srsForgottenRef.current.add(card.jp_character);
+      srsQueueRef.current?.push(card);
     }
 
     srsCurrentCardRef.current = null;
@@ -999,10 +1028,12 @@ export default function InGameCharacterShowAndInput() {
   React.useEffect(() => {
     const gameMode = JSON.parse(localStorage.getItem("gameMode"));
 
-    // Initialize timer if in time-selector mode
-    if (gameMode && gameMode.type === "time-selector" && gameMode.value !== -1) {
+    // Initialize timer if in time-selector mode (a kanji review has no time
+    // limit: its session is set by the schedule)
+    if (!isSrsPractice && gameMode && gameMode.type === "time-selector" && gameMode.value !== -1) {
       setRemainingTime(gameMode.value * 60); // Convert minutes to seconds
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
@@ -1050,9 +1081,13 @@ export default function InGameCharacterShowAndInput() {
     }
 
     function clearAnswerInput() {
-      document.querySelector('#in-game-text-input-before-cursor').textContent = '';
-      document.querySelector('#in-game-text-input-after-cursor').textContent = '';
-      document.querySelector('#in-game-text-input-cursor-group').classList.remove("answer-correct", "answer-wrong");
+      const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+      const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
+      const cursorGroup = document.querySelector('#in-game-text-input-cursor-group');
+      if (!beforeCursor || !afterCursor || !cursorGroup) return;
+      beforeCursor.textContent = '';
+      afterCursor.textContent = '';
+      cursorGroup.classList.remove("answer-correct", "answer-wrong");
       // Restore the default size right away for the next character
       fitTypedAnswerFontSize();
       syncHiddenInput();
@@ -1242,6 +1277,105 @@ export default function InGameCharacterShowAndInput() {
       syncHiddenInput();
     }
 
+    // A correct long answer (words, sentences, grammar) waits for the player:
+    // the romaji and the meaning are revealed and the Next button is shown.
+    // With auto next on, the next question comes by itself after a moment.
+    function revealAnswerAndWait() {
+      if (!document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
+        document.querySelector('#in-game-kana-solution').classList.add("hidden-element");
+      }
+      document.querySelector('#in-game-solution').classList.remove("hidden-element");
+
+      if (!autoNext) {
+        const solutionElement = document.querySelector('#in-game-solution');
+        const nextButton = document.querySelector('#in-game-next-button');
+        nextButton.classList.remove("hidden-element");
+        // Remove the listeners to prevent multiple listeners from being added
+        const removeListeners = () => {
+          document.removeEventListener('keydown', handleKeyDown);
+          solutionElement.removeEventListener('click', goToNextWord);
+          nextButton.removeEventListener('click', goToNextWord);
+          removeNextListenersRef.current = null;
+        };
+        const goToNextWord = () => {
+          clearAnswerInput();
+          solutionElement.classList.add("hidden-element");
+          nextButton.classList.add("hidden-element");
+          showNewCharacter();
+          removeListeners();
+        };
+        // Define the function for keydown event
+        const handleKeyDown = (event) => {
+          if (event.key === 'Enter' && !scoreWindowVisibleRef.current) {
+            goToNextWord();
+          }
+        };
+
+        // Listen for 'Enter' key press, or a tap on the translation / Next button (mobile)
+        document.addEventListener('keydown', handleKeyDown);
+        solutionElement.addEventListener('click', goToNextWord);
+        nextButton.addEventListener('click', goToNextWord);
+        removeNextListenersRef.current = removeListeners;
+      } else {
+        timeoutInProgress = true;
+        advanceTimeoutRef.current = window.setTimeout(function () {
+          clearAnswerInput();
+          document.querySelector('#in-game-solution').classList.add("hidden-element");
+          showNewCharacter();
+          timeoutInProgress = false;
+        }, 1000);
+      }
+    }
+
+    // Grammar with multiple choice: the four buttons under the sentence are
+    // picked with a click / tap. Correct: like a typed long answer (the
+    // solution is revealed and the game waits). Wrong: the button flashes, the
+    // sentence shakes and the streak starts over - the question stays, so the
+    // right form can still be picked.
+    function handleBunpouOptionClick(event) {
+      if (!isBunpouChoice || scoreWindowVisibleRef.current || waitingForKanjiNextRef.current) return;
+      if (questionAnsweredRef.current || timeoutInProgress) return;
+      const button = event.target.closest ? event.target.closest('.in-game-bunpou-option') : null;
+      if (!button) return;
+      const question = sentenceQuestionRef.current;
+      if (!question || question.exercise !== 'bunpou' || !question.choice) return;
+
+      if (button.dataset.value === question.choice.correct) {
+        questionAnsweredRef.current = true;
+        setSentenceAnswered(true);
+        setSentenceHint(null);
+        updateCurrentGameStats("correct");
+        speakCorrectAnswer();
+        button.classList.add("touch-answer-correct");
+        setTimeout(function () {
+          button.classList.remove("touch-answer-correct");
+        }, 300);
+        document.querySelector('#in-game-kana-character').classList.add("answer-correct");
+        wrongSubmissionCounted = false; // Reset for next question
+        setScore(prevScore => prevScore + 1);
+        revealAnswerAndWait();
+      } else {
+        updateCurrentGameStats("wrong");
+        // Short haptic feedback on phones that support it (Android)
+        if (navigator.vibrate) {
+          navigator.vibrate(50);
+        }
+        button.classList.add("bunpou-option-wrong");
+        setTimeout(function () {
+          button.classList.remove("bunpou-option-wrong");
+        }, 300);
+        const charDisplayElement = document.querySelector('#in-game-kana-character');
+        if (charDisplayElement) {
+          charDisplayElement.classList.remove("animation-wrong1");
+          void charDisplayElement.offsetWidth;
+          charDisplayElement.classList.add("animation-wrong1");
+          setTimeout(function () {
+            charDisplayElement.classList.remove("animation-wrong1");
+          }, 300);
+        }
+      }
+    }
+
     function checkAnswer(isSubmission = false) {
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
@@ -1327,46 +1461,7 @@ export default function InGameCharacterShowAndInput() {
         // Long answers (words and sentences) wait for the player:
         // reveal the romanji (and translation) and show the Next button
         if (currentCharacterTypeRef.current === 'word' || currentCharacterTypeRef.current === 'long') {
-          if (!document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
-            document.querySelector('#in-game-kana-solution').classList.add("hidden-element");
-          }
-          document.querySelector('#in-game-solution').classList.remove("hidden-element");
-
-          if (!autoNext) {
-            const solutionElement = document.querySelector('#in-game-solution');
-            const nextButton = document.querySelector('#in-game-next-button');
-            nextButton.classList.remove("hidden-element");
-            const goToNextWord = () => {
-              clearAnswerInput();
-              solutionElement.classList.add("hidden-element");
-              nextButton.classList.add("hidden-element");
-              showNewCharacter();
-
-              // Remove the listeners to prevent multiple listeners from being added
-              document.removeEventListener('keydown', handleKeyDown);
-              solutionElement.removeEventListener('click', goToNextWord);
-              nextButton.removeEventListener('click', goToNextWord);
-            };
-            // Define the function for keydown event
-            const handleKeyDown = (event) => {
-              if (event.key === 'Enter' && !scoreWindowVisibleRef.current) {
-                goToNextWord();
-              }
-            };
-
-            // Listen for 'Enter' key press, or a tap on the translation / Next button (mobile)
-            document.addEventListener('keydown', handleKeyDown);
-            solutionElement.addEventListener('click', goToNextWord);
-            nextButton.addEventListener('click', goToNextWord);
-          } else {
-            timeoutInProgress = true;
-            setTimeout(function () {
-              clearAnswerInput();
-              document.querySelector('#in-game-solution').classList.add("hidden-element");
-              showNewCharacter();
-              timeoutInProgress = false;
-            }, 1000);
-          }
+          revealAnswerAndWait();
         }
         else {
           if (currentCharacterTypeRef.current === 'kanji') {
@@ -1391,7 +1486,7 @@ export default function InGameCharacterShowAndInput() {
             }
           } else {
             // Kana continues to advance automatically.
-            setTimeout(function () {
+            advanceTimeoutRef.current = window.setTimeout(function () {
               clearAnswerInput();
               showNewCharacter();
             }, 200)
@@ -1399,7 +1494,7 @@ export default function InGameCharacterShowAndInput() {
         }
       }
     }
-    if (!isSrsPractice && localStorage.getItem("game-mode-touch") !== "true") {
+    if (!isSrsPractice && !useTouchAnswers && !isBunpouChoice) {
       const hiddenInput = document.querySelector('#in-game-text-input');
       if (!hiddenInput) return;
 
@@ -1415,13 +1510,25 @@ export default function InGameCharacterShowAndInput() {
         if (cursorGroup) cursorGroup.removeEventListener('click', handleCursorPlacement);
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
-  // Leaving the game stops the microphone of the answer-by-speech button
-  useEffect(() => () => {
-    speechRecognitionRef.current?.stop();
-    speechRecognitionRef.current = null;
+    // Grammar with multiple choice: the option buttons are React elements that
+    // change with every question, so their clicks are caught from one listener
+    // on the document. Escape still opens the summary; Enter on the Next
+    // button is handled by the long answer flow.
+    if (isBunpouChoice) {
+      const handleBunpouKeyDown = (event) => {
+        if (event.key === 'Escape' && !scoreWindowVisibleRef.current && !waitingForKanjiNextRef.current) {
+          setUserGameScoreWindowVisible(true);
+        }
+      };
+      document.addEventListener('click', handleBunpouOptionClick);
+      document.addEventListener('keydown', handleBunpouKeyDown);
+      return () => {
+        document.removeEventListener('click', handleBunpouOptionClick);
+        document.removeEventListener('keydown', handleBunpouKeyDown);
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Keep the game screen the size of the visible area, so the on-screen keyboard
@@ -1568,7 +1675,7 @@ export default function InGameCharacterShowAndInput() {
         }
       }, 700);
     }
-    if (!isSrsPractice && localStorage.getItem("game-mode-touch") !== "true") {
+    if (!isSrsPractice && !useTouchAnswers && !isBunpouChoice) {
       handleFocus();
     }
     if (!hasStartedInitialCharacterRef.current) {
@@ -1580,9 +1687,37 @@ export default function InGameCharacterShowAndInput() {
       clearInterval(cursorBlinkInterval.current);
       clearInterval(lineWrapInterval);
       window.clearTimeout(kanjiAutoAdvanceTimeoutRef.current);
+      window.clearTimeout(advanceTimeoutRef.current);
+      if (removeNextListenersRef.current) removeNextListenersRef.current();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Keyboard in kanji reviews: Space / Enter turns the card over, 1-4 grade it
+  // (forgot / hard / good / easy), ← forgot, → remembered, Esc ends the review
+  useEffect(() => {
+    if (!isSrsPractice) return undefined;
+    const handleSrsKeyDown = (event) => {
+      if (scoreWindowVisibleRef.current || event.ctrlKey || event.metaKey || event.altKey) return;
+      if (!srsCurrentCardRef.current || srsCardSwipeDirection) return;
+      if (event.key === ' ' || event.key === 'Enter') {
+        event.preventDefault();
+        setSrsCardRevealed(revealed => !revealed);
+      } else if (event.key === 'ArrowLeft') {
+        rateSrsCard('again');
+      } else if (event.key === 'ArrowRight') {
+        rateSrsCard('good');
+      } else if (/^[1-4]$/.test(event.key) && srsCardRevealed) {
+        rateSrsCard(SRS_GRADES[Number(event.key) - 1]);
+      } else if (event.key === 'Escape') {
+        setUserGameScoreWindowVisible(true);
+      }
+    };
+    window.addEventListener('keydown', handleSrsKeyDown);
+    return () => window.removeEventListener('keydown', handleSrsKeyDown);
+    // rateSrsCard reads the current card from refs; the effect follows the card state
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSrsPractice, srsCardRevealed, srsCardSwipeDirection]);
 
   // Kana and words are read aloud; a lone kanji is skipped since the voice can't know which reading is asked
   function speakCorrectAnswer() {
@@ -1670,140 +1805,6 @@ export default function InGameCharacterShowAndInput() {
     }
   }
 
-  // Sentence practice, speech answering (the mic button): the sentence of the
-  // question being shown, used to judge what the recognizer heard
-  function spokenSentenceNow() {
-    // The words of the sentence, so the romaji of the speech preview writes
-    // them the way the answer is stored ("kore wa mizu desu")
-    const words = sentenceQuestionRef.current?.matcher?.words;
-    return {
-      jp_character: onScreenKana,
-      furigana: onScreenFurigana,
-      particles: onScreenParticles,
-      romanji: words && words.length ? [words.join(' ')] : [],
-    };
-  }
-
-  function stopSentenceListening() {
-    speechRecognitionRef.current?.stop();
-    speechRecognitionRef.current = null;
-    speechHeardRef.current = { finals: [], interim: '', preview: null };
-    setSentenceListening(false);
-  }
-
-  // Everything heard so far as one piece of text: every finalized part is its
-  // own word, so a pause the recognizer closed a part on shows as a space
-  function heardSpeech() {
-    const heard = speechHeardRef.current;
-    const parts = heard.finals.join(' ');
-    return heard.interim ? (parts ? parts + ' ' + heard.interim : heard.interim) : parts;
-  }
-
-  // Puts text into the answer input the same way typing it would, so the
-  // normal checking, mistake marking and stats run on spoken answers too
-  function submitSpokenText(text) {
-    const hiddenInput = document.querySelector('#in-game-text-input');
-    if (!hiddenInput) return;
-    const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
-    const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
-    // The input event reads the previous answer from these, so start empty
-    if (beforeCursor) beforeCursor.textContent = '';
-    if (afterCursor) {
-      afterCursor.textContent = '';
-      afterCursor.style.visibility = 'hidden';
-    }
-    hiddenInput.value = text;
-    // The whole spoken answer arrives at the end of the field
-    try {
-      hiddenInput.setSelectionRange(text.length, text.length);
-    } catch (error) { }
-    hiddenInput.dispatchEvent(new Event('input', { bubbles: true }));
-  }
-
-  // While listening, what has been heard is shown in the answer input as
-  // romaji, like a typed answer; text the player typed themselves is never
-  // overwritten. Returns whether this preview is the one on screen, so only
-  // it decides the red flag of a mispronunciation
-  function previewSpokenText(text) {
-    const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
-    const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
-    if (!beforeCursor || !afterCursor) return false;
-    const heard = speechHeardRef.current;
-    const current = beforeCursor.textContent + afterCursor.textContent;
-    if (current !== '' && current !== heard.preview) return false;
-    heard.preview = text;
-    beforeCursor.textContent = text;
-    afterCursor.textContent = '';
-    afterCursor.style.visibility = 'hidden';
-    const hiddenInput = document.querySelector('#in-game-text-input');
-    if (hiddenInput) {
-      hiddenInput.value = text;
-      // The preview is written whole: the caret sits at its end
-      try {
-        hiddenInput.setSelectionRange(text.length, text.length);
-      } catch (error) { }
-    }
-    return true;
-  }
-
-  function onClickSpeechButton(event) {
-    // Tapping the mic must not focus the hidden input (no mobile keyboard)
-    event.stopPropagation();
-    if (speechRecognitionRef.current) {
-      // Stopping by hand: what was heard stays in the input, so a sentence
-      // the recognizer got wrong can still be corrected by hand
-      const sentence = spokenSentenceNow();
-      const heard = heardSpeech();
-      const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
-      const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
-      const current = (beforeCursor?.textContent || '') + (afterCursor?.textContent || '');
-      const shownBySpeech = speechHeardRef.current.preview !== null && current === speechHeardRef.current.preview;
-      stopSentenceListening();
-      if (heard && shownBySpeech && !questionAnsweredRef.current) {
-        submitSpokenText(transcriptToRomaji(sentence, heard));
-      }
-      return;
-    }
-    if (questionAnsweredRef.current) return;
-    const sentence = spokenSentenceNow();
-    const recognition = startListening({
-      onTranscript({ finals, interim }) {
-        const heard = speechHeardRef.current;
-        for (const alternatives of finals) {
-          if (alternatives[0]) heard.finals.push(alternatives[0]);
-        }
-        heard.interim = interim || '';
-        if (questionAnsweredRef.current || scoreWindowVisibleRef.current) return;
-        const text = heardSpeech();
-        if (!text) return;
-        // Turned into romaji so it reads like the answer being typed
-        const shown = previewSpokenText(transcriptToRomaji(sentence, text));
-        // The whole sentence in one go is counted right away, even while
-        // the recognizer is still listening
-        if (matchesSpokenAnswer(sentence, text)) {
-          const words = sentenceQuestionRef.current?.matcher?.words;
-          stopSentenceListening();
-          if (words && words.length) submitSpokenText(words.join(' '));
-          return;
-        }
-        // A mispronunciation still shows, but in red like a wrong typed
-        // answer: what was heard no longer fits the sentence being read
-        if (shown) {
-          document.querySelector('#in-game-text-input-cursor-group')?.classList.toggle('answer-wrong', hintsEnabled && !isSpokenAnswerPrefix(sentence, text));
-        }
-      },
-      onError(error) {
-        stopSentenceListening();
-        if (error === 'not-allowed' || error === 'service-not-allowed' || error === 'audio-capture') {
-          setSentenceHint(t('sentenceSpeakDenied'));
-        }
-      },
-    });
-    if (!recognition) return;
-    speechRecognitionRef.current = recognition;
-    setSentenceListening(true);
-  }
-
   /*
   ########################
   # Touch input handlers #
@@ -1858,7 +1859,7 @@ export default function InGameCharacterShowAndInput() {
       // Animate the element in ID in-game-kana-character using the class animation-wrong
       document.querySelector('#in-game-kana-character').classList.add("animation-wrong1");
       setTimeout(function () {
-        document.querySelector('#in-game-kana-character').classList.remove("animation-wrong1");
+        document.querySelector('#in-game-kana-character')?.classList.remove("animation-wrong1");
       }, 300)
     }
   }
@@ -1880,7 +1881,6 @@ export default function InGameCharacterShowAndInput() {
   }
 
   function onClickExitButton(event) {
-    stopSentenceListening();
     setUserGameScoreWindowVisible(true);
   }
 
@@ -1908,17 +1908,31 @@ export default function InGameCharacterShowAndInput() {
   ######################################################
   */
 
-  // Speech answering: sentences that are read or listened to can be answered
-  // by voice, when the browser can listen and while unanswered
-  const speechAnswerEnabled = onScreenCharacterType === 'long' &&
-    !useTouchAnswers &&
-    !sentenceAnswered &&
-    (sentenceQuestion.exercise === 'type' || sentenceQuestion.exercise === 'listen') &&
-    isRecognitionSupported();
-
   // Make answer input via touch buttons
   let inGameInputElement = <></>
-  if (useTouchAnswers) {
+  if (isBunpouChoice) {
+    // Grammar: the missing verb form picked among four buttons, labelled in
+    // kanji / kana (data-value keeps the romaji the answer is checked with).
+    // The click is caught by the listener on the document (see the keydown
+    // effect), so the buttons stay plain text and re-render with every new
+    // question
+    const choiceOptions = (sentenceQuestion.choice && sentenceQuestion.choice.options) || [];
+    const choiceLabels = (sentenceQuestion.choice && sentenceQuestion.choice.labels) || [];
+    inGameInputElement = (
+      <div className='in-game-bunpou-options' role='group' aria-label={t('bunpouPromptChoice')}>
+        {choiceOptions.map((option, index) => (
+          <button
+            key={option}
+            type='button'
+            className='in-game-bunpou-option'
+            data-value={option}
+          >
+            {choiceLabels[index] || option}
+          </button>
+        ))}
+      </div>
+    );
+  } else if (useTouchAnswers) {
     function makeTouchAnswerDivs(params) {
       const numberOfAnswers = 5;
       const answerElements = [];
@@ -1953,19 +1967,6 @@ export default function InGameCharacterShowAndInput() {
             {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
           </span>
         </div>
-        {speechAnswerEnabled && (
-          <button
-            type='button'
-            id='in-game-speech-button'
-            className={'in-game-speech-button' + (sentenceListening ? ' is-listening' : '')}
-            title={t(sentenceListening ? 'sentenceSpeakStop' : 'sentenceSpeak')}
-            aria-label={t(sentenceListening ? 'sentenceSpeakStop' : 'sentenceSpeak')}
-            aria-pressed={sentenceListening}
-            onClick={onClickSpeechButton}
-          >
-            <Icon name='mic' />
-          </button>
-        )}
       </div>
       <input
         type="text"
@@ -1978,6 +1979,34 @@ export default function InGameCharacterShowAndInput() {
       />
     </>
   }
+
+  // Grade buttons, once the card is turned over: each says when the kanji
+  // comes back with that grade (keys 1-4, or ← / → for forgot / remembered)
+  const formatSrsInterval = (milliseconds) => {
+    const minutes = Math.round(milliseconds / 60000);
+    if (minutes < 60) return t('srsIntervalMinutes', { count: minutes });
+    const days = Math.round(milliseconds / 86400000);
+    if (days < 31) return t('srsIntervalDays', { count: days });
+    return t('srsIntervalMonths', { count: Math.round(days / 30) });
+  };
+  const srsIntervals = isSrsPractice && srsCardRevealed && onScreenKana ? previewSrsIntervals(onScreenKana) : null;
+  // The row keeps its room while the card is face up, so nothing moves when it turns over
+  const srsGradeButtons = isSrsPractice && !userGameScoreWindowVisible ? (
+    <div className='kanji-srs-grades' role='group' aria-label={t('srsGradeLabel')}>
+      {srsIntervals && SRS_GRADES.map((grade, index) => (
+        <button
+          key={grade}
+          type='button'
+          className={`kanji-srs-grade grade-${grade}`}
+          onClick={() => rateSrsCard(grade)}
+        >
+          <span className='kanji-srs-grade-name'>{t({ again: 'srsGradeAgain', hard: 'srsGradeHard', good: 'srsGradeGood', easy: 'srsGradeEasy' }[grade])}</span>
+          <span className='kanji-srs-grade-interval'>{formatSrsInterval(srsIntervals[grade])}</span>
+          <span className='kanji-srs-grade-key label-keyboard'>{index + 1}</span>
+        </button>
+      ))}
+    </div>
+  ) : null;
 
   const kanjiSrsCardBack = (
     <div className='kanji-srs-card-back'>
@@ -2053,7 +2082,7 @@ export default function InGameCharacterShowAndInput() {
         </button>
       );
     }
-    if (sentenceExerciseShown === 'particle' && sentenceQuestion.blank) {
+    if ((sentenceExerciseShown === 'particle' || sentenceExerciseShown === 'bunpou') && sentenceQuestion.blank) {
       const { start, end } = sentenceQuestion.blank;
       return [
         ...renderSentenceCharacters(0, start),
@@ -2085,7 +2114,7 @@ export default function InGameCharacterShowAndInput() {
   const sentencePrompt = onScreenCharacterType === 'long' && sentenceExerciseShown !== 'type' ? (
     <div className='in-game-sentence-prompt'>
       <span className='in-game-sentence-prompt-instruction'>
-        {t({ listen: 'sentencePromptListen', particle: 'sentencePromptParticle', arrange: 'sentencePromptArrange' }[sentenceExerciseShown])}
+        {t({ listen: 'sentencePromptListen', particle: 'sentencePromptParticle', arrange: 'sentencePromptArrange', bunpou: isBunpouChoice ? 'bunpouPromptChoice' : 'sentencePromptBunpou' }[sentenceExerciseShown])}
       </span>
       {sentenceExerciseShown !== 'listen' && onScreenWordMeaning && (
         <span className='in-game-sentence-prompt-meaning'>{onScreenWordMeaning}</span>
@@ -2100,6 +2129,11 @@ export default function InGameCharacterShowAndInput() {
         romanji: onScreenSolution,
       }, language)
     : [];
+  // Grammar: the result explains the chosen form - the meaning of the
+  // sentence is already in the prompt above it
+  const bunpouNote = sentenceQuestion.exercise === 'bunpou' && sentenceQuestion.choice
+    ? bunpouFormNote(sentenceQuestion.choice.correct, t)
+    : null;
 
   return (
     <>
@@ -2107,7 +2141,10 @@ export default function InGameCharacterShowAndInput() {
         <div className='in-game-score-group'>
           <div className='in-game-score' id='in-game-score'>
             {isProblematicsMode && <Icon name='target' className='icon-leading' />}
-            {isProblematicsMode ? t('gameScoreProblematics') : t(practiceMode === 'long' ? 'gameScoreSentences' : 'gameScoreKanas')}{onScreenScore}
+            {isMixupPractice && <Icon name='arrow-left-right' className='icon-leading' />}
+            {isProblematicsMode ? t('gameScoreProblematics')
+              : isMixupPractice ? t('gameScoreMixups')
+              : t({ long: 'gameScoreSentences', bunpou: 'gameScoreBunpou', words: 'gameScoreWords', mixed: 'gameScoreMixed' }[practiceMode] || 'gameScoreKanas')}{onScreenScore}
             {kanaGoal !== null && <span className='in-game-score-goal'> / {kanaGoal}</span>}
           </div>
           {streak >= 3 && <div className='in-game-streak' title={t('gameStreakTitle')}><Icon name='flame' className='icon-flame icon-leading' />{streak}</div>}
@@ -2121,7 +2158,7 @@ export default function InGameCharacterShowAndInput() {
           </div>
         ) : (
           <div className='in-game-help-bar'>
-            {hintsEnabled ? <div className='in-game-help-button' onClick={handleUserAskForHelp}>
+            {hintsEnabled && !isBunpouChoice ? <div className='in-game-help-button' onClick={handleUserAskForHelp}>
               <span className='label-keyboard'><strong>?</strong>: {t('gameHelpKey')}</span>
               <span className='label-touch'><Icon name='lightbulb' className='icon-leading' />{t('gameHintButton')}</span>
             </div> : null}
@@ -2141,7 +2178,14 @@ export default function InGameCharacterShowAndInput() {
       <div className='in-game-game-screen' onClick={focusTextInput}>
 
         <div className='in-game-kana-area'>
-          {isSrsPractice ? (
+          {isSrsPractice ? (<>
+            <div className='kanji-srs-session' aria-live='polite'>
+              <span className={`kanji-srs-kind kind-${srsCardKind}`}>{t({ new: 'srsKindNew', review: 'srsKindReview', relearn: 'srsKindRelearn' }[srsCardKind])}</span>
+              <div className='kanji-srs-session-bar'>
+                <div className='kanji-srs-session-fill' style={{ width: `${srsProgress.total ? Math.min(1, srsProgress.done / srsProgress.total) * 100 : 0}%` }} />
+              </div>
+              <span className='kanji-srs-session-count'>{Math.min(srsProgress.done + 1, srsProgress.total)} / {srsProgress.total}</span>
+            </div>
             <div
               id='in-game-kana-character'
               className={`in-game-kana-character kanji-srs-flip-card${isMacOS && localStorage.getItem("game-mode-random-fonts") !== "true" ? ' font-forceDefault' : ''}`}
@@ -2168,6 +2212,15 @@ export default function InGameCharacterShowAndInput() {
                 rateSrsCard(srsCardSwipeDirection === 'right');
               }}
             >
+              {/* While the card is dragged: forgot on the left, remembered on the right */}
+              {srsCardDragOffset !== 0 && (
+                <span
+                  className={`kanji-srs-swipe-hint ${srsCardDragOffset < 0 ? 'hint-again' : 'hint-good'}`}
+                  style={{ opacity: Math.min(1, Math.abs(srsCardDragOffset) / 60) }}
+                >
+                  {srsCardDragOffset < 0 ? t('srsGradeAgain') : t('srsGradeGood')}
+                </span>
+              )}
               <div className={`kanji-srs-flip-inner${srsCardRevealed ? ' is-flipped' : ''}`}>
                 <div className='kanji-srs-flip-face kanji-srs-flip-front'>
                   <span>{onScreenKana}</span>
@@ -2177,7 +2230,8 @@ export default function InGameCharacterShowAndInput() {
                 </div>
               </div>
             </div>
-          ) : <>{sentencePrompt}<div
+            {srsGradeButtons}
+          </>) : <>{sentencePrompt}<div
             id='in-game-kana-character'
             onClick={onClickChangeFontToDefault}
             className={`in-game-kana-character${isMacOS && localStorage.getItem("game-mode-random-fonts") !== "true" ? ' font-forceDefault' : ''}`}
@@ -2252,7 +2306,10 @@ export default function InGameCharacterShowAndInput() {
             {onScreenCharacterType !== 'long' && (
               <span className='in-game-solution-romanji'>{onScreenSolution[0]}</span>
             )}
-            {onScreenWordMeaning ? (
+            {/* Grammar answers explain the chosen form; the other answers the meaning */}
+            {bunpouNote ? (
+              <span className='in-game-solution-bunpou-note'>{bunpouNote}</span>
+            ) : onScreenWordMeaning ? (
               <>
                 {onScreenCharacterType !== 'long' && (
                   <span className='in-game-solution-separator'> · </span>
@@ -2302,6 +2359,26 @@ export default function InGameCharacterShowAndInput() {
                   </span>
                 </span>
               )}
+            {/* Kanji words (水曜日, 時間...): the readings of each of their kanji, once answered */}
+            {onScreenCharacterType === 'word' &&
+              localStorage.getItem('game-mode-kanji-readings') === 'true' &&
+              [...onScreenKana].some(character => kanjiReadings[character]) && (
+                <span className='kanji-word-readings'>
+                  {[...new Set([...onScreenKana])].filter(character => kanjiReadings[character]).map(character => (
+                    <span key={character} className='kanji-answer-readings kanji-word-reading'>
+                      <span className='kanji-word-reading-character'>{character}</span>
+                      <span>
+                        <span className='kanji-answer-reading-label'>{t('kanjiOnShort')}</span>
+                        {kanjiReadings[character].onyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
+                      </span>
+                      <span>
+                        <span className='kanji-answer-reading-label'>{t('kanjiKuShort')}</span>
+                        {kanjiReadings[character].kunyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
+                      </span>
+                    </span>
+                  ))}
+                </span>
+              )}
           </div>
           <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
             {/* Sentence help reveals furigana instead of the romaji reading */}
@@ -2339,6 +2416,8 @@ export default function InGameCharacterShowAndInput() {
       <UserGameScoreWindow
         visible={userGameScoreWindowVisible}
         bestStreak={bestStreak}
+        gameStartedAt={gameStartedAt}
+        srsResult={isSrsPractice ? (srsResult || { ...srsResultRef.current, next: getNextReview(selectedKanjiGroups) }) : null}
       />
     </>
   )

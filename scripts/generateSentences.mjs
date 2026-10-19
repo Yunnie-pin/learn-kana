@@ -2170,6 +2170,345 @@ const timeRo = (t) => (t.ro ? t.ro + ' ' : '');
   templates.push(['N4 opinion: [topic] は [opinion] と思います', out, { jlpt: 'N4', pattern: 'verb' }]);
 }
 
+// ---------- IT and workplace templates ----------
+// Sentences for people heading to an IT company: requests at work, what the
+// team is doing, schedules and deadlines, career wishes and interview
+// answers. They use the IT words of kanaCharacters.js (tag "it"), and are
+// pushed with topic "it" so the menu's IT topic can offer only them.
+
+// People at work: en / id at the start of a sentence, idLower after a time word
+const itPerson = (jp, ro, en, id, idLower, be) => ({ jp, ro, en, id, idLower, be, third: be === 'is' });
+const itPeople = [
+  itPerson('わたし', 'watashi', 'I', 'Saya', 'saya', 'am'),
+  itPerson('エンジニア', 'enjinia', 'the engineer', 'Engineer', 'engineer', 'is'),
+  itPerson('プログラマー', 'puroguramaa', 'the programmer', 'Programmer', 'programmer', 'is'),
+  itPerson('デザイナー', 'dezainaa', 'the designer', 'Desainer', 'desainer', 'is'),
+  itPerson('マネージャー', 'maneejaa', 'the manager', 'Manajer', 'manajer', 'is'),
+  itPerson('じょうし', 'joushi', 'my boss', 'Atasan saya', 'atasan saya', 'is'),
+  itPerson('どうりょう', 'douryou', 'my colleague', 'Rekan kerja saya', 'rekan kerja saya', 'is'),
+];
+
+// する verbs of IT work: [noun]します / してください / しています / しました
+const itVerb = (jp, ro, en, enIng, enPast, idCmd, id) => ({ jp, ro, en, enIng, enPast, idCmd, id });
+const itVerbs = {
+  review: itVerb('レビュー', 'rebyuu', 'review', 'reviewing', 'reviewed', 'tinjau', 'meninjau'),
+  save: itVerb('ほぞん', 'hozon', 'save', 'saving', 'saved', 'simpan', 'menyimpan'),
+  backup: itVerb('バックアップ', 'bakkuappu', 'back up', 'backing up', 'backed up', 'cadangkan', 'mencadangkan'),
+  install: itVerb('インストール', 'insutooru', 'install', 'installing', 'installed', 'instal', 'menginstal'),
+  check: itVerb('かくにん', 'kakunin', 'check', 'checking', 'checked', 'periksa', 'memeriksa'),
+  fix: itVerb('しゅうせい', 'shuusei', 'fix', 'fixing', 'fixed', 'perbaiki', 'memperbaiki'),
+  test: itVerb('テスト', 'tesuto', 'test', 'testing', 'tested', 'uji', 'menguji'),
+  update: itVerb('アップデート', 'appudeeto', 'update', 'updating', 'updated', 'perbarui', 'memperbarui'),
+  delete: itVerb('さくじょ', 'sakujo', 'delete', 'deleting', 'deleted', 'hapus', 'menghapus'),
+  upload: itVerb('アップロード', 'appuroodo', 'upload', 'uploading', 'uploaded', 'unggah', 'mengunggah'),
+  download: itVerb('ダウンロード', 'daunroodo', 'download', 'downloading', 'downloaded', 'unduh', 'mengunduh'),
+  report: itVerb('ほうこく', 'houkoku', 'report', 'reporting', 'reported', 'laporkan', 'melaporkan'),
+  release: itVerb('リリース', 'ririisu', 'release', 'releasing', 'released', 'rilis', 'merilis'),
+  debug: itVerb('デバッグ', 'debaggu', 'debug', 'debugging', 'debugged', 'debug', 'men-debug'),
+};
+
+// What the work is done on, and what can be done to it
+const itThing = (jp, ro, en, id) => ({ jp, ro, en, id });
+const itWork = [
+  [itThing('コード', 'koodo', 'the code', 'kode'), ['review', 'test', 'debug', 'fix']],
+  [itThing('ファイル', 'fairu', 'the file', 'berkas'), ['save', 'upload', 'download', 'delete', 'backup']],
+  [itThing('データ', 'deeta', 'the data', 'data'), ['backup', 'delete', 'save', 'check']],
+  [itThing('アプリ', 'apuri', 'the app', 'aplikasi'), ['install', 'update', 'test', 'release']],
+  [itThing('パスワード', 'pasuwaado', 'the password', 'kata sandi'), ['check']],
+  [itThing('バグ', 'bagu', 'the bug', 'bug'), ['fix', 'report']],
+  [itThing('システム', 'shisutemu', 'the system', 'sistem'), ['test', 'update']],
+  [itThing('しようしょ', 'shiyousho', 'the specification', 'spesifikasi'), ['check', 'review']],
+  [itThing('ソフトウェア', 'sofutowea', 'the software', 'perangkat lunak'), ['install', 'update']],
+  [itThing('メール', 'meeru', 'the email', 'surel'), ['check']],
+  [itThing('スケジュール', 'sukejuuru', 'the schedule', 'jadwal'), ['check']],
+  [itThing('エラー', 'eraa', 'the error', 'error'), ['report', 'check']],
+  [itThing('サーバー', 'saabaa', 'the server', 'server'), ['update', 'backup']],
+  [itThing('データベース', 'deetabeesu', 'the database', 'basis data'), ['backup', 'update']],
+].flatMap(([thing, verbs]) => verbs.map(verbKey => [thing, itVerbs[verbKey]]));
+
+const suruGloss = {
+  // "test" in both senses (the words list has the school one, ujian)
+  'テスト': ['test', 'tes / pengujian'],
+  'して': ['do (te-form)', 'melakukan (bentuk -te)'],
+  'ください': ['please (do)', 'tolong'],
+  'しています': ['is doing', 'sedang melakukan'],
+  'しなければなりません': ['must do', 'harus melakukan'],
+};
+
+// IT-1. Requests at work: [thing] を [verb]してください (e.g. コードをレビューしてください)
+{
+  const out = itWork.map(([thing, v]) => {
+    const { jp, particles } = seg(thing.jp, P('を'), v.jp + 'してください');
+    return {
+      jp,
+      particles,
+      ro: `${thing.ro} wo ${v.ro} shite kudasai`,
+      en: `Please ${v.en} ${thing.en}`,
+      id: `Tolong ${v.idCmd} ${thing.id}`,
+      gloss: suruGloss,
+    };
+  });
+  templates.push(['IT request: [thing] を [verb]してください', out, { jlpt: 'N5', pattern: 'verb', topic: 'it' }]);
+}
+
+// IT-2. What the team is doing: [person] は 今、[thing] を [verb]しています
+{
+  const out = [];
+  for (const p of itPeople) {
+    for (const [thing, v] of itWork) {
+      const { jp, particles } = seg(p.jp, P('は'), '今、', thing.jp, P('を'), v.jp + 'しています');
+      out.push({
+        jp,
+        particles,
+        ro: `${p.ro} wa ima ${thing.ro} wo ${v.ro} shite imasu`,
+        en: `${cap(p.en)} ${p.be} ${v.enIng} ${thing.en} now`,
+        id: `${p.id} sedang ${v.id} ${thing.id} sekarang`,
+        gloss: suruGloss,
+      });
+    }
+  }
+  templates.push(['IT progress: [person] は 今、[thing] を [verb]しています', out, { jlpt: 'N5', pattern: 'verb', topic: 'it' }]);
+}
+
+// IT-3. What was done: [time]、[person] は [thing] を [verb]しました
+{
+  const out = [];
+  for (const t of [kinou, senshuu, kyou]) {
+    for (const p of itPeople) {
+      for (const [thing, v] of itWork) {
+        const { jp, particles } = seg(timeComma(t), p.jp, P('は'), thing.jp, P('を'), v.jp + 'しました');
+        out.push({
+          jp,
+          particles,
+          ro: `${timeRo(t)}${p.ro} wa ${thing.ro} wo ${v.ro} shimashita`,
+          en: `${cap(p.en)} ${v.enPast} ${thing.en} ${t.en.toLowerCase()}`,
+          id: `${t.id} ${p.idLower} ${v.id} ${thing.id}`,
+          gloss: suruGloss,
+        });
+      }
+    }
+  }
+  templates.push(['IT done: [time]、[person] は [thing] を [verb]しました', out, { jlpt: 'N5', pattern: 'verb', topic: 'it' }]);
+}
+
+// IT-4. What has to be done: [time]、わたしは [thing] を [verb]しなければなりません
+{
+  const out = [];
+  for (const t of [noTime, kyou, ashita]) {
+    for (const [thing, v] of itWork) {
+      const { jp, particles } = seg(timeComma(t), 'わたし', P('は'), thing.jp, P('を'), v.jp + 'しなければなりません');
+      out.push({
+        jp,
+        particles,
+        ro: `${timeRo(t)}watashi wa ${thing.ro} wo ${v.ro} shinakereba narimasen`,
+        en: `I must ${v.en} ${thing.en}${trailing(t.en.toLowerCase())}`,
+        id: `${t.id ? t.id + ' saya' : 'Saya'} harus ${v.id} ${thing.id}`,
+        gloss: suruGloss,
+      });
+    }
+  }
+  templates.push(['IT obligation: わたしは [thing] を [verb]しなければなりません', out, { jlpt: 'N4', pattern: 'verb', topic: 'it' }]);
+}
+
+// IT-5. The schedule: [day] に [event] が あります (e.g. 月曜日にミーティングがあります)
+{
+  const events = [
+    itThing('ミーティング', 'miitingu', 'a meeting', 'rapat'),
+    itThing('かいぎ', 'kaigi', 'a meeting', 'rapat'),
+    itThing('めんせつ', 'mensetsu', 'a job interview', 'wawancara kerja'),
+    itThing('テスト', 'tesuto', 'a test', 'tes'),
+    itThing('リリース', 'ririisu', 'a release', 'rilis'),
+    itThing('レビュー', 'rebyuu', 'a review', 'review'),
+  ];
+  const workDays = days.filter(day => !/^[土日]/.test(day.jp));
+  const out = [];
+  for (const event of events) {
+    for (const day of workDays) {
+      const { jp, particles } = seg(day.jp, P('に'), event.jp, P('が'), 'あります');
+      out.push({
+        jp,
+        particles,
+        ro: `${day.ro} ni ${event.ro} ga arimasu`,
+        en: `There is ${event.en} on ${day.en}`,
+        id: `Hari ${day.id} ada ${event.id}`,
+      });
+    }
+    for (const hour of hours.filter(item => /^[一二三四五六七八九十]+時$/.test(item.jp)).slice(0, 10)) {
+      const { jp, particles } = seg('あした、', hour.jp, P('に'), event.jp, P('が'), 'あります');
+      out.push({
+        jp,
+        particles,
+        ro: `ashita ${hour.ro} ni ${event.ro} ga arimasu`,
+        en: `There is ${event.en} at ${hour.en} tomorrow`,
+        id: `Besok ${hour.id} ada ${event.id}`,
+      });
+    }
+  }
+  templates.push(['IT schedule: [day] に [event] が あります', out, { jlpt: 'N5', pattern: 'exist', topic: 'it' }]);
+}
+
+// IT-6. Deadlines: [thing] は [when] です (e.g. しめきりはあしたです)
+{
+  const subjects = [
+    itThing('しめきり', 'shimekiri', 'The deadline', 'Tenggat waktunya'),
+    itThing('リリース', 'ririisu', 'The release', 'Rilisnya'),
+    itThing('ミーティング', 'miitingu', 'The meeting', 'Rapatnya'),
+    itThing('めんせつ', 'mensetsu', 'The job interview', 'Wawancaranya'),
+  ];
+  const whens = [
+    ...days.filter(day => !/^[土日]/.test(day.jp)).map(day => ({ jp: day.jp, ro: day.ro, en: `on ${day.en}`, id: `hari ${day.id}` })),
+    { jp: 'あした', ro: 'ashita', en: 'tomorrow', id: 'besok' },
+    { jp: '来週', ro: 'raishuu', en: 'next week', id: 'minggu depan' },
+  ];
+  const out = [];
+  for (const subject of subjects) {
+    for (const when of whens) {
+      const { jp, particles } = seg(subject.jp, P('は'), when.jp, 'です');
+      out.push({
+        jp,
+        particles,
+        ro: `${subject.ro} wa ${when.ro} desu`,
+        en: `${subject.en} is ${when.en}`,
+        id: `${subject.id} ${when.id}`,
+      });
+    }
+  }
+  templates.push(['IT deadline: [thing] は [when] です', out, { jlpt: 'N5', pattern: 'desu', topic: 'it' }]);
+}
+
+// IT-7. Interview answers: わたしは [role] です / [place] で はたらいています
+{
+  const roles = [
+    itThing('エンジニア', 'enjinia', 'an engineer', 'engineer'),
+    itThing('プログラマー', 'puroguramaa', 'a programmer', 'programmer'),
+    itThing('デザイナー', 'dezainaa', 'a designer', 'desainer'),
+    itThing('マネージャー', 'maneejaa', 'a manager', 'manajer'),
+  ];
+  const out = roles.map(role => {
+    const { jp, particles } = seg('わたし', P('は'), role.jp, 'です');
+    return {
+      jp,
+      particles,
+      ro: `watashi wa ${role.ro} desu`,
+      en: `I am ${role.en}`,
+      id: `Saya seorang ${role.id}`,
+    };
+  });
+  for (const place of [
+    itThing('かいしゃ', 'kaisha', 'at a company', 'di perusahaan'),
+    itThing('オフィス', 'ofisu', 'at the office', 'di kantor'),
+    itThing('うち', 'uchi', 'from home', 'dari rumah'),
+  ]) {
+    const { jp, particles } = seg('わたし', P('は'), place.jp, P('で'), 'はたらいています');
+    out.push({
+      jp,
+      particles,
+      ro: `watashi wa ${place.ro} de hataraite imasu`,
+      en: `I work ${place.en}`,
+      id: `Saya bekerja ${place.id}`,
+      gloss: { 'はたらいています': ['work, am working', 'bekerja'] },
+    });
+  }
+  templates.push(['IT interview: わたしは [role] です', out, { jlpt: 'N5', pattern: 'desu', topic: 'it' }]);
+}
+
+// IT-8. Career wishes: わたしは [role] に なりたいです / [place] で はたらきたいです
+{
+  const roles = [
+    itThing('エンジニア', 'enjinia', 'an engineer', 'engineer'),
+    itThing('プログラマー', 'puroguramaa', 'a programmer', 'programmer'),
+    itThing('デザイナー', 'dezainaa', 'a designer', 'desainer'),
+    itThing('マネージャー', 'maneejaa', 'a manager', 'manajer'),
+    itThing('リーダー', 'riidaa', 'a leader', 'pemimpin'),
+  ];
+  const out = roles.map(role => {
+    const { jp, particles } = seg('わたし', P('は'), role.jp, P('に'), 'なりたいです');
+    return {
+      jp,
+      particles,
+      ro: `watashi wa ${role.ro} ni naritai desu`,
+      en: `I want to become ${role.en}`,
+      id: `Saya ingin menjadi ${role.id}`,
+      gloss: { 'なりたい': ['want to become', 'ingin menjadi'] },
+    };
+  });
+  for (const place of [
+    { parts: ['日本'], ro: 'nihon', en: 'in Japan', id: 'di Jepang' },
+    { parts: ['日本', P('の'), 'かいしゃ'], ro: 'nihon no kaisha', en: 'at a Japanese company', id: 'di perusahaan Jepang' },
+    { parts: ['オフィス'], ro: 'ofisu', en: 'at an office', id: 'di kantor' },
+  ]) {
+    const { jp, particles } = seg('わたし', P('は'), ...place.parts, P('で'), 'はたらきたいです');
+    out.push({
+      jp,
+      particles,
+      ro: `watashi wa ${place.ro} de hatarakitai desu`,
+      en: `I want to work ${place.en}`,
+      id: `Saya ingin bekerja ${place.id}`,
+      gloss: { 'はたらきたい': ['want to work', 'ingin bekerja'] },
+    });
+  }
+  templates.push(['IT career: わたしは [role] に なりたいです', out, { jlpt: 'N5', pattern: 'verb', topic: 'it' }]);
+}
+
+// IT-9. Experience: わたしは [skill] を べんきょうしたことがあります
+{
+  const skills = [
+    itThing('プログラミング', 'puroguramingu', 'programming', 'pemrograman'),
+    itThing('データベース', 'deetabeesu', 'databases', 'basis data'),
+    itThing('セキュリティ', 'sekyuriti', 'security', 'keamanan'),
+    itThing('ネットワーク', 'nettowaaku', 'networks', 'jaringan'),
+    itThing('デザイン', 'dezain', 'design', 'desain'),
+    itThing('アルゴリズム', 'arugorizumu', 'algorithms', 'algoritma'),
+  ];
+  const out = skills.map(skill => {
+    const { jp, particles } = seg('わたし', P('は'), skill.jp, P('を'), 'べんきょうした', 'こと', P('が'), 'あります');
+    return {
+      jp,
+      particles,
+      ro: `watashi wa ${skill.ro} wo benkyou shita koto ga arimasu`,
+      en: `I have studied ${skill.en} before`,
+      id: `Saya pernah belajar ${skill.id}`,
+      gloss: {
+        'べんきょうした': ['studied', 'belajar (lampau)'],
+        'こと': ['thing / experience', 'hal / pengalaman'],
+      },
+    };
+  });
+  templates.push(['IT experience: わたしは [skill] を べんきょうしたことがあります', out, { jlpt: 'N4', pattern: 'verb', topic: 'it' }]);
+}
+
+// IT-10. Skills: わたしは [thing] を [verb]ことができます / できません
+{
+  const abilities = [
+    [itThing('コード', 'koodo', 'code', 'kode'), '書く', 'kaku', 'write', 'menulis'],
+    [itThing('アプリ', 'apuri', 'apps', 'aplikasi'), 'つくる', 'tsukuru', 'make', 'membuat'],
+    [itThing('ウェブサイト', 'webusaito', 'websites', 'situs web'), 'つくる', 'tsukuru', 'make', 'membuat'],
+    [itThing('データベース', 'deetabeesu', 'databases', 'basis data'), 'つくる', 'tsukuru', 'build', 'membuat'],
+    [itThing('メール', 'meeru', 'emails', 'surel'), '書く', 'kaku', 'write', 'menulis'],
+    [itThing('しようしょ', 'shiyousho', 'specifications', 'spesifikasi'), '読む', 'yomu', 'read', 'membaca'],
+  ];
+  const out = [];
+  for (const [thing, verbJp, verbRo, verbEn, verbId] of abilities) {
+    for (const can of [true, false]) {
+      const { jp, particles } = seg('わたし', P('は'), thing.jp, P('を'), verbJp, 'こと', P('が'), can ? 'できます' : 'できません');
+      out.push({
+        jp,
+        particles,
+        ro: `watashi wa ${thing.ro} wo ${verbRo} koto ga ${can ? 'dekimasu' : 'dekimasen'}`,
+        en: `I ${can ? 'can' : "can't"} ${verbEn} ${thing.en}`,
+        id: `Saya ${can ? 'bisa' : 'tidak bisa'} ${verbId} ${thing.id}`,
+        gloss: {
+          [verbJp]: [`${verbEn} (dictionary form)`, `${verbId} (bentuk kamus)`],
+          'こと': ['thing / experience', 'hal / pengalaman'],
+          'できます': ['can, be able to', 'bisa'],
+          'できません': ["can't", 'tidak bisa'],
+        },
+      });
+    }
+  }
+  templates.push(['IT skills: わたしは [thing] を [verb]ことができます', out, { jlpt: 'N4', pattern: 'verb', topic: 'it' }]);
+}
+
 // ---------- Sampling ----------
 // Deterministic shuffle so the output file is stable between runs
 function mulberry32(seed) {
@@ -2287,6 +2626,17 @@ const quotas = {
   'N4 obligation: [person] は [object] を [verb]なければなりません': 24,
   'N4 listing actions: [time] は [A]たり [B]たりします': 20,
   'N4 opinion: [topic] は [opinion] と思います': 18,
+  // IT and workplace templates (topic "it")
+  'IT request: [thing] を [verb]してください': 25,
+  'IT progress: [person] は 今、[thing] を [verb]しています': 30,
+  'IT done: [time]、[person] は [thing] を [verb]しました': 30,
+  'IT obligation: わたしは [thing] を [verb]しなければなりません': 20,
+  'IT schedule: [day] に [event] が あります': 20,
+  'IT deadline: [thing] は [when] です': 14,
+  'IT interview: わたしは [role] です': 7,
+  'IT career: わたしは [role] に なりたいです': 8,
+  'IT experience: わたしは [skill] を べんきょうしたことがあります': 6,
+  'IT skills: わたしは [thing] を [verb]ことができます': 12,
 };
 
 // ---------- Validation + assembly ----------
@@ -2383,6 +2733,8 @@ for (const [name, candidates, meta = {}] of templates) {
       // others are N5, and their pattern is read from how they end)
       ...(meta.jlpt ? { jlpt: meta.jlpt } : {}),
       ...(meta.pattern ? { pattern: meta.pattern } : {}),
+      // Topic of the IT templates, for the menu's IT topic
+      ...(meta.topic ? { topic: meta.topic } : {}),
     });
     Object.assign(generatedGlossary, entry.gloss || {});
     taken++;

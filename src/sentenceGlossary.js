@@ -1,6 +1,7 @@
 import { kanaCharacters } from './kanaCharacters.js';
 import { alignWords } from './sentenceMatching.js';
 import { generatedGlossary } from './generatedGlossary.js';
+import { kanjiWords } from './kanjiWords.js';
 
 /* Word meanings for the breakdown shown after a sentence is typed correctly
  * in the "sentences" practice mode.
@@ -155,6 +156,9 @@ for (const group of Object.values(kanaCharacters.kanji)) {
       glossary[usage.word] = [usage.meaning, usage.meaning_id || usage.meaning];
     }
   }
+}
+for (const [word, , meaning, meaningId] of kanjiWords) {
+  if (!(word in glossary)) glossary[word] = [meaning, meaningId || meaning];
 }
 for (const word of Object.values(kanaCharacters.words)) {
   if (word.meaning) glossary[word.jp_character] = [word.meaning, word.meaning_id || word.meaning];

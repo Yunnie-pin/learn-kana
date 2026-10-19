@@ -1,4 +1,4 @@
-import { getPracticeSentences, getReadableSentences, sentenceJlpt, sentenceLevel, sentencePattern, sentences } from './sentences.js';
+import { getPracticeSentences, getReadableSentences, getSentenceOptions, getSentenceTopic, sentenceJlpt, sentenceLevel, sentencePattern, sentences, SENTENCE_TOPIC_KEY } from './sentences.js';
 import { kanaCharacters } from './kanaCharacters.js';
 
 const ALL_GROUP_TITLES = ['hiragana', 'katakana', 'kanji'].flatMap(script =>
@@ -62,4 +62,33 @@ test('JLPT levels: N5 by default, N4 for the N4 grammar templates', () => {
   for (const ending of ['てもいいですか', 'てはいけません', 'ことがあります', 'ことができます', 'つもりです', 'なければなりません', 'たりします', 'とおもいます']) {
     expect(sentences.some(sentence => sentence.jlpt === 'N4' && sentence.jp_character.replace(/[んっ]/g, '').includes(ending.replace(/[んっ]/g, '')))).toBe(true);
   }
+});
+
+test('the topic separates the general, the IT and all sentences', () => {
+  const all = getPracticeSentences(ALL_GROUP_TITLES, options({ topic: 'all' }));
+  expect(all).toHaveLength(getReadableSentences(ALL_GROUP_TITLES).length);
+
+  const it = getPracticeSentences(ALL_GROUP_TITLES, options({ topic: 'it' }));
+  expect(it.length).toBeGreaterThan(150);
+  expect(it.every(sentence => sentence.topic === 'it')).toBe(true);
+  const spellings = it.map(sentence => sentence.jp_character);
+  expect(spellings).toContain('わたしはエンジニアです');
+  expect(spellings).toContain('わたしは日本のかいしゃではたらきたいです');
+
+  // General: the everyday sentences, the IT and workplace ones left out
+  const general = getPracticeSentences(ALL_GROUP_TITLES, options({ topic: 'general' }));
+  expect(general.length).toBeGreaterThan(1000);
+  expect(general.every(sentence => sentence.topic !== 'it')).toBe(true);
+  expect(general.map(sentence => sentence.jp_character)).not.toContain('わたしはエンジニアです');
+  expect(general.length + it.length).toBe(all.length);
+});
+
+test('the sentence topic comes from the menu setting, "all" by default', () => {
+  expect(getSentenceTopic()).toBe('all');
+  localStorage.setItem(SENTENCE_TOPIC_KEY, 'general');
+  expect(getSentenceOptions().topic).toBe('general');
+  // A value that is not offered falls back to "all"
+  localStorage.setItem(SENTENCE_TOPIC_KEY, 'space');
+  expect(getSentenceTopic()).toBe('all');
+  localStorage.removeItem(SENTENCE_TOPIC_KEY);
 });

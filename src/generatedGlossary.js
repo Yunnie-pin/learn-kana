@@ -24,9 +24,25 @@ export const generatedGlossary = {
     "interesting",
     "menarik"
   ],
+  "ください": [
+    "please (do)",
+    "tolong"
+  ],
   "こと": [
     "thing / experience",
     "hal / pengalaman"
+  ],
+  "して": [
+    "do (te-form)",
+    "melakukan (bentuk -te)"
+  ],
+  "しています": [
+    "is doing",
+    "sedang melakukan"
+  ],
+  "しなければなりません": [
+    "must do",
+    "harus melakukan"
   ],
   "だ": [
     "is (plain form)",
@@ -37,7 +53,7 @@ export const generatedGlossary = {
     "(antara lain) membuat"
   ],
   "つくる": [
-    "make (dictionary form)",
+    "build (dictionary form)",
     "membuat (bentuk kamus)"
   ],
   "つもり": [
@@ -52,9 +68,25 @@ export const generatedGlossary = {
     "can't",
     "tidak bisa"
   ],
+  "テスト": [
+    "test",
+    "tes / pengujian"
+  ],
   "とって": [
     "take (te-form)",
     "mengambil (bentuk -te)"
+  ],
+  "なりたい": [
+    "want to become",
+    "ingin menjadi"
+  ],
+  "はたらいています": [
+    "work, am working",
+    "bekerja"
+  ],
+  "はたらきたい": [
+    "want to work",
+    "ingin bekerja"
   ],
   "はやい": [
     "fast",
@@ -65,7 +97,7 @@ export const generatedGlossary = {
     "musim semi"
   ],
   "べんきょうした": [
-    "studied (past)",
+    "studied",
     "belajar (lampau)"
   ],
   "べんきょうしたい": [

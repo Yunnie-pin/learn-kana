@@ -9,6 +9,8 @@ COPY . .
 # .env is not copied into the image, so build-time settings come in as build args
 ARG REACT_APP_UMAMI_SCRIPT_URL
 ARG REACT_APP_UMAMI_WEBSITE_ID
+# Public address of the site, for the canonical link, link previews and sitemap.xml (optional)
+ARG SITE_URL
 RUN npm run build
 
 # Serve stage

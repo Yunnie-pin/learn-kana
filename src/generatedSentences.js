@@ -20883,4 +20883,3037 @@ export const generatedSentences = [
     "jlpt": "N4",
     "pattern": "verb"
   },
+  {
+    "jp_character": "サーバーをバックアップしてください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "saabaa wo bakkuappu shite kudasai",
+      "saabaa o bakkuappu shite kudasai"
+    ],
+    "meaning": "Please back up the server",
+    "meaning_id": "Tolong cadangkan server",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "しようしょをレビューしてください",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "shiyousho wo rebyuu shite kudasai",
+      "shiyousho o rebyuu shite kudasai"
+    ],
+    "meaning": "Please review the specification",
+    "meaning_id": "Tolong tinjau spesifikasi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "スケジュールをかくにんしてください",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "sukejuuru wo kakunin shite kudasai",
+      "sukejuuru o kakunin shite kudasai"
+    ],
+    "meaning": "Please check the schedule",
+    "meaning_id": "Tolong periksa jadwal",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "アプリをリリースしてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "apuri wo ririisu shite kudasai",
+      "apuri o ririisu shite kudasai"
+    ],
+    "meaning": "Please release the app",
+    "meaning_id": "Tolong rilis aplikasi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "バグをほうこくしてください",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "bagu wo houkoku shite kudasai",
+      "bagu o houkoku shite kudasai"
+    ],
+    "meaning": "Please report the bug",
+    "meaning_id": "Tolong laporkan bug",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "ファイルをさくじょしてください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "fairu wo sakujo shite kudasai",
+      "fairu o sakujo shite kudasai"
+    ],
+    "meaning": "Please delete the file",
+    "meaning_id": "Tolong hapus berkas",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "コードをしゅうせいしてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "koodo wo shuusei shite kudasai",
+      "koodo o shuusei shite kudasai"
+    ],
+    "meaning": "Please fix the code",
+    "meaning_id": "Tolong perbaiki kode",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "システムをテストしてください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "shisutemu wo tesuto shite kudasai",
+      "shisutemu o tesuto shite kudasai"
+    ],
+    "meaning": "Please test the system",
+    "meaning_id": "Tolong uji sistem",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "ソフトウェアをアップデートしてください",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "sofutowea wo appudeeto shite kudasai",
+      "sofutowea o appudeeto shite kudasai"
+    ],
+    "meaning": "Please update the software",
+    "meaning_id": "Tolong perbarui perangkat lunak",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "データをほぞんしてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "deeta wo hozon shite kudasai",
+      "deeta o hozon shite kudasai"
+    ],
+    "meaning": "Please save the data",
+    "meaning_id": "Tolong simpan data",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "コードをデバッグしてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "koodo wo debaggu shite kudasai",
+      "koodo o debaggu shite kudasai"
+    ],
+    "meaning": "Please debug the code",
+    "meaning_id": "Tolong debug kode",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "パスワードをかくにんしてください",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "pasuwaado wo kakunin shite kudasai",
+      "pasuwaado o kakunin shite kudasai"
+    ],
+    "meaning": "Please check the password",
+    "meaning_id": "Tolong periksa kata sandi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "ソフトウェアをインストールしてください",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "sofutowea wo insutooru shite kudasai",
+      "sofutowea o insutooru shite kudasai"
+    ],
+    "meaning": "Please install the software",
+    "meaning_id": "Tolong instal perangkat lunak",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "データベースをアップデートしてください",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "deetabeesu wo appudeeto shite kudasai",
+      "deetabeesu o appudeeto shite kudasai"
+    ],
+    "meaning": "Please update the database",
+    "meaning_id": "Tolong perbarui basis data",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "ファイルをアップロードしてください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "fairu wo appuroodo shite kudasai",
+      "fairu o appuroodo shite kudasai"
+    ],
+    "meaning": "Please upload the file",
+    "meaning_id": "Tolong unggah berkas",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "エラーをほうこくしてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "eraa wo houkoku shite kudasai",
+      "eraa o houkoku shite kudasai"
+    ],
+    "meaning": "Please report the error",
+    "meaning_id": "Tolong laporkan error",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "データをさくじょしてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "deeta wo sakujo shite kudasai",
+      "deeta o sakujo shite kudasai"
+    ],
+    "meaning": "Please delete the data",
+    "meaning_id": "Tolong hapus data",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "バグをしゅうせいしてください",
+    "particles": [
+      2
+    ],
+    "romanji": [
+      "bagu wo shuusei shite kudasai",
+      "bagu o shuusei shite kudasai"
+    ],
+    "meaning": "Please fix the bug",
+    "meaning_id": "Tolong perbaiki bug",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "アプリをインストールしてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "apuri wo insutooru shite kudasai",
+      "apuri o insutooru shite kudasai"
+    ],
+    "meaning": "Please install the app",
+    "meaning_id": "Tolong instal aplikasi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "データベースをバックアップしてください",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "deetabeesu wo bakkuappu shite kudasai",
+      "deetabeesu o bakkuappu shite kudasai"
+    ],
+    "meaning": "Please back up the database",
+    "meaning_id": "Tolong cadangkan basis data",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "メールをかくにんしてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "meeru wo kakunin shite kudasai",
+      "meeru o kakunin shite kudasai"
+    ],
+    "meaning": "Please check the email",
+    "meaning_id": "Tolong periksa surel",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "ファイルをダウンロードしてください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "fairu wo daunroodo shite kudasai",
+      "fairu o daunroodo shite kudasai"
+    ],
+    "meaning": "Please download the file",
+    "meaning_id": "Tolong unduh berkas",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "コードをテストしてください",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "koodo wo tesuto shite kudasai",
+      "koodo o tesuto shite kudasai"
+    ],
+    "meaning": "Please test the code",
+    "meaning_id": "Tolong uji kode",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "サーバーをアップデートしてください",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "saabaa wo appudeeto shite kudasai",
+      "saabaa o appudeeto shite kudasai"
+    ],
+    "meaning": "Please update the server",
+    "meaning_id": "Tolong perbarui server",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "しようしょをかくにんしてください",
+    "particles": [
+      5
+    ],
+    "romanji": [
+      "shiyousho wo kakunin shite kudasai",
+      "shiyousho o kakunin shite kudasai"
+    ],
+    "meaning": "Please check the specification",
+    "meaning_id": "Tolong periksa spesifikasi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "エンジニアは今、データベースをバックアップしています",
+    "particles": [
+      5,
+      14
+    ],
+    "romanji": [
+      "enjinia wa ima deetabeesu wo bakkuappu shite imasu",
+      "enjinia wa ima deetabeesu o bakkuappu shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "The engineer is backing up the database now",
+    "meaning_id": "Engineer sedang mencadangkan basis data sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "プログラマーは今、アプリをインストールしています",
+    "particles": [
+      6,
+      12
+    ],
+    "romanji": [
+      "puroguramaa wa ima apuri wo insutooru shite imasu",
+      "puroguramaa wa ima apuri o insutooru shite imasu"
+    ],
+    "furigana": {
+      "7": "いま"
+    },
+    "meaning": "The programmer is installing the app now",
+    "meaning_id": "Programmer sedang menginstal aplikasi sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "デザイナーは今、しようしょをかくにんしています",
+    "particles": [
+      5,
+      13
+    ],
+    "romanji": [
+      "dezainaa wa ima shiyousho wo kakunin shite imasu",
+      "dezainaa wa ima shiyousho o kakunin shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "The designer is checking the specification now",
+    "meaning_id": "Desainer sedang memeriksa spesifikasi sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "マネージャーは今、サーバーをアップデートしています",
+    "particles": [
+      6,
+      13
+    ],
+    "romanji": [
+      "maneejaa wa ima saabaa wo appudeeto shite imasu",
+      "maneejaa wa ima saabaa o appudeeto shite imasu"
+    ],
+    "furigana": {
+      "7": "いま"
+    },
+    "meaning": "The manager is updating the server now",
+    "meaning_id": "Manajer sedang memperbarui server sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "どうりょうは今、コードをテストしています",
+    "particles": [
+      5,
+      11
+    ],
+    "romanji": [
+      "douryou wa ima koodo wo tesuto shite imasu",
+      "douryou wa ima koodo o tesuto shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "My colleague is testing the code now",
+    "meaning_id": "Rekan kerja saya sedang menguji kode sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしは今、データをほぞんしています",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa ima deeta wo hozon shite imasu",
+      "watashi wa ima deeta o hozon shite imasu"
+    ],
+    "furigana": {
+      "4": "いま"
+    },
+    "meaning": "I am saving the data now",
+    "meaning_id": "Saya sedang menyimpan data sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "じょうしは今、ファイルをさくじょしています",
+    "particles": [
+      4,
+      11
+    ],
+    "romanji": [
+      "joushi wa ima fairu wo sakujo shite imasu",
+      "joushi wa ima fairu o sakujo shite imasu"
+    ],
+    "furigana": {
+      "5": "いま"
+    },
+    "meaning": "My boss is deleting the file now",
+    "meaning_id": "Atasan saya sedang menghapus berkas sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "エンジニアは今、エラーをほうこくしています",
+    "particles": [
+      5,
+      11
+    ],
+    "romanji": [
+      "enjinia wa ima eraa wo houkoku shite imasu",
+      "enjinia wa ima eraa o houkoku shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "The engineer is reporting the error now",
+    "meaning_id": "Engineer sedang melaporkan error sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "マネージャーは今、バグをしゅうせいしています",
+    "particles": [
+      6,
+      11
+    ],
+    "romanji": [
+      "maneejaa wa ima bagu wo shuusei shite imasu",
+      "maneejaa wa ima bagu o shuusei shite imasu"
+    ],
+    "furigana": {
+      "7": "いま"
+    },
+    "meaning": "The manager is fixing the bug now",
+    "meaning_id": "Manajer sedang memperbaiki bug sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "デザイナーは今、ソフトウェアをインストールしています",
+    "particles": [
+      5,
+      14
+    ],
+    "romanji": [
+      "dezainaa wa ima sofutowea wo insutooru shite imasu",
+      "dezainaa wa ima sofutowea o insutooru shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "The designer is installing the software now",
+    "meaning_id": "Desainer sedang menginstal perangkat lunak sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "プログラマーは今、パスワードをかくにんしています",
+    "particles": [
+      6,
+      14
+    ],
+    "romanji": [
+      "puroguramaa wa ima pasuwaado wo kakunin shite imasu",
+      "puroguramaa wa ima pasuwaado o kakunin shite imasu"
+    ],
+    "furigana": {
+      "7": "いま"
+    },
+    "meaning": "The programmer is checking the password now",
+    "meaning_id": "Programmer sedang memeriksa kata sandi sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしは今、システムをテストしています",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "watashi wa ima shisutemu wo tesuto shite imasu",
+      "watashi wa ima shisutemu o tesuto shite imasu"
+    ],
+    "furigana": {
+      "4": "いま"
+    },
+    "meaning": "I am testing the system now",
+    "meaning_id": "Saya sedang menguji sistem sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "どうりょうは今、ファイルをアップロードしています",
+    "particles": [
+      5,
+      12
+    ],
+    "romanji": [
+      "douryou wa ima fairu wo appuroodo shite imasu",
+      "douryou wa ima fairu o appuroodo shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "My colleague is uploading the file now",
+    "meaning_id": "Rekan kerja saya sedang mengunggah berkas sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "じょうしは今、アプリをリリースしています",
+    "particles": [
+      4,
+      10
+    ],
+    "romanji": [
+      "joushi wa ima apuri wo ririisu shite imasu",
+      "joushi wa ima apuri o ririisu shite imasu"
+    ],
+    "furigana": {
+      "5": "いま"
+    },
+    "meaning": "My boss is releasing the app now",
+    "meaning_id": "Atasan saya sedang merilis aplikasi sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "プログラマーは今、しようしょをレビューしています",
+    "particles": [
+      6,
+      14
+    ],
+    "romanji": [
+      "puroguramaa wa ima shiyousho wo rebyuu shite imasu",
+      "puroguramaa wa ima shiyousho o rebyuu shite imasu"
+    ],
+    "furigana": {
+      "7": "いま"
+    },
+    "meaning": "The programmer is reviewing the specification now",
+    "meaning_id": "Programmer sedang meninjau spesifikasi sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "エンジニアは今、コードをデバッグしています",
+    "particles": [
+      5,
+      11
+    ],
+    "romanji": [
+      "enjinia wa ima koodo wo debaggu shite imasu",
+      "enjinia wa ima koodo o debaggu shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "The engineer is debugging the code now",
+    "meaning_id": "Engineer sedang men-debug kode sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "マネージャーは今、データベースをアップデートしています",
+    "particles": [
+      6,
+      15
+    ],
+    "romanji": [
+      "maneejaa wa ima deetabeesu wo appudeeto shite imasu",
+      "maneejaa wa ima deetabeesu o appudeeto shite imasu"
+    ],
+    "furigana": {
+      "7": "いま"
+    },
+    "meaning": "The manager is updating the database now",
+    "meaning_id": "Manajer sedang memperbarui basis data sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "どうりょうは今、スケジュールをかくにんしています",
+    "particles": [
+      5,
+      14
+    ],
+    "romanji": [
+      "douryou wa ima sukejuuru wo kakunin shite imasu",
+      "douryou wa ima sukejuuru o kakunin shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "My colleague is checking the schedule now",
+    "meaning_id": "Rekan kerja saya sedang memeriksa jadwal sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "デザイナーは今、データをバックアップしています",
+    "particles": [
+      5,
+      11
+    ],
+    "romanji": [
+      "dezainaa wa ima deeta wo bakkuappu shite imasu",
+      "dezainaa wa ima deeta o bakkuappu shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "The designer is backing up the data now",
+    "meaning_id": "Desainer sedang mencadangkan data sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "じょうしは今、バグをしゅうせいしています",
+    "particles": [
+      4,
+      9
+    ],
+    "romanji": [
+      "joushi wa ima bagu wo shuusei shite imasu",
+      "joushi wa ima bagu o shuusei shite imasu"
+    ],
+    "furigana": {
+      "5": "いま"
+    },
+    "meaning": "My boss is fixing the bug now",
+    "meaning_id": "Atasan saya sedang memperbaiki bug sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしは今、エラーをほうこくしています",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa ima eraa wo houkoku shite imasu",
+      "watashi wa ima eraa o houkoku shite imasu"
+    ],
+    "furigana": {
+      "4": "いま"
+    },
+    "meaning": "I am reporting the error now",
+    "meaning_id": "Saya sedang melaporkan error sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "どうりょうは今、ファイルをダウンロードしています",
+    "particles": [
+      5,
+      12
+    ],
+    "romanji": [
+      "douryou wa ima fairu wo daunroodo shite imasu",
+      "douryou wa ima fairu o daunroodo shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "My colleague is downloading the file now",
+    "meaning_id": "Rekan kerja saya sedang mengunduh berkas sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "マネージャーは今、システムをテストしています",
+    "particles": [
+      6,
+      13
+    ],
+    "romanji": [
+      "maneejaa wa ima shisutemu wo tesuto shite imasu",
+      "maneejaa wa ima shisutemu o tesuto shite imasu"
+    ],
+    "furigana": {
+      "7": "いま"
+    },
+    "meaning": "The manager is testing the system now",
+    "meaning_id": "Manajer sedang menguji sistem sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "プログラマーは今、アプリをリリースしています",
+    "particles": [
+      6,
+      12
+    ],
+    "romanji": [
+      "puroguramaa wa ima apuri wo ririisu shite imasu",
+      "puroguramaa wa ima apuri o ririisu shite imasu"
+    ],
+    "furigana": {
+      "7": "いま"
+    },
+    "meaning": "The programmer is releasing the app now",
+    "meaning_id": "Programmer sedang merilis aplikasi sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "エンジニアは今、ソフトウェアをインストールしています",
+    "particles": [
+      5,
+      14
+    ],
+    "romanji": [
+      "enjinia wa ima sofutowea wo insutooru shite imasu",
+      "enjinia wa ima sofutowea o insutooru shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "The engineer is installing the software now",
+    "meaning_id": "Engineer sedang menginstal perangkat lunak sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "じょうしは今、サーバーをアップデートしています",
+    "particles": [
+      4,
+      11
+    ],
+    "romanji": [
+      "joushi wa ima saabaa wo appudeeto shite imasu",
+      "joushi wa ima saabaa o appudeeto shite imasu"
+    ],
+    "furigana": {
+      "5": "いま"
+    },
+    "meaning": "My boss is updating the server now",
+    "meaning_id": "Atasan saya sedang memperbarui server sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "デザイナーは今、コードをデバッグしています",
+    "particles": [
+      5,
+      11
+    ],
+    "romanji": [
+      "dezainaa wa ima koodo wo debaggu shite imasu",
+      "dezainaa wa ima koodo o debaggu shite imasu"
+    ],
+    "furigana": {
+      "6": "いま"
+    },
+    "meaning": "The designer is debugging the code now",
+    "meaning_id": "Desainer sedang men-debug kode sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしは今、しようしょをレビューしています",
+    "particles": [
+      3,
+      11
+    ],
+    "romanji": [
+      "watashi wa ima shiyousho wo rebyuu shite imasu",
+      "watashi wa ima shiyousho o rebyuu shite imasu"
+    ],
+    "furigana": {
+      "4": "いま"
+    },
+    "meaning": "I am reviewing the specification now",
+    "meaning_id": "Saya sedang meninjau spesifikasi sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "じょうしは今、メールをかくにんしています",
+    "particles": [
+      4,
+      10
+    ],
+    "romanji": [
+      "joushi wa ima meeru wo kakunin shite imasu",
+      "joushi wa ima meeru o kakunin shite imasu"
+    ],
+    "furigana": {
+      "5": "いま"
+    },
+    "meaning": "My boss is checking the email now",
+    "meaning_id": "Atasan saya sedang memeriksa surel sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "プログラマーは今、データをさくじょしています",
+    "particles": [
+      6,
+      12
+    ],
+    "romanji": [
+      "puroguramaa wa ima deeta wo sakujo shite imasu",
+      "puroguramaa wa ima deeta o sakujo shite imasu"
+    ],
+    "furigana": {
+      "7": "いま"
+    },
+    "meaning": "The programmer is deleting the data now",
+    "meaning_id": "Programmer sedang menghapus data sekarang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "きのう、じょうしはファイルをさくじょしました",
+    "particles": [
+      8,
+      13
+    ],
+    "romanji": [
+      "kinou joushi wa fairu wo sakujo shimashita",
+      "kinou joushi wa fairu o sakujo shimashita"
+    ],
+    "meaning": "My boss deleted the file yesterday",
+    "meaning_id": "Kemarin atasan saya menghapus berkas",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "先週、マネージャーはソフトウェアをアップデートしました",
+    "particles": [
+      9,
+      16
+    ],
+    "romanji": [
+      "senshuu maneejaa wa sofutowea wo appudeeto shimashita",
+      "senshuu maneejaa wa sofutowea o appudeeto shimashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう"
+    },
+    "meaning": "The manager updated the software last week",
+    "meaning_id": "Minggu lalu manajer memperbarui perangkat lunak",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、どうりょうはシステムをテストしました",
+    "particles": [
+      8,
+      13
+    ],
+    "romanji": [
+      "kyou douryou wa shisutemu wo tesuto shimashita",
+      "kyou douryou wa shisutemu o tesuto shimashita"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "My colleague tested the system today",
+    "meaning_id": "Hari ini rekan kerja saya menguji sistem",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "先週、エンジニアはデータをかくにんしました",
+    "particles": [
+      8,
+      12
+    ],
+    "romanji": [
+      "senshuu enjinia wa deeta wo kakunin shimashita",
+      "senshuu enjinia wa deeta o kakunin shimashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう"
+    },
+    "meaning": "The engineer checked the data last week",
+    "meaning_id": "Minggu lalu engineer memeriksa data",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、わたしはバグをしゅうせいしました",
+    "particles": [
+      6,
+      9
+    ],
+    "romanji": [
+      "kyou watashi wa bagu wo shuusei shimashita",
+      "kyou watashi wa bagu o shuusei shimashita"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "I fixed the bug today",
+    "meaning_id": "Hari ini saya memperbaiki bug",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "きのう、デザイナーはしようしょをレビューしました",
+    "particles": [
+      9,
+      15
+    ],
+    "romanji": [
+      "kinou dezainaa wa shiyousho wo rebyuu shimashita",
+      "kinou dezainaa wa shiyousho o rebyuu shimashita"
+    ],
+    "meaning": "The designer reviewed the specification yesterday",
+    "meaning_id": "Kemarin desainer meninjau spesifikasi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "先週、プログラマーはアプリをリリースしました",
+    "particles": [
+      9,
+      13
+    ],
+    "romanji": [
+      "senshuu puroguramaa wa apuri wo ririisu shimashita",
+      "senshuu puroguramaa wa apuri o ririisu shimashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう"
+    },
+    "meaning": "The programmer released the app last week",
+    "meaning_id": "Minggu lalu programmer merilis aplikasi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "きのう、エンジニアはデータベースをバックアップしました",
+    "particles": [
+      9,
+      16
+    ],
+    "romanji": [
+      "kinou enjinia wa deetabeesu wo bakkuappu shimashita",
+      "kinou enjinia wa deetabeesu o bakkuappu shimashita"
+    ],
+    "meaning": "The engineer backed up the database yesterday",
+    "meaning_id": "Kemarin engineer mencadangkan basis data",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、マネージャーはエラーをほうこくしました",
+    "particles": [
+      9,
+      13
+    ],
+    "romanji": [
+      "kyou maneejaa wa eraa wo houkoku shimashita",
+      "kyou maneejaa wa eraa o houkoku shimashita"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "The manager reported the error today",
+    "meaning_id": "Hari ini manajer melaporkan error",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "きのう、どうりょうはコードをデバッグしました",
+    "particles": [
+      9,
+      13
+    ],
+    "romanji": [
+      "kinou douryou wa koodo wo debaggu shimashita",
+      "kinou douryou wa koodo o debaggu shimashita"
+    ],
+    "meaning": "My colleague debugged the code yesterday",
+    "meaning_id": "Kemarin rekan kerja saya men-debug kode",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "先週、わたしはアプリをインストールしました",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "senshuu watashi wa apuri wo insutooru shimashita",
+      "senshuu watashi wa apuri o insutooru shimashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう"
+    },
+    "meaning": "I installed the app last week",
+    "meaning_id": "Minggu lalu saya menginstal aplikasi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、デザイナーはメールをかくにんしました",
+    "particles": [
+      8,
+      12
+    ],
+    "romanji": [
+      "kyou dezainaa wa meeru wo kakunin shimashita",
+      "kyou dezainaa wa meeru o kakunin shimashita"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "The designer checked the email today",
+    "meaning_id": "Hari ini desainer memeriksa surel",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "きのう、じょうしはデータをほぞんしました",
+    "particles": [
+      8,
+      12
+    ],
+    "romanji": [
+      "kinou joushi wa deeta wo hozon shimashita",
+      "kinou joushi wa deeta o hozon shimashita"
+    ],
+    "meaning": "My boss saved the data yesterday",
+    "meaning_id": "Kemarin atasan saya menyimpan data",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、プログラマーはサーバーをアップデートしました",
+    "particles": [
+      9,
+      14
+    ],
+    "romanji": [
+      "kyou puroguramaa wa saabaa wo appudeeto shimashita",
+      "kyou puroguramaa wa saabaa o appudeeto shimashita"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "The programmer updated the server today",
+    "meaning_id": "Hari ini programmer memperbarui server",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "先週、どうりょうはファイルをダウンロードしました",
+    "particles": [
+      8,
+      13
+    ],
+    "romanji": [
+      "senshuu douryou wa fairu wo daunroodo shimashita",
+      "senshuu douryou wa fairu o daunroodo shimashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう"
+    },
+    "meaning": "My colleague downloaded the file last week",
+    "meaning_id": "Minggu lalu rekan kerja saya mengunduh berkas",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "きのう、マネージャーはスケジュールをかくにんしました",
+    "particles": [
+      10,
+      17
+    ],
+    "romanji": [
+      "kinou maneejaa wa sukejuuru wo kakunin shimashita",
+      "kinou maneejaa wa sukejuuru o kakunin shimashita"
+    ],
+    "meaning": "The manager checked the schedule yesterday",
+    "meaning_id": "Kemarin manajer memeriksa jadwal",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "先週、デザイナーはデータベースをバックアップしました",
+    "particles": [
+      8,
+      15
+    ],
+    "romanji": [
+      "senshuu dezainaa wa deetabeesu wo bakkuappu shimashita",
+      "senshuu dezainaa wa deetabeesu o bakkuappu shimashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう"
+    },
+    "meaning": "The designer backed up the database last week",
+    "meaning_id": "Minggu lalu desainer mencadangkan basis data",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、じょうしはコードをデバッグしました",
+    "particles": [
+      7,
+      11
+    ],
+    "romanji": [
+      "kyou joushi wa koodo wo debaggu shimashita",
+      "kyou joushi wa koodo o debaggu shimashita"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "My boss debugged the code today",
+    "meaning_id": "Hari ini atasan saya men-debug kode",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "きのう、エンジニアはシステムをテストしました",
+    "particles": [
+      9,
+      14
+    ],
+    "romanji": [
+      "kinou enjinia wa shisutemu wo tesuto shimashita",
+      "kinou enjinia wa shisutemu o tesuto shimashita"
+    ],
+    "meaning": "The engineer tested the system yesterday",
+    "meaning_id": "Kemarin engineer menguji sistem",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、わたしはファイルをアップロードしました",
+    "particles": [
+      6,
+      11
+    ],
+    "romanji": [
+      "kyou watashi wa fairu wo appuroodo shimashita",
+      "kyou watashi wa fairu o appuroodo shimashita"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "I uploaded the file today",
+    "meaning_id": "Hari ini saya mengunggah berkas",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "先週、プログラマーはバグをしゅうせいしました",
+    "particles": [
+      9,
+      12
+    ],
+    "romanji": [
+      "senshuu puroguramaa wa bagu wo shuusei shimashita",
+      "senshuu puroguramaa wa bagu o shuusei shimashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう"
+    },
+    "meaning": "The programmer fixed the bug last week",
+    "meaning_id": "Minggu lalu programmer memperbaiki bug",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "先週、どうりょうはしようしょをレビューしました",
+    "particles": [
+      8,
+      14
+    ],
+    "romanji": [
+      "senshuu douryou wa shiyousho wo rebyuu shimashita",
+      "senshuu douryou wa shiyousho o rebyuu shimashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう"
+    },
+    "meaning": "My colleague reviewed the specification last week",
+    "meaning_id": "Minggu lalu rekan kerja saya meninjau spesifikasi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "きのう、じょうしはソフトウェアをインストールしました",
+    "particles": [
+      8,
+      15
+    ],
+    "romanji": [
+      "kinou joushi wa sofutowea wo insutooru shimashita",
+      "kinou joushi wa sofutowea o insutooru shimashita"
+    ],
+    "meaning": "My boss installed the software yesterday",
+    "meaning_id": "Kemarin atasan saya menginstal perangkat lunak",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、エンジニアはエラーをほうこくしました",
+    "particles": [
+      8,
+      12
+    ],
+    "romanji": [
+      "kyou enjinia wa eraa wo houkoku shimashita",
+      "kyou enjinia wa eraa o houkoku shimashita"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "The engineer reported the error today",
+    "meaning_id": "Hari ini engineer melaporkan error",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "先週、マネージャーはデータをほぞんしました",
+    "particles": [
+      9,
+      13
+    ],
+    "romanji": [
+      "senshuu maneejaa wa deeta wo hozon shimashita",
+      "senshuu maneejaa wa deeta o hozon shimashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう"
+    },
+    "meaning": "The manager saved the data last week",
+    "meaning_id": "Minggu lalu manajer menyimpan data",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、デザイナーはサーバーをバックアップしました",
+    "particles": [
+      8,
+      13
+    ],
+    "romanji": [
+      "kyou dezainaa wa saabaa wo bakkuappu shimashita",
+      "kyou dezainaa wa saabaa o bakkuappu shimashita"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "The designer backed up the server today",
+    "meaning_id": "Hari ini desainer mencadangkan server",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "きのう、プログラマーはパスワードをかくにんしました",
+    "particles": [
+      10,
+      16
+    ],
+    "romanji": [
+      "kinou puroguramaa wa pasuwaado wo kakunin shimashita",
+      "kinou puroguramaa wa pasuwaado o kakunin shimashita"
+    ],
+    "meaning": "The programmer checked the password yesterday",
+    "meaning_id": "Kemarin programmer memeriksa kata sandi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、わたしはアプリをリリースしました",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "kyou watashi wa apuri wo ririisu shimashita",
+      "kyou watashi wa apuri o ririisu shimashita"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "I released the app today",
+    "meaning_id": "Hari ini saya merilis aplikasi",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "きのう、プログラマーはソフトウェアをアップデートしました",
+    "particles": [
+      10,
+      17
+    ],
+    "romanji": [
+      "kinou puroguramaa wa sofutowea wo appudeeto shimashita",
+      "kinou puroguramaa wa sofutowea o appudeeto shimashita"
+    ],
+    "meaning": "The programmer updated the software yesterday",
+    "meaning_id": "Kemarin programmer memperbarui perangkat lunak",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "先週、わたしはファイルをダウンロードしました",
+    "particles": [
+      6,
+      11
+    ],
+    "romanji": [
+      "senshuu watashi wa fairu wo daunroodo shimashita",
+      "senshuu watashi wa fairu o daunroodo shimashita"
+    ],
+    "furigana": {
+      "0": "せん",
+      "1": "しゅう"
+    },
+    "meaning": "I downloaded the file last week",
+    "meaning_id": "Minggu lalu saya mengunduh berkas",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはメールをかくにんしなければなりません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa meeru wo kakunin shinakereba narimasen",
+      "watashi wa meeru o kakunin shinakereba narimasen"
+    ],
+    "meaning": "I must check the email",
+    "meaning_id": "Saya harus memeriksa surel",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "あした、わたしはコードをしゅうせいしなければなりません",
+    "particles": [
+      7,
+      11
+    ],
+    "romanji": [
+      "ashita watashi wa koodo wo shuusei shinakereba narimasen",
+      "ashita watashi wa koodo o shuusei shinakereba narimasen"
+    ],
+    "meaning": "I must fix the code tomorrow",
+    "meaning_id": "Besok saya harus memperbaiki kode",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはデータをさくじょしなければなりません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa deeta wo sakujo shinakereba narimasen",
+      "watashi wa deeta o sakujo shinakereba narimasen"
+    ],
+    "meaning": "I must delete the data",
+    "meaning_id": "Saya harus menghapus data",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはアプリをインストールしなければなりません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa apuri wo insutooru shinakereba narimasen",
+      "watashi wa apuri o insutooru shinakereba narimasen"
+    ],
+    "meaning": "I must install the app",
+    "meaning_id": "Saya harus menginstal aplikasi",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはソフトウェアをアップデートしなければなりません",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "watashi wa sofutowea wo appudeeto shinakereba narimasen",
+      "watashi wa sofutowea o appudeeto shinakereba narimasen"
+    ],
+    "meaning": "I must update the software",
+    "meaning_id": "Saya harus memperbarui perangkat lunak",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "今日、わたしはしようしょをレビューしなければなりません",
+    "particles": [
+      6,
+      12
+    ],
+    "romanji": [
+      "kyou watashi wa shiyousho wo rebyuu shinakereba narimasen",
+      "kyou watashi wa shiyousho o rebyuu shinakereba narimasen"
+    ],
+    "furigana": {
+      "0": "きょ",
+      "1": "う"
+    },
+    "meaning": "I must review the specification today",
+    "meaning_id": "Hari ini saya harus meninjau spesifikasi",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはファイルをアップロードしなければなりません",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa fairu wo appuroodo shinakereba narimasen",
+      "watashi wa fairu o appuroodo shinakereba narimasen"
+    ],
+    "meaning": "I must upload the file",
+    "meaning_id": "Saya harus mengunggah berkas",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはサーバーをバックアップしなければなりません",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa saabaa wo bakkuappu shinakereba narimasen",
+      "watashi wa saabaa o bakkuappu shinakereba narimasen"
+    ],
+    "meaning": "I must back up the server",
+    "meaning_id": "Saya harus mencadangkan server",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはシステムをテストしなければなりません",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa shisutemu wo tesuto shinakereba narimasen",
+      "watashi wa shisutemu o tesuto shinakereba narimasen"
+    ],
+    "meaning": "I must test the system",
+    "meaning_id": "Saya harus menguji sistem",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはバグをほうこくしなければなりません",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa bagu wo houkoku shinakereba narimasen",
+      "watashi wa bagu o houkoku shinakereba narimasen"
+    ],
+    "meaning": "I must report the bug",
+    "meaning_id": "Saya harus melaporkan bug",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはエラーをかくにんしなければなりません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa eraa wo kakunin shinakereba narimasen",
+      "watashi wa eraa o kakunin shinakereba narimasen"
+    ],
+    "meaning": "I must check the error",
+    "meaning_id": "Saya harus memeriksa error",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはファイルをほぞんしなければなりません",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa fairu wo hozon shinakereba narimasen",
+      "watashi wa fairu o hozon shinakereba narimasen"
+    ],
+    "meaning": "I must save the file",
+    "meaning_id": "Saya harus menyimpan berkas",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはコードをデバッグしなければなりません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa koodo wo debaggu shinakereba narimasen",
+      "watashi wa koodo o debaggu shinakereba narimasen"
+    ],
+    "meaning": "I must debug the code",
+    "meaning_id": "Saya harus men-debug kode",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはアプリをリリースしなければなりません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa apuri wo ririisu shinakereba narimasen",
+      "watashi wa apuri o ririisu shinakereba narimasen"
+    ],
+    "meaning": "I must release the app",
+    "meaning_id": "Saya harus merilis aplikasi",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはデータベースをバックアップしなければなりません",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "watashi wa deetabeesu wo bakkuappu shinakereba narimasen",
+      "watashi wa deetabeesu o bakkuappu shinakereba narimasen"
+    ],
+    "meaning": "I must back up the database",
+    "meaning_id": "Saya harus mencadangkan basis data",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはシステムをアップデートしなければなりません",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa shisutemu wo appudeeto shinakereba narimasen",
+      "watashi wa shisutemu o appudeeto shinakereba narimasen"
+    ],
+    "meaning": "I must update the system",
+    "meaning_id": "Saya harus memperbarui sistem",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはソフトウェアをインストールしなければなりません",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "watashi wa sofutowea wo insutooru shinakereba narimasen",
+      "watashi wa sofutowea o insutooru shinakereba narimasen"
+    ],
+    "meaning": "I must install the software",
+    "meaning_id": "Saya harus menginstal perangkat lunak",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはファイルをダウンロードしなければなりません",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa fairu wo daunroodo shinakereba narimasen",
+      "watashi wa fairu o daunroodo shinakereba narimasen"
+    ],
+    "meaning": "I must download the file",
+    "meaning_id": "Saya harus mengunduh berkas",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはしようしょをレビューしなければなりません",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa shiyousho wo rebyuu shinakereba narimasen",
+      "watashi wa shiyousho o rebyuu shinakereba narimasen"
+    ],
+    "meaning": "I must review the specification",
+    "meaning_id": "Saya harus meninjau spesifikasi",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはエラーをほうこくしなければなりません",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "watashi wa eraa wo houkoku shinakereba narimasen",
+      "watashi wa eraa o houkoku shinakereba narimasen"
+    ],
+    "meaning": "I must report the error",
+    "meaning_id": "Saya harus melaporkan error",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "月曜日にテストがあります",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "getsuyoubi ni tesuto ga arimasu"
+    ],
+    "furigana": {
+      "0": "げつ",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a test on Monday",
+    "meaning_id": "Hari Senin ada tes",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "あした、十時にリリースがあります",
+    "particles": [
+      6,
+      11
+    ],
+    "romanji": [
+      "ashita juuji ni ririisu ga arimasu"
+    ],
+    "furigana": {
+      "4": "じゅう",
+      "5": "じ"
+    },
+    "meaning": "There is a release at ten o'clock tomorrow",
+    "meaning_id": "Besok jam sepuluh ada rilis",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "木曜日にレビューがあります",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "mokuyoubi ni rebyuu ga arimasu"
+    ],
+    "furigana": {
+      "0": "もく",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a review on Thursday",
+    "meaning_id": "Hari Kamis ada review",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "水曜日にミーティングがあります",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "suiyoubi ni miitingu ga arimasu"
+    ],
+    "furigana": {
+      "0": "すい",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a meeting on Wednesday",
+    "meaning_id": "Hari Rabu ada rapat",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "火曜日にめんせつがあります",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "kayoubi ni mensetsu ga arimasu"
+    ],
+    "furigana": {
+      "0": "か",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a job interview on Tuesday",
+    "meaning_id": "Hari Selasa ada wawancara kerja",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "あした、四時にかいぎがあります",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "ashita yoji ni kaigi ga arimasu"
+    ],
+    "furigana": {
+      "4": "よ",
+      "5": "じ"
+    },
+    "meaning": "There is a meeting at four o'clock tomorrow",
+    "meaning_id": "Besok jam empat ada rapat",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "木曜日にリリースがあります",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "mokuyoubi ni ririisu ga arimasu"
+    ],
+    "furigana": {
+      "0": "もく",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a release on Thursday",
+    "meaning_id": "Hari Kamis ada rilis",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "月曜日にレビューがあります",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "getsuyoubi ni rebyuu ga arimasu"
+    ],
+    "furigana": {
+      "0": "げつ",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a review on Monday",
+    "meaning_id": "Hari Senin ada review",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "火曜日にミーティングがあります",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "kayoubi ni miitingu ga arimasu"
+    ],
+    "furigana": {
+      "0": "か",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a meeting on Tuesday",
+    "meaning_id": "Hari Selasa ada rapat",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "水曜日にかいぎがあります",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "suiyoubi ni kaigi ga arimasu"
+    ],
+    "furigana": {
+      "0": "すい",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a meeting on Wednesday",
+    "meaning_id": "Hari Rabu ada rapat",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "あした、六時にテストがあります",
+    "particles": [
+      6,
+      10
+    ],
+    "romanji": [
+      "ashita rokuji ni tesuto ga arimasu"
+    ],
+    "furigana": {
+      "4": "ろく",
+      "5": "じ"
+    },
+    "meaning": "There is a test at six o'clock tomorrow",
+    "meaning_id": "Besok jam enam ada tes",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "月曜日にめんせつがあります",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "getsuyoubi ni mensetsu ga arimasu"
+    ],
+    "furigana": {
+      "0": "げつ",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a job interview on Monday",
+    "meaning_id": "Hari Senin ada wawancara kerja",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "火曜日にレビューがあります",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "kayoubi ni rebyuu ga arimasu"
+    ],
+    "furigana": {
+      "0": "か",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a review on Tuesday",
+    "meaning_id": "Hari Selasa ada review",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "木曜日にかいぎがあります",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "mokuyoubi ni kaigi ga arimasu"
+    ],
+    "furigana": {
+      "0": "もく",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a meeting on Thursday",
+    "meaning_id": "Hari Kamis ada rapat",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "水曜日にテストがあります",
+    "particles": [
+      3,
+      7
+    ],
+    "romanji": [
+      "suiyoubi ni tesuto ga arimasu"
+    ],
+    "furigana": {
+      "0": "すい",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a test on Wednesday",
+    "meaning_id": "Hari Rabu ada tes",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "あした、二時にリリースがあります",
+    "particles": [
+      6,
+      11
+    ],
+    "romanji": [
+      "ashita niji ni ririisu ga arimasu"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "じ"
+    },
+    "meaning": "There is a release at two o'clock tomorrow",
+    "meaning_id": "Besok jam dua ada rilis",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "月曜日にミーティングがあります",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "getsuyoubi ni miitingu ga arimasu"
+    ],
+    "furigana": {
+      "0": "げつ",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a meeting on Monday",
+    "meaning_id": "Hari Senin ada rapat",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "水曜日にめんせつがあります",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "suiyoubi ni mensetsu ga arimasu"
+    ],
+    "furigana": {
+      "0": "すい",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a job interview on Wednesday",
+    "meaning_id": "Hari Rabu ada wawancara kerja",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "火曜日にリリースがあります",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "kayoubi ni ririisu ga arimasu"
+    ],
+    "furigana": {
+      "0": "か",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a release on Tuesday",
+    "meaning_id": "Hari Selasa ada rilis",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "木曜日にミーティングがあります",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "mokuyoubi ni miitingu ga arimasu"
+    ],
+    "furigana": {
+      "0": "もく",
+      "1": "よう",
+      "2": "び"
+    },
+    "meaning": "There is a meeting on Thursday",
+    "meaning_id": "Hari Kamis ada rapat",
+    "jlpt": "N5",
+    "pattern": "exist",
+    "topic": "it"
+  },
+  {
+    "jp_character": "リリースは月曜日です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "ririisu wa getsuyoubi desu"
+    ],
+    "furigana": {
+      "5": "げつ",
+      "6": "よう",
+      "7": "び"
+    },
+    "meaning": "The release is on Monday",
+    "meaning_id": "Rilisnya hari Senin",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "ミーティングはあしたです",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "miitingu wa ashita desu"
+    ],
+    "meaning": "The meeting is tomorrow",
+    "meaning_id": "Rapatnya besok",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "しめきりは木曜日です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "shimekiri wa mokuyoubi desu"
+    ],
+    "furigana": {
+      "5": "もく",
+      "6": "よう",
+      "7": "び"
+    },
+    "meaning": "The deadline is on Thursday",
+    "meaning_id": "Tenggat waktunya hari Kamis",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "めんせつは水曜日です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "mensetsu wa suiyoubi desu"
+    ],
+    "furigana": {
+      "5": "すい",
+      "6": "よう",
+      "7": "び"
+    },
+    "meaning": "The job interview is on Wednesday",
+    "meaning_id": "Wawancaranya hari Rabu",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "リリースは来週です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "ririisu wa raishuu desu"
+    ],
+    "furigana": {
+      "5": "らい",
+      "6": "しゅう"
+    },
+    "meaning": "The release is next week",
+    "meaning_id": "Rilisnya minggu depan",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "ミーティングは火曜日です",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "miitingu wa kayoubi desu"
+    ],
+    "furigana": {
+      "7": "か",
+      "8": "よう",
+      "9": "び"
+    },
+    "meaning": "The meeting is on Tuesday",
+    "meaning_id": "Rapatnya hari Selasa",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "めんせつは月曜日です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "mensetsu wa getsuyoubi desu"
+    ],
+    "furigana": {
+      "5": "げつ",
+      "6": "よう",
+      "7": "び"
+    },
+    "meaning": "The job interview is on Monday",
+    "meaning_id": "Wawancaranya hari Senin",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "しめきりはあしたです",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "shimekiri wa ashita desu"
+    ],
+    "meaning": "The deadline is tomorrow",
+    "meaning_id": "Tenggat waktunya besok",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "リリースは木曜日です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "ririisu wa mokuyoubi desu"
+    ],
+    "furigana": {
+      "5": "もく",
+      "6": "よう",
+      "7": "び"
+    },
+    "meaning": "The release is on Thursday",
+    "meaning_id": "Rilisnya hari Kamis",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "ミーティングは水曜日です",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "miitingu wa suiyoubi desu"
+    ],
+    "furigana": {
+      "7": "すい",
+      "8": "よう",
+      "9": "び"
+    },
+    "meaning": "The meeting is on Wednesday",
+    "meaning_id": "Rapatnya hari Rabu",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "しめきりは火曜日です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "shimekiri wa kayoubi desu"
+    ],
+    "furigana": {
+      "5": "か",
+      "6": "よう",
+      "7": "び"
+    },
+    "meaning": "The deadline is on Tuesday",
+    "meaning_id": "Tenggat waktunya hari Selasa",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "めんせつは来週です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "mensetsu wa raishuu desu"
+    ],
+    "furigana": {
+      "5": "らい",
+      "6": "しゅう"
+    },
+    "meaning": "The job interview is next week",
+    "meaning_id": "Wawancaranya minggu depan",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "ミーティングは月曜日です",
+    "particles": [
+      6
+    ],
+    "romanji": [
+      "miitingu wa getsuyoubi desu"
+    ],
+    "furigana": {
+      "7": "げつ",
+      "8": "よう",
+      "9": "び"
+    },
+    "meaning": "The meeting is on Monday",
+    "meaning_id": "Rapatnya hari Senin",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "リリースは水曜日です",
+    "particles": [
+      4
+    ],
+    "romanji": [
+      "ririisu wa suiyoubi desu"
+    ],
+    "furigana": {
+      "5": "すい",
+      "6": "よう",
+      "7": "び"
+    },
+    "meaning": "The release is on Wednesday",
+    "meaning_id": "Rilisnya hari Rabu",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはマネージャーです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "watashi wa maneejaa desu"
+    ],
+    "meaning": "I am a manager",
+    "meaning_id": "Saya seorang manajer",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはうちではたらいています",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa uchi de hataraite imasu"
+    ],
+    "meaning": "I work from home",
+    "meaning_id": "Saya bekerja dari rumah",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはプログラマーです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "watashi wa puroguramaa desu"
+    ],
+    "meaning": "I am a programmer",
+    "meaning_id": "Saya seorang programmer",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはエンジニアです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "watashi wa enjinia desu"
+    ],
+    "meaning": "I am an engineer",
+    "meaning_id": "Saya seorang engineer",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはオフィスではたらいています",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa ofisu de hataraite imasu"
+    ],
+    "meaning": "I work at the office",
+    "meaning_id": "Saya bekerja di kantor",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはデザイナーです",
+    "particles": [
+      3
+    ],
+    "romanji": [
+      "watashi wa dezainaa desu"
+    ],
+    "meaning": "I am a designer",
+    "meaning_id": "Saya seorang desainer",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはかいしゃではたらいています",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa kaisha de hataraite imasu"
+    ],
+    "meaning": "I work at a company",
+    "meaning_id": "Saya bekerja di perusahaan",
+    "jlpt": "N5",
+    "pattern": "desu",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはデザイナーになりたいです",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa dezainaa ni naritai desu"
+    ],
+    "meaning": "I want to become a designer",
+    "meaning_id": "Saya ingin menjadi desainer",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしは日本ではたらきたいです",
+    "particles": [
+      3,
+      6
+    ],
+    "romanji": [
+      "watashi wa nihon de hatarakitai desu"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん"
+    },
+    "meaning": "I want to work in Japan",
+    "meaning_id": "Saya ingin bekerja di Jepang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはマネージャーになりたいです",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "watashi wa maneejaa ni naritai desu"
+    ],
+    "meaning": "I want to become a manager",
+    "meaning_id": "Saya ingin menjadi manajer",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはオフィスではたらきたいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa ofisu de hatarakitai desu"
+    ],
+    "meaning": "I want to work at an office",
+    "meaning_id": "Saya ingin bekerja di kantor",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはエンジニアになりたいです",
+    "particles": [
+      3,
+      9
+    ],
+    "romanji": [
+      "watashi wa enjinia ni naritai desu"
+    ],
+    "meaning": "I want to become an engineer",
+    "meaning_id": "Saya ingin menjadi engineer",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしは日本のかいしゃではたらきたいです",
+    "particles": [
+      3,
+      6,
+      11
+    ],
+    "romanji": [
+      "watashi wa nihon no kaisha de hatarakitai desu"
+    ],
+    "furigana": {
+      "4": "に",
+      "5": "ほん"
+    },
+    "meaning": "I want to work at a Japanese company",
+    "meaning_id": "Saya ingin bekerja di perusahaan Jepang",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはプログラマーになりたいです",
+    "particles": [
+      3,
+      10
+    ],
+    "romanji": [
+      "watashi wa puroguramaa ni naritai desu"
+    ],
+    "meaning": "I want to become a programmer",
+    "meaning_id": "Saya ingin menjadi programmer",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはリーダーになりたいです",
+    "particles": [
+      3,
+      8
+    ],
+    "romanji": [
+      "watashi wa riidaa ni naritai desu"
+    ],
+    "meaning": "I want to become a leader",
+    "meaning_id": "Saya ingin menjadi pemimpin",
+    "jlpt": "N5",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはアルゴリズムをべんきょうしたことがあります",
+    "particles": [
+      3,
+      10,
+      20
+    ],
+    "romanji": [
+      "watashi wa arugorizumu wo benkyou shita koto ga arimasu",
+      "watashi wa arugorizumu o benkyou shita koto ga arimasu"
+    ],
+    "meaning": "I have studied algorithms before",
+    "meaning_id": "Saya pernah belajar algoritma",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはデータベースをべんきょうしたことがあります",
+    "particles": [
+      3,
+      10,
+      20
+    ],
+    "romanji": [
+      "watashi wa deetabeesu wo benkyou shita koto ga arimasu",
+      "watashi wa deetabeesu o benkyou shita koto ga arimasu"
+    ],
+    "meaning": "I have studied databases before",
+    "meaning_id": "Saya pernah belajar basis data",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはプログラミングをべんきょうしたことがあります",
+    "particles": [
+      3,
+      11,
+      21
+    ],
+    "romanji": [
+      "watashi wa puroguramingu wo benkyou shita koto ga arimasu",
+      "watashi wa puroguramingu o benkyou shita koto ga arimasu"
+    ],
+    "meaning": "I have studied programming before",
+    "meaning_id": "Saya pernah belajar pemrograman",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはセキュリティをべんきょうしたことがあります",
+    "particles": [
+      3,
+      10,
+      20
+    ],
+    "romanji": [
+      "watashi wa sekyuriti wo benkyou shita koto ga arimasu",
+      "watashi wa sekyuriti o benkyou shita koto ga arimasu"
+    ],
+    "meaning": "I have studied security before",
+    "meaning_id": "Saya pernah belajar keamanan",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはデザインをべんきょうしたことがあります",
+    "particles": [
+      3,
+      8,
+      18
+    ],
+    "romanji": [
+      "watashi wa dezain wo benkyou shita koto ga arimasu",
+      "watashi wa dezain o benkyou shita koto ga arimasu"
+    ],
+    "meaning": "I have studied design before",
+    "meaning_id": "Saya pernah belajar desain",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはネットワークをべんきょうしたことがあります",
+    "particles": [
+      3,
+      10,
+      20
+    ],
+    "romanji": [
+      "watashi wa nettowaaku wo benkyou shita koto ga arimasu",
+      "watashi wa nettowaaku o benkyou shita koto ga arimasu"
+    ],
+    "meaning": "I have studied networks before",
+    "meaning_id": "Saya pernah belajar jaringan",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはアプリをつくることができます",
+    "particles": [
+      3,
+      7,
+      13
+    ],
+    "romanji": [
+      "watashi wa apuri wo tsukuru koto ga dekimasu",
+      "watashi wa apuri o tsukuru koto ga dekimasu"
+    ],
+    "meaning": "I can make apps",
+    "meaning_id": "Saya bisa membuat aplikasi",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはコードを書くことができません",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "watashi wa koodo wo kaku koto ga dekimasen",
+      "watashi wa koodo o kaku koto ga dekimasen"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "I can't write code",
+    "meaning_id": "Saya tidak bisa menulis kode",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはしようしょを読むことができます",
+    "particles": [
+      3,
+      9,
+      14
+    ],
+    "romanji": [
+      "watashi wa shiyousho wo yomu koto ga dekimasu",
+      "watashi wa shiyousho o yomu koto ga dekimasu"
+    ],
+    "furigana": {
+      "10": "よ"
+    },
+    "meaning": "I can read specifications",
+    "meaning_id": "Saya bisa membaca spesifikasi",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはデータベースをつくることができません",
+    "particles": [
+      3,
+      10,
+      16
+    ],
+    "romanji": [
+      "watashi wa deetabeesu wo tsukuru koto ga dekimasen",
+      "watashi wa deetabeesu o tsukuru koto ga dekimasen"
+    ],
+    "meaning": "I can't build databases",
+    "meaning_id": "Saya tidak bisa membuat basis data",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはメールを書くことができません",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "watashi wa meeru wo kaku koto ga dekimasen",
+      "watashi wa meeru o kaku koto ga dekimasen"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "I can't write emails",
+    "meaning_id": "Saya tidak bisa menulis surel",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはウェブサイトをつくることができます",
+    "particles": [
+      3,
+      10,
+      16
+    ],
+    "romanji": [
+      "watashi wa webusaito wo tsukuru koto ga dekimasu",
+      "watashi wa webusaito o tsukuru koto ga dekimasu"
+    ],
+    "meaning": "I can make websites",
+    "meaning_id": "Saya bisa membuat situs web",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはしようしょを読むことができません",
+    "particles": [
+      3,
+      9,
+      14
+    ],
+    "romanji": [
+      "watashi wa shiyousho wo yomu koto ga dekimasen",
+      "watashi wa shiyousho o yomu koto ga dekimasen"
+    ],
+    "furigana": {
+      "10": "よ"
+    },
+    "meaning": "I can't read specifications",
+    "meaning_id": "Saya tidak bisa membaca spesifikasi",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはコードを書くことができます",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "watashi wa koodo wo kaku koto ga dekimasu",
+      "watashi wa koodo o kaku koto ga dekimasu"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "I can write code",
+    "meaning_id": "Saya bisa menulis kode",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはアプリをつくることができません",
+    "particles": [
+      3,
+      7,
+      13
+    ],
+    "romanji": [
+      "watashi wa apuri wo tsukuru koto ga dekimasen",
+      "watashi wa apuri o tsukuru koto ga dekimasen"
+    ],
+    "meaning": "I can't make apps",
+    "meaning_id": "Saya tidak bisa membuat aplikasi",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはメールを書くことができます",
+    "particles": [
+      3,
+      7,
+      12
+    ],
+    "romanji": [
+      "watashi wa meeru wo kaku koto ga dekimasu",
+      "watashi wa meeru o kaku koto ga dekimasu"
+    ],
+    "furigana": {
+      "8": "か"
+    },
+    "meaning": "I can write emails",
+    "meaning_id": "Saya bisa menulis surel",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはウェブサイトをつくることができません",
+    "particles": [
+      3,
+      10,
+      16
+    ],
+    "romanji": [
+      "watashi wa webusaito wo tsukuru koto ga dekimasen",
+      "watashi wa webusaito o tsukuru koto ga dekimasen"
+    ],
+    "meaning": "I can't make websites",
+    "meaning_id": "Saya tidak bisa membuat situs web",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
+  {
+    "jp_character": "わたしはデータベースをつくることができます",
+    "particles": [
+      3,
+      10,
+      16
+    ],
+    "romanji": [
+      "watashi wa deetabeesu wo tsukuru koto ga dekimasu",
+      "watashi wa deetabeesu o tsukuru koto ga dekimasu"
+    ],
+    "meaning": "I can build databases",
+    "meaning_id": "Saya bisa membuat basis data",
+    "jlpt": "N4",
+    "pattern": "verb",
+    "topic": "it"
+  },
 ];
