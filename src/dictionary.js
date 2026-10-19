@@ -1,5 +1,5 @@
 import { isKana, isRomaji, toHiragana, toKatakana } from 'wanakana';
-import { kanaCharacters } from './kanaCharacters.js';
+import { kanaCharacters, kanjiLevels } from './kanaCharacters.js';
 import { getListOfKanjiWords } from './practiceList.js';
 import { sentences } from './sentences.js';
 
@@ -8,7 +8,8 @@ import { sentences } from './sentences.js';
  *
  * Entry: { id, type: 'kana' | 'kanji' | 'word', jp, reading (kana, words
  * only when it differs from jp), romaji: [], meaning, meaningId, and
- * script / row / vowel (kana), level / onyomi / kunyomi / usage (kanji),
+ * script / row / vowel (kana), level / category (its theme, see
+ * getKanjiCategories) / onyomi / kunyomi / usage (kanji),
  * tags (words: their topics) }
  */
 let entries = null;
@@ -51,6 +52,7 @@ export function getDictionaryEntries() {
         meaning: character.meaning,
         meaningId: character.meaning_id,
         level: group.level,
+        category: group.themeTitle,
         onyomi: character.readings?.onyomi || [],
         kunyomi: character.readings?.kunyomi || [],
         usage: character.usage,
@@ -107,6 +109,15 @@ export function getWordTopics() {
     wordTopics = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([tag]) => tag);
   }
   return wordTopics;
+}
+
+// The kanji categories (the themes of src/data/kanji), easiest level first:
+// { title (what an entry's category is), title_id, level }. Only the ones of
+// `level` when given.
+export function getKanjiCategories(level = 'all') {
+  return kanjiLevels
+    .filter(item => level === 'all' || item.level === level)
+    .flatMap(item => item.categories.map(category => ({ title: category.title, title_id: category.title_id, level: item.level })));
 }
 
 // "days_of_week" -> "Days of week"

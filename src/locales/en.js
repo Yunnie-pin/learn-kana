@@ -75,6 +75,8 @@ export const en = {
   dictionaryLevel: 'JLPT level',
   dictionaryLevelAll: 'All levels',
   dictionaryTopicAll: 'All topics',
+  dictionaryCategory: 'Kanji category',
+  dictionaryCategoryAll: 'All categories',
   dictionaryWeakOnly: 'Needs practice',
   dictionaryEmptyWeak: 'Nothing below 80% mastery here. Well done!',
 

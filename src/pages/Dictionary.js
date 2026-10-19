@@ -14,6 +14,7 @@ import {
   getDictionaryEntries,
   getKanaTable,
   getSpellingSuggestions,
+  getKanjiCategories,
   getWordTopics,
   readSearchHistory,
   searchDictionary,
@@ -41,7 +42,7 @@ const TYPES = [
 const TYPE_LABELS = { kana: 'dictionaryKana', kanji: 'dictionaryKanji', word: 'dictionaryWords' };
 const LEVELS = ['all', 'N5', 'N4'];
 
-const DEFAULT_SEARCH = { query: '', type: 'all', level: 'all', topic: 'all', weakOnly: false };
+const DEFAULT_SEARCH = { query: '', type: 'all', level: 'all', category: 'all', topic: 'all', weakOnly: false };
 
 function readSearch() {
   try {
@@ -50,6 +51,7 @@ function readSearch() {
       query: typeof saved.query === 'string' ? saved.query : '',
       type: TYPES.some(option => option.value === saved.type) ? saved.type : 'all',
       level: LEVELS.includes(saved.level) ? saved.level : 'all',
+      category: getKanjiCategories().some(category => category.title === saved.category) ? saved.category : 'all',
       topic: saved.topic === 'all' || getWordTopics().includes(saved.topic) ? saved.topic : 'all',
       weakOnly: saved.weakOnly === true,
     };
@@ -218,10 +220,10 @@ function NoResults({ query, type, weakOnly, onSearch, onShowAll }) {
 }
 
 export default function Dictionary() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const [search, setSearch] = useState(readSearch);
-  const { query, type, level, topic, weakOnly } = search;
+  const { query, type, level, category, topic, weakOnly } = search;
   const [shown, setShown] = useState(PAGE_SIZE);
   const [detail, setDetail] = useState(null);
   const [history, setHistory] = useState(readSearchHistory);
@@ -242,9 +244,10 @@ export default function Dictionary() {
 
   const results = useMemo(() => searchDictionary(deferredQuery, type).filter(entry =>
     (type !== 'kanji' || level === 'all' || entry.level === level) &&
+    (type !== 'kanji' || category === 'all' || entry.category === category) &&
     (type !== 'word' || topic === 'all' || (entry.tags || []).includes(topic)) &&
     (!weakOnly || isWeak(entry))
-  ), [deferredQuery, type, level, topic, weakOnly, isWeak]);
+  ), [deferredQuery, type, level, category, topic, weakOnly, isWeak]);
 
   useEffect(() => {
     try {
@@ -273,6 +276,9 @@ export default function Dictionary() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
+  // A kanji category in the app's language; the English titles start with
+  // their level (N5 Numbers), already said by the group it is listed in
+  const categoryLabel = (item) => language === 'id' ? item.title_id : item.title.replace(/^N\d\s+/, '');
   const changeSearch = (changes) => {
     setSearch(previous => ({ ...previous, ...changes }));
     setShown(PAGE_SIZE);
@@ -307,7 +313,7 @@ export default function Dictionary() {
   const more = Math.min(PAGE_SIZE, results.length - shown);
   const practiced = results.slice(0, PRACTICE_LIMIT);
   const hasQuery = Boolean(deferredQuery.trim());
-  const filtered = hasQuery || weakOnly || (type === 'kanji' && level !== 'all') || (type === 'word' && topic !== 'all');
+  const filtered = hasQuery || weakOnly || (type === 'kanji' && (level !== 'all' || category !== 'all')) || (type === 'word' && topic !== 'all');
   const showHome = type === 'all' && !hasQuery && !weakOnly;
   const showKanaTables = type === 'kana' && !hasQuery && !weakOnly;
   const grouped = type === 'all' && !showHome;
@@ -380,9 +386,29 @@ export default function Dictionary() {
             </div>
             <div className='dictionary-subfilters'>
               {type === 'kanji' && (
-                <select value={level} onChange={(event) => changeSearch({ level: event.target.value })} aria-label={t('dictionaryLevel')}>
+                <select
+                  value={level}
+                  // A category of another level would show nothing: back to all of them
+                  onChange={(event) => changeSearch({
+                    level: event.target.value,
+                    ...(getKanjiCategories(event.target.value).some(item => item.title === category) ? {} : { category: 'all' }),
+                  })}
+                  aria-label={t('dictionaryLevel')}
+                >
                   {LEVELS.map(value => (
                     <option key={value} value={value}>{value === 'all' ? t('dictionaryLevelAll') : `JLPT ${value}`}</option>
+                  ))}
+                </select>
+              )}
+              {type === 'kanji' && (
+                <select value={category} onChange={(event) => changeSearch({ category: event.target.value })} aria-label={t('dictionaryCategory')}>
+                  <option value='all'>{t('dictionaryCategoryAll')}</option>
+                  {(level === 'all' ? LEVELS.slice(1) : [level]).map(value => (
+                    <optgroup key={value} label={`JLPT ${value}`}>
+                      {getKanjiCategories(value).map(item => (
+                        <option key={item.title} value={item.title}>{categoryLabel(item)}</option>
+                      ))}
+                    </optgroup>
                   ))}
                 </select>
               )}

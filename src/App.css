@@ -4346,9 +4346,13 @@ html[data-theme='dark'] .dictionary-entry {
   font-family: var(--ui-font);
   font-size: 0.95em;
   cursor: var(--cursor-pointer, pointer);
+  /* Long kanji categories stay within a phone screen */
+  max-width: 100%;
+  text-overflow: ellipsis;
 }
 
-.dictionary-subfilters option {
+.dictionary-subfilters option,
+.dictionary-subfilters optgroup {
   background: #155263;
 }
 

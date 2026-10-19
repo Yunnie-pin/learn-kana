@@ -4,7 +4,7 @@ import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { appRoutes } from './router';
 import { LanguageProvider } from './i18n';
 import { translate } from './i18n';
-import { kanaCharacters } from './kanaCharacters.js';
+import { kanaCharacters, kanjiLevels } from './kanaCharacters.js';
 import { sentences } from './sentences.js';
 import { getBunpouQuestions } from './bunpou.js';
 import { getListOfKanjiWords } from './practiceList.js';
@@ -941,6 +941,32 @@ describe('tabs', () => {
 
     fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'zzzqqq' } });
     expect(screen.getByText(translate('en', 'dictionaryEmpty'))).toBeInTheDocument();
+  });
+
+  test('the dictionary filters kanji by category, the categories of the level picked', async () => {
+    await open('/dictionary');
+    fireEvent.click(screen.getByRole('radio', { name: translate('en', 'dictionaryKanji') }));
+    const categorySelect = () => screen.getByRole('combobox', { name: translate('en', 'dictionaryCategory') });
+    const levelSelect = screen.getByRole('combobox', { name: translate('en', 'dictionaryLevel') });
+    const shownKanji = () => [...document.querySelectorAll('.dictionary-entry-character')].map(element => element.textContent);
+
+    // Every level's categories, until one level is picked
+    const n5 = kanjiLevels.find(item => item.level === 'N5');
+    const n4 = kanjiLevels.find(item => item.level === 'N4');
+    expect(within(categorySelect()).getAllByRole('option')).toHaveLength(1 + n5.categories.length + n4.categories.length);
+    fireEvent.change(levelSelect, { target: { value: 'N5' } });
+    expect(within(categorySelect()).getAllByRole('option')).toHaveLength(1 + n5.categories.length);
+    expect(within(categorySelect()).getByRole('option', { name: 'Numbers' })).toBeInTheDocument();
+
+    // Only the kanji of the category
+    const numbers = n5.categories.find(category => category.key === 'n5-numbers');
+    fireEvent.change(categorySelect(), { target: { value: numbers.title } });
+    expect(shownKanji().sort()).toEqual(numbers.kanji.map(entry => entry.jp_character).sort());
+
+    // Another level: its categories do not have that one, so all of them again
+    fireEvent.change(levelSelect, { target: { value: 'N4' } });
+    expect(categorySelect()).toHaveValue('all');
+    expect(shownKanji()).not.toContain('一');
   });
 
   test('the dictionary shows the meanings in Indonesian', async () => {

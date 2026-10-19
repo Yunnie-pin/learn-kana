@@ -74,6 +74,8 @@ export const id = {
   dictionaryLevel: 'Level JLPT',
   dictionaryLevelAll: 'Semua level',
   dictionaryTopicAll: 'Semua topik',
+  dictionaryCategory: 'Kategori kanji',
+  dictionaryCategoryAll: 'Semua kategori',
   dictionaryWeakOnly: 'Perlu dilatih',
   dictionaryEmptyWeak: 'Tidak ada yang di bawah 80% di sini. Bagus!',
 
