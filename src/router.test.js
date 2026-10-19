@@ -573,25 +573,46 @@ describe('kanji readings with kanji words', () => {
     expect(document.querySelector('#in-game-solution .kanji-word-reading')).toBeNull();
   });
 
-  test('the hint lists every kanji of the word with its meaning and readings', async () => {
+  test('the hint of a kanji word comes in steps: meanings, readings, then the romaji', async () => {
     localStorage.setItem('checkedKanas', JSON.stringify(kanjiGroups));
     localStorage.setItem('game-mode-practice', 'words');
     localStorage.setItem('game-mode-word', 'true');
     await open('/game');
     const word = getListOfKanjiWords(kanjiGroups).find(item => item.jp_character === displayed());
     const kanji = [...new Set([...word.jp_character])].filter(character => kanjiReadings[character]);
+    const first = Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters))
+      .find(entry => entry.jp_character === kanji[0]);
     const hint = document.querySelector('#in-game-kana-solution');
-    expect(hint).toHaveClass('hidden-element');
-    await act(async () => {
+    const askForHelp = () => act(async () => {
       fireEvent.keyDown(window, { key: '?' });
     });
+    expect(hint).toHaveClass('hidden-element');
+
+    // 1: every kanji with its meaning only
+    await askForHelp();
     expect(hint).not.toHaveClass('hidden-element');
     const blocks = [...hint.querySelectorAll('.kanji-word-reading')];
     expect(blocks.map(block => block.querySelector('.kanji-word-reading-character').textContent)).toEqual(kanji);
-    const first = Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters))
-      .find(entry => entry.jp_character === kanji[0]);
     expect(blocks[0].querySelector('.kanji-word-hint-meaning')).toHaveTextContent(first.meaning);
+    expect(hint.querySelector('.kanji-answer-reading-label')).toBeNull();
+    expect(hint.querySelector('.in-game-kana-solution-romaji')).toBeNull();
+
+    // 2: their on / kun readings
+    await askForHelp();
     expect(blocks[0]).toHaveTextContent(translate('en', 'kanjiOnShort'));
+    expect(blocks[0]).toHaveTextContent(translate('en', 'kanjiKuShort'));
+    expect(hint.querySelector('.in-game-kana-solution-romaji')).toBeNull();
+    // the reading the word uses stands out, or the word is said to be special
+    const { readingsUsedInWord } = require('./kanjiWordReadings.js');
+    if (readingsUsedInWord(word.jp_character, word.romanji)) {
+      expect(hint.querySelector('.kanji-reading-used')).toBeInTheDocument();
+    } else {
+      expect(hint).toHaveTextContent(translate('en', 'kanjiSpecialReading'));
+    }
+
+    // 3: the romaji of the word
+    await askForHelp();
+    expect(hint.querySelector('.in-game-kana-solution-romaji')).toHaveTextContent(word.romanji[0]);
   });
 });
 

@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { NavLink, useOutletContext } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { LANGUAGES, useLanguage } from '../i18n';
 import { ROUTES } from '../routes';
 import Icon from './Icon';
@@ -12,9 +12,8 @@ const NAVBAR_TABS = [
   { to: ROUTES.materi, icon: 'graduation-cap', label: 'tabMateri' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ theme, toggleTheme }) {
   const { language, setLanguage, t } = useLanguage();
-  const { theme, toggleTheme } = useOutletContext();
   const darkMode = theme === 'dark';
   const [aboutOpen, setAboutOpen] = useState(false);
   const closeAbout = useCallback(() => setAboutOpen(false), []);

@@ -1,6 +1,5 @@
 import React, { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import Icon from '../components/Icon';
 import { DictionaryEntry, KanaChip, WEAK_MASTERY } from '../components/DictionaryEntry';
 import DictionaryDetail from '../components/DictionaryDetail';
@@ -344,7 +343,6 @@ export default function Dictionary() {
 
   return (
     <>
-      <Navbar />
       <main className='dictionary-page'>
         <h1 id='dictionary-title'>{t('dictionaryTitle')}</h1>
         {/* Stays at the top while the results scroll */}

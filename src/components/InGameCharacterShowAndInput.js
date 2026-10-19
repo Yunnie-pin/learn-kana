@@ -6,6 +6,7 @@ import { toHiragana } from 'wanakana';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
+import { readingsUsedInWord } from '../kanjiWordReadings.js'
 import { getKanjiSrsProgress, getKanjiSrsStage, getNextReview, getSelectedKanjiGroupTitles, getSrsKanjiCharacters, getSrsSession, previewSrsIntervals, recordKanjiSrsAnswer, SRS_GRADES } from '../kanjiSrs.js'
 import { getCharacterOrder, getListForPractice, getListOfKanjiWords, getWordTopic, wordInTopic } from '../practiceList.js'
 import { findKanaForAnswer, getConfusionPairs, getMixupKana, getSimilarKana, MIXUP_PRACTICE_PAIRS, readConfusions, recordConfusion } from '../confusions.js'
@@ -23,6 +24,27 @@ const kanjiEntryByCharacter = new Map(
   Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters))
     .map(entry => [entry.jp_character, entry])
 );
+
+// The on'yomi and kun'yomi of a kanji in hiragana. `used` (from
+// readingsUsedInWord) marks the ones the shown word reads it with.
+function KanjiReadingLines({ readings, used, t }) {
+  return ['on', 'kun'].map(type => {
+    const list = type === 'on' ? readings.onyomi : readings.kunyomi;
+    return (
+      <span key={type}>
+        <span className='kanji-answer-reading-label'>{t(type === 'on' ? 'kanjiOnShort' : 'kanjiKuShort')}</span>
+        {list.length === 0 ? '—' : list.map((reading, index) => (
+          <React.Fragment key={reading}>
+            {index > 0 && ' ・ '}
+            {used && used[type].has(reading)
+              ? <strong className='kanji-reading-used'>{toHiragana(reading)}</strong>
+              : toHiragana(reading)}
+          </React.Fragment>
+        ))}
+      </span>
+    );
+  });
+}
 
 let fontClassList = [
   // "Belanosima",
@@ -325,6 +347,12 @@ export default function InGameCharacterShowAndInput() {
   // last step is a hint shown under the sentence, once per word
   const [sentenceHint, setSentenceHint] = useState(null);
   const sentenceHelpRef = useRef({ step: 0, hintWord: null });
+  // Help on a kanji word also comes in steps: the meaning of each kanji, then
+  // their readings, then the romaji (0 = no help asked yet). The ref holds the
+  // number of kanji of the shown word, for the keyboard handler set up once.
+  const [wordHintStep, setWordHintStep] = useState(0);
+  const wordHintStepRef = useRef(0);
+  const wordHintKanjiCountRef = useRef(0);
   const [onScreenKanjiUsage, setOnScreenKanjiUsage] = useState(null);
   const [isKanjiUsageQuestion, setIsKanjiUsageQuestion] = useState(false);
   const [onScreenSolution, setSolution] = useState('');
@@ -751,6 +779,8 @@ export default function InGameCharacterShowAndInput() {
     document.querySelector('#in-game-kana-solution')?.classList.add('hidden-element');
     document.querySelector('#in-game-kanji-usage')?.classList.add('hidden-element');
     document.querySelector('#in-game-solution')?.classList.add('hidden-element');
+    wordHintStepRef.current = 0;
+    setWordHintStep(0);
 
     // Get and show the current Kana using the weighted selection logic
     let pickedElement = isSrsPractice
@@ -874,6 +904,9 @@ export default function InGameCharacterShowAndInput() {
       charTextElement.setAttribute("data-word-wraped", "false");
     }
     setOnScreenKanjiUsage(pickedElement.type === 'kanji' ? pickedElement.usage : null);
+    wordHintKanjiCountRef.current = pickedElement.type === 'word'
+      ? new Set([...pickedElement.jp_character].filter(character => kanjiEntryByCharacter.has(character))).size
+      : 0;
     setIsKanjiUsageQuestion(Boolean(useKanjiUsageQuestion));
     // @ts-ignore
     const readings = Array.isArray(pickedElement.romanji) ? pickedElement.romanji : [pickedElement.romanji];
@@ -1805,9 +1838,15 @@ export default function InGameCharacterShowAndInput() {
       updateCurrentGameStats('askForHelp');
       return;
     }
-    if (document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
+    const solutionElement = document.querySelector('#in-game-kana-solution');
+    if (solutionElement.classList.contains("hidden-element")) {
       updateCurrentGameStats('askForHelp')
-      document.querySelector('#in-game-kana-solution').classList.remove("hidden-element")
+      solutionElement.classList.remove("hidden-element")
+    }
+    // Kanji words: every further ask shows one more step, up to the romaji
+    if (wordHintKanjiCountRef.current > 0 && wordHintStepRef.current < 3) {
+      wordHintStepRef.current++;
+      setWordHintStep(wordHintStepRef.current);
     }
   }
 
@@ -2141,6 +2180,14 @@ export default function InGameCharacterShowAndInput() {
     ? bunpouFormNote(sentenceQuestion.choice.correct, t)
     : null;
 
+  // The shown word has kanji: its help is given in steps (see handleUserAskForHelp)
+  const hasHintKanji = onScreenCharacterType === 'word' &&
+    [...onScreenKana].some(character => kanjiEntryByCharacter.has(character));
+  // Which reading of each kanji the word uses, marked in its readings
+  const wordReadingsUsed = onScreenCharacterType === 'word' && onScreenSolution
+    ? readingsUsedInWord(onScreenKana, onScreenSolution)
+    : null;
+
   return (
     <>
       <div className="in-game-top-var">
@@ -2373,49 +2420,44 @@ export default function InGameCharacterShowAndInput() {
                   {[...new Set([...onScreenKana])].filter(character => kanjiReadings[character]).map(character => (
                     <span key={character} className='kanji-answer-readings kanji-word-reading'>
                       <span className='kanji-word-reading-character'>{character}</span>
-                      <span>
-                        <span className='kanji-answer-reading-label'>{t('kanjiOnShort')}</span>
-                        {kanjiReadings[character].onyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
-                      </span>
-                      <span>
-                        <span className='kanji-answer-reading-label'>{t('kanjiKuShort')}</span>
-                        {kanjiReadings[character].kunyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
-                      </span>
+                      <KanjiReadingLines readings={kanjiReadings[character]} used={wordReadingsUsed?.get(character)} t={t} />
                     </span>
                   ))}
+                  {!wordReadingsUsed && <span className='kanji-word-special-reading'>{t('kanjiSpecialReading')}</span>}
                 </span>
               )}
           </div>
           <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
             {/* Sentence help reveals furigana instead of the romaji reading */}
-            {onScreenCharacterType !== 'long' &&
-              (Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution)}
-            {/* Kanji words: the kanji they are made of, each with its meaning and readings */}
-            {onScreenCharacterType === 'word' &&
-              [...onScreenKana].some(character => kanjiEntryByCharacter.has(character)) && (
+            {/* Kanji words keep the romaji for the last step of help */}
+            {onScreenCharacterType !== 'long' && (!hasHintKanji || wordHintStep >= 3) && (
+              <span className='in-game-kana-solution-romaji'>
+                {Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution}
+              </span>
+            )}
+            {/* Kanji words: the kanji they are made of, each with its meaning, then its readings */}
+            {hasHintKanji && (
                 <span className='kanji-word-readings kanji-word-hint'>
                   {[...new Set([...onScreenKana])].filter(character => kanjiEntryByCharacter.has(character)).map(character => {
                     const entry = kanjiEntryByCharacter.get(character);
                     const readings = kanjiReadings[character];
                     return (
                       <span key={character} className='kanji-answer-readings kanji-word-reading'>
-                        <span className='kanji-word-reading-character'>{character}</span>
-                        <span className='kanji-word-hint-meaning'>{language === 'id' && entry.meaning_id ? entry.meaning_id : entry.meaning}</span>
-                        {readings && (
-                          <>
-                            <span>
-                              <span className='kanji-answer-reading-label'>{t('kanjiOnShort')}</span>
-                              {readings.onyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
-                            </span>
-                            <span>
-                              <span className='kanji-answer-reading-label'>{t('kanjiKuShort')}</span>
-                              {readings.kunyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
-                            </span>
-                          </>
+                        <span className='kanji-word-hint-head'>
+                          <span className='kanji-word-reading-character'>{character}</span>
+                          <span className='kanji-word-hint-meaning'>{language === 'id' && entry.meaning_id ? entry.meaning_id : entry.meaning}</span>
+                        </span>
+                        {readings && wordHintStep >= 2 && (
+                          <span className='kanji-word-hint-readings'>
+                            <KanjiReadingLines readings={readings} used={wordReadingsUsed?.get(character)} t={t} />
+                          </span>
                         )}
                       </span>
                     );
                   })}
+                  {wordHintStep >= 2 && !wordReadingsUsed && (
+                    <span className='kanji-word-special-reading'>{t('kanjiSpecialReading')}</span>
+                  )}
                 </span>
               )}
           </div>

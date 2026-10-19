@@ -596,8 +596,60 @@ html.in-game-scroll-lock body {
 }
 
 /* Hint of a kanji word: the meaning of each kanji, next to its readings */
+.kanji-word-hint-head {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+
+.kanji-word-hint-readings {
+  display: contents;
+}
+
 .kanji-word-hint-meaning {
   color: var(--text-muted);
+}
+
+/* The reading the word uses, among the readings of its kanji */
+.kanji-reading-used {
+  color: var(--text-strong);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.kanji-word-special-reading {
+  margin-top: 0.3em;
+  font-size: 0.4em;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* Phones: each kanji is a small card (kanji and meaning, its readings under
+   them), two side by side, and a long word scrolls instead of pushing the
+   answer field off the screen */
+@media (max-width: 655px) {
+  .kanji-word-hint {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9.5em, 1fr));
+    gap: 0.3em;
+    max-height: 30vh;
+    overflow-y: auto;
+    font-size: 0.85em;
+  }
+
+  .kanji-word-hint .kanji-word-reading {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1em;
+    margin-top: 0;
+    padding: 0.3em 0.4em;
+    border-radius: 0.5em;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .kanji-word-hint .kanji-word-special-reading {
+    grid-column: 1 / -1;
+  }
 }
 
 .in-game-kanji-usage {

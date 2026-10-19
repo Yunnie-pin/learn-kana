@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Navbar from '../components/Navbar';
 import { useLanguage } from '../i18n';
 import { getBunpouLessons, getParticleLessons } from '../materi';
 
@@ -62,7 +61,6 @@ export default function Materi() {
 
   return (
     <>
-      <Navbar />
       <main className='materi-page'>
         <h1 id='materi-title'>{t('materiTitle')}</h1>
         {/* The section filter stays at the top while the lessons scroll */}

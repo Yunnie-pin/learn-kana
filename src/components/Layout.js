@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { trackPageView } from '../analytics';
 import { useLanguage } from '../i18n';
 import { ROUTES } from '../routes';
+import Navbar from './Navbar';
 
 // The <meta> tag with this name, created when index.html has none
 function metaTag(name) {
@@ -61,8 +62,12 @@ export default function Layout() {
         setTheme(nextTheme);
     };
 
-    return <Outlet context={{
-        theme,
-        toggleTheme,
-    }} />;
+    // One navbar for the tabbed pages, kept mounted while switching tabs
+    const hasNavbar = [ROUTES.menu, ROUTES.dictionary, ROUTES.materi].includes(location.pathname);
+    return (
+        <>
+            {hasNavbar && <Navbar theme={theme} toggleTheme={toggleTheme} />}
+            <Outlet />
+        </>
+    );
 }
