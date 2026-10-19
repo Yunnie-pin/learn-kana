@@ -302,7 +302,8 @@ export default function GameModeSelector(props) {
             ]}
           />
         )}
-        {/* Words and mixed: all the words, or only the IT and workplace ones */}
+        {/* Words and mixed: every word, only the everyday ones, or only the
+            IT and workplace ones (same topics as the sentences) */}
         {(practice === 'words' || practice === 'mixed') && (
           <SegmentedControl
             className='word-topic-row'
@@ -310,8 +311,9 @@ export default function GameModeSelector(props) {
             value={wordTopic}
             onChange={setWordTopic}
             options={[
-              { value: 'all', label: t('wordTopicAll'), icon: 'book-open' },
+              { value: 'general', label: t('sentenceTopicGeneral'), icon: 'book-open' },
               { value: 'it', label: t('wordTopicIt'), icon: 'keyboard' },
+              { value: 'all', label: t('wordTopicAll'), icon: 'languages' },
             ]}
           />
         )}
