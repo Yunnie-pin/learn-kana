@@ -872,7 +872,7 @@ describe('tabs', () => {
       fireEvent.click(materi);
     });
     expect(path()).toBe('/materi');
-    expect(materi).toHaveAttribute('aria-current', 'page');
+    expect(screen.getByRole('link', { name: translate('en', 'tabMateri') })).toHaveAttribute('aria-current', 'page');
     expect(document.title).toBe(translate('en', 'seoTitleMateri'));
     expect(document.querySelector('meta[name="robots"]').content).toBe('index, follow');
 
