@@ -9,6 +9,7 @@ import AboutDialog, { GitHubMark } from './AboutDialog';
 const NAVBAR_TABS = [
   { to: ROUTES.menu, icon: 'gamepad', label: 'tabGames' },
   { to: ROUTES.dictionary, icon: 'book-open', label: 'tabDictionary' },
+  { to: ROUTES.materi, icon: 'graduation-cap', label: 'tabMateri' },
 ];
 
 export default function Navbar() {
@@ -48,7 +49,7 @@ export default function Navbar() {
         <div className='navbar-brand'>
           <span className='navbar-title'>日本語</span>
         </div>
-        {/* The app's tabs: the practice menu (Games) and the Dictionary */}
+        {/* The app's tabs: the practice menu (Games), the Dictionary and the Materials */}
         <div className='segmented-control navbar-tabs' aria-label={t('navbarTabs')}>
           {NAVBAR_TABS.map(tab => (
             <NavLink

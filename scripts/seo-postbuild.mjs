@@ -50,8 +50,8 @@ export function addSiteUrl(html, siteUrl) {
     .replace('"@type": "WebApplication",', `"@type": "WebApplication", "url": ${JSON.stringify(siteUrl)}, "image": ${JSON.stringify(image)},`);
 }
 
-// The indexed pages: the Games tab (menu) and the Dictionary tab (src/routes.js)
-const SITEMAP_PATHS = ['', 'dictionary'];
+// The indexed pages: the Games tab (menu), the Dictionary and the Materials tabs (src/routes.js)
+const SITEMAP_PATHS = ['', 'dictionary', 'materi'];
 
 export function sitemap(siteUrl, date = new Date()) {
   const lastmod = date.toISOString().slice(0, 10);

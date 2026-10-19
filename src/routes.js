@@ -12,6 +12,8 @@ export const ROUTES = {
   game: '/game',
   // The Dictionary tab: every kana, kanji and word the app teaches
   dictionary: '/dictionary',
+  // The Materials tab: the particle and grammar (bunpou) lessons
+  materi: '/materi',
 };
 
 // Old addresses, still opened from bookmarks and installed apps: the game

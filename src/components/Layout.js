@@ -33,18 +33,20 @@ export default function Layout() {
         trackPageView(location.pathname);
     }, [location]);
 
-    // Title and description of the page in the app's language. Only the menu
-    // and the dictionary are worth finding in search results: the game screen
-    // and unknown addresses ask search engines not to index them.
+    // Title and description of the page in the app's language. Only the menu,
+    // the Dictionary and the Materials are worth finding in search results: the
+    // game screen and unknown addresses ask search engines not to index them.
     const { t } = useLanguage();
     useEffect(() => {
         const page = location.pathname === ROUTES.menu ? 'menu'
             : location.pathname === ROUTES.game ? 'game'
             : location.pathname === ROUTES.dictionary ? 'dictionary'
+            : location.pathname === ROUTES.materi ? 'materi'
             : 'notFound';
-        document.title = t({ menu: 'seoTitleMenu', game: 'seoTitleGame', dictionary: 'seoTitleDictionary', notFound: 'seoTitleNotFound' }[page]);
-        metaTag('description').content = t(page === 'dictionary' ? 'seoDescriptionDictionary' : 'seoDescription');
-        metaTag('robots').content = ['menu', 'dictionary'].includes(page) ? 'index, follow' : 'noindex, follow';
+        document.title = t({ menu: 'seoTitleMenu', game: 'seoTitleGame', dictionary: 'seoTitleDictionary', materi: 'seoTitleMateri', notFound: 'seoTitleNotFound' }[page]);
+        const description = { dictionary: 'seoDescriptionDictionary', materi: 'seoDescriptionMateri' }[page] || 'seoDescription';
+        metaTag('description').content = t(description);
+        metaTag('robots').content = ['menu', 'dictionary', 'materi'].includes(page) ? 'index, follow' : 'noindex, follow';
     }, [location.pathname, t]);
 
     useLayoutEffect(() => {
