@@ -6,9 +6,8 @@ import { toHiragana } from 'wanakana';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences, getSentenceOptions } from '../sentences.js'
 import { kanjiReadings } from '../kanjiReadings.js'
-import { readingsUsedInWord } from '../kanjiWordReadings.js'
 import { getKanjiSrsProgress, getKanjiSrsStage, getNextReview, getSelectedKanjiGroupTitles, getSrsKanjiCharacters, getSrsSession, previewSrsIntervals, recordKanjiSrsAnswer, SRS_GRADES } from '../kanjiSrs.js'
-import { getCharacterOrder, getListForPractice, getListOfKanjiWords, getWordTopic, wordInTopic } from '../practiceList.js'
+import { getCharacterOrder, getListForPractice } from '../practiceList.js'
 import { findKanaForAnswer, getConfusionPairs, getMixupKana, getSimilarKana, MIXUP_PRACTICE_PAIRS, readConfusions, recordConfusion } from '../confusions.js'
 import { chooseTouchOptions } from '../touchAnswers.js'
 import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
@@ -16,36 +15,12 @@ import { createSentenceQuestion } from '../sentenceMatching.js'
 import { bunpouFormNote, createBunpouQuestion, getBunpouOptions, getBunpouQuestions } from '../bunpou.js'
 import { particleRoleOf, sentenceBreakdown } from '../sentenceGlossary.js'
 import Icon from './Icon.js'
+import { KanjiAnswerReadings, KanjiReadingColumns, KanjiReadingLines, KanjiWordHint, KanjiWordReadings, kanjiOfWord } from './game/KanjiBreakdown.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
 import { readUserStats, writeUserStats, readSelectedGroups } from '../storage.js';
-
-// Every kanji entry by its character: the hint of a kanji word lists them
-const kanjiEntryByCharacter = new Map(
-  Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters))
-    .map(entry => [entry.jp_character, entry])
-);
-
-// The on'yomi and kun'yomi of a kanji in hiragana. `used` (from
-// readingsUsedInWord) marks the ones the shown word reads it with.
-function KanjiReadingLines({ readings, used, t }) {
-  return ['on', 'kun'].map(type => {
-    const list = type === 'on' ? readings.onyomi : readings.kunyomi;
-    return (
-      <span key={type}>
-        <span className='kanji-answer-reading-label'>{t(type === 'on' ? 'kanjiOnShort' : 'kanjiKuShort')}</span>
-        {list.length === 0 ? '—' : list.map((reading, index) => (
-          <React.Fragment key={reading}>
-            {index > 0 && ' ・ '}
-            {used && used[type].has(reading)
-              ? <strong className='kanji-reading-used'>{toHiragana(reading)}</strong>
-              : toHiragana(reading)}
-          </React.Fragment>
-        ))}
-      </span>
-    );
-  });
-}
+import { selectNextCharacter } from '../game/selectNextCharacter.js';
+import { recordGuess, recordShown, resetCurrentGameStats } from '../game/userStatsUpdates.js';
 
 let fontClassList = [
   // "Belanosima",
@@ -61,49 +36,7 @@ let fontClassList = [
   "YujiBoku",
 ]
 
-/* userStats object structure:
-{
-    "あ": {
-        "totalTimesShown": 10, // New: Total times this character has been shown
-        "totalRightGuesses": 6,
-        "totalWrongGuesses": 1, // Changed from totalTouchWrongGuesses
-        "totalWrongSubmissions": 2, // New: Total wrong complete submissions (keyboard mode)
-        "totalEditCount": 15, // New: Total backspace/delete key presses
-        "totaltotalResponseTime": 2.36, // Sum of response times for correct guesses
-        "totalAskForHelpCounter": 3,
-        "currentGameStats": { // Stats for the current session/game
-          "rightGuesses":1,
-          "wrongGuesses":0, // Changed from touchWrongGuesses
-          "wrongSubmissions":0, // New: Wrong complete submissions this session
-          "editCount":3, // New: Backspace/delete presses this session
-          "totalResponseTime":1.33,
-          "askForHelpCounter":0
-        },
-        "dailyPerformance": [ // New: Array to store daily performance metrics
-            {
-                "date": 1678886400000, // Timestamp for the day (e.g., midnight UTC)
-                "rightGuesses": 3,
-                "wrongGuesses": 1,
-                "wrongSubmissions": 2, // New: Wrong complete submissions this day
-                "editCount": 8, // New: Backspace/delete presses this day
-                "askForHelpCounter": 1,
-                "responseTimeSum": 1.45 // Sum of response times for correct guesses this day
-            }
-
-            // ... more entries for other days
-        ],
-        "last7DaysStats": [ // Potentially deprecated or to be phased out in favor of dailyPerformance
-            {
-                "date": 12379898722,
-                "rightGuesses": 3,
-                "wrongGuesses": 1, // Changed from TouchwrongGuesses
-                "totalResponseTime": 1.45,
-                "askForHelpCounter": 1
-            }
-        ]
-    }
-}
-*/
+// userStats: see game/userStatsUpdates.js
 // This timer is set to current time when a new kana is showned. 
 // We use it to calculate how long it takes the user to respond.
 let kanaTimeToAnswerTimer = 0;
@@ -115,192 +48,6 @@ function normalizeAnswer(answer) {
     .toLowerCase()
     .replace(/[\u200B-\u200D\uFEFF]/g, '')
     .replace(/[\s-]/g, '');
-}
-
-// previous: the character shown right before, never shown twice in a row
-// when there is anything else to show
-async function selectNextCharacter(charactersToShow, previous = null) {
-  let userStats = readUserStats();
-  let weightedCharacters = [];
-  const baseWeight = 50;
-
-  const thirtyDaysAgo = new Date();
-  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-  thirtyDaysAgo.setHours(0, 0, 0, 0);
-  const thirtyDaysAgoTimestamp = thirtyDaysAgo.getTime();
-
-  // First pass: collect performance metrics for all characters
-  let characterMetrics = [];
-
-  for (const character of charactersToShow) {
-    const stats = userStats[character.jp_character];
-    let errorRate = 0;
-    let avgResponseTime = 0;
-    let avgEditCount = 0;
-    let wrongSubmissionRate = 0;
-    let hasData = false;
-
-    if (stats && stats.dailyPerformance && stats.dailyPerformance.length > 0) {
-      let recentRightGuesses = 0;
-      let recentWrongGuesses = 0;
-      let recentAskForHelpCounter = 0;
-      let recentResponseTimeSum = 0;
-      let recentEditCount = 0;
-      let recentWrongSubmissions = 0;
-
-      stats.dailyPerformance.forEach(daily => {
-        if (daily.date >= thirtyDaysAgoTimestamp) {
-          recentRightGuesses += daily.rightGuesses || 0;
-          recentWrongGuesses += daily.wrongGuesses || 0;
-          recentAskForHelpCounter += daily.askForHelpCounter || 0;
-          recentResponseTimeSum += daily.responseTimeSum || 0;
-          recentEditCount += daily.editCount || 0;
-          recentWrongSubmissions += daily.wrongSubmissions || 0;
-        }
-      });
-
-      const totalAttempts = recentRightGuesses + recentWrongGuesses + recentAskForHelpCounter;
-
-      if (totalAttempts > 0) {
-        // Sentences take longer and get more edits the longer they are: compare
-        // them per 10 typed letters, so long sentences aren't picked just for
-        // being long
-        const lengthFactor = character.type === 'long'
-          ? 10 / Math.max(1, String([].concat(character.romanji)[0] || '').replace(/ /g, '').length)
-          : 1;
-        errorRate = (recentWrongGuesses + recentAskForHelpCounter) / totalAttempts;
-        avgResponseTime = recentRightGuesses > 0 ? recentResponseTimeSum / recentRightGuesses * lengthFactor : 0;
-        avgEditCount = recentRightGuesses > 0 ? recentEditCount / recentRightGuesses * lengthFactor : 0;
-        wrongSubmissionRate = totalAttempts > 0 ? recentWrongSubmissions / totalAttempts : 0;
-        hasData = true;
-      }
-    }
-
-    characterMetrics.push({
-      character,
-      errorRate,
-      avgResponseTime,
-      avgEditCount,
-      wrongSubmissionRate,
-      hasData
-    });
-  }
-
-  // Calculate median values for characters with data
-  const charsWithData = characterMetrics.filter(m => m.hasData);
-
-  let medianErrorRate = 0;
-  let medianResponseTime = 0;
-  let medianEditCount = 0;
-  let medianWrongSubmissionRate = 0;
-
-  if (charsWithData.length > 0) {
-    const sortedByError = [...charsWithData].sort((a, b) => a.errorRate - b.errorRate);
-    const sortedByTime = [...charsWithData].sort((a, b) => a.avgResponseTime - b.avgResponseTime);
-    const sortedByEdits = [...charsWithData].sort((a, b) => a.avgEditCount - b.avgEditCount);
-    const sortedByWrongSub = [...charsWithData].sort((a, b) => a.wrongSubmissionRate - b.wrongSubmissionRate);
-
-    const midPoint = Math.floor(sortedByError.length / 2);
-    medianErrorRate = sortedByError.length % 2 === 0
-      ? (sortedByError[midPoint - 1].errorRate + sortedByError[midPoint].errorRate) / 2
-      : sortedByError[midPoint].errorRate;
-
-    medianResponseTime = sortedByTime.length % 2 === 0
-      ? (sortedByTime[midPoint - 1].avgResponseTime + sortedByTime[midPoint].avgResponseTime) / 2
-      : sortedByTime[midPoint].avgResponseTime;
-
-    medianEditCount = sortedByEdits.length % 2 === 0
-      ? (sortedByEdits[midPoint - 1].avgEditCount + sortedByEdits[midPoint].avgEditCount) / 2
-      : sortedByEdits[midPoint].avgEditCount;
-
-    medianWrongSubmissionRate = sortedByWrongSub.length % 2 === 0
-      ? (sortedByWrongSub[midPoint - 1].wrongSubmissionRate + sortedByWrongSub[midPoint].wrongSubmissionRate) / 2
-      : sortedByWrongSub[midPoint].wrongSubmissionRate;
-  }
-
-  // Second pass: assign weights based on comparison to median
-  for (const metric of characterMetrics) {
-    let weight = baseWeight;
-
-    if (metric.hasData) {
-      // Calculate how much worse than median this character is
-      const errorDiff = metric.errorRate - medianErrorRate;
-      const timeDiff = metric.avgResponseTime - medianResponseTime;
-      const editDiff = metric.avgEditCount - medianEditCount;
-      const wrongSubDiff = metric.wrongSubmissionRate - medianWrongSubmissionRate;
-
-      // Characters worse than median get more weight
-      if (errorDiff > 0) {
-        // Error rate above median: increase weight significantly
-        weight += errorDiff * 150;
-      }
-
-      if (timeDiff > 0 && medianResponseTime > 0) {
-        // Response time above median: increase weight
-        weight += (timeDiff / 1000) * 20;
-      }
-
-      if (editDiff > 0) {
-        // More edits than median indicates uncertainty
-        weight += editDiff * 10;
-      }
-
-      if (wrongSubDiff > 0) {
-        // More wrong submissions than median indicates confusion
-        weight += wrongSubDiff * 120;
-      }
-
-      // Characters better than median get reduced weight
-      if (errorDiff < 0) {
-        weight += errorDiff * 100; // Reduces weight for low error rates
-      }
-
-      if (timeDiff < 0 && medianResponseTime > 0) {
-        weight += (timeDiff / 1000) * 10; // Reduces weight for fast responses
-      }
-
-      if (editDiff < 0) {
-        weight += editDiff * 5; // Slight reduction for low edits
-      }
-
-      if (wrongSubDiff < 0) {
-        weight += wrongSubDiff * 60; // Reduction for low wrong submissions
-      }
-
-    } else {
-      // No data: give slightly higher weight to encourage learning new characters
-      weight = baseWeight * 1.3;
-    }
-
-    weight = Math.max(5, weight); // Ensure minimum weight
-    if (previous !== null && metric.character.jp_character === previous && charactersToShow.length > 1) {
-      weight = 0;
-    }
-    weightedCharacters.push({ ...metric.character, weight });
-  }
-
-  // Weighted random selection
-  let totalWeight = weightedCharacters.reduce((sum, char) => sum + char.weight, 0);
-
-  // Handle cases where all weights are zero (e.g., initial state or after filtering)
-  // In such a scenario, pick a character completely at random.
-  if (totalWeight === 0) {
-    const randomIndex = Math.floor(Math.random() * charactersToShow.length);
-    return charactersToShow[randomIndex];
-  }
-
-  let randomNum = Math.random() * totalWeight;
-  let accumulatedWeight = 0;
-
-  for (const char of weightedCharacters) {
-    accumulatedWeight += char.weight;
-    if (char.weight > 0 && randomNum <= accumulatedWeight) {
-      return char;
-    }
-  }
-
-  // Fallback in case something goes wrong (should ideally not be reached)
-  return charactersToShow[Math.floor(Math.random() * charactersToShow.length)];
 }
 
 export default function InGameCharacterShowAndInput() {
@@ -455,7 +202,7 @@ export default function InGameCharacterShowAndInput() {
   let charactersToShow = useMemo(
     () => isSrsPractice
       ? [...srsSession.due, ...srsSession.fresh]
-      : getListForPractice(characterGroupsToShow, practiceMode),
+      : getGameList(characterGroupsToShow, practiceMode),
     [isSrsPractice, srsSession, characterGroupsToShow, practiceMode]
   );
   if (isSrsPractice && srsQueueRef.current === null) {
@@ -490,7 +237,7 @@ export default function InGameCharacterShowAndInput() {
       // Restore original list
       charactersToShow = isSrsPractice
         ? getSrsKanjiCharacters(getSelectedKanjiGroupTitles()).due
-        : getListForPractice(characterGroupsToShow, practiceMode);
+        : getGameList(characterGroupsToShow, practiceMode);
     }
   }
 
@@ -517,59 +264,6 @@ export default function InGameCharacterShowAndInput() {
   }
 
 
-  function getListOfKanas(charGroups) {
-    let output = []
-    const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
-    Object.entries(kanaCharacters).forEach(([categoryKey, category]) => {
-      if (categoryKey === 'words') return;
-      Object.entries(category).forEach(([groupKey, charGroup]) => {
-        if (!charGroup || !charGroup.title || !selectedGroups.includes(charGroup.title)) return;
-        Object.entries(charGroup.characters).forEach(([charKey, char]) => {
-          if (!char || typeof char !== 'object') return;
-          const normalizedChar = { ...char };
-          if (categoryKey === 'kanji') {
-            normalizedChar.type = 'kanji';
-          } else {
-            normalizedChar.vocal = normalizedChar.vocal || charKey;
-            normalizedChar.type = 'kana';
-          }
-          output.push(normalizedChar);
-        });
-      });
-    });
-    return output;
-  }
-
-  function getListOfWords(charGroups) {
-    let output = []
-    const selectedGroups = Array.isArray(charGroups) ? charGroups : [];
-    // Only the words of the topic picked in the menu (e.g. IT words)
-    const wordTopic = getWordTopic();
-    Object.entries(kanaCharacters.words).forEach(([key, value]) => {
-      let ignoreWord = !wordInTopic(value, wordTopic);
-      for (let i = 0; i < value.hiragana_groups.length; i++) {
-        if (!selectedGroups.includes(value.hiragana_groups[i])) {
-          ignoreWord = true;
-        }
-      }
-      for (let i = 0; i < value.katakana_groups.length; i++) {
-        if (!selectedGroups.includes(value.katakana_groups[i])) {
-          ignoreWord = true;
-        }
-      }
-      if (!ignoreWord) {
-        output.push({
-          "jp_character": value.jp_character,
-          "romanji": value.romanji,
-          "sound": value.sound,
-          "meaning": value.meaning,
-          "type": "word",
-        })
-      }
-    })
-    return output;
-  }
-
   // Sentence practice: real beginner sentences, each one typed as a single
   // romaji answer. Only sentences the player can read with the selected
   // hiragana / katakana / kanji groups are shown, and the meaning is
@@ -586,19 +280,12 @@ export default function InGameCharacterShowAndInput() {
     }));
   }
 
-  function getListForPractice(charGroups, mode) {
-    const characters = getListOfKanas(charGroups);
-    // Kana words, plus the kanji vocabulary of the selected kanji groups
-    // (not in the IT topic: those words have no topic)
-    const kanjiWords = getListOfKanjiWords(charGroups).filter(word => wordInTopic(word));
-    if (mode === 'mixed') {
-      return [...characters, ...getListOfWords(charGroups), ...kanjiWords];
-    }
-    if (mode === 'words') return [...getListOfWords(charGroups), ...kanjiWords];
+  // Characters, words and mixed games share their list with the Learning
+  // Progress window (practiceList.js); sentences and grammar have their own
+  function getGameList(charGroups, mode) {
     if (mode === 'long') return getListOfSentences(charGroups);
     if (mode === 'bunpou') return getBunpouQuestions(charGroups);
-    // "characters": every selected kana and kanji group
-    return characters;
+    return getListForPractice(charGroups, mode);
   }
 
   /*
@@ -617,19 +304,7 @@ export default function InGameCharacterShowAndInput() {
   }
 
   function resetCurentGameStats() {
-    let currentUserStats = readUserStats();
-    for (const kana in currentUserStats) {
-      if (currentUserStats[kana].currentGameStats === undefined) {
-        currentUserStats[kana].currentGameStats = {}
-      }
-      currentUserStats[kana].currentGameStats.rightGuesses = 0;
-      currentUserStats[kana].currentGameStats.wrongGuesses = 0;
-      currentUserStats[kana].currentGameStats.wrongSubmissions = 0;
-      currentUserStats[kana].currentGameStats.editCount = 0;
-      currentUserStats[kana].currentGameStats.totalResponseTime = 0;
-      currentUserStats[kana].currentGameStats.askForHelpCounter = 0;
-    }
-    writeUserStats(currentUserStats);
+    writeUserStats(resetCurrentGameStats(readUserStats()));
   }
 
   function updateCurrentGameStats(guessType) {
@@ -638,118 +313,8 @@ export default function InGameCharacterShowAndInput() {
     } else if (guessType === "wrong" || guessType === "askForHelp") {
       setStreak(0);
     }
-    const currentTime = Date.now();
-    let currentUserStats = readUserStats();
-    const character = inGameKanaOnScreen;
-
-    // Initialize stats for the character if it's new
-    if (!currentUserStats[character]) {
-      currentUserStats[character] = {
-        totalTimesShown: 0,
-        totalRightGuesses: 0,
-        totalWrongGuesses: 0,
-        totalWrongSubmissions: 0,
-        totalEditCount: 0,
-        totaltotalResponseTime: 0,
-        totalAskForHelpCounter: 0,
-        currentGameStats: { rightGuesses: 0, wrongGuesses: 0, wrongSubmissions: 0, editCount: 0, totalResponseTime: 0, askForHelpCounter: 0 },
-        dailyPerformance: [],
-        // last7DaysStats: [], // Retain if needed for other purposes, or phase out
-      };
-    } else {
-      // Handle migration from totalTouchWrongGuesses to totalWrongGuesses
-      if (currentUserStats[character].hasOwnProperty('totalTouchWrongGuesses')) {
-        currentUserStats[character].totalWrongGuesses = currentUserStats[character].totalTouchWrongGuesses;
-        delete currentUserStats[character].totalTouchWrongGuesses;
-      }
-      if (currentUserStats[character].currentGameStats && currentUserStats[character].currentGameStats.hasOwnProperty('touchWrongGuesses')) {
-        currentUserStats[character].currentGameStats.wrongGuesses = currentUserStats[character].currentGameStats.touchWrongGuesses;
-        delete currentUserStats[character].currentGameStats.touchWrongGuesses;
-      }
-      // Initialize new fields if they don't exist
-      if (!currentUserStats[character].hasOwnProperty('totalWrongSubmissions')) {
-        currentUserStats[character].totalWrongSubmissions = 0;
-      }
-      if (!currentUserStats[character].hasOwnProperty('totalEditCount')) {
-        currentUserStats[character].totalEditCount = 0;
-      }
-    }
-
-    // Ensure currentGameStats exists
-    if (!currentUserStats[character].currentGameStats) {
-        currentUserStats[character].currentGameStats = { rightGuesses: 0, wrongGuesses: 0, wrongSubmissions: 0, editCount: 0, totalResponseTime: 0, askForHelpCounter: 0 };
-    }
-    // Ensure new fields exist in currentGameStats
-    if (!currentUserStats[character].currentGameStats.hasOwnProperty('wrongSubmissions')) {
-      currentUserStats[character].currentGameStats.wrongSubmissions = 0;
-    }
-    if (!currentUserStats[character].currentGameStats.hasOwnProperty('editCount')) {
-      currentUserStats[character].currentGameStats.editCount = 0;
-    }
-     // Ensure dailyPerformance array exists
-    if (!currentUserStats[character].dailyPerformance) {
-        currentUserStats[character].dailyPerformance = [];
-    }
-
-    // Update currentGameStats
-    if (guessType === "correct") {
-      let responseTime = currentTime - kanaTimeToAnswerTimer;
-      responseTime = Math.min(responseTime, 10000); // Cap response time at 10 seconds
-      currentUserStats[character].currentGameStats.totalResponseTime += responseTime;
-      currentUserStats[character].currentGameStats.rightGuesses++;
-      // Update overall totals
-      currentUserStats[character].totalRightGuesses = (currentUserStats[character].totalRightGuesses || 0) + 1;
-      currentUserStats[character].totaltotalResponseTime = (currentUserStats[character].totaltotalResponseTime || 0) + responseTime;
-    } else if (guessType === "wrong") {
-      currentUserStats[character].currentGameStats.wrongGuesses++;
-      currentUserStats[character].totalWrongGuesses = (currentUserStats[character].totalWrongGuesses || 0) + 1;
-    } else if (guessType === "wrongSubmission") {
-      currentUserStats[character].currentGameStats.wrongSubmissions++;
-      currentUserStats[character].totalWrongSubmissions = (currentUserStats[character].totalWrongSubmissions || 0) + 1;
-    } else if (guessType === "edit") {
-      currentUserStats[character].currentGameStats.editCount++;
-      currentUserStats[character].totalEditCount = (currentUserStats[character].totalEditCount || 0) + 1;
-    } else if (guessType === "askForHelp") {
-      currentUserStats[character].currentGameStats.askForHelpCounter++;
-      currentUserStats[character].totalAskForHelpCounter = (currentUserStats[character].totalAskForHelpCounter || 0) + 1;
-    }
-
-    // Update dailyPerformance
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Get timestamp for midnight
-    const todayTimestamp = today.getTime();
-
-    let dailyEntry = currentUserStats[character].dailyPerformance.find(entry => entry.date === todayTimestamp);
-
-    if (!dailyEntry) {
-      dailyEntry = {
-        date: todayTimestamp,
-        rightGuesses: 0,
-        wrongGuesses: 0,
-        wrongSubmissions: 0,
-        editCount: 0,
-        askForHelpCounter: 0,
-        responseTimeSum: 0.0
-      };
-      currentUserStats[character].dailyPerformance.push(dailyEntry);
-    }
-
-    if (guessType === "correct") {
-      let responseTime = currentTime - kanaTimeToAnswerTimer;
-      responseTime = Math.min(responseTime, 10000); // Cap response time at 10 seconds
-      dailyEntry.rightGuesses++;
-      dailyEntry.responseTimeSum += responseTime;
-    } else if (guessType === "wrong") {
-      dailyEntry.wrongGuesses++;
-    } else if (guessType === "wrongSubmission") {
-      dailyEntry.wrongSubmissions++;
-    } else if (guessType === "edit") {
-      dailyEntry.editCount++;
-    } else if (guessType === "askForHelp") {
-      dailyEntry.askForHelpCounter++;
-    }
-
-    writeUserStats(currentUserStats);
+    const now = Date.now();
+    writeUserStats(recordGuess(readUserStats(), inGameKanaOnScreen, guessType, now - kanaTimeToAnswerTimer, now));
   }
 
 
@@ -784,7 +349,7 @@ export default function InGameCharacterShowAndInput() {
       ? srsQueueRef.current?.shift()
       : isSequentialOrder && charactersToShow.length > 0
         ? charactersToShow[sequentialIndexRef.current++ % charactersToShow.length]
-        : await selectNextCharacter(charactersToShow, inGameKanaOnScreen || null);
+        : selectNextCharacter(charactersToShow, inGameKanaOnScreen || null);
 
     if (!pickedElement) {
       if (isSrsPractice) {
@@ -818,38 +383,7 @@ export default function InGameCharacterShowAndInput() {
     setOnScreenCharacterType(pickedElement.type);
 
     // Update totalTimesShown
-    let currentUserStats = readUserStats();
-    if (!currentUserStats[inGameKanaOnScreen]) {
-      currentUserStats[inGameKanaOnScreen] = {
-        totalTimesShown: 1,
-        totalRightGuesses: 0,
-        totalWrongGuesses: 0,
-        totalWrongSubmissions: 0,
-        totalEditCount: 0,
-        totaltotalResponseTime: 0,
-        totalAskForHelpCounter: 0,
-        currentGameStats: { rightGuesses: 0, wrongGuesses: 0, wrongSubmissions: 0, editCount: 0, totalResponseTime: 0, askForHelpCounter: 0 },
-        dailyPerformance: [],
-      };
-    } else {
-      currentUserStats[inGameKanaOnScreen].totalTimesShown = (currentUserStats[inGameKanaOnScreen].totalTimesShown || 0) + 1;
-       // Ensure dailyPerformance exists for older data structures
-      if (!currentUserStats[inGameKanaOnScreen].dailyPerformance) {
-        currentUserStats[inGameKanaOnScreen].dailyPerformance = [];
-      }
-       // Handle migration for totalWrongGuesses if necessary from an even older state (pre-totalTouchWrongGuesses)
-      if (!currentUserStats[inGameKanaOnScreen].hasOwnProperty('totalWrongGuesses') && !currentUserStats[inGameKanaOnScreen].hasOwnProperty('totalTouchWrongGuesses')) {
-        currentUserStats[inGameKanaOnScreen].totalWrongGuesses = 0;
-      }
-      // Initialize new fields if they don't exist
-      if (!currentUserStats[inGameKanaOnScreen].hasOwnProperty('totalWrongSubmissions')) {
-        currentUserStats[inGameKanaOnScreen].totalWrongSubmissions = 0;
-      }
-      if (!currentUserStats[inGameKanaOnScreen].hasOwnProperty('totalEditCount')) {
-        currentUserStats[inGameKanaOnScreen].totalEditCount = 0;
-      }
-    }
-    writeUserStats(currentUserStats);
+    writeUserStats(recordShown(readUserStats(), inGameKanaOnScreen));
 
     const useKanjiUsageQuestion = !isSrsPractice &&
       pickedElement.type === 'kanji' &&
@@ -902,7 +436,7 @@ export default function InGameCharacterShowAndInput() {
     }
     setOnScreenKanjiUsage(pickedElement.type === 'kanji' ? pickedElement.usage : null);
     wordHintKanjiCountRef.current = pickedElement.type === 'word'
-      ? new Set([...pickedElement.jp_character].filter(character => kanjiEntryByCharacter.has(character))).size
+      ? kanjiOfWord(pickedElement.jp_character).length
       : 0;
     setIsKanjiUsageQuestion(Boolean(useKanjiUsageQuestion));
     // @ts-ignore
@@ -2054,14 +1588,7 @@ export default function InGameCharacterShowAndInput() {
     <div className='kanji-srs-card-back'>
       <div className='kanji-srs-card-meaning'>{onScreenWordMeaning}</div>
       <div className='kanji-answer-readings'>
-        <span>
-          <span className='kanji-answer-reading-label'>{t('kanjiOnShort')}</span>
-          {kanjiReadings[onScreenKana]?.onyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
-        </span>
-        <span>
-          <span className='kanji-answer-reading-label'>{t('kanjiKuShort')}</span>
-          {kanjiReadings[onScreenKana]?.kunyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
-        </span>
+        <KanjiReadingLines readings={kanjiReadings[onScreenKana] || { onyomi: [], kunyomi: [] }} />
       </div>
       {onScreenKanjiUsage && (
         <div className='kanji-srs-card-example'>
@@ -2178,12 +1705,7 @@ export default function InGameCharacterShowAndInput() {
     : null;
 
   // The shown word has kanji: its help is given in steps (see handleUserAskForHelp)
-  const hasHintKanji = onScreenCharacterType === 'word' &&
-    [...onScreenKana].some(character => kanjiEntryByCharacter.has(character));
-  // Which reading of each kanji the word uses, marked in its readings
-  const wordReadingsUsed = onScreenCharacterType === 'word' && onScreenSolution
-    ? readingsUsedInWord(onScreenKana, onScreenSolution)
-    : null;
+  const hasHintKanji = onScreenCharacterType === 'word' && kanjiOfWord(onScreenKana).length > 0;
 
   return (
     <>
@@ -2302,45 +1824,11 @@ export default function InGameCharacterShowAndInput() {
                     key={`${character}-${index}`}
                   >
                     {index === 0 && (
-                      <span className='kanji-reading-question-columns'>
-                        <span className='kanji-reading-question-column'>
-                          <span className='kanji-reading-question-label'>{t('kanjiOnShort')}</span>
-                          {kanjiReadings[character].onyomi.length === 0
-                            ? <span>—</span>
-                            : kanjiReadings[character].onyomi.map((reading, readingIndex) => (
-                            <span key={`on-${readingIndex}`}>{toHiragana(reading)}</span>
-                          ))}
-                        </span>
-                        <span className='kanji-reading-question-column'>
-                          <span className='kanji-reading-question-label'>{t('kanjiKuShort')}</span>
-                          {kanjiReadings[character].kunyomi.length === 0
-                            ? <span>—</span>
-                            : kanjiReadings[character].kunyomi.map((reading, readingIndex) => (
-                            <span key={`kun-${readingIndex}`}>{toHiragana(reading)}</span>
-                          ))}
-                        </span>
-                      </span>
+                      <KanjiReadingColumns readings={kanjiReadings[character]} />
                     )}
                     <span className='kanji-reading-question-character'>{character}</span>
                     {index > 0 && (
-                      <span className='kanji-reading-question-columns'>
-                      <span className='kanji-reading-question-column'>
-                        <span className='kanji-reading-question-label'>{t('kanjiOnShort')}</span>
-                        {kanjiReadings[character].onyomi.length === 0
-                          ? <span>—</span>
-                          : kanjiReadings[character].onyomi.map((reading, readingIndex) => (
-                          <span key={`on-${readingIndex}`}>{toHiragana(reading)}</span>
-                        ))}
-                      </span>
-                      <span className='kanji-reading-question-column'>
-                        <span className='kanji-reading-question-label'>{t('kanjiKuShort')}</span>
-                        {kanjiReadings[character].kunyomi.length === 0
-                          ? <span>—</span>
-                          : kanjiReadings[character].kunyomi.map((reading, readingIndex) => (
-                          <span key={`kun-${readingIndex}`}>{toHiragana(reading)}</span>
-                        ))}
-                      </span>
-                      </span>
+                      <KanjiReadingColumns readings={kanjiReadings[character]} />
                     )}
                   </span>
                 ) : character)
@@ -2396,32 +1884,13 @@ export default function InGameCharacterShowAndInput() {
             )}
             {onScreenCharacterType === 'kanji' &&
               !isKanjiUsageQuestion &&
-              localStorage.getItem('game-mode-kanji-readings') === 'true' &&
-              kanjiReadings[onScreenKana] && (
-                <span className='kanji-answer-readings'>
-                  <span>
-                    <span className='kanji-answer-reading-label'>{t('kanjiOnShort')}</span>
-                    {kanjiReadings[onScreenKana].onyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
-                  </span>
-                  <span>
-                    <span className='kanji-answer-reading-label'>{t('kanjiKuShort')}</span>
-                    {kanjiReadings[onScreenKana].kunyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
-                  </span>
-                </span>
+              localStorage.getItem('game-mode-kanji-readings') === 'true' && (
+                <KanjiAnswerReadings character={onScreenKana} />
               )}
             {/* Kanji words (水曜日, 時間...): the readings of each of their kanji, once answered */}
             {onScreenCharacterType === 'word' &&
-              localStorage.getItem('game-mode-kanji-readings') === 'true' &&
-              [...onScreenKana].some(character => kanjiReadings[character]) && (
-                <span className='kanji-word-readings'>
-                  {[...new Set([...onScreenKana])].filter(character => kanjiReadings[character]).map(character => (
-                    <span key={character} className='kanji-answer-readings kanji-word-reading'>
-                      <span className='kanji-word-reading-character'>{character}</span>
-                      <KanjiReadingLines readings={kanjiReadings[character]} used={wordReadingsUsed?.get(character)} t={t} />
-                    </span>
-                  ))}
-                  {!wordReadingsUsed && <span className='kanji-word-special-reading'>{t('kanjiSpecialReading')}</span>}
-                </span>
+              localStorage.getItem('game-mode-kanji-readings') === 'true' && (
+                <KanjiWordReadings word={onScreenKana} romanji={onScreenSolution} />
               )}
           </div>
           <div id='in-game-kana-solution' className='in-game-solution hidden-element'>
@@ -2434,29 +1903,8 @@ export default function InGameCharacterShowAndInput() {
             )}
             {/* Kanji words: the kanji they are made of, each with its meaning, then its readings */}
             {hasHintKanji && (
-                <span className='kanji-word-readings kanji-word-hint'>
-                  {[...new Set([...onScreenKana])].filter(character => kanjiEntryByCharacter.has(character)).map(character => {
-                    const entry = kanjiEntryByCharacter.get(character);
-                    const readings = kanjiReadings[character];
-                    return (
-                      <span key={character} className='kanji-answer-readings kanji-word-reading'>
-                        <span className='kanji-word-hint-head'>
-                          <span className='kanji-word-reading-character'>{character}</span>
-                          <span className='kanji-word-hint-meaning'>{language === 'id' && entry.meaning_id ? entry.meaning_id : entry.meaning}</span>
-                        </span>
-                        {readings && wordHintStep >= 2 && (
-                          <span className='kanji-word-hint-readings'>
-                            <KanjiReadingLines readings={readings} used={wordReadingsUsed?.get(character)} t={t} />
-                          </span>
-                        )}
-                      </span>
-                    );
-                  })}
-                  {wordHintStep >= 2 && !wordReadingsUsed && (
-                    <span className='kanji-word-special-reading'>{t('kanjiSpecialReading')}</span>
-                  )}
-                </span>
-              )}
+              <KanjiWordHint word={onScreenKana} romanji={onScreenSolution} step={wordHintStep} />
+            )}
           </div>
           {/* Last step of sentence help: the word being typed, or what the missing particle does */}
           {onScreenCharacterType === 'long' && sentenceHint && (

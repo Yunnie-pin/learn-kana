@@ -49,6 +49,7 @@ export function getListOfWords(charGroups) {
         "romanji": value.romanji,
         "sound": value.sound,
         "meaning": value.meaning,
+        "tags": value.tags || [],
         "type": "word",
       })
     }
@@ -122,12 +123,17 @@ export function getListOfKanjiWords(charGroups) {
   return output;
 }
 
-export function getListForPractice(charGroups, mode) {
+// What a characters / words / mixed game offers: the same list for the game,
+// the Learning Progress window and the notifications. The words (kana words,
+// then the kanji vocabulary) are only the ones of the topic picked in the menu.
+// The sentence and grammar practices have their own lists (sentences.js,
+// bunpou.js), kept out of this file so the menu does not load them.
+export function getListForPractice(charGroups, mode, topic = getWordTopic()) {
   const characters = getListOfKanas(charGroups);
-  if (mode === 'mixed') {
-    return [...characters, ...getListOfWords(charGroups), ...getListOfKanjiWords(charGroups)];
-  }
-  if (mode === 'words') return [...getListOfWords(charGroups), ...getListOfKanjiWords(charGroups)];
+  const words = () => [...getListOfWords(charGroups), ...getListOfKanjiWords(charGroups)]
+    .filter(word => wordInTopic(word, topic));
+  if (mode === 'mixed') return [...characters, ...words()];
+  if (mode === 'words') return words();
   // "characters": every selected kana and kanji group
   return characters;
 }
