@@ -48,7 +48,7 @@ There is no lint script; CRA's ESLint (`react-app`) runs during `npm start` / `n
 - `src/sentenceGlossary.js`: the word-by-word breakdown shown after a correct answer (meanings from kanaCharacters + generated + hand-written glossary, and particle roles).
 - Tests enforce data integrity over **all** sentences: every sentence aligns, every typed prefix of every answer stays "on track", and every word has a meaning in both languages. After adding sentences or templates, run the generator and then the test suite.
 
-**i18n**: all UI strings go in `src/i18n.js` with both `en` and `id` entries. Indonesian meanings of data use `meaning_id` fields.
+**i18n**: UI strings live in `src/locales/<code>.js`, one file per language (`en.js` is the reference; a value is a string or a function of the params), wired up in `src/i18n.js` (`LANGUAGES`, `translations`). Every key goes in every language: `src/i18n.test.js` checks the keys match, every text renders with params, every `t('key')` in the code exists and no key is unused (keys built at run time go in its `KEYS_BUILT_AT_RUN_TIME`). Indonesian meanings of data use `meaning_id` fields.
 
 **Fonts**: Japanese fonts in `src/fonts` are subset to the characters the app uses. After adding kana, words, kanji or sentences with new characters, run `npm run fonts` (it scans every `.js` file in `src`).
 

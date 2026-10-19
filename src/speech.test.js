@@ -20,7 +20,7 @@ describe('speech', () => {
     expect(spoken[0].text).toBe('あ');
     expect(spoken[0].lang).toBe('ja-JP');
     expect(window.speechSynthesis.cancel).toHaveBeenCalled();
-  });
+  });                                               
 
   it('ignores empty text', () => {
     speak('');
