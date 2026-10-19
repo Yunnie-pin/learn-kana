@@ -595,6 +595,11 @@ html.in-game-scroll-lock body {
   font-weight: 700;
 }
 
+/* Hint of a kanji word: the meaning of each kanji, next to its readings */
+.kanji-word-hint-meaning {
+  color: var(--text-muted);
+}
+
 .in-game-kanji-usage {
   margin-top: 0.25em;
   font-size: min(3.5vh, 5vw);

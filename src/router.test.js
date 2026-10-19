@@ -570,7 +570,28 @@ describe('kanji readings with kanji words', () => {
 
   test('off: no readings', async () => {
     await answerKanjiWord(false);
-    expect(document.querySelector('.kanji-word-reading')).toBeNull();
+    expect(document.querySelector('#in-game-solution .kanji-word-reading')).toBeNull();
+  });
+
+  test('the hint lists every kanji of the word with its meaning and readings', async () => {
+    localStorage.setItem('checkedKanas', JSON.stringify(kanjiGroups));
+    localStorage.setItem('game-mode-practice', 'words');
+    localStorage.setItem('game-mode-word', 'true');
+    await open('/game');
+    const word = getListOfKanjiWords(kanjiGroups).find(item => item.jp_character === displayed());
+    const kanji = [...new Set([...word.jp_character])].filter(character => kanjiReadings[character]);
+    const hint = document.querySelector('#in-game-kana-solution');
+    expect(hint).toHaveClass('hidden-element');
+    await act(async () => {
+      fireEvent.keyDown(window, { key: '?' });
+    });
+    expect(hint).not.toHaveClass('hidden-element');
+    const blocks = [...hint.querySelectorAll('.kanji-word-reading')];
+    expect(blocks.map(block => block.querySelector('.kanji-word-reading-character').textContent)).toEqual(kanji);
+    const first = Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters))
+      .find(entry => entry.jp_character === kanji[0]);
+    expect(blocks[0].querySelector('.kanji-word-hint-meaning')).toHaveTextContent(first.meaning);
+    expect(blocks[0]).toHaveTextContent(translate('en', 'kanjiOnShort'));
   });
 });
 

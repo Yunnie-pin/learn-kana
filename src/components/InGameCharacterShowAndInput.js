@@ -18,6 +18,12 @@ import Icon from './Icon.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
 
+// Every kanji entry by its character: the hint of a kanji word lists them
+const kanjiEntryByCharacter = new Map(
+  Object.values(kanaCharacters.kanji).flatMap(group => Object.values(group.characters))
+    .map(entry => [entry.jp_character, entry])
+);
+
 let fontClassList = [
   // "Belanosima",
   "KleeOne",
@@ -2384,6 +2390,34 @@ export default function InGameCharacterShowAndInput() {
             {/* Sentence help reveals furigana instead of the romaji reading */}
             {onScreenCharacterType !== 'long' &&
               (Array.isArray(onScreenSolution) ? onScreenSolution.join(' / ') : onScreenSolution)}
+            {/* Kanji words: the kanji they are made of, each with its meaning and readings */}
+            {onScreenCharacterType === 'word' &&
+              [...onScreenKana].some(character => kanjiEntryByCharacter.has(character)) && (
+                <span className='kanji-word-readings kanji-word-hint'>
+                  {[...new Set([...onScreenKana])].filter(character => kanjiEntryByCharacter.has(character)).map(character => {
+                    const entry = kanjiEntryByCharacter.get(character);
+                    const readings = kanjiReadings[character];
+                    return (
+                      <span key={character} className='kanji-answer-readings kanji-word-reading'>
+                        <span className='kanji-word-reading-character'>{character}</span>
+                        <span className='kanji-word-hint-meaning'>{language === 'id' && entry.meaning_id ? entry.meaning_id : entry.meaning}</span>
+                        {readings && (
+                          <>
+                            <span>
+                              <span className='kanji-answer-reading-label'>{t('kanjiOnShort')}</span>
+                              {readings.onyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
+                            </span>
+                            <span>
+                              <span className='kanji-answer-reading-label'>{t('kanjiKuShort')}</span>
+                              {readings.kunyomi.map(reading => toHiragana(reading)).join(' ・ ') || '—'}
+                            </span>
+                          </>
+                        )}
+                      </span>
+                    );
+                  })}
+                </span>
+              )}
           </div>
           {/* Last step of sentence help: the word being typed, or what the missing particle does */}
           {onScreenCharacterType === 'long' && sentenceHint && (
