@@ -7,6 +7,7 @@ import { kanaCharacters } from '../kanaCharacters.js'
 import { useLanguage } from '../i18n'
 import { isSpeechSupported, speak } from '../speech'
 import Icon from './Icon'
+import { readUserStats } from '../storage.js';
 
 /* userStats object structure:
 {
@@ -93,7 +94,7 @@ export default function UserGameScoreWindow(props) {
     } : {};
     // Shows that a chip can be tapped to hear it
     const listenIcon = isSpeechSupported() ? <Icon name='volume' className='score-chip-listen-icon' /> : null;
-    const userStats = JSON.parse(localStorage.getItem('userStats')) || {};
+    const userStats = readUserStats();
     const [isNewStreakRecord, setIsNewStreakRecord] = useState(false);
 
     // Everything the player did in this game, per kana / word

@@ -9,6 +9,7 @@ import ProgressActivity from './ProgressActivity.js';
 import KanjiSrsPanel from './KanjiSrsPanel.js';
 import Icon from './Icon.js';
 import { PROGRESS_SECTIONS } from '../progressNavigation.js';
+import { readUserStats } from '../storage.js';
 
 const HIGHLIGHT_MS = 2800;
 
@@ -27,7 +28,7 @@ function ProgressStatsModal(props) {
 
     useEffect(() => {
         // Load user stats from localStorage
-        const stats = JSON.parse(localStorage.getItem('userStats')) || {};
+        const stats = readUserStats();
         setUserStats(stats);
         setConfusions(readConfusions());
     }, [props.visible]);

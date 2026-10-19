@@ -18,6 +18,7 @@ import { particleRoleOf, sentenceBreakdown } from '../sentenceGlossary.js'
 import Icon from './Icon.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
 import { useLanguage } from '../i18n'
+import { readUserStats, writeUserStats, readSelectedGroups } from '../storage.js';
 
 // Every kanji entry by its character: the hint of a kanji word lists them
 const kanjiEntryByCharacter = new Map(
@@ -103,10 +104,6 @@ let fontClassList = [
     }
 }
 */
-if (localStorage.getItem('userStats') === null) {
-  localStorage.setItem('userStats', "{}")
-}
-
 // This timer is set to current time when a new kana is showned. 
 // We use it to calculate how long it takes the user to respond.
 let kanaTimeToAnswerTimer = 0;
@@ -123,7 +120,7 @@ function normalizeAnswer(answer) {
 // previous: the character shown right before, never shown twice in a row
 // when there is anything else to show
 async function selectNextCharacter(charactersToShow, previous = null) {
-  let userStats = JSON.parse(localStorage.getItem('userStats')) || {};
+  let userStats = readUserStats();
   let weightedCharacters = [];
   const baseWeight = 50;
 
@@ -429,7 +426,7 @@ export default function InGameCharacterShowAndInput() {
       const scripts = isDictionaryPractice ? ['hiragana', 'katakana', 'kanji'] : ['hiragana', 'katakana'];
       return scripts.flatMap(script => Object.values(kanaCharacters[script]).map(group => group.title));
     }
-    const storedCharacterGroups = JSON.parse(localStorage.getItem("checkedKanas") || '[]');
+    const storedCharacterGroups = readSelectedGroups();
     return Array.isArray(storedCharacterGroups) ? storedCharacterGroups : [];
   }, [isMixupPractice, isDictionaryPractice]);
   const practiceMode = isMixupPractice ? 'characters' : isDictionaryPractice ? 'mixed' : localStorage.getItem('game-mode-practice') ||
@@ -620,7 +617,7 @@ export default function InGameCharacterShowAndInput() {
   }
 
   function resetCurentGameStats() {
-    let currentUserStats = JSON.parse(localStorage.getItem('userStats'));
+    let currentUserStats = readUserStats();
     for (const kana in currentUserStats) {
       if (currentUserStats[kana].currentGameStats === undefined) {
         currentUserStats[kana].currentGameStats = {}
@@ -632,7 +629,7 @@ export default function InGameCharacterShowAndInput() {
       currentUserStats[kana].currentGameStats.totalResponseTime = 0;
       currentUserStats[kana].currentGameStats.askForHelpCounter = 0;
     }
-    localStorage.setItem('userStats', JSON.stringify(currentUserStats));
+    writeUserStats(currentUserStats);
   }
 
   function updateCurrentGameStats(guessType) {
@@ -642,7 +639,7 @@ export default function InGameCharacterShowAndInput() {
       setStreak(0);
     }
     const currentTime = Date.now();
-    let currentUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
+    let currentUserStats = readUserStats();
     const character = inGameKanaOnScreen;
 
     // Initialize stats for the character if it's new
@@ -752,7 +749,7 @@ export default function InGameCharacterShowAndInput() {
       dailyEntry.askForHelpCounter++;
     }
 
-    localStorage.setItem('userStats', JSON.stringify(currentUserStats));
+    writeUserStats(currentUserStats);
   }
 
 
@@ -821,7 +818,7 @@ export default function InGameCharacterShowAndInput() {
     setOnScreenCharacterType(pickedElement.type);
 
     // Update totalTimesShown
-    let currentUserStats = JSON.parse(localStorage.getItem('userStats')) || {};
+    let currentUserStats = readUserStats();
     if (!currentUserStats[inGameKanaOnScreen]) {
       currentUserStats[inGameKanaOnScreen] = {
         totalTimesShown: 1,
@@ -852,7 +849,7 @@ export default function InGameCharacterShowAndInput() {
         currentUserStats[inGameKanaOnScreen].totalEditCount = 0;
       }
     }
-    localStorage.setItem('userStats', JSON.stringify(currentUserStats));
+    writeUserStats(currentUserStats);
 
     const useKanjiUsageQuestion = !isSrsPractice &&
       pickedElement.type === 'kanji' &&

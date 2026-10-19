@@ -1,4 +1,5 @@
 import { getDailyTotals, getStreaks } from './activityStats.js';
+import { readUserStats, runStorageMigrations, STORAGE_VERSION_KEY, write, writeUserStats } from './storage.js';
 
 const DAY = 24 * 60 * 60 * 1000;
 // Daily entries older than this are merged into one entry per week
@@ -60,7 +61,7 @@ export function runStatsMaintenance(now = Date.now()) {
 
   let userStats;
   try {
-    userStats = JSON.parse(localStorage.getItem('userStats')) || {};
+    userStats = readUserStats();
   } catch (error) {
     return;
   }
@@ -70,7 +71,7 @@ export function runStatsMaintenance(now = Date.now()) {
   localStorage.setItem(BEST_PRACTICE_STREAK_KEY, String(best));
 
   if (compactDailyPerformance(userStats, now)) {
-    localStorage.setItem('userStats', JSON.stringify(userStats));
+    writeUserStats(userStats);
   }
   localStorage.setItem(LAST_COMPACTION_KEY, String(today));
 }
@@ -112,6 +113,9 @@ const BACKUP_KEYS = [
   'game-mode-kanji-kunyomi',
   'language',
   'theme',
+  // Which migrations the data has had (storage.js): a backup from an older
+  // version is brought up to date once it is restored
+  STORAGE_VERSION_KEY,
 ];
 
 export function createBackup(now = Date.now()) {
@@ -146,13 +150,14 @@ export function readBackup(backup) {
 export function restoreBackup(data) {
   for (const key of BACKUP_KEYS) {
     if (key in data) {
-      localStorage.setItem(key, data[key]);
+      write(key, data[key]);
     } else {
       localStorage.removeItem(key);
     }
   }
   // The restored stats get checked and compacted again on the next start
   localStorage.removeItem(LAST_COMPACTION_KEY);
+  runStorageMigrations();
 }
 
 // When the last backup file was saved, so the navbar can remind about it (not part of the backup)

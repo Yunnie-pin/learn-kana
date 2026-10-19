@@ -8,6 +8,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { loadAnalytics } from './analytics';
 import { LanguageProvider } from './i18n';
 import { runStatsMaintenance } from './statsStorage';
+import { runStorageMigrations } from './storage';
 import { getBasename, isGamePath, restoreRedirectedPath } from './routes';
 import { appRoutes } from './router';
 
@@ -18,6 +19,9 @@ restoreRedirectedPath();
 const basename = getBasename();
 
 const router = createBrowserRouter(appRoutes, { basename });
+
+// Brings data saved by an older version of the app up to date, before anything reads it
+runStorageMigrations();
 
 // Keeps the saved practice history small; does nothing when it already ran today
 try {

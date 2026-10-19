@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { useLanguage } from '../i18n'
 import Icon from './Icon'
+import { readSelectedGroups, writeSelectedGroups } from '../storage.js';
 
 
 /*
@@ -30,12 +31,7 @@ function uppercaseFirstLetter(string) {
 
 // Adds or removes a group title from the checkedKanas list in localStorage
 function updateCheckedKana(title, isChecked) {
-  let checkedKanas = [];
-  try {
-    checkedKanas = JSON.parse(localStorage.getItem('checkedKanas')) || [];
-  } catch (e) {
-    localStorage.setItem('checkedKanas', JSON.stringify([]));
-  }
+  let checkedKanas = readSelectedGroups();
   if (isChecked) {
     if (!checkedKanas.includes(title)) {
       checkedKanas.push(title);
@@ -43,17 +39,14 @@ function updateCheckedKana(title, isChecked) {
   } else {
     checkedKanas = checkedKanas.filter(item => item !== title);
   }
-  localStorage.setItem('checkedKanas', JSON.stringify(checkedKanas));
+  writeSelectedGroups(checkedKanas);
 }
 
 
 // How many groups with this tag are selected, read from localStorage so it always
 // matches the checkboxes (also when they were checked one by one)
 function getTagSelection(script, tag) {
-  let checkedKanas = [];
-  try {
-    checkedKanas = JSON.parse(localStorage.getItem('checkedKanas')) || [];
-  } catch (e) { }
+  const checkedKanas = readSelectedGroups();
   const groups = Object.values(kanaCharacters[script]).filter(group => group.tags.includes(tag));
   const selected = groups.filter(group => checkedKanas.includes(group.title)).length;
   return { selected, total: groups.length, allSelected: selected === groups.length };
@@ -117,10 +110,7 @@ export default function KanaGroup(props) {
 
   // Selected / total groups of a kanji theme, shown on its button like the kana select-all buttons
   const getKanjiThemeSelection = (themeTitle) => {
-    let checkedKanas = [];
-    try {
-      checkedKanas = JSON.parse(localStorage.getItem('checkedKanas')) || [];
-    } catch (e) { }
+    const checkedKanas = readSelectedGroups();
     const themeGroups = Object.values(kanaCharacters.kanji)
       .filter(group => group.level === kanjiLevel && group.themeTitle === themeTitle);
     const selected = themeGroups.filter(group => checkedKanas.includes(group.title)).length;
@@ -186,7 +176,7 @@ function character_button_group_builder(props, tag, language, kanjiLevel, kanjiT
     return (
       <label className={`character-checkbox-element${props.groupToShow === 'kanji' ? ' kanji-character-element' : ''}`} key={character}>
         <input type="checkbox"
-          defaultChecked={localStorage.checkedKanas.includes(title)}
+          defaultChecked={readSelectedGroups().includes(title)}
           id={title}
           data-theme={group.themeTitle}
           className="character-checkbox-input kana-checkbox"

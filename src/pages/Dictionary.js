@@ -5,6 +5,7 @@ import { DictionaryEntry, KanaChip, WEAK_MASTERY } from '../components/Dictionar
 import DictionaryDetail from '../components/DictionaryDetail';
 import { useLanguage } from '../i18n';
 import { ROUTES } from '../routes';
+import { readUserStats } from '../storage';
 import { calculateMastery } from '../mastery';
 import { getKanjiSrsProgress, getKanjiSrsStage } from '../kanjiSrs';
 import {
@@ -54,14 +55,6 @@ function readSearch() {
     };
   } catch (error) {
     return DEFAULT_SEARCH;
-  }
-}
-
-function readUserStats() {
-  try {
-    return JSON.parse(localStorage.getItem('userStats')) || {};
-  } catch (error) {
-    return {};
   }
 }
 

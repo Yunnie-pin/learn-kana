@@ -10,6 +10,7 @@ import { addExtraNewKanji, getDueReviewCount, getNextReview, getSelectedKanjiGro
 import { useLanguage } from '../i18n'
 import { OPEN_PROGRESS_EVENT } from '../progressNavigation.js'
 import Icon from './Icon'
+import { readSelectedGroups, writeSelectedGroups } from '../storage.js';
 
 const legacyKanjiGroupSelections = {
   'N5 Basics': ['N5 Time & Days', 'N5 Nature & Environment', 'N5 People & Relationships'],
@@ -47,7 +48,7 @@ const legacyKanjiGroupSelections = {
 function migrateKanjiGroupSelections() {
   let selectedGroups;
   try {
-    selectedGroups = JSON.parse(localStorage.getItem('checkedKanas')) || [];
+    selectedGroups = readSelectedGroups();
   } catch (error) {
     return;
   }
@@ -65,7 +66,7 @@ function migrateKanjiGroupSelections() {
         if (!migratedGroups.includes(kanjiGroup.title)) migratedGroups.push(kanjiGroup.title);
       });
   });
-  localStorage.setItem('checkedKanas', JSON.stringify(migratedGroups));
+  writeSelectedGroups(migratedGroups);
 }
 
 // How many groups / characters are selected and how many words can be practiced with them
@@ -90,7 +91,7 @@ function useSentenceData(needed) {
 function getSelectionSummary(sentenceData, practice) {
   let checkedKanas = [];
   try {
-    checkedKanas = JSON.parse(localStorage.getItem('checkedKanas')) || [];
+    checkedKanas = readSelectedGroups();
   } catch (e) { }
 
   let kanaGroupCount = 0;
@@ -201,7 +202,7 @@ export default function GameMenu() {
   }, []);
 
   if(localStorage.getItem('checkedKanas') === null) {
-    localStorage.setItem('checkedKanas', JSON.stringify(["あ"]))
+    writeSelectedGroups(["あ"])
   }
   migrateKanjiGroupSelections();
 
@@ -308,7 +309,7 @@ export default function GameMenu() {
       }
     });
 
-    localStorage.setItem('checkedKanas', JSON.stringify([...checkedChars]));
+    writeSelectedGroups([...checkedChars]);
   };
 
   // Starts a game with only the given characters, the same way as "Try Problematics"

@@ -18,6 +18,10 @@ import {
 } from '../notifications.js';
 import { openLearningProgress } from '../progressNavigation.js';
 import { GAME_MODES, gamePath, ROUTES } from '../routes.js';
+import { getStorageUsage, STORAGE_FULL_EVENT } from '../storage.js';
+
+// A save failed because the storage is full (see storage.js), since the page was opened
+let storageFull = false;
 
 
 function readJson(key, fallback) {
@@ -42,6 +46,8 @@ function collectNotifications() {
     hasSelection: practiceList.length > 0,
     lastBackupAt: Number(localStorage.getItem(LAST_BACKUP_KEY)) || null,
     storedBestStreak: Number(localStorage.getItem(BEST_PRACTICE_STREAK_KEY)) || 0,
+    storageRatio: getStorageUsage().ratio,
+    storageFull,
   });
 }
 
@@ -67,9 +73,15 @@ export default function NotificationMenu() {
     const onVisible = () => document.visibilityState === 'visible' && refresh();
     document.addEventListener('visibilitychange', onVisible);
     window.addEventListener('focus', refresh);
+    const onStorageFull = () => {
+      storageFull = true;
+      refresh();
+    };
+    window.addEventListener(STORAGE_FULL_EVENT, onStorageFull);
     return () => {
       document.removeEventListener('visibilitychange', onVisible);
       window.removeEventListener('focus', refresh);
+      window.removeEventListener(STORAGE_FULL_EVENT, onStorageFull);
     };
   }, [refresh]);
 

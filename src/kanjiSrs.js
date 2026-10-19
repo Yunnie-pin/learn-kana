@@ -1,4 +1,5 @@
 import { kanaCharacters } from './kanaCharacters.js';
+import { readSelectedGroups, write } from './storage.js';
 
 const STORAGE_KEY = 'kanji-srs-progress';
 const MINUTE = 60 * 1000;
@@ -21,16 +22,7 @@ export function getAllKanjiCharacters() {
 }
 
 export function getSelectedKanjiGroupTitles() {
-  const stored = localStorage.getItem('checkedKanas');
-  if (!stored) return [];
-
-  try {
-    const groups = JSON.parse(stored);
-    return Array.isArray(groups) ? groups.filter(group => typeof group === 'string') : [];
-  } catch (error) {
-    console.warn('Ignoring invalid selected Kanji groups.', error);
-    return [];
-  }
+  return readSelectedGroups().filter(group => typeof group === 'string');
 }
 
 export function getSrsKanjiCharacters(selectedGroups, now = Date.now()) {
@@ -164,7 +156,7 @@ export function previewSrsIntervals(character, now = Date.now()) {
 export function recordKanjiSrsAnswer(character, answer, now = Date.now(), random = Math.random) {
   const progress = readProgress();
   progress[character] = nextSrsState(progress[character], answer, now, random);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+  write(STORAGE_KEY, progress);
 }
 
 // ---------- Review sessions ----------
@@ -200,10 +192,10 @@ function getExtraNewToday(now = Date.now()) {
 
 // Lets today's review bring in NEW_KANJI_PER_DAY more new kanji
 export function addExtraNewKanji(now = Date.now()) {
-  localStorage.setItem(EXTRA_NEW_KEY, JSON.stringify({
+  write(EXTRA_NEW_KEY, {
     day: startOfDay(now),
     count: getExtraNewToday(now) + NEW_KANJI_PER_DAY,
-  }));
+  });
 }
 
 // What a review session of the selected groups holds: the kanji due again

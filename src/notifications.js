@@ -17,6 +17,9 @@ const CONFUSION_CHIPS = 3;
 // Remind to save a backup once there is this much practice to lose, then every BACKUP_EVERY_DAYS
 const BACKUP_MIN_PRACTICE_DAYS = 5;
 const BACKUP_EVERY_DAYS = 30;
+// Share of the browser's storage in use from which the user is warned, before
+// new progress stops being saved
+const STORAGE_WARNING_RATIO = 0.8;
 
 // Newest first. Add an entry here when shipping something users should know about
 export const WHATS_NEW = [
@@ -55,6 +58,8 @@ export function buildNotifications({
   hasSelection = false,
   lastBackupAt = null,
   storedBestStreak = 0,
+  storageRatio = 0,
+  storageFull = false,
 }) {
   const notifications = [];
   const today = dayKey(now);
@@ -105,6 +110,17 @@ export function buildNotifications({
       })),
       action: 'mixups',
       section: 'confusions',
+    });
+  }
+
+  // The storage is (almost) full: save a backup before progress gets lost
+  if (storageFull || storageRatio >= STORAGE_WARNING_RATIO) {
+    notifications.push({
+      id: `storage-full-${today}`,
+      icon: 'alert-triangle',
+      key: storageFull ? 'notifyStorageFull' : 'notifyStorageAlmostFull',
+      params: { percent: Math.min(100, Math.round(storageRatio * 100)) },
+      action: 'backup',
     });
   }
 
