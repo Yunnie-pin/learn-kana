@@ -1,4 +1,3 @@
-import { toHiragana } from 'wanakana';
 import { sentences } from './sentences.js';
 import { alignWords, createSentenceMatcher, createSentenceQuestion, normalizeTypedAnswer, wordSpellings } from './sentenceMatching.js';
 
@@ -95,8 +94,14 @@ describe('checking a typed sentence', () => {
           }
         }
       }
-      if (!check(toHiragana(entry.romanji[0].replace(/ /g, ''))).correct) {
-        failures.push(`${entry.jp_character}: kana`);
+      // Typed with a Japanese keyboard: the sentence's own kana, with the
+      // reading of each kanji (ミーティング stays katakana, as an IME writes it)
+      const kana = [...entry.jp_character]
+        .map((character, index) => (entry.furigana || {})[index] || character)
+        .join('')
+        .replace(/[、。]/g, '');
+      if (!check(kana).correct) {
+        failures.push(`${entry.jp_character}: kana ${kana}`);
       }
     }
     expect(failures).toEqual([]);
@@ -146,4 +151,17 @@ describe('sentence questions', () => {
     expect(createSentenceQuestion(plain, 'particle').exercise).toBe('type');
     expect(createSentenceQuestion(plain, 'listen').exercise).toBe('listen');
   });
+});
+
+test('loanword kana are romanized the way they are typed', () => {
+  const { kanaToRomaji } = require('./sentenceMatching.js');
+  expect(kanaToRomaji('ファイル')).toBe('fairu');
+  expect(kanaToRomaji('セキュリティ')).toBe('sekyuriti');
+  expect(kanaToRomaji('ミーティング')).toBe('miitingu');
+  expect(kanaToRomaji('ソフトウェア')).toBe('sofutowea');
+  expect(kanaToRomaji('ウェブサイト')).toBe('webusaito');
+  expect(kanaToRomaji('ふぁいる')).toBe('fairu');
+  // Ordinary kana are unchanged
+  expect(kanaToRomaji('ふあん')).toBe('fuan');
+  expect(kanaToRomaji('ていねい')).toBe('teinei');
 });
