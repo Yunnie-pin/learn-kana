@@ -1,5 +1,6 @@
 import { alignWords, createSentenceMatcher } from './sentenceMatching.js';
 import { getReadableSentences, sentenceInTopic, sentenceJlpt } from './sentences.js';
+import { getBunpouOptions } from './practiceOptions.js';
 import { toHiragana } from 'wanakana';
 
 /* Grammar ("bunpou") practice, built from the sentences the sentence practice
@@ -193,30 +194,7 @@ export function bunpouOptionLabel(option, phrase, blank, furigana) {
 
 // ---------- Grammar practice options (chosen in the menu) ----------
 
-export const BUNPOU_ANSWER_MODES = ['typing', 'choice'];
-export const BUNPOU_JLPT_LEVELS = ['all', 'N5', 'N4'];
-// The everyday sentences with no topic ("general"), the IT and workplace ones
-// (topic "it"), or both
-export const BUNPOU_TOPICS = ['all', 'general', 'it'];
-export const BUNPOU_ANSWER_KEY = 'game-mode-bunpou-answer';
-export const BUNPOU_JLPT_KEY = 'game-mode-bunpou-jlpt';
-export const BUNPOU_TOPIC_KEY = 'game-mode-bunpou-topic';
-
-function storedOption(key, allowed) {
-  let value = null;
-  try {
-    value = localStorage.getItem(key);
-  } catch (error) { }
-  return allowed.includes(value) ? value : allowed[0];
-}
-
-export function getBunpouOptions() {
-  return {
-    answer: storedOption(BUNPOU_ANSWER_KEY, BUNPOU_ANSWER_MODES),
-    jlpt: storedOption(BUNPOU_JLPT_KEY, BUNPOU_JLPT_LEVELS),
-    topic: storedOption(BUNPOU_TOPIC_KEY, BUNPOU_TOPICS),
-  };
-}
+export { BUNPOU_ANSWER_MODES, BUNPOU_JLPT_LEVELS, BUNPOU_TOPICS, BUNPOU_ANSWER_KEY, BUNPOU_JLPT_KEY, BUNPOU_TOPIC_KEY, getBunpouOptions } from './practiceOptions.js';
 
 // The grammar questions offered with the selected groups and the options of
 // the menu. The wrong options are looked up in the whole readable corpus, so

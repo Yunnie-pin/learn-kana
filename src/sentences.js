@@ -1,5 +1,7 @@
 import { kanaCharacters } from './kanaCharacters.js';
 import { generatedSentences } from './generatedSentences.js';
+import { getSentenceOptions, sentenceInTopic } from './practiceOptions.js';
+import { addIndonesianMeanings } from './i18n.js';
 
 /* Sentence data for the "sentences" (long typing) practice: real, correct
  * beginner sentences that are typed as a single romaji answer.
@@ -438,6 +440,7 @@ export const sentences = [
 // (scripts/generateSentences.mjs), which offers enough coverage for any
 // realistic group selection.
 sentences.push(...generatedSentences);
+addIndonesianMeanings(sentences);
 
 // jp_character -> title of the group it belongs to, for every selectable
 // kana and kanji. Small kana (っ, ょ, ゅ...), ー and punctuation are not part
@@ -493,50 +496,7 @@ export function sentenceJlpt(sentence) {
   return sentence.jlpt || 'N5';
 }
 
-export const SENTENCE_LEVELS = ['all', 'easy', 'medium', 'hard'];
-export const SENTENCE_JLPT_LEVELS = ['all', 'N5', 'N4'];
-export const SENTENCE_PATTERNS = ['all', 'desu', 'verb', 'exist', 'question'];
-// type: read and type the sentence; listen: type what is heard; particle:
-// type the missing particle; arrange: put the shuffled words in order
-export const SENTENCE_EXERCISES = ['type', 'listen', 'particle', 'arrange'];
-// Topic of the sentences practice: the everyday sentences with no topic
-// ("general"), the IT and workplace ones (topic "it": エンジニア, ミーティング...),
-// or both
-export const SENTENCE_TOPICS = ['all', 'general', 'it'];
-export const SENTENCE_TOPIC_KEY = 'game-mode-sentence-topic';
-
-export function getSentenceTopic() {
-  let stored = null;
-  try {
-    stored = localStorage.getItem(SENTENCE_TOPIC_KEY);
-  } catch (error) { }
-  return SENTENCE_TOPICS.includes(stored) ? stored : 'all';
-}
-
-export function sentenceInTopic(sentence, topic = getSentenceTopic()) {
-  if (topic === 'general') return sentence.topic !== 'it';
-  return topic === 'all' || sentence.topic === topic;
-}
-
-function storedOption(key, allowed) {
-  let value = null;
-  try {
-    value = localStorage.getItem(key);
-  } catch (error) { }
-  return allowed.includes(value) ? value : allowed[0];
-}
-
-export function getSentenceOptions() {
-  return {
-    level: storedOption('game-mode-sentence-level', SENTENCE_LEVELS),
-    pattern: storedOption('game-mode-sentence-pattern', SENTENCE_PATTERNS),
-    jlpt: storedOption('game-mode-sentence-jlpt', SENTENCE_JLPT_LEVELS),
-    // The sentence topic of the menu: "general" (everyday sentences), "it"
-    // (IT and workplace sentences) or "all"
-    topic: getSentenceTopic(),
-    exercise: storedOption('game-mode-sentence-exercise', SENTENCE_EXERCISES),
-  };
-}
+export { SENTENCE_LEVELS, SENTENCE_JLPT_LEVELS, SENTENCE_PATTERNS, SENTENCE_EXERCISES, SENTENCE_TOPICS, SENTENCE_TOPIC_KEY, getSentenceTopic, sentenceInTopic, getSentenceOptions } from './practiceOptions.js';
 
 // The sentences offered with the selected groups and the sentence options
 // of the menu (the particle exercise needs a sentence with a particle)

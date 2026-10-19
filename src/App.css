@@ -5035,3 +5035,11 @@ html[data-theme='dark'] .materi-entry {
     grid-template-columns: 1fr;
   }
 }
+
+/* Shown while a page that is not in the first download is loaded */
+.page-loading {
+  margin: 30vh auto 0;
+  text-align: center;
+  font-family: var(--ui-font);
+  color: var(--text-muted);
+}

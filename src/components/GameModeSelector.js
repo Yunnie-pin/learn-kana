@@ -3,8 +3,7 @@ import CheckMark from './CheckMark';
 import Icon from './Icon';
 import { useLanguage } from '../i18n';
 import { isSpeechSupported, SOUND_SETTING_KEY } from '../speech';
-import { BUNPOU_ANSWER_KEY, BUNPOU_JLPT_KEY, BUNPOU_TOPIC_KEY, getBunpouOptions } from '../bunpou';
-import { getSentenceOptions, SENTENCE_TOPIC_KEY } from '../sentences';
+import { BUNPOU_ANSWER_KEY, BUNPOU_JLPT_KEY, BUNPOU_TOPIC_KEY, getBunpouOptions, getSentenceOptions, SENTENCE_TOPIC_KEY } from '../practiceOptions';
 import { CHARACTER_ORDER_KEY, getCharacterOrder, getWordTopic, WORD_TOPIC_KEY } from '../practiceList';
 
 // A row of mutually exclusive practice or answer modes.

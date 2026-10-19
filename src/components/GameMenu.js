@@ -6,8 +6,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { GAME_MODES, gamePath, ROUTES } from '../routes';
 import { getListOfKanjiWords, getWordTopic, wordInTopic } from '../practiceList.js';
 import { kanaCharacters } from '../kanaCharacters.js'
-import { getPracticeSentences } from '../sentences.js'
-import { getBunpouQuestions } from '../bunpou.js'
 import { addExtraNewKanji, getDueReviewCount, getNextReview, getSelectedKanjiGroupTitles, getSrsSession, NEW_KANJI_PER_DAY } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
 import { OPEN_PROGRESS_EVENT } from '../progressNavigation.js'
@@ -71,7 +69,25 @@ function migrateKanjiGroupSelections() {
 }
 
 // How many groups / characters are selected and how many words can be practiced with them
-function getSelectionSummary() {
+// The sentences are a download of their own (most of the app's data): the
+// menu loads them only once a sentence or grammar practice is picked
+function useSentenceData(needed) {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    if (!needed || data) return;
+    let cancelled = false;
+    Promise.all([import('../sentences.js'), import('../bunpou.js')]).then(([sentences, bunpou]) => {
+      if (!cancelled) setData({ getPracticeSentences: sentences.getPracticeSentences, getBunpouQuestions: bunpou.getBunpouQuestions });
+    });
+    return () => { cancelled = true; };
+  }, [needed, data]);
+  return data;
+}
+
+// sentenceData: the sentence functions once loaded (null before); the
+// sentence and grammar counts are null until then, and only counted for the
+// practice picked
+function getSelectionSummary(sentenceData, practice) {
   let checkedKanas = [];
   try {
     checkedKanas = JSON.parse(localStorage.getItem('checkedKanas')) || [];
@@ -104,10 +120,10 @@ function getSelectionSummary() {
     getListOfKanjiWords(checkedKanas).filter(word => wordInTopic(word, wordTopic)).length;
   // Sentence practice only offers the sentences readable with the selected
   // groups that also match the sentence options (level, pattern, exercise)
-  const sentenceCount = getPracticeSentences(checkedKanas).length;
+  const sentenceCount = practice === 'long' && sentenceData ? sentenceData.getPracticeSentences(checkedKanas).length : null;
   // Grammar practice offers the readable sentences that end with a verb form
   // the practice can hide, minus the ones the menu options leave out
-  const bunpouCount = getBunpouQuestions(checkedKanas).length;
+  const bunpouCount = practice === 'bunpou' && sentenceData ? sentenceData.getBunpouQuestions(checkedKanas).length : null;
 
   return { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount, bunpouCount };
 }
@@ -189,11 +205,12 @@ export default function GameMenu() {
   }
   migrateKanjiGroupSelections();
 
-  const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount, bunpouCount } = getSelectionSummary();
   const storedPractice = localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem('game-mode-word') === 'true' ? 'words' : 'characters');
   // Older "kanji" values count as "characters", like in GameModeSelector
   const practice = ['words', 'mixed', 'long', 'bunpou', 'srs'].includes(storedPractice) ? storedPractice : 'characters';
+  const sentenceData = useSentenceData(practice === 'long' || practice === 'bunpou');
+  const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount, bunpouCount } = getSelectionSummary(sentenceData, practice);
   const selectedKanjiGroups = useMemo(
     () => getSelectedKanjiGroupTitles(),
     [settingsVersion]
@@ -213,6 +230,7 @@ export default function GameMenu() {
   );
   let summaryText;
   let canStart = true;
+  let summaryLoading = false;
   // Kanji review: Start first allows NEW_KANJI_PER_DAY more new kanji today
   let learnMoreNewKanji = false;
   // "later today", "tomorrow" or the date, for when the next review comes
@@ -252,6 +270,10 @@ export default function GameMenu() {
   } else if (practice === 'characters' && kanaCount + kanjiCount === 0) {
     summaryText = t('menuSummaryNone');
     canStart = false;
+  } else if ((practice === 'long' || practice === 'bunpou') && !sentenceData) {
+    summaryText = t('menuSummaryLoading');
+    canStart = false;
+    summaryLoading = true;
   } else if (practice === 'long' && sentenceCount === 0) {
     summaryText = t('menuSummaryNoSentences');
     canStart = false;
@@ -366,7 +388,7 @@ export default function GameMenu() {
             <Icon name='bar-chart' title={t('menuStats')} />
           </button>
           <div className='game-menu-start'>
-            <p className={'game-menu-summary' + (canStart ? '' : ' game-menu-summary-warning')}>{summaryText}</p>
+            <p className={'game-menu-summary' + (canStart || summaryLoading ? '' : ' game-menu-summary-warning')}>{summaryText}</p>
             {canStart ? (
               <Link to={practice === 'srs' ? gamePath(GAME_MODES.review) : ROUTES.game}>
                 <button className='glowButton' onClick={() => {

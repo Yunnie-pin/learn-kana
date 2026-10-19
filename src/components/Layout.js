@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { Suspense, useEffect, useLayoutEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { trackPageView } from '../analytics';
 import { useLanguage } from '../i18n';
@@ -67,7 +67,9 @@ export default function Layout() {
     return (
         <>
             {hasNavbar && <Navbar theme={theme} toggleTheme={toggleTheme} />}
-            <Outlet />
+            <Suspense fallback={<p className='page-loading' role='status'>{t('pageLoading')}</p>}>
+                <Outlet />
+            </Suspense>
         </>
     );
 }

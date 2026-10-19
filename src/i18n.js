@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { kanaCharacters } from './kanaCharacters';
-import { sentences } from './sentences';
 import { kanjiWords } from './kanjiWords';
 
 export const LANGUAGES = [
@@ -118,6 +117,8 @@ const translations = {
     menuSummaryNoWords: 'No words with these groups yet, select more',
     menuSummaryNoSentences: 'No sentences with these groups yet, select more',
     menuSummaryNoBunpou: 'No sentences with verb forms yet, select more',
+    menuSummaryLoading: 'Loading the sentences…',
+    pageLoading: 'Loading…',
     menuSummaryMixed: ({ kanas, kanji, words }) => `Mixed: ${kanas} kana · ${kanji} kanji · ${words} words`,
     menuSummaryWords: ({ words, groups }) => `${words} word${words === 1 ? '' : 's'} from ${groups} group${groups === 1 ? '' : 's'}`,
     menuSummaryLong: ({ count }) => `Sentences: ${count} available`,
@@ -474,6 +475,8 @@ const translations = {
     menuSummaryNoWords: 'Belum ada kata untuk grup ini, pilih grup lain',
     menuSummaryNoSentences: 'Belum ada kalimat untuk grup ini, pilih grup lain',
     menuSummaryNoBunpou: 'Belum ada kalimat dengan bentuk kata kerja, pilih grup lain',
+    menuSummaryLoading: 'Memuat kalimat…',
+    pageLoading: 'Memuat…',
     menuSummaryMixed: ({ kanas, kanji, words }) => `Campuran: ${kanas} kana · ${kanji} kanji · ${words} kata`,
     menuSummaryWords: ({ words, groups }) => `${words} kata dari ${groups} grup`,
     menuSummaryLong: ({ count }) => `Kalimat: ${count} tersedia`,
@@ -755,9 +758,13 @@ for (const group of Object.values(kanaCharacters.kanji)) {
 for (const [word, , , meaningId] of kanjiWords) {
   if (meaningId && !indonesianMeanings[word]) indonesianMeanings[word] = meaningId;
 }
-for (const sentence of sentences) {
-  if (sentence.meaning_id) {
-    indonesianMeanings[sentence.jp_character] = sentence.meaning_id;
+// Data loaded later (the sentences, see sentences.js) adds its own meanings,
+// so this file does not pull every sentence into the first download
+export function addIndonesianMeanings(entries) {
+  for (const entry of entries) {
+    if (entry.meaning_id) {
+      indonesianMeanings[entry.jp_character] = entry.meaning_id;
+    }
   }
 }
 
