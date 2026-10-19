@@ -7,6 +7,7 @@ import { GAME_MODES, gamePath, ROUTES } from '../routes';
 import { getListOfKanjiWords, getWordTopic, wordInTopic } from '../practiceList.js';
 import { kanaCharacters } from '../kanaCharacters.js'
 import { getPracticeSentences } from '../sentences.js'
+import { getBunpouQuestions } from '../bunpou.js'
 import { addExtraNewKanji, getDueReviewCount, getNextReview, getSelectedKanjiGroupTitles, getSrsSession, NEW_KANJI_PER_DAY } from '../kanjiSrs.js'
 import { useLanguage } from '../i18n'
 import { OPEN_PROGRESS_EVENT } from '../progressNavigation.js'
@@ -104,8 +105,11 @@ function getSelectionSummary() {
   // Sentence practice only offers the sentences readable with the selected
   // groups that also match the sentence options (level, pattern, exercise)
   const sentenceCount = getPracticeSentences(checkedKanas).length;
+  // Grammar practice offers the readable sentences that end with a verb form
+  // the practice can hide, minus the ones the menu options leave out
+  const bunpouCount = getBunpouQuestions(checkedKanas).length;
 
-  return { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount };
+  return { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount, bunpouCount };
 }
 
 export default function GameMenu() {
@@ -185,11 +189,11 @@ export default function GameMenu() {
   }
   migrateKanjiGroupSelections();
 
-  const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount } = getSelectionSummary();
+  const { kanaGroupCount, kanjiGroupCount, kanaCount, kanjiCount, wordCount, sentenceCount, bunpouCount } = getSelectionSummary();
   const storedPractice = localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem('game-mode-word') === 'true' ? 'words' : 'characters');
   // Older "kanji" values count as "characters", like in GameModeSelector
-  const practice = ['words', 'mixed', 'long', 'srs'].includes(storedPractice) ? storedPractice : 'characters';
+  const practice = ['words', 'mixed', 'long', 'bunpou', 'srs'].includes(storedPractice) ? storedPractice : 'characters';
   const selectedKanjiGroups = useMemo(
     () => getSelectedKanjiGroupTitles(),
     [settingsVersion]
@@ -251,12 +255,17 @@ export default function GameMenu() {
   } else if (practice === 'long' && sentenceCount === 0) {
     summaryText = t('menuSummaryNoSentences');
     canStart = false;
+  } else if (practice === 'bunpou' && bunpouCount === 0) {
+    summaryText = t('menuSummaryNoBunpou');
+    canStart = false;
   } else if (practice === 'words') {
     summaryText = t('menuSummaryWords', { words: wordCount, groups: kanaGroupCount });
   } else if (practice === 'mixed') {
     summaryText = t('menuSummaryMixed', { kanas: kanaCount, kanji: kanjiCount, words: wordCount });
   } else if (practice === 'long') {
     summaryText = t('menuSummaryLong', { count: sentenceCount });
+  } else if (practice === 'bunpou') {
+    summaryText = t('menuSummaryBunpou', { count: bunpouCount });
   } else {
     summaryText = t('menuSummaryCharacters', {
       groups: kanaGroupCount + kanjiGroupCount,

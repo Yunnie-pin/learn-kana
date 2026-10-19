@@ -455,6 +455,12 @@ html.in-game-scroll-lock body {
   opacity: 0.5;
 }
 
+/* Grammar: the answer explains the chosen verb form */
+.in-game-solution-bunpou-note {
+  font-size: 0.55em;
+  color: var(--text-muted);
+}
+
 /* Sentences: the words of the sentence with their romaji and meaning */
 .sentence-breakdown {
   display: flex;
@@ -742,21 +748,35 @@ html.in-game-scroll-lock body {
   font-size: 15vw;
 }
 
+/* The answer field: the wrapper sizes and spaces it, while the field itself
+   hides everything outside its box (overflow) */
+.in-game-answer-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: min(90vw, 900px);
+  flex: none;
+  font-size: min(13vh, 11vw);
+  margin-bottom: 1.5vh;
+}
+
 #in-game-text-input-cursor-group {
   display: flex;
   justify-content: center;
   font-family: courier;
   font-size: min(13vh, 11vw);
   background: transparent;
-  width: min(90vw, 900px);
+  /* Fills the wrapper so the whole field reads as one input line */
+  flex: 1 1 0;
+  min-width: 0;
   color: #ff9a3c;
+  /* Reads as a text field: the caret can be put into the text by a tap */
+  cursor: text;
   padding: 5px;
   overflow: hidden;
   height: min(14vh, 12vw);
-  flex: none;
   /* Subtle line so the answer field is visible while empty */
   border-bottom: 2px solid #ff9a3c40;
-  margin-bottom: 1.5vh;
   transition: color 0.15s, border-color 0.15s;
 }
 
@@ -1111,6 +1131,15 @@ html.in-game-scroll-lock body {
   .in-game-touch-answer>p {
     margin: 0.3em 0;
   }
+  .in-game-bunpou-options {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 90%;
+    margin: 5px;
+  }
+  .in-game-bunpou-option {
+    min-height: 10vh;
+    font-size: 2.4vh;
+  }
 }
 
 .in-game-next-button {
@@ -1172,6 +1201,44 @@ html.in-game-scroll-lock body {
   background-color: #4ade8066;
 }
 
+/* Grammar (bunpou) multiple choice: the four verb forms shown under the
+   sentence, picked with a click / tap */
+.in-game-bunpou-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: min(95%, 44em);
+  margin: 10px;
+  flex: none;
+}
+
+.in-game-bunpou-option {
+  min-height: min(12vh, 80px);
+  padding: 0.3em 0.8em;
+  font-family: inherit;
+  font-size: min(3.6vh, 5vw);
+  color: inherit;
+  text-align: center;
+  border: none;
+  border-radius: 30px;
+  background-color: #00000027;
+  user-select: none;
+  cursor: var(--cursor-pointer, pointer);
+  transition: background-color 0.15s;
+}
+
+.in-game-bunpou-option.touch-answer-correct {
+  background-color: #4ade8066;
+}
+
+.in-game-bunpou-option.bunpou-option-wrong {
+  background-color: #ff7d3c55;
+  animation-name: animation-wrong;
+  animation-duration: 0.13s;
+  animation-iteration-count: 3;
+  animation-timing-function: linear;
+}
+
 /* Background gets lighter with the streak (--streak-level is set from JS) */
 .in-game-container {
   background-color: color-mix(in srgb, #2a8f9e var(--streak-level, 0%), #155263);
@@ -1195,12 +1262,14 @@ html[data-theme='dark'] .inGameUserGameScoreWindow {
 html[data-theme='dark'] .kanji-srs-flip-card,
 html[data-theme='dark'] .inGameUserGameScoreWindow,
 html[data-theme='dark'] .score-card,
-html[data-theme='dark'] .in-game-touch-answer {
+html[data-theme='dark'] .in-game-touch-answer,
+html[data-theme='dark'] .in-game-bunpou-option {
   box-shadow: 0 0 12px #1e272b;
 }
 
 html[data-theme='dark'] .score-card,
-html[data-theme='dark'] .in-game-touch-answer {
+html[data-theme='dark'] .in-game-touch-answer,
+html[data-theme='dark'] .in-game-bunpou-option {
   background-color: #38454c;
 }
 

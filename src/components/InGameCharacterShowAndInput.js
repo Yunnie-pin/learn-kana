@@ -12,6 +12,7 @@ import { findKanaForAnswer, getConfusionPairs, getMixupKana, getSimilarKana, MIX
 import { chooseTouchOptions } from '../touchAnswers.js'
 import { isSpeechSupported, speak, speakIfEnabled } from '../speech.js'
 import { createSentenceQuestion } from '../sentenceMatching.js'
+import { bunpouFormNote, createBunpouQuestion, getBunpouOptions, getBunpouQuestions } from '../bunpou.js'
 import { particleRoleOf, sentenceBreakdown } from '../sentenceGlossary.js'
 import Icon from './Icon.js'
 import UserGameScoreWindow from './UserGameScoreWindow.js'
@@ -400,8 +401,12 @@ export default function InGameCharacterShowAndInput() {
   const practiceMode = isMixupPractice ? 'characters' : isDictionaryPractice ? 'mixed' : localStorage.getItem('game-mode-practice') ||
     (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
   // SRS reviews are always answered by typing, whatever is picked in the menu;
-  // so is a Dictionary practice: a few entries are too few wrong options
-  const useTouchAnswers = !isSrsPractice && !isDictionaryPractice && localStorage.getItem("game-mode-touch") === "true";
+  // so is a Dictionary practice: a few entries are too few wrong options.
+  // The grammar practice has its own answer mode, picked in the menu: the
+  // missing form is typed, or chosen among four buttons
+  const useTouchAnswers = !isSrsPractice && !isDictionaryPractice && practiceMode !== 'bunpou' && localStorage.getItem("game-mode-touch") === "true";
+  const bunpouOptions = practiceMode === 'bunpou' ? getBunpouOptions() : null;
+  const isBunpouChoice = Boolean(bunpouOptions) && bunpouOptions.answer === 'choice';
   const selectedKanjiGroups = useMemo(() => getSelectedKanjiGroupTitles(), []);
   // A review session: the kanji due again, then the new kanji left for today
   // (NEW_KANJI_PER_DAY), see getSrsSession
@@ -560,6 +565,7 @@ export default function InGameCharacterShowAndInput() {
     }
     if (mode === 'words') return [...getListOfWords(charGroups), ...kanjiWords];
     if (mode === 'long') return getListOfSentences(charGroups);
+    if (mode === 'bunpou') return getBunpouQuestions(charGroups);
     // "characters": every selected kana and kanji group
     return characters;
   }
@@ -833,7 +839,9 @@ export default function InGameCharacterShowAndInput() {
     );
     setFuriganaVisible(false);
     const question = pickedElement.type === 'long'
-      ? createSentenceQuestion(pickedElement, sentenceExercise)
+      ? pickedElement.bunpou
+        ? createBunpouQuestion(pickedElement)
+        : createSentenceQuestion(pickedElement, sentenceExercise)
       : { exercise: 'type', matcher: null };
     sentenceQuestionRef.current = question;
     setSentenceQuestion(question);
@@ -1011,6 +1019,11 @@ export default function InGameCharacterShowAndInput() {
   # Text input handlers #
   #######################
   */
+  // How much of the typed sentence was right when it was last checked: kept so
+  // the marking of the first mistake survives a move of the caret (a tap on
+  // the typed answer)
+  const typedMistakeFromRef = useRef(null);
+
   // Timer countdown effect
   React.useEffect(() => {
     const gameMode = JSON.parse(localStorage.getItem("gameMode"));
@@ -1056,14 +1069,25 @@ export default function InGameCharacterShowAndInput() {
     function syncHiddenInput() {
       const hiddenInput = document.querySelector('#in-game-text-input');
       if (!hiddenInput) return;
-      hiddenInput.value = document.querySelector('#in-game-text-input-before-cursor').textContent +
+      const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+      hiddenInput.value = beforeCursor.textContent +
         document.querySelector('#in-game-text-input-after-cursor').textContent;
+      // The caret the player sees (and moved) is the one that counts: keep the
+      // input's own caret on it, so mobile keyboards edit where it sits
+      try {
+        const caret = beforeCursor.textContent.length;
+        hiddenInput.setSelectionRange(caret, caret);
+      } catch (error) { }
     }
 
     function clearAnswerInput() {
-      document.querySelector('#in-game-text-input-before-cursor').textContent = '';
-      document.querySelector('#in-game-text-input-after-cursor').textContent = '';
-      document.querySelector('#in-game-text-input-cursor-group').classList.remove("answer-correct", "answer-wrong");
+      const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+      const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
+      const cursorGroup = document.querySelector('#in-game-text-input-cursor-group');
+      if (!beforeCursor || !afterCursor || !cursorGroup) return;
+      beforeCursor.textContent = '';
+      afterCursor.textContent = '';
+      cursorGroup.classList.remove("answer-correct", "answer-wrong");
       // Restore the default size right away for the next character
       fitTypedAnswerFontSize();
       syncHiddenInput();
@@ -1089,9 +1113,14 @@ export default function InGameCharacterShowAndInput() {
         handleUserAskForHelp();
       }
 
-      InGameTextInput.textContent = newAnswer;
-      InGameTextInputAfterCursor.textContent = '';
-      InGameTextInputAfterCursor.style.visibility = "hidden";
+      // A mobile keyboard edits at its own caret, which is kept on the
+      // visible caret: the text in front of it goes into its own part, the
+      // rest stays behind the caret instead of disappearing
+      const caret = Math.max(0, Math.min(newAnswer.length,
+        typeof e.target.selectionStart === 'number' ? e.target.selectionStart : newAnswer.length));
+      InGameTextInput.textContent = newAnswer.slice(0, caret);
+      InGameTextInputAfterCursor.textContent = newAnswer.slice(caret);
+      InGameTextInputAfterCursor.style.visibility = newAnswer.length > caret ? "visible" : "hidden";
       document.querySelector('#in-game-text-input-cursor-group').classList.remove('answer-wrong');
 
       if (newAnswer.length < previousAnswer.length) {
@@ -1191,6 +1220,162 @@ export default function InGameCharacterShowAndInput() {
       checkAnswer();
     }
 
+    // A tap / click on the typed answer puts the caret where the tap landed,
+    // like in a real text field: a sentence can then be fixed in the middle
+    // instead of only at its end (mobile keyboards have no arrow keys)
+    function handleCursorPlacement(e) {
+      if (scoreWindowVisibleRef.current || waitingForKanjiNextRef.current || questionAnsweredRef.current) return;
+      const beforeCursor = document.querySelector('#in-game-text-input-before-cursor');
+      const afterCursor = document.querySelector('#in-game-text-input-after-cursor');
+      if (!beforeCursor || !afterCursor) return;
+      // The text position the browser sees under the tapped point, when it can
+      // tell us (no layout in jsdom, so there this stays untouched)
+      let node = null;
+      let offset = 0;
+      if (document.caretRangeFromPoint) {
+        const caretRange = document.caretRangeFromPoint(e.clientX, e.clientY);
+        if (!caretRange) return;
+        node = caretRange.startContainer;
+        offset = caretRange.startOffset;
+      } else if (document.caretPositionFromPoint) {
+        const caretPosition = document.caretPositionFromPoint(e.clientX, e.clientY);
+        if (!caretPosition) return;
+        node = caretPosition.offsetNode;
+        offset = caretPosition.offset;
+      } else {
+        return;
+      }
+      if (!node || node.nodeType !== Node.TEXT_NODE) return;
+
+      // How much text stands in front of the tapped position inside a part
+      const textIndexWithin = (container) => {
+        let index = 0;
+        const textNodes = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+        let textNode;
+        while ((textNode = textNodes.nextNode())) {
+          if (textNode === node) return index + offset;
+          index += textNode.textContent.length;
+        }
+        return null;
+      };
+      let caret = beforeCursor.contains(node) ? textIndexWithin(beforeCursor) : null;
+      if (caret === null && afterCursor.contains(node)) {
+        const afterIndex = textIndexWithin(afterCursor);
+        if (afterIndex !== null) caret = beforeCursor.textContent.length + afterIndex;
+      }
+      if (caret === null || caret === beforeCursor.textContent.length) return;
+
+      // Move the caret: everything in front of it goes into the first span,
+      // everything behind it into the second one
+      const answer = beforeCursor.textContent + afterCursor.textContent;
+      beforeCursor.textContent = answer.slice(0, caret);
+      afterCursor.textContent = answer.slice(caret);
+      afterCursor.style.visibility = afterCursor.textContent ? 'visible' : 'hidden';
+      // The red mark of the first mistake would be dropped by the move: put it
+      // back where it was
+      markTypedMistake(typedMistakeFromRef.current ?? Infinity);
+      syncHiddenInput();
+    }
+
+    // A correct long answer (words, sentences, grammar) waits for the player:
+    // the romaji and the meaning are revealed and the Next button is shown.
+    // With auto next on, the next question comes by itself after a moment.
+    function revealAnswerAndWait() {
+      if (!document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
+        document.querySelector('#in-game-kana-solution').classList.add("hidden-element");
+      }
+      document.querySelector('#in-game-solution').classList.remove("hidden-element");
+
+      if (!autoNext) {
+        const solutionElement = document.querySelector('#in-game-solution');
+        const nextButton = document.querySelector('#in-game-next-button');
+        nextButton.classList.remove("hidden-element");
+        // Remove the listeners to prevent multiple listeners from being added
+        const removeListeners = () => {
+          document.removeEventListener('keydown', handleKeyDown);
+          solutionElement.removeEventListener('click', goToNextWord);
+          nextButton.removeEventListener('click', goToNextWord);
+          removeNextListenersRef.current = null;
+        };
+        const goToNextWord = () => {
+          clearAnswerInput();
+          solutionElement.classList.add("hidden-element");
+          nextButton.classList.add("hidden-element");
+          showNewCharacter();
+          removeListeners();
+        };
+        // Define the function for keydown event
+        const handleKeyDown = (event) => {
+          if (event.key === 'Enter' && !scoreWindowVisibleRef.current) {
+            goToNextWord();
+          }
+        };
+
+        // Listen for 'Enter' key press, or a tap on the translation / Next button (mobile)
+        document.addEventListener('keydown', handleKeyDown);
+        solutionElement.addEventListener('click', goToNextWord);
+        nextButton.addEventListener('click', goToNextWord);
+        removeNextListenersRef.current = removeListeners;
+      } else {
+        timeoutInProgress = true;
+        advanceTimeoutRef.current = window.setTimeout(function () {
+          clearAnswerInput();
+          document.querySelector('#in-game-solution').classList.add("hidden-element");
+          showNewCharacter();
+          timeoutInProgress = false;
+        }, 1000);
+      }
+    }
+
+    // Grammar with multiple choice: the four buttons under the sentence are
+    // picked with a click / tap. Correct: like a typed long answer (the
+    // solution is revealed and the game waits). Wrong: the button flashes, the
+    // sentence shakes and the streak starts over - the question stays, so the
+    // right form can still be picked.
+    function handleBunpouOptionClick(event) {
+      if (!isBunpouChoice || scoreWindowVisibleRef.current || waitingForKanjiNextRef.current) return;
+      if (questionAnsweredRef.current || timeoutInProgress) return;
+      const button = event.target.closest ? event.target.closest('.in-game-bunpou-option') : null;
+      if (!button) return;
+      const question = sentenceQuestionRef.current;
+      if (!question || question.exercise !== 'bunpou' || !question.choice) return;
+
+      if (button.dataset.value === question.choice.correct) {
+        questionAnsweredRef.current = true;
+        setSentenceAnswered(true);
+        setSentenceHint(null);
+        updateCurrentGameStats("correct");
+        speakCorrectAnswer();
+        button.classList.add("touch-answer-correct");
+        setTimeout(function () {
+          button.classList.remove("touch-answer-correct");
+        }, 300);
+        document.querySelector('#in-game-kana-character').classList.add("answer-correct");
+        wrongSubmissionCounted = false; // Reset for next question
+        setScore(prevScore => prevScore + 1);
+        revealAnswerAndWait();
+      } else {
+        updateCurrentGameStats("wrong");
+        // Short haptic feedback on phones that support it (Android)
+        if (navigator.vibrate) {
+          navigator.vibrate(50);
+        }
+        button.classList.add("bunpou-option-wrong");
+        setTimeout(function () {
+          button.classList.remove("bunpou-option-wrong");
+        }, 300);
+        const charDisplayElement = document.querySelector('#in-game-kana-character');
+        if (charDisplayElement) {
+          charDisplayElement.classList.remove("animation-wrong1");
+          void charDisplayElement.offsetWidth;
+          charDisplayElement.classList.add("animation-wrong1");
+          setTimeout(function () {
+            charDisplayElement.classList.remove("animation-wrong1");
+          }, 300);
+        }
+      }
+    }
+
     function checkAnswer(isSubmission = false) {
       const InGameTextInput = document.querySelector('#in-game-text-input-before-cursor');
       const InGameTextInputAfterCursor = document.querySelector('#in-game-text-input-after-cursor');
@@ -1217,7 +1402,8 @@ export default function InGameCharacterShowAndInput() {
         isCorrect = result.correct;
         isOnTrack = result.onTrack;
         updateSentenceWordsDone(result.wordsDone);
-        markTypedMistake(isOnTrack || !hintsEnabled ? Infinity : result.validLength);
+        typedMistakeFromRef.current = isOnTrack || !hintsEnabled ? Infinity : result.validLength;
+        markTypedMistake(typedMistakeFromRef.current);
       } else {
         isCorrect = inGameAnswerListRef.current.includes(typedAnswer);
         isOnTrack = isSubmission
@@ -1275,50 +1461,7 @@ export default function InGameCharacterShowAndInput() {
         // Long answers (words and sentences) wait for the player:
         // reveal the romanji (and translation) and show the Next button
         if (currentCharacterTypeRef.current === 'word' || currentCharacterTypeRef.current === 'long') {
-          if (!document.querySelector('#in-game-kana-solution').classList.contains("hidden-element")) {
-            document.querySelector('#in-game-kana-solution').classList.add("hidden-element");
-          }
-          document.querySelector('#in-game-solution').classList.remove("hidden-element");
-
-          if (!autoNext) {
-            const solutionElement = document.querySelector('#in-game-solution');
-            const nextButton = document.querySelector('#in-game-next-button');
-            nextButton.classList.remove("hidden-element");
-            // Remove the listeners to prevent multiple listeners from being added
-            const removeListeners = () => {
-              document.removeEventListener('keydown', handleKeyDown);
-              solutionElement.removeEventListener('click', goToNextWord);
-              nextButton.removeEventListener('click', goToNextWord);
-              removeNextListenersRef.current = null;
-            };
-            const goToNextWord = () => {
-              clearAnswerInput();
-              solutionElement.classList.add("hidden-element");
-              nextButton.classList.add("hidden-element");
-              showNewCharacter();
-              removeListeners();
-            };
-            // Define the function for keydown event
-            const handleKeyDown = (event) => {
-              if (event.key === 'Enter' && !scoreWindowVisibleRef.current) {
-                goToNextWord();
-              }
-            };
-
-            // Listen for 'Enter' key press, or a tap on the translation / Next button (mobile)
-            document.addEventListener('keydown', handleKeyDown);
-            solutionElement.addEventListener('click', goToNextWord);
-            nextButton.addEventListener('click', goToNextWord);
-            removeNextListenersRef.current = removeListeners;
-          } else {
-            timeoutInProgress = true;
-            advanceTimeoutRef.current = window.setTimeout(function () {
-              clearAnswerInput();
-              document.querySelector('#in-game-solution').classList.add("hidden-element");
-              showNewCharacter();
-              timeoutInProgress = false;
-            }, 1000);
-          }
+          revealAnswerAndWait();
         }
         else {
           if (currentCharacterTypeRef.current === 'kanji') {
@@ -1351,15 +1494,38 @@ export default function InGameCharacterShowAndInput() {
         }
       }
     }
-    if (!isSrsPractice && !useTouchAnswers) {
+    if (!isSrsPractice && !useTouchAnswers && !isBunpouChoice) {
       const hiddenInput = document.querySelector('#in-game-text-input');
       if (!hiddenInput) return;
 
       window.addEventListener('keydown', handleKeyDown);
       hiddenInput.addEventListener('input', handleInput);
+      // Tapping the typed answer aims the caret there, so the caret can be
+      // moved on touch screens too, where the keyboard has no arrow keys
+      const cursorGroup = document.querySelector('#in-game-text-input-cursor-group');
+      if (cursorGroup) cursorGroup.addEventListener('click', handleCursorPlacement);
       return () => {
         window.removeEventListener("keydown", handleKeyDown);
         hiddenInput.removeEventListener('input', handleInput);
+        if (cursorGroup) cursorGroup.removeEventListener('click', handleCursorPlacement);
+      };
+    }
+
+    // Grammar with multiple choice: the option buttons are React elements that
+    // change with every question, so their clicks are caught from one listener
+    // on the document. Escape still opens the summary; Enter on the Next
+    // button is handled by the long answer flow.
+    if (isBunpouChoice) {
+      const handleBunpouKeyDown = (event) => {
+        if (event.key === 'Escape' && !scoreWindowVisibleRef.current && !waitingForKanjiNextRef.current) {
+          setUserGameScoreWindowVisible(true);
+        }
+      };
+      document.addEventListener('click', handleBunpouOptionClick);
+      document.addEventListener('keydown', handleBunpouKeyDown);
+      return () => {
+        document.removeEventListener('click', handleBunpouOptionClick);
+        document.removeEventListener('keydown', handleBunpouKeyDown);
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -1429,9 +1595,14 @@ export default function InGameCharacterShowAndInput() {
       if (!textWidth) {
         return;
       }
-      // clientWidth includes the 5px padding on both sides; the cursor is
-      // 3px wide with -6px of margins, plus a small safety margin
-      const availableWidth = cursorGroup.clientWidth - 14;
+      // clientWidth includes the padding of the field on both sides: only the
+      // text area counts when shrinking the answer to fit.
+      // The cursor is 3px wide with -6px of margins, plus a small safety margin
+      const groupStyles = window.getComputedStyle(cursorGroup);
+      const contentWidth = cursorGroup.clientWidth -
+        (parseFloat(groupStyles.paddingLeft) || 0) -
+        (parseFloat(groupStyles.paddingRight) || 0);
+      const availableWidth = contentWidth - 4;
       if (availableWidth <= 0 || textWidth <= availableWidth) {
         return;
       }
@@ -1504,7 +1675,7 @@ export default function InGameCharacterShowAndInput() {
         }
       }, 700);
     }
-    if (!isSrsPractice && !useTouchAnswers) {
+    if (!isSrsPractice && !useTouchAnswers && !isBunpouChoice) {
       handleFocus();
     }
     if (!hasStartedInitialCharacterRef.current) {
@@ -1739,7 +1910,29 @@ export default function InGameCharacterShowAndInput() {
 
   // Make answer input via touch buttons
   let inGameInputElement = <></>
-  if (useTouchAnswers) {
+  if (isBunpouChoice) {
+    // Grammar: the missing verb form picked among four buttons, labelled in
+    // kanji / kana (data-value keeps the romaji the answer is checked with).
+    // The click is caught by the listener on the document (see the keydown
+    // effect), so the buttons stay plain text and re-render with every new
+    // question
+    const choiceOptions = (sentenceQuestion.choice && sentenceQuestion.choice.options) || [];
+    const choiceLabels = (sentenceQuestion.choice && sentenceQuestion.choice.labels) || [];
+    inGameInputElement = (
+      <div className='in-game-bunpou-options' role='group' aria-label={t('bunpouPromptChoice')}>
+        {choiceOptions.map((option, index) => (
+          <button
+            key={option}
+            type='button'
+            className='in-game-bunpou-option'
+            data-value={option}
+          >
+            {choiceLabels[index] || option}
+          </button>
+        ))}
+      </div>
+    );
+  } else if (useTouchAnswers) {
     function makeTouchAnswerDivs(params) {
       const numberOfAnswers = 5;
       const answerElements = [];
@@ -1765,13 +1958,15 @@ export default function InGameCharacterShowAndInput() {
     // Make answer input via keyboard
   } else if (!isSrsPractice) {
     inGameInputElement = <>
-      <div id='in-game-text-input-cursor-group'>
-        <span id='in-game-text-input-before-cursor'></span>
-        <div id='in-game-text-input-cursor'></div>
-        <span id='in-game-text-input-after-cursor'></span>
-        <span id='in-game-text-input-placeholder'>
-          {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
-        </span>
+      <div className='in-game-answer-field'>
+        <div id='in-game-text-input-cursor-group'>
+          <span id='in-game-text-input-before-cursor'></span>
+          <div id='in-game-text-input-cursor'></div>
+          <span id='in-game-text-input-after-cursor'></span>
+          <span id='in-game-text-input-placeholder'>
+            {t(onScreenCharacterType === 'kanji' ? 'kanjiGamePlaceholder' : 'gamePlaceholder')}
+          </span>
+        </div>
       </div>
       <input
         type="text"
@@ -1887,7 +2082,7 @@ export default function InGameCharacterShowAndInput() {
         </button>
       );
     }
-    if (sentenceExerciseShown === 'particle' && sentenceQuestion.blank) {
+    if ((sentenceExerciseShown === 'particle' || sentenceExerciseShown === 'bunpou') && sentenceQuestion.blank) {
       const { start, end } = sentenceQuestion.blank;
       return [
         ...renderSentenceCharacters(0, start),
@@ -1919,7 +2114,7 @@ export default function InGameCharacterShowAndInput() {
   const sentencePrompt = onScreenCharacterType === 'long' && sentenceExerciseShown !== 'type' ? (
     <div className='in-game-sentence-prompt'>
       <span className='in-game-sentence-prompt-instruction'>
-        {t({ listen: 'sentencePromptListen', particle: 'sentencePromptParticle', arrange: 'sentencePromptArrange' }[sentenceExerciseShown])}
+        {t({ listen: 'sentencePromptListen', particle: 'sentencePromptParticle', arrange: 'sentencePromptArrange', bunpou: isBunpouChoice ? 'bunpouPromptChoice' : 'sentencePromptBunpou' }[sentenceExerciseShown])}
       </span>
       {sentenceExerciseShown !== 'listen' && onScreenWordMeaning && (
         <span className='in-game-sentence-prompt-meaning'>{onScreenWordMeaning}</span>
@@ -1934,6 +2129,11 @@ export default function InGameCharacterShowAndInput() {
         romanji: onScreenSolution,
       }, language)
     : [];
+  // Grammar: the result explains the chosen form - the meaning of the
+  // sentence is already in the prompt above it
+  const bunpouNote = sentenceQuestion.exercise === 'bunpou' && sentenceQuestion.choice
+    ? bunpouFormNote(sentenceQuestion.choice.correct, t)
+    : null;
 
   return (
     <>
@@ -1944,7 +2144,7 @@ export default function InGameCharacterShowAndInput() {
             {isMixupPractice && <Icon name='arrow-left-right' className='icon-leading' />}
             {isProblematicsMode ? t('gameScoreProblematics')
               : isMixupPractice ? t('gameScoreMixups')
-              : t({ long: 'gameScoreSentences', words: 'gameScoreWords', mixed: 'gameScoreMixed' }[practiceMode] || 'gameScoreKanas')}{onScreenScore}
+              : t({ long: 'gameScoreSentences', bunpou: 'gameScoreBunpou', words: 'gameScoreWords', mixed: 'gameScoreMixed' }[practiceMode] || 'gameScoreKanas')}{onScreenScore}
             {kanaGoal !== null && <span className='in-game-score-goal'> / {kanaGoal}</span>}
           </div>
           {streak >= 3 && <div className='in-game-streak' title={t('gameStreakTitle')}><Icon name='flame' className='icon-flame icon-leading' />{streak}</div>}
@@ -1958,7 +2158,7 @@ export default function InGameCharacterShowAndInput() {
           </div>
         ) : (
           <div className='in-game-help-bar'>
-            {hintsEnabled ? <div className='in-game-help-button' onClick={handleUserAskForHelp}>
+            {hintsEnabled && !isBunpouChoice ? <div className='in-game-help-button' onClick={handleUserAskForHelp}>
               <span className='label-keyboard'><strong>?</strong>: {t('gameHelpKey')}</span>
               <span className='label-touch'><Icon name='lightbulb' className='icon-leading' />{t('gameHintButton')}</span>
             </div> : null}
@@ -2106,7 +2306,10 @@ export default function InGameCharacterShowAndInput() {
             {onScreenCharacterType !== 'long' && (
               <span className='in-game-solution-romanji'>{onScreenSolution[0]}</span>
             )}
-            {onScreenWordMeaning ? (
+            {/* Grammar answers explain the chosen form; the other answers the meaning */}
+            {bunpouNote ? (
+              <span className='in-game-solution-bunpou-note'>{bunpouNote}</span>
+            ) : onScreenWordMeaning ? (
               <>
                 {onScreenCharacterType !== 'long' && (
                   <span className='in-game-solution-separator'> · </span>

@@ -453,6 +453,66 @@ test('words practice with the IT topic only shows IT words', async () => {
   }
 });
 
+test('sentence practice with the IT topic only shows IT sentences', async () => {
+  const { kanaCharacters } = require('./kanaCharacters.js');
+  const { sentences } = require('./sentences.js');
+  const allGroups = ['hiragana', 'katakana', 'kanji'].flatMap(script =>
+    Object.values(kanaCharacters[script] || {}).map(group => group.title));
+  const itSentences = sentences.filter(sentence => sentence.topic === 'it');
+  localStorage.setItem('checkedKanas', JSON.stringify(allGroups));
+  localStorage.setItem('game-mode-practice', 'long');
+  localStorage.setItem('game-mode-sentence-topic', 'it');
+  await open('/game');
+  for (let round = 0; round < 3; round++) {
+    const sentence = itSentences.find(item => item.jp_character === displayed());
+    expect(sentence).toBeDefined();
+    await act(async () => {
+      sentence.romanji[0].replace(/[- ]/g, '').split('').forEach(key => fireEvent.keyDown(window, { key }));
+    });
+    await act(async () => {
+      fireEvent.keyDown(document, { key: 'Enter' });
+    });
+  }
+});
+
+test('grammar practice hides the verb form at the end of a real sentence', async () => {
+  const { kanaCharacters } = require('./kanaCharacters.js');
+  const { getBunpouQuestions } = require('./bunpou.js');
+  const allGroups = ['hiragana', 'katakana', 'kanji'].flatMap(script =>
+    Object.values(kanaCharacters[script] || {}).map(group => group.title));
+  localStorage.setItem('checkedKanas', JSON.stringify(allGroups));
+  localStorage.setItem('game-mode-practice', 'bunpou');
+  localStorage.setItem('game-mode-bunpou-answer', 'typing');
+  localStorage.setItem('game-mode-auto-next', 'false');
+
+  // The menu counts the sentences with a form the practice can hide
+  await open('/');
+  expect(document.querySelector('.game-menu-summary'))
+    .toHaveTextContent(translate('en', 'menuSummaryBunpou', { count: getBunpouQuestions(allGroups).length }));
+  cleanup();
+
+  // The game shows a real sentence with the form at its end masked
+  await open('/game');
+  expect(displayed()).toContain('？');
+  const cursorGroup = () => document.querySelector('#in-game-text-input-cursor-group');
+
+  // Help gives the form away step by step; type it as it comes
+  for (let round = 0; round < 5 && !cursorGroup().classList.contains('answer-correct'); round++) {
+    await act(async () => {
+      fireEvent.keyDown(window, { key: '?' });
+    });
+    const hint = document.querySelector('#in-game-sentence-hint');
+    if (!hint) continue;
+    await act(async () => {
+      hint.textContent.split('').forEach(key => fireEvent.keyDown(window, { key }));
+    });
+  }
+  // Only the hidden form was typed, and the sentence is revealed with it
+  expect(cursorGroup()).toHaveClass('answer-correct');
+  expect(score()).toHaveTextContent('1');
+  expect(document.querySelector('#in-game-solution')).not.toHaveClass('hidden-element');
+});
+
 test('words practice with only kanji groups selected shows kanji words', async () => {
   const { kanaCharacters } = require('./kanaCharacters.js');
   const { getListOfKanjiWords } = require('./practiceList.js');
@@ -803,6 +863,24 @@ describe('tabs', () => {
     });
     expect(path()).toBe('/');
     expect(document.getElementById('game-menu-title')).toBeInTheDocument();
+  });
+
+  test('the navbar links to the Materials page, with its particles and grammar', async () => {
+    await open('/');
+    const materi = screen.getByRole('link', { name: translate('en', 'tabMateri') });
+    await act(async () => {
+      fireEvent.click(materi);
+    });
+    expect(path()).toBe('/materi');
+    expect(materi).toHaveAttribute('aria-current', 'page');
+    expect(document.title).toBe(translate('en', 'seoTitleMateri'));
+    expect(document.querySelector('meta[name="robots"]').content).toBe('index, follow');
+
+    // The particles are the section shown first, the filter switches to grammar
+    expect(document.querySelector('.materi-list')).toHaveTextContent('は');
+    fireEvent.click(screen.getByRole('radio', { name: translate('en', 'materiBunpou') }));
+    expect(document.querySelector('.materi-list')).toHaveTextContent('〜です');
+    expect(screen.getByRole('radio', { name: translate('en', 'materiBunpou') })).toHaveAttribute('aria-checked', 'true');
   });
 
   test('the dictionary searches and filters', async () => {

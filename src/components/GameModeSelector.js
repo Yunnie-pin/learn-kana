@@ -3,7 +3,8 @@ import CheckMark from './CheckMark';
 import Icon from './Icon';
 import { useLanguage } from '../i18n';
 import { isSpeechSupported, SOUND_SETTING_KEY } from '../speech';
-import { getSentenceOptions } from '../sentences';
+import { BUNPOU_ANSWER_KEY, BUNPOU_JLPT_KEY, BUNPOU_TOPIC_KEY, getBunpouOptions } from '../bunpou';
+import { getSentenceOptions, SENTENCE_TOPIC_KEY } from '../sentences';
 import { CHARACTER_ORDER_KEY, getCharacterOrder, getWordTopic, WORD_TOPIC_KEY } from '../practiceList';
 
 // A row of mutually exclusive practice or answer modes.
@@ -86,18 +87,18 @@ export default function GameModeSelector(props) {
       (localStorage.getItem("game-mode-word") === "true" ? "words" : "characters");
     // "kanji" used to be a practice type: kanji now come with "characters".
     // "srs" is the kanji review (flash cards, /game?mode=review)
-    return ['words', 'mixed', 'long', 'srs'].includes(stored) ? stored : 'characters';
+    return ['words', 'mixed', 'long', 'bunpou', 'srs'].includes(stored) ? stored : 'characters';
   });
   const [answerBy, setAnswerBy] = useState(() => {
     const storedTouch = localStorage.getItem("game-mode-touch");
     const useTouch = storedTouch === null ? touchDefault : storedTouch === "true";
-    return useTouch && !['words', 'mixed', 'long'].includes(practice) ? "touch" : "typing";
+    return useTouch && !['words', 'mixed', 'long', 'bunpou'].includes(practice) ? "touch" : "typing";
   });
 
   React.useEffect(() => {
     localStorage.setItem("game-mode-practice", practice);
     localStorage.setItem("game-mode-word", practice === "words");
-    if (['words', 'mixed', 'long'].includes(practice) && answerBy === 'touch') {
+    if (['words', 'mixed', 'long', 'bunpou'].includes(practice) && answerBy === 'touch') {
       setAnswerBy('typing');
     }
     localStorage.setItem("game-mode-touch", answerBy === "touch");
@@ -114,7 +115,7 @@ export default function GameModeSelector(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterOrder]);
 
-  // Words / mixed / sentence practice: everything, or only the IT and workplace ones
+  // Words practice: everything, or only the IT and workplace ones
   const [wordTopic, setWordTopic] = useState(getWordTopic);
   React.useEffect(() => {
     localStorage.setItem(WORD_TOPIC_KEY, wordTopic);
@@ -124,13 +125,14 @@ export default function GameModeSelector(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wordTopic]);
 
-  // Sentence practice: length, grammar pattern and kind of exercise
+  // Sentence practice: topic, length, grammar pattern and kind of exercise
   const [sentenceOptions, setSentenceOptions] = useState(getSentenceOptions);
   const changeSentenceOption = (key, value) => setSentenceOptions(current => ({ ...current, [key]: value }));
   React.useEffect(() => {
     localStorage.setItem('game-mode-sentence-level', sentenceOptions.level);
     localStorage.setItem('game-mode-sentence-pattern', sentenceOptions.pattern);
     localStorage.setItem('game-mode-sentence-jlpt', sentenceOptions.jlpt);
+    localStorage.setItem(SENTENCE_TOPIC_KEY, sentenceOptions.topic);
     localStorage.setItem('game-mode-sentence-exercise', sentenceOptions.exercise);
     if (props.onChange) {
       props.onChange();
@@ -138,11 +140,25 @@ export default function GameModeSelector(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sentenceOptions]);
 
+  // Grammar practice: how the missing form is answered (typing or choice),
+  // the topic of the sentences and their JLPT level
+  const [bunpouOptions, setBunpouOptions] = useState(getBunpouOptions);
+  const changeBunpouOption = (key, value) => setBunpouOptions(current => ({ ...current, [key]: value }));
+  React.useEffect(() => {
+    localStorage.setItem(BUNPOU_ANSWER_KEY, bunpouOptions.answer);
+    localStorage.setItem(BUNPOU_JLPT_KEY, bunpouOptions.jlpt);
+    localStorage.setItem(BUNPOU_TOPIC_KEY, bunpouOptions.topic);
+    if (props.onChange) {
+      props.onChange();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bunpouOptions]);
+
   const handlePracticeChange = (value) => {
     setPractice(value);
     // The session length this practice type had last time
     setLimit(readPracticeLimit(value));
-    if (['words', 'mixed', 'long'].includes(value)) {
+    if (['words', 'mixed', 'long', 'bunpou'].includes(value)) {
       setAnswerBy("typing");
     }
   };
@@ -183,6 +199,7 @@ export default function GameModeSelector(props) {
     { value: 'words', label: t('practiceWords'), icon: 'book-open' },
     { value: 'mixed', label: t('practiceMixed'), icon: 'shuffle' },
     { value: 'long', label: t('practiceLong'), icon: 'languages' },
+    { value: 'bunpou', label: t('practiceBunpou'), icon: 'sparkles' },
     { value: 'srs', label: t('practiceSrs'), icon: 'rotate-ccw' },
   ];
   const PRACTICE_DESCRIPTION_KEYS = {
@@ -190,6 +207,7 @@ export default function GameModeSelector(props) {
     words: 'practiceWordsDescription',
     mixed: 'practiceMixedDescription',
     long: 'practiceLongDescription',
+    bunpou: 'practiceBunpouDescription',
     srs: 'practiceSrsDescription',
   };
 
@@ -197,7 +215,7 @@ export default function GameModeSelector(props) {
   // they apply to
   const toggles = [
     { id: 'game-mode-hints', icon: 'lightbulb', label: t('optionHints'), defaultOn: true, show: practice !== 'srs' },
-    { id: 'game-mode-random-fonts', icon: 'pen', label: t('optionHandwrittenFonts'), show: practice !== 'long' },
+    { id: 'game-mode-random-fonts', icon: 'pen', label: t('optionHandwrittenFonts'), show: !['long', 'bunpou'].includes(practice) },
     { id: 'game-mode-auto-next', icon: 'skip-forward', label: t('optionAutoNext'), defaultOn: true, show: practice !== 'srs' },
     { id: SOUND_SETTING_KEY, icon: 'volume', label: t('optionSound'), show: isSpeechSupported() },
     // Kanji readings come with kanji questions and kanji words; sentences have
@@ -285,8 +303,8 @@ export default function GameModeSelector(props) {
             ]}
           />
         )}
-        {/* One topic for the words and the sentences: "IT & work" keeps their IT and workplace ones */}
-        {(practice === 'words' || practice === 'mixed' || practice === 'long') && (
+        {/* Words and mixed: all the words, or only the IT and workplace ones */}
+        {(practice === 'words' || practice === 'mixed') && (
           <SegmentedControl
             className='word-topic-row'
             label={t('wordTopicLabel')}
@@ -295,6 +313,20 @@ export default function GameModeSelector(props) {
             options={[
               { value: 'all', label: t('wordTopicAll'), icon: 'book-open' },
               { value: 'it', label: t('wordTopicIt'), icon: 'keyboard' },
+            ]}
+          />
+        )}
+        {/* Sentences: the everyday (general) ones, the IT and workplace ones, or both */}
+        {practice === 'long' && (
+          <SegmentedControl
+            className='word-topic-row'
+            label={t('wordTopicLabel')}
+            value={sentenceOptions.topic}
+            onChange={(value) => changeSentenceOption('topic', value)}
+            options={[
+              { value: 'general', label: t('sentenceTopicGeneral'), icon: 'book-open' },
+              { value: 'it', label: t('wordTopicIt'), icon: 'keyboard' },
+              { value: 'all', label: t('sentenceAll'), icon: 'languages' },
             ]}
           />
         )}
@@ -360,6 +392,44 @@ export default function GameModeSelector(props) {
                 { value: 'verb', label: '〜ます' },
                 { value: 'exist', label: 'あります' },
                 { value: 'question', label: '〜か' },
+              ]}
+            />
+          </>
+        )}
+        {/* Grammar: the missing verb form is typed or picked among four forms,
+            and the sentences come from either topic and level */}
+        {practice === 'bunpou' && (
+          <>
+            <SegmentedControl
+              className='answer-mode-row'
+              label={t('answerByLabel')}
+              value={bunpouOptions.answer}
+              onChange={(value) => changeBunpouOption('answer', value)}
+              options={[
+                { value: 'typing', label: t('answerTyping'), icon: 'keyboard' },
+                { value: 'choice', label: t('answerMultipleChoice'), icon: 'grid' },
+              ]}
+            />
+            <SegmentedControl
+              className='word-topic-row'
+              label={t('wordTopicLabel')}
+              value={bunpouOptions.topic}
+              onChange={(value) => changeBunpouOption('topic', value)}
+              options={[
+                { value: 'general', label: t('sentenceTopicGeneral'), icon: 'book-open' },
+                { value: 'it', label: t('wordTopicIt'), icon: 'keyboard' },
+                { value: 'all', label: t('sentenceAll'), icon: 'languages' },
+              ]}
+            />
+            <SegmentedControl
+              className='sentence-jlpt-row'
+              label={t('sentenceJlptLabel')}
+              value={bunpouOptions.jlpt}
+              onChange={(value) => changeBunpouOption('jlpt', value)}
+              options={[
+                { value: 'all', label: t('sentenceAll') },
+                { value: 'N5', label: 'N5' },
+                { value: 'N4', label: 'N4' },
               ]}
             />
           </>

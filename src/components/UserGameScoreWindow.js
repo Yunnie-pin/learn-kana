@@ -303,7 +303,7 @@ export default function UserGameScoreWindow(props) {
     const practice = new URLSearchParams(location.search).get('mode') === GAME_MODES.mixups ? 'characters'
         : localStorage.getItem('game-mode-practice') ||
         (localStorage.getItem("game-mode-word") === "true" ? 'words' : 'characters');
-    const completedKey = { words: 'summaryCompletedWords', mixed: 'summaryCompletedMixed', long: 'summaryCompletedSentences' }[practice] || 'summaryCompletedKanas';
+    const completedKey = { words: 'summaryCompletedWords', mixed: 'summaryCompletedMixed', long: 'summaryCompletedSentences', bunpou: 'summaryCompletedBunpou' }[practice] || 'summaryCompletedKanas';
 
     let userStatsElement;
     if (totalRight > 0) {

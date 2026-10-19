@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import GameModeSelector from './GameModeSelector';
 
 /*
@@ -71,6 +71,46 @@ describe('sentence options', () => {
   });
 });
 
+describe('grammar options', () => {
+  const radio = (name) => screen.getByRole('radio', { name });
+
+  test('the missing form is typed by default, or picked among four', () => {
+    localStorage.setItem('game-mode-practice', 'bunpou');
+    render(<GameModeSelector kanjiSelected={true} />);
+    expect(radio('Typing')).toHaveAttribute('aria-checked', 'true');
+
+    fireEvent.click(radio('Multiple choice'));
+    expect(localStorage.getItem('game-mode-bunpou-answer')).toBe('choice');
+  });
+
+  test('topic and level are kept apart from the sentences and the words', () => {
+    localStorage.setItem('game-mode-practice', 'bunpou');
+    localStorage.setItem('game-mode-sentence-topic', 'it');
+    localStorage.setItem('game-mode-sentence-jlpt', 'N4');
+    localStorage.setItem('game-mode-word-topic', 'it');
+    render(<GameModeSelector kanjiSelected={true} />);
+    const topic = within(screen.getByRole('radiogroup', { name: 'Topic' }));
+    expect(topic.getByRole('radio', { name: 'All' })).toHaveAttribute('aria-checked', 'true');
+
+    fireEvent.click(topic.getByRole('radio', { name: 'General' }));
+    expect(localStorage.getItem('game-mode-bunpou-topic')).toBe('general');
+    // The sentences and the words keep their own choices
+    expect(localStorage.getItem('game-mode-sentence-topic')).toBe('it');
+    expect(localStorage.getItem('game-mode-word-topic')).toBe('it');
+
+    fireEvent.click(radio('N5'));
+    expect(localStorage.getItem('game-mode-bunpou-jlpt')).toBe('N5');
+    expect(localStorage.getItem('game-mode-sentence-jlpt')).toBe('N4');
+  });
+
+  test('the description says what the practice does', () => {
+    localStorage.setItem('game-mode-practice', 'bunpou');
+    render(<GameModeSelector kanjiSelected={true} />);
+    expect(document.querySelector('.practice-description'))
+      .toHaveTextContent('Complete the verb form hidden in a real sentence');
+  });
+});
+
 describe('options that do not apply to sentences are hidden', () => {
   test('sentences: no "Answer by" (always typed) and no kanji readings option', () => {
     localStorage.setItem('game-mode-practice', 'long');
@@ -108,7 +148,7 @@ describe('character order', () => {
 });
 
 describe('word topic', () => {
-  test('is offered for words, mixed and sentence practice, and saved', () => {
+  test('is offered for words and mixed practice, and saved', () => {
     localStorage.setItem('game-mode-practice', 'words');
     render(<GameModeSelector kanjiSelected={true} />);
     expect(screen.getByRole('radio', { name: 'All words' })).toHaveAttribute('aria-checked', 'true');
@@ -117,10 +157,23 @@ describe('word topic', () => {
 
     fireEvent.click(screen.getByRole('tab', { name: 'Mixed' }));
     expect(screen.getByRole('radiogroup', { name: 'Topic' })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('tab', { name: 'Sentences' }));
-    expect(screen.getByRole('radiogroup', { name: 'Topic' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('tab', { name: 'Characters' }));
     expect(screen.queryByRole('radiogroup', { name: 'Topic' })).toBeNull();
+  });
+
+  test('sentences have their own: general, IT or all, kept apart from the words', () => {
+    localStorage.setItem('game-mode-word-topic', 'it');
+    localStorage.setItem('game-mode-practice', 'long');
+    render(<GameModeSelector kanjiSelected={true} />);
+    const topic = within(screen.getByRole('radiogroup', { name: 'Topic' }));
+    expect(topic.getAllByRole('radio').map(radio => radio.textContent))
+      .toEqual(['General', 'IT & work', 'All']);
+    expect(topic.getByRole('radio', { name: 'All' })).toHaveAttribute('aria-checked', 'true');
+
+    fireEvent.click(topic.getByRole('radio', { name: 'General' }));
+    expect(localStorage.getItem('game-mode-sentence-topic')).toBe('general');
+    // The words keep their own topic
+    expect(localStorage.getItem('game-mode-word-topic')).toBe('it');
   });
 });
 
@@ -141,7 +194,7 @@ describe('practice tabs', () => {
     localStorage.setItem('game-mode-practice', 'characters');
     render(<GameModeSelector kanjiSelected={true} />);
     expect(screen.getAllByRole('tab').map(element => element.textContent))
-      .toEqual(['Characters', 'Words', 'Mixed', 'Sentences', 'Kanji review']);
+      .toEqual(['Characters', 'Words', 'Mixed', 'Sentences', 'Grammar', 'Kanji review']);
     expect(tab('Characters')).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByRole('tabpanel')).toHaveAttribute('aria-labelledby', 'practice-tab-characters');
     expect(document.querySelector('.practice-description')).toHaveTextContent('one character at a time');
@@ -161,6 +214,9 @@ describe('practice tabs', () => {
     expect(groups()).toEqual(['Length', 'Topic']);
     fireEvent.click(tab('Sentences'));
     expect(groups()).toEqual(['Length', 'Topic', 'Exercise', 'JLPT grammar', 'Sentence length', 'Pattern']);
+    // Grammar: how the form is answered, and where the sentences come from
+    fireEvent.click(tab('Grammar'));
+    expect(groups()).toEqual(['Length', 'Answer by', 'Topic', 'JLPT grammar']);
     // A review session is set by the schedule: no length
     fireEvent.click(tab('Kanji review'));
     expect(screen.queryAllByRole('radiogroup')).toEqual([]);
@@ -173,6 +229,8 @@ describe('practice tabs', () => {
     expect(toggleIds()).toEqual(['game-mode-hints', 'game-mode-random-fonts', 'game-mode-auto-next', 'game-mode-kanji-readings']);
 
     fireEvent.click(tab('Sentences'));
+    expect(toggleIds()).toEqual(['game-mode-hints', 'game-mode-auto-next']);
+    fireEvent.click(tab('Grammar'));
     expect(toggleIds()).toEqual(['game-mode-hints', 'game-mode-auto-next']);
     fireEvent.click(tab('Kanji review'));
     expect(toggleIds()).toEqual(['game-mode-random-fonts']);
@@ -245,7 +303,7 @@ test('the length counts what the practice type practices', () => {
   render(<GameModeSelector kanjiSelected={true} />);
   const stepper = () => document.querySelector('.limit-stepper span').textContent;
   expect(stepper()).toBe('10 characters');
-  for (const [tab, label] of [['Words', 'words'], ['Mixed', 'questions'], ['Sentences', 'sentences']]) {
+  for (const [tab, label] of [['Words', 'words'], ['Mixed', 'questions'], ['Sentences', 'sentences'], ['Grammar', 'sentences']]) {
     fireEvent.click(screen.getByRole('tab', { name: tab }));
     fireEvent.click(screen.getByRole('radio', { name: 'Count' }));
     expect(stepper()).toBe(`5 ${label}`);

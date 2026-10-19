@@ -2,7 +2,7 @@
 
 A website where you will be shoved Kana characters up to your brain, until you get them all.
 
-Practice hiragana, katakana, N5 / N4 kanji, words and real sentences right in the browser, on desktop or phone. Pick the groups you want, then type the romaji (or tap the right answer) as fast as you can. A built-in dictionary lets you look up everything the app teaches.
+Practice hiragana, katakana, N5 / N4 kanji, words and real sentences right in the browser, on desktop or phone. Pick the groups you want, then type the romaji (or tap the right answer) as fast as you can. A built-in dictionary lets you look up everything the app teaches, and a *Materials* page explains the particles and the grammar forms.
 
 > This is a fork of [Eldoprano/learn-kana](https://github.com/Eldoprano/learn-kana), created by **Eldoprano**.
 > The original version is live on [GitHub Pages](https://eldoprano.github.io/learn-kana/) and [Cloudflare Pages](https://learn-kana.pages.dev/).
@@ -24,6 +24,7 @@ Practice hiragana, katakana, N5 / N4 kanji, words and real sentences right in th
 **Game modes**
 - Practice **characters** or **words** (1,400+ words, only the ones you can read with the groups you picked, including 570+ kanji words such as 電気, 花見 or 留学生 that unlock with your kanji groups; the reading of each kanji is shown after you answer). Pick the **IT & work** topic to practice only the 180+ words you need at an IT company: プログラム, サーバー, データベース, デバッグ, めんせつ (job interview), しめきり (deadline)...
 - **Sentences**: 1,400+ real sentences covering the common JLPT N5 and N4 grammar (e.g. 「わたしは学生です」, 「すしを食べたことがあります」), 170+ of them about working at an IT company (「コードをレビューしてください」, 「わたしは日本のかいしゃではたらきたいです」) for the IT & work topic that you type as a single romaji answer — only sentences you can read with the groups you picked appear, particles like は and を are shown in black, and the words you have typed fade out as you go. Any common spelling works (Kunrei-shiki like *si*/*tu*, *kyoo* or *kyō*, は typed as *ha*, or kana from a Japanese keyboard), and a mistake is underlined from where it starts. Help comes in steps: furigana first, then the romaji of the word you are on. Once you get a sentence right you see its meaning plus every word with its romaji, its meaning and what each particle does. Four exercises: **Read** (type the sentence), **Listen** (type what you hear), **Particles** (type the missing particle) and **Arrange** (type the shuffled words in the right order), and you can narrow the sentences by length (short / medium / long), grammar pattern (〜です, 〜ます, あります・います, 〜か) and JLPT level (N5 / N4).
+- **Grammar**: the verb form a sentence ends with (〜ます, 〜ません, 〜ました, 〜たいです, 〜てください...) is hidden and you complete it, by typing it or by choosing among four. It draws on the same sentences as the *Sentences* practice, so it can be narrowed to the IT & work topic and to N5 / N4 grammar.
 - **Kanji review**: flash cards of the kanji you picked on a spaced repetition schedule. Turn the card over, then grade it *Forgot* / *Hard* / *Good* / *Easy* (or swipe left / right); each grade shows when the kanji comes back. Up to 10 new kanji a day, with a button to learn 10 more once those are done, and a summary of what you learned and when the next review is.
 - Characters come in **random** order (the ones you know least show up more often) or **in order**, following the kana table (あ い う え お, か き く け こ...).
 - Answer by **typing** the romaji or by **multiple choice**. Multiple choice offers kana that look alike (シ / ツ, ぬ / め, ...) and the ones you mix up the most as wrong answers.
@@ -50,6 +51,9 @@ Practice hiragana, katakana, N5 / N4 kanji, words and real sentences right in th
 - Home shortcuts (kana table, kanji N5 / N4, all words), today's kanji and word, and your recent searches.
 - Each entry shows your mastery and kanji review progress, and opens a detail sheet: readings with furigana, example sentences, the words that use a kanji and the kanji inside a word, all linked to each other. Tap to hear it.
 - *Practice* one entry or all the current results in a game, whatever groups are selected in the menu.
+
+**Materials**
+- A *Materials* tab next to *Games* and *Dictionary* with the lessons: the particles (は, を, が, に, で, か, へ, の, と, も, より, ね) and the polite grammar forms (〜です, 〜ます, 〜ました, 〜ません, 〜ませんでした, 〜ましょう, 〜たいです, 〜て/でください, 〜て/でいます), each with what it does and two real example sentences from the practice, with their romaji and meaning.
 
 **Mobile**
 - Works with on-screen keyboards (Android and iOS) and keeps the answer above the keyboard.

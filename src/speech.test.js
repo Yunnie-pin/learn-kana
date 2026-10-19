@@ -1,4 +1,4 @@
-import { speak, speakIfEnabled, isSoundEnabled, SOUND_SETTING_KEY } from './speech';
+import { isSoundEnabled, SOUND_SETTING_KEY, speak, speakIfEnabled } from './speech';
 
 describe('speech', () => {
   let spoken;
