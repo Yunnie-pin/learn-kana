@@ -166,9 +166,10 @@ export function getCharacterOrder() {
   return CHARACTER_ORDERS.includes(stored) ? stored : 'random';
 }
 
-// Topic of the words practice: every word, or only the IT and workplace words
+// Topic of the words practice: every word ("all"), only the everyday ones
+// ("general", everything without the IT tag) or only the IT and workplace words
 // (tag "it": プログラム, サーバー, めんせつ...) for people heading to an IT company
-export const WORD_TOPICS = ['all', 'it'];
+export const WORD_TOPICS = ['all', 'general', 'it'];
 export const WORD_TOPIC_KEY = 'game-mode-word-topic';
 
 export function getWordTopic() {
@@ -180,5 +181,6 @@ export function getWordTopic() {
 }
 
 export function wordInTopic(word, topic = getWordTopic()) {
+  if (topic === 'general') return !(word.tags || []).includes('it');
   return topic === 'all' || (word.tags || []).includes(topic);
 }

@@ -67,16 +67,22 @@ describe('IT words', () => {
     }
   });
 
-  test('the IT topic only offers IT words, "all" offers every word', () => {
+  test('the topic separates the general words, the IT ones and all of them', () => {
     const allGroups = [...hiraganaGroups, ...katakanaGroups];
     const everyWord = getListOfWords(allGroups);
     expect(everyWord.length).toBe(words.length);
     const it = everyWord.filter(word => wordInTopic(kanaCharacters.words[Object.keys(kanaCharacters.words)
       .find(key => kanaCharacters.words[key].jp_character === word.jp_character)], 'it'));
     expect(it.length).toBe(itWords.length);
+    // "general" is everything the IT topic does not take
+    const general = everyWord.filter(word => wordInTopic(word, 'general'));
+    expect(general.length + it.length).toBe(everyWord.length);
     expect(wordInTopic({ tags: ['food'] }, 'all')).toBe(true);
     expect(wordInTopic({ tags: ['food'] }, 'it')).toBe(false);
+    expect(wordInTopic({ tags: ['food'] }, 'general')).toBe(true);
+    expect(wordInTopic({ tags: ['it'] }, 'general')).toBe(false);
     expect(wordInTopic({}, 'it')).toBe(false);
+    expect(wordInTopic({}, 'general')).toBe(true);
   });
 });
 

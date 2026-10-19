@@ -151,8 +151,13 @@ describe('word topic', () => {
   test('is offered for words and mixed practice, and saved', () => {
     localStorage.setItem('game-mode-practice', 'words');
     render(<GameModeSelector kanjiSelected={true} />);
-    expect(screen.getByRole('radio', { name: 'All words' })).toHaveAttribute('aria-checked', 'true');
-    fireEvent.click(screen.getByRole('radio', { name: 'IT & work' }));
+    const topic = within(screen.getByRole('radiogroup', { name: 'Topic' }));
+    expect(topic.getAllByRole('radio').map(radio => radio.textContent))
+      .toEqual(['General', 'IT & work', 'All words']);
+    expect(topic.getByRole('radio', { name: 'All words' })).toHaveAttribute('aria-checked', 'true');
+    fireEvent.click(topic.getByRole('radio', { name: 'General' }));
+    expect(localStorage.getItem('game-mode-word-topic')).toBe('general');
+    fireEvent.click(topic.getByRole('radio', { name: 'IT & work' }));
     expect(localStorage.getItem('game-mode-word-topic')).toBe('it');
 
     fireEvent.click(screen.getByRole('tab', { name: 'Mixed' }));
