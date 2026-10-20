@@ -1,0 +1,186 @@
+// Japanese sentences commonly used by and for children, grouped by age:
+// toddler/preschool (balita), elementary school (SD) and junior high (SMP).
+// They are practiced in the Sentences mode and merged into the main pool
+// (see sentences.js) exactly like the everyday dailySentences.js set.
+//
+// Same rules as dailySentences.js (the s() helper is imported from there):
+//  - kana only, no kanji, so a sentence is readable as soon as its kana
+//    groups are selected and never introduces an untaught kanji;
+//  - a pair of braces marks a particle so its index is computed automatically;
+//  - a trailing question か is treated as a particle by s().
+//
+// Difficulty grows with the level: toddler lines are very short, SD lines add
+// polite です / ます verbs about school and play, SMP lines add plans, wants
+// (〜たい) and opinions with a few dictionary-form verbs.
+
+import { s } from './dailySentences.js';
+
+// ---------- toddler / preschool (anak balita) ----------
+// Short, concrete phrases: needs, feelings, greetings and simple requests a
+// very young child uses every day.
+
+export const toddlerSentences = [
+    s('おなか{が}すいた', 'onaka ga suita', 'My tummy is hungry', 'Perutku lapar'),
+    s('のど{が}かわいた', 'nodo ga kawaita', 'I am thirsty', 'Aku haus'),
+    s('ねむい', 'nemui', 'I am sleepy', 'Aku ngantuk'),
+    s('て{が}いたい', 'te ga itai', 'My hand hurts', 'Tanganku sakit'),
+    s('みず{が}ほしい', 'mizu ga hoshii', 'I want some water', 'Aku mau air'),
+    s('おかし{が}ほしい', 'okashi ga hoshii', 'I want a snack', 'Aku mau kue'),
+    s('だっこして', 'dakko shite', 'Hold me, please', 'Gendong aku'),
+    s('いっしょ{に}あそぼう', 'issho ni asobou', 'Let us play together', 'Ayo main bareng'),
+    s('みてみて', 'mite mite', 'Look, look!', 'Lihat, lihat!'),
+    s('かわいい', 'kawaii', 'So cute!', 'Imut sekali!'),
+    s('すき', 'suki', 'I like it', 'Aku suka'),
+    s('だめ', 'dame', 'No, do not do that', 'Tidak boleh'),
+    s('ちょっとまって', 'chotto matte', 'Wait a moment', 'Tunggu sebentar'),
+    s('すごい', 'sugoi', 'Amazing!', 'Keren!'),
+    s('こわい', 'kowai', 'I am scared', 'Aku takut'),
+    s('やだ', 'yada', 'I do not want it', 'Tidak mau'),
+    s('でんき{を}つけて', 'denki wo tsukete', 'Turn on the light', 'Nyalakan lampunya'),
+    s('ドア{を}あけて', 'doa wo akete', 'Open the door', 'Buka pintunya'),
+    s('おかあさん', 'okaasan', 'Mom', 'Ibu'),
+    s('おとうさん', 'otousan', 'Dad', 'Ayah'),
+    s('いちご{が}すき', 'ichigo ga suki', 'I like strawberries', 'Aku suka stroberi'),
+    s('あかいくるま', 'akai kuruma', 'A red car', 'Mobil merah'),
+    s('ことり{が}いる', 'kotori ga iru', 'There is a little bird', 'Ada burung kecil'),
+    s('ぎゅうにゅう{が}のみたい', 'gyuunyuu ga nomitai', 'I want to drink milk', 'Aku mau minum susu'),
+    s('はやくねて', 'hayaku nete', 'Go to sleep quickly', 'Cepat tidur'),
+    s('おそと{で}あそぼう', 'osoto de asobou', 'Let us play outside', 'Ayo main di luar'),
+    s('かいもの{に}いこう', 'kaimono ni ikou', 'Let us go shopping', 'Ayo pergi belanja'),
+    s('またあした{ね}', 'mata ashita ne', 'See you tomorrow', 'Sampai besok ya'),
+    s('おはよう', 'ohayou', 'Good morning', 'Selamat pagi'),
+    s('おやすみ', 'oyasumi', 'Good night', 'Selamat tidur'),
+    s('いってらっしゃい', 'itterasshai', 'Have a good trip', 'Hati-hati di jalan'),
+    s('おかえり', 'okaeri', 'Welcome back', 'Selamat datang kembali'),
+    s('ごめん{ね}', 'gomen ne', 'Sorry', 'Maaf ya'),
+    s('うみ{に}いこう', 'umi ni ikou', 'Let us go to the sea', 'Ayo ke laut'),
+    s('やま{に}いこう', 'yama ni ikou', 'Let us go to the mountain', 'Ayo ke gunung'),
+    s('りんご{を}たべて', 'ringo wo tabete', 'Eat an apple', 'Makan apel'),
+    s('バナナ{が}たべたい', 'banana ga tabetai', 'I want to eat a banana', 'Aku mau makan pisang'),
+    s('ねこ{が}かわいい', 'neko ga kawaii', 'The cat is cute', 'Kucingnya lucu'),
+    s('いぬ{が}すき', 'inu ga suki', 'I like dogs', 'Aku suka anjing'),
+    s('あかちゃん', 'akachan', 'Baby', 'Bayi'),
+    s('おおきい', 'ookii', 'Big', 'Besar'),
+    s('ちいさい', 'chiisai', 'Small', 'Kecil'),
+    s('とけい', 'tokei', 'Clock / watch', 'Jam'),
+    s('どうぶつ{が}すき', 'doubutsu ga suki', 'I like animals', 'Aku suka hewan'),
+    s('うた{を}うたおう', 'uta wo utaou', 'Let us sing a song', 'Ayo menyanyi bareng'),
+    s('そら{が}きれい', 'sora ga kirei', 'The sky is pretty', 'Langitnya indah'),
+    s('おかし{は}おいしい', 'okashi wa oishii', 'The snack is tasty', 'Kuenya enak'),
+    s('いっしょ{に}あるこう', 'issho ni arukou', 'Let us walk together', 'Ayo jalan bareng'),
+    s('はやくおきて', 'hayaku okite', 'Get up early', 'Cepat bangun'),
+    s('いいこ', 'iiko', 'Good child', 'Anak baik'),
+];
+
+// ---------- elementary school (sekolah dasar / SD) ----------
+// Polite です / ます sentences about school, friends, hobbies and the day.
+
+export const elementarySentences = [
+    s('わたし{は}がくせいです', 'watashi wa gakusei desu', 'I am a student', 'Saya pelajar'),
+    s('あさ{に}がっこう{へ}いきます', 'asa ni gakkou e ikimasu', 'I go to school in the morning', 'Saya pergi ke sekolah di pagi hari'),
+    s('ばんごはん{を}たべます', 'bangohan wo tabemasu', 'I eat dinner', 'Saya makan malam'),
+    s('ともだち{と}あそびます', 'tomodachi to asobimasu', 'I play with friends', 'Saya bermain dengan teman'),
+    s('うみ{で}およぎます', 'umi de oyogimasu', 'I swim in the sea', 'Saya berenang di laut'),
+    s('ピアノ{を}ひきます', 'piano wo hikimasu', 'I play the piano', 'Saya bermain piano'),
+    s('サッカー{を}します', 'sakkaa wo shimasu', 'I play soccer', 'Saya bermain sepak bola'),
+    s('こうえん{で}あそびます', 'kouen de asobimasu', 'I play in the park', 'Saya bermain di taman'),
+    s('しゅくだい{を}します', 'shukudai wo shimasu', 'I do my homework', 'Saya mengerjakan PR'),
+    s('れきし{が}すきです', 'rekishi ga suki desu', 'I like history', 'Saya suka sejarah'),
+    s('うた{が}じょうずです', 'uta ga jouzu desu', 'I am good at singing', 'Saya pandai menyanyi'),
+    s('にちようび{に}やすみます', 'nichiyoubi ni yasumimasu', 'I rest on Sunday', 'Saya beristirahat pada hari Minggu'),
+    s('せんせい{に}ききます', 'sensei ni kikimasu', 'I ask the teacher', 'Saya bertanya kepada guru'),
+    s('ともだち{に}ほん{を}かします', 'tomodachi ni hon wo kashimasu', 'I lend a book to a friend', 'Saya meminjamkan buku kepada teman'),
+    s('としょかん{で}ほん{を}よみます', 'toshokan de hon wo yomimasu', 'I read books in the library', 'Saya membaca buku di perpustakaan'),
+    s('なつやすみ{は}たのしいです', 'natsu yasumi wa tanoshii desu', 'Summer holiday is fun', 'Libur musim panas menyenangkan'),
+    s('あめ{が}ふっています', 'ame ga futte imasu', 'It is raining', 'Sedang turun hujan'),
+    s('きょう{は}テストです', 'kyou wa tesuto desu', 'There is a test today', 'Hari ini ada ujian'),
+    s('がっこう{まで}あるきます', 'gakkou made arukimasu', 'I walk to school', 'Saya berjalan kaki ke sekolah'),
+    s('おべんとう{を}つくります', 'obentou wo tsukurimasu', 'I make a lunch box', 'Saya membuat bekal'),
+    s('まいあさべんきょう{を}します', 'mai asa benkyou wo shimasu', 'I study every morning', 'Saya belajar setiap pagi'),
+    s('かがく{が}すきです', 'kagaku ga suki desu', 'I like science', 'Saya suka IPA'),
+    s('え{が}じょうずです{ね}', 'e ga jouzu desu ne', 'You are good at drawing', 'Kamu pandai menggambar ya'),
+    s('がっこう{で}ひるごはん{を}たべます', 'gakkou de hiru gohan wo tabemasu', 'I eat lunch at school', 'Saya makan siang di sekolah'),
+    s('このひと{は}ともだちです', 'kono hito wa tomodachi desu', 'This person is a friend', 'Orang ini teman'),
+    s('ねこ{を}かいます', 'neko wo kaimasu', 'I keep a cat', 'Saya memelihara kucing'),
+    s('ともだち{と}えいが{を}みます', 'tomodachi to eiga wo mimasu', 'I watch a movie with a friend', 'Saya menonton film dengan teman'),
+    s('まいばんほん{を}よみます', 'maiban hon wo yomimasu', 'I read a book every night', 'Saya membaca buku setiap malam'),
+    s('やすみ{に}こうえん{へ}いきます', 'yasumi ni kouen e ikimasu', 'I go to the park on my day off', 'Pada hari libur saya pergi ke taman'),
+    s('およぎ{が}じょうずです', 'oyogi ga jouzu desu', 'I am a good swimmer', 'Saya pandai berenang'),
+    s('せんせい{が}おしえます', 'sensei ga oshiemasu', 'The teacher teaches', 'Guru mengajarkan'),
+    s('ことば{を}おぼえます', 'kotoba wo oboemasu', 'I learn words', 'Saya menghafal kosakata'),
+    s('なつ{に}うみ{へ}いきます', 'natsu ni umi e ikimasu', 'I go to the sea in summer', 'Di musim panas saya pergi ke laut'),
+    s('きょう{は}あついです', 'kyou wa atsui desu', 'Today is hot', 'Hari ini panas'),
+    s('まいにちこうえん{を}あるきます', 'mainichi kouen wo arukimasu', 'I walk in the park every day', 'Saya berjalan di taman setiap hari'),
+    s('じてんしゃ{で}がっこう{へ}いきます', 'jitensha de gakkou e ikimasu', 'I go to school by bicycle', 'Saya pergi ke sekolah naik sepeda'),
+    s('こうえん{に}ねこ{が}います', 'kouen ni neko ga imasu', 'There is a cat in the park', 'Ada kucing di taman'),
+    s('ともだち{が}ひとりいます', 'tomodachi ga hitori imasu', 'I have one friend', 'Saya punya satu teman'),
+    s('おかし{を}つくりました', 'okashi wo tsukurimashita', 'I made sweets', 'Saya membuat kue'),
+    s('まいあさ{に}おきます', 'mai asa ni okimasu', 'I wake up every morning', 'Saya bangun setiap pagi'),
+    s('えきのまえ{で}まってください', 'eki no mae de matte kudasai', 'Please wait in front of the station', 'Silakan tunggu di depan stasiun'),
+    s('じしょ{を}つかいます', 'jisho wo tsukaimasu', 'I use a dictionary', 'Saya memakai kamus'),
+    s('がっこう{が}はじまります', 'gakkou ga hajimarimasu', 'School starts', 'Sekolah dimulai'),
+    s('ともだち{と}おしゃべりします', 'tomodachi to oshaberi shimasu', 'I chat with a friend', 'Saya mengobrol dengan teman'),
+    s('ともだち{と}あるきます', 'tomodachi to arukimasu', 'I walk with a friend', 'Saya berjalan dengan teman'),
+    s('としょかん{で}しんぶん{を}よみます', 'toshokan de shinbun wo yomimasu', 'I read the newspaper in the library', 'Saya membaca koran di perpustakaan'),
+    s('まいあさごはん{を}たべます', 'mai asa gohan wo tabemasu', 'I eat breakfast every morning', 'Saya makan pagi setiap pagi'),
+    s('うんどうかい{が}たのしいです', 'undoukai ga tanoshii desu', 'The sports day is fun', 'Lomba olahraga menyenangkan'),
+    s('がっこう{で}うた{を}うたいます', 'gakkou de uta wo utaimasu', 'I sing songs at school', 'Saya menyanyi di sekolah'),
+    s('やすみ{に}ともだち{に}あいます', 'yasumi ni tomodachi ni aimasu', 'I meet a friend on my day off', 'Pada hari libur saya bertemu teman'),
+];
+
+// ---------- junior high (sekolah menengah pertama / SMP) ----------
+// Plans, wishes and opinions, using 〜たい, dictionary-form verbs and a few
+// casual endings a young teenager uses with friends.
+
+export const juniorHighSentences = [
+    s('らいしゅう{に}テスト{が}ある', 'raishuu ni tesuto ga aru', 'There is a test next week', 'Minggu depan ada ujian'),
+    s('わたし{は}にほんご{を}べんきょうしたい', 'watashi wa nihongo wo benkyou shitai', 'I want to study Japanese', 'Saya ingin belajar bahasa Jepang'),
+    s('ぶかつ{に}はいりたいです', 'bukatsu ni hairitai desu', 'I want to join a club', 'Saya ingin ikut klub'),
+    s('らいねん{に}にほん{へ}いきたい', 'rainen ni nihon e ikitai', 'I want to go to Japan next year', 'Saya ingin pergi ke Jepang tahun depan'),
+    s('えいが{を}みたいです', 'eiga wo mitai desu', 'I want to watch a movie', 'Saya ingin menonton film'),
+    s('きのう{の}テスト{は}むずかしかったです', 'kinou no tesuto wa muzukashikatta desu', 'Yesterday’s test was difficult', 'Ujian kemarin sulit'),
+    s('このほん{は}おもしろいです', 'kono hon wa omoshiroi desu', 'This book is interesting', 'Buku ini menarik'),
+    s('かれ{は}にほんご{が}じょうずです', 'kare wa nihongo ga jouzu desu', 'He is good at Japanese', 'Dia pandai bahasa Jepang'),
+    s('かのじょ{は}やさい{を}たべません', 'kanojo wa yasai wo tabemasen', 'She does not eat vegetables', 'Dia tidak makan sayur'),
+    s('あした{の}じかん{は}ありますか', 'ashita no jikan wa arimasu ka', 'Do you have time tomorrow?', 'Besok punya waktu?'),
+    s('いっしょ{に}えいが{を}みないか', 'issho ni eiga wo minai ka', 'Shall we not watch a movie together?', 'Mau nonton film bareng?'),
+    s('テスト{が}こわい', 'tesuto ga kowai', 'I am scared of the test', 'Aku takut ujian'),
+    s('ともだち{と}おしゃべりしたい', 'tomodachi to oshaberi shitai', 'I want to chat with a friend', 'Aku mau ngobrol dengan teman'),
+    s('まつり{に}いきたいです', 'matsuri ni ikitai desu', 'I want to go to the festival', 'Aku mau pergi ke festival'),
+    s('このうた{が}すきです', 'kono uta ga suki desu', 'I like this song', 'Aku suka lagu ini'),
+    s('まいあさ{に}はしります', 'mai asa ni hashirimasu', 'I run every morning', 'Saya berlari setiap pagi'),
+    s('にほん{の}ごはん{が}おいしいです', 'nihon no gohan ga oishii desu', 'Japanese food is tasty', 'Makanan Jepang enak'),
+    s('しゅくだい{を}まだしていません', 'shukudai wo mada shite imasen', 'I have not done my homework yet', 'Saya belum mengerjakan PR'),
+    s('かれ{は}サッカー{が}じょうずです', 'kare wa sakkaa ga jouzu desu', 'He is good at soccer', 'Dia pandai sepak bola'),
+    s('きのう{は}とてもたのしかった', 'kinou wa totemo tanoshikatta', 'Yesterday was very fun', 'Kemarin sangat menyenangkan'),
+    s('またあした{で}あおう', 'mata ashita de aou', 'Let us meet again tomorrow', 'Ayo ketemu lagi besok'),
+    s('やすみ{の}ひ{は}なに{を}する', 'yasumi no hi wa nani wo suru', 'What do you do on your day off?', 'Pada hari libur ngapain?'),
+    s('おんがく{を}きく{と}リラックスする', 'ongaku wo kiku to rirakkusu suru', 'Listening to music helps me relax', 'Mendengar musik membuat rileks'),
+    s('このみせ{は}とてもやすいです', 'kono mise wa totemo yasui desu', 'This shop is very cheap', 'Toko ini sangat murah'),
+    s('にちようび{に}ともだち{と}あう', 'nichiyoubi ni tomodachi to au', 'I meet a friend on Sunday', 'Pada hari Minggu saya bertemu teman'),
+    s('ともだち{と}あそびたい', 'tomodachi to asobitai', 'I want to play with a friend', 'Aku mau bermain dengan teman'),
+    s('すうがく{を}べんきょうする', 'suugaku wo benkyou suru', 'I study math', 'Saya belajar matematika'),
+    s('やさい{が}きらいです', 'yasai ga kirai desu', 'I dislike vegetables', 'Saya tidak suka sayur'),
+    s('ざっし{を}よみたい', 'zasshi wo yomitai', 'I want to read a magazine', 'Aku ingin membaca majalah'),
+    s('おんがく{が}だいすきです', 'ongaku ga daisuki desu', 'I love music', 'Saya sangat suka musik'),
+    s('すし{が}たべたい', 'sushi ga tabetai', 'I want to eat sushi', 'Aku ingin makan sushi'),
+    s('ともだち{に}プレゼント{を}あげる', 'tomodachi ni purezento wo ageru', 'I give a present to a friend', 'Saya memberi hadiah kepada teman'),
+    s('まいばん{に}ほん{を}よむ', 'mai ban ni hon wo yomu', 'I read books every night', 'Saya membaca buku setiap malam'),
+    s('ゲーム{が}ほしいです', 'geemu ga hoshii desu', 'I want a game', 'Aku ingin permainan'),
+    s('やすみ{に}でかけた', 'yasumi ni dekaketa', 'I went out on my day off', 'Saya pergi keluar di hari libur'),
+    s('いえ{で}ねこ{と}あそぶ', 'ie de neko to asobu', 'I play with the cat at home', 'Aku bermain dengan kucing di rumah'),
+    s('かれ{と}テニス{を}します', 'kare to tenisu wo shimasu', 'I play tennis with him', 'Saya bermain tenis dengannya'),
+    s('かのじょ{に}メール{を}だします', 'kanojo ni meeru wo dashimasu', 'I send an email to her', 'Saya mengirim surel kepadanya'),
+    s('まいにちがっこう{に}いく', 'mai nichi gakkou ni iku', 'I go to school every day', 'Saya pergi ke sekolah setiap hari'),
+    s('こんしゅう{の}どようび{に}でかける', 'konshuu no doyoubi ni dekakeru', 'I will go out this Saturday', 'Akhir pekan ini saya akan pergi'),
+    s('ともだち{を}まつ', 'tomodachi wo matsu', 'I wait for a friend', 'Aku menunggu teman'),
+    s('え{を}かきたい', 'e wo kakitai', 'I want to draw a picture', 'Aku ingin menggambar'),
+    s('にほん{の}うた{を}うたいたい', 'nihon no uta wo utaitai', 'I want to sing a Japanese song', 'Aku ingin menyanyi lagu Jepang'),
+    s('べんきょう{は}たいへんです', 'benkyou wa taihen desu', 'Studying is hard work', 'Belajar itu berat'),
+    s('テスト{を}じゅんびする', 'tesuto wo junbi suru', 'I prepare for a test', 'Saya mempersiapkan ujian'),
+    s('でんわ{で}ともだち{に}かける', 'denwa de tomodachi ni kakeru', 'I call a friend on the phone', 'Aku menelepon teman'),
+    s('いえ{に}かえりたい', 'ie ni kaeritai', 'I want to go home', 'Aku ingin pulang ke rumah'),
+    s('このうた{は}かんたんです', 'kono uta wa kantan desu', 'This song is easy', 'Lagu ini mudah'),
+    s('みず{を}いっぱいのみます', 'mizu wo ippai nomimasu', 'I drink a lot of water', 'Aku minum banyak air'),
+    s('きょう{は}ひまです', 'kyou wa hima desu', 'I am free today', 'Hari ini saya santai'),
+];

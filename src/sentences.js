@@ -1,5 +1,7 @@
 import { kanaCharacters } from './kanaCharacters.js';
 import { generatedSentences } from './generatedSentences.js';
+import { imperativeSentences, questionSentences, answerSentences } from './dailySentences.js';
+import { toddlerSentences, elementarySentences, juniorHighSentences } from './kidsSentences.js';
 import { getSentenceOptions, sentenceInTopic } from './practiceOptions.js';
 import { addIndonesianMeanings } from './i18n.js';
 
@@ -440,6 +442,18 @@ export const sentences = [
 // (scripts/generateSentences.mjs), which offers enough coverage for any
 // realistic group selection.
 sentences.push(...generatedSentences);
+
+// Everyday conversation set: 100 imperative, 100 question and 100 answer
+// sentences in kana only (see dailySentences.js), plus the child sentences
+// by age group (toddler, elementary, junior high in kidsSentences.js).
+// Duplicates of anything already in the pool are skipped so a sentence is
+// only practiced once.
+const seenJpCharacters = new Set(sentences.map(sentence => sentence.jp_character));
+for (const sentence of [...imperativeSentences, ...questionSentences, ...answerSentences, ...toddlerSentences, ...elementarySentences, ...juniorHighSentences]) {
+  if (seenJpCharacters.has(sentence.jp_character)) continue;
+  seenJpCharacters.add(sentence.jp_character);
+  sentences.push(sentence);
+}
 addIndonesianMeanings(sentences);
 
 // jp_character -> title of the group it belongs to, for every selectable

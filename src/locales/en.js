@@ -282,6 +282,7 @@ export const en = {
   statsPracticeWeakest: 'Practice these',
   statsWeakestEmpty: 'Nothing weak in your selection yet. Practice more to see what needs work!',
   statsTabActivity: 'Activity',
+  statsSentencesEmpty: 'No sentences practiced yet. Play the Sentences mode and the ones you answer show up here!',
   statsActivityEmpty: 'No practice yet. Play a game and your activity shows up here!',
   statsCurrentStreak: 'Day streak',
   statsBestStreak: 'Best streak',
