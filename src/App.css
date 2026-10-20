@@ -1552,6 +1552,39 @@ Progress Stats Modal
   font-family: "Noto_Serif_JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
 }
 
+/* Sentences tab: wider tiles, no longer square, so a whole sentence fits */
+.progress-stats-sentence-grid-container .progress-stats-grid {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+.progress-stats-sentence-grid-container .progress-stats-grid-item {
+  aspect-ratio: auto;
+  min-height: 5.5em;
+}
+
+.progress-stats-sentence-character {
+  font-size: 0.85em;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.progress-stats-sentences-empty {
+  margin: 1em auto;
+  max-width: 24em;
+  text-align: center;
+  color: var(--text-muted);
+  font-family: var(--ui-font);
+}
+
+.progress-stats-tooltip-title-sentence {
+  font-size: 1.2em;
+  overflow-wrap: anywhere;
+}
+
 .progress-stats-grid-item-romanji {
   display: block;
   width: 100%;

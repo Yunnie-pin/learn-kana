@@ -276,6 +276,7 @@ export const id = {
   statsPracticeWeakest: 'Latih ini',
   statsWeakestEmpty: 'Belum ada yang lemah di pilihanmu. Terus berlatih untuk melihat yang perlu diperbaiki!',
   statsTabActivity: 'Aktivitas',
+  statsSentencesEmpty: 'Belum ada kalimat yang dilatih. Mainkan mode Kalimat, dan kalimat yang kamu jawab akan muncul di sini!',
   statsActivityEmpty: 'Belum ada latihan. Mainkan satu permainan dan aktivitasmu muncul di sini!',
   statsCurrentStreak: 'Hari beruntun',
   statsBestStreak: 'Rekor beruntun',

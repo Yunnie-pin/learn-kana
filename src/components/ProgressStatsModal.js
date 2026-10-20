@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { kanaCharacters } from '../kanaCharacters.js';
 import { useLanguage } from '../i18n';
 import { getKanjiSrsProgress, getKanjiSrsStage, getSelectedKanjiGroupTitles } from '../kanjiSrs.js';
+import { sentences, getReadableSentences } from '../sentences.js';
 import { calculateMastery, EXPERIENCE_ANSWERS, getMasteryBreakdown, getWeakestItems } from '../mastery.js';
 import { getConfusionPairs, readConfusions } from '../confusions.js';
 import { getListForPractice, getStoredPracticeMode } from '../practiceList.js';
@@ -186,6 +187,27 @@ function ProgressStatsModal(props) {
         });
     };
 
+    // The sentences the user has practiced: all 1,400+ would be too much to
+    // show, and the ones never answered have no progress to display anyway.
+    // In the summary they still count against the sentences that can be read
+    // with the selected groups, like the other tabs count against everything
+    const getAllSentences = () => {
+        const practiced = sentences
+            .map((sentence, index) => ({
+                character: sentence.jp_character,
+                romanji: sentence.romanji[0],
+                meaning: meaningOf(sentence.jp_character, sentence.meaning),
+                originalIndex: index,
+            }))
+            .filter(item => getMastery(item.character) !== null);
+
+        // Same order as the other tabs: by mastery bracket, then the original order
+        return practiced.sort((a, b) => {
+            const bracketDifference = getMasteryBracket(getMastery(b.character)) - getMasteryBracket(getMastery(a.character));
+            return bracketDifference || a.originalIndex - b.originalIndex;
+        });
+    };
+
     // Get all words from kanaCharacters
     const getAllWords = () => {
         const words = Object.values(kanaCharacters.words).map((word, index) => ({
@@ -273,7 +295,7 @@ function ProgressStatsModal(props) {
                     setHoveredItem(item);
                 }}
             >
-                <div className={`progress-stats-grid-item-character${activeTab === 'kanji' ? ' progress-stats-kanji-character' : ''}`}>
+                <div className={`progress-stats-grid-item-character${activeTab === 'kanji' ? ' progress-stats-kanji-character' : ''}${activeTab === 'sentences' ? ' progress-stats-sentence-character' : ''}`}>
                     {item.character}
                 </div>
                 <div className="progress-stats-grid-item-romanji">
@@ -348,8 +370,9 @@ function ProgressStatsModal(props) {
 
         return (
             <div className="progress-stats-tooltip">
-                <div className="progress-stats-tooltip-title">
-                    {hoveredItem.character} ({hoveredItem.romanji})
+                <div className={`progress-stats-tooltip-title${activeTab === 'sentences' ? ' progress-stats-tooltip-title-sentence' : ''}`}>
+                    {hoveredItem.character}
+                    {hoveredItem.romanji && ` (${hoveredItem.romanji})`}
                     {hoveredItem.meaning && <span className="progress-stats-tooltip-meaning"> - {hoveredItem.meaning}</span>}
                 </div>
                 {renderMastery(hoveredItem.character)}
@@ -385,8 +408,27 @@ function ProgressStatsModal(props) {
 
     const items = activeTab === 'characters' ? getAllCharacters()
         : activeTab === 'kanji' ? getAllKanji()
-        : activeTab === 'words' ? getAllWords() : [];
-    const summary = getSummaryStats(items);
+        : activeTab === 'words' ? getAllWords()
+        : activeTab === 'sentences' ? getAllSentences() : [];
+
+    // The sentences tab only shows the practiced sentences, but the summary
+    // counts them against the ones that can be read with the selected groups,
+    // like the other tabs count against everything in the tab
+    let summary;
+    if (activeTab === 'sentences') {
+        const readableTotal = getReadableSentences(getSelectedKanjiGroupTitles()).length;
+        const masterySum = items.reduce((sum, item) => sum + getMastery(item.character), 0);
+        summary = {
+            total: readableTotal,
+            practiced: items.length,
+            avgMastery: items.length > 0 ? Math.round(masterySum / items.length) : 0,
+            // An unpracticed sentence counts as 0%, so overall progress stays
+            // below the average mastery of the practiced ones
+            overallProgress: readableTotal > 0 ? Math.min(100, Math.round(masterySum / readableTotal)) : 0,
+        };
+    } else {
+        summary = getSummaryStats(items);
+    }
 
     return (
         <div className='progress-stats-modal-background' onClick={props.onClose}>
@@ -462,6 +504,15 @@ function ProgressStatsModal(props) {
                     </button>
                     <button
                         role='tab'
+                        aria-selected={activeTab === 'sentences'}
+                        className={`progress-stats-tab segmented-option${activeTab === 'sentences' ? ' active' : ''}`}
+                        onClick={() => setActiveTab('sentences')}
+                    >
+                        <Icon name='message-square' className='segmented-option-icon' />
+                        <span>{t('practiceLong')}</span>
+                    </button>
+                    <button
+                        role='tab'
                         aria-selected={activeTab === 'activity'}
                         className={`progress-stats-tab segmented-option${activeTab === 'activity' ? ' active' : ''}`}
                         onClick={() => setActiveTab('activity')}
@@ -527,10 +578,14 @@ function ProgressStatsModal(props) {
                             </div>
                         </div>
 
-                        <div className='progress-stats-grid-container'>
-                            <div className='progress-stats-grid' key={activeTab}>
-                                {items.map((item, index) => renderGridItem(item, index))}
-                            </div>
+                        <div className={`progress-stats-grid-container${activeTab === 'sentences' ? ' progress-stats-sentence-grid-container' : ''}`}>
+                            {activeTab === 'sentences' && items.length === 0 ? (
+                                <p className='progress-stats-sentences-empty'>{t('statsSentencesEmpty')}</p>
+                            ) : (
+                                <div className='progress-stats-grid' key={activeTab}>
+                                    {items.map((item, index) => renderGridItem(item, index))}
+                                </div>
+                            )}
                         </div>
                     </>
                 )}
