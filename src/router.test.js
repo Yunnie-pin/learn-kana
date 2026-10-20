@@ -888,6 +888,21 @@ test('the review summary offers more new kanji once today\'s are done', async ()
   expect(document.querySelector('.kanji-srs-session-count')).toHaveTextContent(`1 / ${NEW_KANJI_PER_DAY}`);
 });
 
+test('Learning Progress loads the sentences when their tab is opened, not with the menu', async () => {
+  const today = new Date().setHours(0, 0, 0, 0);
+  localStorage.setItem('userStats', JSON.stringify({
+    'これは水です': { totalRightGuesses: 1, dailyPerformance: [{ date: today, rightGuesses: 1, wrongGuesses: 0, askForHelpCounter: 0, responseTimeSum: 2000 }] },
+  }));
+  await open('/');
+  fireEvent.click(screen.getAllByTitle(translate('en', 'menuStats'))[0]);
+  const statsTab = [...document.querySelectorAll('.progress-stats-tab')]
+    .find(tab => tab.textContent === translate('en', 'practiceLong'));
+  fireEvent.click(statsTab);
+  // The practiced sentence, once the sentences are loaded
+  expect(await screen.findByText('これは水です')).toBeInTheDocument();
+  expect(screen.queryByText(translate('en', 'statsSentencesEmpty'))).toBeNull();
+});
+
 describe('tabs', () => {
   test('the root is the Games tab, the navbar links to the Dictionary', async () => {
     await open('/');
