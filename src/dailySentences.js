@@ -16,7 +16,7 @@
 // a sentence. Anything between braces must be one of these.
 // `furigana` is an optional {index: reading} map for characters that are read
 // differently than written, like the final は of こんにちは (read wa).
-function s(tmpl, romaji, meaning, meaning_id, furigana) {
+export function s(tmpl, romaji, meaning, meaning_id, furigana) {
     const particles = [];
     let inParticle = false;
     let jp = '';
